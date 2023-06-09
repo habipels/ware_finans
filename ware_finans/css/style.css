@@ -1,0 +1,50 @@
+body {font-family: Arial, Helvetica, sans-serif;
+}
+
+
+.arkaplan{
+  background-color: #C9DFF1;
+}
+.yeni{
+  border: 1px solid black !important;
+  margin: 5px;
+}
+.bosluk{
+  margin: 5px;
+}
+nav{
+  border-radius: 0 !important;
+  max-height: 150px;
+  min-height: 100px;
+
+}
+.dropdown-menu-start {
+  right: auto !important;
+  left: -100% !important;
+}
+
+.dropdown-submenu {
+  position: relative;
+}
+
+.dropdown-submenu .dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+}
+.dropdown-menu-end {
+  left: auto !important;
+  right: -120% !important;
+}
+
+.dropdown-submenu {
+  position: relative;
+}
+
+.dropdown-submenu .dropdown-menu {
+  top: 0;
+  right: 120%;
+  margin-top: -6px;
+  margin-left: -1px;
+}

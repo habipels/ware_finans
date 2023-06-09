@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ware Finans</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+   <!-- Icon Font Stylesheet -->
+   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+<body>
+<!--Header-->
+
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a  href="/">
+      <img src="resimler/icon.png" alt="WARE SOFT FİNANS"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mynavbar">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link" style="color:rgb(255, 255, 255);" href="index.html">Anasayfa</a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link" style="color:rgb(8, 179, 8);" href="login.html">Giriş Yap</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" style="color:rgb(28, 127, 227);" href="javascript:void(0)">Kayıt Ol</a>
+        </li>
+        <li class="nav-item">
+          <div class="dropdown" style="margin-right: 10px;">
+            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              Muhasebe Durumu 
+            </button>
+            
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li>
+                <div class="dropdown">
+                  <button class="dropdown-item dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                    Firma Bilgileri
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton2">
+                    <li><a class="dropdown-item" href="firma_ekle.html">Firma Bilgileri</a></li>
+                    <li><a class="dropdown-item" href="#">Firma Ekle</a></li>
+                    <li><a class="dropdown-item" href="#">Firma Güncelle</a></li>
+                    <li><a class="dropdown-item" href="#">Firma Sil </a></li>
+                    <li><a class="dropdown-item" href="#">Firma Aktar</a></li>
+                    <li><a class="dropdown-item" href="#">Şube Ekle</a></li>
+                    <li><a class="dropdown-item" href="#">Şube Güncelle</a></li>
+                    <li><a class="dropdown-item" href="#">Şube Sil</a></li>
+                    <li><a class="dropdown-item" href="#">Var Olan Firmalar Listesi Çıkar</a></li>
+                    <li><a class="dropdown-item" href="#">Silinen Firmalar Listesi Çıkar</a></li>
+                    <li><a class="dropdown-item" href="#">Dilekçe Oluştur</a></li>
+                  </ul>
+                </div>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">Seçenek 1</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">Seçenek 2</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">Seçenek 3</a>
+              </li>
+              
+            </ul>
+          </div>
+          
+          <script>
+            // İkinci dropdown açıldığında, birinci dropdown'un kapanmasını engelle
+            $('.dropdown .dropdown-menu').on('click', function (e) {
+              e.stopPropagation();
+            });
+          </script>
+          
+        </li>
+        <li class="nav-item" >
+          <div  style="color:rgb(255, 255, 255);" class="dropdown">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
+              Hesabım
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item " href="#">Lisans Bilgileri</a></li>
+              <li><a class="dropdown-item " href="#">Kullanıcı Ekle</a></li>
+              <li><a class="dropdown-item " href="#">Destek</a></li>
+              <li><a class="dropdown-item " href="#">Şifre Değiştirme</a></li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+      
+    </div>
+  </div>
+</nav>
+<!--Header-->
+<div class="container">
+  <h2>İşlemler</h2>
+
+  <ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#Firma">Firma Bilgileri </a></li>
+    <li><a data-toggle="tab" href="#Faliyet">Faliyet Bilgileri</a></li>
+    
+    <li><a data-toggle="tab" href="#Kurumlar">Taşeron / Kurumlar Bilgileri</a></li>
+    <li ><a data-toggle="tab" href="#Beyanname">Beyanname Bilgileri </a></li>
+    <li ><a data-toggle="tab" href="#SGK">SGK İŞKUR Bilgileri </a></li>
+  </ul>
+  <form  method="post">
+  <div class="tab-content">
+  
+    <div id="Firma" class="tab-pane fade in active">
+      <div class="container">
+        <div class="row">
+          <div class="col-6" style="border-right: 1px solid black;">
+
+          
+      <h3 class="text-center">Firma Bilgileri</h3>
+      <hr style="color:black !important;border-top:2px solid black !important;">
+      <label for="firmaunvanad">
+        Firma Unvanı (Adı):
+        <input name="firmaunvanad" type="text">
+      </label>
+      <br>
+      <label for="firmaunvansoyadi">
+        Firma Unvanı (Soyadı):
+        <input name="firmaunvansoyadi" type="text">
+      </label>
+      <br>
+      <label for="subead">
+        Şube Adı:
+        <input name="subead" type="text">
+      </label>
+      <br>
+      <label for="subeunvani">
+        Şube Unvanı :
+        <input name="subeunvani" type="text">
+      </label>
+      <br>
+      <h4 class="text-center">Adres Bilgisi </h4>
+      <hr style="color:black !important;border-top:2px solid black !important;">
+      <label for="adres">
+        Adres :
+        <input name="adres" type="text">
+      </label>
+      <br>
+      <label for="mahalle">
+        Mahalle /köy :
+        <input name="mahalle" type="text">
+      </label>
+      <br>
+      <label for="buluvar">
+        Buluvar :
+        <input name="buluvar" type="text">
+      </label>
+      <br>
+      <label for="cadde">
+        Cadde :
+        <input name="cadde" type="text">
+      </label>
+      <br>
+      <label for="sokak">
+        Sokak :
+        <input name="sokak" type="text">
+      </label>
+      <br>
+      <label for="ada">
+        Ada Parsel No :
+        <input name="ada" type="text">
+      </label>
+      <br>
+      <label for="diskapi">
+        Dış Kapı No :
+        <input name="diskapi" type="text">
+      </label>
+      <br>
+      <label for="ickapi">
+        İç Kapı No :
+        <input name="ickapi" type="text">
+      </label>
+      <br>
+      <label for="postakodu">
+        Posta Kodu :
+        <input name="postakodu" type="text">
+      </label>
+      <br>
+      <label for="semt">
+        Semt :
+        <input name="semt" type="text">
+      </label>
+      <br>
+      <label for="ilce">
+        İlçe :
+        <input name="ilce" type="text">
+      </label>
+      <br>
+      <label for="il">İl:</label>
+      <select name="il" id="il">
+        <option value="01">Adana</option>
+        <option value="06">Ankara</option>
+        <option value="27">Gaziantep</option>
+        <option value="34">İstanbul</option>
+        <option value="65">Van</option>
+      </select>
+    </div>
+    <div class="col-6" style="box-sizing: border-box;">
+      <h3>Defter Beyanname Bilgileri</h3>
+      <hr style="color:black !important;border-top:2px solid black !important;">
+      <div class="row" style="margin-left:0 !important;">
+        <div class="col-3" style="border: 1px solid brown;">
+          <h5 class="text-center">Defter Türü</h5>
+          <input type="radio" id="html" name="fav_language" value="genelmuhasabe">
+          <label for="html">Genel Muhasebe</label><br>
+          <input type="radio" id="css" name="fav_language" value="isletmedefteri">
+          <label for="css">İşletme Defteri</label><br>
+        </div>
+        <div class="col-2" style="border: 1px solid brown;">
+          <h5 class="text-center">KDV1</h5>
+          <input type="radio" id="html" name="fav_language" value="kdv1aylik">
+          <label for="html">Aylık</label><br>
+          <input type="radio" id="css" name="fav_language" value="kdv1ucaylik">
+          <label for="css">3 Aylık</label><br>
+        </div>
+        <div class="col-2" style="border: 1px solid brown;">
+          <h5 class="text-center">Turizim Türü</h5>
+          <input type="radio" id="html" name="fav_language" value="turizimaylik">
+          <label for="html">Aylık</label><br>
+          <input type="radio" id="css" name="fav_language" value="turizimucaylik">
+          <label for="css">3 Aylık</label><br>
+        </div>
+        <div class="col-2" style="border: 1px solid brown;">
+          <h5 class="text-center">MuhSGK</h5>
+          <input type="radio" id="html" name="fav_language" value="sgkaylik">
+          <label for="html">Aylık</label><br>
+          <input type="radio" id="css" name="fav_language" value="sgkucaylik">
+          <label for="css">3 Aylık</label><br>
+        </div>
+        <div class="col-3" style="border: 1px solid brown;">
+          <h5 class="text-center">Poşet</h5>
+          <input type="radio" id="html" name="fav_language" value="posetaylik">
+          <label for="html">Aylık</label><br>
+          <input type="radio" id="css" name="fav_language" value="posetucaylik">
+          <label for="css">3 Aylık</label><br>
+          <input type="radio" id="java" name="fav_language" value="posetaltiaylik">
+          <label for="java">6 Aylık</label><br>
+        </div>
+      </div>
+      <div class="row" style="margin-left:0 !important;">
+        <div class="col-6">
+          <div class="row" style="margin-left:-7px !important;">
+            <div class="col-8" style="border: 1px solid brown;">
+              <h5 class="text-center">Firma Defter Türü </h5>
+              <input type="radio" id="html" name="fav_language" value="isletme">
+              <label for="html">İşletme</label><br>
+              <input type="radio" id="css" name="fav_language" value="serbestmeslekdefteri">
+              <label for="css">Serbest Meslek Defteri</label><br>
+              
+            </div>
+            <div class="col-4" style="border: 1px solid brown;">
+             
+              <h5 class="text-center">KDV2</h5>
+              <input type="radio" id="html" name="fav_language" value="kdv2aylik">
+              <label for="html">Aylık</label><br>
+              <input type="radio" id="css" name="fav_language" value="kdv2ucaylik">
+              <label for="css">3 Aylık</label><br>
+            </div>
+          </div>
+        </div>
+        <div class="col-6" >
+          <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+          <label for="vehicle1" style="font-size: 10px;"> Muhasebeci Bilgilerini Beyannameye Yaz</label><br>
+          <input type="checkbox" id="vehicle2" name="vehicle2" value="Car">
+          <label for="vehicle2"  style="font-size: 10px;"> Firma Adı Ortaklı Mı?</label><br>
+          <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
+          <label for="vehicle3"  style="font-size: 10px;"> 2000/5000 Listede Görünsün</label><br>
+          <input type="checkbox" id="vehicle4" name="vehicle3" value="Boat">
+          <label for="vehicle3"  style="font-size: 10px;"> Aktif</label><br>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <label for="mulk">Mükellefiyet Türü:</label>
+          <select name="mulk" id="il">
+            <option value="00"></option>
+            <option value="01">Gerçek Kişi</option>
+            <option value="02">Adı Ortak</option>
+          </select></div>
+      
+      <div class="col-6">
+        <label for="stok">Stok Envanter Bilgileri:</label>
+        <select name="stok" id="il">
+          <option value="00"></option>
+          <option value="01">FIFO</option>
+          <option value="02">LIFO</option>
+        </select>
+        <label for="kdv">Geçici Vergi Oranı(%) : <input type="text" name="gecicivergiorani"></label>
+      </div>
+      </div>
+    </div>
+    </div>
+  </div>
+  <br>
+      <a type="button" class="btn btn-primary"data-toggle="tab" href="#Faliyet">Devam Et</a>
+    </div>
+      
+    
+    <div id="Faliyet" class="tab-pane fade">
+      <div class="row">
+        <h3 class="text-center" style="margin-top: 2%;">Faliyet Bilgileri</h3>
+      <hr style="color:black !important;border-top:2px solid black !important;">
+        <div class="col-6" style="border-right: 1px solid black;">
+          
+          <label for="kurlustarihi">Kuruluş Tarihi
+            <input type="date" name="kurulustarihi" id="tarih">
+          </label>
+          <label for="terktarihi">Terk Tarihi
+            <input type="date" name="kurulustarihi" id="tarih">
+          </label>
+          <label for="faliyetnacekodu">
+            Faliyet Nace Kodu
+            <input type="text">
+          </label>
+          <label for="tehlikesinifi">
+            Tehlike Sınıfı
+            <input type="text">
+          </label>
+          <label for="faliyetadi">
+            Faliyet Adı
+            <input type="text">
+          </label>
+          <label for="faliyetinniteligi">
+            Faliyet Niteliği
+            <select name="nitelik" id="nitelik">
+              <option value="00"></option>
+              <option value="01">Devamlı</option>
+              <option value="02">Mevsimlik</option>
+              <option value="03">Geçici</option>
+              <option value="04">Diğer</option>
+            </select>
+          </label>
+          <label for="sektor">
+            Faliyet Sektörü
+            <select name="sektor" id="sektor">
+              <option value="00"></option>
+              <option value="01">Dernek</option>
+              <option value="02">Vakıf</option>
+              <option value="03">Sendika</option>
+              <option value="04">Basın</option>
+            </select>
+          </label>
+          <label for="yapilanisniteligi">
+            Yapılan İşin Niteliği
+            <input type="text">
+          </label>
+          <label for="sektor">
+            Çalışma Ve Sosyal Güvenlik Bakanlığı İşkolu
+            <select name="csgk" id="csgk">
+              <option value="00"></option>
+              <option value="01">Dernek</option>
+              <option value="02">Vakıf</option>
+              <option value="03">Sendika</option>
+              <option value="04">Basın</option>
+            </select>
+          </label>
+          <label for="unvan">
+            Şahıs ise Ticaret Unvanı
+            <input type="text">
+          </label>
+          <label for="ticarisicilgazatesitarihi">Ticari Sicil Gazatesi Tarihi
+            <input type="date" name="ticarisicilgazatesitarihi" id="tarih">
+          </label>
+          <label for="tsgsayfano">
+            Ticari Sicil Gazatesi Sayfa No
+            <input name="tsgsayfano" type="text">
+          </label>
+          <label for="tsgazateno">
+            Ticari Sicil Gazate No
+            <input name="tsgazateno" type="text">
+          </label>
+          <label for="meslektesekkuladi">
+            Meslek Teşekkülü Adı
+            <input name="meslektesekkuladi" type="text">
+          </label>
+          <label for="meslektesekkulno">
+            Meslek Teşekkülü No
+            <input name="meslektesekkulno" type="text">
+          </label>
+        </div>
+        <div class="col-6">
+          <label for="adresno">
+            Adres No
+            <input name="adresno" type="text">
+          </label>
+          <label for="tahutedilensermaye">
+            Taahhüt Edilen Sermaye
+            <input name="tahutedilensermaye" type="text">
+          </label>
+          <label for="odenensermaye">
+            Ödenen Sermaye
+            <input name="odenensermaye" type="text">
+          </label>
+          <label for="epostaadresi2">
+            E-Posta Adresi 2
+            <input name="epostaadresi2" type="email">
+          </label>
+          <label for="kotsmi">
+            Kayıtlı Olduğu Ticaret Sicil Memurluğu İl
+            <select name="kotsmi" id="kotsmi">
+              <option value="00"></option>
+              <option value="01">van</option>
+              <option value="02">ankara</option>
+              <option value="03">istanbul</option>
+              <option value="04">adana</option>
+              <option value="05">mersin</option>
+              <option value="06">Batman</option>
+            </select>
+          </label>
+          <label for="ticaretsicilno">
+            Ticaret Sicil No
+            <input name="ticaretsicilno" type="text">
+          </label>
+          <label for="mersisno">
+            Mersis No
+            <input name="mersisno" type="text">
+          </label>
+          <label for="isyerituru">
+            İşyeri Türü
+            <select name="isyerituru" id="isyerituru">
+              <option value="00"></option>
+              <option value="01">Merkez</option>
+              <option value="02">Mükellefiyetsiz Şube</option>
+              
+            </select>
+          </label>
+          <label for="isyerikodu">
+            İşyeri Kodu
+            <input name="isyerikodu" type="text">
+          </label>
+          <label for="isyerimd">
+            İşyeri Mülkiyet Durumu
+            <select name="isyerimd" id="isyerimd">
+              <option value="00"></option>
+              <option value="01">Kira</option>
+              <option value="02">Mal Sahibi</option>
+              <option value="03">Diğer</option>
+            </select>
+            <label for="kdv1kdv2beyannemeivdk">
+              KDV1/KDV2 Beyannamesi İçin Vergi Dairesi Kodu
+              <input name="kdv1kdv2beyannemeivdk" type="text">
+            </label>
+            <label for="yetkiliadisoyadı">
+              Yetkili Adı Soyadı
+              <input name="yetkiliadisoyadı" type="text">
+            </label>
+            <label for="yetkilitckimlik">
+              Yetkili T.C Kimlik No
+              <input name="yetkilitckimlik" type="number" maxlength="11">
+            </label>
+            <label for="vergikimlikno">
+              Vergi Kimlik No
+              <input name="vergikimlikno" type="number" maxlength="11">
+            </label>
+            <label for="baglioosn">
+              Bağlı Olduğu Oda Sicil No
+              <input name="baglioosn" type="text" maxlength="11">
+            </label>
+            <label for="ctvn">
+              Çevre Yemizlik Vergi No
+              <input name="ctvn" type="text" maxlength="15" >
+            </label>
+            <label for="birvn">
+              Belediye İlan Reklam Vergi No
+              <input name="birvn" type="text" maxlength="16" >
+            </label>
+        </div>
+      </div>
+      <a type="button" class="btn btn-warning"data-toggle="tab" href="#Firma">Geri Git</a>  
+      <a type="button" class="btn btn-primary"data-toggle="tab" href="#Kurumlar">Devam Et </a>
+    </div>
+    <div id="Kurumlar" class="tab-pane fade">
+      <h3 class="text-center" style="margin-top: 2%;">Kurumlar Bilgileri</h3>
+      <hr style="color:black !important;border-top:2px solid black !important;">
+      
+      <a type="button" class="btn btn-warning"data-toggle="tab" href="#Faliyet">Geri Git</a>  
+      <a type="button" class="btn btn-primary"data-toggle="tab" href="#Beyanname">Devam Et </a>
+    </div>
+    <div id="Beyanname" class="tab-pane fade">
+      <h3>Beyanname Bilgileri</h3>
+      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <a type="button" class="btn btn-warning"data-toggle="tab" href="#Kurumlar">Geri Git</a>  
+      <a type="button" class="btn btn-primary"data-toggle="tab" href="#SGK"> Devam Et </a>
+    </div>
+    <div id="SGK" class="tab-pane fade">
+      <h3>SGK Bilgileri</h3>
+      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        <button type="submit" class="btn btn-primary">Kaydet</button>
+    </div>
+    
+
+  </div>
+</form>
+</div>
+</body>
+</html>
