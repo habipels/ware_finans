@@ -836,8 +836,113 @@
       <a type="button" class="btn btn-primary"data-toggle="tab" href="#SGK"> Devam Et </a>
     </div>
     <div id="SGK" class="tab-pane fade">
-      <h3>SGK Bilgileri</h3>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <div class="row">
+        <div class="col-6">
+          <h3>SGK Bilgileri</h3>
+          <label for="sgkdat">
+            SGK Dosya Açılış Tarihi
+            <input type="date">
+          </label>
+          <label for="sgkdkt">
+            SGK Dosya Kapanış Tarihi
+            <input type="date">
+          </label>
+          <label for="m">M
+            <input type="text">
+          </label>
+          <label for="m">İş Kolu Kod
+            <input type="text">
+          </label>
+          <label for="yeni">Yeni
+            <input type="text">
+          </label>
+          <label for="eski">Eski
+            <input type="text">
+          </label>
+          <label for="eski">İşyeri Sırası No
+            <input type="text">
+          </label>
+          <label for="ilkodu">İl Kodu
+            <input type="text">
+          </label>
+          <label for="ilcekodu">İlçe Kodu
+            <input type="text">
+          </label>
+          <label for="kontrolno">Kontrol No
+            <input type="text">
+          </label>
+          <label for="aracikodu">Aracı Kodu
+            <input type="text">
+          </label>
+          <label for="iskodu">
+            İş Kodu
+            <select  id="iskodu">
+              <option value="00"></option>
+              <option value="01">1</option>
+              <option value="02">2</option>
+              <option value="03">3</option>
+            </select>
+          </label>
+          <label for="il">il
+            <input type="text">
+          </label>
+          <label for="ilce">İlçe
+            <input type="text">
+          </label>
+          <label for="iktd">
+            İş Kolunun Tehlike Derecesi
+            <select  id="iktd">
+              <option value="00"></option>
+              <option value="01">Alt</option>
+              <option value="02">Üst</option>
+              <option value="03">Normal</option>
+            </select>
+          </label>
+          <label for="ikts">İş Kolunun Tehlike Sınıfı
+            <input type="text">
+          </label>
+          <label for="ilce">Kısa Vadeli Sigorta Kolları Prim Oranı
+            <input type="text">
+          </label>
+          <label for="fmy">Fazla Mesai Yüzdeleri (%)
+            <input type="text" value="50"> 
+            <input type="text" value="150">
+          </label>
+          <label for="obu">
+            Otomatık BES Uygulamaları Mu (E/H)
+            <input type="text" >
+          </label>
+          <label for="sisgktf">
+            6111 Sayılı İşveren SGK Teşviğinden Faydalanacak mı? (E/H)
+            <input type="text" >
+          </label>
+          <label for="sisgktfs">
+            6111 Sayılı İşveren SGK Teşviğinden Faydalanma Süresi
+            <input type="text" >Ay
+          </label>
+          <label for="pgoakn">
+            Personel Girişinde Otomatık Alınacak Kanun Numarası
+            <select  id="pgoakn">
+              <option value="00"></option>
+              <option value="01">kanun </option>
+              <option value="02">Üst</option>
+              <option value="03">Normal</option>
+            </select>
+          </label>
+          <label for="ptyykn">
+            Personel 6111 /6645 Teşviğinden Yararlanmıyorsa Yeni Kanun Numarası 
+            <select  id="ptyykn">
+              <option value="00"></option>
+              <option value="01">kanun </option>
+              <option value="02">Üst</option>
+              <option value="03">Normal</option>
+            </select>
+          </label>
+        </div>
+        <div class="col-6"></div>
+      </div>
+      
+
         <button type="submit" class="btn btn-primary">Kaydet</button>
     </div>
     
