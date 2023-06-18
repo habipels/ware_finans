@@ -1,6 +1,7 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 import random
+import json
 # Create your models here.
 class CustomUser(AbstractUser):
 
@@ -41,3 +42,35 @@ class firma(models.Model):
     firma_unvani = models.CharField(max_length=100,verbose_name="Firma Unvanı (ADI)")
     Firma_unvani2 = models.CharField(max_length=100,verbose_name="Firma Unvanı (Soyadı)")
     silinme_bilgisi = models.BooleanField(default=False)
+
+
+
+class adresler(models.Model):
+    data = (
+    ("istanbul","istanbul"),
+    ('Van','Van'),
+    ("Ankara","Ankara")
+    ,("Batman","Batman"),
+    ("Mersin","Mersin")
+)
+    adres = models.CharField(blank = True,null = True,max_length=200,verbose_name="Adres")
+    mahhalle_koy = models.CharField(blank = True,null = True,max_length=100,verbose_name="Mahalle Köy")
+    bulvar = models.CharField(blank = True,null = True,max_length=100,verbose_name="Bulvar")
+    cadde = models.CharField(blank = True,null = True,max_length=100,verbose_name="Cadde")
+    sokak = models.CharField(blank = True,null = True,max_length=100,verbose_name="Sokak")
+    adaparselno = models.CharField(blank = True,null = True,max_length=100,verbose_name="ADA Parsel No")
+    diskapino  = models.CharField(blank = True,null = True,max_length=10,verbose_name="Dış Kapı No")
+    ickapino = models.CharField(blank = True,null = True,max_length=10,verbose_name="İç Kapı No")
+    posta_kodu = models.CharField(blank = True,null = True,max_length=100,verbose_name="Posta Kodu")
+    semt = models.CharField(blank = True,null = True,max_length=100,verbose_name="Semt")
+    ilce = models.CharField(blank = True,null = True,max_length=100,verbose_name="İlçe")
+    il = models.CharField(blank = True,null = True,max_length = 50 ,verbose_name="İl",default="Van",choices= data)
+class vergi_dairesi(models.Model):
+    vergi_dairesi_adi = models.CharField(max_length=200,verbose_name="Vewrigi Dairesi")
+    vergi_dairesi_kodu = models.CharField(max_length=100,verbose_name="Vergi Dairesi Kodu")
+
+class sube(models.Model):
+    bagli_oldugu_firma = models.ForeignKey(firma,blank=True, null=True,on_delete=models.SET_NULL)
+    sube_adi = models.CharField(max_length=100,verbose_name="Şube Adı")
+    sube_unvani = models.CharField(max_length=100,verbose_name="Şube Unvanı")
+    adres_bilgisi = models.ForeignKey(adresler,blank=True, null=True,on_delete=models.SET_NULL)
