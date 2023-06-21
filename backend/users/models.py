@@ -70,7 +70,74 @@ class vergi_dairesi(models.Model):
     vergi_dairesi_kodu = models.CharField(max_length=100,verbose_name="Vergi Dairesi Kodu")
 
 class sube(models.Model):
+    defter_turu = (
+        ("Genel Muhasebe","Genel Muhasebe"),
+        ("İşletme Defteri","İşletme Defteri")
+    )
+    aylik_tutma = (
+        ("Aylık","Aylık"),
+        ("Üç Aylık","Üç Aylık")
+    )
+    aylik_tutma_poset = (
+        ("Aylık","Aylık"),
+        ("Üç Aylık","Üç Aylık"),
+        ("Altı Aylık","Altı Aylık")
+    )
+    firma_defter_turu_tutma = (
+        ("İşletme","İşletme"),
+        ("Serbest Meslek Defteri","Serbest Meslek Defteri")
+    )
+    defter_mukelefiyet_turu_secme =(
+        ("Gerçek Kişi","Gerçek Kişi"),
+        ("Adi Ortaklık","Adi Ortaklık"),
+        ("Kollektif Şirket","Kollektif Şirket"),
+        ("Adi Komandit Şirket","Adi Komandit Şirket"),
+        ("Eshamlı Komandit Şirket","Eshamlı Komandit Şirket"),
+        ("Limited Şirket","Limited Şirket"),
+        ("Anonim Şirket","Anonim Şirket"),
+        ("Kooperatif","Kooperatif"),
+        ("Yabancı Kişi","Yabancı Kişi"),
+        ("Diğer","Diğer"),
+        ("Apartman Yönetimi","Apartman Yönetimi"),
+        ("Avukatlık Ortaklığı","Avukatlık Ortaklığı"),
+        ("Basın","Basın"),
+        ("Birlik Ve Üst Birlik","Birlik Ve Üst Birlik"),
+        ("Dernek","Dernek"),
+        ("İş Ortaklığı","İş Ortaklığı"),
+        ("Sendika","Sendika"),
+        ("Site Yönetimi","Site Yönetimi"),
+        ("Siyasi Parti","Siyasi Parti"),
+        ("Spor Klübü","Spor Klübü"),
+        ("Vakıf","Vakıf"),
+        ("Kamu İktisadi Teşebbüsü","Kamu İktisadi Teşebbüsü"),
+        ("Belediye İktisadi Teşebbüsü","Belediye İktisadi Teşebbüsü"),
+    )
+    stok_envanter_bilgileri_secme = (
+        ("FİFO","FİFO"),
+        ("LİFO","LİFO"),
+        ("Agirlikli Ortalama","Ağırlıklı Ortalama"),
+        ("Basit Ortalama","Basit Ortalama"),
+        ("Hareketli Agirlikli Ortalama","Hareketli Ağırlıklı Ortalama"),
+        ("Her Kartın Kendi Yöntemine Göre","Her Kartın Kendi Yöntemine Göre")
+    )
     bagli_oldugu_firma = models.ForeignKey(firma,blank=True, null=True,on_delete=models.SET_NULL)
-    sube_adi = models.CharField(max_length=100,verbose_name="Şube Adı")
+    sube_adi = models.CharField(max_length=100,blank=True, null=True,verbose_name="Şube Adı")
     sube_unvani = models.CharField(max_length=100,verbose_name="Şube Unvanı")
     adres_bilgisi = models.ForeignKey(adresler,blank=True, null=True,on_delete=models.SET_NULL)
+    vergi_dairesi_adi = models.ForeignKey(vergi_dairesi,blank=True, null=True,on_delete=models.SET_NULL)
+    vergi_dairesi_kodu = models.CharField(max_length=100,blank=True, null=True,verbose_name="Vergi Dairesi Kodu")
+    vergi_numarasi = models.CharField(max_length=100 ,blank=True, null=True,verbose_name="Vergi Numarası")
+    sahis_ise_tc = models.CharField(max_length=20,blank=True, null=True,verbose_name="Şahis İse Tc Kimlik Numarası")
+    email_adresi = models.EmailField(max_length=100,blank=True, null=True,verbose_name="Şube Email Adresi ")
+    web_adresi = models.CharField(max_length=100,blank=True, null=True,verbose_name="Şube Web Adresi ")
+    telefon_numarasi = models.CharField(max_length=100,blank=True, null=True,verbose_name="Şube Telefon Numarası ")
+    sube_defter_turu = models.CharField(max_length=100,blank=True, null=True,verbose_name="Şube Defter Türü ",choices=defter_turu,default="Genel Muhasebe")
+    kdv1 = models.CharField(max_length=100,blank=True, null=True,verbose_name="Şube KDV1",choices=aylik_tutma,default="Aylık")
+    kdv2 = models.CharField(max_length=100,blank=True, null=True,verbose_name="Şube KDV2",choices=aylik_tutma,default="Aylık")
+    turizm = models.CharField(max_length=100,blank=True, null=True,verbose_name="Şube Turizm",choices=aylik_tutma,default="Aylık")
+    muhsgk = models.CharField(max_length=100,blank=True, null=True,verbose_name="Şube MuhSGK",choices=aylik_tutma,default="Aylık")
+    poset = models.CharField(max_length=100,blank=True, null=True,verbose_name="Şube Poşet",choices=aylik_tutma_poset,default="Aylık")
+    firma_defter_turu = models.CharField(max_length=100,blank=True, null=True,verbose_name="Firma Defter Türü ",choices=firma_defter_turu_tutma,default="İşletme")
+    mukellefiyet_turu = models.CharField(max_length=100,blank=True, null=True,verbose_name="Mükellefiyet Türü ",choices=defter_mukelefiyet_turu_secme,default="Gerçek Kişi")
+    stok_bilgisi = models.CharField(max_length=100,blank=True, null=True,verbose_name="Stok Envanter Bilgileri",choices=stok_envanter_bilgileri_secme,default="FİFO")
+    gecici_vergi_orani = models.BigIntegerField(blank=True, null=True,verbose_name="Geçici Vergi Oranı %")
