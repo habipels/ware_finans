@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-06-22T21:59:00.506Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36" etag="m_czRjDdYt3l3GTr3Rjn" version="21.5.0" type="device">
+<mxfile host="app.diagrams.net" modified="2023-06-23T10:14:48.784Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36" etag="x6hn1VeQSalgSoDYIti_" version="21.5.0" type="device">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
     <mxGraphModel dx="1050" dy="1718" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -277,8 +277,10 @@
         <mxCell id="iK3xuk5CnQkjziZlwqnM-8" value="vergi_dairesi_ilcesi" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="xWUxFTTElANCViQpU9mS-0" vertex="1">
           <mxGeometry y="540" width="160" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="TWkRNO-TRmX61OJm1wBU-0" value="ortak_is_bilgileri" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
-          <mxGeometry x="10" y="860" width="140" height="920" as="geometry" />
+        <mxCell id="TWkRNO-TRmX61OJm1wBU-0" value="ortak_is_bilgileri" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1" collapsed="1">
+          <mxGeometry x="10" y="860" width="130" height="30" as="geometry">
+            <mxRectangle x="10" y="860" width="140" height="920" as="alternateBounds" />
+          </mxGeometry>
         </mxCell>
         <mxCell id="TWkRNO-TRmX61OJm1wBU-1" value="ID" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="TWkRNO-TRmX61OJm1wBU-0" vertex="1">
           <mxGeometry y="30" width="140" height="30" as="geometry" />
@@ -382,8 +384,10 @@
         <mxCell id="Qxpec8thmB8ESNL7Mb6O-28" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="Qxpec8thmB8ESNL7Mb6O-22" target="xWUxFTTElANCViQpU9mS-0" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="Qxpec8thmB8ESNL7Mb6O-22" value="ortak_kimlik_bilgileri" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
-          <mxGeometry x="230" y="940" width="140" height="900" as="geometry" />
+        <mxCell id="Qxpec8thmB8ESNL7Mb6O-22" value="ortak_kimlik_bilgileri" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1" collapsed="1">
+          <mxGeometry x="230" y="940" width="150" height="30" as="geometry">
+            <mxRectangle x="230" y="940" width="140" height="900" as="alternateBounds" />
+          </mxGeometry>
         </mxCell>
         <mxCell id="Qxpec8thmB8ESNL7Mb6O-23" value="ID" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="Qxpec8thmB8ESNL7Mb6O-22" vertex="1">
           <mxGeometry y="30" width="140" height="30" as="geometry" />
