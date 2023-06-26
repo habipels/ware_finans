@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     # Add our new application
     'main',
     'users',
+    #banka bilgileri 
+    "bilgideposu",
 ]
 
 AUTH_USER_MODEL = 'users.CustomUser'
