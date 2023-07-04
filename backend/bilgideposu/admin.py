@@ -4,3 +4,5 @@ from .models import *
 
 admin.site.register(banka)
 admin.site.register(banka_yetkilisi)
+admin.site.register(tevkifat_tur_kodu)
+admin.site.register(HesapPlanlari)
