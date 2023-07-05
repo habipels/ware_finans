@@ -37,9 +37,13 @@ class banka(models.Model):
     iban_numarasi = models.CharField(max_length=20,verbose_name="İban Numarası",blank=True,null=True)
     kullanabilir_kredi_tutari = models.CharField(max_length=200,verbose_name="Kullanabilir kredi Tutarı",null=True,blank=True)
     ozel_kod = models.CharField(max_length=100,verbose_name="Özel Kod",blank=True,null=True)
-    doviz_cinsi = models.CharField(max_length=100,verbose_name="Döviz Cinsi",blank=True,null=True)
+    doviz_cinsi = models.CharField(max_length=100,verbose_name="Döviz Cinsi", choices=doviz,default="",blank=True,null=True)
     bagli_oldugu_firma = models.ForeignKey(firma,blank=True,null=True,on_delete=models.SET_NULL)
-
+    toplam_yatirilan = models.CharField(max_length=100,verbose_name="Toplam Yatırılan",blank=True,null=True)
+    toplam_cekilen = models.CharField(max_length=100,verbose_name="Toplam Çekilen",blank=True,null=True)
+    toplam_bakiye = models.CharField(max_length=100,verbose_name="Bakiye",blank=True,null=True)
+    muh_kodu = models.CharField(max_length=100,verbose_name="Muh Kodu",blank=True,null=True)
+    aciklama = models.TextField(verbose_name="Açıklama",blank=True, null=True)
 class banka_yetkilisi(models.Model):
     banka_bilgisi = models.ForeignKey(banka,blank=True, null=True,on_delete=models.SET_NULL)
     adi_soyadi = models.CharField(max_length=200,verbose_name="Banka Yetkilisi Adı Soyadı ",blank=True, null=True)
@@ -47,7 +51,7 @@ class banka_yetkilisi(models.Model):
     istelefonu = models.CharField(max_length=20,verbose_name="İş Telefonu",blank=True,null=True)
     dahili_numara = models.CharField(max_length=100,verbose_name="Dahili Numara",blank=True,null=True)
     gsm = models.CharField(max_length=100,verbose_name="GSM",blank=True,null=True)
-    aciklama = models.TextField(verbose_name="Açıklama")
+    aciklama = models.TextField(verbose_name="Açıklama",blank=True, null=True)
 class tevkifat_tur_kodu (models.Model):
     hesap_turu = (
         ("1","Genel Planlar"),
@@ -235,4 +239,51 @@ class HesapPlanlari(models.Model):
     yurt_ici_satis_mi = models.CharField(max_length=100, verbose_name="Yurt İçi Satış Mı? (600,601,602 Hariç)",
                                          blank=True, null=True, choices=secme, default="")
     bagli_oldugu_firma = models.ForeignKey(firma, blank=True, null=True, on_delete=models.SET_NULL)
+    aciklama = models.TextField(verbose_name="Açıklama",blank=True, null=True)
     silinme_bilgisi = models.BooleanField(default=False)
+
+class banka_kart_bilgileri(models.Model):
+    hafta = (
+        ("",""),
+        ("Evet","Evet"),
+        ("Hayır","Hayır"),
+    )
+    tahsilat_sekilleri_secim =(
+        ("",""),
+        ("Tek Çekim","Tek Çekim"),
+        ("Tek Çekim Taksitli","Tek Çekim Taksitli"),
+        ("Taksitli Çekim","Taksitli Çekim"),
+    )
+    gecis_sekli = (
+        ("",""),
+        ("Hemen","Hemen"),
+        ("Gecikmeli","Gecikmeli"),
+        ("Taksitli","Taksitli"),
+    )
+    komisyon_sekli = (
+        ("",""),
+        ("İlk Taksitle","İlk Taksitle"),
+        ("Taksitlendirilmiş","Taksitlendirilmiş"),
+    )
+    banka_bilgisi = models.ForeignKey(banka,blank=True, null=True,on_delete=models.SET_NULL)
+    tahsilat_kodu = models.CharField( max_length=100,blank=True, null=True,verbose_name = "Tahsilat Kodu")
+    tahsilat_sekli = models.CharField(choices=tahsilat_sekilleri_secim,blank=True, null=True,default= "",verbose_name="Tahsilat Şekilleri", max_length=100)
+    taksit_adedi = models.CharField(max_length=100,verbose_name="Taksit Adedi",blank=True, null=True)
+    taksit_araliklari_gun = models.CharField(max_length=100,verbose_name="Taksit Aralıkları (Gün)",blank=True, null=True)
+    banka_hesap_gecis_sekli = models.CharField(choices=gecis_sekli,blank=True, null=True,default= "",verbose_name="Banka Hesap Geçiş Şekli", max_length=100)
+    banka_hesap_gecis_gun = models.CharField(max_length=100,verbose_name="Banka Hesap Geçiş (Gün)",blank=True, null=True)
+    cari_hesap_kayit_sekli = models.CharField(max_length=100,choices=gecis_sekli,default="" ,verbose_name="Cari Hesap Kayıt Şekli",blank=True, null=True)
+    komisyon_orani = models.CharField(max_length=100,verbose_name="Komisyon Oranı (%)",blank=True, null=True)
+    komisyon_tutari = models.CharField(max_length=100,verbose_name="Komisyon Tutarı",blank=True, null=True)
+    komisyon_kesinti_sekli = models.CharField(max_length=100,choices=komisyon_sekli,default="",verbose_name="Komisyon Kesinti Şekli",blank=True, null=True)
+    komisyon_gider_kodu = models.CharField(max_length=100,verbose_name="Komisyon Gider Kodu Tutarı",blank=True, null=True)
+    promosyon_orani = models.CharField(max_length=100,verbose_name="promosyon Oranı (%)",blank=True, null=True)
+    promosyon_tutari = models.CharField(max_length=100,verbose_name="promosyon Tutarı",blank=True, null=True)
+    promosyon_kesinti_sekli = models.CharField(max_length=100,choices=komisyon_sekli,default="",verbose_name="promosyon Kesinti Şekli",blank=True, null=True)
+    promosyon_gider_kodu = models.CharField(max_length=100,verbose_name="Promosyon Gider Kodu Tutarı",blank=True, null=True)
+    hizmet_orani = models.CharField(max_length=100,verbose_name="Hizmet Oranı (%)",blank=True, null=True)
+    hizmet_tutari = models.CharField(max_length=100,verbose_name="Hizmet Tutarı",blank=True, null=True)
+    hizmet_kesinti_sekli = models.CharField(max_length=100,choices=komisyon_sekli,default="",verbose_name="Hizmet Kesinti Şekli",blank=True, null=True)
+    hizmet_gider_kodu = models.CharField(max_length=100,verbose_name="Hizmet Gider Kodu Tutarı",blank=True, null=True)
+    aciklama = models.TextField(verbose_name="Açıklama",blank=True, null=True)
+    hafta_sonuna_denk_gelmesin = models.CharField(max_length=100,choices=hafta,default="",verbose_name="Hafta Sonlarına Denk Gelmesin",blank=True, null=True)
