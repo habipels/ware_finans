@@ -287,3 +287,32 @@ class banka_kart_bilgileri(models.Model):
     hizmet_gider_kodu = models.CharField(max_length=100,verbose_name="Hizmet Gider Kodu Tutarı",blank=True, null=True)
     aciklama = models.TextField(verbose_name="Açıklama",blank=True, null=True)
     hafta_sonuna_denk_gelmesin = models.CharField(max_length=100,choices=hafta,default="",verbose_name="Hafta Sonlarına Denk Gelmesin",blank=True, null=True)
+class Kasa(models.Model):
+    secim = (
+        ("",""),
+        ("Evet","Evet"),
+        ("Hayır","Hayır")
+    )
+    entkodu_secim = (
+        ("",""),
+        ("1","1"),
+        ("2","2")
+    )
+   
+    doviz = (
+        ("",""),
+        ("turklirasi","TL"),
+        ("euro","£"),
+        ("dolar","$")
+    )
+    kasa_kodu = models.CharField(max_length=100,verbose_name="Kasa Kodu",blank=True,null=True)
+    entkodu = models.CharField(max_length=10,choices=entkodu_secim,verbose_name="Ent Kodu",default="",blank=True,null=True)
+    kasa_adi = models.CharField(max_length=200,verbose_name="kasa Adı",blank=True,null=True)
+    ozel_kod = models.CharField(max_length=100,verbose_name="Özel Kod",blank=True,null=True)
+    doviz_cinsi = models.CharField(max_length=100,verbose_name="Döviz Cinsi", choices=doviz,default="",blank=True,null=True)
+    bagli_oldugu_firma = models.ForeignKey(firma,blank=True,null=True,on_delete=models.SET_NULL)
+    toplam_tahsilat = models.CharField(max_length=100,verbose_name="Toplam Tahsilat",blank=True,null=True)
+    toplam_odeme = models.CharField(max_length=100,verbose_name="Toplam Ödeme",blank=True,null=True)
+    toplam_bakiye = models.CharField(max_length=100,verbose_name="Bakiye",blank=True,null=True)
+    muh_kodu = models.CharField(max_length=100,verbose_name="Muh Kodu",blank=True,null=True)
+    aciklama = models.TextField(verbose_name="Açıklama",blank=True, null=True)
