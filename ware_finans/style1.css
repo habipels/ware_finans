@@ -1,13 +1,21 @@
 @import url("https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800,900");
 
+.genelrenkler{
+  color:#EAF1F7#C5D7ED#A6C4E0#6E98BA#334F70;
+  color:#393E46#00ADB5#FFF4E0#F8B500#FC3C3C;
+
+}
 body {
   font-family: "Poppins", sans-serif;
   font-weight: 300;
   font-size: 15px;
   line-height: 1.7;
-  color: #c4c3ca;
-  background-color: #8591fa;
+  color: white !important;
+  background-color: #fffbf4;
   overflow-x: hidden;
+}
+.baslik{
+  color: black;
 }
 a {
   cursor: pointer;
@@ -17,10 +25,10 @@ a:hover {
   text-decoration: none;
 }
 .link {
-  color: #c4c3ca;
+  color: #393E46;
 }
 .link:hover {
-  color: #ffeba7;
+  color: #FC3C3C;
 }
 p {
   font-weight: 500;
@@ -59,7 +67,7 @@ h6 span {
   padding: 0;
   margin: 10px auto;
   cursor: pointer;
-  background-color: #ffeba7;
+  background-color: #FC3C3C;
 }
 .checkbox:checked + label:before,
 .checkbox:not(:checked) + label:before {
@@ -68,8 +76,8 @@ h6 span {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  color: #ffeba7;
-  background-color: #436cf5;
+  color: #FC3C3C;
+  background-color: #393E46;
   font-family: "unicons";
   content: "\eb4f";
   z-index: 20;
@@ -107,7 +115,7 @@ h6 span {
 .card-back {
   width: 100%;
   height: 100%;
-  background-color: #e6e7fd;
+  background-color: #00ADB5;
   background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/1462889/pat.svg");
   background-position: bottom center;
   background-repeat: no-repeat;
@@ -157,8 +165,8 @@ h6 span {
   line-height: 22px;
   letter-spacing: 0.5px;
   outline: none;
-  color: #c4c3ca;
-  background-color: #436cf5;
+  color: white;
+  background-color: #393E46;
   border: none;
   -webkit-transition: all 200ms linear;
   transition: all 200ms linear;
@@ -178,31 +186,31 @@ h6 span {
   font-size: 24px;
   line-height: 48px;
   text-align: left;
-  color: #ffeba7;
+  color: #FC3C3C;
   -webkit-transition: all 200ms linear;
   transition: all 200ms linear;
 }
 
 .form-group input:-ms-input-placeholder {
-  color: #c4c3ca;
+  color: white;
   opacity: 0.7;
   -webkit-transition: all 200ms linear;
   transition: all 200ms linear;
 }
 .form-group input::-moz-placeholder {
-  color: #c4c3ca;
+  color: white;
   opacity: 0.7;
   -webkit-transition: all 200ms linear;
   transition: all 200ms linear;
 }
 .form-group input:-moz-placeholder {
-  color: #c4c3ca;
+  color: white;
   opacity: 0.7;
   -webkit-transition: all 200ms linear;
   transition: all 200ms linear;
 }
 .form-group input::-webkit-input-placeholder {
-  color: #c4c3ca;
+  color: white;
   opacity: 0.7;
   -webkit-transition: all 200ms linear;
   transition: all 200ms linear;
@@ -252,19 +260,19 @@ h6 span {
   -ms-flex-pack: center;
   text-align: center;
   border: none;
-  background-color: #ffeba7;
-  color: #102770;
+  background-color: #FC3C3C;
+  color: #393E46;
   box-shadow: 0 8px 24px 0 rgba(255, 235, 167, 0.2);
 }
 .btn:active,
 .btn:focus {
-  background-color: #102770;
-  color: #ffeba7;
+  background-color: #393E46;
+  color: #FC3C3C;
   box-shadow: 0 8px 24px 0 rgba(16, 39, 112, 0.2);
 }
 .btn:hover {
-  background-color: #102770;
-  color: #ffeba7;
+  background-color: #393E46;
+  color: #FC3C3C;
   box-shadow: 0 8px 24px 0 rgba(16, 39, 112, 0.2);
 }
 
