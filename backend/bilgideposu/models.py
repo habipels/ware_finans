@@ -316,3 +316,66 @@ class Kasa(models.Model):
     toplam_bakiye = models.CharField(max_length=100,verbose_name="Bakiye",blank=True,null=True)
     muh_kodu = models.CharField(max_length=100,verbose_name="Muh Kodu",blank=True,null=True)
     aciklama = models.TextField(verbose_name="Açıklama",blank=True, null=True)
+
+
+class cari_kartlar(models.Model):
+    detay_secim = (
+        ("",""),
+        ("Evet","Evet"),
+        ("Hayır","Hayır",)
+    )
+    mukellefyet_turu_secim = (
+        ("",""),
+        ("Tüzel Kişi","Tüzel Kişi"),
+        ("Gerçek Kişi","Gerçek Kişi"),
+    )
+    tip_secim = (
+        ("",""),
+        ("1","1"),
+        ("2","2"),
+    )
+    doviz = (
+        ("",""),
+        ("TL","TL"),
+        ("$","$"),
+        ("£","£"),
+        
+    )
+    cari_kart_tipi_secim =(
+        ("",""),
+        ("Alıcı","Alıcı"),
+        ("Satıcı","Satıcı"),
+        ("Her İkisi","Her İkisi"),
+        ("Ortak","Ortak"),
+        ("Özel Cari","Özel Cari"),
+        ("Personel","Personel"),
+        ("Palsiyer","Palsiyer"),
+        ("Gider","Gider"),
+        ("Gelir","Gelir"),
+        ("Diğer","Diğer"),
+        ("Fason","Fason"),
+        ("Üye","Üye"),
+    )
+    ana_cari_kodu = models.CharField(max_length=100,verbose_name="Ana Cari Kodu",blank=True,null=True)
+    detay = models.CharField(max_length=100,verbose_name="Detay",choices=detay_secim,default="",blank=True,null=True)
+    listede_gorunsun = models.CharField(max_length=100,verbose_name="Listede Görünsün",choices=detay_secim,default="",blank=True,null=True)
+    cari_kodu = models.CharField(max_length=100,verbose_name="Cari Kodu",blank=True,null=True)
+    mukellefyet_turu = models.CharField(max_length=100,verbose_name="Mükelelefiyet Türü",choices=mukellefyet_turu_secim,default="",blank=True,null=True)
+    tip = models.CharField(max_length=100,verbose_name="Tip",choices=tip_secim,default="",blank=True,null=True)
+    cari_hesap_kilitli = models.CharField(max_length=100,verbose_name="Cari Hesap Kilitli",choices=detay_secim,default="",blank=True,null=True)
+    takip_doviz_cinsi = models.CharField(max_length=100,verbose_name="Takip Döviz Cinsi",choices=doviz,default="",blank=True,null=True)
+    cari_adi = models.CharField(max_length=100,verbose_name="Cari Adı",blank=True,null=True)
+    yetkili_adi = models.CharField(max_length=100,verbose_name="Yetkili Adı",blank=True,null=True)
+    gorevi = models.CharField(max_length=100,verbose_name="Görevi",blank=True,null=True)
+    istihbarat = models.CharField(max_length=100,verbose_name="İstihbarat",blank=True,null=True)
+    cari_kart_tipi = models.CharField(max_length=100,verbose_name="Cari Kart Tipi",choices=cari_kart_tipi_secim,default="",blank=True,null=True)
+    borc_tutari = models.CharField(verbose_name="Borç Tutarı (TL)",max_length=100,blank=True,null=True,default="0")
+    alacak_tutari = models.CharField(verbose_name="Alacak Tutarı (TL)",max_length=100,blank=True,null=True,default="0")
+    bakiye_tutari = models.CharField(verbose_name="Bakiye Tutarı (TL)",max_length=100,blank=True,null=True,default="0")
+    ozel_kod_1 = models.CharField(verbose_name="Özel Kod 1",max_length=100,blank=True,null=True)
+    ozel_kod_2 = models.CharField(verbose_name="Özel Kod 2",max_length=100,blank=True,null=True)
+    satici = models.CharField(verbose_name="Satıcı",max_length=100,blank=True,null=True)
+    departman = models.CharField(verbose_name="Departman",max_length=100,blank=True,null=True)
+    grup_kod_1 = models.CharField(verbose_name="Grup Kod 1",max_length=100,blank=True,null=True)
+    grup_kod_2 = models.CharField(verbose_name="Grup Kod 2",max_length=100,blank=True,null=True)
+    grup_kod_3 = models.CharField(verbose_name="Grup Kod 3",max_length=100,blank=True,null=True)
