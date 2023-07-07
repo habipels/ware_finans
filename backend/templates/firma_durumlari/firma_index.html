@@ -1,0 +1,9 @@
+{% load static %}
+{% include "homebase.html" %}
+{% block content %}
+<form  method="post">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit">Kaydet</button>
+</form>
+{% endblock content %}

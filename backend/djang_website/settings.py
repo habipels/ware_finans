@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'users',
     #banka bilgileri 
     "bilgideposu",
+    #firma ekleme çıkarma gibi durumları
+    "firma_durumlari",
 ]
 
 AUTH_USER_MODEL = 'users.CustomUser'

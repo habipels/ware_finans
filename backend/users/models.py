@@ -12,9 +12,18 @@ class CustomUser(AbstractUser):
         ('admin2', 'admin2'),
         ('admin3', 'admin3'),
     )
+    abonelik_turu = (
+        ("0","0"),
+        ("1","1"),
+        ("2","2"),
+        ("3","3"),
+        ("4","4"),
+        ("5","5"),
+    )
     kullanicilar_db = models.ForeignKey('self',blank=True,null=True,related_name='children',on_delete=models.CASCADE)
     email = models.EmailField(unique=True)
     hesap_turu = models.CharField(max_length=100, choices=STATUS, default='muhasebeci')
+    abonelik_tur = models.CharField(max_length=100, choices=abonelik_turu, default='0')
     description = models.TextField("Description", max_length=600, default='', blank=True)
     email_dogrulama = models.BooleanField(default= False)
     #hesap_kayit_tarihi = models.DateTimeField(auto_now_add=True,verbose_name= "Hesap Oluşturulma Tarihi")
