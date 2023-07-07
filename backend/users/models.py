@@ -2,6 +2,8 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 import random
 import json
+import datetime
+from django.utils import timezone
 # Create your models here.
 class CustomUser(AbstractUser):
 
@@ -26,7 +28,7 @@ class CustomUser(AbstractUser):
     abonelik_tur = models.CharField(max_length=100, choices=abonelik_turu, default='0')
     description = models.TextField("Description", max_length=600, default='', blank=True)
     email_dogrulama = models.BooleanField(default= False)
-    #hesap_kayit_tarihi = models.DateTimeField(auto_now_add=True,verbose_name= "Hesap Oluşturulma Tarihi")
+    #hesap_kayit_tarihi = models.DateTimeField(default=datetime.datetime.now,null=True,blank=True)
     Referans_kodu =  models.CharField(max_length=100,null=True)
     referans_olan_kod = models.CharField(max_length=100,null=True,blank=True)
     smmmok  = models.FileField(upload_to='companylogo/',blank = True,null = True,verbose_name="Şirket Logosu")
