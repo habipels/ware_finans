@@ -44,6 +44,9 @@ INSTALLED_APPS = [
     "bilgideposu",
     #firma ekleme çıkarma gibi durumları
     "firma_durumlari",
+    #gelir gider 
+    "gelir_gider",
+
 ]
 
 AUTH_USER_MODEL = 'users.CustomUser'
