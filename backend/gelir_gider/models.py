@@ -57,5 +57,4 @@ class gelir(models.Model):
     birim_fiyati_doviz = models.CharField(verbose_name="Birim Fiyatı Döviz",max_length=100,null=True,blank=True)
     muh_kodu1 = models.CharField(verbose_name="Muh. Kodu 1",max_length=100,null=True,blank=True)
     muh_kodu2 = models.CharField(verbose_name="Muh. Kodu 2",max_length=100,null=True,blank=True)
-    kdv_muh_kodu2 = models.CharField(verbose_name="KDV Muh. Kodu 2",max_length=100,null=True,blank=True)
     bagli_oldugu_firma = models.ForeignKey(firma,blank=True,null=True,on_delete=models.SET_NULL)
