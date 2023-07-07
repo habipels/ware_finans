@@ -28,3 +28,14 @@ class UserRegistrationForm(UserCreationForm):
             user.save()
 
         return user
+
+class UserLoginForm(AuthenticationForm):
+    def __init__(self, *args, **kwargs):
+        super(UserLoginForm, self).__init__(*args, **kwargs)
+
+    username = forms.CharField(widget=forms.TextInput(
+        attrs={'class': 'form-style', 'placeholder': ' Email'}),
+        label="Email")
+
+    password = forms.CharField(widget=forms.PasswordInput(
+        attrs={'class': 'form-style', 'placeholder': 'Parola'}))

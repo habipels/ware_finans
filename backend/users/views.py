@@ -15,7 +15,7 @@ from django.core.mail import EmailMessage
 from django.contrib.auth.models import User
 from .decorators import user_not_authenticated
 from .forms import *
-user_not_authenticated
+
 def login_and_register(request):
     form = UserRegistrationForm(request.POST)
     content = {"form":form}
@@ -45,17 +45,13 @@ def custom_login(request):
 
 @user_not_authenticated
 def registers(request):
-    if request.method == "POST":
-        form = UserRegistrationForm(request.POST)
-        if form.is_valid():
+    
+    form = UserRegistrationForm(request.POST)
+    if form.is_valid():
 
-            user = form.save()
-            login(request, user)
-            return redirect('/')
-
-        else:
-            for error in list(form.errors.values()):
-                messages.error(request, error)
+        user = form.save()
+        login(request, user)
+        return redirect('/')
 
     else:
         return render("/users/loginandregister/")
