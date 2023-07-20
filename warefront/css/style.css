@@ -72,8 +72,16 @@ body {margin:0}
 .active {
   background-color: #04AA6D;
 }
+<<<<<<< Updated upstream
 .icon-bar {
   position: -webkit-sticky; /* Safari */
   position: sticky;
   top: 100px;
+=======
+
+.sekmeler{
+  border: 1px solid black !important;
+  margin: 5px;
+
+>>>>>>> Stashed changes
 }
