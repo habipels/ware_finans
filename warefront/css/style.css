@@ -125,3 +125,8 @@ nav{
 .tab-content{
   font-size: 12px !important;
 }
+.genel select{
+  margin-bottom: 1%;
+  min-width: 100%;
+  max-width: 100%;
+}

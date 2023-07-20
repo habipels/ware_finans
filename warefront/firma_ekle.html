@@ -383,82 +383,151 @@
         <h3 class="text-center" style="margin-top: 2%;">Faliyet Bilgileri</h3>
       <hr style="color:black !important;border-top:2px solid black !important;">
         <div class="col-6" style="border-right: 1px solid black;">
+          <div class="row genel">
+            <div class="col-6">
+              <label for="kurlustarihi">Kuruluş Tarihi
+              </label>
+              <br>
+              <input type="date"  id="tarih">
+            </div>
+            <div class="col-6">
+              <label for="terktarihi">Terk Tarihi
+              </label>
+              <br>
+              <input type="date" id="tarih">
+            </div>
+
+          </div>
+          <div class="row genel">
+            <div class="col-6">
+              <label for="faliyetnacekodu">
+                Faliyet Nace Kodu
+              </label>
+              <br>
+              <input type="text">
+            </div>
+            <div class="col-6">
+              <label for="tehlikesinifi">
+                Tehlike Sınıfı
+                
+              </label>
+              <br>
+              <input type="text">
+            </div>
+
+          </div>
+          <div class="row genel ">
+            <div class="col-12">
+              <label for="faliyetadi">
+                Faliyet Adı
+                
+              </label>
+              <br> 
+              <input type="text">
+            </div>
+          </div>
           
-          <label for="kurlustarihi">Kuruluş Tarihi
-            <input type="date"  id="tarih">
-          </label>
-          <label for="terktarihi">Terk Tarihi
-            <input type="date" id="tarih">
-          </label>
-          <label for="faliyetnacekodu">
-            Faliyet Nace Kodu
-            <input type="text">
-          </label>
-          <label for="tehlikesinifi">
-            Tehlike Sınıfı
-            <input type="text">
-          </label>
-          <label for="faliyetadi">
-            Faliyet Adı
-            <input type="text">
-          </label>
-          <label for="faliyetinniteligi">
-            Faliyet Niteliği
-            <select  id="nitelik">
-              <option value="00"></option>
-              <option value="01">Devamlı</option>
-              <option value="02">Mevsimlik</option>
-              <option value="03">Geçici</option>
-              <option value="04">Diğer</option>
-            </select>
-          </label>
-          <label for="sektor">
-            Faliyet Sektörü
-            <select  id="sektor">
-              <option value="00"></option>
-              <option value="01">Dernek</option>
-              <option value="02">Vakıf</option>
-              <option value="03">Sendika</option>
-              <option value="04">Basın</option>
-            </select>
-          </label>
-          <label for="yapilanisniteligi">
-            Yapılan İşin Niteliği
-            <input type="text">
-          </label>
-          <label for="sektor">
-            Çalışma Ve Sosyal Güvenlik Bakanlığı İşkolu
-            <select  id="csgk">
-              <option value="00"></option>
-              <option value="01">Dernek</option>
-              <option value="02">Vakıf</option>
-              <option value="03">Sendika</option>
-              <option value="04">Basın</option>
-            </select>
-          </label>
-          <label for="unvan">
-            Şahıs ise Ticaret Unvanı
-            <input type="text">
-          </label>
-          <label for="ticarisicilgazatesitarihi">Ticari Sicil Gazatesi Tarihi
-            <input type="date"  id="tarih">
-          </label>
-          <label for="tsgsayfano">
-            Ticari Sicil Gazatesi Sayfa No
-            <input  type="text">
-          </label>
-          <label for="tsgazateno">
-            Ticari Sicil Gazate No
-            <input  type="text">
-          </label>
-          <label for="meslektesekkuladi">
-            Meslek Teşekkülü Adı
-            <input type="text">
-          </label>
-          <label for="meslektesekkulno">
+          <div class="row genel">
+            <div class="col-6">
+              <label for="faliyetinniteligi">
+                Faliyet Niteliği
+              </label>
+              <br>
+              <select  id="nitelik">
+                <option value="00"></option>
+                <option value="01">Devamlı</option>
+                <option value="02">Mevsimlik</option>
+                <option value="03">Geçici</option>
+                <option value="04">Diğer</option>
+              </select>
+            </div>
+            <div class="col-6">
+              <label for="sektor">
+                Faliyet Sektörü
+              </label>
+              <br>
+              <select  id="sektor">
+                <option value="00"></option>
+                <option value="01">Dernek</option>
+                <option value="02">Vakıf</option>
+                <option value="03">Sendika</option>
+                <option value="04">Basın</option>
+              </select>
+            </div>
+
+          </div>
+          <div class="row genel ">
+            <div class="col-12">
+              <label for="yapilanisniteligi">
+                Yapılan İşin Niteliği
+              </label>
+              <br>
+              <input type="text">
+            </div>
+          </div>
+          
+          <div class="row genel ">
+            <div class="col-12">
+              <label for="sektor">
+                Çalışma Ve Sosyal Güvenlik Bakanlığı İşkolu
+                
+              </label>
+              <br>
+              <select  id="csgk">
+                <option value="00"></option>
+                <option value="01">Dernek</option>
+                <option value="02">Vakıf</option>
+                <option value="03">Sendika</option>
+                <option value="04">Basın</option>
+              </select>
+            </div>
+          </div>
+          <div class="row genel ">
+            <div class="col-12">
+              <label for="unvan">
+                Şahıs ise Ticaret Unvanı
+              </label>
+              <br>
+              <input type="text">
+            </div>
+          </div>
+          <div class="row genel ">
+            <div class="col-4">
+              <label for="ticarisicilgazatesitarihi">Ticari Sicil Gazatesi Tarihi
+              </label>
+              <br>
+              <input type="date"  id="tarih">
+            </div>
+            <div class="col-4">
+              <label for="tsgsayfano">
+                Ticari Sicil Gazatesi Sayfa No
+              </label>
+              <br>
+              <input  type="text">
+            </div>
+            <div class="col-4">
+              <label for="tsgazateno">
+                Ticari Sicil Gazate No
+              </label><br>
+              <input  type="text">
+            </div>
+          </div>
+          <div class="row genel">
+            <div class="col-6">
+              <label for="meslektesekkuladi">
+                Meslek Teşekkülü Adı
+              </label>
+              <br>
+              <input type="text">
+            </div>
+            <div class="col-6">
+              <label for="meslektesekkulno">
             Meslek Teşekkülü No
-            <input  type="text">
           </label>
+          <br><input  type="text"></div>
+          </div>
+          
+          
         </div>
         <div class="col-6">
           <label for="adresno">
