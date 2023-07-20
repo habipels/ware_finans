@@ -3,9 +3,9 @@ body {font-family: Arial, Helvetica, sans-serif;
 
 
 .arkaplan{
-  width: 1350px;
+  width: 950px;
   height: 700px;
-  background-color: #29b406;
+  background-color: #d3d3d3;
 }
 .yeni{
   border: 1px solid rgb(0, 0, 0) !important;
@@ -86,12 +86,6 @@ nav{
   top: 50px;
   left: 0;
 }
-
-.active1{
-  border: 1px solid rgb(255, 255, 255) !important;
-  margin:1px;
-
-}
 .icon-barr {
   width: 100px;
   background-color: #555;
@@ -120,6 +114,7 @@ nav{
   top: 50px;
   right: 0;
 }
+<<<<<<< Updated upstream
 .genel input{
   margin-bottom: 1%;
   min-width: 100%;
@@ -130,4 +125,13 @@ nav{
 }
 .tab-content{
   font-size: 12px !important;
+=======
+
+.secim:focus{
+  background-color: #d3d3d3 !important ;
+  
+}
+.nav {
+  border-bottom: 0 solid white !important;
+>>>>>>> Stashed changes
 }
