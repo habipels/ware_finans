@@ -18,10 +18,10 @@ body {font-family: Arial, Helvetica, sans-serif;
 }
 .yeni1{
   border: 1px solid rgb(0, 0, 0) !important;
-  min-width: 115px;
-  max-width: 115px;
-  max-height: 80px;
-  min-height: 80px;
+  min-width: 120px;
+  max-width: 120px;
+  max-height: 95px;
+  min-height: 95px;
   margin: 10px;
 
 }
