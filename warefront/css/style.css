@@ -49,3 +49,26 @@ nav{
   margin-left: -1px;
 }
 
+body {margin:0}
+
+.icon-bar {
+  width: 90px;
+  background-color: #555;
+}
+
+.icon-bar a {
+  display: block;
+  text-align: center;
+  padding: 16px;
+  transition: all 0.3s ease;
+  color: white;
+  font-size: 36px;
+}
+
+.icon-bar a:hover {
+  background-color: #000;
+}
+
+.active {
+  background-color: #04AA6D;
+}

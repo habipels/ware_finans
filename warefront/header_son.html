@@ -1,0 +1,88 @@
+<!--Header-->
+
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a  href="/">
+      <img src="resimler/icon.png" alt="WARE SOFT FİNANS"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mynavbar">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link" style="color:rgb(255, 255, 255);" href="index.html">Anasayfa</a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link" style="color:rgb(8, 179, 8);" href="login.html">Giriş Yap</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" style="color:rgb(28, 127, 227);" href="javascript:void(0)">Kayıt Ol</a>
+        </li>
+        <li class="nav-item">
+          <div class="dropdown" style="margin-right: 10px;">
+            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              Muhasebe Durumu 
+            </button>
+            
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li>
+                <div class="dropdown">
+                  <button class="dropdown-item dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                    Firma Bilgileri
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton2">
+                    <li><a class="dropdown-item" href="firma_ekle.html">Firma Bilgileri</a></li>
+                    <li><a class="dropdown-item" href="#">Firma Ekle</a></li>
+                    <li><a class="dropdown-item" href="#">Firma Güncelle</a></li>
+                    <li><a class="dropdown-item" href="#">Firma Sil </a></li>
+                    <li><a class="dropdown-item" href="#">Firma Aktar</a></li>
+                    <li><a class="dropdown-item" href="#">Şube Ekle</a></li>
+                    <li><a class="dropdown-item" href="#">Şube Güncelle</a></li>
+                    <li><a class="dropdown-item" href="#">Şube Sil</a></li>
+                    <li><a class="dropdown-item" href="#">Var Olan Firmalar Listesi Çıkar</a></li>
+                    <li><a class="dropdown-item" href="#">Silinen Firmalar Listesi Çıkar</a></li>
+                    <li><a class="dropdown-item" href="#">Dilekçe Oluştur</a></li>
+                  </ul>
+                </div>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">Seçenek 1</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">Seçenek 2</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">Seçenek 3</a>
+              </li>
+              
+            </ul>
+          </div>
+          
+          <script>
+            // İkinci dropdown açıldığında, birinci dropdown'un kapanmasını engelle
+            $('.dropdown .dropdown-menu').on('click', function (e) {
+              e.stopPropagation();
+            });
+          </script>
+          
+        </li>
+        <li class="nav-item" >
+          <div  style="color:rgb(255, 255, 255);" class="dropdown">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
+              Hesabım
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item " href="#">Lisans Bilgileri</a></li>
+              <li><a class="dropdown-item " href="#">Kullanıcı Ekle</a></li>
+              <li><a class="dropdown-item " href="#">Destek</a></li>
+              <li><a class="dropdown-item " href="#">Şifre Değiştirme</a></li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+      
+    </div>
+  </div>
+</nav>
+<!--Header-->
