@@ -120,3 +120,14 @@ nav{
   top: 50px;
   right: 0;
 }
+.genel input{
+  margin-bottom: 1%;
+  min-width: 100%;
+  max-width: 100%;
+}
+.col-6 div {
+  max-width: 110%;
+}
+.tab-content{
+  font-size: 12px !important;
+}
