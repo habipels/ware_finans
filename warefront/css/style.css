@@ -73,7 +73,7 @@ nav{
   background-color: #000;
 }
 
-<<<<<<< Updated upstream
+
 .activee {
   background-color: #04AA6D;
 }
@@ -83,24 +83,13 @@ nav{
   position: absolute;
   top: 50px;
   left: 0;
-=======
-.active {
-  border: 1px solid black !important;
-  margin: 5px;
-  
-}
-.icon-bar {
-  position: -webkit-sticky; /* Safari */
-  position: sticky;
-  top: 100px;
->>>>>>> Stashed changes
 }
 
 .active1{
   border: 1px solid black !important;
   margin:1px;
 
-<<<<<<< Updated upstream
+
 }
 .icon-barr {
   width: 100px;
@@ -130,7 +119,3 @@ nav{
   top: 50px;
   right: 0;
 }
-=======
-
-}
->>>>>>> Stashed changes
