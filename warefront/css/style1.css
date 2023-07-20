@@ -125,3 +125,11 @@ nav{
 .tab-content{
   font-size: 12px !important;
 }
+
+.secim:focus{
+  background-color: #d3d3d3 !important ;
+  
+}
+.nav {
+  border-bottom: 0 solid white !important;
+}
