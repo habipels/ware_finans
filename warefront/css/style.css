@@ -72,3 +72,8 @@ body {margin:0}
 .active {
   background-color: #04AA6D;
 }
+.icon-bar {
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 100px;
+}
