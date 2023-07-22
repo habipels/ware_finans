@@ -679,95 +679,143 @@
         <div class="col-6" style="border-right: 1px solid black;">
       <h3 class="text-center" style="margin-top: 2%;">Taşeron / Kurumlar Bilgileri</h3>
       <hr style="color:black !important;border-top:2px solid black !important;">
-      <label for="ikiiym">
+      <div class="row genel">
+        <div class="col-6"><label for="ikiiym">
         İhale Konusu İşlerde İhaleyi Yapan Makam
-        <input type="text" >
-      </label>
-        <label for="ibi">
-          İşyeri Bildirgesini İmzalayan
+        
+      </label><br>
+      <input type="text" ></div>
+        <div class="col-6"><label for="ibi">
+          İşyeri Bildirgesini İmzalayan</label>
+          <br>
           <select  id="ibi">
             <option value="00"></option>
             <option value="01">İş Veren</option>
             <option value="02">İşveren Yetkili</option>
           </select>
-        </label>
-      </label>
-      <label for="ikiiyma">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6"><label for="ikiiyma">
         İhale Konusu İşlerde İhaleyi Yapan Makam Adresi
-        <input type="text" >
-      </label>
-        <label for="it">
-          İşveren Tipi
+      </label><br>
+      <input type="text" ></div>
+        <div class="col-6"><label for="it">
+          İşveren Tipi</label><br>
           <select  id="it">
             
             <option value="00"></option>
             <option value="01">Asıl İşveren</option>
             <option value="02">Alt Yüklenici</option>
           </select>
-        </label>
-      </label>
+        </div>
+      </div>
+        
+      
       <h4 class="text-center">Taşeron Bilgisi </h4>
       <hr style="color:black !important;border-top:2px solid black !important;">
-      <label for="ikiiyma">
+      <div class="row genel">
+        <div class="col-4">
+          <label for="ikiiyma">
         Unvan
-        <input type="text" >
-      </label>
-      <label for="adres">
-        Adres :
-        <input  type="text">
-      </label>
+      </label></div>
+      <div class="col-8"><input type="text" ></div>
+        
+      </div>
+      
+      <div class="row genel">
+        <div class="col-4"><label for="adres">
+          Adres :
+          
+        </label></div>
+        <div class="col-8"><input  type="text"></div>
+      </div>
+      <div class="row genel">
+        <div class="col-4"><label for="mahalle">
+          Mahalle /köy :
+          
+        </label>
       <br>
-      <label for="mahalle">
-        Mahalle /köy :
+      <input  type="text"></div>
+        <div class="col-4"><label for="buluvar">
+          Buluvar :
+          
+        </label>
+      <br><input  type="text"></div>
+        <div class="col-4">
+        <label for="cadde">
+          Cadde :
+          
+        </label>
+        <br>
         <input  type="text">
-      </label>
-      <br>
-      <label for="buluvar">
-        Buluvar :
-        <input  type="text">
-      </label>
-      <br>
-      <label for="cadde">
-        Cadde :
-        <input  type="text">
-      </label>
-      <br>
-      <label for="sokak">
+       </div>
+    </div>
+
+    <div class="row genel">
+      <div class="col-4"><label for="sokak">
         Sokak :
-        <input  type="text">
+        
       </label>
-      <br>
-      <label for="ada">
-        Ada Parsel No :
+    <br>
+    <input  type="text">
+  </div>
+      <div class="col-4">
+        <div class="row">
+          <div class="col-6">
+            <label for="ada">
+            Ada Parsel No 
+            
+          </label>
+        <br>
         <input type="text">
-      </label>
-      <br>
-      <label for="diskapi">
-        Dış Kapı No :
-        <input type="text">
-      </label>
-      <br>
-      <label for="ickapi">
-        İç Kapı No :
-        <input  type="text">
-      </label>
-      <br>
-      <label for="postakodu">
-        Posta Kodu :
-        <input  type="text">
-      </label>
-      <br>
-      <label for="semt">
-        Semt :
-        <input  type="text">
-      </label>
-      <br>
-      <label for="ilce">
-        İlçe :
-        <input  type="text">
-      </label>
-      <br>
-      <label for="il">İl:</label>
+      </div>
+          <div class="col-6">
+            <label for="diskapi">
+              Dış Kapı No :
+              
+            </label>
+            <br><input type="text">
+          </div>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="row">
+          <div class="col-6"><label for="ickapi">
+            İç Kapı No :
+            
+          </label>
+        <br>
+        <input  type="text"></div>
+          <div class="col-6">
+            <label for="postakodu">
+              Posta Kodu :
+              
+            </label>
+            <br>
+            <input  type="text">
+          </div>
+        </div>
+      </div>
+  </div>
+      <div class="row genel">
+        <div class="col-4">
+          <label for="semt">
+            Semt :
+          </label>
+          <br>
+          <input  type="text">
+        </div>
+        <div class="col-4">
+          <label for="ilce">
+            İlçe :
+          </label>
+          <br>
+          <input  type="text">
+        </div>
+        <div class="col-4">
+          <label for="il">İl:</label>
+          <br>
       <select  id="il">
         <option value="01">Adana</option>
         <option value="06">Ankara</option>
@@ -775,25 +823,42 @@
         <option value="34">İstanbul</option>
         <option value="65">Van</option>
       </select>
-     
-      
-      <label for="">
-        Vergi Kimlik No
-        <input type="text">
-      </label>
-      <label for="">
-        T.C. NO
-        <input type="text">
-      </label>
-      <label for="">
-        e-Posta Adresi
-        <input type="email">
-      </label>
-      
-      <label for="">
+        </div>
+      </div>
+     <div class="row">
+      <div class="col-6">
+        <label for="">
         Telefon
-        <input type="text">
+        
       </label>
+      <br><input type="text">
+      </div>
+      <div class="col-6"><label for="">
+        e-Posta Adresi
+        
+      </label><br>
+      <input type="email"></div>
+     </div>
+      <div class="row">
+        <div class="col-6"><label for="">
+        Vergi Kimlik No
+        
+      </label><br>
+      <input type="text"></div>
+        <div class="col-6">
+          <label for="">
+            T.C. NO</label>
+          <br>
+          
+            <input type="text">
+          
+        </div>
+      </div>
+      
+      
+      
+      
+      
     </div>
     <div class="col-6">
       <h4 class="text-center">Kurumlar Dar Mükellefin Kimlik Ve Adres Bilgisi </h4>
