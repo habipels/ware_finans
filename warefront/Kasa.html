@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WareFinans</title>
+    <link rel="stylesheet" href="css/style1.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+    
+    
+</head>
+<body>
+        <div class="container">
+            <table class="Tablo">
+                <thead>
+                    <tr>
+                        <th>Kasa Kodu</th>
+                        <th>Kasa Adı</th>
+                        <th>Kasa Açıklaması</th>
+                        <th>Dvz. Cinsi</th>
+                        <th>Tip</th>
+                        <th>Toplam Tahsilat</th>
+                        <th>Toplam Ödeme</th>
+                        <th>Bakiye</th>
+                        <th>Özel Kod</th>
+                        <th>Muhasebe Kodu</th>
+
+                    </tr>
+                </thead>
+            </table>
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+            <script>
+                $(document).ready(function () {
+                    $('#myTable').DataTable();
+                });
+            </script>
+        </div>
+</body>
+</html>
