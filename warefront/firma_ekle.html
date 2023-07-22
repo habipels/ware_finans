@@ -1178,151 +1178,304 @@
         </div>
         <div id="SGK" class="tab-pane fade">
           <div class="row">
-            <div class="col-6">
+            
               <h3>SGK Bilgileri</h3>
-              <label for="sgkdat">
+              <div class="col-6" style="border-right: 1px solid black;">
+              <div class="row genel">
+                <div class="col-6"><label for="sgkdat">
                 SGK Dosya Açılış Tarihi
-                <input type="date">
-              </label>
-              <label for="sgkdkt">
+                
+              </label><br><input type="date"></div>
+                <div class="col-6"><label for="sgkdkt">
                 SGK Dosya Kapanış Tarihi
-                <input type="date">
+                
+              </label><br><input type="date"></div>
+              </div>
+              
+              <div style="margin-top: 5px;" class="row genel">
+                <div class="col-1"><label for="m">M
               </label>
-              <label for="m">M
-                <input type="text">
-              </label>
+            </div>
+            <div class="col-2">
               <label for="m">İş Kolu Kod
-                <input type="text">
+                
               </label>
+            </div>
+            <div class="col-1">
               <label for="yeni">Yeni
-                <input type="text">
+                
               </label>
+            </div>
+            <div class="col-1">
               <label for="eski">Eski
-                <input type="text">
+                
               </label>
+            </div>
+            <div class="col-3">
               <label for="eski">İşyeri Sırası No
-                <input type="text">
+                
               </label>
+            </div>
+            <div class="col-1">
               <label for="ilkodu">İl Kodu
-                <input type="text">
               </label>
+            </div>
+            <div class="col-1">
               <label for="ilcekodu">İlçe Kodu
-                <input type="text">
+                
               </label>
+            </div>
+            <div class="col-1">
               <label for="kontrolno">Kontrol No
-                <input type="text">
+                
               </label>
+            </div>
+            <div class="col-1">
               <label for="aracikodu">Aracı Kodu
-                <input type="text">
+                
               </label>
-              <label for="iskodu">
-                İş Kodu
+            </div>
+              </div>
+              <div class="row genel">
+                <div class="col-1">
+              <input type="text"><br>
+            </div>
+            <div class="col-2">
+             
+              <input type="text">
+            </div>
+            <div class="col-1">
+             
+              <input type="text">
+            </div>
+            <div class="col-1">
+           
+              <input type="text">
+            </div>
+            <div class="col-3">
+              
+              <input type="text">
+            </div>
+            <div class="col-1">
+              
+              <input type="text">
+            </div>
+            <div class="col-1">
+              <input type="text">
+            </div>
+            <div class="col-1">
+              <input type="text">
+            </div>
+            <div class="col-1">
+              
+              <input type="text">
+            </div>
+              </div>
+              <div class="row genel">
+                <div class="col-2">
+                  <label for="iskodu">
+                İş Kodu</label><br>
+
                 <select id="iskodu">
                   <option value="00"></option>
                   <option value="01">1</option>
                   <option value="02">2</option>
                   <option value="03">3</option>
                 </select>
-              </label>
-              <label for="il">il
-                <input type="text">
-              </label>
-              <label for="ilce">İlçe
-                <input type="text">
-              </label>
-              <label for="iktd">
-                İş Kolunun Tehlike Derecesi
+              
+                </div>
+              
+              <div class="col-4">
+                <label for="il">SGK Bölge Müd.
+              
+            </label><br>
+            <input type="text">
+              </div>
+                <div class="col-3">
+                  <label for="il">il
+                
+              </label><br>
+              <input type="text">
+                </div>
+                <div class="col-3">
+                <label for="ilce">İlçe
+                                
+                              </label><br>
+                              <input type="text">
+                </div>
+              </div>
+              <div class="row genel">
+                <div class="col-4"><label for="iktd">
+                İş Kolunun Tehlike Derecesi</label>
+                
+              </div>
+                <div class="col-4"><label for="ikts">İş Kolunun Tehlike Sınıfı
+                
+              </label></div>
+                <div class="col-4"><label for="ilce">Kısa Vadeli Sigorta Kolları Prim Oranı
+                
+              </label></div>
+              </div>
+              
+              
+              <div class="row genel">
+                <div class="col-4">
                 <select id="iktd">
                   <option value="00"></option>
                   <option value="01">Alt</option>
                   <option value="02">Üst</option>
                   <option value="03">Normal</option>
                 </select>
-              </label>
-              <label for="ikts">İş Kolunun Tehlike Sınıfı
-                <input type="text">
-              </label>
-              <label for="ilce">Kısa Vadeli Sigorta Kolları Prim Oranı
-                <input type="text">
-              </label>
+              </div>
+                <div class="col-4"><input type="text"></div>
+                <div class="col-4"><input type="text"></div>
+              </div>
+              <div class="row genel">
+                <div class="col-6">
               <label for="fmy">Fazla Mesai Yüzdeleri (%)
-                <input type="text" value="50">
-                <input type="text" value="150">
-              </label>
-              <label for="obu">
+                              
+                            </label>
+                  <br>
+                  <div class="row">
+                    <div class="col-6"><input type="text" value="50"></div>
+                    <div class="col-6"><input type="text" value="150"></div>
+                  </div>
+                  
+                              
+                </div>
+                <div class="col-6">
+                  <label for="obu">
                 Otomatık BES Uygulamaları Mu (E/H)
-                <input type="text">
-              </label>
-              <label for="sisgktf">
+                
+              </label><br>
+              <div class="row">
+                <div class="col-4"></div>
+                <div class="col-6">
+                  <input type="text">
+                </div>
+                <div class="col-2"></div>
+              </div>
+              
+                </div>
+              </div>
+              
+              <div class="row genel">
+                <div class="col-8"><label for="sisgktf">
                 6111 Sayılı İşveren SGK Teşviğinden Faydalanacak mı? (E/H)
+                
+              </label></div>
+              <div class="col-4">
                 <input type="text">
-              </label>
-              <label for="sisgktfs">
+              </div>
+              <div class="col-8">
+                <label for="sisgktfs">
                 6111 Sayılı İşveren SGK Teşviğinden Faydalanma Süresi
-                <input type="text">Ay
+                
               </label>
-              <label for="pgoakn">
+              </div>
+              <div class="col-3">
+                <input type="text">
+              </div>
+              <div class="col-1">Ay</div>
+              <div class="col-8"><label for="pgoakn">
                 Personel Girişinde Otomatık Alınacak Kanun Numarası
-                <select id="pgoakn">
+                
+              </label></div>
+              <div class="col-4"><select id="pgoakn">
                   <option value="00"></option>
                   <option value="01">kanun </option>
                   <option value="02">Üst</option>
                   <option value="03">Normal</option>
-                </select>
-              </label>
-              <label for="ptyykn">
+                </select></div>
+              <div class="col-8"><label for="ptyykn">
                 Personel 6111 /6645 Teşviğinden Yararlanmıyorsa Yeni Kanun Numarası
-                <select id="ptyykn">
+                
+              </label></div>
+              <div class="col-4"><select id="ptyykn">
                   <option value="00"></option>
                   <option value="01">kanun </option>
                   <option value="02">Üst</option>
                   <option value="03">Normal</option>
-                </select>
-              </label>
+                </select></div>
+              </div>
+              
+              
+              
+              
             </div>
             <div class="col-6">
               <h3 class="text-center">Bölge Çalışma Müdürlüğü Bilgileri</h3>
+              <div class="row genel">
+                <div class="col-1">
               <label for="s">
-                S
-                <input type="text">
-              </label>
-              <label for="meslek">
+                              S
+                              
+                            </label>
+                </div>
+                <div class="col-4">
+                  <label for="meslek">
                 Meslek
-                <input type="text">
               </label>
-              <label for="dosyano">
+                </div>
+                <div class="col-4"><label for="dosyano">
                 Dosya No
-                <input type="text">
-              </label>
-              <label for="ilkodu">
+                
+              </label></div>
+              <div class="col-3">
+<label for="ilkodu">
                 İl Kodu
-                <input type="text">
+                
               </label>
-              <label for="yazismaadresi">
+              </div>
+                <div class="col-1">
+                  <input type="text">
+                </div>
+                <div class="col-4">
+                  <input type="text">
+                </div>
+                <div class="col-4">
+                  <input type="text">
+                </div>
+                <div class="col-3">
+                <input type="text">
+                </div>
+              </div>
+                <div class="row genel">
+                  <div class="col-6"><label for="yazismaadresi">
                 Yazışma Adresi
-                <input type="text">
-              </label>
-              <label for="taseronadisoyadi">
+                
+              </label><input type="text"></div>
+                  <div class="col-6"><label for="taseronadisoyadi">
                 Taşeron Adı Soyadı
-                <input type="text">
-              </label>
+                
+              </label><input type="text"></div>
+                </div>
+              
+              
               <h3 class="text-center">İşkur</h3>
-              <label for="isyerinumarasi">
+              <div class="row genel">
+                <div class="col-6"><label for="isyerinumarasi">
                 İşyeri Numarası
-                <input type="text">
-              </label>
-              <label for="isverentckimlikno">
+                
+              </label><br>
+              <input type="text"></div>
+                <div class="col-6"><label for="isverentckimlikno">
                 İşveren TC Kimlik No
-                <input type="text">
-              </label>
-              <label for="ilmkt">
+                
+              </label><br><input type="text"></div>
+                <div class="col-6"><label for="ilmkt">
                 İl Müdürlüğü'ne Kayıt Tarihi
-                <input type="date">
-              </label>
-              <label for="iskursifresi">
+                
+              </label><br><input type="date"></div>
+                <div class="col-6"><label for="iskursifresi">
                 İşkur Şifresi
-                <input type="text">
-              </label>
+                
+              </label><br><input type="text"></div>
+              </div>
+              
+              
+              
+              
               <h5 class="text-center" style="color: red;">NOT: SMMM kendi
                 şifreleri ile giriş yapıp sözleşmeli olduğu firmaların bildirimini yapmalıdır</h5>
             </div>
