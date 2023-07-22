@@ -1,40 +1,224 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WareFinans</title>
-    <link rel="stylesheet" href="css/style1.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
-    
-    
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style1.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-        <div class="container">
-            <table class="Tablo">
-                <thead>
-                    <tr>
-                        <th>Kasa Kodu</th>
-                        <th>Kasa Adı</th>
-                        <th>Kasa Açıklaması</th>
-                        <th>Dvz. Cinsi</th>
-                        <th>Tip</th>
-                        <th>Toplam Tahsilat</th>
-                        <th>Toplam Ödeme</th>
-                        <th>Bakiye</th>
-                        <th>Özel Kod</th>
-                        <th>Muhasebe Kodu</th>
+  <!--Header-->
 
-                    </tr>
-                </thead>
-            </table>
-            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-            <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
-            <script>
-                $(document).ready(function () {
-                    $('#myTable').DataTable();
-                });
-            </script>
-        </div>
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a  href="/">
+      <img src="resimler/icon.png" alt="WARE SOFT FİNANS"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mynavbar">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link" style="color:rgb(255, 255, 255);" href="index.html">Anasayfa</a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link" style="color:rgb(8, 179, 8);" href="login.html">Giriş Yap</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" style="color:rgb(28, 127, 227);" href="javascript:void(0)">Kayıt Ol</a>
+        </li>
+        <li class="nav-item">
+          <div class="dropdown" style="margin-right: 10px;">
+            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              Muhasebe Durumu 
+            </button>
+            
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li>
+                <div class="dropdown">
+                  <button class="dropdown-item dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                    Firma Bilgileri
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton2">
+                    <li><a class="dropdown-item" href="firma_ekle.html">Firma Bilgileri</a></li>
+                    <li><a class="dropdown-item" href="#">Firma Ekle</a></li>
+                    <li><a class="dropdown-item" href="#">Firma Güncelle</a></li>
+                    <li><a class="dropdown-item" href="#">Firma Sil </a></li>
+                    <li><a class="dropdown-item" href="#">Firma Aktar</a></li>
+                    <li><a class="dropdown-item" href="#">Şube Ekle</a></li>
+                    <li><a class="dropdown-item" href="#">Şube Güncelle</a></li>
+                    <li><a class="dropdown-item" href="#">Şube Sil</a></li>
+                    <li><a class="dropdown-item" href="#">Var Olan Firmalar Listesi Çıkar</a></li>
+                    <li><a class="dropdown-item" href="#">Silinen Firmalar Listesi Çıkar</a></li>
+                    <li><a class="dropdown-item" href="#">Dilekçe Oluştur</a></li>
+                  </ul>
+                </div>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">Seçenek 1</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">Seçenek 2</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">Seçenek 3</a>
+              </li>
+              
+            </ul>
+          </div>
+          
+          <script>
+            // İkinci dropdown açıldığında, birinci dropdown'un kapanmasını engelle
+            $('.dropdown .dropdown-menu').on('click', function (e) {
+              e.stopPropagation();
+            });
+          </script>
+          
+        </li>
+        <li class="nav-item" >
+          <div  style="color:rgb(255, 255, 255);" class="dropdown">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
+              Hesabım
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item " href="#">Lisans Bilgileri</a></li>
+              <li><a class="dropdown-item " href="#">Kullanıcı Ekle</a></li>
+              <li><a class="dropdown-item " href="#">Destek</a></li>
+              <li><a class="dropdown-item " href="#">Şifre Değiştirme</a></li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+      
+    </div>
+  </div>
+</nav>
+<!--Header-->
+  <div class="icon-bar">
+
+    <a href="">Yeni Kasa Kartı </a>
+    <a href="">Kart İncele-Düzelt</a>
+    <a href="">Kart Sil</a>
+    <a href="">Ödeme Tahsilat</a>
+    <a href="" style="color:red;">Çıkış Yap (ESC)</a>
+
+  </div>
+  <div class="d-menu">
+    <ul>
+        <li><a href="" title="">Kasa Fiş İşlemleri</a></li>
+        <li><ul>
+                <li><a href="" title="">HTML</a></li>
+                <li><a href="" title="">CSS</a></li>
+                <li><a href="" title="">JAVASCRIPT</a></li>
+                <li><a href="" title="">PHP</a></li>
+                <li><a href="" title="">ASP.NET</a></li>
+            </ul><a href="" title="">Cari Fiş İşlemleri</a>
+            
+        </li>
+        <li>
+            <ul>
+                <li><a href="" title="">C#</a></li>
+                <li><a href="" title="">C++</a></li>
+                <li><a href="" title="">VB.NET</a></li>
+                <li><a href="" title="">ANDROID</a></li>
+                <li><a href="" title="">ARDUINO</a></li>
+            </ul><a href="" title="">Banka Fiş İşlemleri</a>
+        </li>
+        <li>
+            <ul>
+                <li><a href="" title="">PAINT</a></li>
+                <li><a href="" title="">FIREWORKS</a></li>
+                <li><a href="" title="">PHOTOSHOP</a></li>
+                <li><a href="" title="">ILLUSTRATOR</a></li>
+            </ul><a href="" title="">GRAFİK</a>
+        </li>
+        <li><a href="" title="">HAKKIMDA</a></li>
+        <li><a href="" title="">İLETİŞİM</a></li>
+    </ul>
+</div>
+
+<div class="container mt-3 tablo">
+  <div class="table-responsive ">
+    <table class="table table-bordered ">
+      <thead>
+        <tr>
+            <th class="text-center" style="min-width: 100px ;">Kasa Kodu</th>
+            <th class="text-center" style="min-width: 50px ;">Kasa Adı</th>
+            <th class="text-center" style="min-width: 150px ;">Kasa Açıklaması</th>
+            <th class="text-center" style="min-width: 100px ;">Dvz. Cinsi</th>
+            <th class="text-center">Tip</th>
+            <th class="text-center" style="min-width: 150px ;">Toplam Tahsilat</th>
+            <th class="text-center" style="min-width: 150px ;">Toplam Ödeme</th>
+            <th class="text-center">Bakiye</th>
+            <th class="text-center" style="min-width: 100px ;">Özel Kod</th>
+            <th class="text-center" style="min-width: 150px ;">Muhasebe Kodu</th>
+            
+            
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+            <td>01</td>
+            <td>batuhan sdfewsfgswf sewf fdsf wf wsfrewf we we</td>
+            <td>batuhanın kasa</td>
+            <td>tr</td>
+            <td>emaad fadfeas dfff wdfwefwefwe fwefwe fwewnet</td>
+            <td>1050</td>
+            <td>1050</td>
+            <td>1050</td>
+            <td>deneme</td>
+            <td>01</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="container mt-3 tablo">
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+              <th class="text-center" >Tarih</th>
+              <th class="text-center" >Saat</th>
+              <th class="text-center" style="min-width: 100px ;">İşlem Türü</th>
+              <th class="text-center">Tip</th>
+              <th class="text-center" style="min-width: 100px ;">Evrak No</th>
+              <th class="text-center">Açıklama</th>
+              <th class="text-center">Tahsilat</th>
+              <th class="text-center">Ödeme</th>
+              <th class="text-center" style="min-width: 100px ;">Cari Ünvan</th>
+              <th class="text-center" style="min-width: 100px ;">Banka Adı</th>
+              <th class="text-center" style="min-width: 100px ;">Gider/Gelir</th>
+              <th class="text-center">M?</th>
+              <th class="text-center" style="min-width: 130px ;">Özel Kod(1)</th>
+              <th class="text-center" style="min-width: 130px ;">Özel Kod(2)</th>
+              <th class="text-center">Ent?</th>
+              <th class="text-center" style="min-width: 100px ;">Uyg. Kur</th>
+              <th class="text-center" style="min-width: 100px ;">Şube Kodu</th>
+              <th class="text-center">Departman</th>
+              <th class="text-center" style="min-width: 250px ;">Tahsilatı/Ödemeyi Yapan</th>
+              <th class="text-center">Kullanıcı</th>                        
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="icerik">
+              <td>01</td>
+              <td>batuhan sdfewsfgswf sewf fdsf wf wsfrewf we we</td>
+              <td>batuhanın kasa</td>
+              <td>tr</td>
+              <td>emaad fadfeas dfff wdfwefwefwe fwefwe fwewnet</td>
+              <td>1050</td>
+              <td>1050</td>
+              <td>1050</td>
+              <td>deneme</td>
+              <td>01</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </body>
 </html>
