@@ -1,5 +1,7 @@
 body {font-family: Arial, Helvetica, sans-serif;
+  background-color: #d3d3d3;
 }
+
 
 
 .arkaplan{
@@ -67,9 +69,13 @@ nav{
 
 
 .icon-bar {
-  width: 100px;
+  width: 108px;
   background-color: #555;
+  font-size:13px;
+  text-align: center;
+  font-weight:bold;
 }
+
 
 .icon-bar a {
   display: block;
@@ -77,8 +83,9 @@ nav{
   padding: 16px;
   transition: all 0.3s ease;
   color: white;
-  font-size: 15px;
+  text-decoration:none;
 }
+
 
 .icon-bar a:hover {
   background-color: #000;
@@ -91,36 +98,11 @@ nav{
 .icon-bar {
   
   position: absolute;
-  top: 50px;
+  top: 200px;
   left: 0;
 }
-.icon-barr {
-  width: 100px;
-  background-color: #555;
-}
-
-.icon-barr a {
-  display: inline-block;
-  text-align: center;
-  padding: 16px;
-  transition: all 0.3s ease;
-  color: white;
-  font-size: 15px;
-}
-
-.icon-barr a:hover {
-  background-color: #000;
-}
-
 .activee {
   background-color: #04AA6D;
-}
-
-.icon-barr {
-  
-  position: absolute;
-  top: 50px;
-  right: 0;
 }
 .genel input{
   margin-bottom: 1%;
@@ -135,7 +117,7 @@ nav{
 }
 
 .secim:focus{
-  background-color: #d3d3d3 !important ;
+  background-color: #c5c5c5 !important ;
   
 }
 .nav {
@@ -163,4 +145,70 @@ tr:nth-child(even) {
 
 tr:hover {
   background-color: #ddd;
+}
+.icerik{
+  color: #04AA6D;
+  font-weight: 100;
+}
+.tablo{
+  margin-top: 100px !important;
+  background-color: #c5c5c5;
+}
+th , td{
+  background-color: #c5c5c5 !important;
+  border: 1px solid white !important;
+}
+.d-menu{
+  background: #555;
+  max-width: 108px;
+  margin-left: 50px;
+  margin-top: 100px;
+  position: absolute;
+  top: 100px;
+  right: 0px;
+  font-size:13px;
+  text-align: center;
+  font-weight:bold;
+ 
+}
+.d-menu ul li{
+ list-style: none;
+}
+
+.d-menu ul{
+  margin: 0;
+  padding: 0;
+}
+
+.d-menu ul li a{
+  text-decoration: none;
+  color: #fff;
+  padding: 10px;
+  display: block;
+  border-bottom:1px solid #282828;
+}
+
+.d-menu ul li ul {
+display:none;
+}
+
+.d-menu ul li:hover ul {
+display:block;
+position:absolute;
+left: -170px;
+
+  
+}
+.d-menu ul li ul li a {
+padding:10px;
+font-size:10px;
+background-color: #282828;
+border-bottom:1px solid #222;
+transition:all .3s ease-in-out;
+width:170px;
+}
+.d-menu ul li a:hover {
+background-color: #000;
+transition:all .3s ease-in-out;
+width: 130px;
 }
