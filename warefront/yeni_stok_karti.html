@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <title>Ware Finans</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style1.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body class="body1">
+    <!--Header-->
+
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a href="/">
+                <img src="resimler/icon.png" alt="WARE SOFT FİNANS"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mynavbar">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" style="color:rgb(255, 255, 255);" href="index.html">Anasayfa</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" style="color:rgb(8, 179, 8);" href="login.html">Giriş Yap</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" style="color:rgb(28, 127, 227);" href="javascript:void(0)">Kayıt Ol</a>
+                    </li>
+                    <li class="nav-item">
+                        <div class="dropdown" style="margin-right: 10px;">
+                            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Muhasebe Durumu
+                            </button>
+
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li>
+                                    <div class="dropdown">
+                                        <button class="dropdown-item dropdown-toggle" type="button"
+                                            id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Firma Bilgileri
+                                        </button>
+                                        <ul class="dropdown-menu dropdown-menu-end"
+                                            aria-labelledby="dropdownMenuButton2">
+                                            <li><a class="dropdown-item" href="firma_ekle.html">Firma Bilgileri</a></li>
+                                            <li><a class="dropdown-item" href="#">Firma Ekle</a></li>
+                                            <li><a class="dropdown-item" href="#">Firma Güncelle</a></li>
+                                            <li><a class="dropdown-item" href="#">Firma Sil </a></li>
+                                            <li><a class="dropdown-item" href="#">Firma Aktar</a></li>
+                                            <li><a class="dropdown-item" href="#">Şube Ekle</a></li>
+                                            <li><a class="dropdown-item" href="#">Şube Güncelle</a></li>
+                                            <li><a class="dropdown-item" href="#">Şube Sil</a></li>
+                                            <li><a class="dropdown-item" href="#">Var Olan Firmalar Listesi Çıkar</a>
+                                            </li>
+                                            <li><a class="dropdown-item" href="#">Silinen Firmalar Listesi Çıkar</a>
+                                            </li>
+                                            <li><a class="dropdown-item" href="#">Dilekçe Oluştur</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#">Seçenek 1</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#">Seçenek 2</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#">Seçenek 3</a>
+                                </li>
+
+                            </ul>
+                        </div>
+
+                        <script>
+                            // İkinci dropdown açıldığında, birinci dropdown'un kapanmasını engelle
+                            $('.dropdown .dropdown-menu').on('click', function (e) {
+                                e.stopPropagation();
+                            });
+                        </script>
+
+                    </li>
+                    <li class="nav-item">
+                        <div style="color:rgb(255, 255, 255);" class="dropdown">
+                            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
+                                Hesabım
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item " href="#">Lisans Bilgileri</a></li>
+                                <li><a class="dropdown-item " href="#">Kullanıcı Ekle</a></li>
+                                <li><a class="dropdown-item " href="#">Destek</a></li>
+                                <li><a class="dropdown-item " href="#">Şifre Değiştirme</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+    <!--Header-->
+    <div class="icon-bar">
+
+        <a href="">Kaydet </a>
+        <a href="">Kaydet / Yeni Kart</a>
+        <a href="" style="color:red;">Çıkış Yap (ESC)</a>
+
+    </div>
+    <div class="d-menu">
+
+    </div>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-1">
+
+            </div>
+            <div class="col-10" style="border: 1px solid black; padding: 20px;">
+                <div class="text-center">
+                    <h2>Stok Kartı Oluşturma</h2>
+                    <hr>
+                </div>
+
+                <form action="">
+                    <div class="row genel">
+                        <div class="col-6">
+                            <label for="">Ana Stok Kodu</label>
+                            <br>
+                            <input type="text">
+                        </div>
+                        <div class="col-2"><label for="">Detay</label><br>
+                            <select name="" id="">
+                                <option value="">E</option>
+                                <option value="">H</option>
+                            </select>
+                        </div>
+                        <div class="col-2"><label for="">Listede Görünsün</label><br>
+                            <select name="" id="">
+                                <option value="">E</option>
+                                <option value="">H</option>
+                            </select>
+                        </div>
+                        <div class="col-2"><label for="">Stok Kilidi</label><br>
+                            <select name="" id="">
+                                <option value="">E</option>
+                                <option value="">H</option>
+                            </select>
+                        </div>
+                        <hr>
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-10" style="max-height: 250px !important;">
+                                    <div class="row">
+                                        <div class="col-4"><label for="">Stok Kodu</label>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-8"><input type="text"></div>
+                                                <div class="col-4"><button>sec</button></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-4"><label for="">Stok Türü</label><br>
+                                            <select name="" id="">
+                                                <option value="">Hammadde</option>
+                                                <option value="">Yarı Mamul</option>
+                                                <option value="">Mamul</option>
+                                                <option value="">Ticari Mal</option>
+                                                <option value="">Demirbaş</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-4"><label for="">Stok Adı</label>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-8"><input type="text"></div>
+                                                <div class="col-4"><button>sec</button></div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-6" style="border-right: 1px solid black;">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <label for="">1.Brim</label>
+
+                                                    <select name="" id="">
+                                                        <option value="">Adet</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-6"></div>
+                                                <div class="col-3"><label for="">2.Brim</label></div>
+                                                <div class="col-3"><select name="" id="">
+                                                        <option value=""></option>
+                                                        <option value="">Adet</option>
+                                                    </select></div>
+                                                <div class="col-3"><input type="text"></div>
+                                                <div class="col-3"><select name="" id="">
+                                                        <option value="">*</option>
+                                                        <option value="">/</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-3"><label for="">3.Brim</label></div>
+                                                <div class="col-3"><select name="" id="">
+                                                        <option value=""></option>
+                                                        <option value="">Adet</option>
+                                                    </select></div>
+                                                <div class="col-3"><input type="text"></div>
+                                                <div class="col-3"><select name="" id="">
+                                                        <option value="">*</option>
+                                                        <option value="">/</option>
+                                                    </select>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="row" >
+                                                        <div class="col-12">Minimum Stok Miktarı:</div>
+                                                        
+                                                        <div class="col-12">Maksimum Stok Miktarı:</div>
+                                                        
+                                                        <div class="col-12">Serbest Stok Brimi:</div>
+                                                        
+                                                        <div class="col-12">Temin Süresi:</div>
+                                                        
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="col-12"><input type="text" style="max-width: 100% !important;"></div>
+                                                    <div class="col-12"><input type="text"></div>
+                                                    <div class="col-12"><input type="text"></div>
+                                                    <div class="row">
+                                                        <div class="col-8"><input type="text"></div>
+                                                        <div class="col-4">Gün</div>
+                                                        </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr>
+
+                                    </div>
+                                </div>
+                                <div class="col-2" style="border: 1px solid black;">
+                                    <img src="resimler\warelogo.png" style="max-width: 100%;" alt="">
+                                    <input type="file" name="" id="">
+                                </div>
+                            </div>
+                            <hr>
+                            
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-1">
+
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
