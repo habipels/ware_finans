@@ -339,146 +339,575 @@
     </div>
   </div>
   <div class="container mt-3 tablo">
-    <div class="table-responsive " style="
-       height: 300px;
-       overflow: auto;">
-      <table class="table table-bordered">
-        <thead style="position: sticky;top: 0">
-          <tr>
-            <th class="text-center">Tarih</th>
-            <th class="text-center">Saat</th>
-            <th class="text-center" style="min-width: 100px ;">İşlem Türü</th>
-            <th class="text-center">Tip</th>
-            <th class="text-center" style="min-width: 100px ;">Evrak No</th>
-            <th class="text-center">Açıklama</th>
-            <th class="text-center">Tahsilat</th>
-            <th class="text-center">Ödeme</th>
-            <th class="text-center" style="min-width: 100px ;">Cari Ünvan</th>
-            <th class="text-center" style="min-width: 100px ;">Banka Adı</th>
-            <th class="text-center" style="min-width: 100px ;">Gider/Gelir</th>
-            <th class="text-center">M?</th>
-            <th class="text-center" style="min-width: 130px ;">Özel Kod(1)</th>
-            <th class="text-center" style="min-width: 130px ;">Özel Kod(2)</th>
-            <th class="text-center">Ent?</th>
-            <th class="text-center" style="min-width: 100px ;">Uyg. Kur</th>
-            <th class="text-center" style="min-width: 100px ;">Şube Kodu</th>
-            <th class="text-center">Departman</th>
-            <th class="text-center" style="min-width: 250px ;">Tahsilatı/Ödemeyi Yapan</th>
-            <th class="text-center">Kullanıcı</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <div class="col-12">
+                            <div class="tab">
+                                <a class="tablinks btn btn-secondary" onclick="openCity(event, 'a')">Alış/Satış Fiyatları</a>
+                                <a class="tablinks btn btn-secondary" onclick="openCity(event, 'k')">Kodlar</a>
+                                <a class="tablinks btn btn-secondary" onclick="openCity(event, 'd')">Detaylar</a>
+                                <a class="tablinks btn btn-secondary" onclick="openCity(event, 's')">Stok Reçetesi</a>
+                                <a class="tablinks btn btn-secondary" onclick="openCity(event, 'm')">Muhasebe Kodları</a>
+                                <a class="tablinks btn btn-secondary" onclick="openCity(event, 'i')">İlişkili Gider Gelir</a>
+                                <a class="tablinks btn btn-secondary" onclick="openCity(event, 'di')">Diğer</a>
+                                <a class="tablinks btn btn-secondary" onclick="openCity(event, 'k')">Karta Özel Dosyalar</a>
+                              </div>
+                              
+                              <div id="a" class="tabcontent">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="row">
+                                            <div class="col-4"><div class="row">
+                                                <div class="col-12 text-center ">Satış Fiyatı (TL)</div>
+                                                <div class="col-1">1</div>
+                                                <div class="col-10"><input type="text"></div>
+                                                <div class="col-1">2</div>
+                                                <div class="col-10"><input type="text"></div>
+                                                <div class="col-1">3</div>
+                                                <div class="col-10"><input type="text"></div>
+                                                <div class="col-1">4</div>
+                                                <div class="col-10"><input type="text"></div>
+                                                <div class="col-1">5</div>
+                                                <div class="col-10"><input type="text"></div>
+                                                <div class="col-1">6</div>
+                                                <div class="col-10"><input type="text"></div>
+                                                <div class="col-1">7</div>
+                                                <div class="col-10"><input type="text"></div>
+                                                <div class="col-1">8</div>
+                                                <div class="col-10"><input type="text"></div>
+                                                <div class="col-1">9</div>
+                                                <div class="col-10"><input type="text"></div>
+                                                <div class="col-1">10</div>
+                                                <div class="col-10"><input type="text"></div>
+                                            </div></div>
+                                            <div class="col-4"><div class="row">
+                                                <div class="col-12 text-center ">Satış Fiyatı Döviz</div>
+                                                <div class="col-1">1</div>
+                                                <div class="col-10"><input type="text"></div>
+                                                <div class="col-1">2</div>
+                                                <div class="col-10"><input type="text"></div>
+                                                <div class="col-1">3</div>
+                                                <div class="col-10"><input type="text"></div>
+                                                <div class="col-1">4</div>
+                                                <div class="col-10"><input type="text"></div>
+                                                <div class="col-1">5</div>
+                                                <div class="col-10"><input type="text"></div>
+                                                <div class="col-1">6</div>
+                                                <div class="col-10"><input type="text"></div>
+                                                <div class="col-1">7</div>
+                                                <div class="col-10"><input type="text"></div>
+                                                <div class="col-1">8</div>
+                                                <div class="col-10"><input type="text"></div>
+                                                <div class="col-1">9</div>
+                                                <div class="col-10"><input type="text"></div>
+                                                <div class="col-1">10</div>
+                                                <div class="col-10"><input type="text"></div>
+                                            </div></div>
+                                            <div class="col-4">
+                                                <div class="row">
+                                                    <div class="col-12">Kullanılacak Satış Fiyatı</div>
+                                                    <div class="col-12"><select name="" id="">
+                                                        <option value="">1</option>
+                                                        <option value="">2</option>
+                                                        <option value="">3</option>
+                                                        <option value="">4</option>
+                                                        <option value="">5</option>
+                                                        <option value="">6</option>
+                                                        <option value="">7</option>
+                                                        <option value="">8</option>
+                                                        <option value="">9</option>
+                                                        <option value="">10</option>
+                                                    </select></div>
+                                                    <div class="col-12">Satış Döviz Cinsi</div>
+                                                    <div class="col-12"><select name="" id="">
+                                                        <option value="">TL</option>
+                                                        <option value="">USD</option>
+                                                        <option value="">EURO</option>
+                                                    </select></div>
+                                                    <div class="col-12 text-center" >
+                                                        Birim Seçeneği
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <input type="radio" name="" id="">1.Birim
+                                                        <input type="radio" name="" id="">1.Birim
+                                                        <input type="radio" name="" id="">1.Birim
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="row">
+                                                    <div class="col-12 text-center">
+                                                        Alış Fiyatı (TL)
+                                                    </div>
+                                                    
+                                                    <div class="col-1">1</div>
+                                                    <div class="col-9"><input type="text"></div>
+                                                    <div class="col-1">2</div>
+                                                    <div class="col-9"><input type="text"></div>
+                                                    <div class="col-1">3</div>
+                                                    <div class="col-9"><input type="text"></div>
+                                                    <div class="col-1">4</div>
+                                                    <div class="col-9"><input type="text"></div>
+                                                    <div class="col-1">5</div>
+                                                    <div class="col-9"><input type="text"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="row">
+                                                    <div class="col-12 text-center">
+                                                        Alış Fiyatı Döviz
+                                                    </div>
+                                                    <div class="col-1">1</div>
+                                                    <div class="col-9"><input type="text"></div>
+                                                    <div class="col-1">2</div>
+                                                    <div class="col-9"><input type="text"></div>
+                                                    <div class="col-1">3</div>
+                                                    <div class="col-9"><input type="text"></div>
+                                                    <div class="col-1">4</div>
+                                                    <div class="col-9"><input type="text"></div>
+                                                    <div class="col-1">5</div>
+                                                    <div class="col-9"><input type="text"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 text-center">Kullanılıcak Alış Fiyatı</div>
+                                            <div class="col-12 text-center"><select name="" id="">
+                                                <option value="">1</option>
+                                                <option value="">2</option>
+                                                <option value="">3</option>
+                                                <option value="">4</option>
+                                                <option value="">5</option>
+                                                
+                                            </select></div>
+                                            <div class="col-12 text-center">Alış Döviz Cinsi</div>
+                                            <div class="col-12 text-center"><select name="" id="">
+                                                <option value="">TL</option>
+                                                <option value="">USD</option>
+                                                <option value="">EURO</option>
+                                            </select></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="row">
+                                            <div class="col-12"><label for="">Açıklama</label></div>
+                                            <div class="col-12"><textarea name="" id="" cols="30" rows="10"></textarea></div>
+                                            <div class="col-12"><label for="">Maliyet Yöntemi</label></div>
+                                            <div class="col-12">
+                                                <select name="" id="">
+                                                    <option value=""></option>
+                                                    <option value="">Alış Fiyatı (1)</option>
+                                                    <option value="">Alış Fiyatı (2)</option>
+                                                    <option value="">Alış Fiyatı (3)</option>
+                                                    <option value="">Alış Fiyatı (4)</option>
+                                                    <option value="">Alış Fiyatı (5)</option>
+                                                    <option value="">En Düşük Alış/Giriş Fiyatı</option>
+                                                    <option value="">En Yüksek Alış/Giriş Fiyatı</option>
+                                                    <option value="">Son Alış/Giriş Fiyatı</option>
+                                                    <option value="">FIFO</option>
+                                                    <option value="">Basit Ortalama</option>
+                                                    <option value="">Ağırlıklı Ortalama</option>
+                                                    <option value="">Hareketli Ağırlıklı Ortalama</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-12"><label for="">Satış Kar Yüzdesi</label></div>
+                                            
+                                            <div class="col-12"><select name="" id="">
+                                                <option value=""></option>
+                                                <option value="">GENEL</option>
+                                                <option value="">Satış Faturası</option>
+                                                <option value="">Parekende Satış Faturası</option>
+                                                <option value="">İhraç Kayıtları Satış Faturası</option>
+                                            </select></div>
+                                            <div class="col-12"><input type="text" placeholder="Kar Yüzdesi"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                              </div>
+                              
+                              <div id="k" class="tabcontent">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div class="row">
+                                            <div class="col-4">Özel Kod 1</div>
+                                            <div class="col-4"><input type="text"></div>
+                                            <div class="col-4"><button>sec</button></div>
+                                            <div class="col-4">Özel Kod 2</div>
+                                            <div class="col-4"><input type="text"></div>
+                                            <div class="col-4"><button>sec</button></div>
+                                            <div class="col-4">Grup Kodu 1</div>
+                                            <div class="col-4"><input type="text"></div>
+                                            <div class="col-4"><button>sec</button></div>
+                                            <div class="col-4">Grup Kodu 2</div>
+                                            <div class="col-4"><input type="text"></div>
+                                            <div class="col-4"><button>sec</button></div>
+                                            <div class="col-4">Grup Kodu 3</div>
+                                            <div class="col-4"><input type="text"></div>
+                                            <div class="col-4"><button>sec</button></div>
+                                            <div class="col-4">Gtip No</div>
+                                            <div class="col-4"><input type="text"></div>
+                                            <div class="col-4"><button>sec</button></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <label for="">Kalite Kodu</label>
+                                            </div>
+                                            <div class="col-6"></div>
+                                            <div class="col-6"><input type="text"></div>
+                                            <div class="col-6"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="row">
+                                            <div class="col-6"><label for="">Barkod</label></div>
+                                            <div class="col-6"><label for="">Brim No</label></div>
+                                            <div class="col-6"><input type="text"></div>
+                                            <div class="col-6"><input type="text"></div>
+                                        </div>
+                                        </div>
+                                    <hr>
+                                   <div class="col-6">
+                                    <div class="row">
+                                        <div class="col-6">Alternatif Stok Kodu</div>
+                                        <div class="col-6">Alternatif Stok Adı</div>
+                                        <div class="col-4"><div class="row">
+                                            <div class="col-2">1</div>
+                                            <div class="col-10"><input type="text"></div>
+                                        </div></div>
+                                        <div class="col-8"><input type="text"></div>
+                                        <div class="col-4"><div class="row">
+                                            <div class="col-2">2</div>
+                                            <div class="col-10"><input type="text"></div>
+                                        </div></div>
+                                        <div class="col-8"><input type="text"></div>
+                                        <div class="col-4"><div class="row">
+                                            <div class="col-2">3</div>
+                                            <div class="col-10"><input type="text"></div>
+                                        </div></div>
+                                        <div class="col-8"><input type="text"></div>
+                                    </div>
+                                   </div>
+                                    <div class="col-6">
+                                        <div class="row">
+                                            <div class="col-6">Yazar Kasa Departmanı</div>
+                                            <div class="col-6">Terazı Ürün Kodu</div>
+                                            <div class="col-6"><input type="text"></div>
+                                            <div class="col-6"><input type="text"></div>
+                                            <div class="col-12"><div class="row">
+                                                <div class="col-6">Plu Kodu</div>
+                                                <div class="col-6"></div>
+                                                <div class="col-6"><input type="text"></div>
+                                                <div class="col-6"></div>
+                                            </div></div>
+                                            <div class="col-3">Reyon</div>
+                                            <div class="col-3">Raf (1)</div>
+                                            <div class="col-3">Raf (2)</div>
+                                            <div class="col-3">Raf (3)</div>
+                                            <div class="col-3"><input type="text"></div>
+                                            <div class="col-3"><input type="text"></div>
+                                            <div class="col-3"><input type="text"></div>
+                                            <div class="col-3"><input type="text"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                              </div>
+                              
+                              <div id="d" class="tabcontent">
+                                <div class="row">
+                                    <div class="col-4" style="border: 1px solid black;">
+                                    <div class="row"><div class="col-12 text-center">
+                                        Stok Kartı Paremetre Adları ve Değerleri
+                                    </div>
+                                        <div class="col-12">Paremetre Adı 1</div>
+                                        <div class="col-12"><select name="" id="">
+                                            <option value=""></option>
+                                        </select></div>
+                                        <div class="col-12"><label for="">Paremetre Değeri</label></div>
+                                        <div class="col-12"><input type="text"></div>
+                                </div></div>
+                                    <div class="col-4" style="border: 1px solid black;">
+                                        <div class="row"><div class="col-12 text-center">
+                                            
+                                        </div>
+                                            <div class="col-12">Paremetre Adı 2</div>
+                                            <div class="col-12"><select name="" id="">
+                                                <option value=""></option>
+                                            </select></div>
+                                            <div class="col-12"><label for="">Paremetre Değeri</label></div>
+                                            <div class="col-12"><input type="text"></div>
+                                            <div class="col-12">Barkod</div>
+                                            <div class="col-12">
+                                                <div class="row">
+                                                    <div class="col-8"><input type="text"></div>
+                                                    <div class="col-4"><button>Oluştur</button></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12"><label for="">Kalite</label></div>
+                                            <div class="col-12"><input type="text"></div>
+                                    </div>
+                                    </div>
+                                    <div class="col-4" style="border: 1px solid black;">
+                                    <div class="row">
+                                        <div class="col-6" style="border-right: 1px solid black;">
+                                            <div class="row">
+                                                <div class="col-12">Detay Özelik Adı</div>
+                                                <div class="col-12"><input type="text"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="row">
+                                                <div class="col-12">Varyant Seç</div>
+                                                <div class="col-12"><select name="" id="">
+                                                    <option value=""></option>
+                                                    <option value="">E</option>
+                                                </select></div>
+                                                <div class="col-12">Varyant Kodu</div>
+                                                <div class="col-12"><input type="text"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <hr>
+                                    <div class="container tablo">
+                                        <div class="table-responsive " style="
+                                      height: 100px;
+                                      overflow: auto;">
+                                          <table class="table table-bordered ">
+                                            <thead style="position: sticky;top: 0">
+                                              <tr>
+                                                <th class="text-center" style="min-width: 100px ;">Seçili</th>
+                                                <th class="text-center" style="min-width: 50px ;">Varyant Kodu</th>
+                                                <th class="text-center" style="min-width: 150px ;">Özellik-1</th>
+                                                <th class="text-center" style="min-width: 150px ;">Özellik-2</th>
+                                                <th class="text-center" style="min-width: 150px ;">Özellik-3</th>
+                                                <th class="text-center" style="min-width: 150px ;">Özellik-4</th>
+                                                <th class="text-center" style="min-width: 150px ;">Özellik-5</th>
+                                                <th class="text-center" style="min-width: 150px ;">Özellik-6</th>
+                                                <th class="text-center" style="min-width: 150px ;">Özellik-7</th>
+                                                <th class="text-center" style="min-width: 150px ;">Özellik-8</th>
+                                                <th class="text-center" style="min-width: 150px ;">Özellik-9</th>
+                                                <th class="text-center" style="min-width: 150px ;">Özellik-10</th>
+                                                <th class="text-center" style="min-width: 150px ;">Özellik-11</th>
+                                                <th class="text-center" style="min-width: 150px ;">Özellik-12</th>
+                                                <th class="text-center" style="min-width: 150px ;">Özellik-13</th>
+                                                <th class="text-center" style="min-width: 150px ;">Özellik-14</th>
+                                                <th class="text-center" style="min-width: 150px ;">Özellik-15</th>
+                                                <th class="text-center" style="min-width: 150px ;">Özellik-16</th>
+                                                <th class="text-center" style="min-width: 150px ;">Özellik-17</th>
+                                                <th class="text-center" style="min-width: 150px ;">Özellik-18</th>
+                                                <th class="text-center" style="min-width: 150px ;">Özellik-19</th>
+                                                <th class="text-center" style="min-width: 150px ;">Özellik-20</th>
+                                                <th class="text-center" style="min-width: 150px ;">Özellik-21</th>
+                                                <th class="text-center" style="min-width: 150px ;">Özellik-22</th>
+                                                <th class="text-center" style="min-width: 150px ;">Özellik-23</th>
+                                                <th class="text-center" style="min-width: 150px ;">Özellik-24</th>
+                                                <th class="text-center" style="min-width: 150px ;">Özellik-25</th>
+                                                <th class="text-center" style="min-width: 150px ;">Özellik-26</th>
+                                                <th class="text-center" style="min-width: 150px ;">Özellik-27</th>
+                                                <th class="text-center" style="min-width: 150px ;">Özellik-28</th>
+                                                <th class="text-center" style="min-width: 150px ;">Özellik-29</th>
+                                                <th class="text-center" style="min-width: 150px ;">Özellik-30</th>
+                                    
+                                    
+                                              </tr>
+                                            </thead>
+                                            <tbody>
+                                              <tr>
+                                    
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                
+                                              </tr>
+                                            </tbody>
+                                          </table>
+                                        </div>
+                                      </div>
+                                </div>
+                              </div>
+                              <div id="s" class="tabcontent">
+                                <div class="row">
+                                    <div class="col-8" style="border: 1px solid black; padding-bottom: 1%;">
+                                    <h4>Birim Çevirimi</h4>
+                                    <div class="row">
+                                        <div class="col-2">En</div>
+                                        <div class="col-2">Boy</div>
+                                        <div class="col-2">Kalınlık</div>
+                                        <div class="col-2">(Bölünme Katsayısı)</div>
+                                        <div class="col-2">Çevrilecek Birim</div>
+                                        <div class="col-2">
+                                            
+                                        </div>
+                                        <div class="col-2">
+                                            <div class="row">
+                                                <div class="col-9"><input type="text"></div>
+                                                <div class="col-3">*</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div class="row">
+                                                <div class="col-9"><input type="text"></div>
+                                                <div class="col-3">*</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div class="row">
+                                                <div class="col-9"><input type="text"></div>
+                                                <div class="col-3">/</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div class="row">
+                                                <div class="col-9"><input type="text"></div>
+                                                <div class="col-3">(1-</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div class="row">
+                                                <div class="col-9"><input type="text"></div>
+                                                <div class="col-3">)</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div class="row">
+                                            
+                                                    <div class="col-3">=</div>
+                                                    <div class="col-9"><input type="text"></div>
+                                                   
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="row">
+                                            <div class="col-6" style="border: 1px solid black;">
+                                                <h5>Stok Birimi</h5>
+                                                <select name="" id="">
+                                                    <option value="">Adet</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-6" style="border: 1px solid black;">
+                                                <h5>Özgül Ağırlık</h5>
+                                                <input type="text">
+                                                <select name="" id="">
+                                                    <option value="">*</option>
+                                                    <option value="">/</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="col-8">  <div class="container tablo">
+                                        <div class="table-responsive " style="
+                                      height: 150px;
+                                      overflow: auto;">
+                                          <table class="table table-bordered ">
+                                            <thead style="position: sticky;top: 0">
+                                              <tr>
+                                                <th class="text-center" style="min-width: 100px ;">Stok Kodu</th>
+                                                <th class="text-center" style="min-width: 50px ;">Stok Adı</th>
+                                                <th class="text-center" style="min-width: 150px ;">Birim</th>
+                                                <th class="text-center" style="min-width: 100px ;">Tür</th>
+                                                <th class="text-center">Miktar</th>
+                                                <th class="text-center" style="min-width: 150px ;">Döviz Cinsi</th>
+                                                <th class="text-center" style="min-width: 150px ;">Birim Fiyatı TL</th>
+                                                <th class="text-center">Birim Fiyatı Döviz</th>
+                                                <th class="text-center" style="min-width: 100px ;">Fire %</th>
+                                                <th class="text-center" style="min-width: 150px ;">Fire Miktarı</th>
+                                                <th class="text-center" style="min-width: 150px ;">Alternatif Stok</th>
+                                                <th class="text-center" style="min-width: 150px ;">Gider %</th>
+                                              </tr>
+                                            </thead>
+                                            <tbody>
+                                              <tr>
+                                    
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                              </tr>
+
+                                            </tbody>
+                                          </table>
+                                        </div>
+                                      </div></div>
+                                    <div class="col-4"></div>
+                                </div>
+                              </div>
+                              <div id="m" class="tabcontent">
+                                <h3>Tokyo</h3>
+                                <p>Tokyo is the capital of Japan.</p>
+                              </div>
+                              <div id="i" class="tabcontent">
+                                <h3>Tokyo</h3>
+                                <p>Tokyo is the capital of Japan.</p>
+                              </div>
+                              <div id="di" class="tabcontent">
+                                <h3>Tokyo</h3>
+                                <p>Tokyo is the capital of Japan.</p>
+                              </div>
+                              <div id="k" class="tabcontent">
+                                <h3>Tokyo</h3>
+                                <p>Tokyo is the capital of Japan.</p>
+                              </div>
+                              <script>
+                            document.getElementById("a").style.display = "block";
+                              function openCity(evt, cityName) {
+                                var i, tabcontent, tablinks;
+                                
+                                tabcontent = document.getElementsByClassName("tabcontent");
+                                for (i = 0; i < tabcontent.length; i++) {
+                                  tabcontent[i].style.display = "none";
+                                }
+                                tablinks = document.getElementsByClassName("tablinks");
+                                for (i = 0; i < tablinks.length; i++) {
+                                  tablinks[i].className = tablinks[i].className.replace(" active", "");
+                                }
+                                document.getElementById(cityName).style.display = "block";
+                                evt.currentTarget.className += " active";
+                              }
+                              </script>
+                        </div>
   </div>
 </body>
 
