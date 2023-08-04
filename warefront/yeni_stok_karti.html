@@ -382,7 +382,6 @@
                                 <a class="tablinks btn btn-secondary" onclick="openCity(event, 'm')">Muhasebe Kodları</a>
                                 <a class="tablinks btn btn-secondary" onclick="openCity(event, 'i')">İlişkili Gider Gelir</a>
                                 <a class="tablinks btn btn-secondary" onclick="openCity(event, 'di')">Diğer</a>
-                                <a class="tablinks btn btn-secondary" onclick="openCity(event, 'k')">Karta Özel Dosyalar</a>
                               </div>
                               
                               <div id="a" class="tabcontent">
@@ -938,16 +937,484 @@
                                 </div>
                               </div>
                               <div id="m" class="tabcontent">
-                                <h3>Tokyo</h3>
-                                <p>Tokyo is the capital of Japan.</p>
+                                <div class="row">
+                                    <div class="col-8">  <div class=" tablo" style="margin-top:0px !important;">
+                                        <div class="table-responsive " style="
+                                      height: 700px;
+                                      overflow: auto;">
+                                          <table class="table table-bordered ">
+                                            <thead style="position: sticky;top: 0">
+                                              <tr>
+                                                <th class="text-center" style="min-width: 100px ;">Evrak Türü</th>
+                                                <th class="text-center" style="min-width: 50px ;">KDV Oranı</th>
+                                                <th class="text-center" style="min-width: 150px ;">Tevkifat Oranı</th>
+                                                <th class="text-center" style="min-width: 100px ;">Stok Hesap Kodu</th>
+                                                <th class="text-center">KDV Hesap Kodu</th>
+                                                <th class="text-center" style="min-width: 150px ;">Tevkifat (1) Hesap Kodu </th>
+                                                <th class="text-center" style="min-width: 150px ;">Tevkifat (2) Hesap Kodu</th>
+                                                <th class="text-center">ÖTV Hesap Kodu</th>
+                                                <th class="text-center" style="min-width: 100px ;">ÖTV (Tescil B) Hesap Kodu</th>
+                                              </tr>
+                                            </thead>
+                                            <tbody>
+                                              <tr>
+                                    
+                                                <td>Alış/Giriş</td>
+                                                <td><select name="" id="">
+                                                    <option value="">GENEL</option>
+                                                    <option value="">0</option>
+                                                    <option value="">3</option>
+                                                    <option value="">10</option>
+                                                    <option value="">20</option>
+                                                </select></td>
+                                                <td><select name="" id="">
+                                                    <option value="">GENEL</option>
+                                                    <option value="">2/10</option>
+                                                    <option value="">3/10</option>
+                                                    <option value="">4/10</option>
+                                                    <option value="">5/10</option>
+                                                    <option value="">7/10</option>
+                                                    <option value="">9/10</option>
+                                                    <option value="">10/10</option>
+                                                </select></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                              </tr>
+                                              <tr>
+                                                <td>Alış İade</td>
+                                                <td><select name="" id="">
+                                                    <option value="">GENEL</option>
+                                                    <option value="">0</option>
+                                                    <option value="">3</option>
+                                                    <option value="">10</option>
+                                                    <option value="">20</option>
+                                                </select></td>
+                                                <td><select name="" id="">
+                                                    <option value="">GENEL</option>
+                                                    <option value="">2/10</option>
+                                                    <option value="">3/10</option>
+                                                    <option value="">4/10</option>
+                                                    <option value="">5/10</option>
+                                                    <option value="">7/10</option>
+                                                    <option value="">9/10</option>
+                                                    <option value="">10/10</option>
+                                                </select></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                              </tr><tr>
+                                                <td>Satış (Yİ)</td>
+                                                <td><select name="" id="">
+                                                    <option value="">GENEL</option>
+                                                    <option value="">0</option>
+                                                    <option value="">3</option>
+                                                    <option value="">10</option>
+                                                    <option value="">20</option>
+                                                </select></td>
+                                                <td><select name="" id="">
+                                                    <option value="">GENEL</option>
+                                                    <option value="">2/10</option>
+                                                    <option value="">3/10</option>
+                                                    <option value="">4/10</option>
+                                                    <option value="">5/10</option>
+                                                    <option value="">7/10</option>
+                                                    <option value="">9/10</option>
+                                                    <option value="">10/10</option>
+                                                </select></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                              </tr><tr>                                  
+                                                <td>Satış İade (Yİ)</td>
+                                                <td><select name="" id="">
+                                                    <option value="">GENEL</option>
+                                                    <option value="">0</option>
+                                                    <option value="">3</option>
+                                                    <option value="">10</option>
+                                                    <option value="">20</option>
+                                                </select></td>
+                                                <td><select name="" id="">
+                                                    <option value="">GENEL</option>
+                                                    <option value="">2/10</option>
+                                                    <option value="">3/10</option>
+                                                    <option value="">4/10</option>
+                                                    <option value="">5/10</option>
+                                                    <option value="">7/10</option>
+                                                    <option value="">9/10</option>
+                                                    <option value="">10/10</option>
+                                                </select></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                              </tr><tr>
+                                                <td>Satış (YD)</td>
+                                                <td><select name="" id="">
+                                                    <option value="">GENEL</option>
+                                                    <option value="">0</option>
+                                                    <option value="">3</option>
+                                                    <option value="">10</option>
+                                                    <option value="">20</option>
+                                                </select></td>
+                                                <td><select name="" id="">
+                                                    <option value="">GENEL</option>
+                                                    <option value="">2/10</option>
+                                                    <option value="">3/10</option>
+                                                    <option value="">4/10</option>
+                                                    <option value="">5/10</option>
+                                                    <option value="">7/10</option>
+                                                    <option value="">9/10</option>
+                                                    <option value="">10/10</option>
+                                                </select></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                              </tr><tr>
+                                                <td>Satış İade (YD)</td>
+                                                <td><select name="" id="">
+                                                    <option value="">GENEL</option>
+                                                    <option value="">0</option>
+                                                    <option value="">3</option>
+                                                    <option value="">10</option>
+                                                    <option value="">20</option>
+                                                </select></td>
+                                                <td><select name="" id="">
+                                                    <option value="">GENEL</option>
+                                                    <option value="">2/10</option>
+                                                    <option value="">3/10</option>
+                                                    <option value="">4/10</option>
+                                                    <option value="">5/10</option>
+                                                    <option value="">7/10</option>
+                                                    <option value="">9/10</option>
+                                                    <option value="">10/10</option>
+                                                </select></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                              </tr><tr>
+                                                <td>İhraç Kayıtlı Satış</td>
+                                                <td><select name="" id="">
+                                                    <option value="">GENEL</option>
+                                                    <option value="">0</option>
+                                                    <option value="">3</option>
+                                                    <option value="">10</option>
+                                                    <option value="">20</option>
+                                                </select></td>
+                                                <td><select name="" id="">
+                                                    <option value="">GENEL</option>
+                                                    <option value="">2/10</option>
+                                                    <option value="">3/10</option>
+                                                    <option value="">4/10</option>
+                                                    <option value="">5/10</option>
+                                                    <option value="">7/10</option>
+                                                    <option value="">9/10</option>
+                                                    <option value="">10/10</option>
+                                                </select></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                              </tr><tr>
+                                                <td>İhraç Kayıtlı Alış</td> 
+                                                <td><select name="" id="">
+                                                    <option value="">GENEL</option>
+                                                    <option value="">0</option>
+                                                    <option value="">3</option>
+                                                    <option value="">10</option>
+                                                    <option value="">20</option>
+                                                </select></td>
+                                                <td><select name="" id="">
+                                                    <option value="">GENEL</option>
+                                                    <option value="">2/10</option>
+                                                    <option value="">3/10</option>
+                                                    <option value="">4/10</option>
+                                                    <option value="">5/10</option>
+                                                    <option value="">7/10</option>
+                                                    <option value="">9/10</option>
+                                                    <option value="">10/10</option>
+                                                </select></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                              </tr><tr>
+                                                <td>Parekende Satış</td>    
+                                                <td><select name="" id="">
+                                                    <option value="">GENEL</option>
+                                                    <option value="">0</option>
+                                                    <option value="">3</option>
+                                                    <option value="">10</option>
+                                                    <option value="">20</option>
+                                                </select></td>
+                                                <td><select name="" id="">
+                                                    <option value="">GENEL</option>
+                                                    <option value="">2/10</option>
+                                                    <option value="">3/10</option>
+                                                    <option value="">4/10</option>
+                                                    <option value="">5/10</option>
+                                                    <option value="">7/10</option>
+                                                    <option value="">9/10</option>
+                                                    <option value="">10/10</option>
+                                                </select></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>                  
+                                              </tr><tr>
+                                                <td>Parekende Satış İade</td>
+                                                <td><select name="" id="">
+                                                    <option value="">GENEL</option>
+                                                    <option value="">0</option>
+                                                    <option value="">3</option>
+                                                    <option value="">10</option>
+                                                    <option value="">20</option>
+                                                </select></td>
+                                                <td><select name="" id="">
+                                                    <option value="">GENEL</option>
+                                                    <option value="">2/10</option>
+                                                    <option value="">3/10</option>
+                                                    <option value="">4/10</option>
+                                                    <option value="">5/10</option>
+                                                    <option value="">7/10</option>
+                                                    <option value="">9/10</option>
+                                                    <option value="">10/10</option>
+                                                </select></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                
+                                              </tr>
+                                            </tbody>
+                                          </table>
+                                        </div>
+                                      </div></div>
+                                    <div class="col-4">
+                                        <div class="row">
+                                            <div class="col-4">Muh. Grup Kodu</div>
+                                            <div class="col-4"><input type="text"></div>
+                                            <div class="col-4"><button>seç</button></div>
+                                            <div class="col-6">Üretime Sevk H. Kodu</div>
+                                            <div class="col-6"><input type="text"></div>
+                                            <div class="col-6">Üretim Sarf H. Kodu</div>
+                                            <div class="col-6"><input type="text"></div>
+                                            <div class="col-6">Üretim Hesap Kodu</div>
+                                            <div class="col-6"><input type="text"></div>
+                                            <div class="col-6">Depo S. Fazlası H. Kodu</div>
+                                            <div class="col-6"><input type="text"></div>
+                                            <div class="col-6">Depo S. Eksiği H. Kodu</div>
+                                            <div class="col-6"><input type="text"></div>
+                                            <div class="col-6">Sarf Hesap Kodu</div>
+                                            <div class="col-6"><input type="text"></div>
+                                            <div class="col-6">Fire Hesap Kodu</div>
+                                            <div class="col-6"><input type="text"></div>
+                                        </div>
+                                    </div>
+                                </div>
                               </div>
                               <div id="i" class="tabcontent">
-                                <h3>Tokyo</h3>
-                                <p>Tokyo is the capital of Japan.</p>
+                                <div class="row">
+                                    <div class="col-6"> 
+                                        <h5>İlişkili Giderler</h5>
+                                        <div class="container tablo" style="margin-top: 0px !important;">
+                                        <div class="table-responsive " style="
+                                      height: 300px;
+                                      overflow: auto;">
+                                          <table class="table table-bordered ">
+                                            <thead style="position: sticky;top: 0">
+                                              <tr>
+                                                <th class="text-center" style="min-width: 100px ;">Gider Kodu </th>
+                                                <th class="text-center" style="min-width: 50px ;">Gider Adı</th>
+                                                <th class="text-center" style="min-width: 150px ;">O. Ekle</th>
+                                                <th class="text-center" style="min-width: 100px ;">Oranı (%)</th>                                  
+                                              </tr>
+                                            </thead>
+                                            <tbody>
+                                              <tr>
+                                    
+                                                <td> <input type="text"><button>Seç</button></td>
+                                                <td><input type="text"><button>Seç</button></td>
+                                                <td><select name="" id="">
+                                                    <option value="">Hayır</option>
+                                                    <option value="">Evet</option>
+                                                </select></td>
+                                                <td><input type="text"></td>
+                                               
+                                              </tr>
+                                            </tbody>
+                                          </table>
+                                        </div>
+                                      </div></div>
+                                      <div class="col-6"> 
+                                        <h5>İlişkili Giderler</h5>
+                                        <div class="container tablo" style="margin-top: 0px !important;">
+                                        <div class="table-responsive " style="
+                                      height: 300px;
+                                      overflow: auto;">
+                                          <table class="table table-bordered ">
+                                            <thead style="position: sticky;top: 0">
+                                              <tr>
+                                                <th class="text-center" style="min-width: 100px ;">Gelir Kodu </th>
+                                                <th class="text-center" style="min-width: 50px ;">Gelir Adı</th>
+                                                <th class="text-center" style="min-width: 150px ;">O. Ekle</th>
+                                                <th class="text-center" style="min-width: 100px ;">Oranı (%)</th>                                  
+                                              </tr>
+                                            </thead>
+                                            <tbody>
+                                              <tr>
+                                    
+                                                <td> <input type="text"><button>Seç</button></td>
+                                                <td><input type="text"><button>Seç</button></td>
+                                                <td><select name="" id="">
+                                                    <option value="">Hayır</option>
+                                                    <option value="">Evet</option>
+                                                </select></td>
+                                                <td><input type="text"></td>
+                                               
+                                              </tr>
+                                            </tbody>
+                                          </table>
+                                        </div>
+                                      </div></div>
+                                </div>
                               </div>
                               <div id="di" class="tabcontent">
-                                <h3>Tokyo</h3>
-                                <p>Tokyo is the capital of Japan.</p>
+                                <div class="row">
+                                    <div style="border: 1px solid black;" class="col-4">
+                                        <div class="row">
+                                            <div class="col-6">ÖTV Oranı (%)</div>
+                                            <div class="col-6"><input type="text"></div>
+                                            <div class="col-6">ÖTV Birim Fiyatı</div>
+                                            <div class="col-6"><input type="text"></div>
+                                            <div class="col-6">ÖTV Birim No</div>
+                                            <div class="col-6"><select name="" id="">
+                                                <option value="">1</option>
+                                                <option value="">2</option>
+                                                <option value="">3</option>
+                                            </select></div>
+                                            <div class="col-6">ÖTV Tahsil %</div>
+                                            <div class="col-6"><input type="text"></div>
+                                            <div class="col-6">ÖTV Tecil %</div>
+                                            <div class="col-6"><input type="text"></div>
+                                            <div class="col-6">Mera Fonu %</div>
+                                            <div class="col-6"><input type="text"></div>
+                                            <div class="col-6">Fire Oranı %</div>
+                                            <div class="col-6"><input type="text"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-8">
+                                        <div class="row">
+                                            <h6>Ağırlıklar (KG)</h6>
+                                            <div class="col-2"></div>
+                                            <div class="col-2">Net</div>
+                                            <div class="col-2">Brüt</div>
+                                            <div class="col-2">Dara</div>
+                                            <div class="col-2">P.Miktar</div>
+                                            <div class="col-2">P.Açıklaması</div>
+                                            <div class="col-2">1.Birim</div>
+                                            <div class="col-2"><input type="text"></div>
+                                            <div class="col-2"><input type="text"></div>
+                                            <div class="col-2"><input type="text"></div>
+                                            <div class="col-2"><input type="text"></div>
+                                            <div class="col-2"><input type="text"></div>
+                                            <div class="col-2">2.Birim</div>
+                                            <div class="col-2"><input type="text"></div>
+                                            <div class="col-2"><input type="text"></div>
+                                            <div class="col-2"><input type="text"></div>
+                                            <div class="col-2"><input type="text"></div>
+                                            <div class="col-2"><input type="text"></div>
+                                            <div class="col-2">3.Birim</div>
+                                            <div class="col-2"><input type="text"></div>
+                                            <div class="col-2"><input type="text"></div>
+                                            <div class="col-2"><input type="text"></div>
+                                            <div class="col-2"><input type="text"></div>
+                                            <div class="col-2"><input type="text"></div>
+                                            
+                                            
+                                        </div>
+                                        <div class="container tablo" style="margin-top: 0px !important;">
+                                            <div class="table-responsive " style="
+                                          height: 200px;
+                                          overflow: auto;">
+                                              <table class="table table-bordered ">
+                                                <thead style="position: sticky;top: 0">
+                                                  <tr>
+                                                    <th class="text-center" style="min-width: 100px ;">Birim No</th>
+                                                    <th class="text-center" style="min-width: 50px ;">En</th>
+                                                    <th class="text-center" style="min-width: 150px ;">En Birimi</th>
+                                                    <th class="text-center" style="min-width: 100px ;">Boy</th> 
+                                                    <th class="text-center" style="min-width: 150px ;">Boy Birimi</th>    
+                                                    <th class="text-center" style="min-width: 150px ;">Yükseklik</th>      
+                                                    <th class="text-center" style="min-width: 150px ;">Yükseklik Birimi</th>    
+                                                    <th class="text-center" style="min-width: 150px ;">Ebat Birimi</th>    
+                                                    <th class="text-center" style="min-width: 150px ;">Hacim</th>                            
+                                                  </tr>
+                                                </thead>
+                                                <tbody>
+                                                  <tr>
+                                        
+                                                   <td><select name="" id="">
+                                                    <option value="">1</option>
+                                                    <option value="">2</option>
+                                                    <option value="">3</option>
+                                                   </select></td>
+                                                   <td><input type="text"></td>
+                                                   <td><select name="" id="">
+                                                    <option value="">CM</option>
+                                                    <option value="">MT</option>
+                                                   </select></td>
+                                                   <td><input type="text"></td>
+                                                   <td><select name="" id="">
+                                                    <option value="">CM</option>
+                                                    <option value="">MT</option>
+                                                   </select></td>
+                                                   <td><input type="text"></td>
+                                                   <td><select name="" id="">
+                                                    <option value="">CM</option>
+                                                    <option value="">MT</option>
+                                                   </select></td>
+                                                   <td><select name="" id="">
+                                                    <option value="">CM</option>
+                                                    <option value="">CM2</option>
+                                                    <option value="">CM3</option>
+                                                    <option value="">MT</option>
+                                                    <option value="">MT2</option>
+                                                    <option value="">MT3</option>
+                                                   </select></td>
+
+                                                  </tr>
+                                                </tbody>
+                                              </table>
+                                            </div>
+                                          </div>
+                                    </div>
+                                </div>
                               </div>
                               <div id="k" class="tabcontent">
                                 <h3>Tokyo</h3>
