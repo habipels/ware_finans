@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+  <title>Ware Finans</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style1.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</head>
+
+<body class="body1">
+  <!--Header-->
+
+  <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a href="/">
+        <img src="resimler/icon.png" alt="WARE SOFT FİNANS"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mynavbar">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <a class="nav-link" style="color:rgb(255, 255, 255);" href="index.html">Anasayfa</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" style="color:rgb(8, 179, 8);" href="login.html">Giriş Yap</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" style="color:rgb(28, 127, 227);" href="javascript:void(0)">Kayıt Ol</a>
+          </li>
+          <li class="nav-item">
+            <div class="dropdown" style="margin-right: 10px;">
+              <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                Muhasebe Durumu
+              </button>
+
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li>
+                  <div class="dropdown">
+                    <button class="dropdown-item dropdown-toggle" type="button" id="dropdownMenuButton2"
+                      data-bs-toggle="dropdown" aria-expanded="false">
+                      Firma Bilgileri
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton2">
+                      <li><a class="dropdown-item" href="firma_ekle.html">Firma Bilgileri</a></li>
+                      <li><a class="dropdown-item" href="#">Firma Ekle</a></li>
+                      <li><a class="dropdown-item" href="#">Firma Güncelle</a></li>
+                      <li><a class="dropdown-item" href="#">Firma Sil </a></li>
+                      <li><a class="dropdown-item" href="#">Firma Aktar</a></li>
+                      <li><a class="dropdown-item" href="#">Şube Ekle</a></li>
+                      <li><a class="dropdown-item" href="#">Şube Güncelle</a></li>
+                      <li><a class="dropdown-item" href="#">Şube Sil</a></li>
+                      <li><a class="dropdown-item" href="#">Var Olan Firmalar Listesi Çıkar</a></li>
+                      <li><a class="dropdown-item" href="#">Silinen Firmalar Listesi Çıkar</a></li>
+                      <li><a class="dropdown-item" href="#">Dilekçe Oluştur</a></li>
+                    </ul>
+                  </div>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">Seçenek 1</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">Seçenek 2</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">Seçenek 3</a>
+                </li>
+
+              </ul>
+            </div>
+
+            <script>
+              // İkinci dropdown açıldığında, birinci dropdown'un kapanmasını engelle
+              $('.dropdown .dropdown-menu').on('click', function (e) {
+                e.stopPropagation();
+              });
+            </script>
+
+          </li>
+          <li class="nav-item">
+            <div style="color:rgb(255, 255, 255);" class="dropdown">
+              <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
+                Hesabım
+              </button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item " href="#">Lisans Bilgileri</a></li>
+                <li><a class="dropdown-item " href="#">Kullanıcı Ekle</a></li>
+                <li><a class="dropdown-item " href="#">Destek</a></li>
+                <li><a class="dropdown-item " href="#">Şifre Değiştirme</a></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+  <!--Header-->
+  <div class="icon-bar">
+
+    <a href="yeni_kasakarti.html">Kaydet / Yeni</a>
+    <a href="">Kart İncele-Düzelt</a>
+    <a href="">Kart Sil</a>
+    <a href="" style="color:red;">Çıkış Yap (ESC)</a>
+
+  </div>
+  <div class="d-menu">
+    <ul>
+      <li>
+        <ul>
+        </ul><a href="" title="">İrsaleye Aktar</a>
+      </li>
+      <li>
+        <ul>
+        </ul><a href="" title="">Siparişi Aktar</a>
+
+      </li>
+      <li>
+        <ul>
+        </ul><a href="" title="">Yazdır</a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="container mt-3 tablo">
+    <div class="table-responsive " style="
+  height: 300px;
+  overflow: auto;">
+      <table class="table table-bordered ">
+        <thead style="position: sticky;top: 0">
+          <tr>
+            <th class="text-center" style="min-width: 100px ;">Tarih</th>
+            <th class="text-center" style="min-width: 50px ;">Fatura No</th>
+            <th class="text-center" style="min-width: 150px ;">İşlem Türü</th>
+            <th class="text-center" style="min-width: 150px ;">E.Kodu</th>
+            <th class="text-center" style="min-width: 100px ;">Cari Unvan</th>
+            <th class="text-center" style="min-width: 150px ;">Döviz Cinsi</th>
+            <th class="text-center" style="min-width: 150px ;">Tutar TL</th>
+            <th class="text-center" style="min-width: 100px ;">KDV TL</th>
+            <th class="text-center" style="min-width: 150px ;">Tutar Döviz</th>
+            <th class="text-center" style="min-width: 100px ;">KDV Döviz</th>  
+            <th class="text-center" style="min-width: 150px ;">E?</th>
+            <th class="text-center" style="min-width: 150px ;">Özel Kod1</th>
+            <th class="text-center" style="min-width: 150px ;">Özel Kod2</th>
+            <th class="text-center" style="min-width: 150px ;">Açıklama</th>
+            <th class="text-center" style="min-width: 150px ;">Depo</th>
+            <th class="text-center" style="min-width: 150px ;">Depertman</th>
+            <th class="text-center" style="min-width: 150px ;">Şube</th>
+            <th class="text-center" style="min-width: 150px ;">Kapalı/Açık</th>
+            <th class="text-center" style="min-width: 150px ;">Kasa</th>
+            <th class="text-center" style="min-width: 150px ;">Satıcı</th>
+             <th class="text-center" style="min-width: 150px ;">Uygun Kur</th>
+             <th class="text-center" style="min-width: 150px ;">İptal ? </th>
+            <th class="text-center" style="min-width: 150px ;">Yİ-YD?</th>
+            <th class="text-center" style="min-width: 150px ;">Kullanıcı</th>
+            <th class="text-center" style="min-width: 150px ;">Değer Tarihi</th>
+            <th class="text-center" style="min-width: 150px ;">Kayıt Tarihi</th>
+            <th class="text-center" style="min-width: 150px ;">Proje Adı</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+
+            <td><input type="radio">01</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+
+            <td><input type="radio">01</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+
+            <td><input type="radio">01</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+
+            <td><input type="radio">01</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+
+            <td><input type="radio">01</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+
+            <td><input type="radio">01</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+
+            <td><input type="radio">01</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+
+            <td><input type="radio">01</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+
+            <td><input type="radio">01</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+
+            <td><input type="radio">01</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+
+            <td><input type="radio">01</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+
+            <td><input type="radio">01</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="container mt-3 tablo">
+    <div class="table-responsive " style="
+    height: 300px;
+    overflow: auto;">
+      <table class="table table-bordered">
+        <thead style="position: sticky;top: 0">
+          <tr>
+            <th class="text-center">Tip</th>
+            <th class="text-center">Tür</th>
+            <th class="text-center">Cari Unvan</th>
+            <th class="text-center">Stok Kodu</th>
+            <th class="text-center" style="min-width: 100px ;">Stok Adı</th>
+            <th class="text-center">Miktar</th>
+            <th class="text-center">Birim</th>
+            <th class="text-center">Birim Fiyat(TL)</th>
+            <th class="text-center">İndirim (%)</th>
+            <th class="text-center" style="min-width: 100px ;">İndirim (TL)</th>
+            <th class="text-center" style="min-width: 100px ;">Tutar (TL)</th>
+            <th class="text-center" style="min-width: 100px ;">KDV (%)</th>
+            <th class="text-center">KDV (TL)</th>
+            <th class="text-center">KDV İstisna (TL)</th>
+            <th class="text-center">KDV İstisna Kodu</th>
+            <th class="text-center">KDV İstisna Açıklama</th>
+            <th class="text-center">Tefkifat Kodu</th>
+            <th class="text-center">Tefkifat (%)</th>
+            <th class="text-center">Tefkifat (TL)</th>
+            <th class="text-center" style="min-width: 130px ;">ÖTV Matrahı (TL)</th>
+            <th class="text-center" style="min-width: 130px ;">ÖTV (%)</th>
+            <th class="text-center" style="min-width: 130px ;">ÖTV Birim Fiyatı (TL)</th>
+            <th class="text-center" style="min-width: 130px ;">ÖTV (TL)</th>
+            <th class="text-center" style="min-width: 130px ;">ÖTV Kodu</th>
+            <th class="text-center" style="min-width: 130px ;">ÖTV Tahsil (%)</th>
+            <th class="text-center" style="min-width: 130px ;">ÖTV Tecil (%)</th>
+            <th class="text-center" style="min-width: 130px ;">ÖTV İstisna Kodu</th>
+            <th class="text-center">Muh. Kodu</th>
+            <th class="text-center" style="min-width: 100px ;">KDV Muh. Kodu</th>
+            <th class="text-center">Satır Açıklaması</th>
+            <th class="text-center" style="min-width: 150px ;">Depo</th>
+            <th class="text-center" style="min-width: 150px ;">Depertman</th>
+            <th class="text-center" style="min-width: 150px ;">Şube</th>
+            <th class="text-center">Kampanya K.</th>
+            <th class="text-center">M.F. Miktarı</th>
+            <th class="text-center" style="min-width: 250px ;">Özel Kod 1</th>
+            <th class="text-center" style="min-width: 250px ;">Özel Kod 2</th>
+            <th class="text-center">Vade Tarihi</th>
+            <th class="text-center">İndirim 1</th>
+            <th class="text-center">İndirim 2</th>
+            <th class="text-center">İndirim 3</th>
+            <th class="text-center">Serbest Birim</th>
+            <th class="text-center">S. Miktarı</th>
+            <th class="text-center">Özellik 1</th>
+            <th class="text-center">Özellik 2</th>
+            <th class="text-center">Özellik 3</th>
+            <th class="text-center">Özellik 4</th>
+            <th class="text-center">Özellik 5</th>
+            <th class="text-center">Özellik 6</th>
+            <th class="text-center">Özellik 7</th>
+            <th class="text-center">Özellik 8</th>
+            <th class="text-center">Özellik 9</th>
+            <th class="text-center">Özellik 10</th>
+            <th class="text-center">Özellik 11</th>
+            <th class="text-center">Özellik 12</th>
+            <th class="text-center">Özellik 13</th>
+            <th class="text-center">Özellik 14</th>
+            <th class="text-center">Özellik 15</th>
+            <th class="text-center">Özellik 16</th>
+            <th class="text-center">Özellik 17</th>
+            <th class="text-center">Özellik 18</th>
+            <th class="text-center">Özellik 19</th>
+            <th class="text-center">Özellik 20</th>
+            <th class="text-center">Alternatif Stok Kodu</th>
+            <th class="text-center">Alternatif Stok Adı</th>
+            <th class="text-center">Seri No</th>
+            <th class="text-center" style="min-width: 100px ;">T. Durumu</th>
+            <th class="text-center" style="min-width: 100px ;">ÖİV Kodu</th>
+            <th class="text-center" style="min-width: 100px ;">Net Ağırlık (KG)</th>
+            <th class="text-center" style="min-width: 100px ;">Brüt Ağırlık (KG)</th>
+            <th class="text-center">P.K. Miktarı</th>
+            <th class="text-center">P.K. Açıklaması</th>
+            <th class="text-center">Kalite</th>
+            <th class="text-center">Parti Kodu</th>
+            <th class="text-center">Son Kullanım Tarihi</th>
+            <th class="text-center">Açıklama</th>
+            <th class="text-center">İrsaliye No</th>
+            <th class="text-center">İrsaliye Tarihi</th>
+            <th class="text-center">Mal Kabul Numarası</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>01</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>01</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>01</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>01</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>01</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>01</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>01</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>01</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>01</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+
+</html>
