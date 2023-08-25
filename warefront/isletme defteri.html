@@ -159,6 +159,7 @@
         <select name="" id="">
             <option value="">Ware Yazılım</option>
         </select>
+        <button>Defter Beyan İşlemi</button>
         <div id="London" class="tabcontent">
             <!--Header-->
             <div class="icon-bar">
@@ -644,27 +645,34 @@
              <!--Header-->
              <div class="icon-bar">
 
-                <a href="yeni_kasakarti.html">Kaydet </a>
-                <a href="">Kart Sil</a>
-                <a href="">Raporlar</a>
-                <a href="" style="color:red;">KDV Kontrolü</a>
-                <a href="" style="color:red;">Kayıtları Onayla</a>
+                <a href="yeni_kasakarti.html">Hesap Özetini Kaydet </a>
+                <a href="">Kayıtlı Hesap Özetini İncele</a>
+                <a href="">Envanter Defteri</a>
+                <a href="" style="color:red;">Yazdır</a>
 
             </div>
             <div class="d-menu">
                 <ul>
                     <li>
                         <ul>
-                        </ul><a href="" title="">KDV Özeti</a>
+                        </ul><a href="" title="">Hesap Özeti</a>
                     </li>
                     <li>
                         <ul>
-                        </ul><a href="" title="">KDV Sayfasına Geç</a>
+                        </ul><a href="" title="">Dönem Sonu Stoğu</a>
 
                     </li>
                     <li>
                         <ul>
-                        </ul><a href="" title="">Muhtasar Sayfasına Geç</a>
+                        </ul><a href="" title="">Geçici Vergi Beyannamesine Geç</a>
+                    </li>
+                    <li>
+                        <ul>
+                        </ul><a href="" title="">Geçici Vergi Beyannamesine Yapıştır</a>
+                    </li>
+                    <li>
+                        <ul>
+                        </ul><a href="" title="">Dönem Sonu Stoğunu Sonraki Yılın Dönem Başı Stoğuna</a>
                     </li>
                 </ul>
             </div>
@@ -776,7 +784,7 @@
                     </div>
                     <div class="col-4">
                         <h5 class="text-center">Kayıtlı Hesap Özeti</h5>
-                        <div class="container tablo">
+                        <div class="container tablo" style="margin-top: 0px !important;">
                             <div class="table-responsive " style="
                             height: 300px;
                             overflow: auto;">
@@ -786,23 +794,18 @@
                                     <th class="text-center">Dönem</th>
                                     <th class="text-center">Dönem Sonu Stoğu</th>
                                     <th class="text-center" style="min-width: 100px ;">Dönem Başı Stoğu</th>
-                                    <th class="text-center">Tip</th>
-                                    <th class="text-center" style="min-width: 100px ;">Evrak No</th>
-                                    <th class="text-center">Açıklama</th>
-                                    <th class="text-center">Tahsilat</th>
-                                    <th class="text-center">Ödeme</th>
-                                    <th class="text-center" style="min-width: 100px ;">Cari Ünvan</th>
-                                    <th class="text-center" style="min-width: 100px ;">Banka Adı</th>
-                                    <th class="text-center" style="min-width: 100px ;">Gider/Gelir</th>
-                                    <th class="text-center">M?</th>
-                                    <th class="text-center" style="min-width: 130px ;">Özel Kod(1)</th>
-                                    <th class="text-center" style="min-width: 130px ;">Özel Kod(2)</th>
-                                    <th class="text-center">Ent?</th>
-                                    <th class="text-center" style="min-width: 100px ;">Uyg. Kur</th>
-                                    <th class="text-center" style="min-width: 100px ;">Şube Kodu</th>
-                                    <th class="text-center">Departman</th>
-                                    <th class="text-center" style="min-width: 250px ;">Tahsilatı/Ödemeyi Yapan</th>
-                                    <th class="text-center">Kullanıcı</th>
+                                    <th class="text-center">Satın Alınan Mal Bedeli</th>
+                                    <th class="text-center" style="min-width: 100px ;">Dönem İçi Yapılan Giderler</th>
+                                    <th class="text-center">Mal Satış İadeleri</th>
+                                    <th class="text-center">Demirbaş Satış Zararı</th>
+                                    <th class="text-center">Ayrılan Amortisman</th>
+                                    <th class="text-center" style="min-width: 100px ;">Dönem İçi Satılan Mal Bedeli</th>
+                                    <th class="text-center" style="min-width: 100px ;">Dönem İçi Diğer Gelirler</th>
+                                    <th class="text-center" style="min-width: 100px ;">Mal Alış İadeleri</th>
+                                    <th class="text-center">Demirbaş Satış Karı</th>
+                                    <th class="text-center" style="min-width: 130px ;">Karlılık Oranı</th>
+                                    <th class="text-center" style="min-width: 130px ;">Kar</th>
+                                    <th class="text-center">Zarar</th>
                                   </tr>
                                 </thead>
                                 <tbody>
@@ -821,6 +824,7 @@
                                 </tbody>
                               </table>
                             </div>
+                            <button>Hesap Özetini Sil</button>
                           </div>
                     </div>
                 </div>
