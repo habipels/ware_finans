@@ -153,10 +153,11 @@
             <button class="tablinks" onclick="openCity(event, 'Paris')">Gider Sayfası</button>
 
             <button class="tablinks" onclick="openCity(event, 'Tokyo')">Hesap Özeti</button>
-            <button class="tablinks" onclick="openCity(event, 'Paris')">Hesap Planı</button>
+            <button class="tablinks" onclick="openCity(event, 'Van')">Hesap Planı</button>
         </div>
         <label for="">Firma Değiştir:</label>
         <select name="" id="">
+            <option value=""></option>
             <option value="">Ware Yazılım</option>
         </select>
         <button>Defter Beyan İşlemi</button>
@@ -680,6 +681,59 @@
                 <h2 class="text-center">Hesap Özeti</h2>
             </div>
             <div class="container">
+                <div class="row genel">
+                    <div class="col-6">
+                        Vergi Kimlik No:
+                    </div>
+                    <div class="col-6">
+                        8005652254
+                    </div>
+                    <hr>
+                    <div class="col-6">
+                        Firma:
+                    </div>
+                    <div class="col-6">
+                        Ware Yazılım Eğitim ve Danışmanlık LTD ŞTİ
+                    </div>
+                    <hr>
+                    <div class="col-6">
+                        Adres:
+                    </div>
+                    <div class="col-6">
+                        Çakmak Sokak 
+                    </div>
+                    <hr>
+                    <div class="col-6">
+                        İlçe/il:
+                    </div>
+                    <div class="col-6">
+                        Alibeyköy /İstanbul
+                    </div>
+                    <hr>
+                    <div class="col-6">
+                        Vergi Dairesi:
+                    </div>
+                    <div class="col-6">
+                        Gazi Vergi Şubesi
+                    </div>
+                    <hr>
+                    <div class="col-6">
+                        Telefon No:
+                    </div>
+                    <div class="col-6">
+                        8005652254
+                    </div>
+                    <hr>
+                    <div class="col-6">
+                        Fax Adresi:
+                    </div>
+                    <div class="col-6">
+                        8005652254
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="container">
                 <div class="row">
                     <div class="col-4">
                         <h4 class="text-center">Beyanname Dönemi</h4>
@@ -829,6 +883,182 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div id="Van" class="tabcontent" >
+             <!--Header-->
+             <div class="icon-bar">
+
+                <a href="yeni_kasakarti.html">Kaydet </a>
+                <a href="">Sil</a>
+                <a href="">Yeni Hesap Ekle</a>
+            </div>
+            <div class="d-menu">
+                <ul>
+                    <li>
+                        <ul>
+                        </ul><a href="" title="">Başka Firmedan Hesap Planı Kopyala</a>
+                    </li>
+                    <li>
+                        <ul>
+                        </ul><a href="" title="">Önceki Yılın Hesap Planını Kopyala</a>
+
+                    </li>
+                </ul>
+            </div>
+            <div class="container tablo" style="margin-top: 0px  !important;">
+                <div class="table-responsive " style="
+                height: 300px;
+                overflow: auto;">
+                  <table class="table table-bordered">
+                    <thead style="position: sticky;top: 0">
+                      <tr>
+                        <th class="text-center">Seç</th>
+                        <th class="text-center">Kod</th>
+                        <th class="text-center">Ana Kod</th>
+                        <th class="text-center" style="min-width: 100px ;">1-Gelir,2-Gider,3-Her İkisi</th>
+                        <th class="text-center">Açıklama</th>
+                        <th class="text-center">Detay (E/H)</th>
+                        <th class="text-center">KDV Oranı (%)</th>
+                        <th class="text-center" style="min-width: 100px ;">Stok Kodu</th>
+                        <th class="text-center" style="min-width: 100px ;">Ortalama Kar (%)</th>
+                        <th class="text-center" style="min-width: 100px ;">Stopaj Oranı</th>
+                        <th class="text-center">Stopaj Kodu</th>
+                        <th class="text-center" style="min-width: 130px ;">Belge Türü</th>
+                        <th class="text-center" style="min-width: 130px ;">Kayıt Türü</th>
+                        <th class="text-center">Kayıt Alt Türü</th>
+                        <th class="text-center" style="min-width: 100px ;">Tevkifat Kodu</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><input type="radio" name="" id=""></td>
+                        <td><input type="text"></td>
+                        <td><select name="" id="">
+                            <option value="">ML (Mal Satış / Alış)</option>
+                            <option value="">MS (Masraflar)</option>
+                            <option value="">HZ (Hİzmet Satış Peşin)</option>
+                            <option value="">Mİ (MAl Satış / Alış İadesi)</option>
+                            <option value="">MK (Mal Satış Kredili)</option>
+                            <option value="">HK (Hizmet Satış Kredili)</option>
+                            <option value="">KR (Kira Ödemesi)</option>
+                            <option value="">MU (Muhasabeci Ödemesi)</option>
+                            <option value="">ÜC (Ücret Ödemeleri)</option>
+                           
+                        </select></td>
+                        <td>
+                            <select name="" id="">
+                                <option value="">Gelir</option>
+                                <option value="">Gider</option>
+                                <option value="">Her İkisi</option>
+                            </select>
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>01</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>01</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>01</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>01</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>01</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>01</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>01</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>01</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
         </div>
     </div>
 
