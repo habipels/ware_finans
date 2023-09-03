@@ -53,7 +53,13 @@ class firma(models.Model):
     firma_unvani = models.CharField(max_length=100,verbose_name="Firma Unvanı (ADI)")
     Firma_unvani2 = models.CharField(max_length=100,verbose_name="Firma Unvanı (Soyadı)")
     silinme_bilgisi = models.BooleanField(default=False)
-
+    firma_ozel_anahtar = models.CharField(max_length=200,verbose_name= "Firma Özel Anahtar",null=True,blank=True)
+    def save(self, *args, **kwargs):
+        super(firma, self).save(*args, **kwargs)
+        if self.id:
+            self.yeni = random.randint(1, 9999999).__str__() + "ID" + str(self.id)
+            self.firma_ozel_anahtar = self.yeni
+            super(firma, self).save(*args, **kwargs)
 
 
 class adresler(models.Model):

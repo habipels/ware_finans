@@ -1,0 +1,259 @@
+{% extends "homebase.html" %}
+{% block content %}
+<div class="container ">
+    <h2>İşlemler</h2>
+
+    <ul class="nav nav-tabs ">
+      <li class="active secim"><a data-toggle="tab" class="secim" href="#home">Ticari</a></li>
+      <li class="active1 secim"><a data-toggle="tab" class="secim" href="#menu1">Muhasebe</a></li>
+
+    </ul>
+    <!--TİCARİ-->
+    <div class="tab-content">
+      <div id="home" class="tab-pane fade in active arkaplan">
+        <div class="container">
+          <div class="row">
+            <div class="col-4 bosluk">
+              <div class="row">
+                <div class="col-sm-4 col-md  col-6 col"><a href="firma_ekle.html" class="btn btn-outline-success yeni">
+                    <i class='far fa-address-card' style='font-size:200%; color: rgb(2, 112, 163);'> </i>
+                    <br> Firma Bilgisi</a>
+                  <button class="btn btn-outline-success yeni"><i class='fa fa-truck'
+                      style='font-size:200%;color: rgb(2, 112, 163); '> </i>
+                    <br>Sipariş</button>
+                  <a href="Kasa.html" class="btn btn-outline-success yeni"><i class='fa fa-suitcase'
+                      style='font-size:200%;color: rgb(2, 112, 163);'> </i>
+                    <br>Kasa</a>
+                </div>
+                <div class="col-sm-4 col-md  col-6 col">
+                  <button class="btn btn-outline-success yeni"><i class='far fa-newspaper'
+                      style='font-size:200%; color: rgb(2, 112, 163);'> </i>
+                    <br>Fatura</button>
+                  <a href="stok_sayfasi.html" class="btn btn-outline-success yeni">
+                    <i class='fas fa-box' style='font-size:200%;color: rgb(2, 112, 163);'> </i>
+                    <br>Stok</a>
+                  <button class="btn btn-outline-success yeni">
+                    <i class='fa fa-university' style='font-size:200%; color: rgb(2, 112, 163);'> </i>
+                    <br>Banka</button>
+                </div>
+                <div class="col-sm-4 col-md  col-6 col"><button class="btn btn-outline-success yeni"><i
+                      class='fa fa-archive' style='font-size:200%; color: rgb(2, 112, 163);'> </i>
+                    <br>İrsaliye</button>
+                  <button class="btn btn-outline-success yeni"><i class='fa fa-book'
+                      style='font-size:200%; color: rgb(2, 112, 163);'> </i>
+                    <br>Cari</button>
+                  <button class="btn btn-outline-success yeni"><i class='fa fa-handshake'
+                      style='font-size:200%; color: rgb(2, 112, 163);'> </i>
+                    <br>Çek-Senet</button>
+                </div>
+                <div class="col-sm-4 col-md  col-6 col"><button class="btn btn-outline-success yeni">
+                    <i class='fas fa-weight' style='font-size:200%; color: rgb(2, 112, 163);'> </i>
+                    <br> Kantar<br>İşlemleri</button>
+
+
+                </div>
+                <div class="col-sm-4 col-md  col-6 col">
+                  <button class="btn btn-outline-success yeni"><i class='far fa-newspaper'
+                      style='font-size:200%; color: rgb(2, 112, 163);'> </i>
+                    <br> <span>E-Müstahil <br> Makbuzu</span> </button>
+
+                </div>
+                <div class="col-sm-4 col-md  col-6 col"><button class="btn btn-outline-success yeni"><i
+                      class='fa fa-archive' style='font-size:200%; color: rgb(2, 112, 163);'> </i>
+                    <br>E-İrsaliye</button>
+
+                </div>
+              </div>
+
+            </div>
+            <div class="col-4 bosluk">
+              <div class="row">
+                <div class="col-sm-4 col-md  col-6 col"><a href="gider.html" class="btn btn-outline-success yeni">
+                    <i class='fas fa-angle-up' style='font-size:200%; color: rgb(2, 112, 163);'> </i>
+                    <br> Gider</a>
+                  <button class="btn btn-outline-success yeni"><i class='fab fa-amilia'
+                      style='font-size:200%; color: rgb(2, 112, 163);'> </i>
+                    <br>E-Arşiv</button>
+                  <button class="btn btn-outline-success yeni"><i class='fa fa-suitcase'
+                      style='font-size:200%; color: rgb(2, 112, 163);'> </i>
+                    <br>Servis</button>
+                  <button class="btn btn-outline-success yeni"><i class='fa fa-compress'
+                      style='font-size:200%; color: rgb(2, 112, 163);'> </i>
+                    <br>Entegrasyon <br> İşlemleri</button>
+                </div>
+                <div class="col-sm-4 col-md  col-6 col">
+                  <a href="gelir.html" class="btn btn-outline-success yeni"><i class='fas fa-angle-down'
+                      style='font-size:200%; color: rgb(2, 112, 163);'> </i>
+                    <br>Gelir</a>
+                  <button class="btn btn-outline-success yeni">
+                    <i class='far fa-newspaper' style='font-size:200%; color: rgb(2, 112, 163);'> </i>
+                    <br>E-Fatura<br>İşlemleri</button>
+                  <button class="btn btn-outline-success yeni">
+                    <i class='fas fa-exchange-alt' style='font-size:200%; color: rgb(2, 112, 163);'></i>
+                    <br>Devir</button>
+                  <button class="btn btn-outline-success yeni">
+                    <i class='glyphicon glyphicon-transfer' style='font-size:200%; color: rgb(2, 112, 163);'> </i>
+                    <br>Express <br> Aktarım</button>
+
+                </div>
+                <div class="col-sm-4 col-md  col-6 col"><button class="btn btn-outline-success yeni"><i
+                      class='fa fa-archive' style='font-size:200%; color: rgb(2, 112, 163);'> </i>
+                    <br>Ticari<br>Raporlar</button>
+                  <button class="btn btn-outline-success yeni"><i class='fa fa-book'
+                      style='font-size:200%; color: rgb(2, 112, 163);'> </i>
+                    <br>Dilekçeler</button>
+                  <button class="btn btn-outline-success yeni"><i class='material-icons'
+                      style='font-size:200%; color: rgb(2, 112, 163);'> &#xe8a4;</i>
+                    <br>Ayarlar</button>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <!--MUHASEBE-->
+      <div id="menu1" class="tab-pane fade">
+        <div class="tab-content">
+          <div id="menu1" class="tab-pane fade in active arkaplan">
+            <div class="container">
+              <div class="row">
+                <div class="col-4 bosluk">
+                  <div class="row">
+                    <div class="col-sm-4 col-md  col-6 col"><button class="btn btn-outline-success yeni1">
+                        <i class='far fa-address-card' style='font-size:200%; color: rgb(252, 185, 0);'> </i>
+                        <br> Genel <br> Muhasebe</button>
+                      <button class="btn btn-outline-success yeni1"><i class='fab fa-bimobject'
+                          style='font-size:200%; color: rgb(252, 185, 0); '></i>
+                        <br>Bordo-Personel</button>
+                      <button class="btn btn-outline-success yeni1"><i class='fa fa-suitcase'
+                          style='font-size:200%; color: rgb(252, 185, 0);'> </i>
+                        <br>Demirbaşlar</button>
+                      <button class="btn btn-outline-success yeni1">
+                        <i class='material-icons' style='font-size:200%; color: rgb(252, 185, 0);'>&#xe8a4; </i>
+                        <br> Ayarlar</button>
+                      <button class="btn btn-outline-success yeni1"><i class='fas fa-box'
+                          style='font-size:200%; color: rgb(252, 185, 0);'> </i>
+                        <br>Müşavir<br>Stok</button>
+
+                    </div>
+                    <div class="col-sm-4 col-md  col-6 col">
+                      <button class="btn btn-outline-success yeni1"><i class='far fa-newspaper'
+                          style='font-size:200%; color: rgb(252, 185, 0);'> </i>
+                        <br>Ofis <br>Otomasyonu</button>
+                      <button class="btn btn-outline-success yeni1">
+                        <i class='far fa-newspaper' style='font-size:200%; color: rgb(252, 185, 0);'> </i>
+                        <br>Serbest Meslek<br>Makbuzu</button>
+                      <button class="btn btn-outline-success yeni1">
+                        <i class='fa fa-university' style='font-size:200%; color: rgb(252, 185, 0);'> </i>
+                        <br>E-Beyanname <br>(Paket)</button>
+                      <button class="btn btn-outline-success yeni1"><i class='far fa-newspaper'
+                          style='font-size:200%; color: rgb(252, 185, 0);'> </i>
+                        <br>E-SMM</button>
+                      <button class="btn btn-outline-success yeni1"><i class='fas fa-book-open'
+                          style='font-size:200%; color: rgb(252, 185, 0);'> </i>
+                        <br>Müşteri <br> Cari Takibi</button>
+
+                    </div>
+                    <div class="col-sm-4 col-md  col-6 col"><button class="btn btn-outline-success yeni1"><i
+                          class='fa fa-archive' style='font-size:200%; color: rgb(252, 185, 0);'> </i>
+                        <br>E-Defter</button>
+                      <button class="btn btn-outline-success yeni1"><i class='fa fa-book'
+                          style='font-size:200%; color: rgb(252, 185, 0);'> </i>
+                        <br>İşletme <br> Defteri</button>
+                      <button class="btn btn-outline-success yeni1"><i class='fa fa-handshake'
+                          style='font-size:200%; color: rgb(252, 185, 0);'> </i>
+                        <br>Kira <br> Entegrasyonu</button>
+                      <button class="btn btn-outline-success yeni1"><i class='far fa-newspaper'
+                          style='font-size:200%; color: rgb(252, 185, 0);'> </i>
+                        <br>KDV-1 <br> Beyannamesi</button>
+                      <button class="btn btn-outline-success yeni1"><i class='far fa-newspaper'
+                          style='font-size:200%; color: rgb(252, 185, 0);'> </i>
+                        <br>KDV-2 <br> Beyannamesi</button>
+
+                    </div>
+                  </div>
+
+
+
+                  <div class="row">
+                    <div class="col-sm-4 col-md  col-6 col">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-4 bosluk">
+                  <div class="row">
+                    <div class="col-sm-4 col-md  col-6 col"><button class="btn btn-outline-success yeni1">
+                        <i class='far fa-address-card' style='font-size:200%; color: rgb(252, 185, 0);'> </i>
+                        <br> MuhSGK <br> (1003-A)</button>
+                      <button class="btn btn-outline-success yeni1"><i class='far fa-address-card'
+                          style='font-size:200%; color: rgb(252, 185, 0);'> </i>
+                        <br>MuhSGK2 <br> (1003-B)</button>
+                      <button class="btn btn-outline-success yeni1"><i class='far fa-newspaper'
+                          style='font-size:200%; color: rgb(252, 185, 0);'> </i>
+                        <br>Ba-Formu</button>
+                    </div>
+                    <div class="col-sm-4 col-md  col-6 col">
+                      <button class="btn btn-outline-success yeni1"><i class='far fa-newspaper'
+                          style='font-size:200%; color: rgb(252, 185, 0);'> </i>
+                        <br>Bs-Formu</button>
+                      <button class="btn btn-outline-success yeni1">
+                        <i class='fa fa-battery-full' style='font-size:200%; color: rgb(252, 185, 0);'> </i>
+                        <br>Damga Vergisi <br> Beyannamesi</button>
+                      <button class="btn btn-outline-success yeni1">
+                        <i class='fa fa-university' style='font-size:200%; color: rgb(252, 185, 0);'> </i>
+                        <br>Turizm Payı <br> Beyannamesi</button>
+                    </div>
+                    <div class="col-sm-4 col-md  col-6 col"><button class="btn btn-outline-success yeni1"><i
+                          class='far fa-newspaper' style='font-size:200%; color: rgb(252, 185, 0);'> </i>
+                        <br>Gelir Vergisi <br> Beyannamesi</button>
+                      <button class="btn btn-outline-success yeni1"><i class='far fa-newspaper'
+                          style='font-size:200%; color: rgb(252, 185, 0);'> </i>
+                        <br>Kurumlar Vergisi <br> Beyannamesi</button>
+                      <button class="btn btn-outline-success yeni1"><i class='far fa-newspaper'
+                          style='font-size:200%; color: rgb(252, 185, 0);'> </i>
+                        <br>Gelir Geçici <br> Vergi <br> Beyannamesi</button>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-sm-4 col-md  col-6 col"><button class="btn btn-outline-success yeni1">
+                        <i class='far fa-newspaper' style='font-size:200%; color: rgb(252, 185, 0);'> </i>
+                        <br> Kurum Geçici <br> Vergi <br> Beyannamesi</button>
+                      <button class="btn btn-outline-success yeni1"><i class='fa fa-truck'
+                          style='font-size:200%; color: rgb(252, 185, 0);'> </i>
+                        <br>Müşavir<br>Stok</button>
+
+                    </div>
+                    <div class="col-sm-4 col-md  col-6 col">
+                      <button class="btn btn-outline-success yeni1"><i class='far fa-newspaper'
+                          style='font-size:200%; color: rgb(252, 185, 0);'> </i>
+                        <br>Geri Kazanım <br> Katılım Payı <br> Beyannamesi</button>
+                      <button class="btn btn-outline-success yeni1"><i class='far fa-newspaper'
+                          style='font-size:200%; color: rgb(252, 185, 0);'> </i>
+                        <br>KDV-4 <br> Beyannamesi </button>
+
+
+                    </div>
+                    <div class="col-sm-4 col-md  col-6 col">
+                      <button class="btn btn-outline-success yeni1"><i class='glyphicon glyphicon-transfer'
+                          style='font-size:200%; color: rgb(252, 185, 0);'> </i>
+                        <br>Express Aktarım</button>
+                      <button class="btn btn-outline-success yeni1"><i class='far fa-newspaper'
+                          style='font-size:200%; color: rgb(252, 185, 0);'> </i>
+                        <br>Online Mevzuat <br> Bilgi Sistemi</button>
+
+
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock content %}
