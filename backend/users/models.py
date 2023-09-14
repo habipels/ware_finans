@@ -48,28 +48,21 @@ class CustomUser(AbstractUser):
 
 
 class firma(models.Model):
-    firma_muhasabecisi = models.ForeignKey(CustomUser,blank=True, null=True,on_delete=models.SET_NULL)
-    tanitici_isim = models.CharField(max_length=100,verbose_name="Tanıtıcı Adı",blank=True,null=True)
-    firma_unvani = models.CharField(max_length=100,verbose_name="Firma Unvanı (ADI)")
-    Firma_unvani2 = models.CharField(max_length=100,verbose_name="Firma Unvanı (Soyadı)")
+    firma_muhasabecisi = models.ForeignKey(CustomUser, blank=True, null=True, on_delete=models.SET_NULL)
+    tanitici_isim = models.CharField(max_length=100, verbose_name="Tanıtıcı Adı", blank=True, null=True)
+    firma_unvani = models.CharField(max_length=100, verbose_name="Firma Unvanı (ADI)")
+    Firma_unvani2 = models.CharField(max_length=100, verbose_name="Firma Unvanı (Soyadı)")
     silinme_bilgisi = models.BooleanField(default=False)
-    firma_ozel_anahtar = models.CharField(max_length=200,verbose_name= "Firma Özel Anahtar",null=True,blank=True)
-    def save(self, *args, **kwargs):
-        super(firma, self).save(*args, **kwargs)
-        if self.id:
-            self.yeni = random.randint(1, 9999999).__str__() + "ID" + str(self.id)
-            self.firma_ozel_anahtar = self.yeni
-            super(firma, self).save(*args, **kwargs)
+    firma_ozel_anahtar = models.CharField(max_length=200, verbose_name="Firma Özel Anahtar", null=True, blank=True)
 
+    def save(self, *args, **kwargs):
+        
+            # Eğer nesne henüz kaydedilmediyse (yeni bir nesne), firma_ozel_anahtar oluşturun.
+        self.yeni = random.randint(1, 9999999).__str__() + "ID" + random.randint(1, 9999999).__str__()
+        self.firma_ozel_anahtar = self.yeni
+        super(firma, self).save(*args, **kwargs)
 
 class adresler(models.Model):
-    data = (
-    ("istanbul","istanbul"),
-    ('Van','Van'),
-    ("Ankara","Ankara")
-    ,("Batman","Batman"),
-    ("Mersin","Mersin")
-)
     adres = models.CharField(blank = True,null = True,max_length=200,verbose_name="Adres")
     mahhalle_koy = models.CharField(blank = True,null = True,max_length=100,verbose_name="Mahalle Köy")
     bulvar = models.CharField(blank = True,null = True,max_length=100,verbose_name="Bulvar")
@@ -81,7 +74,7 @@ class adresler(models.Model):
     posta_kodu = models.CharField(blank = True,null = True,max_length=100,verbose_name="Posta Kodu")
     semt = models.CharField(blank = True,null = True,max_length=100,verbose_name="Semt")
     ilce = models.CharField(blank = True,null = True,max_length=100,verbose_name="İlçe")
-    il = models.CharField(blank = True,null = True,max_length = 50 ,verbose_name="İl",default="Van",choices= data)
+    il = models.CharField(blank = True,null = True,max_length = 50 ,verbose_name="İl")
     silinme_bilgisi = models.BooleanField(default=False)
 class vergi_dairesi(models.Model):
     vergi_dairesi_adi = models.CharField(max_length=200,verbose_name="Vewrigi Dairesi")
