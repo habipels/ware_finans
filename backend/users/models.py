@@ -77,6 +77,7 @@ class adresler(models.Model):
     il = models.CharField(blank = True,null = True,max_length = 50 ,verbose_name="İl")
     silinme_bilgisi = models.BooleanField(default=False)
 class vergi_dairesi(models.Model):
+    il = models.CharField(max_length=100,verbose_name="İL")
     vergi_dairesi_adi = models.CharField(max_length=200,verbose_name="Vewrigi Dairesi")
     vergi_dairesi_kodu = models.CharField(max_length=100,verbose_name="Vergi Dairesi Kodu")
 
@@ -286,3 +287,4 @@ class ortak_kimlik_bilgileri(models.Model):
     verilis_nedeni = models.CharField(max_length=100,verbose_name="Nufus Cüzdanı Veriliş Nedeni",blank=True,null=True)
     cuzdan_kayit_no = models.CharField(max_length=50,verbose_name="Cüzdan Kayıt No",blank=True,null=True)
     cuzdan_verilis_tarihi = models.DateField(null=True,blank=True,verbose_name="Cüzdan Veriliş Tarihi")
+

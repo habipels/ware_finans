@@ -3,6 +3,7 @@
 
 {% block content %}
 <form method="post">
+
   {% csrf_token %}
   <div class="icon-bar">
 
@@ -132,7 +133,7 @@
 
                     </label>
                   </div>
-                  <div class="col-8"><input name="subeadi" type="text"></div>
+                  <div class="col-8"><input value="MERKEZ" name="subeadi" type="text"></div>
                 </div>
 
                 <div class="row genel">
@@ -260,7 +261,7 @@
                       Vergi Dairesi
                     </label>
                     <br>
-                    <input type="text">
+                    <input name="firmavergidairesi" id ="firmavergidairesi"  type="text">
                   </div>
                   <div class="col-4">
                     <label for="">
@@ -268,8 +269,10 @@
                     </label>
                     <br>
                     <div class="row">
-                      <div class="col-8"><input type="text"></div>
-                      <div class="col-4"><button>sec</button></div>
+                      <div class="col-8"><input id="firmavergidairesikodu" name="firmavergidairesikodu" type="text"></div>
+                      <div class="col-4"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+                        seç
+                      </button></div>
                     </div>
 
                   </div>
@@ -278,7 +281,7 @@
                       Vergi Numarası
                     </label>
                     <br>
-                    <input type="text">
+                    <input name="firmaverginumarasi" type="text">
                   </div>
 
                 </div>
@@ -286,22 +289,22 @@
                   <div class="col-3"><label for="">
                       Şahıs İse T.C. NO
                     </label><br>
-                    <input type="text">
+                    <input name="sahisisetc" type="text">
                   </div>
                   <div class="col-3"><label for="">
                       e-Posta Adresi
 
                     </label><br>
-                    <input type="email">
+                    <input name="firmaeposta" type="email">
                   </div>
                   <div class="col-3"><label for="">
                       Firma Web Adresi
                     </label>
-                    <br><input type="url">
+                    <br><input name="firmawebadresi" type="url">
                   </div>
                   <div class="col-3"><label for="">
                       Firma Telefon
-                    </label><br><input type="text"></div>
+                    </label><br><input name="firmatelefon" type="text"></div>
                 </div>
 
 
@@ -315,39 +318,39 @@
                 <div class="row" style="margin-left:0 !important;">
                   <div class="col-3" style="border: 1px solid brown;">
                     <h5 class="text-center">Defter Türü</h5>
-                    <input type="radio" id="html" value="genelmuhasabe">
+                    <input type="radio" name="defterturu" id="html" value="genelmuhasabe">
                     <label for="html">Genel Muhasebe</label><br>
-                    <input type="radio" id="css" value="isletmedefteri">
+                    <input type="radio" name="defterturu" id="css" value="isletmedefteri">
                     <label for="css">İşletme Defteri</label><br>
                   </div>
                   <div class="col-2" style="border: 1px solid brown;">
                     <h5 class="text-center">KDV1</h5>
-                    <input type="radio" id="html" value="kdv1aylik">
+                    <input name="kdv1" type="radio" id="html" value="kdv1aylik">
                     <label for="html">Aylık</label><br>
-                    <input type="radio" id="css" value="kdv1ucaylik">
+                    <input name="kdv1"  type="radio" id="css" value="kdv1ucaylik">
                     <label for="css">3 Aylık</label><br>
                   </div>
                   <div class="col-2" style="border: 1px solid brown;">
                     <h5 class="text-center">Turizim Türü</h5>
-                    <input type="radio" id="html" value="turizimaylik">
+                    <input name="turizim" type="radio" id="html" value="turizimaylik">
                     <label for="html">Aylık</label><br>
-                    <input type="radio" id="css" value="turizimucaylik">
+                    <input name="turizim" type="radio" id="css" value="turizimucaylik">
                     <label for="css">3 Aylık</label><br>
                   </div>
                   <div class="col-2" style="border: 1px solid brown;">
                     <h5 class="text-center">MuhSGK</h5>
-                    <input type="radio" id="html" value="sgkaylik">
+                    <input name="muhsgk" type="radio" id="html" value="sgkaylik">
                     <label for="html">Aylık</label><br>
-                    <input type="radio" id="css" value="sgkucaylik">
+                    <input name="muhsgk" type="radio" id="css" value="sgkucaylik">
                     <label for="css">3 Aylık</label><br>
                   </div>
                   <div class="col-3" style="border: 1px solid brown;">
                     <h5 class="text-center">Poşet</h5>
-                    <input type="radio" id="html" value="posetaylik">
+                    <input name="poset" type="radio" id="html" value="posetaylik">
                     <label for="html">Aylık</label><br>
-                    <input type="radio" id="css" value="posetucaylik">
+                    <input name="poset"  type="radio" id="css" value="posetucaylik">
                     <label for="css">3 Aylık</label><br>
-                    <input type="radio" id="java" value="posetaltiaylik">
+                    <input name="poset"  type="radio" id="java" value="posetaltiaylik">
                     <label for="java">6 Aylık</label><br>
                   </div>
                 </div>
@@ -357,29 +360,29 @@
                       <div class="col-8" style="border: 1px solid brown;">
                         <h5 class="text-center">Firma Defter Türü </h5>
                         <input type="radio" id="html" value="isletme">
-                        <label for="html">İşletme</label><br>
+                        <label name="firmadefterturu" for="html">İşletme</label><br>
                         <input type="radio" id="css" value="serbestmeslekdefteri">
-                        <label for="css">Serbest Meslek Defteri</label><br>
+                        <label name="firmadefterturu" for="css">Serbest Meslek Defteri</label><br>
 
                       </div>
                       <div class="col-4" style="border: 1px solid brown;">
 
                         <h5 class="text-center">KDV2</h5>
-                        <input type="radio" id="html" value="kdv2aylik">
+                        <input name="kdv2" type="radio" id="html" value="kdv2aylik">
                         <label for="html">Aylık</label><br>
-                        <input type="radio" id="css" value="kdv2ucaylik">
+                        <input name="kdv2" type="radio" id="css" value="kdv2ucaylik">
                         <label for="css">3 Aylık</label><br>
                       </div>
                     </div>
                   </div>
                   <div class="col-6">
-                    <input type="checkbox" id="vehicle1" value="Bike">
+                    <input name="muhasebeci_bilgisigorunsun" type="checkbox" id="vehicle1" value="muhasebeci_bilgisigorunsun">
                     <label for="vehicle1" style="font-size: 10px;"> Muhasebeci Bilgilerini Beyannameye Yaz</label><br>
-                    <input type="checkbox" id="vehicle2" value="Car">
+                    <input name="firmaadiortaklimi" type="checkbox" id="vehicle2" value="firmaadiortaklimi">
                     <label for="vehicle2" style="font-size: 10px;"> Firma Adı Ortaklı Mı?</label><br>
-                    <input type="checkbox" id="vehicle3" value="Boat">
+                    <input name="listedegorunsun" type="checkbox" id="vehicle3" value="listedegorunsun">
                     <label for="vehicle3" style="font-size: 10px;"> 2000/5000 Listede Görünsün</label><br>
-                    <input type="checkbox" id="vehicle4" value="Boat">
+                    <input name="aktif" type="checkbox" id="vehicle4" value="aktif">
                     <label for="vehicle3" style="font-size: 10px;"> Aktif</label><br>
                   </div>
                 </div>
@@ -1513,4 +1516,91 @@
       </div>
     </form>
   </div>
+  <div class="modal" id="myModal">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+  
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Vergi Dairesi Seç</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+  
+        <!-- Modal body -->
+        <div class="modal-body">
+          <input type="text" id="searchInput" class="form-control" placeholder="Arama...">
+  
+  <table class="table table-striped mt-3">
+    <thead>
+      <tr>
+        <th>İL</th>
+        <th>VERGİ DAİRESİ ADI</th>
+        <th>KODU</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for i in vergidaireleri %}
+    <tr>
+        <td>{{i.il}}</td>
+        <td>{{i.vergi_dairesi_adi}}</td>
+        <td>{{i.vergi_dairesi_kodu}}</td>
+      </tr>
+    {% endfor %}
+      
+      
+      <!-- Diğer satırları burada ekleyin -->
+    </tbody>
+  </table>
+</div>
+        </div>
+  
+        <!-- Modal footer -->
+        <div class="modal-footer">
+        Seçmek için listeye Tıklamanız Yeterlidir.
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kapat</button>
+        </div>
+  
+      </div>
+    </div>
+  </div>
+<script>
+  const searchInput = document.getElementById('searchInput');
+  const table = document.querySelector('.table');
+  const firmavergidairesikodu = document.getElementById('firmavergidairesikodu');
+  const firmavergidairesi = document.getElementById("firmavergidairesi");
+  searchInput.addEventListener('input', function () {
+    const searchText = this.value.toLowerCase();
+
+    for (const row of table.rows) {
+      let found = false;
+      for (const cell of row.cells) {
+        if (cell.textContent.toLowerCase().includes(searchText)) {
+          found = true;
+          break;
+        }
+      }
+      row.style.display = found ? '' : 'none';
+    }
+  });
+
+  // Tablo satırlarına tıklama olayını ekle
+  const tableRows = table.getElementsByTagName('tr');
+  for (let i = 1; i < tableRows.length; i++) {
+    tableRows[i].addEventListener('click', function () {
+      const cells = this.cells;
+      const rowData = {
+        id: cells[0].textContent,
+        ad: cells[1].textContent,
+        soyad: cells[2].textContent
+      };
+
+      // Seçilen veriyi input'a yaz
+      firmavergidairesi.value = `${rowData.ad}`;
+      firmavergidairesikodu.value = `${rowData.soyad}`;
+    });
+  }
+</script>
+
+<script src="https://unpkg.com/popper.js/dist/umd/popper.min.js"></script>
+<script src="https://unpkg.com/bootstrap/dist/js/bootstrap.min.js"></script>  
 {% endblock content %}
