@@ -389,21 +389,44 @@
                 <div class="row">
                   <div class="col-6">
                     <label for="mulk">Mükellefiyet Türü:</label>
-                    <select id="il">
-                      <option value="00"></option>
-                      <option value="01">Gerçek Kişi</option>
-                      <option value="02">Adı Ortak</option>
+                    <select name="firmamt" id="il">
+                      <option value="Gerçek Kişi">Gerçek Kişi</option>
+                      <option value="Kollektif Şirket">Kollektif Şirket</option>
+                      <option value="Adi Komandit Şirket">Adi Komandit Şirket</option>
+                      <option value="Eshamlı Komandit Şirket">Eshamlı Komandit Şirket</option>
+                      <option value="Limited Şirket">Limited Şirket</option>
+                      <option value="Anonim Şirket">Anonim Şirket</option>
+                      <option value="Kooperatif">Kooperatif</option>
+                      <option value="Yabancı Kişi">Yabancı Kişi</option>
+                      <option value="Diğer">Diğer</option>
+                      <option value="Apartman Yönetimi">Apartman Yönetimi</option>
+                      <option value="Avukatlık Ortaklığı">Avukatlık Ortaklığı</option>
+                      <option value="Basın">Basın</option>
+                      <option value="Birlik Ve Üst Birlik">Birlik Ve Üst Birlik</option>
+                      <option value="Dernek">Dernek</option>
+                      <option value="İş Ortaklığı">İş Ortaklığı</option>
+                      <option value="Sendika">Sendika</option>
+                      <option value="Site Yönetimi">Site Yönetimi</option>
+                      <option value="Siyasi Parti">Siyasi Parti</option>
+                      <option value="Spor Klübü">Spor Klübü</option>
+                      <option value="Vakıf">Vakıf</option>
+                      <option value="Kamu İktisadi Teşebbüsü">Kamu İktisadi Teşebbüsü</option>
+                      <option value="Belediye İktisadi Teşebbüsü">Belediye İktisadi Teşebbüsü</option>
                     </select>
                   </div>
 
                   <div class="col-6">
                     <label for="stok">Stok Envanter Bilgileri:</label>
-                    <select id="il">
-                      <option value="00"></option>
-                      <option value="01">FIFO</option>
-                      <option value="02">LIFO</option>
+                    <select name="firmastokenvanter" id="il">
+                      <option value="FİFO">FİFO</option>
+                      <option value="LİFO">LİFO</option>
+                      <option value="Agirlikli Ortalama">Agirlikli Ortalama</option>
+                      <option value="Basit Ortalama">Basit Ortalama</option>
+                      <option value="Hareketli Agirlikli Ortalama">Hareketli Agirlikli Ortalama</option>
+                      <option value="Her Kartın Kendi Yöntemine Göre">Her Kartın Kendi Yöntemine Göre</option>
+
                     </select>
-                    <label for="kdv">Geçici Vergi Oranı(%) : <input type="text"></label>
+                    <label for="kdv">Geçici Vergi Oranı(%) : <input name="kdvorani" type="text"></label>
                   </div>
                 </div>
               </div>

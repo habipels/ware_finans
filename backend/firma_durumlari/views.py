@@ -38,7 +38,40 @@ def firma_ekleme(request):
         poset = request.POST.get("poset")
         firmadefterturu = request.POST.get("firmadefterturu")
         kdv2 = request.POST.get("kdv2")
-        firma.objects.create(firma_muhasabecisi = request.user,
+        kdvorani = request.POST.get("kdvorani")
+        firmamt = request.POST.get("firmamt")
+        firmastokenvanter = request.POST.get("firmastokenvanter")
+        if defterturu == "genelmuhasabe":
+            defterturu = "Genel Muhasebe"
+        elif defterturu == "isletmedefteri":
+            defterturu = "İşletme Defteri"
+        if kdv1 == "kdv1aylik":
+            kdv1 = "Aylık"
+        elif kdv1 == "kdv1ucaylik":
+            kdv1 = "Üç Aylık"
+        if turizim == "turizimaylik":
+            turizim = "Aylık"
+        elif turizim == "turizimucaylik":
+            turizim = "Üç Aylık"
+        if muhsgk == "sgkaylik":
+            muhsgk = "Aylık"
+        elif muhsgk == "sgkucaylik":
+            muhsgk = "Üç Aylık"
+        if poset == "posetaylik":
+            poset = "Aylık"
+        elif poset == "posetucaylik":
+            poset = "Üç Aylık"
+        elif poset == "posetaltiaylik":
+            poset = "Altı Aylık"
+        if firmadefterturu == "isletme":
+            firmadefterturu = "İşletme"
+        elif firmadefterturu == "serbestmeslekdefteri":
+            firmadefterturu = "Serbest Meslek Defteri"
+        if kdv2 == "kdv2aylik":
+            kdv2 = "Aylık"
+        elif kdv2 == "kdv2ucaylik":
+            kdv2 = "Üç Aylık"
+        firma_olustur = firma.objects.create(firma_muhasabecisi = request.user,
                              tanitici_isim = tanitici_isim ,
                              firma_unvani = firma_adi,
                              Firma_unvani2 = firma_soyadi,
@@ -51,12 +84,17 @@ def firma_ekleme(request):
             ilce = ilce,il = il,silinme_bilgisi = False
         )
         sube.objects.create(
-            bagli_oldugu_firma = get_object_or_404(firma,tanitici_isim = tanitici_isim ),
+            bagli_oldugu_firma = get_object_or_404(firma,id = firma_olustur.id ),
             sube_adi = sube_adi,sube_unvani = sube_soyadi,adres_bilgisi = get_object_or_404(adresler,id = yeni_adres.id),
             vergi_dairesi_adi =get_object_or_404(vergi_dairesi,vergi_dairesi_adi = firmavergidairesi) ,vergi_dairesi_kodu = firmavergidairesikodu,
             vergi_numarasi = firmaverginumarasi,sahis_ise_tc = sahisisetc,
             email_adresi = firmaeposta,web_adresi = firmawebadresi,
-            telefon_numarasi = firmatelefon
+            telefon_numarasi = firmatelefon,
+            sube_defter_turu =defterturu,
+            kdv1 = kdv1,kdv2 = kdv2,turizm = turizim,
+            muhsgk = muhsgk,poset = poset,firma_defter_turu =firmadefterturu,
+            mukellefiyet_turu= firmamt,stok_bilgisi =firmastokenvanter,
+            gecici_vergi_orani = kdvorani
         )
         return redirect ("/")
     else:  
