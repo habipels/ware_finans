@@ -154,6 +154,9 @@ class sube(models.Model):
     stok_bilgisi = models.CharField(max_length=100,blank=True, null=True,verbose_name="Stok Envanter Bilgileri",choices=stok_envanter_bilgileri_secme,default="FİFO")
     gecici_vergi_orani = models.BigIntegerField(blank=True, null=True,verbose_name="Geçici Vergi Oranı %")
     silinme_bilgisi = models.BooleanField(default=False)
+
+
+
 class kategory_link_ayari(models.CharField):
     def __init__(self, *args, **kwargs):
         super(kategory_link_ayari, self).__init__(*args, **kwargs)
@@ -288,3 +291,45 @@ class ortak_kimlik_bilgileri(models.Model):
     cuzdan_kayit_no = models.CharField(max_length=50,verbose_name="Cüzdan Kayıt No",blank=True,null=True)
     cuzdan_verilis_tarihi = models.DateField(null=True,blank=True,verbose_name="Cüzdan Veriliş Tarihi")
 
+class faliyet_bilgisi(models.Model):
+    tehlike_secimi = (
+        ("",""),
+        ("Tehlikeli","Tehlikeli"),
+        ("Çok Tehlikeli","Çok Tehlikeli"),
+        ("Az Tehlikeli","Az Tehlikeli")
+    )
+    faliyet_kodu = models.BigIntegerField(verbose_name="Faliyet Kodu")
+    faliyet_adi = models.CharField(max_length=200,verbose_name="Faliyet Adı")
+    tehlike = models.CharField(max_length=100,verbose_name="Tehlike Sınıfı",choices=tehlike_secimi,default="")
+
+
+class sube_faliyet_bilgileri(models.Model):
+    faliyet_niteligi_secimi = (
+        ("",""),
+        ("Devamlı","Devamlı"),
+        ("Mevsimlik","Mevsimlik"),
+        ("Geçici","Geçici"),
+        ("Diğer","Diğer")
+    )
+    tabi_oldugu_sektor_secim = (
+        ("",""),
+        ("Şirket Türü","Şirket Türü"),
+        ("Dernek","Dernek"),
+        ("Vakıf","Vakıf"),
+        ("Sendika","Sendika"),
+        ("Apartman Yönetimi","Apartman Yönetimi"),
+        ("Siyasi Parti","Siyasi Parti"),
+        ("Spor Klüpleri","Spor Klüpleri"),
+        ("Basın","Basın"),
+        ("Diğer","Diğer")
+    )
+
+
+    sube_bilgisi = models.ForeignKey(sube,blank=True, null=True,on_delete=models.CASCADE)
+    kurulus_tarihi = models.DateField(verbose_name="Kuruluş Tarihi")
+    terk_tarihi = models.DateField(verbose_name="Terk Tarihi")
+    faliyet_nace_kodu = models.ForeignKey(faliyet_bilgisi,blank=True, null=True,on_delete=models.SET_NULL)
+    faliyet_niteligi = models.CharField(max_length=100,verbose_name="Faliyet Niteliği",choices=faliyet_niteligi_secimi,default="")
+    tabi_oldugu_sektor = models.CharField(max_length=200,verbose_name="Tabi Olduğu Sektör",choices=tabi_oldugu_sektor_secim,default="")
+    yapilan_is_niteligi = models.CharField(max_length=200,verbose_name="Yapılan İş Niteliği",blank=True, null=True)
+    
