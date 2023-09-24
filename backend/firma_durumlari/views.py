@@ -66,6 +66,63 @@ def firma_ekleme(request):
         ticaretsicilno =request.POST.get("ticaretsicilno")
         mersisno = request.POST.get("mersisno")
         isyerituru  =request.POST.get("isyerituru")
+        faliyetisyerikodu = request.POST.get("faliyetisyerikodu")
+        faliyetisyerimulkiyet = request.POST.get("faliyetisyerimulkiyet")
+        faliyetisyerimulkiyet = request.POST.get("faliyetisyerimulkiyet")
+        faliyetvergidairesikodu = request.POST.get("faliyetvergidairesikodu")
+        yetkiliadisoyadi = request.POST.get("yetkiliadisoyadi")
+        vergikimlikno = request.POST.get("vergikimlikno")
+        faliyettckimlik = request.POST.get("faliyettckimlik")
+        faliyetboosn = request.POST.get("faliyetboosn")
+        faliyetcyvn = request.POST.get("faliyetcyvn")
+        faliyetbirvn= request.POST.get("faliyetbirvn")
+        ihaleyi_yapan_makam = request.POST.get("ihaleyi_yapan_makam")
+        isyeribildirgesi_imzalayan = request.POST.get("isyeribildirgesi_imzalayan")
+        ihaleyiyapanmakamadresi = request.POST.get("ihaleyiyapanmakamadresi")
+        ihaleisverentipi = request.POST.get("ihaleisverentipi")
+        taseronunvanbilgisi = request.POST.get("taseronunvanbilgisi")
+        adres_aciklamat = request.POST.get("adresaciklamat")
+        mahallekoyt = request.POST.get("mahallekoyt")
+        bulvart = request.POST.get("bulvart")
+        caddet = request.POST.get("caddet")
+        sokakt = request.POST.get("sokakt")
+        adaparselnot = request.POST.get("adaparselnot")
+        diskapinot = request.POST.get("diskapinot")
+        ickapinot = request.POST.get("ickapinot")
+        postakodut = request.POST.get("postakodut")
+        semtt = request.POST.get("semtt")
+        ilcet = request.POST.get("ilcet")
+        ilt = request.POST.get("ilt")
+        taseronvergikimlikno = request.POST.get("taseronvergikimlikno")
+        taserontcno = request.POST.get("taserontcno")
+        taserontelefon = request.POST.get("taserontelefon")
+        taseroneposta = request.POST.get("taseroneposta")
+        kurumlarvergiveyatckimlikno = request.POST.get("kurumlarvergiveyatckimlikno")
+        kurumlarvergikimlikno = request.POST.get("kurumlarvergikimlikno")
+        kurumlarsoyadiunvan = request.POST.get("kurumlarsoyadiunvan")
+        kurumlaradiunvan = request.POST.get("kurumlaradiunvan")
+        kurumlarticaretsicilno  =request.POST.get("kurumlarticaretsicilno")
+        Kurumlarepostaadresi = request.POST.get("Kurumlarepostaadresi")
+        kurumlarsube = request.POST.get("kurumlarsube")
+        cikisyeri = request.POST.get("cikisyeri")
+        kurumlarajanlik = request.POST.get("kurumlarajanlik")
+        kurmlarimalatyeri= request.POST.get("kurmlarimalatyeri")
+        kurumlarsatisyeri = request.POST.get("kurumlarsatisyeri")
+        kurumlarsair = request.POST.get("kurumlarsair")
+        kurumlartoplam =request.POST.get("kurumlartoplam")
+        
+        if isyeribildirgesi_imzalayan == "01":
+            isyeribildirgesi_imzalayan = "İş Veren"
+        elif isyeribildirgesi_imzalayan == "02":
+            isyeribildirgesi_imzalayan = "İşveren Yetkili"
+        else:
+            isyeribildirgesi_imzalayan = ""
+        if ihaleisverentipi == "01":
+            ihaleisverentipi = "Asıl İşveren"
+        elif ihaleisverentipi == "02":
+            ihaleisverentipi = "Alt Yüklenici"
+        else:
+            ihaleisverentipi = ""
         if defterturu == "genelmuhasabe":
             defterturu = "Genel Muhasebe"
         elif defterturu == "isletmedefteri":
@@ -108,7 +165,7 @@ def firma_ekleme(request):
             ickapino = ickapino,posta_kodu = postakodu,semt=semt,
             ilce = ilce,il = il,silinme_bilgisi = False
         )
-        sube.objects.create(
+        yeni_sube = sube.objects.create(
             bagli_oldugu_firma = get_object_or_404(firma,id = firma_olustur.id ),
             sube_adi = sube_adi,sube_unvani = sube_soyadi,adres_bilgisi = get_object_or_404(adresler,id = yeni_adres.id),
             vergi_dairesi_adi =get_object_or_404(vergi_dairesi,vergi_dairesi_adi = firmavergidairesi) ,vergi_dairesi_kodu = firmavergidairesikodu,
@@ -120,6 +177,22 @@ def firma_ekleme(request):
             muhsgk = muhsgk,poset = poset,firma_defter_turu =firmadefterturu,
             mukellefiyet_turu= firmamt,stok_bilgisi =firmastokenvanter,
             gecici_vergi_orani = kdvorani
+        )
+        sube_faliyet_bilgileri.objects.create(sube_bilgisi = get_object_or_404(sube,id = yeni_sube.id),
+        kurulus_tarihi = faliyet_kurulus_tarihi ,terk_tarihi = faliyet_terk_tarihi 
+        ,faliyet_nace_kodu = get_object_or_404(faliyet_bilgisi,faliyet_kodu = faliyetnacekodu ),
+        tabi_oldugu_sektor = faliyetsektoru ,faliyet_niteligi = faliyetniteligi ,yapilan_is_niteligi = yapilanisinniteligi ,
+        calisma_ve_sosyal_is_kolu = get_object_or_404(calisma_sosyal_guvenlik_is_kollari,id = faliyetcalismasgi ),
+        sahis_ise_ticaret_unvani = sahisisetu ,ticaret_sicil_gazete = ticarisicilgazatesitarihi,
+        ticaret_sicil_gazete_sayfa_no = tsgsayfano ,ticaret_sicil_gazete_no = tsgazateno ,meslek_tesekkul_adi = meslektesekkuladi ,
+        meslek_tesekkul_no = meslektesekkulno ,adres_no = adresno ,taahut_edilen_sermaye = tahutedilensermaye ,
+        odenen_sermaye = odenensermaye ,e_posta_adresi2 = epostaadresi2 ,
+        kayitli_oldugu_il  = kotsmi ,ticaret_sicil_no = ticaretsicilno ,
+        mersis_no = mersisno , isyeri_turu = isyerituru,isyeri_kodu = faliyetisyerikodu ,
+        isyeri_mulkiyet = faliyetisyerimulkiyet ,vergi_dairesi_adi = get_object_or_404(vergi_dairesi,vergi_dairesi_adi =faliyetvergidairesikodu  ),
+        yetkili_adi_soyadi = yetkiliadisoyadi ,yetkili_tckimlikno =  faliyettckimlik,
+        vergi_kimlikno =  vergikimlikno,oda_sicil_no = faliyetboosn ,cevre_temizlik_vergi_no = faliyetcyvn ,
+        beldye_ilan_reklam_vergi_no  = faliyetbirvn
         )
         return redirect ("/")
     else:  

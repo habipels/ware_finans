@@ -367,3 +367,48 @@ class sube_faliyet_bilgileri(models.Model):
     oda_sicil_no = models.CharField(max_length=100,null=True,blank=True,verbose_name="Bağlı Olduğu Oda Sicil No")
     cevre_temizlik_vergi_no = models.CharField(max_length=100,null=True,blank=True,verbose_name="Çevre Temizlik Vergi No")
     beldye_ilan_reklam_vergi_no = models.CharField(max_length=100,null=True,blank=True,verbose_name="Beledye İlan Reklam Vergi No")
+
+
+class ihale_bilgileri(models.Model):
+    bildirge_imzalayan = (
+        ("",""),
+        ("İşveren","İşveren"),
+        ("İşveren Vekili","İşveren Vekili")
+    )
+    isverentip = (
+        ("",""),
+        ("Asıl İşveren","Asıl İşveren"),
+        ("Alt Yüklenici","Alt Yüklenici")
+    )
+    sube_bilgisi = models.ForeignKey(sube,blank=True, null=True,on_delete=models.CASCADE)
+    ihalekonusundaihaleyapanmakam = models.CharField(max_length=200,verbose_name="İhale Konusunda İhaleyi Yapan Makam",blank=True,null=True)
+    isyeri_bildirgersi_imzalayan = models.CharField(max_length=100,verbose_name="İşyeri Bildirgesi İmzalayan",choices=bildirge_imzalayan,default="")
+    ihalekonusundaihaleyapanmakamadresi = models.CharField(max_length=200,verbose_name="İhale Konusunda İhaleyi Yapan Makam Adresi",blank=True,null=True)
+    isveren_tipi = models.CharField(max_length=100,verbose_name="İşveren Tipi",choices=bildirge_imzalayan,default="")
+
+class taseronbilgileri(models.Model):
+    sube_bilgisi = models.ForeignKey(sube,blank=True, null=True,on_delete=models.CASCADE)
+    adres_bilgisi = models.ForeignKey(adresler,blank=True, null=True,on_delete=models.SET_NULL)
+    vergi_numarasi = models.CharField(max_length=100 ,blank=True, null=True,verbose_name="Vergi Numarası")
+    sahis_tc = models.CharField(max_length=20,blank=True, null=True,verbose_name="Şahis Tc Kimlik Numarası")
+    email_adresi = models.EmailField(max_length=100,blank=True, null=True,verbose_name="Şube Email Adresi ")
+    web_adresi = models.CharField(max_length=100,blank=True, null=True,verbose_name="Şube Web Adresi ")
+    telefon_numarasi = models.CharField(max_length=100,blank=True, null=True,verbose_name="Şube Telefon Numarası ")
+
+class kurumlar_dar_mukkelef_kimlik_ve_adres_bilgisi(models.Model):
+    sube_bilgisi = models.ForeignKey(sube,blank=True, null=True,on_delete=models.CASCADE)
+    kurumlarvergiveyatckimlikno = models.CharField(max_length=100,verbose_name="Kurumlar Vergi , Tc Kimlikl NO",blank=True,null=True)
+    kurumlarvergikimlikno = models.CharField(max_length=100,verbose_name="Kurumlar Vergi Nosu",blank=True,null=True)
+    kurumlarsoyadiunvan = models.CharField(max_length=200,verbose_name="Kurumlar Soyadı Unvan",blank=True,null=True)
+    kurumlaradiunvan = models.CharField(max_length=200,verbose_name="Kurumlar ADı Unvan",blank=True,null=True)
+    kurumlarticaretsicilno = models.CharField(max_length=200,verbose_name="Kurumlar Ticaret Sicil No",blank=True,null=True)
+    Kurumlarepostaadresi = models.EmailField(max_length=200,verbose_name="eposta Adresi",blank=True,null=True)
+    kurumlarirtibatnumarasi = models.CharField(max_length=11,verbose_name="Kurumlar İrtibart Numarası",blank=True,null=True)
+    kurumlarsube = models.CharField(max_length=200,verbose_name="Kurumlar Bağlı Şube",blank=True,null=True)
+    cikisyeri =  models.CharField(max_length=200,verbose_name="Kurumlar Çıkış Yeri",blank=True,null=True)
+    kurumlarajanlik = models.CharField(max_length=200,verbose_name="Kurumlar Ajanlık",blank=True,null=True)
+    kurmlarimalatyeri = models.CharField(max_length=200,verbose_name="Kurumlar İmalat Yeri",blank=True,null=True)
+    kurumlarsatisyeri = models.CharField(max_length=200,verbose_name="Kurumlar Satış Yeri",blank=True,null=True)
+    kurumlarsair = models.CharField(max_length=200,verbose_name="Kurumlar Sair",blank=True,null=True)
+    kurumlartoplam = models.CharField(max_length=200,verbose_name="Kurumlar Toplam",blank=True,null=True)
+    
