@@ -6,8 +6,10 @@ def firma_ekleme(request):
     form = firma_ekle(request.POST)
     v = vergi_dairesi.objects.all()
     faliyet_kace_kodu_modal = faliyet_bilgisi.objects.all()
+    cvsgik = calisma_sosyal_guvenlik_is_kollari.objects.all()
     content = {"form":form,"vergidaireleri":v,
-               "faliyet_nace":faliyet_kace_kodu_modal}
+               "faliyet_nace":faliyet_kace_kodu_modal,
+               "cvsgik":cvsgik}
     if request.method == "POST":
         tanitici_isim = request.POST.get("firmataniticiadi")
         firma_adi = request.POST.get("firmaunvanadi")
@@ -45,6 +47,25 @@ def firma_ekleme(request):
         firmastokenvanter = request.POST.get("firmastokenvanter")
         faliyet_kurulus_tarihi = request.POST.get("faliyet_kurulus_tarihi")
         faliyet_terk_tarihi =request.POST.get("faliyet_terk_tarihi")
+        faliyetnacekodu = request.POST.get("faliyetnacekodu")
+        faliyetniteligi = request.POST.get("faliyetniteligi")
+        faliyetsektoru = request.POST.get("faliyetsektoru")
+        yapilanisinniteligi = request.POST.get("yapilanisinniteligi")
+        faliyetcalismasgi = request.POST.get("faliyetcalismasgi")
+        sahisisetu = request.POST.get("sahisisetu")
+        ticarisicilgazatesitarihi = request.POST.get("ticarisicilgazatesitarihi")
+        tsgsayfano = request.POST.get("tsgsayfano")
+        tsgazateno = request.POST.get("tsgazateno")
+        meslektesekkuladi =request.POST.get("meslektesekkuladi")
+        meslektesekkulno = request.POST.get("meslektesekkulno")
+        adresno = request.POST.get("adresno")
+        tahutedilensermaye = request.POST.get("tahutedilensermaye")
+        odenensermaye = request.POST.get("odenensermaye")
+        epostaadresi2 = request.POST.get("epostaadresi2")
+        kotsmi = request.POST.get("kotsmi")
+        ticaretsicilno =request.POST.get("ticaretsicilno")
+        mersisno = request.POST.get("mersisno")
+        isyerituru  =request.POST.get("isyerituru")
         if defterturu == "genelmuhasabe":
             defterturu = "Genel Muhasebe"
         elif defterturu == "isletmedefteri":

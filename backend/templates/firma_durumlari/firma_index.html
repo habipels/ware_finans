@@ -468,7 +468,7 @@
                       </button></div>
                     </div>
                   <br>
-                  <input name="faliyet_terk_tarihi" type="text">
+                 
                 </div>
                 <div class="col-6">
                   <label for="tehlikesinifi">
@@ -476,7 +476,7 @@
 
                   </label>
                   <br>
-                  <input type="text">
+                  <input id = "nacetehlikesinifi" name="nacetehlikesinifi" type="text">
                 </div>
 
               </div>
@@ -487,7 +487,7 @@
 
                   </label>
                   <br>
-                  <input type="text">
+                  <input name="nacefaliyetadi" id="nacefaliyetadi" type="text">
                 </div>
               </div>
 
@@ -497,12 +497,11 @@
                     Faliyet Niteliği
                   </label>
                   <br>
-                  <select id="nitelik">
-                    <option value="00"></option>
-                    <option value="01">Devamlı</option>
-                    <option value="02">Mevsimlik</option>
-                    <option value="03">Geçici</option>
-                    <option value="04">Diğer</option>
+                  <select name="faliyetniteligi" id="nitelik">
+                    <option value="Devamlı">Devamlı</option>
+                    <option value="Mevsimlik">Mevsimlik</option>
+                    <option value="Geçici">Geçici</option>
+                    <option value="Diğer">Diğer</option>
                   </select>
                 </div>
                 <div class="col-6">
@@ -510,12 +509,16 @@
                     Faliyet Sektörü
                   </label>
                   <br>
-                  <select id="sektor">
-                    <option value="00"></option>
-                    <option value="01">Dernek</option>
-                    <option value="02">Vakıf</option>
-                    <option value="03">Sendika</option>
-                    <option value="04">Basın</option>
+                  <select name="faliyetsektoru" id="sektor">
+                    <option value="Şirket türü">Şirket türü</option>
+                    <option value="Dernek">Dernek</option>
+                    <option value="Vakıf">Vakıf</option>
+                    <option value="Sendika">Sendika</option>
+                    <option value="Apartman Yönetimi">Apartman Yönetimi</option>
+                    <option value="Siyasi Parti">Siyasi Parti</option>
+                    <option value="Spor Külpleri">Spor Külpleri</option>
+                    <option value="Basın">Basın</option>
+                    <option value="Diğer">Diğer</option>
                   </select>
                 </div>
 
@@ -526,7 +529,7 @@
                     Yapılan İşin Niteliği
                   </label>
                   <br>
-                  <input type="text">
+                  <input name="yapilanisinniteligi" type="text">
                 </div>
               </div>
 
@@ -537,12 +540,12 @@
 
                   </label>
                   <br>
-                  <select id="csgk">
-                    <option value="00"></option>
-                    <option value="01">Dernek</option>
-                    <option value="02">Vakıf</option>
-                    <option value="03">Sendika</option>
-                    <option value="04">Basın</option>
+                  <select name="faliyetcalismasgi" id="csgk">
+                    {% for i in cvsgik %}
+                      <option value="{{i.id}}">{{i.kod_baslik}}</option>
+                    {% endfor %}
+                    
+
                   </select>
                 </div>
               </div>
@@ -552,7 +555,7 @@
                     Şahıs ise Ticaret Unvanı
                   </label>
                   <br>
-                  <input type="text">
+                  <input name="sahisisetu" type="text">
                 </div>
               </div>
               <div class="row genel ">
@@ -560,20 +563,20 @@
                   <label for="ticarisicilgazatesitarihi">Ticari Sicil Gazatesi Tarihi
                   </label>
                   <br>
-                  <input type="date" id="tarih">
+                  <input name="ticarisicilgazatesitarihi" type="date" id="tarih">
                 </div>
                 <div class="col-4">
                   <label for="tsgsayfano">
                     Ticari Sicil Gazatesi Sayfa No
                   </label>
                   <br>
-                  <input type="text">
+                  <input name="tsgsayfano" type="text">
                 </div>
                 <div class="col-4">
                   <label for="tsgazateno">
                     Ticari Sicil Gazate No
                   </label><br>
-                  <input type="text">
+                  <input name="tsgazateno" type="text">
                 </div>
               </div>
               <div class="row genel">
@@ -582,13 +585,13 @@
                     Meslek Teşekkülü Adı
                   </label>
                   <br>
-                  <input type="text">
+                  <input name="meslektesekkuladi" type="text">
                 </div>
                 <div class="col-6">
                   <label for="meslektesekkulno">
                     Meslek Teşekkülü No
                   </label>
-                  <br><input type="text">
+                  <br><input name="meslektesekkulno" type="text">
                 </div>
               </div>
 
@@ -600,19 +603,19 @@
                   <label for="adresno">
                     Adres No
                   </label><br>
-                  <input type="text">
+                  <input name="adresno" type="text">
                 </div>
                 <div class="col-4">
                   <label for="tahutedilensermaye">
                     Taahhüt Edilen Sermaye
                   </label>
-                  <br><input type="text">
+                  <br><input name="tahutedilensermaye" type="text">
                 </div>
                 <div class="col-4">
                   <label for="odenensermaye">
                     Ödenen Sermaye
                   </label>
-                  <br><input type="text">
+                  <br><input name="odenensermaye" type="text">
                 </div>
               </div>
               <div class="row genel">
@@ -621,7 +624,7 @@
                     E-Posta Adresi 2
                   </label>
                   <br>
-                  <input type="email">
+                  <input name="epostaadresi2" type="email">
                 </div>
               </div>
               <div class="row genel">
@@ -630,7 +633,7 @@
                     Kayıtlı Olduğu Ticaret Sicil Memurluğu İl
                   </label>
                   <br>
-                  <select id="kotsmi">
+                  <select name = "kotsmi" id="kotsmi">
                     <option value="00"></option>
                     <option value="01">van</option>
                     <option value="02">ankara</option>
@@ -647,14 +650,14 @@
                     Ticaret Sicil No
                   </label>
                   <br>
-                  <input type="text">
+                  <input name="ticaretsicilno" type="text">
                 </div>
                 <div class="col-6">
                   <label for="mersisno">
                     Mersis No
                   </label>
                   <br>
-                  <input type="text">
+                  <input name="mersisno" type="text">
                 </div>
               </div>
 
@@ -664,10 +667,9 @@
                     İşyeri Türü
                   </label>
                   <br>
-                  <select id="isyerituru">
-                    <option value="00"></option>
-                    <option value="01">Merkez</option>
-                    <option value="02">Mükellefiyetsiz Şube</option>
+                  <select name="isyerituru" id="isyerituru">
+                    <option value="Merkez">Merkez</option>
+                    <option value="Mükellefiyetsiz Şube">Mükellefiyetsiz Şube</option>
 
                   </select>
                 </div>
@@ -1609,7 +1611,7 @@
         <div class="modal-body">
           <input type="text" id="nacesearchInput" class="form-control" placeholder="Arama...">
   
-  <table class="table table-striped mt-3">
+  <table class="table table-striped mt-3 nace">
     <thead>
       <tr>
         <th>Faliyet Kodu</th>
@@ -1643,7 +1645,6 @@
     </div>
 <script>
   const searchInput = document.getElementById('searchInput');
-  const nacesearchInput = document.getElementById('nacesearchInput');
   const table = document.querySelector('.table');
   const firmavergidairesikodu = document.getElementById('firmavergidairesikodu');
   const firmavergidairesi = document.getElementById("firmavergidairesi");
@@ -1679,7 +1680,45 @@
     });
   }
 </script>
+<script>
+  const nacesearchInput = document.getElementById('nacesearchInput');
+  const nace = document.querySelector('.nace');
+  const faliyetnacekodu = document.getElementById('faliyetnacekodu');
+  const nacetehlikesinifi = document.getElementById("nacetehlikesinifi");
+  const nacefaliyetadi = document.getElementById("nacefaliyetadi");
+  searchInput.addEventListener('input', function () {
+    const searchText = this.value.toLowerCase();
 
+    for (const row of nace.rows) {
+      let found = false;
+      for (const cell of row.cells) {
+        if (cell.textContent.toLowerCase().includes(searchText)) {
+          found = true;
+          break;
+        }
+      }
+      row.style.display = found ? '' : 'none';
+    }
+  });
+
+  // Tablo satırlarına tıklama olayını ekle
+  const naceRows = nace.getElementsByTagName('tr');
+  for (let i = 1; i < naceRows.length; i++) {
+    naceRows[i].addEventListener('click', function () {
+      const cells = this.cells;
+      const rowData = {
+        id: cells[0].textContent,
+        ad: cells[1].textContent,
+        soyad: cells[2].textContent
+      };
+
+      // Seçilen veriyi input'a yaz
+      nacefaliyetadi.value = `${rowData.ad}`;
+      faliyetnacekodu.value = `${rowData.id}`;
+      nacetehlikesinifi.value = `${rowData.soyad}`;
+    });
+  }
+</script>
 <script src="https://unpkg.com/popper.js/dist/umd/popper.min.js"></script>
 <script src="https://unpkg.com/bootstrap/dist/js/bootstrap.min.js"></script>  
 {% endblock content %}
