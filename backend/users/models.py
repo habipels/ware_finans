@@ -301,8 +301,8 @@ class faliyet_bilgisi(models.Model):
     faliyet_kodu = models.BigIntegerField(verbose_name="Faliyet Kodu")
     faliyet_adi = models.CharField(max_length=200,verbose_name="Faliyet Adı")
     tehlike = models.CharField(max_length=100,verbose_name="Tehlike Sınıfı",choices=tehlike_secimi,default="")
-
-
+class calisma_sosyal_guvenlik_is_kollari(models.Model):
+    kod_baslik = models.CharField(max_length=200,verbose_name="Çalışma ve Sosyal Güvenlik iş Kolu ve Kodu")
 class sube_faliyet_bilgileri(models.Model):
     faliyet_niteligi_secimi = (
         ("",""),
@@ -324,7 +324,18 @@ class sube_faliyet_bilgileri(models.Model):
         ("Diğer","Diğer")
     )
 
-
+    isyeri_turu_secim = (
+        ("",""),
+        ("Merkez","Merkez"),
+        ("Mükellefyetsiz Şube","Mükellefyetsiz Şube"),
+        
+    )
+    isyeri_mulkiyet_secim = (
+        ("",""),
+        ("Kira","Kira"),
+        ("Mal Sahibi","Mal Sahibi"),
+        ("Diğer","Diğer")
+    )
     sube_bilgisi = models.ForeignKey(sube,blank=True, null=True,on_delete=models.CASCADE)
     kurulus_tarihi = models.DateField(verbose_name="Kuruluş Tarihi")
     terk_tarihi = models.DateField(verbose_name="Terk Tarihi")
@@ -332,4 +343,27 @@ class sube_faliyet_bilgileri(models.Model):
     faliyet_niteligi = models.CharField(max_length=100,verbose_name="Faliyet Niteliği",choices=faliyet_niteligi_secimi,default="")
     tabi_oldugu_sektor = models.CharField(max_length=200,verbose_name="Tabi Olduğu Sektör",choices=tabi_oldugu_sektor_secim,default="")
     yapilan_is_niteligi = models.CharField(max_length=200,verbose_name="Yapılan İş Niteliği",blank=True, null=True)
-    
+    calisma_ve_sosyal_is_kolu = models.ForeignKey(calisma_sosyal_guvenlik_is_kollari,blank=True,null=True,verbose_name="Çalişma Ve Sosya Güvenlik İş Kolu",on_delete=models.SET_NULL)
+    sahis_ise_ticaret_unvani = models.CharField(max_length=200,verbose_name="Şahıs İse Ticaret Ünvanı",blank=True,null=True)
+    ticaret_sicil_gazete = models.DateField(verbose_name="Ticaret Sicil Gazetesi Tarihi")
+    ticaret_sicil_gazete_sayfa_no = models.CharField(verbose_name="Ticaret Sicil Gazete Sayfa No",max_length=100,null=True,blank=True)
+    ticaret_sicil_gazete_no = models.CharField(verbose_name="Ticaret Sicil Gazete No",max_length=100,null=True,blank=True)
+    meslek_tesekkul_adi = models.CharField(verbose_name="Meslek Teşekkül Adı",max_length=100,null=True,blank=True)
+    meslek_tesekkul_no = models.CharField(verbose_name="Meslek Teşekkül No",max_length=100,null=True,blank=True)
+    adres_no = models.CharField(verbose_name="Adres No",max_length=100,null=True,blank=True)
+    taahut_edilen_sermaye = models.CharField(verbose_name="Taahüt Edilen Sermaye",max_length=100,null=True,blank=True)
+    odenen_sermaye = models.CharField(verbose_name="Ödenen Sermaye",max_length=100,null=True,blank=True)
+    e_posta_adresi2 = models.EmailField(max_length=200,verbose_name="Email Adresi 2",null=True,blank=True)
+    kayitli_oldugu_il = models.CharField(max_length=100,verbose_name="Kayıtlı Olduğu İl",blank=True,null=True)
+    ticaret_sicil_no = models.CharField(verbose_name="Ticaret Sicil No",max_length=100,null=True,blank=True)
+    mersis_no = models.CharField(verbose_name="Mersis No",max_length=100,null=True,blank=True)
+    isyeri_turu = models.CharField(max_length=200,verbose_name="İşyeri Türü",choices=isyeri_turu_secim,default="")
+    isyeri_kodu = models.CharField(max_length=200,verbose_name="İşyeri Kodu",blank=True,null=True)
+    isyeri_mulkiyet = models.CharField(max_length=200,verbose_name="İşyeri Mülkiyet",choices=isyeri_mulkiyet_secim,default="")
+    vergi_dairesi_adi = models.ForeignKey(vergi_dairesi,verbose_name="KDV1 KDV2 Beyanname Vergi Dairesi",blank=True, null=True,on_delete=models.SET_NULL)
+    yetkili_adi_soyadi = models.CharField(max_length=200,null=True,blank=True,verbose_name="Yetkili Adı Soyadı")
+    yetkili_tckimlikno = models.CharField(max_length=11,null=True,blank=True,verbose_name="Yetkili T.C. Kimlik No")
+    vergi_kimlikno = models.CharField(max_length=100,null=True,blank=True,verbose_name="Vergi Kimlik No")
+    oda_sicil_no = models.CharField(max_length=100,null=True,blank=True,verbose_name="Bağlı Olduğu Oda Sicil No")
+    cevre_temizlik_vergi_no = models.CharField(max_length=100,null=True,blank=True,verbose_name="Çevre Temizlik Vergi No")
+    beldye_ilan_reklam_vergi_no = models.CharField(max_length=100,null=True,blank=True,verbose_name="Beledye İlan Reklam Vergi No")

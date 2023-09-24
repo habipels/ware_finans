@@ -446,13 +446,13 @@
                   <label for="kurlustarihi">Kuruluş Tarihi
                   </label>
                   <br>
-                  <input type="date" id="tarih">
+                  <input type="date" name="faliyet_kurulus_tarihi" id="tarih">
                 </div>
                 <div class="col-6">
                   <label for="terktarihi">Terk Tarihi
                   </label>
                   <br>
-                  <input type="date" id="tarih">
+                  <input type="date" name="faliyet_terk_tarihi" id="tarih">
                 </div>
 
               </div>
@@ -461,8 +461,14 @@
                   <label for="faliyetnacekodu">
                     Faliyet Nace Kodu
                   </label>
+                  <div class="row genel">
+                      <div class="col-8"><input id="faliyetnacekodu" name="faliyetnacekodu" type="text"></div>
+                      <div class="col-4"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#faliyetnacekodumodal">
+                        seç
+                      </button></div>
+                    </div>
                   <br>
-                  <input type="text">
+                  <input name="faliyet_terk_tarihi" type="text">
                 </div>
                 <div class="col-6">
                   <label for="tehlikesinifi">
@@ -666,10 +672,12 @@
                   </select>
                 </div>
                 <div class="col-6">
-                  <label for="isyerikodu">
-                    İşyeri Kodu
-
-                  </label>
+                  <div class="row">
+                      <div class="col-8"><input id="faliyetvergidairesikodu" name="faliyetvergidairesikodu" type="text"></div>
+                      <div class="col-4"><button type="button" class="btn btn-primary" data-bs-toggle="faliyetvergidairesikodumodal" data-bs-target="#faliyetvergidairesikodumodal">
+                        seç
+                      </button></div>
+                    </div>
                   <br>
                   <input type="text">
                 </div>
@@ -1585,9 +1593,57 @@
   
       </div>
     </div>
+
   </div>
+  <div class="modal" id="faliyetnacekodumodal">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+  
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Faliyet Nace Seç</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+  
+        <!-- Modal body -->
+        <div class="modal-body">
+          <input type="text" id="nacesearchInput" class="form-control" placeholder="Arama...">
+  
+  <table class="table table-striped mt-3">
+    <thead>
+      <tr>
+        <th>Faliyet Kodu</th>
+        <th>Faliyet ADI</th>
+        <th>Tehlike Sınıfı</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for i in faliyet_nace %}
+    <tr>
+        <td>{{i.faliyet_kodu}}</td>
+        <td>{{i.faliyet_adi}}</td>
+        <td>{{i.tehlike}}</td>
+      </tr>
+    {% endfor %}
+      
+      
+      <!-- Diğer satırları burada ekleyin -->
+    </tbody>
+  </table>
+</div>
+        </div>
+  
+        <!-- Modal footer -->
+        <div class="modal-footer">
+        Seçmek için listeye Tıklamanız Yeterlidir.
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kapat</button>
+        </div>
+  
+      </div>
+    </div>
 <script>
   const searchInput = document.getElementById('searchInput');
+  const nacesearchInput = document.getElementById('nacesearchInput');
   const table = document.querySelector('.table');
   const firmavergidairesikodu = document.getElementById('firmavergidairesikodu');
   const firmavergidairesi = document.getElementById("firmavergidairesi");

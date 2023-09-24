@@ -5,7 +5,9 @@ from users.models import *
 def firma_ekleme(request):
     form = firma_ekle(request.POST)
     v = vergi_dairesi.objects.all()
-    content = {"form":form,"vergidaireleri":v}
+    faliyet_kace_kodu_modal = faliyet_bilgisi.objects.all()
+    content = {"form":form,"vergidaireleri":v,
+               "faliyet_nace":faliyet_kace_kodu_modal}
     if request.method == "POST":
         tanitici_isim = request.POST.get("firmataniticiadi")
         firma_adi = request.POST.get("firmaunvanadi")
@@ -41,6 +43,8 @@ def firma_ekleme(request):
         kdvorani = request.POST.get("kdvorani")
         firmamt = request.POST.get("firmamt")
         firmastokenvanter = request.POST.get("firmastokenvanter")
+        faliyet_kurulus_tarihi = request.POST.get("faliyet_kurulus_tarihi")
+        faliyet_terk_tarihi =request.POST.get("faliyet_terk_tarihi")
         if defterturu == "genelmuhasabe":
             defterturu = "Genel Muhasebe"
         elif defterturu == "isletmedefteri":
