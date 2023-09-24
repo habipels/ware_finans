@@ -389,10 +389,10 @@ class ihale_bilgileri(models.Model):
 class taseronbilgileri(models.Model):
     sube_bilgisi = models.ForeignKey(sube,blank=True, null=True,on_delete=models.CASCADE)
     adres_bilgisi = models.ForeignKey(adresler,blank=True, null=True,on_delete=models.SET_NULL)
+    taseronunvanbilgisi = models.CharField(max_length=100 ,blank=True, null=True,verbose_name="Taşeron Unvan Bilgisi")
     vergi_numarasi = models.CharField(max_length=100 ,blank=True, null=True,verbose_name="Vergi Numarası")
     sahis_tc = models.CharField(max_length=20,blank=True, null=True,verbose_name="Şahis Tc Kimlik Numarası")
     email_adresi = models.EmailField(max_length=100,blank=True, null=True,verbose_name="Şube Email Adresi ")
-    web_adresi = models.CharField(max_length=100,blank=True, null=True,verbose_name="Şube Web Adresi ")
     telefon_numarasi = models.CharField(max_length=100,blank=True, null=True,verbose_name="Şube Telefon Numarası ")
 
 class kurumlar_dar_mukkelef_kimlik_ve_adres_bilgisi(models.Model):
@@ -411,4 +411,3 @@ class kurumlar_dar_mukkelef_kimlik_ve_adres_bilgisi(models.Model):
     kurumlarsatisyeri = models.CharField(max_length=200,verbose_name="Kurumlar Satış Yeri",blank=True,null=True)
     kurumlarsair = models.CharField(max_length=200,verbose_name="Kurumlar Sair",blank=True,null=True)
     kurumlartoplam = models.CharField(max_length=200,verbose_name="Kurumlar Toplam",blank=True,null=True)
-    

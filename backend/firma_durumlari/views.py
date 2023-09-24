@@ -103,6 +103,7 @@ def firma_ekleme(request):
         kurumlaradiunvan = request.POST.get("kurumlaradiunvan")
         kurumlarticaretsicilno  =request.POST.get("kurumlarticaretsicilno")
         Kurumlarepostaadresi = request.POST.get("Kurumlarepostaadresi")
+        kurumlarirtibatnumarasi = request.POST.get("kurumlarirtibatnumarasi")
         kurumlarsube = request.POST.get("kurumlarsube")
         cikisyeri = request.POST.get("cikisyeri")
         kurumlarajanlik = request.POST.get("kurumlarajanlik")
@@ -110,7 +111,7 @@ def firma_ekleme(request):
         kurumlarsatisyeri = request.POST.get("kurumlarsatisyeri")
         kurumlarsair = request.POST.get("kurumlarsair")
         kurumlartoplam =request.POST.get("kurumlartoplam")
-        
+
         if isyeribildirgesi_imzalayan == "01":
             isyeribildirgesi_imzalayan = "İş Veren"
         elif isyeribildirgesi_imzalayan == "02":
@@ -193,6 +194,32 @@ def firma_ekleme(request):
         yetkili_adi_soyadi = yetkiliadisoyadi ,yetkili_tckimlikno =  faliyettckimlik,
         vergi_kimlikno =  vergikimlikno,oda_sicil_no = faliyetboosn ,cevre_temizlik_vergi_no = faliyetcyvn ,
         beldye_ilan_reklam_vergi_no  = faliyetbirvn
+        )
+        ihale_bilgileri.objects.create(sube_bilgisi = get_object_or_404(sube,id = yeni_sube.id),
+        ihalekonusundaihaleyapanmakam = ihaleyi_yapan_makam ,isyeri_bildirgersi_imzalayan =isyeribildirgesi_imzalayan ,
+          ihalekonusundaihaleyapanmakamadresi =ihaleyiyapanmakamadresi ,isveren_tipi =   ihaleisverentipi  )
+        yeni_adres_taseron  = adresler.objects.create(
+            adres = adres_aciklamat,mahhalle_koy=mahallekoyt,
+            bulvar = bulvart,cadde = caddet, sokak = sokakt,
+            adaparselno = adaparselnot,diskapino = diskapinot,
+            ickapino = ickapinot,posta_kodu = postakodut,semt=semtt,
+            ilce = ilcet,il = ilt,silinme_bilgisi = False
+        )
+        taseronbilgileri.objects.create(sube_bilgisi = get_object_or_404(sube,id = yeni_sube.id),
+        taseronunvanbilgisi =  taseronunvanbilgisi ,adres_bilgisi =   get_object_or_404(adresler,id = yeni_adres_taseron.id),
+          vergi_numarasi = taseronvergikimlikno ,sahis_tc = taserontcno ,
+          email_adresi = taseroneposta , telefon_numarasi =  taserontelefon                 
+        )
+        kurumlar_dar_mukkelef_kimlik_ve_adres_bilgisi.objects.create(
+          sube_bilgisi = get_object_or_404(sube,id = yeni_sube.id),
+          kurumlarvergiveyatckimlikno =   kurumlarvergiveyatckimlikno,
+          kurumlarvergikimlikno =kurumlarvergikimlikno,kurumlarsoyadiunvan =kurumlarsoyadiunvan
+          ,kurumlaradiunvan = kurumlaradiunvan,kurumlarticaretsicilno = kurumlarticaretsicilno,
+          Kurumlarepostaadresi = Kurumlarepostaadresi,kurumlarirtibatnumarasi = kurumlarirtibatnumarasi,
+          kurumlarsube =kurumlarsube,cikisyeri = cikisyeri,kurumlarajanlik = kurumlarajanlik,
+          kurmlarimalatyeri =kurmlarimalatyeri,kurumlarsatisyeri =kurumlarsatisyeri,
+          kurumlarsair =kurumlarsair,kurumlartoplam = kurumlartoplam
+
         )
         return redirect ("/")
     else:  
