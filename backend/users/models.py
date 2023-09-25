@@ -411,3 +411,24 @@ class kurumlar_dar_mukkelef_kimlik_ve_adres_bilgisi(models.Model):
     kurumlarsatisyeri = models.CharField(max_length=200,verbose_name="Kurumlar Satış Yeri",blank=True,null=True)
     kurumlarsair = models.CharField(max_length=200,verbose_name="Kurumlar Sair",blank=True,null=True)
     kurumlartoplam = models.CharField(max_length=200,verbose_name="Kurumlar Toplam",blank=True,null=True)
+class beyanname_bilgileri(models.Model):
+    beyannamehangisifatlaverildi_secim =(
+        ("",""),
+        ("mukellef","Mükellef"),
+        ("mirascı","Miradscı"),
+        ("kanunitemsilci","Kanuni Temsilci")
+    )
+    sube_bilgisi = models.ForeignKey(sube,blank=True, null=True,on_delete=models.CASCADE)
+    beyannamehangisifatlaverildi  = models.CharField(max_length=100,choices=beyannamehangisifatlaverildi_secim,default="",verbose_name="Beyanname Hangi Sıfatla Verildiği",blank=True,null=True)
+    mirascibilgisitc = models.CharField(max_length=100,verbose_name="Mirasci Tc Kimlik No",blank=True,null=True)
+    mirascivergino  = models.CharField(max_length=100,verbose_name="Mirascı Vergi No",blank=True,null=True)
+    beyannamesoyadiunvan = models.CharField(max_length=100,verbose_name="Soyadı Unvan",blank=True,null=True)
+    beyannameadiunvandevami = models.CharField(max_length=100,verbose_name="Adı Unvan (devamı)",blank=True,null=True)
+    beyannameyeaitticaretsicilno = models.CharField(max_length=100,verbose_name="Ticaret Sicil No",blank=True,null=True)
+    beyannameemailadresi = models.EmailField(max_length=100,verbose_name="Email Adresi",blank=True,null=True)
+    beyannametelefonumarasi = models.CharField(max_length=100,verbose_name="Telefon Numarası",blank=True,null=True)
+class beyanname_kanuni_temsilcisi(models.Model):
+    beyanname_bilgisi = models.ForeignKey(beyanname_bilgileri,blank=True, null=True,on_delete=models.CASCADE)
+    beyannamekanunitemsicitc = models.CharField(max_length=15,verbose_name="Kanuni Temsilci Tc",blank=True,null=True)
+    beyannamekanunitemsicivergino = models.CharField(max_length=20,verbose_name="Kanuni Temsilci Vergi No",blank=True,null=True)
+    beyannamekanunitemsicisoyadi = models.CharField(max_length=200,verbose_name="")

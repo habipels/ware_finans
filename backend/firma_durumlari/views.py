@@ -112,6 +112,14 @@ def firma_ekleme(request):
         kurumlarsair = request.POST.get("kurumlarsair")
         kurumlartoplam =request.POST.get("kurumlartoplam")
         beyannamehangisifatlaverildi = request.POST.get("beyannamehangisifatlaverildi")
+        beyannamesoyadiunvan = request.POST.get("beyannamesoyadiunvan")
+        beyannameadiunvandevami =request.POST.get("beyannameadiunvandevami")
+        beyannameyeaitticaretsicilno = request.POST.get("beyannameyeaitticaretsicilno")
+        beyannameemailadresi = request.POST.get("beyannameemailadresi")
+        beyannametelefonumarasi = request.POST.get("beyannametelefonumarasi")
+        beyannamekanunitemsicitc  = request.POST.get("beyannamekanunitemsicitc")
+        beyannamekanunitemsicivergino = request.POST.get("beyannamekanunitemsicivergino")
+        beyannamekanunitemsicisoyadi = request.POST.get("beyannamekanunitemsicisoyadi")
         if isyeribildirgesi_imzalayan == "01":
             isyeribildirgesi_imzalayan = "İş Veren"
         elif isyeribildirgesi_imzalayan == "02":
