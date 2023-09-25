@@ -111,7 +111,7 @@ def firma_ekleme(request):
         kurumlarsatisyeri = request.POST.get("kurumlarsatisyeri")
         kurumlarsair = request.POST.get("kurumlarsair")
         kurumlartoplam =request.POST.get("kurumlartoplam")
-
+        beyannamehangisifatlaverildi = request.POST.get("beyannamehangisifatlaverildi")
         if isyeribildirgesi_imzalayan == "01":
             isyeribildirgesi_imzalayan = "İş Veren"
         elif isyeribildirgesi_imzalayan == "02":
