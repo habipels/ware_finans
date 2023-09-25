@@ -431,4 +431,4 @@ class beyanname_kanuni_temsilcisi(models.Model):
     beyanname_bilgisi = models.ForeignKey(beyanname_bilgileri,blank=True, null=True,on_delete=models.CASCADE)
     beyannamekanunitemsicitc = models.CharField(max_length=15,verbose_name="Kanuni Temsilci Tc",blank=True,null=True)
     beyannamekanunitemsicivergino = models.CharField(max_length=20,verbose_name="Kanuni Temsilci Vergi No",blank=True,null=True)
-    beyannamekanunitemsicisoyadi = models.CharField(max_length=200,verbose_name="")
+    beyannamekanunitemsicisoyadi = models.CharField(max_length=200,verbose_name="Kanuni Temsilci soyadı")
