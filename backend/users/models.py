@@ -431,4 +431,39 @@ class beyanname_kanuni_temsilcisi(models.Model):
     beyanname_bilgisi = models.ForeignKey(beyanname_bilgileri,blank=True, null=True,on_delete=models.CASCADE)
     beyannamekanunitemsicitc = models.CharField(max_length=15,verbose_name="Kanuni Temsilci Tc",blank=True,null=True)
     beyannamekanunitemsicivergino = models.CharField(max_length=20,verbose_name="Kanuni Temsilci Vergi No",blank=True,null=True)
-    beyannamekanunitemsicisoyadi = models.CharField(max_length=200,verbose_name="Kanuni Temsilci soyadı")
+    beyannamekanunitemsicisoyadi = models.CharField(max_length=200,verbose_name="Kanuni Temsilci soyadı",blank=True,null=True)
+    beyannamekanunitemsiciadiunvandevami = models.CharField(max_length=200,verbose_name="Kanuni Temsilci Adı Unvan Devamı",blank=True,null=True)
+    beyannamekanunitemsiciticaretsicilno = models.CharField(max_length=200,verbose_name="Beyanname Kanuni Temsici Ticaret Sicil No",blank=True,null=True)
+    beyannamekanunitemsicieposta = models.EmailField(max_length=200,verbose_name="Beyanname Kanuni Temsicieposta",blank=True,null=True)
+    beyannamekanunitemsicitelefon = models.CharField(max_length=200,verbose_name="Beyanname Kanuni Temsici Telefon",blank=True,null=True)
+class beyanname_duzenleyene_ait_bilgiler(models.Model):
+    beyanname_bilgisi = models.ForeignKey(beyanname_bilgileri,blank=True, null=True,on_delete=models.CASCADE)
+    beyannameduzenleyeneaittc = models.CharField(max_length=12,verbose_name="Beyanname Düzenleyene Ait TC",blank=True,null=True)
+    beyannameduzenleyeneaitvergino = models.CharField(verbose_name="Beyanname Düzenleyene Ait Vergi NO",max_length=200,blank=True,null=True)
+    beyannameduzenleyeneaitsoyadiunvan = models.CharField(verbose_name="Beyanname Düzenleyene Ait Soyadı Unvan",max_length=200,blank=True,null=True)
+    beyannameduzenleyeneaitadiunvandevami  =  models.CharField(verbose_name="Beyanname Düzenleyene Ait Adı Unvan Devamı",max_length=200,blank=True,null=True)
+    beyannameduzenleyeneaitticaretsicilno = models.CharField(verbose_name="Beyanname Düzenleyene Ait Ticagtet Sİcil No",max_length=200,blank=True,null=True)
+    beyannameduzenleyeneaiteposta = models.EmailField(verbose_name="Beyanname Düzenleyene Ait Email",max_length=200,blank=True,null=True)
+    beyannameduzenleyeneaittelefon = models.CharField(verbose_name="Beyanname Düzenleyene Ait Telefon Nuımarası",max_length=200,blank=True,null=True)
+
+class ymmbilgileri(models.Model):
+    beyanname_bilgisi = models.ForeignKey(beyanname_bilgileri,blank=True, null=True,on_delete=models.CASCADE)
+    ymmaitbilgilertc = models.CharField(max_length=12,verbose_name="YMM AİT TC",blank=True,null=True)
+    ymmaitbilgilervergino = models.CharField(max_length=100,verbose_name="YMM AİT Vergi No",blank=True,null=True)
+    ymmaitbilgilersoyadiunvan = models.CharField(max_length=200,verbose_name="YMM AİT Soyadi Unvan",blank=True,null=True)
+    ymmaitbilgileradiunvanbilgisi = models.CharField(max_length=200,verbose_name="YMM AİT Adı Unvan",blank=True,null=True)
+    ymmaitbilgileraditicaretsicilno = models.CharField(max_length=200,verbose_name="YMM AİT Ticaret Sicil No",blank=True,null=True)
+    ymmaitbilgilereposta = models.EmailField(max_length=200,verbose_name="YMM AİT EPOSTA",blank=True,null=True)
+    ymmaitbilgilertelefonbilgisi = models.CharField(max_length=12,verbose_name="YMM AİT ;Telefon No",blank=True,null=True)
+
+class Beyannameyi_gonderen_bilgileri(models.Model):
+    beyanname_bilgisi = models.ForeignKey(beyanname_bilgileri,blank=True, null=True,on_delete=models.CASCADE)
+    beyannamegonderentc = models.CharField(max_length=12,verbose_name="Beyannameyi Gönderen TC",blank=True,null=True)
+    beyannamegonderenvergino =  models.CharField(max_length=100,verbose_name="Beyanname Gönderen Vergi No",blank=True,null=True)
+    beyannamegonderensoyadiunvan = models.CharField(max_length=200,verbose_name="Beyanname Gönderen Soyadi Unvan",blank=True,null=True)
+    beyannamegonderenadiunvandevami = models.CharField(max_length=200,verbose_name="Adı Unvan",blank=True,null=True)
+    beyannamegonderentivaretsicilno = models.CharField(max_length=200,verbose_name="Ticaret Sicil No",blank=True,null=True)
+    beyannamegondereneposta = models.EmailField(max_length=200,verbose_name="EPOSTA",blank=True,null=True)
+    beyannamegonderentelefon = models.CharField(max_length=12,verbose_name="Telefon No",blank=True,null=True)
+
+
