@@ -51,11 +51,11 @@
     <div class="row">
 
       <div class="col-4"><label for="firmalar">Firmalar <br>
-          <select style="box-sizing: content-box;" id="firmalar">
+          <select onchange="if (this.value) window.location.href=this.value" style="box-sizing: content-box;" id="firmalar">
             <option value=""></option>
-            <option value="01">WARE YAZILIM EĞİTİM ve DANIŞMANLIK LTD. ŞTİ.</option>
-            <option value="02">OSMANAGA YAZILIM DANIŞMANLIK LTD. ŞTİ.</option>
-            <option value="03">HABİPREİS YAZILIM DANIŞMANLIK LTD. ŞTİ.</option>
+            {% for i in firmalrim %}
+              <option value="/company/show/{{i.firma_ozel_anahtar}}">{{i.firma_unvani}} {{i.Firma_unvani2}} ({{i.tanitici_isim}})</option>
+            {% endfor %}
           </select> </label></div>
       <div class="col-2"></div>
       <div class="col-4">

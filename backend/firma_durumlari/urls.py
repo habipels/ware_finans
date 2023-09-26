@@ -7,4 +7,5 @@ from .views import *
 app_name = "company"
 urlpatterns = [
     path("companysettings/",firma_ekleme,name="Firma_ekle"),
+    path("show/<str:slug>",firma_gosterme,name="firmagosterme"),
 ]

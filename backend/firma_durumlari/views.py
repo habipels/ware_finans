@@ -1,4 +1,4 @@
-from django.shortcuts import render ,redirect,get_object_or_404
+from django.shortcuts import render ,redirect,get_object_or_404,HttpResponse
 from .forms import *
 from users.models import *
 # Create your views here.
@@ -7,9 +7,10 @@ def firma_ekleme(request):
     v = vergi_dairesi.objects.all()
     faliyet_kace_kodu_modal = faliyet_bilgisi.objects.all()
     cvsgik = calisma_sosyal_guvenlik_is_kollari.objects.all()
+    kayitli_firmalarim = firma.objects.filter(silinme_bilgisi = False,firma_muhasabecisi = request.user)
     content = {"form":form,"vergidaireleri":v,
                "faliyet_nace":faliyet_kace_kodu_modal,
-               "cvsgik":cvsgik}
+               "cvsgik":cvsgik,"firmalrim":kayitli_firmalarim}
     if request.method == "POST":
         tanitici_isim = request.POST.get("firmataniticiadi")
         firma_adi = request.POST.get("firmaunvanadi")
@@ -257,3 +258,12 @@ def firma_ekleme(request):
         return redirect ("/")
     else:  
         return render (request,"firma_durumlari/firma_index.html",content)
+    
+
+def firma_gosterme(request,slug):
+    kayitli_firmam = get_object_or_404(firma,silinme_bilgisi = False,firma_ozel_anahtar = slug)
+    sube_bilgisi = get_object_or_404(sube,bagli_oldugu_firma =  kayitli_firmam)
+    content = {}
+    content["kayitlifirmam"]= kayitli_firmam
+    content["sube_bilgisi"] = sube_bilgisi
+    return render (request,"firma_durumlari/firma_duzeletme.html",content)
