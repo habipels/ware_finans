@@ -1234,11 +1234,11 @@
                 <div class="col-6"><label for="sgkdat">
                     SGK Dosya Açılış Tarihi
 
-                  </label><br><input type="date"></div>
+                  </label><br><input name="sgkdosyaacilistarihi" type="date"></div>
                 <div class="col-6"><label for="sgkdkt">
                     SGK Dosya Kapanış Tarihi
 
-                  </label><br><input type="date"></div>
+                  </label><br><input name="sgkdosyakapanistarihi" type="date"></div>
               </div>
 
               <div style="margin-top: 5px;" class="row genel">
@@ -1287,37 +1287,37 @@
               </div>
               <div class="row genel">
                 <div class="col-1">
-                  <input type="text"><br>
+                  <input name="sgkdosyam" type="text"><br>
                 </div>
                 <div class="col-2">
 
-                  <input type="text">
+                  <input name="sgkdosyaiskolukod" type="text">
                 </div>
                 <div class="col-1">
 
-                  <input type="text">
+                  <input name="sgkdosyayeni" type="text">
                 </div>
                 <div class="col-1">
 
-                  <input type="text">
+                  <input name="sgkdosyaeski" type="text">
                 </div>
                 <div class="col-3">
 
-                  <input type="text">
+                  <input name="sgkdosyaisyerisirano" type="text">
                 </div>
                 <div class="col-1">
 
-                  <input type="text">
+                  <input name="sgkdosyailkodu" type="text">
                 </div>
                 <div class="col-1">
-                  <input type="text">
+                  <input name="sgkdosyailcekodu" type="text">
                 </div>
                 <div class="col-1">
-                  <input type="text">
+                  <input name="sgkdosyakontrolno" type="text">
                 </div>
                 <div class="col-1">
 
-                  <input type="text">
+                  <input name="sgkdosyaarackodu" type="text">
                 </div>
               </div>
               <div class="row genel">
@@ -1325,11 +1325,10 @@
                   <label for="iskodu">
                     İş Kodu</label><br>
 
-                  <select id="iskodu">
-                    <option value="00"></option>
-                    <option value="01">1</option>
-                    <option value="02">2</option>
-                    <option value="03">3</option>
+                  <select name="sgkdosyaiskodu" id="iskodu">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
                   </select>
 
                 </div>
@@ -1338,19 +1337,19 @@
                   <label for="il">SGK Bölge Müd.
 
                   </label><br>
-                  <input type="text">
+                  <input name="sgkdosyasfkbolgemud" type="text">
                 </div>
                 <div class="col-3">
                   <label for="il">il
 
                   </label><br>
-                  <input type="text">
+                  <input name="sgkdosyail" type="text">
                 </div>
                 <div class="col-3">
                   <label for="ilce">İlçe
 
                   </label><br>
-                  <input type="text">
+                  <input name="sgkdosyailce" type="text">
                 </div>
               </div>
               <div class="row genel">
@@ -1369,15 +1368,14 @@
 
               <div class="row genel">
                 <div class="col-4">
-                  <select id="iktd">
-                    <option value="00"></option>
-                    <option value="01">Alt</option>
-                    <option value="02">Üst</option>
-                    <option value="03">Normal</option>
+                  <select name="sgkdosyatehlikederecesi" id="iktd">
+                    <option value="Alt">Alt</option>
+                    <option value="Üst">Üst</option>
+                    <option value="Normal">Normal</option>
                   </select>
                 </div>
-                <div class="col-4"><input type="text"></div>
-                <div class="col-4"><input type="text"></div>
+                <div class="col-4"><input name="sgkdosyatehlikesinifi" type="text"></div>
+                <div class="col-4"><input name="sgkdosyaprimorani" type="number"></div>
               </div>
               <div class="row genel">
                 <div class="col-6">
@@ -1386,8 +1384,8 @@
                   </label>
                   <br>
                   <div class="row">
-                    <div class="col-6"><input type="text" value="50"></div>
-                    <div class="col-6"><input type="text" value="150"></div>
+                    <div class="col-6"><input name="sgkfazlamesaiyuzdesialt" type="text" value="50"></div>
+                    <div class="col-6"><input name="sgkfazlamesaiyuzdesiust" type="text" value="150"></div>
                   </div>
 
 
@@ -1400,7 +1398,10 @@
                   <div class="row">
                     <div class="col-4"></div>
                     <div class="col-6">
-                      <input type="text">
+                      <select name="sgkdosyalaribesuygulamasi" id="">
+                        <option value="E">EVET</option>
+                        <option value="H">Hayır</option>
+                      </select>
                     </div>
                     <div class="col-2"></div>
                   </div>
@@ -1414,7 +1415,10 @@
 
                   </label></div>
                 <div class="col-4">
-                  <input type="text">
+                  <select name="sgkdosyatesfik6111kanun" id="">
+                    <option value="E">EVET</option>
+                    <option value="H">Hayır</option>
+                  </select>
                 </div>
                 <div class="col-8">
                   <label for="sisgktfs">
@@ -1423,28 +1427,27 @@
                   </label>
                 </div>
                 <div class="col-3">
-                  <input type="text">
+                  <input name="sgkdosyatesfik6111faydalanmaayi" type="text">
                 </div>
                 <div class="col-1">Ay</div>
                 <div class="col-8"><label for="pgoakn">
                     Personel Girişinde Otomatık Alınacak Kanun Numarası
 
                   </label></div>
-                <div class="col-4"><select id="pgoakn">
-                    <option value="00"></option>
-                    <option value="01">kanun </option>
-                    <option value="02">Üst</option>
-                    <option value="03">Normal</option>
+                <div  class="col-4"><select name ="personel_girisinde_otomatik_kanun" id="pgoakn">
+                    {% for i in sgkpersonelkanun %}
+                      <option value="{{i.id}}">{{i.isim}}</option>
+                    {% endfor %}
+                 
                   </select></div>
                 <div class="col-8"><label for="ptyykn">
                     Personel 6111 /6645 Teşviğinden Yararlanmıyorsa Yeni Kanun Numarası
 
                   </label></div>
-                <div class="col-4"><select id="ptyykn">
-                    <option value="00"></option>
-                    <option value="01">kanun </option>
-                    <option value="02">Üst</option>
-                    <option value="03">Normal</option>
+                <div class="col-4"><select name ="personel_6116645yararlanmiyorsayenikanun" id="ptyykn">
+                    {% for i in sgkpersonelkanun %}
+                      <option value="{{i.id}}">{{i.isim}}</option>
+                    {% endfor %}
                   </select></div>
               </div>
 
@@ -1477,27 +1480,27 @@
                   </label>
                 </div>
                 <div class="col-1">
-                  <input type="text">
+                  <input name="sgkbolges" type="text">
                 </div>
                 <div class="col-4">
-                  <input type="text">
+                  <input name="sgkbolgemeslek" type="text">
                 </div>
                 <div class="col-4">
-                  <input type="text">
+                  <input name="sgkbolgedosyano" type="text">
                 </div>
                 <div class="col-3">
-                  <input type="text">
+                  <input name="sgkbolgeilkodu" type="text">
                 </div>
               </div>
               <div class="row genel">
                 <div class="col-6"><label for="yazismaadresi">
                     Yazışma Adresi
 
-                  </label><input type="text"></div>
+                  </label><input name="sgkbolgeyazismaadresi" type="text"></div>
                 <div class="col-6"><label for="taseronadisoyadi">
                     Taşeron Adı Soyadı
 
-                  </label><input type="text"></div>
+                  </label><input name="sgkbolgetaseronadisoyadi" type="text"></div>
               </div>
 
 
@@ -1507,20 +1510,20 @@
                     İşyeri Numarası
 
                   </label><br>
-                  <input type="text">
+                  <input name="iskurisyerinumarasi" type="text">
                 </div>
                 <div class="col-6"><label for="isverentckimlikno">
                     İşveren TC Kimlik No
 
-                  </label><br><input type="text"></div>
+                  </label><br><input name="iskurisverentc" type="text"></div>
                 <div class="col-6"><label for="ilmkt">
                     İl Müdürlüğü'ne Kayıt Tarihi
 
-                  </label><br><input type="date"></div>
+                  </label><br><input name="iskurilmudkayittarihi" type="date"></div>
                 <div class="col-6"><label for="iskursifresi">
                     İşkur Şifresi
 
-                  </label><br><input type="text"></div>
+                  </label><br><input name="iskursifresi" type="text"></div>
               </div>
 
 

@@ -8,9 +8,10 @@ def firma_ekleme(request):
     faliyet_kace_kodu_modal = faliyet_bilgisi.objects.all()
     cvsgik = calisma_sosyal_guvenlik_is_kollari.objects.all()
     kayitli_firmalarim = firma.objects.filter(silinme_bilgisi = False,firma_muhasabecisi = request.user)
+    sgkpersonelkanun = sgk_kanunlari.objects.all()
     content = {"form":form,"vergidaireleri":v,
                "faliyet_nace":faliyet_kace_kodu_modal,
-               "cvsgik":cvsgik,"firmalrim":kayitli_firmalarim}
+               "cvsgik":cvsgik,"firmalrim":kayitli_firmalarim,"sgkpersonelkanun":sgkpersonelkanun}
     if request.method == "POST":
         tanitici_isim = request.POST.get("firmataniticiadi")
         firma_adi = request.POST.get("firmaunvanadi")
@@ -146,6 +147,40 @@ def firma_ekleme(request):
         beyannamegonderentivaretsicilno = request.POST.get("beyannamegonderentivaretsicilno")
         beyannamegondereneposta = request.POST.get("beyannamegondereneposta")
         beyannamegonderentelefon = request.POST.get("beyannamegonderentelefon")
+        sgkdosyaacilistarihi = request.POST.get("sgkdosyaacilistarihi")
+        sgkdosyakapanistarihi = request.POST.get("sgkdosyakapanistarihi")
+        sgkdosyam = request.POST.get("sgkdosyam")
+        sgkdosyaiskolukod = request.POST.get("sgkdosyaiskolukod")
+        sgkdosyayeni = request.POST.get("sgkdosyayeni")
+        sgkdosyaeski = request.POST.get("sgkdosyaeski")
+        sgkdosyaisyerisirano = request.POST.get("sgkdosyaisyerisirano")
+        sgkdosyailkodu = request.POST.get("sgkdosyailkodu")
+        sgkdosyailcekodu = request.POST.get("sgkdosyailcekodu")
+        sgkdosyakontrolno = request.POST.get("sgkdosyakontrolno")
+        sgkdosyaarackodu = request.POST.get("sgkdosyaarackodu")
+        sgkdosyaiskodu = request.POST.get("sgkdosyaiskodu")
+        sgkdosyasfkbolgemud = request.POST.get("sgkdosyasfkbolgemud")
+        sgkdosyail = request.POST.get("sgkdosyail")
+        sgkdosyailce = request.POST.get("sgkdosyailce")
+        sgkdosyatehlikederecesi = request.POST.get("sgkdosyatehlikederecesi")
+        sgkdosyatehlikesinifi = request.POST.get("sgkdosyatehlikesinifi")
+        sgkdosyaprimorani = request.POST.get("sgkdosyaprimorani")
+        sgkfazlamesaiyuzdesialt = request.POST.get("sgkfazlamesaiyuzdesialt")
+        sgkfazlamesaiyuzdesiust = request.POST.get("sgkfazlamesaiyuzdesiust")
+        sgkdosyalaribesuygulamasi = request.POST.get("sgkdosyalaribesuygulamasi")
+        sgkdosyatesfik6111kanun = request.POST.get("sgkdosyatesfik6111kanun")
+        sgkdosyatesfik6111faydalanmaayi = request.POST.get("sgkdosyatesfik6111faydalanmaayi")
+        personel_girisinde_otomatik_kanun= request.POST.get("personel_girisinde_otomatik_kanun")
+        personel_6116645yararlanmiyorsayenikanun =request.POST.get("personel_6116645yararlanmiyorsayenikanun")
+        sgkbolges = request.POST.get("sgkbolges")
+        sgkbolgemeslek = request.POST.get("sgkbolgemeslek")
+        sgkbolgedosyano = request.POST.get("sgkbolgedosyano")
+        sgkbolgeilkodu = request.POST.get("sgkbolgeilkodu") 
+        sgkbolgeyazismaadresi = request.POST.get("sgkbolgeyazismaadresi")
+        sgkbolgetaseronadisoyadi = request.POST.get("sgkbolgetaseronadisoyadi")
+        iskurisyerinumarasi =request.POST.get("iskurisyerinumarasi")
+        iskurisverentc = request.POST.get("iskurisverentc")
+        iskurilmudkayittarihi = request.POST.get("iskurilmudkayittarihi")
         if isyeribildirgesi_imzalayan == "01":
             isyeribildirgesi_imzalayan = "İş Veren"
         elif isyeribildirgesi_imzalayan == "02":
