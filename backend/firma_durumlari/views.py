@@ -181,6 +181,7 @@ def firma_ekleme(request):
         iskurisyerinumarasi =request.POST.get("iskurisyerinumarasi")
         iskurisverentc = request.POST.get("iskurisverentc")
         iskurilmudkayittarihi = request.POST.get("iskurilmudkayittarihi")
+        iskursifresi=request.POST.get("iskursifresi")
         if isyeribildirgesi_imzalayan == "01":
             isyeribildirgesi_imzalayan = "İş Veren"
         elif isyeribildirgesi_imzalayan == "02":
@@ -288,6 +289,72 @@ def firma_ekleme(request):
           kurumlarsube =kurumlarsube,cikisyeri = cikisyeri,kurumlarajanlik = kurumlarajanlik,
           kurmlarimalatyeri =kurmlarimalatyeri,kurumlarsatisyeri =kurumlarsatisyeri,
           kurumlarsair =kurumlarsair,kurumlartoplam = kurumlartoplam
+
+        )
+        beyanname_verilme = beyanname_bilgileri.objects.create(sube_bilgisi = get_object_or_404(sube,id = yeni_sube.id),
+        beyannamehangisifatlaverildi  = beyannamehangisifatlaverildi ,beyannamesoyadiunvan =beyannamesoyadiunvan ,
+        beyannameadiunvandevami = beyannameadiunvandevami ,beyannameyeaitticaretsicilno =beyannameyeaitticaretsicilno ,
+        beyannameemailadresi= beyannameemailadresi,beyannametelefonumarasi= beyannametelefonumarasi
+        
+        )
+        beyanname_kanuni_temsilcisi.objects.create(
+            beyanname_bilgisi = get_object_or_404(beyanname_bilgileri,id = beyanname_verilme.id),
+            beyannamekanunitemsicitc = beyannamekanunitemsicitc,beyannamekanunitemsicivergino = beyannamekanunitemsicivergino,
+            beyannamekanunitemsicisoyadi = beyannamekanunitemsicisoyadi,
+            beyannamekanunitemsiciadiunvandevami =beyannamekanunitemsiciadiunvandevami,
+            beyannamekanunitemsiciticaretsicilno = beyannamekanunitemsiciticaretsicilno,
+            beyannamekanunitemsicieposta = beyannamekanunitemsicieposta,
+            beyannamekanunitemsicitelefon = beyannamekanunitemsicitelefon 
+        )
+        beyanname_duzenleyene_ait_bilgiler.objects.create(
+            beyanname_bilgisi = get_object_or_404(beyanname_bilgileri,id = beyanname_verilme.id),
+            beyannameduzenleyeneaittc = beyannameduzenleyeneaittc,
+            beyannameduzenleyeneaitvergino = beyannameduzenleyeneaitvergino,
+            beyannameduzenleyeneaitsoyadiunvan = beyannameduzenleyeneaitsoyadiunvan,
+            beyannameduzenleyeneaitadiunvandevami = beyannameduzenleyeneaitadiunvandevami,
+            beyannameduzenleyeneaitticaretsicilno = beyannameduzenleyeneaitticaretsicilno,
+            beyannameduzenleyeneaiteposta = beyannameduzenleyeneaiteposta,
+            beyannameduzenleyeneaittelefon = beyannameduzenleyeneaittelefon
+        )
+        ymmbilgileri.objects.create(
+            beyanname_bilgisi = get_object_or_404(beyanname_bilgileri,id = beyanname_verilme.id),
+            ymmaitbilgilertc = ymmaitbilgilertc,ymmaitbilgilervergino = ymmaitbilgilervergino,
+            ymmaitbilgilersoyadiunvan = ymmaitbilgilersoyadiunvan,ymmaitbilgileradiunvanbilgisi = 
+            ymmaitbilgileradiunvanbilgisi,ymmaitbilgileraditicaretsicilno = ymmaitbilgileraditicaretsicilno,
+            ymmaitbilgilereposta = ymmaitbilgilereposta,ymmaitbilgilertelefonbilgisi = ymmaitbilgilertelefonbilgisi
+        )
+        Beyannameyi_gonderen_bilgileri.objects.create(
+            beyanname_bilgisi = get_object_or_404(beyanname_bilgileri,id = beyanname_verilme.id),
+            beyannamegonderentc = beyannamegonderentc,beyannamegonderenvergino = beyannamegonderenvergino,
+            beyannamegonderensoyadiunvan = beyannamegonderensoyadiunvan,beyannamegonderenadiunvandevami= beyannamegonderenadiunvandevami
+            ,beyannamegonderentivaretsicilno = beyannamegonderentivaretsicilno,beyannamegondereneposta = beyannamegondereneposta,
+            beyannamegonderentelefon = beyannamegonderentelefon
+        )
+        sgk_bilgileri.objects.create(
+            sube_bilgisi = get_object_or_404(sube,id = yeni_sube.id),
+            sgkdosyaacilistarihi= sgkdosyaacilistarihi,sgkdosyakapanistarihi = sgkdosyakapanistarihi,
+            sgkdosyam = sgkdosyam,sgkdosyaiskolukod=sgkdosyaiskolukod,sgkdosyayeni=sgkdosyayeni,
+            sgkdosyaeski = sgkdosyaeski,sgkdosyaisyerisirano=sgkdosyaisyerisirano,sgkdosyailkodu = sgkdosyailkodu
+            ,sgkdosyailcekodu = sgkdosyailcekodu,sgkdosyakontrolno=sgkdosyakontrolno,sgkdosyaarackodu=sgkdosyaarackodu,
+            sgkdosyaiskodu = sgkdosyaiskodu,sgkdosyasfkbolgemud = sgkdosyasfkbolgemud,sgkdosyail=sgkdosyail,
+            sgkdosyailce = sgkdosyailce,sgkdosyatehlikederecesi = sgkdosyatehlikederecesi,sgkdosyatehlikesinifi=sgkdosyatehlikesinifi,
+            sgkdosyaprimorani = sgkdosyaprimorani,sgkfazlamesaiyuzdesialt = sgkfazlamesaiyuzdesialt,sgkfazlamesaiyuzdesiust=sgkfazlamesaiyuzdesiust,
+            sgkdosyalaribesuygulamasi = sgkdosyalaribesuygulamasi,sgkdosyatesfik6111kanun=sgkdosyatesfik6111kanun,
+            sgkdosyatesfik6111faydalanmaayi=sgkdosyatesfik6111faydalanmaayi,
+            personel_girisinde_otomatik_kanun = get_object_or_404(sgk_kanunlari,id = personel_girisinde_otomatik_kanun),
+            personel_6116645yararlanmiyorsayenikanun = get_object_or_404(sgk_kanunlari,id = personel_6116645yararlanmiyorsayenikanun)
+        )
+        sgk_bolgecalisma_mudurlukleri.objects.create(
+            sube_bilgisi = get_object_or_404(sube,id = yeni_sube.id),
+            sgkbolges=sgkbolges,sgkbolgemeslek=sgkbolgemeslek,sgkbolgedosyano=sgkbolgedosyano,
+            sgkbolgeilkodu=sgkbolgeilkodu,sgkbolgeyazismaadresi=sgkbolgeyazismaadresi,
+            sgkbolgetaseronadisoyadi=sgkbolgetaseronadisoyadi
+        )
+        iskurbilgileri.objects.create(
+            sube_bilgisi = get_object_or_404(sube,id = yeni_sube.id),
+            iskurisyerinumarasi=iskurisyerinumarasi,iskurisverentc=
+            iskurisverentc,iskurilmudkayittarihi=iskurilmudkayittarihi,
+            iskursifresi=iskursifresi
 
         )
         return redirect ("/")

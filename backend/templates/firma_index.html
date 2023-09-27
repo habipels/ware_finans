@@ -4,10 +4,15 @@
     <div class="row">
 
       <div class="col-4"><label for="firmalar">Firmalar <br>
-          <select onchange="if (this.value) window.location.href=this.value" style="box-sizing: content-box;" id="firmalar">
-            <option value="/"></option>
+          <select  onchange="if (this.value) window.location.href=this.value" style="box-sizing: content-box;" id="firmalar">
+            <option value="/{{firma.firma_ozel_anahtar}}">{{firma.firma_unvani}} {{firma.Firma_unvani2}} ({{firma.tanitici_isim}})</option>
             {% for i in firmalarim %}
-              <option value="/{{i.firma_ozel_anahtar}}/">{{i.firma_unvani}} {{i.Firma_unvani2}} ({{i.tanitici_isim}})</option>
+             {% if firma.id == i.id %}
+             
+             {% else %}
+             <option value="/{{i.firma_ozel_anahtar}}/">{{i.firma_unvani}} {{i.Firma_unvani2}} ({{i.tanitici_isim}})</option>
+             {% endif %}
+              
             {% endfor %}
           </select> </label></div>
       <div class="col-2"></div>
@@ -15,7 +20,10 @@
 
         <label for="firmalar">Şubeler <br>
           <select style="box-sizing: content-box;" id="firmalar">
-          <option value=""></option>
+          
+            {% for i in subeleri %}
+                <option value="">{{i.sube_adi}} {{i.sube_unvani}}</option>
+            {% endfor %}
           </select> </label>
       </div>
       <div class="col-2">
@@ -43,7 +51,7 @@
                   <button class="btn btn-outline-success yeni"><i class='fa fa-truck'
                       style='font-size:200%;color: rgb(2, 112, 163); '> </i>
                     <br>Sipariş</button>
-                  <a href="Kasa.html" class="btn btn-outline-success yeni"><i class='fa fa-suitcase'
+                  <a href="kasa/" class="btn btn-outline-success yeni"><i class='fa fa-suitcase'
                       style='font-size:200%;color: rgb(2, 112, 163);'> </i>
                     <br>Kasa</a>
                 </div>

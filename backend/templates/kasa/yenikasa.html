@@ -1,0 +1,64 @@
+{% extends "homebase.html" %}
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-2">
+
+        </div>
+        <div class="col-8" style="border: 1px solid black; padding: 20px;">
+            <div class="text-center" ><h2>Kasa Kartı Oluşturma</h2>
+            <hr></div>
+            
+            <form action="">
+                <div class="row genel">
+                    <div class="col-6">
+                        <label for="">Kasa Kodu</label>
+                        <br>
+                        <input type="text" >
+                    </div>
+                    <div class="col-6">
+                        <label for="">Kasa Adı</label>
+                        <br>
+                        <input type="text">
+                    </div>
+                    <div class="col-6">
+                        <label for="">Kasa Açıklaması</label>
+                        <br>
+                        <input type="text">
+                    </div>
+                    <div class="col-6">
+                        <label for="">Muh. Kodu</label>
+                        <div class="row">
+                            <div class="col-10"><input type="text"></div>
+                            <div class="col-2"><button>Sec</button></div>
+                        </div>
+
+                    </div>
+                    <div class="col-4"><label for="">Ent. Kodu</label>
+                        <br>
+                    <select name="" id="">
+                        <option value=""></option>
+                        <option value="">1</option>
+                        <option value="">2</option>
+                    </select></div>
+                    <div class="col-4"><label for="">Döviz Cinsi</label>
+                        <br>
+                    <input type="text" DISABLED value="TL"></div>
+                    <div class="col-4">
+                        <label for="">Özel Kod</label><br>
+                        <input type="text">
+                    </div>
+                    <div class="mt-5" ></div>
+                    <div class="col-4"><button>Kaydet Çık</button></div>
+                    <div class="col-4"><button>Kaydet Yenisini Oluştur</button></div>
+                    <div class="col-4"><button style="color: red;">İptal ET</button></div>
+                </div>
+
+            </form>
+        </div>
+        <div class="col-2">
+            
+        </div>
+    </div>
+</div>
+{% endblock content %}
