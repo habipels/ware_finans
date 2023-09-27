@@ -1,6 +1,7 @@
 from django.shortcuts import render,HttpResponse,get_object_or_404
 from django.http import HttpResponse
 from users.models import *
+from bilgideposu.models import *
 # Create your views here.
 def homepage(request):
     content = {}
@@ -22,4 +23,7 @@ def kasa_sayfasi(request,slug):
 def yeni_kasa_karti_sayfasi(request,slug):
     content ={}
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
+    hesaplar = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) )
+    hesaplar.ordered(HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = None )))
+    content["hesapplanlari"] = hesaplar
     return render(request,"kasa/yenikasa.html",content)
