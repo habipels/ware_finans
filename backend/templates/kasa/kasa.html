@@ -76,167 +76,23 @@
             <th class="text-center">Bakiye</th>
             <th class="text-center" style="min-width: 100px ;">Özel Kod</th>
             <th class="text-center" style="min-width: 150px ;">Muhasebe Kodu</th>
-
-
           </tr>
         </thead>
         <tbody>
+        {% for i in kasakartlarim %}
           <tr>
-
-            <td><input type="radio">01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td><input type="radio">{{i.kasa_kodu}}</td>
+            <td>{{i.kasa_adi}}</td>
+            <td>{{i.aciklama}}</td>
+            <td>{{i.doviz_cinsi}}</td>
+            <td>{{i.entkodu}}</td>
+            <td>{{i.toplam_tahsilat}} {{i.doviz_cinsi}}</td>
+            <td>{{i.toplam_odeme}} {{i.doviz_cinsi}}</td>
+            <td>{{i.toplam_bakiye}} {{i.doviz_cinsi}}</td>
+            <td>{{i.ozel_kod}}</td>
+            <td>{{i.muh_kodu}}</td>
           </tr>
-          <tr>
-
-            <td><input type="radio">01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-
-            <td><input type="radio">01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-
-            <td><input type="radio">01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-
-            <td><input type="radio">01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-
-            <td><input type="radio">01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-
-            <td><input type="radio">01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-
-            <td><input type="radio">01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-
-            <td><input type="radio">01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-
-            <td><input type="radio">01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-
-            <td><input type="radio">01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-
-            <td><input type="radio">01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
+          {% endfor %}
         </tbody>
       </table>
     </div>

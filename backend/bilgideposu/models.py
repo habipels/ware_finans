@@ -301,9 +301,9 @@ class Kasa(models.Model):
    
     doviz = (
         ("",""),
-        ("turklirasi","TL"),
-        ("euro","£"),
-        ("dolar","$")
+        ("TL","TL"),
+        ("Euro","£"),
+        ("Dolar","$")
     )
     kasa_kodu = models.CharField(max_length=100,verbose_name="Kasa Kodu",blank=True,null=True)
     entkodu = models.CharField(max_length=10,choices=entkodu_secim,verbose_name="Ent Kodu",default="",blank=True,null=True)
