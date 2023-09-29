@@ -109,6 +109,14 @@ def yeni_gider_sayfasi(request,slug):
     content["sistemhesapplanlari"] = sistem
     if request.POST:
         anagiderkodu = request.POST.get("anagiderkodu")
+        giderbilgisi = Giderler.objects.filter(bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+        for i in giderbilgisi:
+            if i.gider_kodu == anagiderkodu:
+                anagiderkodu = i.gider_kodu
+                break
+            else:
+                anagiderkodu = ""
+
         giderdetay = request.POST.get("giderdetay")
         giderkodu = request.POST.get("giderkodu")
         gideradi = request.POST.get("gideradi")
@@ -121,6 +129,15 @@ def yeni_gider_sayfasi(request,slug):
         muhkodu1 = request.POST.get("muhkodu1")
         muhkodu2 = request.POST.get("muhkodu2")
         muhkodukdv = request.POST.get("muhkodukdv")
+        Giderler.objects.create(
+            bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),
+            ana_gider_kodu = anagiderkodu,gider_kodu = giderkodu,
+            gider_adi = gideradi,detay = giderdetay,
+            birim= giderbirim,kdv = kdv,doviz_cinsi = dovizcinsi,birim_fiyat_tl = birimfiyati,
+            birim_fiyat_doviz = birimfiyatidoviz,ozel_kod_1 = ozelkod,toplam_alacak = "0",
+            toplam_borc = "0",toplam_bakiye = "0",muh_kodu1 = muhkodu1,
+            muh_kodu2 = muhkodu2,muh_kodukdv = muhkodukdv,silinme_bilgisi = False
+        )
         link = "/"+slug+"/gider/"
         return redirect(link)
     return render(request,"gider_gelir/yeni_gider.html",content)
