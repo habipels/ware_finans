@@ -15,22 +15,22 @@
                     <div class="col-6">
                         <label for="">Kasa Kodu</label>
                         <br>
-                        <input name="kasakodu" type="text" >
+                        <input name="kasakodu" value="{{kart.kasa_kodu}}" type="text" >
                     </div>
                     <div class="col-6">
                         <label for="">Kasa Adı</label>
                         <br>
-                        <input name="kasaadi" type="text">
+                        <input name="kasaadi" value="{{kart.kasa_adi}}" type="text">
                     </div>
                     <div class="col-6">
                         <label for="">Kasa Açıklaması</label>
                         <br>
-                        <input name="kasaaciklamasi"  type="text">
+                        <input name="kasaaciklamasi"  value="{{kart.aciklama}}" type="text">
                     </div>
                     <div class="col-6">
                         <label for="">Muh. Kodu</label>
                         <div class="row">
-                            <div class="col-10"><input name="muhtasarkodu" id="hesapplani" type="text"></div>
+                            <div class="col-10"><input value="{{kart.muh_kodu}}" name="muhtasarkodu" id="hesapplani" type="text"></div>
                             <div class="col-2"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
                         seç
                       </button></div>
@@ -40,21 +40,22 @@
                     <div class="col-4"><label for="">Ent. Kodu</label>
                         <br>
                     <select name="entkodu" id="">
-                        <option value="0"></option>
+                    
+                        <option value="{{kart.entkodu}}">{{kart.entkodu}}</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                     </select></div>
                     <div class="col-4"><label for="">Döviz Cinsi</label>
                         <br>
                         <select name="dovizcinsi" id="">
-                            
+                            <option value="{{kart.doviz_cinsi}}">{{kart.doviz_cinsi}}</option>
                             <option value="TL">TL</option>
                             <option value="Euro">EURO</option>
                             <option value="Dolar">Dolar</option>
                         </select></div>
                     <div class="col-4">
                         <label for="">Özel Kod</label><br>
-                        <input name="ozelkod" type="text">
+                        <input name="ozelkod" value="{{kart.ozel_kod}}" type="text">
                     </div>
                     <div class="mt-5" ></div>
                     <div class="col-4">
