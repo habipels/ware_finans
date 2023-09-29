@@ -442,7 +442,7 @@ class Gelirler(models.Model):
     muh_kodu2 = models.CharField(max_length=100,verbose_name="Muh Kodu 2",blank=True,null=True)
     aciklama = models.TextField(verbose_name="Açıklama",blank=True, null=True)
     silinme_bilgisi = models.BooleanField(default=False)
-"""class kasa_fisleri(models.Model):
+class kasa_fisleri(models.Model):
     fis_islem_turu = (
         ("",""),
         ("Tahsilat Fişi","Tahsilat Fişi"),
@@ -477,5 +477,16 @@ class Gelirler(models.Model):
     odeme_tutari = models.CharField(verbose_name="Borç Tutarı (TL)",max_length=100,blank=True,null=True,default="0")
     tahsilat_tutari = models.CharField(verbose_name="Alacak Tutarı (TL)",max_length=100,blank=True,null=True,default="0")
     cari_unvan = models.ForeignKey(cari_kartlar,blank=True,null=True,verbose_name="Cari Unvan Bilgisi",on_delete=models.SET_NULL)
-    banka_bilgisi = models.ForeignKey(banka,blank=True,null=True,verbose_name="Cari Unvan Bilgisi",on_delete=models.SET_NULL)
-    silinme_bilgisi = models.BooleanField(default=False)"""
+    banka_bilgisi = models.ForeignKey(banka,blank=True,null=True,verbose_name="Banka Bilgisi",on_delete=models.SET_NULL)
+    gider_bilgisi = models.ForeignKey(Giderler,blank=True,null=True,verbose_name="Gider Bilgisi",on_delete=models.SET_NULL)
+    gelri_bilgis = models.ForeignKey(Gelirler,blank=True,null=True,verbose_name="Gelir Bilgisi",on_delete=models.SET_NULL)
+    m = models.CharField(max_length=10,verbose_name="M Bilgisi",blank=True,null=True)
+    ozel_kod_1 = models.CharField(verbose_name="Özel Kod 1",max_length=100,blank=True,null=True)
+    ozel_kod_2 = models.CharField(verbose_name="Özel Kod 2",max_length=100,blank=True,null=True)
+    ent = models.CharField(max_length=10,verbose_name="ent? Bilgisi",blank=True,null=True)
+    uygunkur = models.CharField(max_length=100,verbose_name="Uygun Kur",blank=True,null=True)
+    sube_kodu = models.ForeignKey(sube,blank=True,null=True,verbose_name="Gelir Bilgisi",on_delete=models.SET_NULL)
+    departman = models.CharField(max_length=100,verbose_name="Departman",blank=True,null=True)
+    islemi_yapan = models.CharField(max_length=100,verbose_name="Tahsilatı / Ödemeyi Yapan",blank=True,null=True)
+    islemi_kaydeden_kullanici =  models.CharField(max_length=100,verbose_name="İşlemi Kaydeden Kullanıcı",blank=True,null=True)
+    silinme_bilgisi = models.BooleanField(default=False)
