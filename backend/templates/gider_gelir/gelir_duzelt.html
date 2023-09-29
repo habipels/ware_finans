@@ -1,0 +1,457 @@
+{% extends "homebase.html" %}
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-2">
+
+        </div>
+        <div class="col-8" style="border: 1px solid black; padding: 20px;">
+            <div class="text-center">
+                <h2>Gelir Düzeltme</h2>
+                <hr>
+            </div>
+
+            <form method="post">
+                {% csrf_token %}
+                <div class="row genel">
+                    <div class="col-8">
+                        <label for="">Ana Gelir Kodu</label>
+                        <br>
+                        <input name="anagiderkodu" id="anagiderkodu" value="{{giderr.ana_gelir_kodu}}" data-bs-toggle="modal" data-bs-target="#myModal"
+                            type="text">
+                    </div>
+                    <div class="col-4">
+                        <label for="">Detay (E/H)</label>
+                        <br>
+                        <select name="giderdetay" id="">
+                        
+                        <option value="{{giderr.detay}}">{{giderr.detay}}</option>
+                            <option value="Evet">E</option>
+                            <option value="Hayır">H</option>
+                        </select>
+                    </div>
+                    <hr>
+                    <div class="col-6">
+                        <label for="">Gelir Kodu</label>
+                        <br>
+                        <input value="{{giderr.gelir_kodu}}" name="giderkodu" type="text">
+                    </div>
+                    <div class="col-6">
+                        <label for="">Gelir Adı</label>
+                        <br>
+                        <input value="{{giderr.gelir_adi}}" name="gideradi" type="text">
+                    </div>
+                    <div class="col-4"><label for="">Birim</label>
+                        <br><input value="{{giderr.birim}}" name="giderbirim" type="text" >
+                    </div>
+                    <div class="col-4"><label for="">KDV (%)</label>
+                        <br>
+                        <input value="{{giderr.kdv}}" type="text" name="kdv" value="20.00">
+                    </div>
+                    <div class="col-4"><label for="">Özel Kod</label>
+                        <input value="{{giderr.ozel_kod_1}}" name="ozelkod" type="text">
+                    </div>
+                    <div class="col-4"><label for="">Döviz Cinsi</label>
+                        <br>
+                        <select name="dovizcinsi" id="">
+                            <option value="{{giderr.doviz_cinsi}}">{{giderr.doviz_cinsi}}</option>
+                            <option value="TL">TL</option>
+                            <option value="Euro">USD</option>
+                            <option value="Dolar">EURO</option>
+                        </select>
+                    </div>
+                    <div class="col-4"><label for="">Birim Fiyatı TL</label>
+                        <br>
+                        <input value="{{giderr.birim_fiyat_tl}}" name="birimfiyati" type="text">
+                    </div>
+                    <div class="col-4"><label for="">Birim Fiyatı Döviz</label>
+                        <br>
+                        <input value="{{giderr.birim_fiyat_doviz}}" name="birimfiyatidoviz" type="text">
+                    </div>
+                    <hr>
+                    <div class="col-4">
+                        <label for="">Muh. Kodu-1</label>
+                        <div class="row">
+                            <div class="col-7"><input value="{{giderr.muh_kodu1}}" name="muhkodu1" id="muhkodu1" type="text"></div>
+                            <div class="col-5"><button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#muhkodu11">Sec</button></div>
+                        </div>
+
+                    </div>
+                    <div class="col-4">
+                        <label for="">Muh. Kodu-2</label>
+                        <div class="row">
+                            <div class="col-7"><input value="{{giderr.muh_kodu2}}" name="muhkodu2" id="muhkodu2" type="text"></div>
+                            <div class="col-5"><button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#muhkodu21">Sec</button></div>
+                        </div>
+
+                    </div>
+                    <div class="col-4">
+                       
+                        
+
+                    </div>
+                    <hr>
+                    <div class="mt-5"></div>
+                    <div class="col-4"><button type="submit" class="btn btn-primary" >Kaydet Çık</button></div>
+                    <div class="col-4"><button>Kaydet Yenisini Oluştur</button></div>
+                    <div class="col-4"><a href="/{{firma.firma_ozel_anahtar}}/gelir/" type="submit" class="btn btn-primary" >İptal Et</a></div>
+                </div>
+
+            </form>
+        </div>
+        <div class="col-2">
+
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="myModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Gelir Seç</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <input type="text" id="searchInput" class="form-control" placeholder="Arama...">
+
+                <table class="table table-striped mt-3">
+                    <thead>
+                        <tr>
+                            <th>Gelir Kodu</th>
+                            <th>Gelir Adı</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in gider %}
+                        <tr>
+                            <td>{{i.gelir_kodu}}</td>
+                            <td>{{i.gelir_adi}}</td>
+
+                        </tr>
+                        {% endfor %}
+
+
+                        <!-- Diğer satırları burada ekleyin -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+            Seçmek için listeye Tıklamanız Yeterlidir.
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kapat</button>
+        </div>
+
+    </div>
+</div>
+
+
+
+<div class="modal" id="muhkodu11">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Hesap Planı Seç</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <input type="text" id="searchInputmuhkodu11" class="form-control" placeholder="Arama...">
+
+                <table class="table table-striped mt-3 tablemuhkodu11">
+                    <thead>
+                        <tr>
+                            <th>Hesap Kodu</th>
+                            <th>Hesap AdI</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in sistemhesapplanlari %}
+                        <tr>
+                            <td>{{i.hesap_kodu}}</td>
+                            <td>{{i.hesap_adi}}</td>
+
+                        </tr>
+                        {% endfor %}
+                        {% for i in hesapplanlari %}
+                        <tr>
+                            <td>{{i.hesap_kodu}}</td>
+                            <td>{{i.hesap_adi}}</td>
+
+                        </tr>
+                        {% endfor %}
+
+
+                        <!-- Diğer satırları burada ekleyin -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+            Seçmek için listeye Tıklamanız Yeterlidir.
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kapat</button>
+        </div>
+
+    </div>
+</div>
+<div class="modal" id="muhkodu21">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Hesap Planı Seç</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <input type="text" id="searchInputmuhkodu21" class="form-control" placeholder="Arama...">
+
+                <table class="table table-striped mt-3 tablemuhkodu21">
+                    <thead>
+                        <tr>
+                            <th>Hesap Kodu</th>
+                            <th>Hesap AdI</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in sistemhesapplanlari %}
+                        <tr>
+                            <td>{{i.hesap_kodu}}</td>
+                            <td>{{i.hesap_adi}}</td>
+
+                        </tr>
+                        {% endfor %}
+                        {% for i in hesapplanlari %}
+                        <tr>
+                            <td>{{i.hesap_kodu}}</td>
+                            <td>{{i.hesap_adi}}</td>
+
+                        </tr>
+                        {% endfor %}
+
+
+                        <!-- Diğer satırları burada ekleyin -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+            Seçmek için listeye Tıklamanız Yeterlidir.
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kapat</button>
+        </div>
+
+    </div>
+</div>
+<div class="modal" id="muhkodukdv1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Hesap Planı Seç</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <input type="text" id="searchInputmuhkodukdv1" class="form-control" placeholder="Arama...">
+
+                <table class="table table-striped mt-3 tablemuhkodukdv1">
+                    <thead>
+                        <tr>
+                            <th>Hesap Kodu</th>
+                            <th>Hesap AdI</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in sistemhesapplanlari %}
+                        <tr>
+                            <td>{{i.hesap_kodu}}</td>
+                            <td>{{i.hesap_adi}}</td>
+
+                        </tr>
+                        {% endfor %}
+                        {% for i in hesapplanlari %}
+                        <tr>
+                            <td>{{i.hesap_kodu}}</td>
+                            <td>{{i.hesap_adi}}</td>
+
+                        </tr>
+                        {% endfor %}
+
+
+                        <!-- Diğer satırları burada ekleyin -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+            Seçmek için listeye Tıklamanız Yeterlidir.
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kapat</button>
+        </div>
+
+    </div>
+</div>
+
+
+<script>
+    const muhkodukdv1 = document.getElementById('searchInputmuhkodukdv1');
+    const tablemuhkodukdv1 = document.querySelector('.tablemuhkodukdv1');
+    const muhkodukdv = document.getElementById('muhkodukdv');
+    muhkodukdv1.addEventListener('input', function () {
+        const tablemuhkodukdv111 = this.value.toLowerCase();
+
+        for (const row of tablemuhkodukdv1.rows) {
+            let found = false;
+            for (const cell of row.cells) {
+                if (cell.textContent.toLowerCase().includes(tablemuhkodukdv111)) {
+                    found = true;
+                    break;
+                }
+            }
+            row.style.display = found ? '' : 'none';
+        }
+    });
+
+    // Tablo satırlarına tıklama olayını ekle
+    const tablemuhkodukdv1Rows = tablemuhkodukdv1.getElementsByTagName('tr');
+    for (let i = 1; i < tablemuhkodukdv1Rows.length; i++) {
+        tablemuhkodukdv1Rows[i].addEventListener('click', function () {
+            const cells = this.cells;
+            const rowData = {
+                id: cells[0].textContent,
+                ad: cells[1].textContent,
+            };
+
+            // Seçilen veriyi input'a yaz
+            muhkodukdv.value = `${rowData.id}`;
+        });
+    }
+</script>
+<script>
+    const muhkodu21 = document.getElementById('searchInputmuhkodu21');
+    const tablemuhkodu21 = document.querySelector('.tablemuhkodu21');
+    const muhkodu2 = document.getElementById('muhkodu2');
+    muhkodu21.addEventListener('input', function () {
+        const tablemuhkodu211 = this.value.toLowerCase();
+
+        for (const row of tablemuhkodu21.rows) {
+            let found = false;
+            for (const cell of row.cells) {
+                if (cell.textContent.toLowerCase().includes(tablemuhkodu211)) {
+                    found = true;
+                    break;
+                }
+            }
+            row.style.display = found ? '' : 'none';
+        }
+    });
+
+    // Tablo satırlarına tıklama olayını ekle
+    const tablemuhkodu21Rows = tablemuhkodu21.getElementsByTagName('tr');
+    for (let i = 1; i < tablemuhkodu21Rows.length; i++) {
+        tablemuhkodu21Rows[i].addEventListener('click', function () {
+            const cells = this.cells;
+            const rowData = {
+                id: cells[0].textContent,
+                ad: cells[1].textContent,
+            };
+
+            // Seçilen veriyi input'a yaz
+            muhkodu2.value = `${rowData.id}`;
+        });
+    }
+</script>
+
+<script>
+    const muhkodu11 = document.getElementById('searchInputmuhkodu11');
+    const tablemuhkodu11 = document.querySelector('.tablemuhkodu11');
+    const muhkodu1 = document.getElementById('muhkodu1');
+    muhkodu11.addEventListener('input', function () {
+        const tablemuhkodu111 = this.value.toLowerCase();
+
+        for (const row of tablemuhkodu11.rows) {
+            let found = false;
+            for (const cell of row.cells) {
+                if (cell.textContent.toLowerCase().includes(tablemuhkodu111)) {
+                    found = true;
+                    break;
+                }
+            }
+            row.style.display = found ? '' : 'none';
+        }
+    });
+
+    // Tablo satırlarına tıklama olayını ekle
+    const tablemuhkodu11Rows = tablemuhkodu11.getElementsByTagName('tr');
+    for (let i = 1; i < tablemuhkodu11Rows.length; i++) {
+        tablemuhkodu11Rows[i].addEventListener('click', function () {
+            const cells = this.cells;
+            const rowData = {
+                id: cells[0].textContent,
+                ad: cells[1].textContent,
+            };
+
+            // Seçilen veriyi input'a yaz
+            muhkodu1.value = `${rowData.id}`;
+        });
+    }
+</script>
+<script>
+    const searchInput = document.getElementById('searchInput');
+    const table = document.querySelector('.table');
+    const firmavergidairesikodu = document.getElementById('anagiderkodu');
+    const firmavergidairesi = document.getElementById("anagiderkodu");
+    searchInput.addEventListener('input', function () {
+        const searchText = this.value.toLowerCase();
+
+        for (const row of table.rows) {
+            let found = false;
+            for (const cell of row.cells) {
+                if (cell.textContent.toLowerCase().includes(searchText)) {
+                    found = true;
+                    break;
+                }
+            }
+            row.style.display = found ? '' : 'none';
+        }
+    });
+
+    // Tablo satırlarına tıklama olayını ekle
+    const tableRows = table.getElementsByTagName('tr');
+    for (let i = 1; i < tableRows.length; i++) {
+        tableRows[i].addEventListener('click', function () {
+            const cells = this.cells;
+            const rowData = {
+                id: cells[0].textContent,
+                ad: cells[1].textContent,
+            };
+
+            // Seçilen veriyi input'a yaz
+            firmavergidairesi.value = `${rowData.id}`;
+            firmavergidairesikodu.value = `${rowData.id}`;
+        });
+    }
+</script>
+<script src="https://unpkg.com/popper.js/dist/umd/popper.min.js"></script>
+<script src="https://unpkg.com/bootstrap/dist/js/bootstrap.min.js"></script>
+{% endblock content %}

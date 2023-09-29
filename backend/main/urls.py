@@ -13,4 +13,12 @@ urlpatterns = [
     #gider işlemelri
     path("<str:slug>/gider/", views.gider_sayfasi, name="gider_sayfasi"),
     path("<str:slug>/yenigider/", views.yeni_gider_sayfasi, name="yeni_gider_sayfasi"),
+    path("<str:slug>/giderduzelt/<int:id>/", views.gider_duzeltme_sayfasi, name="gider_duzeltme_sayfasi"),
+    path("<str:slug>/gidersil/<int:id>/", views.gider_silme_sayfasi, name="gider_silme_sayfasi"),
+    #gider işlemelri
+    #gelir İşlemelri
+    path("<str:slug>/gelir/", views.gelir_sayfasi, name="gelir_sayfasi"),
+    path("<str:slug>/yenigelir/", views.yeni_gelir_sayfasi, name="yeni_gelir_sayfasi"),
+    path("<str:slug>/gelirduzelt/<int:id>/", views.gelir_duzeltme_sayfasi, name="gelir_duzeltme_sayfasi"),
+    path("<str:slug>/gelirsil/<int:id>/", views.gelir_silme_sayfasi, name="gelir_silme_sayfasi"),
 ]
