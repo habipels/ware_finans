@@ -323,3 +323,10 @@ def gelir_silme_sayfasi(request,slug,id):
     return redirect(link)
 
 #Gelir İşlemeleri
+#Cari işlemeler
+def cari_sayfasi(request,slug):
+    content ={}
+    content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
+    content["carikartlari"] = cari_kartlar.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    return render(request,"cari/cari.html",content)
+#Cari İşlemeler

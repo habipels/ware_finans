@@ -358,6 +358,7 @@ class cari_kartlar(models.Model):
         ("Üye","Üye"),
     )
     ana_cari_kodu = models.CharField(max_length=100,verbose_name="Ana Cari Kodu",blank=True,null=True)
+    bagli_oldugu_firma = models.ForeignKey(firma,blank=True,null=True,on_delete=models.SET_NULL)
     detay = models.CharField(max_length=100,verbose_name="Detay",choices=detay_secim,default="",blank=True,null=True)
     listede_gorunsun = models.CharField(max_length=100,verbose_name="Listede Görünsün",choices=detay_secim,default="",blank=True,null=True)
     cari_kodu = models.CharField(max_length=100,verbose_name="Cari Kodu",blank=True,null=True)
@@ -380,7 +381,7 @@ class cari_kartlar(models.Model):
     grup_kod_1 = models.CharField(verbose_name="Grup Kod 1",max_length=100,blank=True,null=True)
     grup_kod_2 = models.CharField(verbose_name="Grup Kod 2",max_length=100,blank=True,null=True)
     grup_kod_3 = models.CharField(verbose_name="Grup Kod 3",max_length=100,blank=True,null=True)
-
+    silinme_bilgisi = models.BooleanField(default=False)
 class Giderler(models.Model):
     detay_secim = (
         ("",""),
