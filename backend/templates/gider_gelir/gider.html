@@ -1,0 +1,114 @@
+{% extends "homebase.html" %}
+{% block content %}
+  <div class="icon-bar">
+
+    <a href="/{{firma.firma_ozel_anahtar}}/yenigider/">Yeni Gider </a>
+    <a href="">Düzelt</a>
+    <a href="">Sil</a>
+    <a href="">Rapor</a>
+    <a href="" style="color:red;">Çıkış Yap (ESC)</a>
+
+  </div>
+  <div class="d-menu">
+    <ul>
+      <li>
+        <ul>
+
+        </ul><a href="" title="">Gider Kartı Virmanı</a>
+      </li>
+      <li>
+        <ul>
+
+        </ul><a href="" title="">Hesap Planına Göre Güncelle</a>
+
+      </li>
+
+      <li>
+        <a href="" title="">Fiş İncele</a>
+      </li>
+      <li>
+        <a href="" title="">Fiş Düzelt</a>
+      </li>
+      <li>
+        <a href="" title="">Fiş Sil</a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="container mt-3 tablo">
+    <div class="table-responsive " style="
+  height: 300px;
+  overflow: auto;">
+      <table class="table table-bordered ">
+        <thead style="position: sticky;top: 0">
+          <tr>
+            <th class="text-center" style="min-width: 100px ;">Gider Kodu</th>
+            <th class="text-center" style="min-width: 50px ;">Gider Adı</th>
+            <th class="text-center" style="min-width: 150px ;">Birim</th>
+            <th class="text-center" style="min-width: 100px ;">Detay</th>
+            <th class="text-center">Borç Tutarı (TL)</th>
+            <th class="text-center" style="min-width: 150px ;">Alacak Tutarı (TL)</th>
+            <th class="text-center" style="min-width: 150px ;">Bakiye Tutarı (TL)</th>
+            <th class="text-center">Ana Gider Kodu</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for i in giderler %}
+               
+          <tr>
+
+            <td> <input type="radio">{{i.gider_kodu}}</td>
+            <td>{{i.gider_adi}}</td>
+            <td>{{i.birim}}</td>
+            <td>{{i.detay}}</td>
+            <td>{{i.toplam_borc}}</td>
+            <td>{{i.toplam_alacak}}</td>
+            <td>{{i.toplam_bakiye}}</td>
+            <td>{{i.ana_gider_kodu}}</td>
+
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="container mt-3 tablo">
+    <div class="table-responsive " style="
+    height: 300px;
+    overflow: auto;">
+      <table class="table table-bordered">
+        <thead style="position: sticky;top: 0">
+          <tr>
+            <th class="text-center">Tarih</th>
+            <th class="text-center" style="min-width: 100px ;">İşlem Türü</th>
+            <th class="text-center">Tip</th>
+            <th class="text-center" style="min-width: 100px ;">Evrak No</th>
+            <th class="text-center" style="min-width: 100px ;">Cari Adı</th>
+            <th class="text-center">Döviz Cinsi</th>
+            <th class="text-center">Tutar (Dvz)</th>
+            <th class="text-center">Borç Tutarı (TL)</th>
+            <th class="text-center" style="min-width: 150px ;">Alacak Tutarı (TL)</th>
+            <th class="text-center" style="min-width: 150px ;">Uygun Kur</th>
+            <th class="text-center" style="min-width: 150px ;">Açıklama</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>05.07.2023</td>
+            <td>Gelen Havale</td>
+            <td>1</td>
+            <td>0001</td>
+            <td>Ware Yazılım </td>
+            <td>TL</td>
+            <td></td>
+            <td>100.00</td>
+            <td>10.00</td>
+            <td></td>
+            <td>Ödeme Tutarı</td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock content %}

@@ -90,3 +90,37 @@ def kasa_karti_silme_sayfasi(request,slug,id):
     )
     link = "/"+slug+"/kasa/"
     return redirect(link)
+
+def gider_sayfasi(request,slug):
+    content ={}
+    content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
+    content["giderler"] = Giderler.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    return render(request,"gider_gelir/gider.html",content)
+
+
+def yeni_gider_sayfasi(request,slug):
+    content ={}
+    content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
+    gider = Giderler.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) )
+    content["gider"] = gider
+    hesaplar = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) )
+    sistem = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =None)
+    content["hesapplanlari"] = hesaplar
+    content["sistemhesapplanlari"] = sistem
+    if request.POST:
+        anagiderkodu = request.POST.get("anagiderkodu")
+        giderdetay = request.POST.get("giderdetay")
+        giderkodu = request.POST.get("giderkodu")
+        gideradi = request.POST.get("gideradi")
+        giderbirim = request.POST.get("giderbirim")
+        kdv = float(request.POST.get("kdv"))
+        ozelkod = request.POST.get("ozelkod")
+        dovizcinsi = request.POST.get("dovizcinsi")
+        birimfiyati = request.POST.get("birimfiyati")
+        birimfiyatidoviz = request.POST.get("birimfiyatidoviz")
+        muhkodu1 = request.POST.get("muhkodu1")
+        muhkodu2 = request.POST.get("muhkodu2")
+        muhkodukdv = request.POST.get("muhkodukdv")
+        link = "/"+slug+"/gider/"
+        return redirect(link)
+    return render(request,"gider_gelir/yeni_gider.html",content)
