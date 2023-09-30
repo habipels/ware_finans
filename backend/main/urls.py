@@ -23,5 +23,16 @@ urlpatterns = [
     path("<str:slug>/gelirsil/<int:id>/", views.gelir_silme_sayfasi, name="gelir_silme_sayfasi"),
     #cari işlemleri
     path("<str:slug>/cari/", views.cari_sayfasi, name="cari_sayfasi"),
+    path("<str:slug>/yenicari/", views.yeni_cari_karti, name="yeni_cari_karti"),
     #cari işlemleri
+    #stok işlemelri
+    path("<str:slug>/stok/", views.stok_sayfasi, name="stok_sayfasi"),
+    path("<str:slug>/yenistok/", views.yeni_stok_karti, name="yeni_stok_karti"),
+    #stok İşlemelri
+    #stok işlemelri
+    path("<str:slug>/fatura/", views.fatura_sayfasi, name="fatura_sayfasi"),
+    #stok İşlemelri
+    #siparis işlemleri 
+    path("<str:slug>/siparis/", views.siparis_sayfasi, name="siparis_sayfasi"),
+    #siparis işlemeleri
 ]

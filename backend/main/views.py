@@ -329,4 +329,37 @@ def cari_sayfasi(request,slug):
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     content["carikartlari"] = cari_kartlar.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
     return render(request,"cari/cari.html",content)
+def yeni_cari_karti(request,slug):
+    content ={}
+    content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
+    if request.POST:
+        anacarikodu = request.POST.get("anacarikodu")
+        caridetay = request.POST.get("caridetay")
+        print(anacarikodu,caridetay)
+    return render(request,"cari/yenicari.html",content)
 #Cari İşlemeler
+#Stok İşlemleri
+def stok_sayfasi(request,slug):
+    content ={}
+    content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
+    return render(request,"stok/stok.html",content)
+
+def yeni_stok_karti(request,slug):
+    content ={}
+    content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
+    return render(request,"stok/yeni_stok.html",content)
+#Stok İşlemleri
+
+#Fatura İşlemleri
+def fatura_sayfasi(request,slug):
+    content ={}
+    content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
+    return render(request,"fatura/fatura.html",content)
+#Fatura İşlemleri
+
+#Sipariş Sayfası
+def siparis_sayfasi(request,slug):
+    content ={}
+    content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
+    return render(request,"siparis/siparis.html",content)
+#Sipariş Sayfası

@@ -1,107 +1,5 @@
-<!DOCTYPE html>
-<html lang="tr">
-
-<head>
-  <title>Ware Finans</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/style1.css">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-</head>
-
-<body class="body1">
-  <!--Header-->
-
-  <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-    <div class="container-fluid">
-      <a href="/">
-        <img src="resimler/icon.png" alt="WARE SOFT FİNANS"></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="mynavbar">
-        <ul class="navbar-nav me-auto">
-          <li class="nav-item">
-            <a class="nav-link" style="color:rgb(255, 255, 255);" href="index.html">Anasayfa</a>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link" style="color:rgb(8, 179, 8);" href="login.html">Giriş Yap</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" style="color:rgb(28, 127, 227);" href="javascript:void(0)">Kayıt Ol</a>
-          </li>
-          <li class="nav-item">
-            <div class="dropdown" style="margin-right: 10px;">
-              <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1"
-                data-bs-toggle="dropdown" aria-expanded="false">
-                Muhasebe Durumu
-              </button>
-
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li>
-                  <div class="dropdown">
-                    <button class="dropdown-item dropdown-toggle" type="button" id="dropdownMenuButton2"
-                      data-bs-toggle="dropdown" aria-expanded="false">
-                      Firma Bilgileri
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton2">
-                      <li><a class="dropdown-item" href="firma_ekle.html">Firma Bilgileri</a></li>
-                      <li><a class="dropdown-item" href="#">Firma Ekle</a></li>
-                      <li><a class="dropdown-item" href="#">Firma Güncelle</a></li>
-                      <li><a class="dropdown-item" href="#">Firma Sil </a></li>
-                      <li><a class="dropdown-item" href="#">Firma Aktar</a></li>
-                      <li><a class="dropdown-item" href="#">Şube Ekle</a></li>
-                      <li><a class="dropdown-item" href="#">Şube Güncelle</a></li>
-                      <li><a class="dropdown-item" href="#">Şube Sil</a></li>
-                      <li><a class="dropdown-item" href="#">Var Olan Firmalar Listesi Çıkar</a></li>
-                      <li><a class="dropdown-item" href="#">Silinen Firmalar Listesi Çıkar</a></li>
-                      <li><a class="dropdown-item" href="#">Dilekçe Oluştur</a></li>
-                    </ul>
-                  </div>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#">Seçenek 1</a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#">Seçenek 2</a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#">Seçenek 3</a>
-                </li>
-
-              </ul>
-            </div>
-
-            <script>
-              // İkinci dropdown açıldığında, birinci dropdown'un kapanmasını engelle
-              $('.dropdown .dropdown-menu').on('click', function (e) {
-                e.stopPropagation();
-              });
-            </script>
-
-          </li>
-          <li class="nav-item">
-            <div style="color:rgb(255, 255, 255);" class="dropdown">
-              <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
-                Hesabım
-              </button>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item " href="#">Lisans Bilgileri</a></li>
-                <li><a class="dropdown-item " href="#">Kullanıcı Ekle</a></li>
-                <li><a class="dropdown-item " href="#">Destek</a></li>
-                <li><a class="dropdown-item " href="#">Şifre Değiştirme</a></li>
-              </ul>
-            </div>
-          </li>
-        </ul>
-
-      </div>
-    </div>
-  </nav>
-  <!--Header-->
+{% extends "homebase.html" %}
+{% block content %}
   <div class="icon-bar">
 
     <a href="yeni_kasakarti.html">Kaydet / Yeni</a>
@@ -540,6 +438,45 @@
       </table>
     </div>
   </div>
-</body>
+<script>
+    function redirectToSelectedLink() {
+        const radioButtons = document.getElementsByName('kasakartlari');
+        let selectedLink = null;
 
-</html>
+        for (const radioButton of radioButtons) {
+            if (radioButton.checked) {
+                selectedLink = radioButton.value;
+                break;
+            }
+        }
+
+        if (selectedLink) {
+            window.location.href = "/{{firma.firma_ozel_anahtar}}/gelirduzelt/" + selectedLink;
+        } else {
+            alert('Lütfen bir Kasa Kartı seçin.');
+        }
+    }
+    function showConfirmationPopup() {
+        const radioButtons = document.getElementsByName('kasakartlari');
+        let selectedLink = null;
+
+        for (const radioButton of radioButtons) {
+            if (radioButton.checked) {
+                selectedLink = radioButton.value;
+                break;
+            }
+        }
+
+        // Pop-up penceresini aç
+        const confirmation = confirm("Silmek İstediğinden Emin misiniz?");
+
+        // Kullanıcının seçimine göre işlem yap
+        if (confirmation) {
+            // Kullanıcı "Evet" dedi, yönlendirme yap
+            window.location.href = "/{{firma.firma_ozel_anahtar}}/gelirsil/" + selectedLink;
+        } else {
+            // Kullanıcı "Hayır" dedi, isteğe bağlı olarak başka bir işlem yapabilirsiniz
+        }
+    }
+</script>
+{% endblock content %}

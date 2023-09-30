@@ -2,10 +2,10 @@
 {% block content %}
   <div class="icon-bar">
 
-    <a href="/{{firma.firma_ozel_anahtar}}/yenicari/">Yeni Cari Kartı </a>
+    <a href="/{{firma.firma_ozel_anahtar}}/yenistok/">Yeni Stok Kartı </a>
     <a href="">Kart İncele-Düzelt</a>
-    <a href="">Kart Kopyala</a>
     <a href="">Kart Sil</a>
+    <a href="">İthalat/ihracat Dosyaları</a>
     <a href="" style="color:red;">Çıkış Yap (ESC)</a>
 
   </div>
@@ -13,41 +13,40 @@
     <ul>
       <li>
         <ul>
-          </ul><a href="" title="">Dekont İşlemleri</a>
+          <li><a href="tahsilatfisi.html" title="">Tahsilat Fişi</a></li>
+          <li><a href="odemefisi.html" title="">Ödeme Fişi</a></li>
+          <li><a href="virman.html" title="">Virman Fişi</a></li>
+          <li><a href="dovizfisi.html" title="">Döviz Fişi</a></li>
+          <li><a href="kasaacilis.html" title="">Açılış Fişi</a></li>
+          <li><a href="kasacaritahsilat.html" title="">Kasa Tahsilat Makbuzu</a></li>
+          <li><a href="kasacariodeme.html" title="">Kasa Ödeme Makbuzu</a></li>
+          <li><a href="kasamaasodemesi.html" title="">Maaş Ödeme (Kasa)</a></li>
+        </ul><a href="" title="">Depolar</a>
       </li>
       <li>
         <ul>
-        </ul><a href="" title="">Banka İşlemleri</a>
+          <li><a href="kasacariodeme.html" title="">Ödeme Fişi</a></li>
+          <li><a href="kasacaritahsilat.html" title="">Tahsilat Fişi</a></li>
+          <li><a href="" title="">Maaş Ödemesi (Kasa)</a></li>
+        </ul><a href="" title="">Barkod İşlemleri</a>
 
       </li>
       <li>
         <ul>
-          </ul><a href="" title="">Fatura İşlemleri</a>
+          <li><a href="bankayayatirilan.html" title="">Bankaya Yatırılan</a></li>
+          <li><a href="bankadancekilen.html" title="">Bankadan Çekilen</a></li>
+        </ul><a href="" title="">Seri No - Lot Detay Takip</a>
       </li>
       <li>
         <ul>
-          </ul><a href="" title="">Çek/Senet İşlemleri </a>
-      </li>
-      <li>
-        <ul>
-          </ul><a href="" title=""style="color:red;">Hareketleri </a>
-      </li>
-      <li>
-        <ul>
-          </ul><a href="" title=""style="color:red;">Ödeme Planları </a>
+          <li><a href="" title="">Çek/Senet Tahsili</a></li>
+          <li><a href="" title="">Senet Ödemesi</a></li>
+        </ul><a href="" title="">Fiyat/KDV Değiştir</a>
       </li>
       <li>
         <a href="" title="">Evrak Bul</a>
       </li>
-      <li>
-        <a href="" title="">Fiş İncele</a>
-      </li>
-      <li>
-        <a href="" title="">Fiş Düzelt</a>
-      </li>
-      <li>
-        <a href="" title="">Fiş Sil</a>
-      </li>
+
     </ul>
   </div>
 
@@ -58,21 +57,23 @@
       <table class="table table-bordered ">
         <thead style="position: sticky;top: 0">
           <tr>
-            <th class="text-center" style="min-width: 100px ;">Cari Kodu</th>
-            <th class="text-center" style="min-width: 150px ;">Cari Adı</th>
-            <th class="text-center" >Detay</th>
-            <th class="text-center" style="min-width: 100px ;">Cari Tipi</th>
-            <th class="text-center" style="min-width: 150px ;">Borç Toplamı</th>
-            <th class="text-center" style="min-width: 150px ;">Alacak Toplam</th>
-            <th class="text-center" >Bakiye</th>
-            <th class="text-center">B/A</th>
-            <th class="text-center" >Semt</th>
-            <th class="text-center" >Şehir</th>
-            <th class="text-center">Adres(1)</th>
-            <th class="text-center" style="min-width: 200px ;">Takip Dvz. Cinsi</th>
+            <th class="text-center" style="min-width: 100px ;">Stok Kodu</th>
+            <th class="text-center" style="min-width: 50px ;">Stok Adı</th>
+            <th class="text-center" style="min-width: 150px ;">Birim</th>
+            <th class="text-center" style="min-width: 100px ;">Tür</th>
+            <th class="text-center">D?</th>
+            <th class="text-center" style="min-width: 150px ;">Giriş Miktarı</th>
+            <th class="text-center" style="min-width: 150px ;">Giriş Tutarı</th>
+            <th class="text-center">Çıkış Miktarı</th>
+            <th class="text-center" style="min-width: 100px ;">Çıkış Tutarı</th>
+            <th class="text-center" style="min-width: 150px ;">Bak.Miktarı</th>
+            <th class="text-center">Birim(2)</th>
+            <th class="text-center" style="min-width: 100px ;">2. Birime Göre Miktar</th>
+            <th class="text-center">Birim(3)</th>
+            <th class="text-center" style="min-width: 100px ;">3. Birime Göre Miktar</th>
+            <th class="text-center" style="min-width: 150px ;">Özel Kod 1</th>
+            <th class="text-center" style="min-width: 150px ;">Özel Kod 2</th>
             <th class="text-center" style="min-width: 150px ;">Kayıt Tarihi</th>
-
-
           </tr>
         </thead>
         <tbody>
@@ -88,25 +89,6 @@
             <td></td>
             <td></td>
             <td></td>
-          </tr>
-          <tr>
-
-            <td><input type="radio">01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-
-            <td><input type="radio">01</td>
-            <td></td>
-            <td></td>
             <td></td>
             <td></td>
             <td></td>
@@ -125,12 +107,6 @@
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-
-            <td><input type="radio">01</td>
             <td></td>
             <td></td>
             <td></td>
@@ -153,25 +129,6 @@
             <td></td>
             <td></td>
             <td></td>
-          </tr>
-          <tr>
-
-            <td><input type="radio">01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-
-            <td><input type="radio">01</td>
-            <td></td>
-            <td></td>
             <td></td>
             <td></td>
             <td></td>
@@ -190,12 +147,6 @@
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-
-            <td><input type="radio">01</td>
             <td></td>
             <td></td>
             <td></td>
@@ -218,10 +169,24 @@
             <td></td>
             <td></td>
             <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
           </tr>
           <tr>
 
             <td><input type="radio">01</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
             <td></td>
             <td></td>
             <td></td>
@@ -245,27 +210,35 @@
           <tr>
             <th class="text-center">Tarih</th>
             <th class="text-center" style="min-width: 100px ;">İşlem Türü</th>
+            <th class="text-center">Tip</th>
             <th class="text-center" style="min-width: 100px ;">Evrak No</th>
-            <th class="text-center" style="min-width: 100px ;">E.Kod</th>
-            <th class="text-center">Açıklama</th>
-            <th class="text-center">Tutar(Dvz)</th>
-            <th class="text-center"style="min-width: 150px ;">Borç Tutarı</th>
-            <th class="text-center" style="min-width: 150px ;">Alacak Tutarı</th>
-            <th class="text-center" >Bakiye</th>
-            <th class="text-center" >B/A</th>
-            <th class="text-center">M?</th>
+            <th class="text-center" style="min-width: 100px ;">Cari Ünvan</th>
+            <th class="text-center">Gir.Mik.</th>
+            <th class="text-center">Çık.Mİk.</th>
+            <th class="text-center">Bak.Mik.</th>
+            <th class="text-center" style="min-width: 100px ;">Satır Açıklaması</th>
+            <th class="text-center" style="min-width: 100px ;">Dvz. Cinsi</th>
+            <th class="text-center">Evrak Birim</th>
+            <th class="text-center" style="min-width: 130px ;">Evrak Miktarı</th>
+            <th class="text-center" style="min-width: 130px ;">Gr.Br.Fy. (TL)</th>
+            <th class="text-center">Çr.Br.Fy. (TL)</th>
             <th class="text-center" style="min-width: 100px ;">Uyg. Kur</th>
-            <th class="text-center" style="min-width: 130px ;">Özel Kod(1)</th>
-            <th class="text-center" style="min-width: 130px ;">Özel Kod(2)</th>
-            <th class="text-center">Ent?</th>
-            <th class="text-center" >Kullanıcı</th>
-            <th class="text-center" style="min-width: 150px ;">Vade Tarihi</th>
-            <th class="text-center" >Satıcı</th>
-            <th class="text-center" style="min-width: 100px ;">Kasa Adı</th>
-            <th class="text-center" style="min-width: 100px ;">Banka Adı</th>
-            <th class="text-center" style="min-width: 100px ;">Cari Kodu</th>
-            <th class="text-center" >Ünvanı</th>
-         </tr>
+            <th class="text-center">Depo</th>
+            <th class="text-center" style="min-width: 250px ;">M.F Miktarı</th>
+            <th class="text-center" style="min-width: 100px ;">Şube Kodu</th>
+            <th class="text-center" style="min-width: 100px ;">Departman</th>
+            <th class="text-center">Net Ağ. (KG)</th>
+            <th class="text-center">Brüt Ağ. (KG)</th>
+            <th class="text-center">Özel Kod (1)</th>
+            <th class="text-center">Özel Kod (2)</th>
+            <th class="text-center">Kullanıcı</th>
+            <th class="text-center">Kalite Kodu</th>
+            <th class="text-center">Stok Kodu</th>
+            <th class="text-center">İş Emri No</th>
+            <th class="text-center">Parti No</th>
+            <th class="text-center">Son K. Tarihi</th>
+            <th class="text-center">Evrak No</th>
+          </tr>
         </thead>
         <tbody>
           <tr>
@@ -279,31 +252,9 @@
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            
           </tr>
           <tr>
             <td>01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>01</td>
-            <td></td>
-            <td></td>
-            <td></td>
             <td></td>
             <td></td>
             <td></td>
@@ -325,7 +276,18 @@
             <td></td>
             <td></td>
             <td></td>
-            
+          </tr>
+          <tr>
+            <td>01</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
           </tr>
           <tr>
             <td>01</td>
@@ -391,8 +353,6 @@
       </table>
     </div>
   </div>
-
-
 <script>
     function redirectToSelectedLink() {
         const radioButtons = document.getElementsByName('kasakartlari');
