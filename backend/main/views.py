@@ -360,7 +360,12 @@ def yeni_cari_karti(request,slug):
         grupkodu1 = request.POST.get("grupkodu1")
         grupkodu2 = request.POST.get("grupkodu2")
         grupkodu3 = request.POST.get("grupkodu3")
-        print(dovizcinsi)
+        adres1 = request.POST.get("adres1")
+        ilce1 = request.POST.get("ilce1")
+        sehir1 = request.POST.get("sehir1")
+        telefon1 = request.POST.get("telefon1")
+        faks = request.POST.get("faks")
+        
         yeni_cari_karti_olusturma = cari_kartlar.objects.create(
             ana_cari_kodu = anacarikodu,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),
             detay  = caridetay,listede_gorunsun  = listedegorunme,
