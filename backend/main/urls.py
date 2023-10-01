@@ -24,6 +24,7 @@ urlpatterns = [
     #cari işlemleri
     path("<str:slug>/cari/", views.cari_sayfasi, name="cari_sayfasi"),
     path("<str:slug>/yenicari/", views.yeni_cari_karti, name="yeni_cari_karti"),
+    path("<str:slug>/carisil/<int:id>/", views.cari_silme_sayfasi, name="cari_silme_sayfasi"),
     #cari işlemleri
     #stok işlemelri
     path("<str:slug>/stok/", views.stok_sayfasi, name="stok_sayfasi"),

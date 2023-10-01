@@ -4,7 +4,7 @@
     {% csrf_token %}
     <div class="icon-bar">
 
-        <button type="submit" class="btn btn-primary">Kaydet</button>
+        <button type="submit" style="color: white;"  class="btn btn-primary">Kaydet</button>
         <a href="">Kaydet / Yeni Kart</a>
         <a href="" style="color:red;">Çıkış Yap (ESC)</a>
 
@@ -35,15 +35,15 @@
                             </select>
                         </div>
                         <div class="col-2"><label for="">Listede Görünsün</label><br>
-                            <select name="" id="">
-                                <option value="">E</option>
-                                <option value="">H</option>
+                            <select name="listedegorunme" id="">
+                                <option value="Evet">E</option>
+                                <option value="Hayır">H</option>
                             </select>
                         </div>
                         <div class="col-2"><label for="">Cari Hesap Kilidi</label><br>
-                            <select name="" id="">
-                                <option value="">E</option>
-                                <option value="">H</option>
+                            <select name="carihesapkilidi" id="">
+                                <option value="Evet">E</option>
+                                <option value="Hayır">H</option>
                             </select>
                         </div>
                         <hr>
@@ -54,12 +54,13 @@
                                         <div class="col-4"><label for="">Cari Kodu</label>
                                             <br>
                                             <div class="row">
-                                                <div class="col-8"><input type="text"></div>
-                                                <div class="col-4"><button>sec</button></div>
+                                                <div class="col-8"><input name="carikodu" id="carikodu" type="text"></div>
+                                                <div class="col-4"><button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                    data-bs-target="#muhkodu11">Sec</button></div>
                                             </div>
                                         </div>
                                         <div class="col-4"><label for="">Mükellef Türü</label><br>
-                                            <select name="" id="">
+                                            <select name="mukellefturu" id="">
                                                 <option value="Tüzel Kişi">Tüzel Kişi</option>
                                                 <option value="Gerçek Kişi">Gerçek Kişi</option>
                                             </select>
@@ -67,8 +68,8 @@
                                         <div class="col-4"><label for="">Cari Adı</label>
                                             <br>
                                             <div class="row">
-                                                <div class="col-8"><input type="text"></div>
-                                                <div class="col-4"><button>sec</button></div>
+                                                <div class="col-8"><input name="cariadi" id="cariadi" type="text"></div>
+                                                <div class="col-4"></div>
                                             </div>
                                         </div>
 
@@ -83,7 +84,7 @@
                             <div class="row">
                                 <div class="col-4">
                                     <label for="">Tip</label>
-                                    <select name="" id="">
+                                    <select name="caritip" id="">
                                         <option value=""></option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
@@ -92,7 +93,7 @@
 
                                 <div class="col-4"><label for="">Döviz Cinsi</label>
                                     <br>
-                                    <select name="dovizcinsi" id="">
+                                    <select name="dovizcinsisec" id="">
                                         <option value="TL">TL</option>
                                         <option value="Euro">USD</option>
                                         <option value="Dolar">EURO</option>
@@ -100,7 +101,7 @@
                                 </div>
                                 <div class="col-4"><label for="">Cari Kart Tipi</label>
                                     <br>
-                                    <select name="" id="">
+                                    <select name="carikarttipi" id="">
                                         <option value="Alıcı">Alıcı</option>
                                         <option value="Satıcı">Satıcı</option>
                                         <option value="Her İkisi">Her İkisi</option>
@@ -119,48 +120,48 @@
                             <hr>
                             <div class="row">
                                 <div class="col-4"><label for="">Yetkili Adı Soyadı</label><br>
-                                    <input type="text">
+                                    <input name="yetkiliadisoyadi" type="text">
                                 </div>
                                 <div class="col-4"><label for="">Görevi</label><br>
-                                    <input type="text">
+                                    <input name="gorevi" type="text">
                                 </div>
                                 <div class="col-4"><label for="">İstihbarat</label><br>
-                                    <input type="text">
+                                    <input name="istihbarat" type="text">
                                 </div>
                             </div>
                             <hr>
                             <div class="row">
                                 <div class="col-6"><label for="">Muh Kodu (Boşluk Doldurmaya Tıklayın)</label><br>
-                                    <input type="text">
+                                    <input name="muhkodu" id="muhkodu" type="text" data-bs-toggle="modal" data-bs-target="#myModal">
                                 </div>
                                 <div class="col-6"><label for="">Tevkifat Hesap Kodu (Boşluk Doldurmaya
                                         Tıklayın)</label><br>
-                                    <input type="text">
+                                    <input data-bs-toggle="modal" data-bs-target="#tevkifatkodu1" id="tevkifatkodu" name="tevkifatkodu" type="text">
                                 </div>
 
                             </div>
                             <hr>
                             <div class="row">
                                 <div class="col-3"><label for="">Özel Kod 1</label><br>
-                                    <input type="text">
+                                    <input name="ozelkod1" type="text">
                                 </div>
                                 <div class="col-3"><label for="">Özel Kod 2</label><br>
-                                    <input type="text">
+                                    <input name="ozelkod2" type="text">
                                 </div>
                                 <div class="col-3"><label for="">Satıcı</label><br>
-                                    <input type="text">
+                                    <input name="satici" type="text">
                                 </div>
                                 <div class="col-3"><label for="">Departman</label><br>
-                                    <input type="text">
+                                    <input name="departman" type="text">
                                 </div>
                                 <div class="col-4"><label for="">Grup Kodu 1</label><br>
-                                    <input type="text">
+                                    <input name="grupkodu1" type="text">
                                 </div>
                                 <div class="col-4"><label for="">Grup Kodu 2</label><br>
-                                    <input type="text">
+                                    <input name="grupkodu2" type="text">
                                 </div>
                                 <div class="col-4"><label for="">Grup Kodu 3</label><br>
-                                    <input type="text">
+                                    <input name="grupkodu3" type="text">
                                 </div>
                             </div>
                             <hr>
@@ -890,7 +891,183 @@
         </div>
     </div>
     </div>
+    <div class="modal" id="myModal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+    
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Muh Kodu Seç</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+    
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <input type="text" id="searchInput" class="form-control" placeholder="Arama...">
+    
+                    <table class="table table-striped mt-3 tablomuhkodu">
+                        <thead>
+                            <tr>
+                                <th>Hesap Kodu</th>
+                                <th>Hesap AdI</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for i in sistemhesapplanlari %}
+                            <tr>
+                                <td>{{i.hesap_kodu}}</td>
+                                <td>{{i.hesap_adi}}</td>
+    
+                            </tr>
+                            {% endfor %}
+                            {% for i in hesapplanlari %}
+                            <tr>
+                                <td>{{i.hesap_kodu}}</td>
+                                <td>{{i.hesap_adi}}</td>
+    
+                            </tr>
+                            {% endfor %}
+    
+    
+                            <!-- Diğer satırları burada ekleyin -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+    
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                Seçmek için listeye Tıklamanız Yeterlidir.
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kapat</button>
+            </div>
+    
+        </div>
+    </div>
 
+    <div class="modal" id="tevkifatkodu1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+    
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Hesap Planı Seç</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+    
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <input type="text" id="searchInputtevkifatkodu1" class="form-control" placeholder="Arama...">
+    
+                    <table class="table table-striped mt-3 tablotevkifatkodu1">
+                        <thead>
+                            <tr>
+                                <th>Hesap Kodu</th>
+                                <th>Hesap AdI</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for i in sistemhesapplanlari %}
+                            <tr>
+                                <td>{{i.hesap_kodu}}</td>
+                                <td>{{i.hesap_adi}}</td>
+    
+                            </tr>
+                            {% endfor %}
+                            {% for i in hesapplanlari %}
+                            <tr>
+                                <td>{{i.hesap_kodu}}</td>
+                                <td>{{i.hesap_adi}}</td>
+    
+                            </tr>
+                            {% endfor %}
+    
+                            <!-- Diğer satırları burada ekleyin -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+    
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                Seçmek için listeye Tıklamanız Yeterlidir.
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kapat</button>
+            </div>
+    
+        </div>
+    </div>
+    <!--Scriptler-->
+    <script>
+        const searchInputtevkifatkodu1 = document.getElementById('searchInputtevkifatkodu1');
+        const tabletevkifatkodu1 = document.querySelector('.tablotevkifatkodu1');
+        const tevkifatkodu1 = document.getElementById('tevkifatkodu');
+        searchInputtevkifatkodu1.addEventListener('input', function () {
+            const searchText = this.value.toLowerCase();
+    
+            for (const row of tabletevkifatkodu1.rows) {
+                let found = false;
+                for (const cell of row.cells) {
+                    if (cell.textContent.toLowerCase().includes(searchText)) {
+                        found = true;
+                        break;
+                    }
+                }
+                row.style.display = found ? '' : 'none';
+            }
+        });
+    
+        // Tablo satırlarına tıklama olayını ekle
+        const tabletevkifatkodu1Rows = tabletevkifatkodu1.getElementsByTagName('tr');
+        for (let i = 1; i < tabletevkifatkodu1Rows.length; i++) {
+            tabletevkifatkodu1Rows[i].addEventListener('click', function () {
+                const cells = this.cells;
+                const rowData = {
+                    id: cells[0].textContent,
+                    ad: cells[1].textContent,
+                };
+    
+                // Seçilen veriyi input'a yaz
+                tevkifatkodu1.value = `${rowData.id}`;
+
+            });
+        }
+    </script>
+    <script>
+        const searchInput = document.getElementById('searchInput');
+        const table = document.querySelector('.tablomuhkodu');
+        const firmavergidairesikodu = document.getElementById('muhkodu');
+        const firmavergidairesi = document.getElementById("muhkodu");
+        searchInput.addEventListener('input', function () {
+            const searchText = this.value.toLowerCase();
+    
+            for (const row of table.rows) {
+                let found = false;
+                for (const cell of row.cells) {
+                    if (cell.textContent.toLowerCase().includes(searchText)) {
+                        found = true;
+                        break;
+                    }
+                }
+                row.style.display = found ? '' : 'none';
+            }
+        });
+    
+        // Tablo satırlarına tıklama olayını ekle
+        const tableRows = table.getElementsByTagName('tr');
+        for (let i = 1; i < tableRows.length; i++) {
+            tableRows[i].addEventListener('click', function () {
+                const cells = this.cells;
+                const rowData = {
+                    id: cells[0].textContent,
+                    ad: cells[1].textContent,
+                };
+    
+                // Seçilen veriyi input'a yaz
+                firmavergidairesi.value = `${rowData.id}`;
+                firmavergidairesikodu.value = `${rowData.id}`;
+            });
+        }
+    </script>
+    <!--Scriptler-->
 {% endblock content %}
 
 {% block head %}

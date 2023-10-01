@@ -331,12 +331,67 @@ def cari_sayfasi(request,slug):
     return render(request,"cari/cari.html",content)
 def yeni_cari_karti(request,slug):
     content ={}
-    content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
+    content["firma"] =  get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
+    content["cariler"] = cari_kartlar.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    hesaplar = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) )
+    sistem = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =None)
+    content["hesapplanlari"] = hesaplar
+    content["sistemhesapplanlari"] = sistem
     if request.POST:
         anacarikodu = request.POST.get("anacarikodu")
         caridetay = request.POST.get("caridetay")
-        print(anacarikodu,caridetay)
+        listedegorunme = request.POST.get("listedegorunme")
+        carihesapkilidi = request.POST.get("carihesapkilidi")
+        carikodu = request.POST.get("carikodu")
+        mukellefturu = request.POST.get("mukellefturu")
+        cariadi  = request.POST.get("cariadi")
+        caritip = request.POST.get("caritip")
+        dovizcinsi = request.POST.get("dovizcinsisec")
+        carikarttipi = request.POST.get("carikarttipi")
+        yetkiliadisoyadi = request.POST.get("yetkiliadisoyadi")
+        gorevi = request.POST.get("gorevi")
+        istihbarat = request.POST.get("istihbarat")
+        muhkodu = request.POST.get("muhkodu")
+        tevkifatkodu = request.POST.get("tevkifatkodu") 
+        ozelkod1 = request.POST.get("ozelkod1") 
+        ozelkod2 = request.POST.get("ozelkod2")
+        satici = request.POST.get("satici")
+        departman = request.POST.get("departman")
+        grupkodu1 = request.POST.get("grupkodu1")
+        grupkodu2 = request.POST.get("grupkodu2")
+        grupkodu3 = request.POST.get("grupkodu3")
+        print(dovizcinsi)
+        yeni_cari_karti_olusturma = cari_kartlar.objects.create(
+            ana_cari_kodu = anacarikodu,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),
+            detay  = caridetay,listede_gorunsun  = listedegorunme,
+            cari_kodu = carikodu,mukellefyet_turu = mukellefturu,tip = caritip,
+            cari_hesap_kilitli = carihesapkilidi,takip_doviz_cinsi = dovizcinsi,
+            cari_adi = cariadi,yetkili_adi = yetkiliadisoyadi,gorevi  =gorevi,
+            istihbarat = istihbarat,cari_kart_tipi  =carikarttipi,
+            borc_tutari  = 0,alacak_tutari = 0,bakiye_tutari  =0,
+            ozel_kod_1 = ozelkod1,ozel_kod_2 = ozelkod2,satici = satici,
+            departman  = departman,grup_kod_1 =grupkodu1 ,grup_kod_2 = grupkodu2 ,grup_kod_3=grupkodu3,
+            silinme_bilgisi = False,muhkodu = muhkodu,tevkifatkodu  = tevkifatkodu
+        )
+        link = "/"+slug+"/cari/"
+        return redirect(link)
     return render(request,"cari/yenicari.html",content)
+def cari_silme_sayfasi(request,slug,id):
+    content ={}
+    content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
+    hesaplar = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) )
+    sistem = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =None)
+    content["hesapplanlari"] = hesaplar
+    content["sistemhesapplanlari"] = sistem
+    kart = get_object_or_404(cari_kartlar,id = id,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    content["kart"] = kart
+  
+
+    cari_kartlar.objects.filter(id = id,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)).update(
+            silinme_bilgisi = True
+    )
+    link = "/"+slug+"/cari/"
+    return redirect(link)
 #Cari İşlemeler
 #Stok İşlemleri
 def stok_sayfasi(request,slug):

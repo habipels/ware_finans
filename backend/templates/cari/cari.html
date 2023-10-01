@@ -5,7 +5,7 @@
     <a href="/{{firma.firma_ozel_anahtar}}/yenicari/">Yeni Cari Kartı </a>
     <a href="">Kart İncele-Düzelt</a>
     <a href="">Kart Kopyala</a>
-    <a href="">Kart Sil</a>
+    <a style="color: white;" onclick="showConfirmationPopup()">Kart Sil</a>
     <a href="" style="color:red;">Çıkış Yap (ESC)</a>
 
   </div>
@@ -76,162 +76,34 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
+        {% for i in carikartlari %}
+            <tr>
+            <td><label for="kasakartisecim{{i.id}}"><input class="kasalar" name="kasakartlari" id="kasakartisecim{{i.id}}" value="{{i.id}}/" type="radio">{{i.cari_kodu}}</label></td>
+            <td>{{i.cari_adi}}</td>
+            <td>{{i.detay}}</td>
+            <td>{{i.cari_kart_tipi}}</td>
+            <td>{{i.borc_tutari}} {{i.takip_doviz_cinsi}}</td>
+            <td>{{i.alacak_tutari}} {{i.takip_doviz_cinsi}}</td>
+            <td>{{i.bakiye_tutari}} {{i.takip_doviz_cinsi}}</td>
+            <td>{% if i.borc_tutari > i.alacak_tutari %}
+                  B
+                {% elif i.borc_tutari > i.alacak_tutari %}
+                  A
+                {% else %}
+                  -
+                {% endif %}
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>{{i.takip_doviz_cinsi}}</td>
+            <td>{{i.kayit_tarihi}}</td>
+           
 
-            <td><input type="radio">01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
 
-            <td><input type="radio">01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
           </tr>
-          <tr>
+        {% endfor %}
 
-            <td><input type="radio">01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-
-            <td><input type="radio">01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-
-            <td><input type="radio">01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-
-            <td><input type="radio">01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-
-            <td><input type="radio">01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-
-            <td><input type="radio">01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-
-            <td><input type="radio">01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-
-            <td><input type="radio">01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-
-            <td><input type="radio">01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-
-            <td><input type="radio">01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
         </tbody>
       </table>
     </div>
@@ -434,4 +306,45 @@
         }
     }
 </script>
+ <script>
+    function redirectToSelectedLink() {
+  const radioButtons = document.getElementsByName('kasakartlari');
+  let selectedLink = null;
+
+  for (const radioButton of radioButtons) {
+    if (radioButton.checked) {
+      selectedLink = radioButton.value;
+      break;
+    }
+  }
+
+  if (selectedLink) {
+    window.location.href = "/{{firma.firma_ozel_anahtar}}/giderduzelt/"+selectedLink;
+  } else {
+    alert('Lütfen bir Kasa Kartı seçin.');
+  }
+}
+function showConfirmationPopup() {
+  const radioButtons = document.getElementsByName('kasakartlari');
+  let selectedLink = null;
+
+  for (const radioButton of radioButtons) {
+    if (radioButton.checked) {
+      selectedLink = radioButton.value;
+      break;
+    }
+  }
+
+    // Pop-up penceresini aç
+    const confirmation = confirm("Silmek İstediğinden Emin misiniz?");
+    
+    // Kullanıcının seçimine göre işlem yap
+    if (confirmation) {
+        // Kullanıcı "Evet" dedi, yönlendirme yap
+        window.location.href = "/{{firma.firma_ozel_anahtar}}/carisil/"+selectedLink;
+    } else {
+        // Kullanıcı "Hayır" dedi, isteğe bağlı olarak başka bir işlem yapabilirsiniz
+    }
+}
+  </script>
 {% endblock content %}

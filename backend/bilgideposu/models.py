@@ -1,7 +1,7 @@
 from django.db import models
 from users.models import *
 # Create your models here.
-
+from datetime import datetime
 class banka(models.Model):
     secim = (
         ("",""),
@@ -338,8 +338,8 @@ class cari_kartlar(models.Model):
     doviz = (
         ("",""),
         ("TL","TL"),
-        ("Euro","£"),
-        ("Dolar","$")
+        ("Euro","Euro"),
+        ("Dolar","Dolar")
         
     )
     cari_kart_tipi_secim =(
@@ -371,9 +371,9 @@ class cari_kartlar(models.Model):
     gorevi = models.CharField(max_length=100,verbose_name="Görevi",blank=True,null=True)
     istihbarat = models.CharField(max_length=100,verbose_name="İstihbarat",blank=True,null=True)
     cari_kart_tipi = models.CharField(max_length=100,verbose_name="Cari Kart Tipi",choices=cari_kart_tipi_secim,default="",blank=True,null=True)
-    borc_tutari = models.CharField(verbose_name="Borç Tutarı (TL)",max_length=100,blank=True,null=True,default="0")
-    alacak_tutari = models.CharField(verbose_name="Alacak Tutarı (TL)",max_length=100,blank=True,null=True,default="0")
-    bakiye_tutari = models.CharField(verbose_name="Bakiye Tutarı (TL)",max_length=100,blank=True,null=True,default="0")
+    borc_tutari = models.BigIntegerField(verbose_name="Borç Tutarı (TL)",blank=True,null=True,default="0")
+    alacak_tutari = models.BigIntegerField(verbose_name="Alacak Tutarı (TL)",blank=True,null=True,default="0")
+    bakiye_tutari = models.BigIntegerField(verbose_name="Bakiye Tutarı (TL)",blank=True,null=True,default="0")
     ozel_kod_1 = models.CharField(verbose_name="Özel Kod 1",max_length=100,blank=True,null=True)
     ozel_kod_2 = models.CharField(verbose_name="Özel Kod 2",max_length=100,blank=True,null=True)
     satici = models.CharField(verbose_name="Satıcı",max_length=100,blank=True,null=True)
@@ -381,7 +381,10 @@ class cari_kartlar(models.Model):
     grup_kod_1 = models.CharField(verbose_name="Grup Kod 1",max_length=100,blank=True,null=True)
     grup_kod_2 = models.CharField(verbose_name="Grup Kod 2",max_length=100,blank=True,null=True)
     grup_kod_3 = models.CharField(verbose_name="Grup Kod 3",max_length=100,blank=True,null=True)
+    muhkodu = models.CharField(max_length=100,verbose_name="Muh. Kodu",blank=True,null=True)
+    tevkifatkodu = models.CharField(max_length=100,verbose_name="Tevkifat Kodu",blank=True,null=True)
     silinme_bilgisi = models.BooleanField(default=False)
+    kayit_tarihi = models.DateTimeField(default=datetime.now,null=True)
 class Giderler(models.Model):
     detay_secim = (
         ("",""),
