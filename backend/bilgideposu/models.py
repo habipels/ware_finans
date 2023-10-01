@@ -494,3 +494,14 @@ class kasa_fisleri(models.Model):
     islemi_yapan = models.CharField(max_length=100,verbose_name="Tahsilatı / Ödemeyi Yapan",blank=True,null=True)
     islemi_kaydeden_kullanici =  models.CharField(max_length=100,verbose_name="İşlemi Kaydeden Kullanıcı",blank=True,null=True)
     silinme_bilgisi = models.BooleanField(default=False)
+
+class ulke_ulke_kodlari(models.Model):
+    ulke_kodu = models.CharField(max_length=10,verbose_name="Ülke Kodu")
+    ulke_adi = models.CharField(max_length=200,verbose_name="Ülke Adı")
+"""
+class cari_kartislemleri_adresleri_kimlik(models.Model):
+    cari_bilgisi = models.ForeignKey(cari_kartlar,blank=True,null=True,verbose_name="Cari Bilgisi",on_delete=models.CASCADE)
+    adres1 = models.CharField(max_length=200,verbose_name="Adres 1 Bilgisi",blank=True,null=True)
+    ilce = models.CharField(max_length=200,verbose_name="İlçe Bilgisi",blank=True,null=True)
+    il = models.CharField(max_length=200,verbose_name="il Bilgisi",blank=True,null=True)
+    """
