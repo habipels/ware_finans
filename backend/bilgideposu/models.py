@@ -534,3 +534,37 @@ class cari_kartislemleri_adresleri_kimlik(models.Model):
     cinsiyet = models.CharField(max_length=200,verbose_name="Cinsiyet Bilgisi",blank=True,null=True)
     seri_no = models.CharField(max_length=200,verbose_name="Seri No Bilgisi",blank=True,null=True)
     ssk_bagkur_no = models.CharField(max_length=200,verbose_name="SSK / Bağkur Bilgisi",blank=True,null=True)
+
+class cari_kartislemleri_diger_bilgiler(models.Model):
+    doviz = (
+        ("",""),
+        ("TL","TL"),
+        ("Euro","£"),
+        ("Dolar","$")
+    )
+    cari_bilgisi = models.ForeignKey(cari_kartlar,blank=True,null=True,verbose_name="Cari Bilgisi",on_delete=models.CASCADE)
+    risklimiti = models.FloatField(verbose_name="Risk Limiti",blank=True,null=True)
+    digerdovizcinsi = models.CharField(max_length=100,verbose_name="Döviz Cinsi",choices=doviz,default="")
+    faizvadefarki = models.CharField(max_length=100,verbose_name="Faiz Vade Farkı",blank=True,null=True)
+    odemesuresigun = models.CharField(max_length=200,verbose_name="Ödeme Süresi Gün",blank=True,null=True)
+    iskontoorani = models.FloatField(verbose_name="İskonto Oranı",blank=True,null=True)
+    karorani =  models.FloatField(verbose_name="Kar Oranı",blank=True,null=True)
+    taksitsayisi = models.BigIntegerField(verbose_name="Taksit Sayısı",blank=True,null=True)
+    taksitodemegunuherayin = models.BigIntegerField(verbose_name="Taksit Her Ayın Şu Günü",blank=True,null=True)
+    satisfiyati = models.CharField(max_length=100,verbose_name="Satış Fiyatı",blank=True,null=True)
+    alisfiyati= models.CharField(max_length=100,verbose_name="Alış Fiyatı",blank=True,null=True)
+    stokgrupkodu = models.CharField(max_length=100,verbose_name="Stok Grup Kodu",blank=True,null=True)
+    iskontoorani2 = models.FloatField(verbose_name="İskonto Oranı",blank=True,null=True)
+    indim1 = models.CharField(max_length=100,verbose_name="İndirim 1",blank=True,null=True)
+    indim2 = models.CharField(max_length=100,verbose_name="İndirim 2",blank=True,null=True)
+    indim3 = models.CharField(max_length=100,verbose_name="İndirim 3",blank=True,null=True)
+    indim4 = models.CharField(max_length=100,verbose_name="İndirim 4",blank=True,null=True)
+    indim5 = models.CharField(max_length=100,verbose_name="İndirim 5",blank=True,null=True)
+    indim6 = models.CharField(max_length=100,verbose_name="İndirim 6",blank=True,null=True)
+    uygunkursecenek = models.CharField(max_length=100,verbose_name="Uygun Kur ",blank=True,null=True)
+    otvicin_kullan = models.BooleanField(verbose_name="ÖTV İçin Kullan",default=False)
+    bankaadi = models.CharField(max_length=200,verbose_name="Banka Adı",blank=True,null=True)
+    subesi =models.CharField(max_length=200,verbose_name="Şube Adı",blank=True,null=True)
+    bankadovizcinsi = models.CharField(max_length=100,verbose_name="Döviz Cinsi",choices=doviz,default="")
+    hesapno =models.CharField(max_length=200,verbose_name="Hesap No",blank=True,null=True)
+    iban = models.CharField(max_length=200,verbose_name="IBAN",blank=True,null=True)
