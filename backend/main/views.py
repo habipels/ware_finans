@@ -331,12 +331,15 @@ def cari_sayfasi(request,slug):
     return render(request,"cari/cari.html",content)
 def yeni_cari_karti(request,slug):
     content ={}
+    v = vergi_dairesi.objects.all()
     content["firma"] =  get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     content["cariler"] = cari_kartlar.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
     hesaplar = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) )
     sistem = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =None)
     content["hesapplanlari"] = hesaplar
     content["sistemhesapplanlari"] = sistem
+    content["vergidaireleri"] = v
+    content["ulkeler"] = ulke_ulke_kodlari.objects.all()
     if request.POST:
         anacarikodu = request.POST.get("anacarikodu")
         caridetay = request.POST.get("caridetay")
@@ -365,7 +368,34 @@ def yeni_cari_karti(request,slug):
         sehir1 = request.POST.get("sehir1")
         telefon1 = request.POST.get("telefon1")
         faks = request.POST.get("faks")
-        
+        telefon2 = request.POST.get("telefon2")
+        telefon3 = request.POST.get("telefon3")
+        gsm1 = request.POST.get("gsm1")
+        gsm2 = request.POST.get("gsm2")
+        postakodu = request.POST.get("postakodu")
+        ulkekodu = request.POST.get("ulkekodu")
+        vdkodu = request.POST.get("vdkodu")
+        vergitckimlikno = request.POST.get("vergitckimlikno")
+        epostaadresi = request.POST.get("epostaadresi")
+        webadresi = request.POST.get("webadresi")
+        adres2 = request.POST.get("adres2")
+        ilce2 = request.POST.get("ilce2")
+        sehir2 = request.POST.get("sehir2")
+        telefon4 = request.POST.get("telefon4")
+        faks2 = request.POST.get("faks2")
+        postakodu2 = request.POST.get("postakodu2")
+        ulke = request.POST.get("ulke")
+        gsm3 = request.POST.get("gsm3")
+        telefon5 = request.POST.get("telefon5")
+        adi = request.POST.get("adi")
+        soyadi = request.POST.get("soyadi")
+        babaadi = request.POST.get("babaadi")
+        anneadi = request.POST.get("anneadi")
+        dogumyeri = request.POST.get("dogumyeri")
+        dogumtarihi = request.POST.get("dogumtarihi")
+        cinsiyet = request.POST.get("cinsiyet")
+        serino = request.POST.get("serino")
+        sskbagkurno = request.POST.get("sskbagkurno")
         yeni_cari_karti_olusturma = cari_kartlar.objects.create(
             ana_cari_kodu = anacarikodu,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),
             detay  = caridetay,listede_gorunsun  = listedegorunme,
@@ -377,6 +407,22 @@ def yeni_cari_karti(request,slug):
             ozel_kod_1 = ozelkod1,ozel_kod_2 = ozelkod2,satici = satici,
             departman  = departman,grup_kod_1 =grupkodu1 ,grup_kod_2 = grupkodu2 ,grup_kod_3=grupkodu3,
             silinme_bilgisi = False,muhkodu = muhkodu,tevkifatkodu  = tevkifatkodu
+        )
+        cari_kartislemleri_adresleri_kimlik.objects.create(
+            cari_bilgisi = get_object_or_404(cari_kartlar,id = yeni_cari_karti_olusturma.id ),
+            adres1 = adres1 ,ilce = ilce1 ,il = sehir1 ,telefon = telefon1 ,
+            faks = faks ,telefon2 = telefon2 ,Telefon3 = telefon3 ,
+            gsm1  = gsm1 ,gsm2 = gsm2 , posta_kodu = postakodu ,
+            ulke = get_object_or_404(ulke_ulke_kodlari,ulke_kodu = ulkekodu ),
+            vergi_dairesi =  get_object_or_404(vergi_dairesi,vergi_dairesi_kodu = vdkodu ),
+            tc_veya_vergi_no = vergitckimlikno ,eposta_adresi = epostaadresi ,
+            web_adresi = webadresi  ,adres2  =adres2 ,ilce2 = ilce2 ,
+            il2 = sehir2 ,telefon4  =telefon4 ,faks2 = faks2 ,
+            gsm3 = gsm3 ,telefon5 = telefon5 ,
+            ulke2 = ulke ,posta_kodu2 = postakodu2 ,
+            adi=adi,soyadi=soyadi,babaadi=babaadi,anneadi=anneadi,
+            dogum_yeri=dogumyeri,dogum_tarihi=dogumtarihi,cinsiyet= cinsiyet,
+            seri_no=serino,ssk_bagkur_no=sskbagkurno 
         )
         link = "/"+slug+"/cari/"
         return redirect(link)
