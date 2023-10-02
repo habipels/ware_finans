@@ -441,14 +441,12 @@ def yeni_cari_karti(request,slug):
         notlartarihi= request.POST.get("notlartarihi")
         notlarsatici= request.POST.get("notlarsatici")
         notlarnot= request.POST.get("notlarnot")
-        #firma gorevlisi modelsi yok
         firmagoreviadi= request.POST.get("firmagoreviadi")
         firmagorevligorevi= request.POST.get("firmagorevligorevi")
         firmagorevliistelefonu= request.POST.get("firmagorevliistelefonu")
         firmagorevlidahilinumara= request.POST.get("firmagorevlidahilinumara")
         firmagorevligsm= request.POST.get("firmagorevligsm")
         firmaaciklama= request.POST.get("firmaaciklama")
-        #firma gorevlisi modelsi yok
         yeni_cari_karti_olusturma = cari_kartlar.objects.create(
             ana_cari_kodu = anacarikodu,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),
             detay  = caridetay,listede_gorunsun  = listedegorunme,
