@@ -396,6 +396,66 @@ def yeni_cari_karti(request,slug):
         cinsiyet = request.POST.get("cinsiyet")
         serino = request.POST.get("serino")
         sskbagkurno = request.POST.get("sskbagkurno")
+        #diger bilgiler bunların modelsi yok
+        risklimiti = request.POST.get("risklimiti")
+        
+        digerdovizcinsi = request.POST.get("digerdovizcinsi")
+        faizvadefarki = request.POST.get("faizvadefarki")
+        odemesuresigun = request.POST.get("odemesuresigun")
+        iskontoorani = request.POST.get("iskontoorani")
+        karorani = request.POST.get("karorani")
+        taksitsayisi=  request.POST.get("taksitsayisi")
+        taksitodemegunuherayin = request.POST.get("taksitodemegunuherayin")
+        satisfiyati  =request.POST.get("satisfiyati")
+        alisfiyati = request.POST.get("alisfiyati")
+        stokgrupkodu = request.POST.get("stokgrupkodu")
+        iskontoorani2= request.POST.get("iskontoorani2")
+        indim1= request.POST.get("indim1")
+        indim2= request.POST.get("indim2")
+        indim3= request.POST.get("indim3")
+        indim4= request.POST.get("indim4")
+        indim5= request.POST.get("indim5")
+        indim6= request.POST.get("indim6")
+        uygunkursecenek = request.POST.get("uygunkursecenek")
+        otvkullan = request.POST.get("otvkullan")
+        bankaadi = request.POST.get("bankaadi")
+        subesi = request.POST.get("subesi")
+        bankadovizcinsi  =request.POST.get("bankadovizcinsi")
+        hesapno = request.POST.get("hesapno")
+        iban = request.POST.get("iban")
+        #diger bilgiler bunların modelsi yok
+        #Şubebilgileri modelsi yok
+        subebilgilerisubekodu= request.POST.get("subebilgilerisubekodu")
+        subebilgilerisubeadi = request.POST.get("subebilgilerisubeadi")
+        subebilgileridovizcinsi = request.POST.get("subebilgileridovizcinsi")
+        subebilgileriborctutari = request.POST.get("subebilgileriborctutari")
+        subebilgilerialacaktutari= request.POST.get("subebilgilerialacaktutari")
+        subebilgileribakiyetutari= request.POST.get("subebilgileribakiyetutari")
+        subebilgileriba= request.POST.get("subebilgileriba")
+        subebilgilerivadetarihi= request.POST.get("subebilgilerivadetarihi")
+        subebilgileriadres= request.POST.get("subebilgileriadres")
+        subebilgilerisemt= request.POST.get("subebilgilerisemt")
+        subebilgilerisehir= request.POST.get("subebilgilerisehir")
+        subebilgileritelefon= request.POST.get("subebilgileritelefon")
+        subebilgileriyetkili= request.POST.get("subebilgileriyetkili")
+        subebilgileriodemesuresi= request.POST.get("subebilgileriodemesuresi")
+        subebilgilerivadehesapyonetimi= request.POST.get("subebilgilerivadehesapyonetimi")
+        subebilgilerimuhkodu= request.POST.get("subebilgilerimuhkodu")
+        subebilgileripostakodu= request.POST.get("subebilgileripostakodu")
+        #Şubebilgileri modelsi yok
+        #notlar modelsi yok
+        notlartarihi= request.POST.get("notlartarihi")
+        notlarsatici= request.POST.get("notlarsatici")
+        notlarnot= request.POST.get("notlarnot")
+        #notlar modelsi yok
+        #firma gorevlisi modelsi yok
+        firmagoreviadi= request.POST.get("firmagoreviadi")
+        firmagorevligorevi= request.POST.get("firmagorevligorevi")
+        firmagorevliistelefonu= request.POST.get("firmagorevliistelefonu")
+        firmagorevlidahilinumara= request.POST.get("firmagorevlidahilinumara")
+        firmagorevligsm= request.POST.get("firmagorevligsm")
+        firmaaciklama= request.POST.get("firmaaciklama")
+        #firma gorevlisi modelsi yok
         yeni_cari_karti_olusturma = cari_kartlar.objects.create(
             ana_cari_kodu = anacarikodu,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),
             detay  = caridetay,listede_gorunsun  = listedegorunme,

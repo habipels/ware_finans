@@ -360,11 +360,11 @@
                                     <div class="col-4">
                                         <div class="row">
                                             <div class="col-6"><label for="">Risk Limiti</label>
-                                                <input type="text" name="" id="">
+                                                <input type="text" name="risklimiti" id="">
                                             </div>
                                             <div class="col-6">
                                                 <label for="">Döviz Cinsi</label>
-                                                <select name="dovizcinsi" id="">
+                                                <select name="digerdovizcinsi" id="">
                                                     <option value="TL">TL</option>
                                                     <option value="Euro">USD</option>
                                                     <option value="Dolar">EURO</option>
@@ -372,24 +372,24 @@
                                             </div>
                                             <hr>
                                             <div class="col-6"><label for="">Faiz Vade Farkı(%)</label>
-                                                <input type="text" name="" id="">
+                                                <input type="text" name="faizvadefarki" id="">
                                             </div>
                                             <div class="col-6"><label for="">Ödeme Süresi (Gün)</label>
-                                                <input type="text" name="" id="">
+                                                <input type="text" name="odemesuresigun" id="">
                                             </div>
                                             <hr>
                                             <div class="col-6"><label for="">İskonto Oranı(%)</label>
-                                                <input type="text" name="" id="">
+                                                <input type="text" name="iskontoorani" id="">
                                             </div>
                                             <div class="col-6"><label for="">Kar Oranı(%)</label>
-                                                <input type="text" name="" id="">
+                                                <input type="text" name="karorani" id="">
                                             </div>
                                             <hr>
                                             <div class="col-6"><label for="">Taksit Sayısı</label>
-                                                <input type="text" name="" id="">
+                                                <input type="text" name="taksitsayisi" id="">
                                             </div>
                                             <div class="col-6"><label for="">Taksit Ödeme Günü (Her ayın Günü)</label>
-                                                <input type="text" name="" id="">
+                                                <input type="text" name="taksitodemegunuherayin" id="">
                                             </div>
                                             <div class="col-12">
                                                 <label for="">Ödeme Şablonu</label>
@@ -412,7 +412,7 @@
                                                     <div class="col-12">
                                                         <label for="">
                                                             Satiş Fiyati :
-                                                            <select name="" id="">
+                                                            <select name="satisfiyati" id="">
                                                                 <option value="1">1</option>
                                                                 <option value="2">2</option>
                                                                 <option value="3">3</option>
@@ -430,7 +430,7 @@
                                                     <div class="col-12">
                                                         <label for="">
                                                             Alış Fiyati :
-                                                            <select name="" id="">
+                                                            <select name="alisfiyati" id="">
                                                                 <option value="1">1</option>
                                                                 <option value="2">2</option>
                                                                 <option value="3">3</option>
@@ -471,14 +471,14 @@
                                                             <tbody>
                                                                 <tr>
 
-                                                                    <td><input type="text"></td>
-                                                                    <td><input type="text"></td>
-                                                                    <td><input type="text"></td>
-                                                                    <td><input type="text"></td>
-                                                                    <td><input type="text"></td>
-                                                                    <td><input type="text"></td>
-                                                                    <td><input type="text"></td>
-                                                                    <td><input type="text"></td>
+                                                                    <td><input name="stokgrupkodu" type="text"></td>
+                                                                    <td><input name="iskontoorani2" type="text"></td>
+                                                                    <td><input name="indim1" type="text"></td>
+                                                                    <td><input name="indim2"  type="text"></td>
+                                                                    <td><input name="indim3"  type="text"></td>
+                                                                    <td><input name="indim4"  type="text"></td>
+                                                                    <td><input name="indim5"  type="text"></td>
+                                                                    <td><input name="indim6"  type="text"></td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
@@ -489,7 +489,7 @@
                                         <hr>
                                         <div class="row">
                                             <div class="col-6"><label for="">Uygun Kur
-                                                    <select name="" id="">
+                                                    <select name="uygunkursecenek" id="">
                                                         <option value="mbdovizalis">MB DÖVİZ ALIŞ</option>
                                                         <option value="mbdovizsatis">MB DÖVİZ SATIŞ</option>
                                                         <option value="mbefektifalis">MB EFEKTİF ALIŞ</option>
@@ -504,7 +504,7 @@
                                                 </label></div>
                                             <div class="col-6">
                                                 <label for="otv" style="font-size: 10px !important;"><input
-                                                        type="checkbox" name="" id="otv"> Satış Faturalarında ÖTV İçin
+                                                        type="checkbox" name="otvkullan" id="otv"> Satış Faturalarında ÖTV İçin
                                                     Tescil Uygulansın</label>
                                             </div>
                                             <hr>
@@ -531,11 +531,15 @@
                                                         <tbody>
                                                             <tr>
 
-                                                                <td><input type="text"></td>
-                                                                <td><input type="text"></td>
-                                                                <td><input type="text"></td>
-                                                                <td><input type="text"></td>
-                                                                <td><input type="text"></td>
+                                                                <td><input name="bankaadi" type="text"></td>
+                                                                <td><input name="subesi" type="text"></td>
+                                                                <td><select name="bankadovizcinsi" id="">
+                                                                    <option value="TL">TL</option>
+                                                                    <option value="Euro">USD</option>
+                                                                    <option value="Dolar">EURO</option>
+                                                                </select></td>
+                                                                <td><input name="hesapno" type="text"></td>
+                                                                <td><input name="iban" type="text"></td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -577,23 +581,23 @@
                                                 <tbody>
                                                     <tr>
         
-                                                        <td><input type="text"></td>
-                                                        <td><input type="text"></td>
-                                                        <td><input type="text"></td>
-                                                        <td><input type="text"></td>
-                                                        <td><input type="text"></td>
-                                                        <td><input type="text"></td>
-                                                        <td><input type="text"></td>
-                                                        <td><input type="text"></td>
-                                                        <td><input type="text"></td>
-                                                        <td><input type="text"></td>
-                                                        <td><input type="text"></td>
-                                                        <td><input type="text"></td>
-                                                        <td><input type="text"></td>
-                                                        <td><input type="text"></td>
-                                                        <td><input type="text"></td>
-                                                        <td><input type="text"></td>
-                                                        <td><input type="text"></td>
+                                                        <td><input name="subebilgilerisubekodu" type="text"></td>
+                                                        <td><input name="subebilgilerisubeadi" type="text"></td>
+                                                        <td><input name="subebilgileridovizcinsi" type="text"></td>
+                                                        <td><input name="subebilgileriborctutari" type="text"></td>
+                                                        <td><input name="subebilgilerialacaktutari" type="text"></td>
+                                                        <td><input name="subebilgileribakiyetutari" type="text"></td>
+                                                        <td><input name="subebilgileriba" type="text"></td>
+                                                        <td><input name="subebilgilerivadetarihi" type="date"></td>
+                                                        <td><input name="subebilgileriadres" type="text"></td>
+                                                        <td><input name="subebilgilerisemt" type="text"></td>
+                                                        <td><input name="subebilgilerisehir" type="text"></td>
+                                                        <td><input name="subebilgileritelefon" type="text"></td>
+                                                        <td><input name="subebilgileriyetkili" type="text"></td>
+                                                        <td><input name="subebilgileriodemesuresi" type="text"></td>
+                                                        <td><input name="subebilgilerivadehesapyonetimi" type="text"></td>
+                                                        <td><input name="subebilgilerimuhkodu" type="text"></td>
+                                                        <td><input name="subebilgileripostakodu" type="text"></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -605,7 +609,7 @@
                             <div id="s" class="tabcontent">
                                 <div class="row">
                                     <div>
-                                        <div class="container tablo" style="margin-top: 0px !important;">
+                                        <div class="tablo" style="margin-top: 0px !important;">
                                             <div class="table-responsive " style="
                                           height: 100px;
                                           overflow: auto;">
@@ -621,9 +625,9 @@
                                                     <tbody>
                                                         <tr>
         
-                                                            <td><input type="text"></td>
-                                                            <td><input type="text"></td>
-                                                            <td><input type="text"></td>
+                                                            <td><input name="notlartarihi" type="date"></td>
+                                                            <td><input name="notlarsatici" type="text"></td>
+                                                            <td><input name="notlarnot" type="text"></td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -635,7 +639,7 @@
                             <div id="m" class="tabcontent">
                                 <div class="row">
                                     <div>
-                                        <div class="container tablo" style="margin-top: 0px !important;">
+                                        <div class="tablo" style="margin-top: 0px !important;">
                                             <div class="table-responsive " style="
                                           height: 100px;
                                           overflow: auto;">
@@ -653,12 +657,12 @@
                                                     <tbody>
                                                         <tr>
         
-                                                            <td><input type="text"></td>
-                                                            <td><input type="text"></td>
-                                                            <td><input type="text"></td>
-                                                            <td><input type="text"></td>
-                                                            <td><input type="text"></td>
-                                                            <td><input type="text"></td>
+                                                            <td><input name="firmagoreviadi" type="text"></td>
+                                                            <td><input name="firmagorevligorevi" type="text"></td>
+                                                            <td><input name="firmagorevliistelefonu"  type="text"></td>
+                                                            <td><input name="firmagorevlidahilinumara" type="text"></td>
+                                                            <td><input name="firmagorevligsm" type="text"></td>
+                                                            <td><input name="firmaaciklama" type="text"></td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
