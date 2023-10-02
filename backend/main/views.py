@@ -447,6 +447,10 @@ def yeni_cari_karti(request,slug):
         firmagorevlidahilinumara= request.POST.get("firmagorevlidahilinumara")
         firmagorevligsm= request.POST.get("firmagorevligsm")
         firmaaciklama= request.POST.get("firmaaciklama")
+        if float(subebilgilerialacaktutari) > float(subebilgileriborctutari):
+            subebilgileriba = "A"
+        else:
+            subebilgileriba = "B"
         yeni_cari_karti_olusturma = cari_kartlar.objects.create(
             ana_cari_kodu = anacarikodu,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),
             detay  = caridetay,listede_gorunsun  = listedegorunme,
@@ -474,6 +478,37 @@ def yeni_cari_karti(request,slug):
             adi=adi,soyadi=soyadi,babaadi=babaadi,anneadi=anneadi,
             dogum_yeri=dogumyeri,dogum_tarihi=dogumtarihi,cinsiyet= cinsiyet,
             seri_no=serino,ssk_bagkur_no=sskbagkurno 
+        )
+        cari_kartislemleri_diger_bilgiler.objects.create(
+            cari_bilgisi = get_object_or_404(cari_kartlar,id = yeni_cari_karti_olusturma.id ),
+            risklimiti = risklimiti,digerdovizcinsi = digerdovizcinsi,faizvadefarki = faizvadefarki,
+            odemesuresigun = odemesuresigun,iskontoorani = float(iskontoorani),karorani = float(karorani),
+            taksitsayisi = int(taksitsayisi),taksitodemegunuherayin = taksitodemegunuherayin,satisfiyati = satisfiyati,
+            alisfiyati = alisfiyati, stokgrupkodu = stokgrupkodu,iskontoorani2 = float(iskontoorani2),
+            indim1 = indim1,indim2 = indim2,indim3 = indim3,indim4 = indim4,indim5 = indim5,indim6 = indim6,
+            uygunkursecenek = uygunkursecenek,bankaadi = bankaadi ,subesi = subesi,bankadovizcinsi = bankadovizcinsi,
+            hesapno = hesapno,iban = iban
+        )
+        cari_kartislemleri_sube_bilgiler.objects.create(
+            cari_bilgisi = get_object_or_404(cari_kartlar,id = yeni_cari_karti_olusturma.id ),
+            subebilgilerisubekodu = subebilgilerisubekodu,subebilgilerisubeadi=subebilgilerisubeadi,
+            subebilgileridovizcinsi = subebilgileridovizcinsi,subebilgileriborctutari = float(subebilgileriborctutari),
+            subebilgilerialacaktutari = float(subebilgilerialacaktutari),subebilgileribakiyetutari = float(subebilgileribakiyetutari),
+            subebilgileriba = subebilgileriba,subebilgilerivadetarihi = subebilgilerivadetarihi,
+            subebilgileriadres = subebilgileriadres,subebilgilerisehir =subebilgilerisehir,subebilgilerisemt =subebilgilerisemt,
+            subebilgileritelefon= subebilgileritelefon,subebilgileriyetkili = subebilgileriyetkili,
+            subebilgileriodemesuresi = subebilgileriodemesuresi,subebilgilerivadehesapyonetimi = subebilgilerivadehesapyonetimi,
+            subebilgilerimuhkodu = subebilgilerimuhkodu,subebilgileripostakodu = subebilgileripostakodu        
+            )
+        cari_kartislemleri_notlar.objects.create(
+            cari_bilgisi = get_object_or_404(cari_kartlar,id = yeni_cari_karti_olusturma.id ),
+            notlartarihi = notlartarihi,notlarsatici = notlarsatici,notlarnot =notlarnot
+        )
+        cari_kartislemleri_firma_gorevilisi.objects.create(
+            cari_bilgisi = get_object_or_404(cari_kartlar,id = yeni_cari_karti_olusturma.id ),
+            firmagoreviadi = firmagoreviadi, firmagorevligorevi = firmagorevligorevi,
+            firmagorevliistelefonu = firmagorevliistelefonu,firmagorevlidahilinumara = firmagorevlidahilinumara,
+            firmagorevligsm = firmagorevligsm
         )
         link = "/"+slug+"/cari/"
         return redirect(link)

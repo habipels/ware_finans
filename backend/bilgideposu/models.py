@@ -587,7 +587,7 @@ class cari_kartislemleri_sube_bilgiler(models.Model):
     subebilgilerivadetarihi = models.DateField(verbose_name="Vade Tarihi",blank=True,null=True)
     subebilgileriadres = models.CharField(max_length=200,verbose_name="Şube Adresi",blank=True,null=True)
     subebilgilerisemt = models.CharField(max_length=200,verbose_name="ŞubeSemt Bilgisi",blank=True,null=True)
-    subebilgilerisemt = models.CharField(max_length=200,verbose_name="Şube Şehir",blank=True,null=True)
+    subebilgilerisehir = models.CharField(max_length=200,verbose_name="Şube Şehir",blank=True,null=True)
     subebilgileritelefon = models.CharField(max_length=20,verbose_name="Telefon Numarası",blank=True,null=True)
     subebilgileriyetkili = models.CharField(max_length=200,verbose_name="Şube Yetkilisi",blank=True,null=True)
     subebilgileriodemesuresi = models.CharField(max_length=200,verbose_name="Şube Ödeme Süresi",blank=True,null=True)
