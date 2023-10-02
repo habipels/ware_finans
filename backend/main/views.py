@@ -421,7 +421,6 @@ def yeni_cari_karti(request,slug):
         bankadovizcinsi  =request.POST.get("bankadovizcinsi")
         hesapno = request.POST.get("hesapno")
         iban = request.POST.get("iban")
-        #Şubebilgileri modelsi yok
         subebilgilerisubekodu= request.POST.get("subebilgilerisubekodu")
         subebilgilerisubeadi = request.POST.get("subebilgilerisubeadi")
         subebilgileridovizcinsi = request.POST.get("subebilgileridovizcinsi")
@@ -439,7 +438,6 @@ def yeni_cari_karti(request,slug):
         subebilgilerivadehesapyonetimi= request.POST.get("subebilgilerivadehesapyonetimi")
         subebilgilerimuhkodu= request.POST.get("subebilgilerimuhkodu")
         subebilgileripostakodu= request.POST.get("subebilgileripostakodu")
-        #Şubebilgileri modelsi yok
         #notlar modelsi yok
         notlartarihi= request.POST.get("notlartarihi")
         notlarsatici= request.POST.get("notlarsatici")

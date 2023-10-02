@@ -568,3 +568,29 @@ class cari_kartislemleri_diger_bilgiler(models.Model):
     bankadovizcinsi = models.CharField(max_length=100,verbose_name="Döviz Cinsi",choices=doviz,default="")
     hesapno =models.CharField(max_length=200,verbose_name="Hesap No",blank=True,null=True)
     iban = models.CharField(max_length=200,verbose_name="IBAN",blank=True,null=True)
+
+class cari_kartislemleri_sube_bilgiler(models.Model):
+    doviz = (
+        ("",""),
+        ("TL","TL"),
+        ("Euro","£"),
+        ("Dolar","$")
+    )
+    cari_bilgisi = models.ForeignKey(cari_kartlar,blank=True,null=True,verbose_name="Cari Bilgisi",on_delete=models.CASCADE)
+    subebilgilerisubekodu = models.CharField(max_length=100,verbose_name="Şube Kodu",blank=True,null=True)
+    subebilgilerisubeadi = models.CharField(max_length=200,verbose_name="Şube Adı",blank=True,null=True)
+    subebilgileridovizcinsi = models.CharField(max_length=100,verbose_name="Döviz Cinsi",choices=doviz,default="")
+    subebilgileriborctutari = models.FloatField(verbose_name="Borç Tutarı",blank=True,null=True)
+    subebilgilerialacaktutari = models.FloatField(verbose_name="Alacak Tutarı",blank=True,null=True)
+    subebilgileribakiyetutari = models.FloatField(verbose_name="Bakiye Tutarı",blank=True,null=True)
+    subebilgileriba = models.CharField(max_length=10,verbose_name="Borçlu Alacaklı",blank=True,null=True)
+    subebilgilerivadetarihi = models.DateField(verbose_name="Vade Tarihi",blank=True,null=True)
+    subebilgileriadres = models.CharField(max_length=200,verbose_name="Şube Adresi",blank=True,null=True)
+    subebilgilerisemt = models.CharField(max_length=200,verbose_name="ŞubeSemt Bilgisi",blank=True,null=True)
+    subebilgilerisemt = models.CharField(max_length=200,verbose_name="Şube Şehir",blank=True,null=True)
+    subebilgileritelefon = models.CharField(max_length=20,verbose_name="Telefon Numarası",blank=True,null=True)
+    subebilgileriyetkili = models.CharField(max_length=200,verbose_name="Şube Yetkilisi",blank=True,null=True)
+    subebilgileriodemesuresi = models.CharField(max_length=200,verbose_name="Şube Ödeme Süresi",blank=True,null=True)
+    subebilgilerivadehesapyonetimi = models.CharField(max_length=200,verbose_name="Şube Yonetim HEsabı",blank=True,null=True)
+    subebilgilerimuhkodu = models.CharField(max_length=200,verbose_name="Muhtasar Kodu",blank=True,null=True)
+    subebilgileripostakodu = models.CharField(max_length=200,verbose_name="Şube POsta Kodu",blank=True,null=True)
