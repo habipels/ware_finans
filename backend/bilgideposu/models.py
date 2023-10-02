@@ -600,4 +600,12 @@ class cari_kartislemleri_notlar(models.Model):
     notlartarihi = models.DateField(verbose_name="Notlar Tarihi",blank=True,null=True)
     notlarsatici = models.CharField(max_length=200,verbose_name="Satıcı",blank=True,null=True)
     notlarnot  = models.TextField(verbose_name="Not",blank=True,null=True)
-    
+
+class cari_kartislemleri_firma_gorevilisi(models.Model):
+    cari_bilgisi = models.ForeignKey(cari_kartlar,blank=True,null=True,verbose_name="Cari Bilgisi",on_delete=models.CASCADE)
+    firmagoreviadi = models.CharField(max_length=200,verbose_name="Firme Görevili ADı Soyadı",blank=True,null=True)
+    firmagorevligorevi = models.CharField(max_length=200,verbose_name="Görevli Görevi",blank=True,null=True)
+    firmagorevliistelefonu = models.CharField(max_length=20,verbose_name="Görevli Telefon Numarası",blank=True,null=True)
+    firmagorevlidahilinumara = models.CharField(max_length=20,verbose_name="Firma FGörevil iTelefon Dahili Numara",blank=True,null=True)
+    firmagorevligsm = models.CharField(max_length=20,verbose_name="Firma Görevili Gsm",blank=True,null=True)
+    firmaaciklama = models.TextField(verbose_name="Firma Açıklama",blank=True,null=True)
