@@ -1,0 +1,1291 @@
+{% extends "homebase.html" %}
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    <div class="icon-bar">
+
+        <button type="submit" style="color: white;"  class="btn btn-primary">Kaydet</button>
+        <a href="">Kaydet / Yeni Kart</a>
+        <a href="" style="color:red;">Çıkış Yap (ESC)</a>
+
+    </div>
+    <div class="d-menu">
+
+    </div>
+    <div class="container mt-5">
+        <div class="row">
+
+            <div class="col-12" style="border: 1px solid black; padding: 20px;">
+                <div class="text-center">
+                    <h2>Cari Kartı Oluşturma</h2>
+                    <hr>
+                </div>
+
+
+                    <div class="row genel">
+                        <div class="col-6">
+                            <label for="">Ana Cari Kodu</label>
+                            <br>
+                            <input name="anacarikodu" type="text">
+                        </div>
+                        <div class="col-2"><label for="">Detay</label><br>
+                            <select name="caridetay" id="">
+                                <option value="Evet">E</option>
+                                <option value="Hayır">H</option>
+                            </select>
+                        </div>
+                        <div class="col-2"><label for="">Listede Görünsün</label><br>
+                            <select name="listedegorunme" id="">
+                                <option value="Evet">E</option>
+                                <option value="Hayır">H</option>
+                            </select>
+                        </div>
+                        <div class="col-2"><label for="">Cari Hesap Kilidi</label><br>
+                            <select name="carihesapkilidi" id="">
+                                <option value="Evet">E</option>
+                                <option value="Hayır">H</option>
+                            </select>
+                        </div>
+                        <hr>
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-12" style="max-height: 250px !important;">
+                                    <div class="row">
+                                        <div class="col-4"><label for="">Cari Kodu</label>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-8"><input name="carikodu" id="carikodu" type="text"></div>
+                                                <div class="col-4"><button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                    data-bs-target="#muhkodu11">Sec</button></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-4"><label for="">Mükellef Türü</label><br>
+                                            <select name="mukellefturu" id="">
+                                                <option value="Tüzel Kişi">Tüzel Kişi</option>
+                                                <option value="Gerçek Kişi">Gerçek Kişi</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-4"><label for="">Cari Adı</label>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-8"><input name="cariadi" id="cariadi" type="text"></div>
+                                                <div class="col-4"></div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-4">
+                                    <label for="">Tip</label>
+                                    <select name="caritip" id="">
+                                        <option value=""></option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-4"><label for="">Döviz Cinsi</label>
+                                    <br>
+                                    <select name="dovizcinsisec" id="">
+                                        <option value="TL">TL</option>
+                                        <option value="Euro">USD</option>
+                                        <option value="Dolar">EURO</option>
+                                    </select>
+                                </div>
+                                <div class="col-4"><label for="">Cari Kart Tipi</label>
+                                    <br>
+                                    <select name="carikarttipi" id="">
+                                        <option value="Alıcı">Alıcı</option>
+                                        <option value="Satıcı">Satıcı</option>
+                                        <option value="Her İkisi">Her İkisi</option>
+                                        <option value="Ortak">Ortak</option>
+                                        <option value="Özel Cari">Özel Cari</option>
+                                        <option value="Personel">Personel</option>
+                                        <option value="Palsiyer">Palsiyer</option>
+                                        <option value="Gider">Gider</option>
+                                        <option value="Gelir">Gelir</option>
+                                        <option value="Diğer">Diğer</option>
+                                        <option value="Fason">Fason</option>
+                                        <option value="Üye">Üye</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-4"><label for="">Yetkili Adı Soyadı</label><br>
+                                    <input name="yetkiliadisoyadi" type="text">
+                                </div>
+                                <div class="col-4"><label for="">Görevi</label><br>
+                                    <input name="gorevi" type="text">
+                                </div>
+                                <div class="col-4"><label for="">İstihbarat</label><br>
+                                    <input name="istihbarat" type="text">
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-6"><label for="">Muh Kodu (Boşluk Doldurmaya Tıklayın)</label><br>
+                                    <input name="muhkodu" id="muhkodu" type="text" data-bs-toggle="modal" data-bs-target="#myModal">
+                                </div>
+                                <div class="col-6"><label for="">Tevkifat Hesap Kodu (Boşluk Doldurmaya
+                                        Tıklayın)</label><br>
+                                    <input data-bs-toggle="modal" data-bs-target="#tevkifatkodu1" id="tevkifatkodu" name="tevkifatkodu" type="text">
+                                </div>
+
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-3"><label for="">Özel Kod 1</label><br>
+                                    <input name="ozelkod1" type="text">
+                                </div>
+                                <div class="col-3"><label for="">Özel Kod 2</label><br>
+                                    <input name="ozelkod2" type="text">
+                                </div>
+                                <div class="col-3"><label for="">Satıcı</label><br>
+                                    <input name="satici" type="text">
+                                </div>
+                                <div class="col-3"><label for="">Departman</label><br>
+                                    <input name="departman" type="text">
+                                </div>
+                                <div class="col-4"><label for="">Grup Kodu 1</label><br>
+                                    <input name="grupkodu1" type="text">
+                                </div>
+                                <div class="col-4"><label for="">Grup Kodu 2</label><br>
+                                    <input name="grupkodu2" type="text">
+                                </div>
+                                <div class="col-4"><label for="">Grup Kodu 3</label><br>
+                                    <input name="grupkodu3" type="text">
+                                </div>
+                            </div>
+                            <hr>
+                        </div>
+                        <hr>
+                        <div class="col-12">
+                            <div class="tab">
+                                <a class="tablinks btn btn-secondary" onclick="openCity(event, 'a')">Adres Ve Kimlik
+                                    Bilgileri</a>
+                                <a class="tablinks btn btn-secondary" onclick="openCity(event, 'k')">Diğer Bilgiler</a>
+                                <a class="tablinks btn btn-secondary" onclick="openCity(event, 'd')">Şube Bilgileri</a>
+                                <a class="tablinks btn btn-secondary" onclick="openCity(event, 's')">Notlar</a>
+                                <a class="tablinks btn btn-secondary" onclick="openCity(event, 'm')">Firme
+                                    Görevlileri</a>
+                                <!---<a class="tablinks btn btn-secondary" onclick="openCity(event, 'i')">Karta Özel
+                                    Dosya</a>-->
+                            </div>
+
+                            <div id="a" class="tabcontent">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label for="">Adres 1</label><br>
+                                        <input name="adres1" type="text">
+                                    </div>
+                                    <div class="col-6" style="border-right: 1px solid black;">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <label for="">İlçe</label><br>
+                                                <input name="ilce1" type="text">
+                                            </div>
+                                            <div class="col-6">
+                                                <label for="">Şehir</label><br>
+                                                <select name="sehir1" id="">
+                                                    <option value="Van">Van</option>
+                                                    <option value="İstanbul">İstanbul</option>
+                                                    <option value="Adana">Adana</option>
+                                                    <option value="Trabzon">Trabzon</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-6">
+                                                <label for="">Telefon</label><br>
+                                                <input name="telefon1" type="text">
+                                            </div>
+                                            <div class="col-6">
+                                                <label for="">Fakx</label><br>
+                                                <input name="faks" type="text">
+                                            </div>
+                                            <div class="col-6">
+                                                <label for="">Telefon 2 </label><br>
+                                                <input name="telefon2" type="text">
+                                            </div>
+                                            <div class="col-6">
+                                                <label for="">Telefon 3</label><br>
+                                                <input name="telefon3" type="text">
+                                            </div>
+                                            <div class="col-6">
+                                                <label for="">GSM 1 </label><br>
+                                                <input name="gsm1" type="text">
+                                            </div>
+                                            <div class="col-6">
+                                                <label for="">GSM 2</label><br>
+                                                <input name="gsm2" type="text">
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="row">
+                                            <div class="col-4"><label for="">Posta Kodu</label><br>
+                                                <input name="postakodu" type="text">
+                                            </div>
+                                            <div class="col-4"><label for="">Ülke</label><br>
+                                                <input data-bs-toggle="modal" data-bs-target="#ulke" id="ulkesi" type="text">
+                                            </div>
+                                            <div class="col-4"><label for="">Ülke Kodu</label><br>
+                                                <input name="ulkekodu" id="ulkekodu" data-bs-toggle="modal" data-bs-target="#ulke"  type="text">
+                                            </div>
+                                            <div class="col-4"><label for="">Vergi Dairesi</label><br>
+                                                <input id="vergidairesiadi" data-bs-toggle="modal" data-bs-target="#vergi" type="text">
+                                            </div>
+                                            <div class="col-4"><label for="">V.D.Kodu</label><br>
+                                                <input id="vergidairesikodu" data-bs-toggle="modal" data-bs-target="#vergi" name="vdkodu" type="text">
+                                            </div>
+                                            <div class="col-4"><label for="">Vergi/TC Kimlik NO</label><br>
+                                                <input name="vergitckimlikno" type="text">
+                                            </div>
+                                            <div class="col-12"><label for="">E-POSTA Adresi</label><br>
+                                                <input name="epostaadresi" type="text">
+                                            </div>
+                                            <div class="col-12"><label for="">Web Adresi</label><br>
+                                                <input name="webadresi" type="text">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label for="">Adres 2</label><br>
+                                        <input name="adres2" type="text">
+                                    </div>
+                                    <div class="col-6" style="border-right: 1px solid black;">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <label for="">İlçe</label><br>
+                                                <input name="ilce2" type="text">
+                                            </div>
+                                            <div class="col-6">
+                                                <label for="">Şehir</label><br>
+                                                <select name="sehir2" id="">
+                                                    <option value="Van">Van</option>
+                                                    <option value="İstanbul">İstanbul</option>
+                                                    <option value="Adana">Adana</option>
+                                                    <option value="Trabzon">Trabzon</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-6">
+                                                <label for="">Telefon</label><br>
+                                                <input name="telefon4" type="text">
+                                            </div>
+                                            <div class="col-6">
+                                                <label for="">Faks</label><br>
+                                                <input name="faks2" type="text">
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="row">
+                                            <div class="col-6"><label for="">Posta Kodu</label><br>
+                                                <input name="postakodu2" type="text">
+                                            </div>
+                                            <div class="col-6"><label for="">Ülke</label><br>
+                                                <input name="ulke" type="text">
+                                            </div>
+
+                                            <div class="col-6">
+                                                <label for="">GSM </label><br>
+                                                <input name="gsm3" type="text">
+                                            </div>
+                                            <div class="col-6">
+                                                <label for="">Telefon 2</label><br>
+                                                <input name="telefon5" type="text">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-3">
+                                        <label for="">Adı</label><br>
+                                        <input name="adi" type="text">
+                                    </div>
+                                    <div class="col-3">
+                                        <label for="">Soyadı</label><br>
+                                        <input name="soyadi" type="text">
+                                    </div>
+                                    <div class="col-3">
+                                        <label for="">Baba Adı</label><br>
+                                        <input name="babaadi" type="text">
+                                    </div>
+                                    <div class="col-3">
+                                        <label for="">Anne Adı</label><br>
+                                        <input name="anneadi" type="text">
+                                    </div>
+                                    <div class="col-3">
+                                        <label for="">Doğum Yeri</label><br>
+                                        <input name="dogumyeri" type="text">
+                                    </div>
+                                    <div class="col-3">
+                                        <label for="">Doğum Yılı</label><br>
+                                        <input name="dogumtarihi" type="date">
+                                    </div>
+                                    <div class="col-1">
+                                        <label for="">Cinsiyet</label><br>
+                                        <select name="cinsiyet" id="">
+                                            <option value=""></option>
+                                            <option value="Erkek">Erkek</option>
+                                            <option value="Kadin">Kadın</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-2">
+                                        <label for="">Seri No</label><br>
+                                        <input name="serino" type="text">
+                                    </div>
+                                    <div class="col-2">
+                                        <label for="">SSK/Bağkur NO</label><br>
+                                        <input name="sskbagkurno" type="text">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="k" class="tabcontent">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div class="row">
+                                            <div class="col-6"><label for="">Risk Limiti</label>
+                                                <input type="text" name="risklimiti" id="">
+                                            </div>
+                                            <div class="col-6">
+                                                <label for="">Döviz Cinsi</label>
+                                                <select name="digerdovizcinsi" id="">
+                                                    <option value="TL">TL</option>
+                                                    <option value="Euro">USD</option>
+                                                    <option value="Dolar">EURO</option>
+                                                </select>
+                                            </div>
+                                            <hr>
+                                            <div class="col-6"><label for="">Faiz Vade Farkı(%)</label>
+                                                <input type="text" name="faizvadefarki" id="">
+                                            </div>
+                                            <div class="col-6"><label for="">Ödeme Süresi (Gün)</label>
+                                                <input type="text" name="odemesuresigun" id="">
+                                            </div>
+                                            <hr>
+                                            <div class="col-6"><label for="">İskonto Oranı(%)</label>
+                                                <input type="text" name="iskontoorani" id="">
+                                            </div>
+                                            <div class="col-6"><label for="">Kar Oranı(%)</label>
+                                                <input type="text" name="karorani" id="">
+                                            </div>
+                                            <hr>
+                                            <div class="col-6"><label for="">Taksit Sayısı</label>
+                                                <input type="text" name="taksitsayisi" id="">
+                                            </div>
+                                            <div class="col-6"><label for="">Taksit Ödeme Günü (Her ayın Günü)</label>
+                                                <input type="text" name="taksitodemegunuherayin" id="">
+                                            </div>
+                                            <div class="col-12">
+                                                <label for="">Ödeme Şablonu</label>
+                                                <select name="" id="">
+                                                    <option value=""></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <hr>
+
+                                    </div>
+                                
+                                    <div class="col-8">
+                                        <div class="row">
+                                            <div class="col-4" style="border: 1px solid black;">
+                                                <h6>Fatura , İrsaliye , Sipariş
+                                                    Kullanılacak Stok Fiyatları
+                                                </h6>
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <label for="">
+                                                            Satiş Fiyati :
+                                                            <select name="satisfiyati" id="">
+                                                                <option value="1">1</option>
+                                                                <option value="2">2</option>
+                                                                <option value="3">3</option>
+                                                                <option value="4">4</option>
+                                                                <option value="5">5</option>
+                                                                <option value="6">6</option>
+                                                                <option value="7">7</option>
+                                                                <option value="8">8</option>
+                                                                <option value="9">9</option>
+                                                                <option value="10">10</option>
+
+                                                            </select>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <label for="">
+                                                            Alış Fiyati :
+                                                            <select name="alisfiyati" id="">
+                                                                <option value="1">1</option>
+                                                                <option value="2">2</option>
+                                                                <option value="3">3</option>
+                                                                <option value="4">4</option>
+                                                                <option value="5">5</option>
+                                                            </select>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-8">
+                                                <div class="tablo" style="margin-top: 0px !important;">
+                                                    <div class="table-responsive " style="
+                                                  height: 100px;
+                                                  overflow: auto; ">
+                                                        <table class="table table-bordered ">
+                                                            <thead style="position: sticky;top: 0">
+                                                                <tr>
+                                                                    <th class="text-center" style="min-width: 100px ;">
+                                                                        Stok Grup Kodu</th>
+                                                                    <th class="text-center" style="min-width: 50px ;">
+                                                                        İskonto Oranı (%)</th>
+                                                                    <th class="text-center" style="min-width: 150px ;">
+                                                                        indirim-1</th>
+                                                                    <th class="text-center" style="min-width: 150px ;">
+                                                                        indirim-2</th>
+                                                                    <th class="text-center" style="min-width: 150px ;">
+                                                                        indirim-3</th>
+                                                                    <th class="text-center" style="min-width: 150px ;">
+                                                                        indirim-4</th>
+                                                                    <th class="text-center" style="min-width: 150px ;">
+                                                                        indirim-</th>
+                                                                    <th class="text-center" style="min-width: 150px ;">
+                                                                        indirim-6</th>
+
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+
+                                                                    <td><input name="stokgrupkodu" type="text"></td>
+                                                                    <td><input name="iskontoorani2" type="text"></td>
+                                                                    <td><input name="indim1" type="text"></td>
+                                                                    <td><input name="indim2"  type="text"></td>
+                                                                    <td><input name="indim3"  type="text"></td>
+                                                                    <td><input name="indim4"  type="text"></td>
+                                                                    <td><input name="indim5"  type="text"></td>
+                                                                    <td><input name="indim6"  type="text"></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-6"><label for="">Uygun Kur
+                                                    <select name="uygunkursecenek" id="">
+                                                        <option value="mbdovizalis">MB DÖVİZ ALIŞ</option>
+                                                        <option value="mbdovizsatis">MB DÖVİZ SATIŞ</option>
+                                                        <option value="mbefektifalis">MB EFEKTİF ALIŞ</option>
+                                                        <option value="mbefektifsatis">MB EFEKTİF SATIŞ</option>
+                                                        <option value="banka1efektifalis">BANKA 1 EFEKTİF ALIŞ</option>
+                                                        <option value="banka1efektifsatis">BANKA 1 EFEKTİF SATIŞ
+                                                        </option>
+                                                        <option value="banka2efektifalis">BANKA 2 EFEKTİF ALIŞ</option>
+                                                        <option value="banka2efektifsatis">BANKA 2 EFEKTİF SATIŞ
+                                                        </option>
+                                                    </select>
+                                                </label></div>
+                                            <div class="col-6">
+                                                <label for="otv" style="font-size: 10px !important;"><input
+                                                        type="checkbox" name="otvkullan" id="otv"> Satış Faturalarında ÖTV İçin
+                                                    Tescil Uygulansın</label>
+                                            </div>
+                                            <hr>
+                                            <div class="container tablo" style="margin-top: 0px !important;">
+                                                <div class="table-responsive " style="
+                                              height: 100px;
+                                              overflow: auto;">
+                                                    <table class="table table-bordered ">
+                                                        <thead style="position: sticky;top: 0">
+                                                            <tr>
+                                                                <th class="text-center" style="min-width: 100px ;">Banka
+                                                                    Adı</th>
+                                                                <th class="text-center" style="min-width: 50px ;">Şubesi
+                                                                </th>
+                                                                <th class="text-center" style="min-width: 150px ;">Döviz
+                                                                    Cinsi</th>
+                                                                <th class="text-center" style="min-width: 150px ;">Hesap
+                                                                    No</th>
+                                                                <th class="text-center" style="min-width: 150px ;">IBAN
+                                                                </th>
+
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+
+                                                                <td><input name="bankaadi" type="text"></td>
+                                                                <td><input name="subesi" type="text"></td>
+                                                                <td><select name="bankadovizcinsi" id="">
+                                                                    <option value="TL">TL</option>
+                                                                    <option value="Euro">USD</option>
+                                                                    <option value="Dolar">EURO</option>
+                                                                </select></td>
+                                                                <td><input name="hesapno" type="text"></td>
+                                                                <td><input name="iban" type="text"></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="d" class="tabcontent">
+                                <div class="row">
+                                    <div class="container tablo" style="margin-top: 0px !important;">
+                                        <div class="table-responsive " style="
+                                          height: 100px;
+                                          overflow: auto;">
+                                            <table class="table table-bordered ">
+                                                <thead style="position: sticky;top: 0">
+                                                    <tr>
+                                                        <th class="text-center" style="min-width: 100px ;">Şube Kodu</th>
+                                                        <th class="text-center" style="min-width: 50px ;">Şube Adı</th>
+                                                        <th class="text-center" style="min-width: 150px ;">Döviz Cinsi</th>
+                                                        <th class="text-center" style="min-width: 150px ;">Borç Tutarı</th>
+                                                        <th class="text-center" style="min-width: 150px ;">Alacak Tutarı</th>
+                                                        <th class="text-center" style="min-width: 150px ;">Bakiye Tutarı</th>
+                                                        <th class="text-center" style="min-width: 150px ;">B/A</th>
+                                                        <th class="text-center" style="min-width: 150px ;">Vade Tarihi</th>
+                                                        <th class="text-center" style="min-width: 200px ;">Adres</th>
+                                                        <th class="text-center" style="min-width: 150px ;">Semt</th>
+                                                        <th class="text-center" style="min-width: 150px ;">Şehir</th>
+                                                        <th class="text-center" style="min-width: 150px ;">Telefon</th>
+                                                        <th class="text-center" style="min-width: 150px ;">Yetkili</th>
+                                                        <th class="text-center" style="min-width: 150px ;">Ödeme Süresi</th>
+                                                        <th class="text-center" style="min-width: 150px ;">Vade Hesap Yönetimi
+                                                        </th>
+                                                        <th class="text-center" style="min-width: 150px ;">Muh. Kodu</th>
+                                                        <th class="text-center" style="min-width: 150px ;">Posta Kutusu</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+        
+                                                        <td><input name="subebilgilerisubekodu" type="text"></td>
+                                                        <td><input name="subebilgilerisubeadi" type="text"></td>
+                                                        <td>
+                                                        <select name="subebilgileridovizcinsi" id="">
+                                                            <option value="TL">TL</option>
+                                                            <option value="Euro">USD</option>
+                                                            <option value="Dolar">EURO</option>
+                                                        </select>
+                                                        </td>
+                                                        <td><input name="subebilgileriborctutari" type="text"></td>
+                                                        <td><input name="subebilgilerialacaktutari" type="text"></td>
+                                                        <td><input name="subebilgileribakiyetutari" type="text"></td>
+                                                        <td><input name="subebilgileriba" type="text"></td>
+                                                        <td><input name="subebilgilerivadetarihi" type="date"></td>
+                                                        <td><input name="subebilgileriadres" type="text"></td>
+                                                        <td><input name="subebilgilerisemt" type="text"></td>
+                                                        <td><input name="subebilgilerisehir" type="text"></td>
+                                                        <td><input name="subebilgileritelefon" type="text"></td>
+                                                        <td><input name="subebilgileriyetkili" type="text"></td>
+                                                        <td><input name="subebilgileriodemesuresi" type="text"></td>
+                                                        <td><input name="subebilgilerivadehesapyonetimi" type="text"></td>
+                                                        <td><input name="subebilgilerimuhkodu" type="text"></td>
+                                                        <td><input name="subebilgileripostakodu" type="text"></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+        
+                            <div id="s" class="tabcontent">
+                                <div class="row">
+                                    <div>
+                                        <div class="tablo" style="margin-top: 0px !important;">
+                                            <div class="table-responsive " style="
+                                          height: 100px;
+                                          overflow: auto;">
+                                                <table class="table table-bordered ">
+                                                    <thead style="position: sticky;top: 0">
+                                                        <tr>
+                                                            <th class="text-center">Tarih</th>
+                                                            <th class="text-center">Satıcı</th>
+                                                            <th class="text-center">Not</th>
+        
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+        
+                                                            <td><input name="notlartarihi" type="date"></td>
+                                                            <td><input name="notlarsatici" type="text"></td>
+                                                            <td><input name="notlarnot" type="text"></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="m" class="tabcontent">
+                                <div class="row">
+                                    <div>
+                                        <div class="tablo" style="margin-top: 0px !important;">
+                                            <div class="table-responsive " style="
+                                          height: 100px;
+                                          overflow: auto;">
+                                                <table class="table table-bordered ">
+                                                    <thead style="position: sticky;top: 0">
+                                                        <tr>
+                                                            <th class="text-center">Görevli Adı</th>
+                                                            <th class="text-center">Görevi</th>
+                                                            <th class="text-center">İş Telefonu</th>
+                                                            <th class="text-center">Dahili Numara</th>
+                                                            <th class="text-center">GSM</th>
+                                                            <th class="text-center">Açıklama</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+        
+                                                            <td><input name="firmagoreviadi" type="text"></td>
+                                                            <td><input name="firmagorevligorevi" type="text"></td>
+                                                            <td><input name="firmagorevliistelefonu"  type="text"></td>
+                                                            <td><input name="firmagorevlidahilinumara" type="text"></td>
+                                                            <td><input name="firmagorevligsm" type="text"></td>
+                                                            <td><input name="firmaaciklama" type="text"></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="i" class="tabcontent">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <h5>İlişkili Giderler</h5>
+                                        <div class="container tablo" style="margin-top: 0px !important;">
+                                            <div class="table-responsive " style="
+                                              height: 300px;
+                                              overflow: auto;">
+                                                <table class="table table-bordered ">
+                                                    <thead style="position: sticky;top: 0">
+                                                        <tr>
+                                                            <th class="text-center" style="min-width: 100px ;">Gider
+                                                                Kodu </th>
+                                                            <th class="text-center" style="min-width: 50px ;">Gider Adı
+                                                            </th>
+                                                            <th class="text-center" style="min-width: 150px ;">O. Ekle
+                                                            </th>
+                                                            <th class="text-center" style="min-width: 100px ;">Oranı (%)
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+        
+                                                            <td> <input type="text"><button>Seç</button></td>
+                                                            <td><input type="text"><button>Seç</button></td>
+                                                            <td><select name="" id="">
+                                                                    <option value="">Hayır</option>
+                                                                    <option value="">Evet</option>
+                                                                </select></td>
+                                                            <td><input type="text"></td>
+        
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <h5>İlişkili Giderler</h5>
+                                        <div class="container tablo" style="margin-top: 0px !important;">
+                                            <div class="table-responsive " style="
+                                              height: 300px;
+                                              overflow: auto;">
+                                                <table class="table table-bordered ">
+                                                    <thead style="position: sticky;top: 0">
+                                                        <tr>
+                                                            <th class="text-center" style="min-width: 100px ;">Gelir
+                                                                Kodu </th>
+                                                            <th class="text-center" style="min-width: 50px ;">Gelir Adı
+                                                            </th>
+                                                            <th class="text-center" style="min-width: 150px ;">O. Ekle
+                                                            </th>
+                                                            <th class="text-center" style="min-width: 100px ;">Oranı (%)
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+        
+                                                            <td> <input type="text"><button>Seç</button></td>
+                                                            <td><input type="text"><button>Seç</button></td>
+                                                            <td><select name="" id="">
+                                                                    <option value="">Hayır</option>
+                                                                    <option value="">Evet</option>
+                                                                </select></td>
+                                                            <td><input type="text"></td>
+        
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="di" class="tabcontent">
+                                <div class="row">
+                                    <div style="border: 1px solid black;" class="col-4">
+                                        <div class="row">
+                                            <div class="col-6">ÖTV Oranı (%)</div>
+                                            <div class="col-6"><input type="text"></div>
+                                            <div class="col-6">ÖTV Birim Fiyatı</div>
+                                            <div class="col-6"><input type="text"></div>
+                                            <div class="col-6">ÖTV Birim No</div>
+                                            <div class="col-6"><select name="" id="">
+                                                    <option value="">1</option>
+                                                    <option value="">2</option>
+                                                    <option value="">3</option>
+                                                </select></div>
+                                            <div class="col-6">ÖTV Tahsil %</div>
+                                            <div class="col-6"><input type="text"></div>
+                                            <div class="col-6">ÖTV Tecil %</div>
+                                            <div class="col-6"><input type="text"></div>
+                                            <div class="col-6">Mera Fonu %</div>
+                                            <div class="col-6"><input type="text"></div>
+                                            <div class="col-6">Fire Oranı %</div>
+                                            <div class="col-6"><input type="text"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-8">
+                                        <div class="row">
+                                            <h6>Ağırlıklar (KG)</h6>
+                                            <div class="col-2"></div>
+                                            <div class="col-2">Net</div>
+                                            <div class="col-2">Brüt</div>
+                                            <div class="col-2">Dara</div>
+                                            <div class="col-2">P.Miktar</div>
+                                            <div class="col-2">P.Açıklaması</div>
+                                            <div class="col-2">1.Birim</div>
+                                            <div class="col-2"><input type="text"></div>
+                                            <div class="col-2"><input type="text"></div>
+                                            <div class="col-2"><input type="text"></div>
+                                            <div class="col-2"><input type="text"></div>
+                                            <div class="col-2"><input type="text"></div>
+                                            <div class="col-2">2.Birim</div>
+                                            <div class="col-2"><input type="text"></div>
+                                            <div class="col-2"><input type="text"></div>
+                                            <div class="col-2"><input type="text"></div>
+                                            <div class="col-2"><input type="text"></div>
+                                            <div class="col-2"><input type="text"></div>
+                                            <div class="col-2">3.Birim</div>
+                                            <div class="col-2"><input type="text"></div>
+                                            <div class="col-2"><input type="text"></div>
+                                            <div class="col-2"><input type="text"></div>
+                                            <div class="col-2"><input type="text"></div>
+                                            <div class="col-2"><input type="text"></div>
+        
+        
+                                        </div>
+                                        <div class="container tablo" style="margin-top: 0px !important;">
+                                            <div class="table-responsive " style="
+                                                  height: 200px;
+                                                  overflow: auto;">
+                                                <table class="table table-bordered ">
+                                                    <thead style="position: sticky;top: 0">
+                                                        <tr>
+                                                            <th class="text-center" style="min-width: 100px ;">Birim No
+                                                            </th>
+                                                            <th class="text-center" style="min-width: 50px ;">En</th>
+                                                            <th class="text-center" style="min-width: 150px ;">En Birimi
+                                                            </th>
+                                                            <th class="text-center" style="min-width: 100px ;">Boy</th>
+                                                            <th class="text-center" style="min-width: 150px ;">Boy
+                                                                Birimi</th>
+                                                            <th class="text-center" style="min-width: 150px ;">Yükseklik
+                                                            </th>
+                                                            <th class="text-center" style="min-width: 150px ;">Yükseklik
+                                                                Birimi</th>
+                                                            <th class="text-center" style="min-width: 150px ;">Ebat
+                                                                Birimi</th>
+                                                            <th class="text-center" style="min-width: 150px ;">Hacim
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+        
+                                                            <td><select name="" id="">
+                                                                    <option value="">1</option>
+                                                                    <option value="">2</option>
+                                                                    <option value="">3</option>
+                                                                </select></td>
+                                                            <td><input type="text"></td>
+                                                            <td><select name="" id="">
+                                                                    <option value="">CM</option>
+                                                                    <option value="">MT</option>
+                                                                </select></td>
+                                                            <td><input type="text"></td>
+                                                            <td><select name="" id="">
+                                                                    <option value="">CM</option>
+                                                                    <option value="">MT</option>
+                                                                </select></td>
+                                                            <td><input type="text"></td>
+                                                            <td><select name="" id="">
+                                                                    <option value="">CM</option>
+                                                                    <option value="">MT</option>
+                                                                </select></td>
+                                                            <td><select name="" id="">
+                                                                    <option value="">CM</option>
+                                                                    <option value="">CM2</option>
+                                                                    <option value="">CM3</option>
+                                                                    <option value="">MT</option>
+                                                                    <option value="">MT2</option>
+                                                                    <option value="">MT3</option>
+                                                                </select></td>
+        
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="k" class="tabcontent">
+                                <h3>Tokyo</h3>
+                                <p>Tokyo is the capital of Japan.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <script>
+                        document.getElementById("a").style.display = "block";
+                        function openCity(evt, cityName) {
+                            var i, tabcontent, tablinks;
+
+                            tabcontent = document.getElementsByClassName("tabcontent");
+                            for (i = 0; i < tabcontent.length; i++) {
+                                tabcontent[i].style.display = "none";
+                            }
+                            tablinks = document.getElementsByClassName("tablinks");
+                            for (i = 0; i < tablinks.length; i++) {
+                                tablinks[i].className = tablinks[i].className.replace(" active", "");
+                            }
+                            document.getElementById(cityName).style.display = "block";
+                            evt.currentTarget.className += " active";
+                        }
+                    </script>
+            </div>
+            </form>
+        </div>
+    </div>
+    </div>
+    <div class="modal" id="ulke">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+    
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Ülke Seç</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+    
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <input type="text" id="searchInputulke" class="form-control" placeholder="Arama...">
+    
+                    <table class="table table-striped mt-3 tabloulke">
+                        <thead>
+                            <tr>
+                                <th>Ülke Kodu</th>
+                                <th>Ülke AdI</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for i in ulkeler %}
+                            <tr>
+                                <td>{{i.ulke_kodu}}</td>
+                                <td>{{i.ulke_adi}}</td>
+    
+                            </tr>
+                            {% endfor %}
+                            <!-- Diğer satırları burada ekleyin -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+    
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                Seçmek için listeye Tıklamanız Yeterlidir.
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kapat</button>
+            </div>
+    
+        </div>
+    </div>
+    <div class="modal" id="myModal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+    
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Muh Kodu Seç</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+    
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <input type="text" id="searchInput" class="form-control" placeholder="Arama...">
+    
+                    <table class="table table-striped mt-3 tablomuhkodu">
+                        <thead>
+                            <tr>
+                                <th>Hesap Kodu</th>
+                                <th>Hesap AdI</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for i in sistemhesapplanlari %}
+                            <tr>
+                                <td>{{i.hesap_kodu}}</td>
+                                <td>{{i.hesap_adi}}</td>
+    
+                            </tr>
+                            {% endfor %}
+                            {% for i in hesapplanlari %}
+                            <tr>
+                                <td>{{i.hesap_kodu}}</td>
+                                <td>{{i.hesap_adi}}</td>
+    
+                            </tr>
+                            {% endfor %}
+    
+    
+                            <!-- Diğer satırları burada ekleyin -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+    
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                Seçmek için listeye Tıklamanız Yeterlidir.
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kapat</button>
+            </div>
+    
+        </div>
+    </div>
+
+    <div class="modal" id="tevkifatkodu1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+    
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Hesap Planı Seç</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+    
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <input type="text" id="searchInputtevkifatkodu1" class="form-control" placeholder="Arama...">
+    
+                    <table class="table table-striped mt-3 tablotevkifatkodu1">
+                        <thead>
+                            <tr>
+                                <th>Hesap Kodu</th>
+                                <th>Hesap AdI</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for i in sistemhesapplanlari %}
+                            <tr>
+                                <td>{{i.hesap_kodu}}</td>
+                                <td>{{i.hesap_adi}}</td>
+    
+                            </tr>
+                            {% endfor %}
+                            {% for i in hesapplanlari %}
+                            <tr>
+                                <td>{{i.hesap_kodu}}</td>
+                                <td>{{i.hesap_adi}}</td>
+    
+                            </tr>
+                            {% endfor %}
+    
+                            <!-- Diğer satırları burada ekleyin -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+    
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                Seçmek için listeye Tıklamanız Yeterlidir.
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kapat</button>
+            </div>
+    
+        </div>
+    </div>
+    <div class="modal" id="vergi">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+    
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Vergi Dairesivergi Seç</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+    
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <input type="text" id="searchInputvergi" class="form-control" placeholder="Arama...">
+    
+                    <table class="table table-striped mt-3 tablovergi">
+                        <thead>
+                            <tr>
+                                <th>Vergi Dairesi Kodu</th>
+                                <th>Vergi Dairesi AdI</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for i in vergidaireleri %}
+                            <tr>
+                                <td>{{i.vergi_dairesi_kodu}}</td>
+                                <td>{{i.vergi_dairesi_adi}}</td>
+                            </tr>
+                            {% endfor %}
+                            <!-- Diğer satırları burada ekleyin -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+    
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                Seçmek için listeye Tıklamanız Yeterlidir.
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kapat</button>
+            </div>
+    
+        </div>
+    </div>
+    <!--Scriptler-->
+    <script>
+        const searchInputulke= document.getElementById('searchInputulke');
+        const tableulke = document.querySelector('.tabloulke');
+        const ulkedairesikodu = document.getElementById('ulkekodu');
+        const ulkedairesiadi = document.getElementById('ulkesi');
+        searchInputulke.addEventListener('input', function () {
+            const searchText = this.value.toLowerCase();
+    
+            for (const row of tableulke.rows) {
+                let found = false;
+                for (const cell of row.cells) {
+                    if (cell.textContent.toLowerCase().includes(searchText)) {
+                        found = true;
+                        break;
+                    }
+                }
+                row.style.display = found ? '' : 'none';
+            }
+        });
+    
+        // Tablo satırlarına tıklama olayını ekle
+        const tableulkeRows = tableulke.getElementsByTagName('tr');
+        for (let i = 1; i < tableulkeRows.length; i++) {
+            tableulkeRows[i].addEventListener('click', function () {
+                const cells = this.cells;
+                const rowData = {
+                    id: cells[0].textContent,
+                    ad: cells[1].textContent,
+                };
+    
+                // Seçilen veriyi input'a yaz
+                ulkedairesikodu.value = `${rowData.id}`;
+                ulkedairesiadi.value = `${rowData.ad}`;
+
+            });
+        }
+    </script>
+    <script>
+        const searchInputvergi= document.getElementById('searchInputvergi');
+        const tablevergi = document.querySelector('.tablovergi');
+        const vergidairesikodu = document.getElementById('vergidairesikodu');
+        const vergidairesiadi = document.getElementById('vergidairesiadi');
+        searchInputvergi.addEventListener('input', function () {
+            const searchText = this.value.toLowerCase();
+    
+            for (const row of tablevergi.rows) {
+                let found = false;
+                for (const cell of row.cells) {
+                    if (cell.textContent.toLowerCase().includes(searchText)) {
+                        found = true;
+                        break;
+                    }
+                }
+                row.style.display = found ? '' : 'none';
+            }
+        });
+    
+        // Tablo satırlarına tıklama olayını ekle
+        const tablevergiRows = tablevergi.getElementsByTagName('tr');
+        for (let i = 1; i < tablevergiRows.length; i++) {
+            tablevergiRows[i].addEventListener('click', function () {
+                const cells = this.cells;
+                const rowData = {
+                    id: cells[0].textContent,
+                    ad: cells[1].textContent,
+                };
+    
+                // Seçilen veriyi input'a yaz
+                vergidairesikodu.value = `${rowData.id}`;
+                vergidairesiadi.value = `${rowData.ad}`;
+
+            });
+        }
+    </script>
+    <script>
+        const searchInputtevkifatkodu1 = document.getElementById('searchInputtevkifatkodu1');
+        const tabletevkifatkodu1 = document.querySelector('.tablotevkifatkodu1');
+        const tevkifatkodu1 = document.getElementById('tevkifatkodu');
+        searchInputtevkifatkodu1.addEventListener('input', function () {
+            const searchText = this.value.toLowerCase();
+    
+            for (const row of tabletevkifatkodu1.rows) {
+                let found = false;
+                for (const cell of row.cells) {
+                    if (cell.textContent.toLowerCase().includes(searchText)) {
+                        found = true;
+                        break;
+                    }
+                }
+                row.style.display = found ? '' : 'none';
+            }
+        });
+    
+        // Tablo satırlarına tıklama olayını ekle
+        const tabletevkifatkodu1Rows = tabletevkifatkodu1.getElementsByTagName('tr');
+        for (let i = 1; i < tabletevkifatkodu1Rows.length; i++) {
+            tabletevkifatkodu1Rows[i].addEventListener('click', function () {
+                const cells = this.cells;
+                const rowData = {
+                    id: cells[0].textContent,
+                    ad: cells[1].textContent,
+                };
+    
+                // Seçilen veriyi input'a yaz
+                tevkifatkodu1.value = `${rowData.id}`;
+
+            });
+        }
+    </script>
+    
+    <script>
+        const searchInput = document.getElementById('searchInput');
+        const table = document.querySelector('.tablomuhkodu');
+        const firmavergidairesikodu = document.getElementById('muhkodu');
+        const firmavergidairesi = document.getElementById("muhkodu");
+        searchInput.addEventListener('input', function () {
+            const searchText = this.value.toLowerCase();
+    
+            for (const row of table.rows) {
+                let found = false;
+                for (const cell of row.cells) {
+                    if (cell.textContent.toLowerCase().includes(searchText)) {
+                        found = true;
+                        break;
+                    }
+                }
+                row.style.display = found ? '' : 'none';
+            }
+        });
+    
+        // Tablo satırlarına tıklama olayını ekle
+        const tableRows = table.getElementsByTagName('tr');
+        for (let i = 1; i < tableRows.length; i++) {
+            tableRows[i].addEventListener('click', function () {
+                const cells = this.cells;
+                const rowData = {
+                    id: cells[0].textContent,
+                    ad: cells[1].textContent,
+                };
+    
+                // Seçilen veriyi input'a yaz
+                firmavergidairesi.value = `${rowData.id}`;
+                firmavergidairesikodu.value = `${rowData.id}`;
+            });
+        }
+    </script>
+    <!--Scriptler-->
+{% endblock content %}
+
+{% block head %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        body {font-family: Arial;}
+        
+        /* Style the tab */
+        .tab {
+          overflow: hidden;
+          border: 1px solid #ccc;
+          background-color: #f1f1f1;
+        }
+        
+        /* Style the buttons inside the tab */
+        .tab button {
+          background-color: inherit;
+          float: left;
+          border: none;
+          outline: none;
+          cursor: pointer;
+          padding: 14px 16px;
+          transition: 0.3s;
+          font-size: 17px;
+        }
+        
+        /* Change background color of buttons on hover */
+        .tab button:hover {
+          background-color: #ddd;
+        }
+        
+        /* Create an active/current tablink class */
+        .tab button.active {
+          background-color: #ccc;
+        }
+        
+        /* Style the tab content */
+        .tabcontent {
+          display: none;
+          padding: 6px 12px;
+          border: 1px solid #ccc;
+          border-top: none;
+        }
+        .row{
+            margin-right: 0px !important; 
+            margin-left: 0px !important;
+        }
+        </style>
+{% endblock head %}

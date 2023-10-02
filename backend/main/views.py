@@ -555,3 +555,7 @@ def siparis_sayfasi(request,slug):
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     return render(request,"siparis/siparis.html",content)
 #Sipariş Sayfası
+
+#banka
+ 
+#banka
