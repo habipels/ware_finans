@@ -594,3 +594,10 @@ class cari_kartislemleri_sube_bilgiler(models.Model):
     subebilgilerivadehesapyonetimi = models.CharField(max_length=200,verbose_name="Şube Yonetim HEsabı",blank=True,null=True)
     subebilgilerimuhkodu = models.CharField(max_length=200,verbose_name="Muhtasar Kodu",blank=True,null=True)
     subebilgileripostakodu = models.CharField(max_length=200,verbose_name="Şube POsta Kodu",blank=True,null=True)
+
+class cari_kartislemleri_notlar(models.Model):
+    cari_bilgisi = models.ForeignKey(cari_kartlar,blank=True,null=True,verbose_name="Cari Bilgisi",on_delete=models.CASCADE)
+    notlartarihi = models.DateField(verbose_name="Notlar Tarihi",blank=True,null=True)
+    notlarsatici = models.CharField(max_length=200,verbose_name="Satıcı",blank=True,null=True)
+    notlarnot  = models.TextField(verbose_name="Not",blank=True,null=True)
+    

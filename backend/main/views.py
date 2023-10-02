@@ -438,11 +438,9 @@ def yeni_cari_karti(request,slug):
         subebilgilerivadehesapyonetimi= request.POST.get("subebilgilerivadehesapyonetimi")
         subebilgilerimuhkodu= request.POST.get("subebilgilerimuhkodu")
         subebilgileripostakodu= request.POST.get("subebilgileripostakodu")
-        #notlar modelsi yok
         notlartarihi= request.POST.get("notlartarihi")
         notlarsatici= request.POST.get("notlarsatici")
         notlarnot= request.POST.get("notlarnot")
-        #notlar modelsi yok
         #firma gorevlisi modelsi yok
         firmagoreviadi= request.POST.get("firmagoreviadi")
         firmagorevligorevi= request.POST.get("firmagorevligorevi")
