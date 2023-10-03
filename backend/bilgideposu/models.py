@@ -39,10 +39,9 @@ class banka(models.Model):
     ozel_kod = models.CharField(max_length=100,verbose_name="Özel Kod",blank=True,null=True)
     doviz_cinsi = models.CharField(max_length=100,verbose_name="Döviz Cinsi", choices=doviz,default="",blank=True,null=True)
     bagli_oldugu_firma = models.ForeignKey(firma,blank=True,null=True,on_delete=models.SET_NULL)
-    toplam_yatirilan = models.CharField(max_length=100,verbose_name="Toplam Yatırılan",blank=True,null=True)
-    toplam_cekilen = models.CharField(max_length=100,verbose_name="Toplam Çekilen",blank=True,null=True)
-    toplam_bakiye = models.CharField(max_length=100,verbose_name="Bakiye",blank=True,null=True)
-    muh_kodu = models.CharField(max_length=100,verbose_name="Muh Kodu",blank=True,null=True)
+    toplam_yatirilan = models.FloatField(verbose_name="Toplam Yatırılan",blank=True,null=True)
+    toplam_cekilen = models.FloatField(verbose_name="Toplam Çekilen",blank=True,null=True)
+    toplam_bakiye = models.FloatField(verbose_name="Bakiye",blank=True,null=True)
     aciklama = models.TextField(verbose_name="Açıklama",blank=True, null=True)
 class banka_yetkilisi(models.Model):
     banka_bilgisi = models.ForeignKey(banka,blank=True, null=True,on_delete=models.SET_NULL)

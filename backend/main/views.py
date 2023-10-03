@@ -557,5 +557,34 @@ def siparis_sayfasi(request,slug):
 #Sipariş Sayfası
 
 #banka
- 
+def banka_sayfasi(request,slug):
+    content ={}
+    content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
+    return render(request,"banka/banka.html",content)
+def yeni_banka_karti(request,slug):
+    content ={}
+    content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
+    if request.POST:
+        bankakodu = request.POST.get("bankakodu")
+        entkodu = request.POST.get("entkodu")
+        banka_adi = request.POST.get("banka_adi")
+        sube_adi = request.POST.get("sube_adi")
+        sube_kodu = request.POST.get("sube_kodu")
+        hesap_turu = request.POST.get("hesap_turu")
+        hesap_adi= request.POST.get("hesap_adi")
+        hesap_no = request.POST.get("hesap_no")
+        iban_numarasi= request.POST.get("iban_numarasi")
+        kullanabilir_kredi_tutari = request.POST.get("kullanabilir_kredi_tutari")
+        ozel_kod = request.POST.get("ozel_kod")
+        doviz_cinsi = request.POST.get("doviz_cinsi")
+        yeni_banka_karti_bilgi = banka.objects.create(
+            banka_kodu = bankakodu,entkodu = entkodu,banka_adi= banka_adi,
+            sube_adi = sube_adi,sube_kodu = sube_kodu,hesap_turu = hesap_turu,
+            hesap_adi = hesap_adi,hesap_no = hesap_no,iban_numarasi = iban_numarasi,
+            kullanabilir_kredi_tutari = kullanabilir_kredi_tutari,
+            ozel_kod = ozel_kod,doviz_cinsi = doviz_cinsi,
+            bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),
+            toplam_yatirilan = 0,toplam_cekilen = 0,toplam_bakiye = 0
+        )
+    return render(request,"banka/yenibanka.html",content)
 #banka
