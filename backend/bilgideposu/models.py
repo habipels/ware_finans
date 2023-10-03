@@ -51,6 +51,22 @@ class banka_yetkilisi(models.Model):
     dahili_numara = models.CharField(max_length=100,verbose_name="Dahili Numara",blank=True,null=True)
     gsm = models.CharField(max_length=100,verbose_name="GSM",blank=True,null=True)
     aciklama = models.TextField(verbose_name="Açıklama",blank=True, null=True)
+class banka_kodlari(models.Model):
+    banka_bilgisi = models.ForeignKey(banka,blank=True, null=True,on_delete=models.SET_NULL)
+    banka_muhasebe_hesap_kodu = models.CharField(max_length=200,verbose_name="Banka Muhasebe Hesap Kodu ",blank=True, null=True)
+    kredi_kartı_hesap_kodu = models.CharField(max_length=200,verbose_name="Kredi Kartı Hesap Kodu",blank=True,null=True)
+    verilen_cekler_hesap_kodu = models.CharField(max_length=200,verbose_name="Verilen Çekler Hesap Kodu ",blank=True, null=True)
+    tahsil_cekler_hesap_kodu = models.CharField(max_length=200,verbose_name="Tahsil Çekleri Hesap Kodu",blank=True,null=True)
+    tahsil_senetleri_hesap_kodu = models.CharField(max_length=200,verbose_name="Tahsil Senetleri Hesap Kodu ",blank=True, null=True)
+    teminat_cekler_hesap_kodu = models.CharField(max_length=200,verbose_name="Teminat Çekleri Hesap Kodu",blank=True,null=True)
+    teminat_senetleri_hesap_kodu = models.CharField(max_length=200,verbose_name="Teminat Senetleri Hesap Kodu",blank=True,null=True)
+    ilgilikisi= models.CharField(max_length=200,verbose_name="İlgili Kişi",blank=True,null=True)
+    telefonbilgisi = models.CharField(max_length=200,verbose_name="Telefon Bilgisi",blank=True,null=True)
+    adresbilgisi = models.CharField(max_length=200,verbose_name="Adres Bilgisi",blank=True,null=True)
+class banka_notlari(models.Model):
+    banka_bilgisi = models.ForeignKey(banka,blank=True, null=True,on_delete=models.SET_NULL)
+    banka_nottarihi = models.DateField(verbose_name="Not Tarihi",blank=True,null=True)
+    banka_not = models.TextField(verbose_name="Not ",blank=True, null=True)
 class tevkifat_tur_kodu (models.Model):
     hesap_turu = (
         ("1","Genel Planlar"),

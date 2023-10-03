@@ -577,6 +577,24 @@ def yeni_banka_karti(request,slug):
         kullanabilir_kredi_tutari = request.POST.get("kullanabilir_kredi_tutari")
         ozel_kod = request.POST.get("ozel_kod")
         doviz_cinsi = request.POST.get("doviz_cinsi")
+        banka_muhasebe_hesap_kodu = request.POST.get("banka_muhasebe_hesap_kodu")
+        kredi_kartı_hesap_kodu = request.POST.get("kredi_kartı_hesap_kodu")
+        verilen_cekler_hesap_kodu = request.POST.get("verilen_cekler_hesap_kodu")
+        tahsil_cekler_hesap_kodu =request.POST.get("tahsil_cekler_hesap_kodu")
+        teminat_cekler_hesap_kodu = request.POST.get("teminat_cekler_hesap_kodu")
+        tahsil_senetleri_hesap_kodu= request.POST.get("tahsil_senetleri_hesap_kodu")
+        teminat_senetleri_hesap_kodu= request.POST.get("teminat_senetleri_hesap_kodu")
+        ilgilikisi=  request.POST.get("ilgilikisi")
+        telefonbilgisi =request.POST.get("telefonbilgisi")
+        adresbilgisi= request.POST.get("adresbilgisi")
+        nottarihi = request.POST.get("nottarihi")
+        notalma = request.POST.get("not") 
+        adi_soyadi = request.POST.get("adi_soyadi")
+        gorevi = request.POST.get("gorevi")
+        istelefonu = request.POST.get("istelefonu")
+        dahili_numara =request.POST.get("dahili_numara")
+        gsm = request.POST.get("gsm")
+        aciklama =request.POST.get("aciklama")
         yeni_banka_karti_bilgi = banka.objects.create(
             banka_kodu = bankakodu,entkodu = entkodu,banka_adi= banka_adi,
             sube_adi = sube_adi,sube_kodu = sube_kodu,hesap_turu = hesap_turu,
@@ -585,6 +603,24 @@ def yeni_banka_karti(request,slug):
             ozel_kod = ozel_kod,doviz_cinsi = doviz_cinsi,
             bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),
             toplam_yatirilan = 0,toplam_cekilen = 0,toplam_bakiye = 0
+        )
+        banka_kodlari.objects.create(
+            banka_bilgisi = get_object_or_404(banka,id = yeni_banka_karti_bilgi.id),
+            banka_muhasebe_hesap_kodu = banka_muhasebe_hesap_kodu,kredi_kartı_hesap_kodu = kredi_kartı_hesap_kodu,
+            verilen_cekler_hesap_kodu = verilen_cekler_hesap_kodu,tahsil_cekler_hesap_kodu =tahsil_cekler_hesap_kodu,
+            tahsil_senetleri_hesap_kodu = tahsil_senetleri_hesap_kodu,teminat_cekler_hesap_kodu = teminat_cekler_hesap_kodu,
+            teminat_senetleri_hesap_kodu = teminat_senetleri_hesap_kodu,ilgilikisi = ilgilikisi,telefonbilgisi = telefonbilgisi,
+            adresbilgisi = adresbilgisi
+        )
+        banka_notlari.objects.create(
+            banka_bilgisi = get_object_or_404(banka,id = yeni_banka_karti_bilgi.id),
+            banka_nottarihi = nottarihi,banka_not = notalma
+        )
+        banka_yetkilisi.objects.create(
+            banka_bilgisi = get_object_or_404(banka,id = yeni_banka_karti_bilgi.id),
+            adi_soyadi = adi_soyadi,gorevi = gorevi,istelefonu = istelefonu,
+            dahili_numara = dahili_numara,gsm = gsm,aciklama= aciklama
+
         )
     return render(request,"banka/yenibanka.html",content)
 #banka
