@@ -595,6 +595,18 @@ def yeni_banka_karti(request,slug):
         dahili_numara =request.POST.get("dahili_numara")
         gsm = request.POST.get("gsm")
         aciklama =request.POST.get("aciklama")
+        tahsilatkodu =request.POST.get("tahsilatkodu")
+        tahsilatsekli = request.POST.get("tahsilatsekli")
+        taksitadedi= request.POST.get("taksitadedi")
+        taksitaralikligun= request.POST.get("taksitaralikligun")
+        bankahesabinagecissekli= request.POST.get("bankahesabinagecissekli")
+        hesabagecissuresigun= request.POST.get("hesabagecissuresigun")
+        carihesapkayitsekli=  request.POST.get("carihesapkayitsekli")
+        komisyonorani = request.POST.get("komisyonorani")
+        komisyontutari=  request.POST.get("komisyontutari")
+        komisyongiderkodu=  request.POST.get("komisyongiderkodu")
+        promosyonorani = request.POST.get("promosyonorani")
+        
         yeni_banka_karti_bilgi = banka.objects.create(
             banka_kodu = bankakodu,entkodu = entkodu,banka_adi= banka_adi,
             sube_adi = sube_adi,sube_kodu = sube_kodu,hesap_turu = hesap_turu,

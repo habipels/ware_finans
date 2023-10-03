@@ -67,6 +67,22 @@ class banka_notlari(models.Model):
     banka_bilgisi = models.ForeignKey(banka,blank=True, null=True,on_delete=models.SET_NULL)
     banka_nottarihi = models.DateField(verbose_name="Not Tarihi",blank=True,null=True)
     banka_not = models.TextField(verbose_name="Not ",blank=True, null=True)
+class banka_kredikartibilgileri(models.Model):
+    banka_bilgisi = models.ForeignKey(banka,blank=True, null=True,on_delete=models.SET_NULL)
+    tahsilatkodu = models.CharField(max_length=200,verbose_name="Tahsilat Kodu",blank=True,null=True)
+    tahsilatsekli = models.CharField(max_length=200,verbose_name="Tahsilat Şekli",blank=True,null=True)
+    taksitadedi = models.CharField(max_length=200,verbose_name="Taksitli Çekim",blank=True,null=True)
+    taksitaralikligun = models.CharField(max_length=200,verbose_name="Taksitli Çekim",blank=True,null=True)
+    bankahesabinagecissekli = models.CharField(max_length=200,verbose_name="Banka Hesabına Geçiş Şekli",blank=True,null=True)
+    hesabagecissuresigun =  models.CharField(max_length=200,verbose_name="Hesaba Geçiş Süresi Gün",blank=True,null=True)
+    carihesapkayitsekli = models.CharField(max_length=200,verbose_name="Cari Hesap Geçiş Şekli",blank=True,null=True)
+    komisyonorani= models.CharField(max_length=200,verbose_name="Komisyon Oranı",blank=True,null=True)
+    komisyontutari =  models.CharField(max_length=200,verbose_name="Komisyon Tutarı",blank=True,null=True)
+    komisyongiderkodu  = models.CharField(max_length=200,verbose_name="Komisyon gider Kodu",blank=True,null=True)
+    promosyonorani =  models.CharField(max_length=200,verbose_name="Promosyon Oranı",blank=True,null=True)
+
+
+
 class tevkifat_tur_kodu (models.Model):
     hesap_turu = (
         ("1","Genel Planlar"),
