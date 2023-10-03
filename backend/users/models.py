@@ -4,6 +4,7 @@ import random
 import json
 import datetime
 from django.utils import timezone
+
 # Create your models here.
 class CustomUser(AbstractUser):
 
@@ -513,3 +514,5 @@ class iskurbilgileri(models.Model):
     iskurisverentc = models.CharField(max_length=200,verbose_name="İŞKUR İşveren Tc Kimlik",blank=True,null=True)
     iskurilmudkayittarihi = models.DateField(blank=True,null=True,verbose_name="İŞKUR MÜD. Kayıt Tarihi")
     iskursifresi = models.CharField(max_length=200,verbose_name="İŞKUR Şifresi",blank=True,null=True)
+
+

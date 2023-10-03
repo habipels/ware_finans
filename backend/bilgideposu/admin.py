@@ -20,3 +20,5 @@ admin.site.register(cari_kartislemleri_firma_gorevilisi)
 admin.site.register(banka_kodlari)
 admin.site.register(banka_notlari)
 admin.site.register(banka_kredikartibilgileri)
+admin.site.register(KasaFisIslemleri)
+
