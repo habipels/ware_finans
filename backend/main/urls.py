@@ -39,5 +39,17 @@ urlpatterns = [
     #Banka işlemleri 
     path("<str:slug>/banka/", views.banka_sayfasi, name="banka_sayfasi"),
     path("<str:slug>/yenibankakarti/", views.yeni_banka_karti, name="yeni_banka_karti"),
+    path("<str:slug>/bankasil/<int:id>/", views.banka_silme_sayfasi, name="banka_silme_sayfasi"),
     #Banka işlemeleri
+    #kasa Fiş İşlemeleri
+    path("<str:slug>/kasatahsilfisi/", views.kasa_tahsilat_fisi, name="kasa_tahsilat_fisi"),
+    path("<str:slug>/kasaodemefisi/", views.kasa_odeme_fisi, name="kasa_odeme_fisi"),
+    path("<str:slug>/virmanfisi/", views.kasa_virman_fisi, name="kasa_virman_fisi"),
+    path("<str:slug>/dovizfisi/", views.kasa_doviz_fisi, name="kasa_doviz_fisi"),
+    path("<str:slug>/kasaacilisfisi/", views.kasa_acilis_fisi, name="kasa_acilis_fisi"),
+    path("<str:slug>/kasatahsilatmakbuzu/", views.kasa_tahsilat_makbuzu, name="kasa_tahsilat_makbuzu"),
+    path("<str:slug>/kasaodememakbuzu/", views.kasa_tahsilat_odeme, name="kasa_tahsilat_odeme"),
+    path("<str:slug>/kasamaasodeme/", views.kasa_maas_odeme, name="kasa_maas_odeme"),
+    #kasa Fiş İşlemeleri
+    #
 ]

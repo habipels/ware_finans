@@ -560,7 +560,7 @@ def siparis_sayfasi(request,slug):
 def banka_sayfasi(request,slug):
     content ={}
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
-    content["bankalarim"]  = banka.objects.filter(bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    content["bankalarim"]  = banka.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
     content["banka_yetkilisi"]=banka_yetkilisi.objects.filter(banka_bilgisi__bagli_oldugu_firma =  get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
     content["banka_kodlari"]=banka_kodlari.objects.filter(banka_bilgisi__bagli_oldugu_firma =  get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
     return render(request,"banka/banka.html",content)
@@ -661,4 +661,56 @@ def yeni_banka_karti(request,slug):
         link = "/"+slug+"/banka/"
         return redirect(link)
     return render(request,"banka/yenibanka.html",content)
+
+def banka_silme_sayfasi(request,slug,id):
+    content ={}
+    content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
+    hesaplar = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) )
+    sistem = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =None)
+    content["hesapplanlari"] = hesaplar
+    content["sistemhesapplanlari"] = sistem
+    kart = get_object_or_404(banka,id = id,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    content["kart"] = kart
+  
+
+    banka.objects.filter(id = id,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)).update(
+            silinme_bilgisi = True
+    )
+    link = "/"+slug+"/banka/"
+    return redirect(link)
 #banka
+
+#kasa Fiş İşlemeleri
+def kasa_tahsilat_fisi(request,slug):
+    content ={}
+    content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
+    return render(request,"kasa/fisler/tahsilatfisi.html",content)
+def kasa_odeme_fisi(request,slug):
+    content ={}
+    content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
+    return render(request,"kasa/fisler/odemefisi.html",content)
+def kasa_virman_fisi(request,slug):
+    content ={}
+    content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
+    return render(request,"kasa/fisler/virmanfisi.html",content)
+def kasa_doviz_fisi(request,slug):
+    content ={}
+    content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
+    return render(request,"kasa/fisler/dovizfisi.html",content)
+def kasa_acilis_fisi(request,slug):
+    content ={}
+    content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
+    return render(request,"kasa/fisler/acilisfisi.html",content)
+def kasa_tahsilat_makbuzu(request,slug):
+    content ={}
+    content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
+    return render(request,"kasa/fisler/tahsilatmakbuzu.html",content)
+def kasa_tahsilat_odeme(request,slug):
+    content ={}
+    content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
+    return render(request,"kasa/fisler/odememakbuzu.html",content)
+def kasa_maas_odeme(request,slug):
+    content ={}
+    content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
+    return render(request,"kasa/fisler/maasodeme.html",content)
+#kasa Fiş İşlemeleri

@@ -34,7 +34,7 @@ class banka(models.Model):
     hesap_turu = models.CharField(max_length=100,choices=hesap_tur,verbose_name="Hesap Turu",blank=True,null=True,default="")
     hesap_adi = models.CharField(max_length=200,verbose_name="Hesap Adı",blank=True,null=True)
     hesap_no = models.CharField(max_length=200,verbose_name="Hesap No",blank=True,null=True)
-    iban_numarasi = models.CharField(max_length=20,verbose_name="İban Numarası",blank=True,null=True)
+    iban_numarasi = models.CharField(max_length=30,verbose_name="İban Numarası",blank=True,null=True)
     kullanabilir_kredi_tutari = models.CharField(max_length=200,verbose_name="Kullanabilir kredi Tutarı",null=True,blank=True)
     ozel_kod = models.CharField(max_length=100,verbose_name="Özel Kod",blank=True,null=True)
     doviz_cinsi = models.CharField(max_length=100,verbose_name="Döviz Cinsi", choices=doviz,default="",blank=True,null=True)
@@ -43,6 +43,7 @@ class banka(models.Model):
     toplam_cekilen = models.FloatField(verbose_name="Toplam Çekilen",blank=True,null=True)
     toplam_bakiye = models.FloatField(verbose_name="Bakiye",blank=True,null=True)
     aciklama = models.TextField(verbose_name="Açıklama",blank=True, null=True)
+    silinme_bilgisi = models.BooleanField(default=False)
 class banka_yetkilisi(models.Model):
     banka_bilgisi = models.ForeignKey(banka,blank=True, null=True,on_delete=models.SET_NULL)
     adi_soyadi = models.CharField(max_length=200,verbose_name="Banka Yetkilisi Adı Soyadı ",blank=True, null=True)
