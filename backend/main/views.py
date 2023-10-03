@@ -560,6 +560,9 @@ def siparis_sayfasi(request,slug):
 def banka_sayfasi(request,slug):
     content ={}
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
+    content["bankalarim"]  = banka.objects.filter(bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    content["banka_yetkilisi"]=banka_yetkilisi.objects.filter(banka_bilgisi__bagli_oldugu_firma =  get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    content["banka_kodlari"]=banka_kodlari.objects.filter(banka_bilgisi__bagli_oldugu_firma =  get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
     return render(request,"banka/banka.html",content)
 def yeni_banka_karti(request,slug):
     content ={}
@@ -609,7 +612,7 @@ def yeni_banka_karti(request,slug):
         promosyontutari = request.POST.get("promosyontutari")
         promosyonkesintisekli= request.POST.get("promosyonkesintisekli")
         promosyongiderkodu  =request.POST.get("promosyongiderkodu")
-        hizmetorani =request.POT.get("hizmetorani")
+        hizmetorani =request.POST.get("hizmetorani")
         hizmettutari = request.POST.get("hizmettutari")
         hizmetgiderkodu = request.POST.get("hizmetgiderkodu")
         hizmetkesintisekli = request.POST.get("hizmetkesintisekli")
@@ -642,5 +645,20 @@ def yeni_banka_karti(request,slug):
             dahili_numara = dahili_numara,gsm = gsm,aciklama= aciklama
 
         )
+        banka_kredikartibilgileri.objects.create(
+            banka_bilgisi = get_object_or_404(banka,id = yeni_banka_karti_bilgi.id),
+            tahsilatkodu =tahsilatkodu ,tahsilatsekli = tahsilatsekli, taksitadedi= taksitadedi,
+            taksitaralikligun= taksitaralikligun,bankahesabinagecissekli= bankahesabinagecissekli,
+            hesabagecissuresigun= hesabagecissuresigun,carihesapkayitsekli=  carihesapkayitsekli,
+            komisyonorani = komisyonorani,komisyontutari=  komisyontutari,
+            komisyongiderkodu=  komisyongiderkodu,promosyonorani = promosyonorani,promosyontutari = promosyontutari,
+            promosyonkesintisekli= promosyonkesintisekli,promosyongiderkodu  =promosyongiderkodu,
+            hizmetorani =hizmetorani,hizmettutari = hizmettutari,hizmetgiderkodu = hizmetgiderkodu,
+            hizmetkesintisekli = hizmetkesintisekli,kredikartaciklama = kredikartaciklama,
+            taksitgunleri = taksitgunleri
+
+        )
+        link = "/"+slug+"/banka/"
+        return redirect(link)
     return render(request,"banka/yenibanka.html",content)
 #banka

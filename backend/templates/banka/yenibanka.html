@@ -1,9 +1,11 @@
 {% extends "homebase.html" %}
 {% block content %}
+<form method="post">
+    {% csrf_token %}
     <!--Header-->
     <div class="icon-bar">
 
-        <a href="">Kaydet </a>
+        <button type="submit" class="btn btn-primary">Kaydet </button>
         <a href="">Kaydet / Yeni Kart</a>
         <a href="" style="color:red;">Çıkış Yap (ESC)</a>
 
@@ -538,6 +540,7 @@
             
         </div>
     </div>
+</form>
 <script src="https://unpkg.com/popper.js/dist/umd/popper.min.js"></script>
 <script src="https://unpkg.com/bootstrap/dist/js/bootstrap.min.js"></script>
 {% endblock content %}
