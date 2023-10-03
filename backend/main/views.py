@@ -606,7 +606,15 @@ def yeni_banka_karti(request,slug):
         komisyontutari=  request.POST.get("komisyontutari")
         komisyongiderkodu=  request.POST.get("komisyongiderkodu")
         promosyonorani = request.POST.get("promosyonorani")
-        
+        promosyontutari = request.POST.get("promosyontutari")
+        promosyonkesintisekli= request.POST.get("promosyonkesintisekli")
+        promosyongiderkodu  =request.POST.get("promosyongiderkodu")
+        hizmetorani =request.POT.get("hizmetorani")
+        hizmettutari = request.POST.get("hizmettutari")
+        hizmetgiderkodu = request.POST.get("hizmetgiderkodu")
+        hizmetkesintisekli = request.POST.get("hizmetkesintisekli")
+        kredikartaciklama = request.POST.get("kredikartaciklama")
+        taksitgunleri = request.POST.get("taksitgunleri")
         yeni_banka_karti_bilgi = banka.objects.create(
             banka_kodu = bankakodu,entkodu = entkodu,banka_adi= banka_adi,
             sube_adi = sube_adi,sube_kodu = sube_kodu,hesap_turu = hesap_turu,

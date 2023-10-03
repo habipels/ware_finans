@@ -80,8 +80,15 @@ class banka_kredikartibilgileri(models.Model):
     komisyontutari =  models.CharField(max_length=200,verbose_name="Komisyon Tutarı",blank=True,null=True)
     komisyongiderkodu  = models.CharField(max_length=200,verbose_name="Komisyon gider Kodu",blank=True,null=True)
     promosyonorani =  models.CharField(max_length=200,verbose_name="Promosyon Oranı",blank=True,null=True)
-
-
+    promosyontutari = models.CharField(max_length=200,verbose_name="Promosyon Tutarı",blank=True,null=True)
+    promosyonkesintisekli = models.CharField(max_length=200,verbose_name="Promosyon Kesinti Şekli",blank=True,null=True)
+    promosyongiderkodu = models.CharField(max_length=200,verbose_name="Promosyon Gider Kodu",blank=True,null=True)
+    hizmetorani=  models.CharField(max_length=200,verbose_name="Hizmet Oranı",blank=True,null=True)
+    hizmettutari = models.CharField(max_length=200,verbose_name="Hizmet Tutarı",blank=True,null=True)
+    hizmetgiderkodu = models.CharField(max_length=200,verbose_name="Hizmet Gider Kodu",blank=True,null=True)
+    hizmetkesintisekli  = models.CharField(max_length=200,verbose_name="Hizmet Kesinti Şekli",blank=True,null=True)
+    kredikartaciklama = models.TextField(verbose_name="Açıklama",blank=True,null=True)
+    taksitgunleri = models.CharField(max_length=20,verbose_name="Taksit Günleri Hafta Sonuna Denk Gelmesin",blank=True,null=True)
 
 class tevkifat_tur_kodu (models.Model):
     hesap_turu = (
