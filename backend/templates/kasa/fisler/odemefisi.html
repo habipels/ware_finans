@@ -1,5 +1,10 @@
 {% extends "homebase.html" %}
 {% block content %}
+<style>
+    #dovizacma{
+        display: none;
+    }
+</style>
     <div class="container mt-5">
         <div class="row">
             <div class="col-12" style="border: 1px solid black; padding: 20px;">
@@ -107,9 +112,13 @@
                                 <option value="Euro">EURO</option>
                             </select>
                         </div>
-                        <div class="col-4"></div>
+                         <div class="col-4">
+                        <label id="dovizacma" for="">Günlük Kur</label>
+                        <input name="gunlukkur" step="0.001" id="dovizacma" type="number">
+                        </div>
                         <div class="col-4">
-
+                            <label id="dovizacma" for="">Uygun Kur</label>
+                        <input name="uygunkur" step="0.001" class="uygunkur" id="dovizacma" type="number">
                         </div>
                         <hr style="margin-top: 5px;">
                         <div class="col-4"><label for="">Açıklama</label></div>
@@ -122,9 +131,13 @@
                             <input name="tahsilatiodemeyiyapan" type="text">
                         </div>
                         <hr style="margin-top: 5px;">
-                        <div class="col-4"><label for="">Tutar (TL)</label></div>
-                        <div class="col-8">
-                            <input name="tutar" type="text">
+                        <div class="col-2"><label id="dovizacma" for="">Tutar (Döviz)</label></div>
+                        <div class="col-4">
+                            <input id="dovizacma" step="0.001" oninput="calculateResult()" class="tutardoviz" name="tutardoviz" type="number">
+                        </div>
+                        <div class="col-2"><label for="">Tutar (TL)</label></div>
+                        <div class="col-4">
+                            <input name="tutar" step="0.001" id="tutar" type="number">
                         </div>
                         <hr style="margin-top: 5px;">
                         <div class="mt-5"></div>
@@ -290,6 +303,51 @@
 
     </div>
 </div>
+<script>
+const selectElement = document.getElementById('kasabilgisiSelect');
+const kasadovizcinsi = document.getElementById('kasadovizcinsi');
+
+// Event listener ekleme
+selectElement.addEventListener('change', function() {
+    // Seçilen seçeneğin id değerini ve doviz_cinsi özelliğini al
+    const selectedOption = selectElement.options[selectElement.selectedIndex];
+    const selectedOptionId = selectedOption.getAttribute('id');
+    const selectedOptionValue = selectedOption.getAttribute('value');
+    
+    // Inputun value değerini seçilen seçeneğin id değeri ile güncelle
+    kasadovizcinsi.value = selectedOptionId;
+
+    // Kontrol et, eğer seçilen opsiyonun değeri TL değilse, gizli değerleri göster
+    if (selectedOptionId !== 'TL') {
+        // Burada gizli değerleri gösterme işlemini gerçekleştirin, örneğin:
+        // Örneğin, gizli bir div elementini göstermek için:
+        const dovizacmaElements = document.querySelectorAll('#dovizacma');
+
+        dovizacmaElements.forEach(element => {
+        element.style.display = 'block';
+        }); // veya 'inline' veya 'flex' vb. istediğiniz bir display değeri kullanabilirsiniz
+    } else {
+        // Eğer seçilen opsiyonun değeri TL ise, gizli değerleri gizle
+        const dovizacmaElements = document.querySelectorAll('#dovizacma');
+
+        dovizacmaElements.forEach(element => {
+        element.style.display = 'none';
+        }); 
+    }
+});
+</script>
+<script>
+function calculateResult() {
+  const input1 = parseFloat(document.getElementsByClassName('uygunkur')[0].value);
+  const input2 = parseFloat(document.getElementsByClassName('tutardoviz')[0].value);
+
+
+
+  const result = input1 * input2;
+
+  document.getElementById('tutar').value = result;
+}
+</script>
 <script>
     const selectElement = document.getElementById('kasabilgisiSelect');
     const kasadovizcinsi = document.getElementById('kasadovizcinsi');
