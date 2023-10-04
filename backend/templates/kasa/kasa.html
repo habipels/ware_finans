@@ -127,114 +127,84 @@
           </tr>
         </thead>
         <tbody>
+        {% for i in kasafisleri %}
           <tr>
-            <td>01</td>
+            <td>{{i.tarih}}</td>
+            <td>{{i.saat}}</td>
+            <td>{{i.islem_turu}}</td>
+            <td>{{i.ent_kodu}}</td>
+            <td>{{i.evrak_no}}</td>
+            <td>{{i.aciklama}}</td>
+            {% if i.islem_turu == "Tahsilat Fişi" %}
+              <td>{{i.tutar}}</td>
+              <td>0</td>
+            {% else %}
+            <td>0</td>
+              <td>{{i.tutar}}</td>
+            {% endif %}
+            
+            <td>{% if i.cari_unvan %}
+              {{i.cari_unvan}}
+            {% else %}
+            -
+            {% endif %}</td>
+
+            <td>{% if i.banka_bilgisi %}
+              {{i.banka_bilgisi}}
+            {% else %}
+            -
+            {% endif %}</td>
+            <td>{% if i.gelir_bilgisi %}
+              ({{i.gelir_bilgisi.gelir_kodu}}) {{i.gelir_bilgisi.gelir_adi}}
+            {% elif i.gider_bilgisi %}
+            ({{i.gider_bilgisi.gider_kodu}}) {{i.gider_bilgisi.gider_adi}}
+            {% else %}
+            -
+            {% endif %}</td>
+            
             <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>{% if i.ozelkod1 %}
+              {{i.ozelkod1}}
+            
+            {% else %}
+            -
+            {% endif %}</td>
+            <td>{% if i.ozelkod2 %}
+              {{i.ozelkod2}}
+            
+            {% else %}
+            -
+            {% endif %}</td>
+            <td>?</td>
+            <td>{% if i.uygun_kur %}
+              {{i.uygun_kur}}
+            
+            {% else %}
+            -
+            {% endif %}</td>
+            <td>
+            {% if i.birinciislem_sube_bilgisi %}
+              {{i.birinciislem_sube_bilgisi.sube_adi}} {{i.birinciislem_sube_bilgisi.sube_unvani}}
+            
+            {% else %}
+            -
+            {% endif %}</td>
+            <td>{% if i.birinci_departman %}
+              {{i.birinci_departman}}
+            
+            {% else %}
+            -
+            {% endif %}</td>
+            <td>{% if i.islemi_yapan %}
+              {{i.islemi_yapan}}
+            
+            {% else %}
+            -
+            {% endif %}</td>
+            <td>-</td>
           </tr>
-          <tr>
-            <td>01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
+          {% endfor %}
+
         </tbody>
       </table>
     </div>
