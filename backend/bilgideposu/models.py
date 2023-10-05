@@ -736,6 +736,7 @@ class KasaFisIslemleri(models.Model):
 
 class kdv_istisna_kodu(models.Model):
     kod = models.CharField(max_length=100,verbose_name="KDV İstisna Kodu",blank=True,null=True)
+    kod_bilgi = models.CharField(max_length=100,verbose_name="KDV İstisna Kodu",blank=True,null=True)
     icerik = models.CharField(max_length=200,verbose_name="KDV İstisna Yazısı",blank=True,null=True)
 
 
@@ -766,7 +767,7 @@ class stok_kartlar(models.Model):
     stok_turu = models.CharField(max_length=100,verbose_name="Stok Türü",choices=mukellefyet_turu_secim,default="",blank=True,null=True)
     stok_hesap_kilitli = models.CharField(max_length=100,verbose_name="Stok Hesap Kilitli",choices=detay_secim,default="",blank=True,null=True)
     silinme_bilgisi = models.BooleanField(default=False)
-    image  = models.ImageField(upload_to='stokkartiimage/',verbose_name="Stok kartı resmi")
+    image  = models.ImageField(upload_to='stokkartiimage/',blank=True,null=True,verbose_name="Stok kartı resmi")
     def save(self, *args, **kwargs):
         super(stok_kartlar, self).save(*args, **kwargs)
         if self.image:
