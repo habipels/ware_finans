@@ -2,6 +2,8 @@ from django.db import models
 from users.models import *
 # Create your models here.
 from datetime import datetime
+from PIL import Image
+from io import BytesIO
 class banka(models.Model):
     secim = (
         ("",""),
@@ -736,7 +738,7 @@ class kdv_istisna_kodu(models.Model):
     kod = models.CharField(max_length=100,verbose_name="KDV İstisna Kodu",blank=True,null=True)
     icerik = models.CharField(max_length=200,verbose_name="KDV İstisna Yazısı",blank=True,null=True)
 
-"""
+
 class stok_kartlar(models.Model):
     detay_secim = (
         ("",""),
@@ -762,8 +764,56 @@ class stok_kartlar(models.Model):
     listede_gorunsun = models.CharField(max_length=100,verbose_name="Listede Görünsün",choices=detay_secim,default="",blank=True,null=True)
     stok_kodu = models.CharField(max_length=100,verbose_name="Stok Kodu",blank=True,null=True)
     stok_turu = models.CharField(max_length=100,verbose_name="Stok Türü",choices=mukellefyet_turu_secim,default="",blank=True,null=True)
-    tip = models.CharField(max_length=100,verbose_name="Tip",choices=tip_secim,default="",blank=True,null=True)
     stok_hesap_kilitli = models.CharField(max_length=100,verbose_name="Stok Hesap Kilitli",choices=detay_secim,default="",blank=True,null=True)
-    tevkifatkodu = models.CharField(max_length=100,verbose_name="Tevkifat Kodu",blank=True,null=True)
     silinme_bilgisi = models.BooleanField(default=False)
-    kayit_tarihi = models.DateTimeField(default=datetime.now,null=True)"""
+    image  = models.ImageField(upload_to='stokkartiimage/',verbose_name="Stok kartı resmi")
+    def save(self, *args, **kwargs):
+        super(stok_kartlar, self).save(*args, **kwargs)
+        if self.image:
+            with Image.open(self.image.path) as img:
+                if img.mode != 'RGB':
+                    img = img.convert('RGB')
+                width, height = img.size
+                if width > 800:
+                    new_width = 800
+                    new_height = int((new_width / width) * height)
+                    img = img.resize((new_width, new_height), Image.ANTIALIAS)
+                    buffer = BytesIO()
+                    img.save(buffer, format='JPEG', quality=60)
+                    self.image.save(self.image.name, content=buffer, save=False)
+                    super(stok_kartlar, self).save(*args, **kwargs)
+    kayit_tarihi = models.DateTimeField(default=datetime.now,null=True)
+
+
+class stok_birim_alis_satis_birimi(models.Model):
+    brim_islemleri = (
+        ("",""),
+        ("Adet","Adet")
+    )
+    lot_kullanim_secim = (
+        ("",""),
+        ("Evet","Evet"),
+        ("Hayır","Hayır")
+    )
+    stok_karti_bilgisi = models.ForeignKey(stok_kartlar, verbose_name="Stok Kartı Bilgisi", blank=True, null=True,
+                                             on_delete=models.SET_NULL, related_name='stok_karti_bilgisi_set')
+    birinci_birim = models.CharField(max_length=100,verbose_name="Birinci  Birim",choices=brim_islemleri,default="")
+    ikinci_birim = models.CharField(max_length=100,verbose_name="İkinci  Birim",choices=brim_islemleri,default="")
+    ucuncu_birim = models.CharField(max_length=100,verbose_name="Ücüncü  Birim",choices=brim_islemleri,default="")
+    ikinci_birim_deger = models.CharField(max_length=100,verbose_name="İkinci  Birim",blank=True,null=True)
+    ucuncu_birim_deger = models.CharField(max_length=100,verbose_name="Ücüncü  Birim",blank=True,null=True)
+    ikinci_birim_islem = models.CharField(max_length=100,verbose_name="İkinci  İşlem",blank=True,null=True)
+    ucuncu_birim_islem = models.CharField(max_length=100,verbose_name="Ücüncü  İşlem",blank=True,null=True)
+    max_stok_miktari  = models.FloatField(verbose_name="Max Stok Miktarı",blank=True,null=True)
+    min_stok_miktari  = models.FloatField(verbose_name="Min Stok Miktarı",blank=True,null=True)
+    serbest_stok_birimi  = models.CharField(max_length=200,verbose_name="Serbest Stok Brimi",blank=True,null=True)
+    indirim1 = models.FloatField(verbose_name="İndirim 1",blank=True,null=True)
+    indirim2 = models.FloatField(verbose_name="İndirim 2",blank=True,null=True)
+    indirim3 = models.FloatField(verbose_name="İndirim 3",blank=True,null=True)
+    satis_birimi = models.CharField(max_length=10,verbose_name="Satış Birimi Seç",blank=True,null=True)
+    aliss_birimi = models.CharField(max_length=10,verbose_name="Alış Birimi Seç",blank=True,null=True)
+    kdv_istisna_kodu_sec = models.ForeignKey(kdv_istisna_kodu,blank=True,null=True,
+                                             verbose_name="KDV İstisna Kodu",on_delete=models.SET_NULL)
+    kdv_orani = models.FloatField(verbose_name="KDV ORanı",blank=True,null=True)
+    tevkifat_orani = models.CharField(max_length=20,verbose_name="Tev")
+    lot_kullanimi = models.CharField(max_length=20,verbose_name="Lot Kullan",choices=lot_kullanim_secim,default="")

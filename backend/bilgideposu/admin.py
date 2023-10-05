@@ -22,3 +22,13 @@ admin.site.register(banka_notlari)
 admin.site.register(banka_kredikartibilgileri)
 admin.site.register(KasaFisIslemleri)
 admin.site.register(kdv_istisna_kodu)
+admin.site.register(stok_kartlar)
+admin.site.register(stok_birim_alis_satis_birimi)
+#admin.site.register()
+#admin.site.register()
+#admin.site.register()
+#admin.site.register()
+#admin.site.register()
+
+
+
