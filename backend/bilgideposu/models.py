@@ -681,7 +681,7 @@ class KasaFisIslemleri(models.Model):
         ("Euro", "£"),
         ("Dolar", "$")
     )
-
+    kendisi_secme =  models.ForeignKey('self',blank=True,null=True,verbose_name="makbuzlar için",related_name='children',on_delete=models.SET_NULL)
     islem_turu = models.CharField(max_length=200, verbose_name="İşlem Türü", default="", choices=islem_turu_secim)
     tarih = models.DateField(verbose_name="İşlem Tarihi", blank=True, null=True)
     saat = models.TimeField(verbose_name="İşlem Saati", blank=True, null=True)
