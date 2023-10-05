@@ -725,6 +725,7 @@ class KasaFisIslemleri(models.Model):
     kampkodu = models.CharField(max_length=200, verbose_name="Kamp Kodu", blank=True, null=True)
     gunluk_kur = models.CharField(max_length=200, verbose_name="Günlük Kur", blank=True, null=True)
     uygun_kur = models.CharField(max_length=200, verbose_name="Uygun Kur", blank=True, null=True)
+    alacakbilgisi = models.CharField(max_length=200, verbose_name="alacakbilgisi", blank=True, null=True)
     cari_unvan = models.ForeignKey(cari_kartlar,blank=True,null=True,verbose_name="Cari Unvan Bilgisi",on_delete=models.SET_NULL)
     banka_bilgisi = models.ForeignKey(banka,blank=True,null=True,verbose_name="Banka Bilgisi",on_delete=models.SET_NULL)
     bagli_oldugu_firma = models.ForeignKey(firma,blank=True,null=True,on_delete=models.SET_NULL)

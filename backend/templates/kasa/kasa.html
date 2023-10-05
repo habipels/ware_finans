@@ -135,9 +135,12 @@
             <td>{{i.ent_kodu}}</td>
             <td>{{i.evrak_no}}</td>
             <td>{{i.aciklama}}</td>
-            {% if i.islem_turu == "Tahsilat Fişi" %}
+            {% if i.alacakbilgisi == "A" %}
               <td>{{i.tutar}}</td>
               <td>0</td>
+              {% elif i.alacakbilgisi == "B" %}
+              <td>0</td>
+              <td>{{i.tutar}}</td>
             {% else %}
             <td>0</td>
               <td>{{i.tutar}}</td>

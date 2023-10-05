@@ -129,11 +129,11 @@
                     </div>
                      <div class="col-4">
                     <label id="dovizacma" for="">Günlük Kur</label>
-                    <input name="gunlukkur" id="dovizacma" type="number">
+                    <input name="gunlukkur"  step="0.001" id="dovizacma" type="number">
                     </div>
                     <div class="col-4">
                         <label id="dovizacma" for="">Uygun Kur</label>
-                    <input name="uygunkur" class="uygunkur" id="dovizacma" type="number">
+                    <input name="uygunkur"  step="0.001" class="uygunkur" id="dovizacma" type="number">
                     </div>
                     <hr style="margin-top: 5px;">
                    
@@ -149,11 +149,11 @@
                     <hr style="margin-top: 5px;">
                     <div class="col-2"><label id="dovizacma" for="">Tutar (Döviz)</label></div>
                         <div class="col-4">
-                            <input id="dovizacma" oninput="calculateResult()" class="tutardoviz" name="tutardoviz" type="number">
+                            <input id="dovizacma"  step="0.001" oninput="calculateResult()" class="tutardoviz" name="tutardoviz" type="number">
                         </div>
                         <div class="col-2"><label for="">Tutar (TL)</label></div>
                         <div class="col-4">
-                            <input name="tutar" id="tutar" type="number">
+                            <input name="tutar"  step="0.001" id="tutar" type="number">
                         </div>
                     <hr style="margin-top: 5px;">
                     <div class="mt-5" ></div>
@@ -320,21 +320,21 @@
     </div>
 </div>
 <script>
-    const selectElement = document.getElementById('kasabilgisiSelect');
-    const kasadovizcinsi = document.getElementById('kasadovizcinsi');
+    const selectElement_ = document.getElementById('kasabilgisiSelect');
+    const kasadovizcinsi_ = document.getElementById('kasadovizcinsi');
     
     // Event listener ekleme
-    selectElement.addEventListener('change', function() {
+    selectElement_.addEventListener('change', function() {
         // Seçilen seçeneğin id değerini ve doviz_cinsi özelliğini al
-        const selectedOption = selectElement.options[selectElement.selectedIndex];
-        const selectedOptionId = selectedOption.getAttribute('id');
-        const selectedOptionValue = selectedOption.getAttribute('value');
+        const selectedOption_ = selectElement_.options[selectElement_.selectedIndex];
+        const selectedOptionId_ = selectedOption_.getAttribute('id');
+        const selectedOptionValue_ = selectedOption_.getAttribute('value');
         
         // Inputun value değerini seçilen seçeneğin id değeri ile güncelle
-        kasadovizcinsi.value = selectedOptionId;
+        kasadovizcinsi_.value = selectedOption_;
     
         // Kontrol et, eğer seçilen opsiyonun değeri TL değilse, gizli değerleri göster
-        if (selectedOptionId !== 'TL') {
+        if (selectedOptionId_ !== 'TL') {
             // Burada gizli değerleri gösterme işlemini gerçekleştirin, örneğin:
             // Örneğin, gizli bir div elementini göstermek için:
             const dovizacmaElements = document.querySelectorAll('#dovizacma');
@@ -357,11 +357,18 @@
       const input1 = parseFloat(document.getElementsByClassName('uygunkur')[0].value);
       const input2 = parseFloat(document.getElementsByClassName('tutardoviz')[0].value);
     
-    
-    
-      const result = input1 * input2;
+    const dov1 = document.getElementById("kasadovizcinsi").value;
+    const dov = document.getElementById("kasadovizcinsi2").value;
+    if (dov1 !== dov) {
+        const result = input1 * input2;
     
       document.getElementById('tutar').value = result;
+    }else{
+        const result = 1 * input2;
+    
+      document.getElementById('tutar').value = result;
+    }
+      
     }
     </script>
 <script>
@@ -430,6 +437,22 @@ document.getElementById('kasabilgisiSelect2').addEventListener('change', functio
         
         // Inputun value değerini seçilen seçeneğin id değeri ile güncelle
         kasadovizcinsi2.value = selectedOptionId2;
+        if (selectedOptionId2 !== 'TL') {
+            // Burada gizli değerleri gösterme işlemini gerçekleştirin, örneğin:
+            // Örneğin, gizli bir div elementini göstermek için:
+            const dovizacmaElements = document.querySelectorAll('#dovizacma');
+    
+            dovizacmaElements.forEach(element => {
+            element.style.display = 'block';
+            }); // veya 'inline' veya 'flex' vb. istediğiniz bir display değeri kullanabilirsiniz
+        } else {
+            // Eğer seçilen opsiyonun değeri TL ise, gizli değerleri gizle
+            const dovizacmaElements = document.querySelectorAll('#dovizacma');
+    
+            dovizacmaElements.forEach(element => {
+            element.style.display = 'none';
+            }); 
+        }
     });
 
 </script>
