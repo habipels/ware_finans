@@ -1,8 +1,10 @@
 {% extends "homebase.html" %}
 {% block content %}
+<form method="post">
+    {% csrf_token %}
     <div class="icon-bar">
 
-        <a href="">Kaydet </a>
+        <button type="submit" class="btn btn-primary" >Kaydet </button>
         <a href="">Kaydet / Yeni Kart</a>
         <a href="" style="color:red;">Çıkış Yap (ESC)</a>
 
@@ -19,29 +21,29 @@
                     <hr>
                 </div>
 
-                <form action="">
+                
                     <div class="row genel">
                         <div class="col-6">
                             <label for="">Ana Stok Kodu</label>
                             <br>
-                            <input type="text">
+                            <input name="anastokkarti" type="text">
                         </div>
                         <div class="col-2"><label for="">Detay</label><br>
-                            <select name="" id="">
-                                <option value="">E</option>
-                                <option value="">H</option>
+                            <select name="detay" id="">
+                                <option value="Evet">E</option>
+                                <option value="Hayır">H</option>
                             </select>
                         </div>
                         <div class="col-2"><label for="">Listede Görünsün</label><br>
-                            <select name="" id="">
-                                <option value="">E</option>
-                                <option value="">H</option>
+                            <select name="listedegorunme" id="">
+                                <option value="Evet">E</option>
+                                <option value="Hayır">H</option>
                             </select>
                         </div>
                         <div class="col-2"><label for="">Stok Kilidi</label><br>
-                            <select name="" id="">
-                                <option value="">E</option>
-                                <option value="">H</option>
+                            <select name="stokkilidi" id="">
+                                <option value="Evet">E</option>
+                                <option value="Hayır">H</option>
                             </select>
                         </div>
                         <hr>
@@ -52,12 +54,12 @@
                                         <div class="col-4"><label for="">Stok Kodu</label>
                                             <br>
                                             <div class="row">
-                                                <div class="col-8"><input type="text"></div>
+                                                <div class="col-8"><input name="stokkodu" type="text"></div>
                                                 <div class="col-4"><button>sec</button></div>
                                             </div>
                                         </div>
                                         <div class="col-4"><label for="">Stok Türü</label><br>
-                                            <select name="" id="">
+                                            <select name="stokturu" id="">
                                                 <option value="Hammadde">Hammadde</option>
                                                 <option value="Yarı Mamul">Yarı Mamul</option>
                                                 <option value="Mamul">Mamul</option>
@@ -68,7 +70,7 @@
                                         <div class="col-4"><label for="">Stok Adı</label>
                                             <br>
                                             <div class="row">
-                                                <div class="col-8"><input type="text"></div>
+                                                <div class="col-8"><input name="stokadi" type="text"></div>
                                                 <div class="col-4"><button>sec</button></div>
                                             </div>
                                         </div>
@@ -84,31 +86,31 @@
 
                                                     
                                                 </div>
-                                                <div class="col-3"><select name="" id="">
-                                                    <option value="">Adet</option>
+                                                <div class="col-3"><select name="birim1" id="">
+                                                    <option value="Adet">Adet</option>
                                                 </select></div>
 
                                                 <div class="col-6"></div>
                                                 <div class="col-3"><label for="">2.Brim</label></div>
-                                                <div class="col-3"><select name="" id="">
+                                                <div class="col-3"><select name="birim2" id="">
                                                         <option value=""></option>
-                                                        <option value="">Adet</option>
+                                                        <option value="Adet">Adet</option>
                                                     </select></div>
-                                                <div class="col-3"><input type="text"></div>
-                                                <div class="col-3"><select name="" id="">
-                                                        <option value="">*</option>
-                                                        <option value="">/</option>
+                                                <div class="col-3"><input name="birim2adet" type="text"></div>
+                                                <div class="col-3"><select name="carpbol1" id="">
+                                                        <option value="*">*</option>
+                                                        <option value="/">/</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-3"><label for="">3.Brim</label></div>
-                                                <div class="col-3"><select name="" id="">
+                                                <div class="col-3"><select name="birim3" id="">
                                                         <option value=""></option>
-                                                        <option value="">Adet</option>
+                                                        <option value="Adet">Adet</option>
                                                     </select></div>
-                                                <div class="col-3"><input type="text"></div>
-                                                <div class="col-3"><select name="" id="">
-                                                        <option value="">*</option>
-                                                        <option value="">/</option>
+                                                <div class="col-3"><input name="birim3adet" type="text"></div>
+                                                <div class="col-3"><select name="carpbol2" id="">
+                                                        <option value="*">*</option>
+                                                        <option value="/">/</option>
                                                     </select>
                                                 </div>
 
@@ -129,12 +131,13 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
-                                                    <div class="col-12"><input type="text"
-                                                            style="max-width: 100% !important;"></div>
-                                                    <div class="col-12"><input type="text"></div>
-                                                    <div class="col-12"><input type="text"></div>
+                                                    
+                                                    <div class="col-12"><input name="maxstokbilgisi" step="0.001" type="number"></div>
+                                                    <div class="col-12"><input name="minstokbilgisi" step="0.001" type="number"></div>
+                                                    <div class="col-12"><input name="serbeststokbirimi" type="text"
+                                                        style="max-width: 100% !important;"></div>
                                                     <div class="row">
-                                                        <div class="col-8"><input type="text"></div>
+                                                        <div class="col-8"><input name="gunbilgisi" type="number"></div>
                                                         <div class="col-4">Gün</div>
                                                     </div>
                                                 </div>
@@ -142,11 +145,11 @@
                                         </div>
                                         <hr>
                                         <div class="col-4"><label for="">İndirim 1 (%)</label>
-                                        <input type="number" step="0.001"></div>
+                                        <input name="indirim1" type="number" step="0.001"></div>
                                         <div class="col-4"><label for="">İndirim 2 (%)</label>
-                                            <input type="number" step="0.001"></div>
+                                            <input type="number" name="indirim2" step="0.001"></div>
                                         <div class="col-4"><label for="">İndirim 3 (%)</label>
-                                            <input type="number" step="0.001"></div>
+                                            <input type="number" name="indirim3" step="0.001"></div>
                                         <hr>
 
                                     </div>
@@ -163,18 +166,18 @@
                                         <div class="col-6">
                                             <label for="">Satış birimi :</label>
                                             <br>
-                                            <select name="" id="">
-                                                <option value="">1</option>
-                                                <option value="">2</option>
-                                                <option value="">3</option>
+                                            <select name="satisbirimi" id="">
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
                                             </select>
                                         </div>
                                         <div class="col-6"><label for="">Alış birimi :</label>
                                             <br>
-                                            <select name="" id="">
-                                                <option value="">1</option>
-                                                <option value="">2</option>
-                                                <option value="">3</option>
+                                            <select name="alisbirimi" id="">
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
                                             </select>
                                         </div>
                                     </div>
@@ -184,18 +187,21 @@
                                         <div class="col-6">
                                             <label for="">KDV İstisna Kodu :</label>
                                             <br>
-                                            <select name="" id="">
-                                                <option value="">1</option>
-                                                <option value="">2</option>
-                                                <option value="">3</option>
+                                            <select style="max-width: 200px !important;" name="kdvistisna" id="">
+                                                <option value=""></option>
+                                                {% for i in kdv_istisna %}
+                                                <option value="{{i.id}}">{{i.kod}} | {{i.kod_bilgi}} {{i.icerik}}</option>
+                                                {% endfor %}
+                                                
+                                                
                                             </select>
                                         </div>
                                         <div class="col-6">
                                             <label for="">Seri No Kullan :</label>
                                             <br>
-                                            <select name="" id="">
-                                                <option value="">Evet</option>
-                                                <option value="">Hayır</option>
+                                            <select name="serinokullan" id="">
+                                                <option value="Evet">Evet</option>
+                                                <option value="Hayır">Hayır</option>
                                             </select>
                                         </div>
                                     </div>
@@ -209,27 +215,27 @@
                                         <div class="col-6">
                                             <label for="">KDV Oranı (%)</label>
                                             <br>
-                                            <input type="text">
+                                            <input type="number" step="0.0001" name="kdvorani">
                                         </div>
                                         <div class="col-6">
                                             <label for="">Tevkifat Oranı</label><br>
-                                            <select name="" id="">
-                                                <option value="">10/10</option>
-                                                <option value="">2/10</option>
-                                                <option value="">3/10</option>
-                                                <option value="">4/10</option>
-                                                <option value="">5/10</option>
-                                                <option value="">7/10</option>
-                                                <option value="">9/10</option>
+                                            <select name="tevkifatorani" id="">
+                                                <option value="10/10">10/10</option>
+                                                <option value="2/10">2/10</option>
+                                                <option value="3/10">3/10</option>
+                                                <option value="4/10">4/10</option>
+                                                <option value="5/10">5/10</option>
+                                                <option value="7/10">7/10</option>
+                                                <option value="9/10">9/10</option>
                                             </select>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <label for="">Lot Kullan</label><br>
-                                    <select name="" id="">
-                                        <option value="">Evet</option>
-                                        <option value="">Hayır</option>
+                                    <select name="lotkullanim" id="">
+                                        <option value="Evet">Evet</option>
+                                        <option value="Hayır">Hayır</option>
                                     </select>
                                 </div>
                             </div>

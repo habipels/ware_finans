@@ -77,126 +77,44 @@
           </tr>
         </thead>
         <tbody>
+        {% for i in stokkartlarim %}   
           <tr>
+            <td>{{i.stok_kodu}}</td>
+            <td>{{i.stok_adi}}</td>
+            <td>{% for j in stokkartozelligi1 %}
+                {% if i.id == j.stok_karti_bilgisi.id %}
+                {{j.birinci_birim}}
+                {% else %}
+                {% endif %}
+            {% endfor %}
+            </td>
+            <td>{{i.stok_turu}}</td>
+            <td>{{i.detay}}</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>{% for j in stokkartozelligi1 %}
+                {% if i.id == j.stok_karti_bilgisi.id %}
+                {{j.ikinci_birim}}
+                {% else %}
+                {% endif %}
+            {% endfor %}</td>
+            <td></td>
+            <td>{% for j in stokkartozelligi1 %}
+                {% if i.id == j.stok_karti_bilgisi.id %}
+                {{j.ucuncu_birim}}
+                {% else %}
+                {% endif %}
+            {% endfor %}</td>
+            <td></td>
+            <td></td>
+            <td></td>
 
-            <td><input type="radio">01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>{{i.kayit_tarihi}}</td>
           </tr>
-          <tr>
-
-            <td><input type="radio">01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-
-            <td><input type="radio">01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-
-            <td><input type="radio">01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-
-            <td><input type="radio">01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-
-            <td><input type="radio">01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
+          {% endfor %}
         </tbody>
       </table>
     </div>

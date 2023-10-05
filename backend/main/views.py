@@ -535,11 +535,69 @@ def cari_silme_sayfasi(request,slug,id):
 def stok_sayfasi(request,slug):
     content ={}
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
+    content["stokkartlarim"] =  stok_kartlar.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    content["stokkartozelligi1"] = stok_birim_alis_satis_birimi.objects.filter(stok_karti_bilgisi__bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
     return render(request,"stok/stok.html",content)
 
 def yeni_stok_karti(request,slug):
     content ={}
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
+    content["kdv_istisna"] = kdv_istisna_kodu.objects.all()
+    if request.POST:
+        anastokkarti  = request.POST.get("anastokkarti")
+        detay = request.POST.get("detay")
+        listedegorunme = request.POST.get("listedegorunme")
+        stokkilidi = request.POST.get("stokkilidi")
+        stokadi = request.POST.get("stokadi")
+        stokturu=  request.POST.get("stokturu")
+        stokkodu = request.POST.get("stokkodu")
+        yeni = stok_kartlar.objects.create(
+            ana_stok_kodu = anastokkarti,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),
+            detay  =detay,listede_gorunsun =listedegorunme,stok_kodu  = stokkodu,
+            stok_turu = stokturu,stok_hesap_kilitli = stokkilidi,stok_adi =stokadi 
+        )
+        #stokalisveriş
+        birim1 = request.POST.get("birim1")
+        birim2 = request.POST.get("birim2")
+        birim2adet = request.POST.get("birim2adet")
+        carpbol1 = request.POST.get("carpbol1")
+        birim3 = request.POST.get("birim3")
+        birim3adet = request.POST.get("birim3adet")
+        carpbol2 = request.POST.get("carpbol2")
+        maxstokbilgisi = request.POST.get("maxstokbilgisi")
+        minstokbilgisi = request.POST.get("minstokbilgisi")
+        serbeststokbirimi = request.POST.get("serbeststokbirimi")
+        gunbilgisi = request.POST.get("gunbilgisi")
+        indirim1 = request.POST.get("indirim1")
+        indirim2 = request.POST.get("indirim2")
+        indirim3 = request.POST.get("indirim3")
+        satisbirimi = request.POST.get("satisbirimi")
+        alisbirimi = request.POST.get("alisbirimi")
+        kdvistisna = request.POST.get("kdvistisna")
+        serinokullan = request.POST.get("serinokullan")
+        kdvorani = request.POST.get("kdvorani")
+        tevkifatorani = request.POST.get("tevkifatorani")
+        lotkullanim = request.POST.get("lotkullanim")
+        if kdvistisna == "" or kdvistisna == None:
+            stok_birim_alis_satis_birimi.objects.create(stok_karti_bilgisi = get_object_or_404(stok_kartlar,id=yeni.id),
+            birinci_birim = birim1,ikinci_birim  =birim2,ucuncu_birim = birim3,ikinci_birim_deger =birim2adet,
+            ucuncu_birim_deger = birim3adet,ikinci_birim_islem = carpbol1,ucuncu_birim_islem = carpbol2,
+            max_stok_miktari = maxstokbilgisi,min_stok_miktari =minstokbilgisi,serbest_stok_birimi = serbeststokbirimi,
+            indirim1 = indirim1 ,indirim2 = indirim2,indirim3 = indirim3,satis_birimi = satisbirimi,temin_gun =gunbilgisi,
+            aliss_birimi = alisbirimi ,
+            kdv_orani  = kdvorani,tevkifat_orani = tevkifatorani,lot_kullanimi = lotkullanim,serinokullan = serinokullan
+            )
+        else:
+            stok_birim_alis_satis_birimi.objects.create(stok_karti_bilgisi = get_object_or_404(stok_kartlar,id=yeni.id),
+            birinci_birim = birim1,ikinci_birim  =birim2,ucuncu_birim = birim3,ikinci_birim_deger =birim2adet,
+            ucuncu_birim_deger = birim3adet,ikinci_birim_islem = carpbol1,ucuncu_birim_islem = carpbol2,
+            max_stok_miktari = maxstokbilgisi,min_stok_miktari =minstokbilgisi,serbest_stok_birimi = serbeststokbirimi,
+            indirim1 = indirim1 ,indirim2 = indirim2,indirim3 = indirim3,satis_birimi = satisbirimi,temin_gun =gunbilgisi,
+            aliss_birimi = alisbirimi , kdv_istisna_kodu_sec = get_object_or_404(kdv_istisna_kodu,id = kdvistisna),
+            kdv_orani  = kdvorani,tevkifat_orani = tevkifatorani,lot_kullanimi = lotkullanim,serinokullan = serinokullan
+            )
+        link = "/"+slug+"/stok/"
+        return redirect(link)
     return render(request,"stok/yeni_stok.html",content)
 #Stok İşlemleri
 
