@@ -21,4 +21,4 @@ admin.site.register(banka_kodlari)
 admin.site.register(banka_notlari)
 admin.site.register(banka_kredikartibilgileri)
 admin.site.register(KasaFisIslemleri)
-
+admin.site.register(kdv_istisna_kodu)

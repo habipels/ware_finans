@@ -12,10 +12,8 @@
     </div>
     <div class="container mt-5">
         <div class="row">
-            <div class="col-1">
-
-            </div>
-            <div class="col-10" style="border: 1px solid black; padding: 20px;">
+            
+            <div class="col-12" style="border: 1px solid black; padding: 20px;">
                 <div class="text-center">
                     <h2>Stok Kartı Oluşturma</h2>
                     <hr>
@@ -60,11 +58,11 @@
                                         </div>
                                         <div class="col-4"><label for="">Stok Türü</label><br>
                                             <select name="" id="">
-                                                <option value="">Hammadde</option>
-                                                <option value="">Yarı Mamul</option>
-                                                <option value="">Mamul</option>
-                                                <option value="">Ticari Mal</option>
-                                                <option value="">Demirbaş</option>
+                                                <option value="Hammadde">Hammadde</option>
+                                                <option value="Yarı Mamul">Yarı Mamul</option>
+                                                <option value="Mamul">Mamul</option>
+                                                <option value="Ticari Mal">Ticari Mal</option>
+                                                <option value="Demirbaş">Demirbaş</option>
                                             </select>
                                         </div>
                                         <div class="col-4"><label for="">Stok Adı</label>
@@ -81,13 +79,15 @@
                                     <div class="row">
                                         <div class="col-6" style="border-right: 1px solid black;">
                                             <div class="row">
-                                                <div class="col-6">
+                                                <div class="col-3">
                                                     <label for="">1.Brim</label>
 
-                                                    <select name="" id="">
-                                                        <option value="">Adet</option>
-                                                    </select>
+                                                    
                                                 </div>
+                                                <div class="col-3"><select name="" id="">
+                                                    <option value="">Adet</option>
+                                                </select></div>
+
                                                 <div class="col-6"></div>
                                                 <div class="col-3"><label for="">2.Brim</label></div>
                                                 <div class="col-3"><select name="" id="">
@@ -140,6 +140,13 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <hr>
+                                        <div class="col-4"><label for="">İndirim 1 (%)</label>
+                                        <input type="number" step="0.001"></div>
+                                        <div class="col-4"><label for="">İndirim 2 (%)</label>
+                                            <input type="number" step="0.001"></div>
+                                        <div class="col-4"><label for="">İndirim 3 (%)</label>
+                                            <input type="number" step="0.001"></div>
                                         <hr>
 
                                     </div>

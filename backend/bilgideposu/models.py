@@ -730,3 +730,40 @@ class KasaFisIslemleri(models.Model):
     banka_bilgisi = models.ForeignKey(banka,blank=True,null=True,verbose_name="Banka Bilgisi",on_delete=models.SET_NULL)
     bagli_oldugu_firma = models.ForeignKey(firma,blank=True,null=True,on_delete=models.SET_NULL)
     silinme_bilgisi = models.BooleanField(default=False)
+
+
+class kdv_istisna_kodu(models.Model):
+    kod = models.CharField(max_length=100,verbose_name="KDV İstisna Kodu",blank=True,null=True)
+    icerik = models.CharField(max_length=200,verbose_name="KDV İstisna Yazısı",blank=True,null=True)
+
+"""
+class stok_kartlar(models.Model):
+    detay_secim = (
+        ("",""),
+        ("Evet","Evet"),
+        ("Hayır","Hayır",)
+    )
+    mukellefyet_turu_secim = (
+        ("",""),
+        ("Hammadde","Hammadde"),
+        ("Yarı Mamul","Yarı Mamul"),
+        ("Mamul","Mamul"),
+        ("Ticari Mal","Ticari Mal"),
+        ("Demirbaş","Demirbaş"),
+    )
+    tip_secim = (
+        ("",""),
+        ("1","1"),
+        ("2","2"),
+    )
+    ana_stok_kodu = models.CharField(max_length=100,verbose_name="Ana Stok Kodu",blank=True,null=True)
+    bagli_oldugu_firma = models.ForeignKey(firma,blank=True,null=True,on_delete=models.SET_NULL)
+    detay = models.CharField(max_length=100,verbose_name="Detay",choices=detay_secim,default="",blank=True,null=True)
+    listede_gorunsun = models.CharField(max_length=100,verbose_name="Listede Görünsün",choices=detay_secim,default="",blank=True,null=True)
+    stok_kodu = models.CharField(max_length=100,verbose_name="Stok Kodu",blank=True,null=True)
+    stok_turu = models.CharField(max_length=100,verbose_name="Stok Türü",choices=mukellefyet_turu_secim,default="",blank=True,null=True)
+    tip = models.CharField(max_length=100,verbose_name="Tip",choices=tip_secim,default="",blank=True,null=True)
+    stok_hesap_kilitli = models.CharField(max_length=100,verbose_name="Stok Hesap Kilitli",choices=detay_secim,default="",blank=True,null=True)
+    tevkifatkodu = models.CharField(max_length=100,verbose_name="Tevkifat Kodu",blank=True,null=True)
+    silinme_bilgisi = models.BooleanField(default=False)
+    kayit_tarihi = models.DateTimeField(default=datetime.now,null=True)"""
