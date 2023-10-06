@@ -51,5 +51,11 @@ urlpatterns = [
     path("<str:slug>/kasaodememakbuzu/", views.kasa_tahsilat_odeme, name="kasa_tahsilat_odeme"),
     path("<str:slug>/kasamaasodeme/", views.kasa_maas_odeme, name="kasa_maas_odeme"),
     #kasa Fiş İşlemeleri
-    #
+    #kasa cari fişleri
+    path("<str:slug>/kasacariodeme/", views.kasa_cari_odeme_fisi, name="kasa_cari_odeme_fisi"),
+    path("<str:slug>/kasacaritahsilat/", views.kasa_cari_tahsilat_fisi, name="kasa_cari_tahsilat_fisi"),
+    #kasa cari fişleri
+    #kasa Banka fişleri
+    path("<str:slug>/kasabankayayatirmafisi/", views.kasa_banka_yatirilan, name="kasa_banka_yatirilan"),
+    #kasa Banka fişleri
 ]

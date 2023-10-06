@@ -1,0 +1,190 @@
+{% extends "homebase.html" %}
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+
+        <div class="col-12" style="border: 1px solid black; padding: 20px;">
+            <div class="text-center" ><h2>Bankaya Yatırılan</h2>
+            <hr></div>
+            
+            <form action="">
+                <div class="row genel">
+                    <div class="col-2">
+                            <label for="">Tarih</label>
+                            <br>
+                            <input name="tarih" type="date">
+                        </div>
+                        <div class="col-2">
+                            <label for="">Saat</label>
+                            <br>
+                            <input name="saat" type="time">
+                        </div>
+                        <div class="col-3">
+                            <label for="">Evrak No</label>
+                            <br>
+                            <input name="evrakno" type="text">
+                        </div>
+                        <div class="col-2">
+                            <label for="">Ent. Kodu</label>
+                            <br>
+                            <select name="entkodu" id="">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                            </select>
+                        </div>
+                        <div class="col-3">
+                            <label for="">Şube</label>
+                            <br>
+                            <select name="subebilgisi" id="">
+                                {% for i in subelerim %}
+                                <option value="{{i.id}}">{{i.sube_adi}} {{i.sube_unvani}}</option>
+                                {% endfor %}
+
+                            </select>
+                        </div>
+                        <div class="col-4"><label for="">Özel Kod 1</label><br>
+                            <input name="ozelkod1" type="text">
+                        </div>
+                        <div class="col-4"><label for="">Özel Kod 2</label><br>
+                            <input name="ozelkod2" type="text">
+                        </div>
+                        <div class="col-4"><label for="">Departman</label><br>
+                            <input name="departman" type="text">
+                        </div>
+                    <hr style="margin-top: 5px;">
+                    <div class="col-8"><label for="">Banka Adı , Banka Kodu Ve Banka Şubesi</label>
+                    <br><select name="bankabilgisi" id="kasabilgisiSelect">
+                            {% for i in banka_karti %}
+                                <option value="{{i.id}}" id = "{{i.doviz_cinsi}}">{{i.banka_adi}} {{i.banka_kodu}} {{i.sube_adi}} </option>
+                            {% endfor %} 
+                            </select></div>
+                    <div class="col-4"><label for="">Hesap No</label><br>
+                    <input type="text"></div>
+                    <div class="col-4"><label for="">Döviz Cinsi</label>
+                        <br>
+                    <input id="kasadovizcinsi"  type="text" DISABLED value="TL"></div>
+                    <div class="col-4"></div>
+                    <div class="col-4">
+                        
+                    </div>
+                    <hr style="margin-top: 5px;">
+                    <div class="col-6">
+                        <label for="">Kasa Kodu ve Kasa Adı</label>
+                        <br>
+                        <select name="" id="">
+                            <option value="">01 (kasa bir)</option>
+                            <option value="">02 (kasa iki)</option>
+                        </select>
+                    </div>
+                    
+                    
+                    <div class="col-6">
+                        <label for="">Muh. Kodu</label>
+                        <div class="row">
+                            <div class="col-10"><input type="text"></div>
+                            <div class="col-2"><button>Sec</button></div>
+                        </div>
+
+                    </div>
+                    <div class="col-4"><label for="">Döviz Cinsi</label>
+                        <br>
+                    <input type="text" DISABLED value="TL"></div>
+                    <div class="col-4"></div>
+                    <div class="col-4">
+                        
+                    </div>
+                    <hr style="margin-top: 5px;">
+                    <div class="col-6">
+                        <label for="">Gider Kodu</label>
+                        <br>
+                        <input type="text" >
+                    </div>
+                    <div class="col-6">
+                        <label for="">Gider Adı</label>
+                        <br>
+                        <input type="text">
+                    </div>
+                    
+                    <div class="col-6">
+                        <label for="">Muh. Kodu</label>
+                        <div class="row">
+                            <div class="col-10"><input type="text"></div>
+                            <div class="col-2"><button>Sec</button></div>
+                        </div>
+
+                    </div>
+                    <div class="col-6">
+                        
+                    </div>
+                    <div class="col-4"><label for="">Gider (%)</label>
+                    <br>
+                    <input type="text"></div>
+                    <div class="col-4"><label for="">Gider Tutarı</label>
+                    <br><input type="text"></div>
+                    <div class="col-4" >
+                        <label for="">Gider Tutarı</label>
+                    <br><select name="" id="">
+                        <option value="">Hariç</option>
+                        <option value="">Tutara Dahil</option>
+                    </select></div>
+                    <hr style="margin-top: 5px;">
+                    <div class="col-4"><label for="">Açıklama</label></div>
+                    <div class="col-8">
+                        <input type="text">
+                    </div>
+                    <hr style="margin-top: 5px;">
+                    <div class="col-4"><label for="">Yatıran/Çeken</label></div>
+                    <div class="col-8">
+                        <input type="text">
+                    </div>
+                    <hr style="margin-top: 5px;">
+                    <div class="col-4"><label for="">Tutar </label></div>
+                    <div class="col-8">
+                        <input type="text">
+                    </div>
+                    <hr style="margin-top: 5px;">
+                    <div class="mt-5" ></div>
+                    <div class="col-4"><button>Kaydet Çık</button></div>
+                    <div class="col-4"><button>Kaydet Yenisini Oluştur</button></div>
+                    <div class="col-4"><button style="color: red;">İptal ET</button></div>
+                </div>
+
+            </form>
+        </div>
+        <div class="col-2">
+            
+        </div>
+    </div>
+</div>
+<script>
+    const selectElement2 = document.getElementById('kasabilgisiSelect2');
+    const kasadovizcinsi2 = document.getElementById('kasadovizcinsi2');
+
+    // Event listener ekleme
+    selectElement2.addEventListener('change', function() {
+        // Seçilen seçeneğin id değerini ve doviz_cinsi özelliğini al
+        const selectedOption2 = selectElement2.options[selectElement2.selectedIndex];
+        const selectedOptionId2 = selectedOption2.getAttribute('id');
+        
+        // Inputun value değerini seçilen seçeneğin id değeri ile güncelle
+        kasadovizcinsi2.value = selectedOptionId2;
+        if (selectedOptionId2 !== 'TL') {
+            // Burada gizli değerleri gösterme işlemini gerçekleştirin, örneğin:
+            // Örneğin, gizli bir div elementini göstermek için:
+            const dovizacmaElements = document.querySelectorAll('#dovizacma');
+    
+            dovizacmaElements.forEach(element => {
+            element.style.display = 'block';
+            }); // veya 'inline' veya 'flex' vb. istediğiniz bir display değeri kullanabilirsiniz
+        } else {
+            // Eğer seçilen opsiyonun değeri TL ise, gizli değerleri gizle
+            const dovizacmaElements = document.querySelectorAll('#dovizacma');
+    
+            dovizacmaElements.forEach(element => {
+            element.style.display = 'none';
+            }); 
+        }
+    });
+
+</script>
+{% endblock content %}

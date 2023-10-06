@@ -26,15 +26,15 @@
       </li>
       <li>
         <ul>
-          <li><a href="kasacariodeme.html" title="">Ödeme Fişi</a></li>
-          <li><a href="kasacaritahsilat.html" title="">Tahsilat Fişi</a></li>
+          <li><a href="/{{firma.firma_ozel_anahtar}}/kasacariodeme/" title="">Ödeme Fişi</a></li>
+          <li><a href="/{{firma.firma_ozel_anahtar}}/kasacaritahsilat/" title="">Tahsilat Fişi</a></li>
           <li><a href="" title="">Maaş Ödemesi (Kasa)</a></li>
         </ul><a href="" title="">Cari Fiş İşlemleri</a>
 
       </li>
       <li>
         <ul>
-          <li><a href="bankayayatirilan.html" title="">Bankaya Yatırılan</a></li>
+          <li><a href="/{{firma.firma_ozel_anahtar}}/kasabankayayatirmafisi/" title="">Bankaya Yatırılan</a></li>
           <li><a href="bankadancekilen.html" title="">Bankadan Çekilen</a></li>
         </ul><a href="" title="">Banka Fiş İşlemleri</a>
       </li>
@@ -112,6 +112,7 @@
             <th class="text-center">Açıklama</th>
             <th class="text-center">Tahsilat</th>
             <th class="text-center">Ödeme</th>
+            <th class="text-center">Döviz Tutari</th>
             <th class="text-center" style="min-width: 100px ;">Cari Ünvan</th>
             <th class="text-center" style="min-width: 100px ;">Banka Adı</th>
             <th class="text-center" style="min-width: 100px ;">Gider/Gelir</th>
@@ -138,12 +139,15 @@
             {% if i.alacakbilgisi == "A" %}
               <td>{{i.tutar}}</td>
               <td>0</td>
+              <td>{{i.doviz_tutar}} {{i.islem_doviz_cinsi}}</td>
               {% elif i.alacakbilgisi == "B" %}
               <td>0</td>
               <td>{{i.tutar}}</td>
+              <td>{{i.doviz_tutar}} {{i.islem_doviz_cinsi}}</td>
             {% else %}
             <td>0</td>
               <td>{{i.tutar}}</td>
+              <td>{{i.doviz_tutar}} {{i.islem_doviz_cinsi}}</td>
             {% endif %}
             
             <td>{% if i.cari_unvan %}
