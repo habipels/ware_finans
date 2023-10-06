@@ -12,7 +12,8 @@
             <div class="text-center" ><h2>Bankaya Yatırılan</h2>
             <hr></div>
             
-            <form action="">
+            <form method="post">
+                {% csrf_token %}
                 <div class="row genel">
                     <div class="col-2">
                             <label for="">Tarih</label>
@@ -57,28 +58,7 @@
                             <input name="departman" type="text">
                         </div>
                     <hr style="margin-top: 5px;">
-                    <div class="col-8"><label for="">Banka Adı , Banka Kodu Ve Banka Şubesi</label>
-                    <br><select name="bankabilgisi" id="kasabilgisiSelect2">
-                            {% for i in banka_karti %}
-                                <option value="{{i.id}}" class="{{i.hesap_no}}" id = "{{i.doviz_cinsi}}">{{i.banka_adi}} {{i.banka_kodu}} {{i.sube_adi}} </option>
-                            {% endfor %} 
-                            </select></div>
-                    <div class="col-4"><label for="">Hesap No</label><br>
-                    <input id="hesapno" type="text"></div>
-                    <div class="col-4"><label for="">Döviz Cinsi</label>
-                        <br>
-                    <input id="kasadovizcinsi2"  type="text" DISABLED value="TL"></div>
-                    <div class="col-4"></div>
-                    <div class="col-4">
-                        <label for="">Muh. Kodu</label>
-                        <div class="row">
-                            <div class="col-7"><input name="muhkodukdv" id="muhkodukdv" type="text"></div>
-                            <div class="col-5"><button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#muhkodukdv1">Sec</button></div>
-                        </div>
-
-                    </div>
-                    <hr style="margin-top: 5px;">
+                    
                     <div class="col-4">
                         <label for="">Kasa Kodu ve Kasa Adı</label>
                         <br>
@@ -106,6 +86,28 @@
                         
                     </div>
                     <hr style="margin-top: 5px;">
+                    <div class="col-8"><label for="">Banka Adı , Banka Kodu Ve Banka Şubesi</label>
+                        <br><select name="bankabilgisi" id="kasabilgisiSelect2">
+                                {% for i in banka_karti %}
+                                    <option value="{{i.id}}" class="{{i.hesap_no}}" id = "{{i.doviz_cinsi}}">{{i.banka_adi}} {{i.banka_kodu}} {{i.sube_adi}} </option>
+                                {% endfor %} 
+                                </select></div>
+                        <div class="col-4"><label for="">Hesap No</label><br>
+                        <input id="hesapno" type="text"></div>
+                        <div class="col-4"><label for="">Döviz Cinsi</label>
+                            <br>
+                        <input id="kasadovizcinsi2"  type="text" DISABLED value="TL"></div>
+                        <div class="col-4"></div>
+                        <div class="col-4">
+                            <label for="">Muh. Kodu</label>
+                            <div class="row">
+                                <div class="col-7"><input name="muhkodukdv" id="muhkodukdv" type="text"></div>
+                                <div class="col-5"><button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="#muhkodukdv1">Sec</button></div>
+                            </div>
+    
+                        </div>
+                    <hr style="margin-top: 5px;">
                     <div class="col-4">
                         <label for="">Gider Adı</label>
                         <input id="gideradi"  name="gideradi" data-bs-toggle="modal" data-bs-target="#myModal" type="text">
@@ -128,10 +130,10 @@
                     <div class="col-4"><label for="">Gider (%)</label>
                     <br>
                     <input type="number" name="gideryuzdesi"></div>
-                    <div class="col-4"><label for="">Gider Tutarı</label>
+                    <div class="col-4"><label for="">Gider Tutarı TL</label>
                     <br><input name="gidertutari" type="text"></div>
                     <div class="col-4" >
-                        <label for="">Gider Tutarı (TL)</label>
+                        <label for="">Gider Durumu </label>
                     <br><select name="gider_tutardurumu" id="">
                         <option value="Hariç">Hariç</option>
                         <option value="Tutara Dahil">Tutara Dahil</option>
@@ -157,12 +159,16 @@
                         </div>
                         <hr style="margin-top: 5px;">
                         <div class="col-2"><label id="dovizacma" for="">Tutar (Döviz)</label></div>
-                        <div class="col-4">
+                        <div class="col-2">
                             <input id="dovizacma" step="0.001" oninput="calculateResult()" class="tutardoviz" name="tutardoviz" type="number">
                         </div>
                         <div class="col-2"><label for="">Tutar </label></div>
-                        <div class="col-4">
+                        <div class="col-2">
                             <input name="tutar" step="0.001" id="tutar" type="number">
+                        </div>
+                        <div class="col-2"><label for="">Tutar  TL</label></div>
+                        <div class="col-2">
+                            <input name="tutar_tl" step="0.001" id="tutar_tl" type="number">
                         </div>
                         <hr style="margin-top: 5px;">
                         <div class="mt-5"></div>
