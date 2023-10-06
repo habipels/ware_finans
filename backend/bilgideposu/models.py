@@ -24,9 +24,9 @@ class banka(models.Model):
     )
     doviz = (
         ("",""),
-        ("turklirasi","TL"),
-        ("euro","£"),
-        ("dolar","$")
+        ("TL","TL"),
+        ("Euro","£"),
+        ("Dolar","$")
     )
     banka_kodu = models.CharField(max_length=100,verbose_name="Banka Kodu",blank=True,null=True)
     entkodu = models.CharField(max_length=10,choices=entkodu_secim,verbose_name="Ent Kodu",default="",blank=True,null=True)
@@ -707,6 +707,7 @@ class KasaFisIslemleri(models.Model):
     aciklama = models.TextField(verbose_name="İşlem Açıklama ", blank=True, null=True)
     islemi_yapan = models.CharField(max_length=250, verbose_name="İşlemi Yapan", blank=True, null=True)
     tutar = models.FloatField(verbose_name="İşlem Tutarı", blank=True, null=True)
+    tutar_tl = models.FloatField(verbose_name="İşlem Tutarı (TL)", blank=True, null=True)
     doviz_tutar = models.FloatField(verbose_name="İşlem Tutarı döviz", blank=True, null=True)
     ikinci_islem_sube_bilgisi = models.ForeignKey(sube, blank=True, null=True, verbose_name="Şube",
                                                   on_delete=models.SET_NULL,

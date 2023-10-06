@@ -780,6 +780,8 @@ def kasa_tahsilat_fisi(request,slug):
         gunlukkur = request.POST.get("gunlukkur")
         uygunkur =request.POST.get("uygunkur")
         tutardoviz = request.POST.get("tutardoviz")
+        if tutardoviz =="" or tutardoviz == None:
+            tutardoviz = 0
         KasaFisIslemleri.objects.create(bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),
         islem_turu = "Tahsilat Fişi",tarih =tarih,saat= saat,
         evrak_no = evrakno,ent_kodu = entkodu,birinciislem_sube_bilgisi = get_object_or_404(sube,id=subebilgisi),
@@ -846,6 +848,8 @@ def kasa_odeme_fisi(request,slug):
         gunlukkur = request.POST.get("gunlukkur")
         uygunkur =request.POST.get("uygunkur")
         tutardoviz = request.POST.get("tutardoviz")
+        if tutardoviz =="" or tutardoviz == None:
+            tutardoviz = 0
         KasaFisIslemleri.objects.create(bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),
         islem_turu = "Ödeme Fişi",tarih =tarih,saat= saat,
         evrak_no = evrakno,ent_kodu = entkodu,birinciislem_sube_bilgisi = get_object_or_404(sube,id=subebilgisi),
@@ -915,6 +919,8 @@ def kasa_virman_fisi(request,slug):
         gunlukkur = request.POST.get("gunlukkur")
         uygunkur =request.POST.get("uygunkur")
         tutardoviz = request.POST.get("tutardoviz")
+        if tutardoviz =="" or tutardoviz == None:
+            tutardoviz = 0
         KasaFisIslemleri.objects.create(bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),
         islem_turu = "Virman Fişi",tarih =tarih,saat= saat,
         evrak_no = evrakno,ent_kodu = entkodu,birinciislem_sube_bilgisi = get_object_or_404(sube,id=subebilgisi),
@@ -990,6 +996,8 @@ def kasa_doviz_fisi(request,slug):
         gunlukkur = request.POST.get("gunlukkur")
         uygunkur =request.POST.get("uygunkur")
         tutardoviz = request.POST.get("tutardoviz")
+        if tutardoviz =="" or tutardoviz == None:
+            tutardoviz = 0
         KasaFisIslemleri.objects.create(bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),
         islem_turu = "Döviz Fişi",tarih =tarih,saat= saat,
         evrak_no = evrakno,ent_kodu = entkodu,birinciislem_sube_bilgisi = get_object_or_404(sube,id=subebilgisi),
@@ -1062,6 +1070,8 @@ def kasa_acilis_fisi(request,slug):
         uygunkur =request.POST.get("uygunkur")
         tutardoviz = request.POST.get("tutardoviz")
         borcalacak = request.POST.get("borcalacak")
+        if tutardoviz =="" or tutardoviz == None:
+            tutardoviz = 0
         if borcalacak == "B":
             KasaFisIslemleri.objects.create(bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),
             islem_turu = "Açılış Fişi",tarih =tarih,saat= saat,
@@ -1148,6 +1158,8 @@ def kasa_tahsilat_makbuzu(request,slug):
         gunlukkur = request.POST.get("gunlukkur")
         uygunkur =request.POST.get("uygunkur")
         tutardoviz = request.POST.get("tutardoviz")
+        if tutardoviz =="" or tutardoviz == None:
+            tutardoviz = 0
         KasaFisIslemleri.objects.create(bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),
         islem_turu = "Kasa Tahsilat Makbuzu",tarih =tarih,saat= saat,
         evrak_no = evrakno,ent_kodu = entkodu,birinciislem_sube_bilgisi = get_object_or_404(sube,id=subebilgisi),
@@ -1214,6 +1226,8 @@ def kasa_tahsilat_odeme(request,slug):
         gunlukkur = request.POST.get("gunlukkur")
         uygunkur =request.POST.get("uygunkur")
         tutardoviz = request.POST.get("tutardoviz")
+        if tutardoviz =="" or tutardoviz == None:
+            tutardoviz = 0
         KasaFisIslemleri.objects.create(bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),
         islem_turu = "Kasa Ödeme Makbuzu",tarih =tarih,saat= saat,
         evrak_no = evrakno,ent_kodu = entkodu,birinciislem_sube_bilgisi = get_object_or_404(sube,id=subebilgisi),
@@ -1288,6 +1302,8 @@ def kasa_cari_odeme_fisi(request,slug):
         gunlukkur = request.POST.get("gunlukkur")
         uygunkur =request.POST.get("uygunkur")
         tutardoviz = request.POST.get("tutardoviz")
+        if tutardoviz =="" or tutardoviz == None:
+            tutardoviz = 0
         KasaFisIslemleri.objects.create(bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),
         islem_turu = "Cari Ödeme Fişi",tarih =tarih,saat= saat,
         evrak_no = evrakno,ent_kodu = entkodu,birinciislem_sube_bilgisi = get_object_or_404(sube,id=subebilgisi),
@@ -1349,6 +1365,8 @@ def kasa_cari_tahsilat_fisi(request,slug):
         gunlukkur = request.POST.get("gunlukkur")
         uygunkur =request.POST.get("uygunkur")
         tutardoviz = request.POST.get("tutardoviz")
+        if tutardoviz =="" or tutardoviz == None:
+            tutardoviz = 0
         KasaFisIslemleri.objects.create(bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),
         islem_turu = "Cari Tahsilat Fişi",tarih =tarih,saat= saat,
         evrak_no = evrakno,ent_kodu = entkodu,birinciislem_sube_bilgisi = get_object_or_404(sube,id=subebilgisi),
