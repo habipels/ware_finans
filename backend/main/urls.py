@@ -57,5 +57,8 @@ urlpatterns = [
     #kasa cari fişleri
     #kasa Banka fişleri
     path("<str:slug>/kasabankayayatirmafisi/", views.kasa_banka_yatirilan, name="kasa_banka_yatirilan"),
+    path("<str:slug>/kasabankacekmefisi/", views.kasa_banka_cekilen, name="kasa_banka_cekilen"),
     #kasa Banka fişleri
+    
+    #
 ]

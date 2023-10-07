@@ -93,7 +93,7 @@
                             <br>
                             <input name="gelirkodu" id="gelirkodu" data-bs-toggle="modal" data-bs-target="#myModal" type="text">
                         </div>
-
+                            <input style="display: none;" id="idbilgisi" name="idbilgisi" type="text">
                         <div class="col-4">
                             <label for="">Muh. Kodu</label>
                             <div class="row">
@@ -106,7 +106,7 @@
                         <hr style="margin-top: 5px;">
                         <div class="col-4"><label for="">İşlemin Döviz Cinsi</label>
                             <br>
-                            <select name="islemdovizcinsi" id="">
+                            <select name="islemdovizcinsi" id="islemdovizcinsi">
                                 <option value="TL">TL</option>
                                 <option value="Dolar">USD</option>
                                 <option value="Euro">EURO</option>
@@ -131,13 +131,17 @@
                             <input name="tahsilatiodemeyiyapan" type="text">
                         </div>
                         <hr style="margin-top: 5px;">
-                        <div class="col-2"><label id="dovizacma" for="">Tutar (Döviz)</label></div>
-                        <div class="col-4">
+                         <div class="col-2"><label id="dovizacma" for="">Tutar (Döviz)</label></div>
+                        <div class="col-2">
                             <input id="dovizacma" step="0.001" oninput="calculateResult()" class="tutardoviz" name="tutardoviz" type="number">
                         </div>
                         <div class="col-2"><label for="">Tutar </label></div>
-                        <div class="col-4">
+                        <div class="col-2">
                             <input name="tutar" step="0.001" id="tutar" type="number">
+                        </div>
+                        <div class="col-2"><label for="">Tutar  TL</label></div>
+                        <div class="col-2">
+                            <input name="tutar_tl" step="0.001" id="tutar_tl" type="number">
                         </div>
                         <hr style="margin-top: 5px;">
                         <div class="mt-5"></div>
@@ -284,6 +288,7 @@
                         <tr>
                             <td>{{i.gider_kodu}}</td>
                             <td>{{i.gider_adi}}</td>
+                            <td style="display: none;">{{i.id}}</td>
 
                         </tr>
                         {% endfor %}
@@ -306,19 +311,48 @@
 <script>
 const selectElement = document.getElementById('kasabilgisiSelect');
 const kasadovizcinsi = document.getElementById('kasadovizcinsi');
-
+const islemdovizcinsi = document.getElementById("islemdovizcinsi");
 // Event listener ekleme
 selectElement.addEventListener('change', function() {
     // Seçilen seçeneğin id değerini ve doviz_cinsi özelliğini al
     const selectedOption = selectElement.options[selectElement.selectedIndex];
     const selectedOptionId = selectedOption.getAttribute('id');
     const selectedOptionValue = selectedOption.getAttribute('value');
-    
+    const islemdovizcinsisecim = islemdovizcinsi.options[islemdovizcinsi.selectedIndex];
+
     // Inputun value değerini seçilen seçeneğin id değeri ile güncelle
     kasadovizcinsi.value = selectedOptionId;
 
     // Kontrol et, eğer seçilen opsiyonun değeri TL değilse, gizli değerleri göster
-    if (selectedOptionId !== 'TL') {
+    if (selectedOptionId !== islemdovizcinsisecim.getAttribute('value')) {
+        // Burada gizli değerleri gösterme işlemini gerçekleştirin, örneğin:
+        // Örneğin, gizli bir div elementini göstermek için:
+        const dovizacmaElements = document.querySelectorAll('#dovizacma');
+
+        dovizacmaElements.forEach(element => {
+        element.style.display = 'block';
+        }); // veya 'inline' veya 'flex' vb. istediğiniz bir display değeri kullanabilirsiniz
+    } else {
+        // Eğer seçilen opsiyonun değeri TL ise, gizli değerleri gizle
+        const dovizacmaElements = document.querySelectorAll('#dovizacma');
+
+        dovizacmaElements.forEach(element => {
+        element.style.display = 'none';
+        }); 
+    }
+});
+islemdovizcinsi.addEventListener('change', function() {
+    // Seçilen seçeneğin id değerini ve doviz_cinsi özelliğini al
+    const selectedOption = selectElement.options[selectElement.selectedIndex];
+    const selectedOptionId = selectedOption.getAttribute('id');
+    const selectedOptionValue = selectedOption.getAttribute('value');
+    const islemdovizcinsisecim = islemdovizcinsi.options[islemdovizcinsi.selectedIndex];
+
+    // Inputun value değerini seçilen seçeneğin id değeri ile güncelle
+    kasadovizcinsi.value = selectedOptionId;
+
+    // Kontrol et, eğer seçilen opsiyonun değeri TL değilse, gizli değerleri göster
+    if (selectedOptionId !== islemdovizcinsisecim.getAttribute('value')) {
         // Burada gizli değerleri gösterme işlemini gerçekleştirin, örneğin:
         // Örneğin, gizli bir div elementini göstermek için:
         const dovizacmaElements = document.querySelectorAll('#dovizacma');
@@ -436,6 +470,7 @@ function calculateResult() {
     const gelirtablo = document.querySelector('.gelirtablo');
     const gelirkodu = document.getElementById('gelirkodu');
     const geliradi = document.getElementById("geliradi");
+    const idbilgisi = document.getElementById("idbilgisi")
     searchInputgelir.addEventListener('input', function () {
         const searchText = this.value.toLowerCase();
 
@@ -459,11 +494,13 @@ function calculateResult() {
             const rowData = {
                 id: cells[0].textContent,
                 ad: cells[1].textContent,
+                bilgi: cells[2].textContent,
             };
 
             // Seçilen veriyi input'a yaz
             geliradi.value = `${rowData.ad}`;
             gelirkodu.value = `${rowData.id}`;
+            idbilgisi.value = `${rowData.bilgi}`;
         });
     }
 </script>
