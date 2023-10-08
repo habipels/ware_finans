@@ -72,6 +72,9 @@ urlpatterns = [
     path("<str:slug>/bankagiderfisi/", views.banka_gider_fisi, name="banka_gider_fisi"),
     path("<str:slug>/bankagelirmakbuzu/", views.banka_gelir_makbuzu, name="banka_gelir_makbuzu"),
     path("<str:slug>/bankagidermakbuzu/", views.banka_gider_makbuzu, name="banka_gider_makbuzu"),
-    # Banka fişleri
+    path("<str:slug>/bankagonderilenhavale/", views.banka_cari_gonderilen_havale, name="banka_cari_gonderilen_havale"),
+    path("<str:slug>/bankagelenhavale/", views.banka_cari_gelen_havale, name="banka_cari_gelen_havale"),
+    #
+    #  Banka fişleri
     #
 ]
