@@ -826,3 +826,84 @@ class stok_birim_alis_satis_birimi(models.Model):
     tevkifat_orani = models.CharField(max_length=20,verbose_name="Tev")
     lot_kullanimi = models.CharField(max_length=20,verbose_name="Lot Kullan",choices=lot_kullanim_secim,default="")
     serinokullan = models.CharField(max_length=20,verbose_name="Seri No Kullan",choices=lot_kullanim_secim,default="")
+class bankaFisIslemleri(models.Model):
+    islem_turu_secim = (
+        ("",""),
+        ("Virman Fişi","Virman Fişi"),
+        ("Döviz Fişi","Döviz Fişi"),
+        ("Açılış Fişi","Açılış Fişi"),
+        ("Gelir Fişi","Gelir Fişi"),
+        ("Gider Fişi","Gider Fişi"),
+        ("Faiz Geliri Fişi","Faiz Geliri Fişi"),
+        ("Banka Gelir Makbuzu","Banka Gelir Makbuzu"),
+        ("Banka Gider Makbuzu","Banka Gider Makbuzu"),
+        ("Cari Ödeme Fişi","Cari Ödeme Fişi"),
+        ("Cari Tahsilat Fişi","Cari Tahsilat Fişi"),
+        ("Cari Maaş Ödemesi (Banka)","Cari Maaş Ödemesi (Banka)"),
+        ("Çek/Senet Tescili","Çek/Senet Tescili"),
+        ("Çek Ödemesi","Çek Ödemesi"),
+    )
+    entsecim = (
+        ("", ""),
+        ("1", "1"),
+        ("2", "2"),
+    )
+    doviz = (
+        ("", ""),
+        ("TL", "TL"),
+        ("Euro", "£"),
+        ("Dolar", "$")
+    )
+    kendisi_secme =  models.ForeignKey('self',blank=True,null=True,verbose_name="makbuzlar için",related_name='children',on_delete=models.SET_NULL)
+    islem_turu = models.CharField(max_length=200, verbose_name="İşlem Türü", default="", choices=islem_turu_secim)
+    tarih = models.DateField(verbose_name="İşlem Tarihi", blank=True, null=True)
+    saat = models.TimeField(verbose_name="İşlem Saati", blank=True, null=True)
+    evrak_no = models.CharField(max_length=100, verbose_name="Evrak Tarihi", blank=True, null=True)
+    ent_kodu = models.CharField(max_length=2, verbose_name="Ent Kodu", default="", choices=entsecim)
+    birinciislem_sube_bilgisi = models.ForeignKey(sube, blank=True, null=True, verbose_name="Şube",
+                                                   on_delete=models.SET_NULL,
+                                                   related_name='birinciislem_kasa_fis_islemleri_set_banka')
+    ozelkod1 = models.CharField(max_length=200, verbose_name="Özel Kod", blank=True, null=True)
+    ozelkod2 = models.CharField(max_length=200, verbose_name="Özel Kod 2", blank=True, null=True)
+    birinci_departman = models.CharField(max_length=200, verbose_name="Departman", blank=True, null=True)
+    birinci_banka_bilgisi = models.ForeignKey(Kasa, verbose_name="Birinci Kasa Bilgisi", blank=True, null=True,
+                                             on_delete=models.SET_NULL, related_name='birinci_banka_fis_islemleri_set')
+    birinci_banka_muh_kodu = models.CharField(max_length=200, verbose_name="Kasa Muhtasar Kodu", blank=True, null=True)
+    gelir_bilgisi = models.ForeignKey(Gelirler, blank=True, null=True, verbose_name="Gelir Bilgisi",
+                                      on_delete=models.SET_NULL, related_name='gelir_banka_fis_islemleri_set')
+    gider_bilgisi = models.ForeignKey(Giderler, blank=True, null=True, verbose_name="Gelir Bilgisi",
+                                      on_delete=models.SET_NULL, related_name='gider_banka_fis_islemleri_set')
+    gelir_muh_kodu = models.CharField(max_length=200, verbose_name="Gelir Muhtasar Kodu", blank=True, null=True)
+    islem_doviz_cinsi = models.CharField(max_length=100, verbose_name="İşlem Döviz Cinsi", choices=doviz, default="")
+    aciklama = models.TextField(verbose_name="İşlem Açıklama ", blank=True, null=True)
+    islemi_yapan = models.CharField(max_length=250, verbose_name="İşlemi Yapan", blank=True, null=True)
+    tutar = models.FloatField(verbose_name="İşlem Tutarı", blank=True, null=True)
+    tutar_tl = models.FloatField(verbose_name="İşlem Tutarı (TL)", blank=True, null=True)
+    doviz_tutar = models.FloatField(verbose_name="İşlem Tutarı döviz", blank=True, null=True)
+    ikinci_islem_sube_bilgisi = models.ForeignKey(sube, blank=True, null=True, verbose_name="Şube",
+                                                  on_delete=models.SET_NULL,
+                                                  related_name='ikinciislem_banka_fis_islemleri_set')
+    ikinci_gelir_bilgisi = models.ForeignKey(Gelirler, blank=True, null=True, verbose_name="Gelir Bilgisi",
+                                             on_delete=models.SET_NULL,
+                                             related_name='ikinci_gelir_banka_fis_islemleri_set')
+    ikinci_gider_bilgisi = models.ForeignKey(Giderler, blank=True, null=True, verbose_name="Gelir Bilgisi",
+                                             on_delete=models.SET_NULL,
+                                             related_name='ikinci_gider_banka_fis_islemleri_set')
+    gider_muh_kodu = models.CharField(max_length=200, verbose_name="Gİder Muhtasar Kodu", blank=True, null=True)
+    ikinci_banka_bilgisi = models.ForeignKey(Kasa, verbose_name="İkinci Kasa Bilgisi", blank=True, null=True,
+                                            on_delete=models.SET_NULL, related_name='ikinci_banka_fis_islemleri_set')
+    ikinci_departman = models.CharField(max_length=200, verbose_name="Departman", blank=True, null=True)
+    ikinci_banka_muh_kodu = models.CharField(max_length=200, verbose_name="Kasa Muhtasar Kodu", blank=True, null=True)
+    islem_durumu = models.BooleanField(default=False, verbose_name="İşlem Tamamlandıysa tikli olacak")
+    satici = models.CharField(max_length=200, verbose_name="SAtıcı", blank=True, null=True)
+    kampkodu = models.CharField(max_length=200, verbose_name="Kamp Kodu", blank=True, null=True)
+    gunluk_kur = models.CharField(max_length=200, verbose_name="Günlük Kur", blank=True, null=True)
+    uygun_kur = models.CharField(max_length=200, verbose_name="Uygun Kur", blank=True, null=True)
+    alacakbilgisi = models.CharField(max_length=200, verbose_name="alacakbilgisi", blank=True, null=True)
+    gider_durumu = models.CharField(max_length=100,verbose_name="Gider Durumu",blank=True,null=True)
+    gideryuzdesi= models.FloatField(verbose_name="Gider yüzdesi",blank=True,null=True)
+    cari_unvan = models.ForeignKey(cari_kartlar,blank=True,null=True,verbose_name="Cari Unvan Bilgisi",on_delete=models.SET_NULL)
+    banka_bilgisi = models.ForeignKey(Kasa,blank=True,null=True,verbose_name="Kasa Bilgisi",on_delete=models.SET_NULL)
+    kasa_banka_muh_kodu = models.CharField(max_length=200, verbose_name="Kasa Muhtasar Kodu", blank=True, null=True)
+    bagli_oldugu_firma = models.ForeignKey(firma,blank=True,null=True,on_delete=models.SET_NULL)
+    silinme_bilgisi = models.BooleanField(default=False)
