@@ -736,9 +736,10 @@ class KasaFisIslemleri(models.Model):
     banka_kasa_muh_kodu = models.CharField(max_length=200, verbose_name="Banka Muhtasar Kodu", blank=True, null=True)
     bagli_oldugu_firma = models.ForeignKey(firma,blank=True,null=True,on_delete=models.SET_NULL)
     silinme_bilgisi = models.BooleanField(default=False)
-    islem_sonucu_bakiye = models.FloatField(verbose_name="İşlem Sonucu Bakiye",blank=True,null=True)
-
-
+    islem_sonucu_bakiye_birinci_kasa = models.FloatField(verbose_name="İşlem Sonucu Bakiye",blank=True,null=True)
+    islem_sonucu_bakiye_ikinci_kasa = models.FloatField(verbose_name="İşlem Sonucu Bakiye",blank=True,null=True)
+    islem_sonucu_bakiye_cari = models.FloatField(verbose_name="İşlem Sonucu Bakiye",blank=True,null=True)
+    islem_sonucu_bakiye_banka = models.FloatField(verbose_name="İşlem Sonucu Bakiye",blank=True,null=True)
 class kdv_istisna_kodu(models.Model):
     kod = models.CharField(max_length=100,verbose_name="KDV İstisna Kodu",blank=True,null=True)
     kod_bilgi = models.CharField(max_length=100,verbose_name="KDV İstisna Kodu",blank=True,null=True)
@@ -908,4 +909,7 @@ class bankaFisIslemleri(models.Model):
     kasa_banka_muh_kodu = models.CharField(max_length=200, verbose_name="Kasa Muhtasar Kodu", blank=True, null=True)
     bagli_oldugu_firma = models.ForeignKey(firma,blank=True,null=True,on_delete=models.SET_NULL)
     silinme_bilgisi = models.BooleanField(default=False)
-    slem_sonucu_bakiye = models.FloatField(verbose_name="İşlem Sonucu Bakiye",blank=True,null=True)
+    islem_sonucu_bakiye_birinci_banka = models.FloatField(verbose_name="İşlem Sonucu Bakiye",blank=True,null=True)
+    islem_sonucu_bakiye_ikinci_banka = models.FloatField(verbose_name="İşlem Sonucu Bakiye",blank=True,null=True)
+    islem_sonucu_bakiye_cari = models.FloatField(verbose_name="İşlem Sonucu Bakiye",blank=True,null=True)
+    islem_sonucu_bakiye_kasa = models.FloatField(verbose_name="İşlem Sonucu Bakiye",blank=True,null=True)
