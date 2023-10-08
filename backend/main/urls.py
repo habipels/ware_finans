@@ -66,7 +66,12 @@ urlpatterns = [
     #banka fişi kasa
     #banka fişleri
     path("<str:slug>/bankaacilisfisi/", views.banka_acilis_fisi, name="banka_acilis_fisi"),
-    
+    path("<str:slug>/bankavirmanfisi/", views.banka_virman_fisi, name="banka_virman_fisi"),
+    path("<str:slug>/bankadovizfisi/", views.banka_doviz_fisi, name="banka_doviz_fisi"),
+    path("<str:slug>/bankagelirfisi/", views.banka_gelir_fisi, name="banka_gelir_fisi"),
+    path("<str:slug>/bankagiderfisi/", views.banka_gider_fisi, name="banka_gider_fisi"),
+    path("<str:slug>/bankagelirmakbuzu/", views.banka_gelir_makbuzu, name="banka_gelir_makbuzu"),
+    path("<str:slug>/bankagidermakbuzu/", views.banka_gider_makbuzu, name="banka_gider_makbuzu"),
     # Banka fişleri
-    #kasadan_bankaya_yatirilan
+    #
 ]

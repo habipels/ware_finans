@@ -23,10 +23,10 @@ class banka(models.Model):
         
     )
     doviz = (
-        ("",""),
-        ("TL","TL"),
-        ("Euro","£"),
-        ("Dolar","$")
+        ("", ""),
+        ("TL", "TL"),
+        ("Euro", "Euro"),
+        ("Dolar", "Dolar")
     )
     banka_kodu = models.CharField(max_length=100,verbose_name="Banka Kodu",blank=True,null=True)
     entkodu = models.CharField(max_length=10,choices=entkodu_secim,verbose_name="Ent Kodu",default="",blank=True,null=True)
@@ -341,10 +341,10 @@ class Kasa(models.Model):
     )
    
     doviz = (
-        ("",""),
-        ("TL","TL"),
-        ("Euro","£"),
-        ("Dolar","$")
+        ("", ""),
+        ("TL", "TL"),
+        ("Euro", "Euro"),
+        ("Dolar", "Dolar")
     )
     kasa_kodu = models.CharField(max_length=100,verbose_name="Kasa Kodu",blank=True,null=True)
     entkodu = models.CharField(max_length=10,choices=entkodu_secim,verbose_name="Ent Kodu",default="",blank=True,null=True)
@@ -433,10 +433,10 @@ class Giderler(models.Model):
         ("Hayır","Hayır",)
     )
     doviz = (
-        ("",""),
-        ("TL","TL"),
-        ("Euro","£"),
-        ("Dolar","$")
+        ("", ""),
+        ("TL", "TL"),
+        ("Euro", "Euro"),
+        ("Dolar", "Dolar")
     )
     ana_gider_kodu = models.CharField(max_length=100,verbose_name="Ana Gider Kodu",blank=True,null=True)
     gider_kodu = models.CharField(max_length=100,verbose_name="gider Kodu",blank=True,null=True)
@@ -464,10 +464,10 @@ class Gelirler(models.Model):
         ("Hayır","Hayır",)
     )
     doviz = (
-        ("",""),
-        ("TL","TL"),
-        ("Euro","£"),
-        ("Dolar","$")
+        ("", ""),
+        ("TL", "TL"),
+        ("Euro", "Euro"),
+        ("Dolar", "Dolar")
     )
     ana_gelir_kodu = models.CharField(max_length=100,verbose_name="Ana gelir Kodu",blank=True,null=True)
     gelir_kodu = models.CharField(max_length=100,verbose_name="gelir Kodu",blank=True,null=True)
@@ -578,10 +578,10 @@ class cari_kartislemleri_adresleri_kimlik(models.Model):
 
 class cari_kartislemleri_diger_bilgiler(models.Model):
     doviz = (
-        ("",""),
-        ("TL","TL"),
-        ("Euro","£"),
-        ("Dolar","$")
+        ("", ""),
+        ("TL", "TL"),
+        ("Euro", "Euro"),
+        ("Dolar", "Dolar")
     )
     cari_bilgisi = models.ForeignKey(cari_kartlar,blank=True,null=True,verbose_name="Cari Bilgisi",on_delete=models.CASCADE)
     risklimiti = models.FloatField(verbose_name="Risk Limiti",blank=True,null=True)
@@ -612,10 +612,10 @@ class cari_kartislemleri_diger_bilgiler(models.Model):
 
 class cari_kartislemleri_sube_bilgiler(models.Model):
     doviz = (
-        ("",""),
-        ("TL","TL"),
-        ("Euro","£"),
-        ("Dolar","$")
+        ("", ""),
+        ("TL", "TL"),
+        ("Euro", "Euro"),
+        ("Dolar", "Dolar")
     )
     cari_bilgisi = models.ForeignKey(cari_kartlar,blank=True,null=True,verbose_name="Cari Bilgisi",on_delete=models.CASCADE)
     subebilgilerisubekodu = models.CharField(max_length=100,verbose_name="Şube Kodu",blank=True,null=True)
@@ -853,8 +853,8 @@ class bankaFisIslemleri(models.Model):
     doviz = (
         ("", ""),
         ("TL", "TL"),
-        ("Euro", "£"),
-        ("Dolar", "$")
+        ("Euro", "Euro"),
+        ("Dolar", "Dolar")
     )
     kendisi_secme =  models.ForeignKey('self',blank=True,null=True,verbose_name="makbuzlar için",related_name='children',on_delete=models.SET_NULL)
     islem_turu = models.CharField(max_length=200, verbose_name="İşlem Türü", default="", choices=islem_turu_secim)
