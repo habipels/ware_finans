@@ -13,8 +13,8 @@
     <ul>
       <li>
         <ul>
-          <li><a href="" title="">Bankaya Yatırılan </a></li>
-          <li><a href="" title="">Bankadan Çekilen</a></li>
+          <li><a href="/{{firma.firma_ozel_anahtar}}/bankadankasayayatirma/" title="">Bankaya Yatırılan </a></li>
+          <li><a href="/{{firma.firma_ozel_anahtar}}/bankakasacekmefisi/" title="">Bankadan Çekilen</a></li>
           <li><a href="kasaacilis.html" title="">Açılış Fişi</a></li>
           <li><a href="virman.html" title="">Virman Fişi</a></li>
           <li><a href="dovizfisi.html" title="">Döviz Fişi</a></li>
@@ -147,9 +147,14 @@
                       </tr>
                     </thead>
                     <tbody>
+                    {% for i in banka_islemleri %}
                       <tr>
-            
-                        <td><input type="radio">01</td>
+                        <td>{{i.tarih}}</td>
+                        <td>{{i.saat}}</td>
+                        <td>{{i.islem_turu}}</td>
+                        <td>{{i.ent_kodu}}</td>
+                        <td>{{i.evrak_no}}</td>
+                        <td>{{i.aciklama}}</td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -160,6 +165,7 @@
                         <td></td>
                         <td></td>
                       </tr>
+                    {% endfor %}
                     </tbody>
                   </table>
                 </div>
