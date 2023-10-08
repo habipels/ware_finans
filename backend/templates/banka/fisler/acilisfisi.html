@@ -1,0 +1,172 @@
+{% extends "homebase.html" %}
+{% block content %}
+<style>
+    #dovizacma{
+        display: none;
+    }
+</style>
+<div class="container mt-5">
+    <div class="row">
+
+        <div class="col-12" style="border: 1px solid black; padding: 20px;">
+            <div class="text-center" ><h2>Banka Açılış Fişi</h2>
+            <hr></div>
+            
+            <form method="post">
+            {% csrf_token %}
+                <div class="row genel">
+                    <div class="col-3">
+                            <label for="">Tarih</label>
+                            <br>
+                            <input name="tarih" type="date">
+                        </div>
+                        <div class="col-3">
+                            <label for="">Saat</label>
+                            <br>
+                            <input name="saat" type="time">
+                        </div>
+                    <div class="col-3">
+                        <label for="">B/A</label>
+                        <br>
+                        <select name="borcalacak" id="">
+                            <option value="B">Borçlu</option>
+                            <option value="A">Alacaklı</option>
+                        </select>
+                    </div>
+                    <div class="col-3">
+                        <label for="">Ent. Kodu</label>
+                        <br>
+                        <select name="entkodu" id="">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                            </select>
+                    </div>
+                    <div class="col-3">
+                        <label for="">Şube</label>
+                        <br>
+                         <select name="subebilgisi" id="">
+                                {% for i in subelerim %}
+                                <option value="{{i.id}}">{{i.sube_adi}} {{i.sube_unvani}}</option>
+                                {% endfor %}
+
+                            </select>
+                    </div>
+                    <div class="col-3"><label for="">Özel Kod 1</label><br>
+                            <input name="ozelkod1" type="text">
+                        </div>
+                        <div class="col-3"><label for="">Özel Kod 2</label><br>
+                            <input name="ozelkod2" type="text">
+                        </div>
+                        <div class="col-3"><label for="">Departman</label><br>
+                            <input name="departman" type="text">
+                        </div>
+                    <hr style="margin-top: 5px;">
+
+                    <div class="col-6">
+                    <label for="">Banka Kodu , Banka Adı Ve Şube Adı</label>
+                        <select name="kasabilgisi" id="kasabilgisiSelect">
+                            {% for i in banka_karti %}
+                                <option value="{{i.id}}" id = "{{i.doviz_cinsi}}">{{i.banka_kodu}}{{i.banka_adi}} {{i.sube_adi}}</option>
+                            {% endfor %} 
+                            </select>
+                    </div>
+                    
+                    
+                    <div class="col-6">
+                     <label for="">Döviz Cinsi</label>
+                            <br>
+                            <input id="kasadovizcinsi" name="islemdovizcinsi"  type="text" DISABLED value="TL">
+                    </div>
+                    <hr style="margin-top: 5px;">
+                    <div class="col-4"></div>
+                     <div class="col-4">
+                        <label id="dovizacma" for="">Günlük Kur</label>
+                        <input name="gunlukkur" id="dovizacma" step="0.001" type="number">
+                        </div>
+                        <div class="col-4">
+                            <label id="dovizacma" for="">Uygun Kur</label>
+                        <input name="uygunkur" class="uygunkur" step="0.001" id="dovizacma" type="number">
+                        </div>
+                    <hr style="margin-top: 5px;">
+                    <div class="col-4"><label for="">Açıklama</label></div>
+                        <div class="col-8">
+                            <input name="aciklama" type="text">
+                        </div>
+                        <hr style="margin-top: 5px;">
+                        <div class="col-4"><label for="">Tahsilatı/Ödemeyi Yapan</label></div>
+                        <div class="col-8">
+                            <input name="tahsilatiodemeyiyapan" type="text">
+                        </div>
+                        <hr style="margin-top: 5px;">
+                        <div class="col-2"><label id="dovizacma" for="">Tutar (Döviz)</label></div>
+                        <div class="col-2">
+                            <input id="dovizacma" step="0.001" oninput="calculateResult()" class="tutardoviz" name="tutardoviz" type="number">
+                        </div>
+                        <div class="col-2"><label for="">Tutar </label></div>
+                        <div class="col-2">
+                            <input name="tutar" step="0.001" id="tutar" type="number">
+                        </div>
+                        <div class="col-2"><label for="">Tutar  TL</label></div>
+                        <div class="col-2">
+                            <input name="tutar_tl" step="0.001" id="tutar_tl" type="number">
+                        </div>
+                        <hr style="margin-top: 5px;">
+                        <div class="mt-5"></div>
+                        <div class="col-4"><button type="submit"  class="btn btn-primary" >Kaydet Çık</button></div>
+                        <div class="col-4"><button>Kaydet Yenisini Oluştur</button></div>
+                        <div class="col-4"><button style="color: red;">İptal ET</button></div>
+                </div>
+
+            </form>
+        </div>
+        <div class="col-2">
+            
+        </div>
+    </div>
+</div>
+   <script>
+const selectElement = document.getElementById('kasabilgisiSelect');
+const kasadovizcinsi = document.getElementById('kasadovizcinsi');
+
+// Event listener ekleme
+selectElement.addEventListener('change', function() {
+    // Seçilen seçeneğin id değerini ve doviz_cinsi özelliğini al
+    const selectedOption = selectElement.options[selectElement.selectedIndex];
+    const selectedOptionId = selectedOption.getAttribute('id');
+    const selectedOptionValue = selectedOption.getAttribute('value');
+    
+    // Inputun value değerini seçilen seçeneğin id değeri ile güncelle
+    kasadovizcinsi.value = selectedOptionId;
+
+    // Kontrol et, eğer seçilen opsiyonun değeri TL değilse, gizli değerleri göster
+    if (selectedOptionId !== 'TL') {
+        // Burada gizli değerleri gösterme işlemini gerçekleştirin, örneğin:
+        // Örneğin, gizli bir div elementini göstermek için:
+        const dovizacmaElements = document.querySelectorAll('#dovizacma');
+
+        dovizacmaElements.forEach(element => {
+        element.style.display = 'block';
+        }); // veya 'inline' veya 'flex' vb. istediğiniz bir display değeri kullanabilirsiniz
+    } else {
+        // Eğer seçilen opsiyonun değeri TL ise, gizli değerleri gizle
+        const dovizacmaElements = document.querySelectorAll('#dovizacma');
+
+        dovizacmaElements.forEach(element => {
+        element.style.display = 'none';
+        }); 
+    }
+});
+</script>
+<script>
+function calculateResult() {
+  const input1 = parseFloat(document.getElementsByClassName('uygunkur')[0].value);
+  const input2 = parseFloat(document.getElementsByClassName('tutardoviz')[0].value);
+
+
+
+  const result = input1 * input2;
+
+  document.getElementById('tutar').value = result;
+}
+</script>
+{% endblock content %}

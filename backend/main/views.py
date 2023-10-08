@@ -1840,5 +1840,97 @@ def bankadan_kasaya_yatirilan(request,slug):
         link = "/"+slug+"/banka/"
         return redirect(link)
     return render(request,"banka/kasa/kasabankacekilen.html",content)
-
+#banka fiş işlemleri
+#banka banka fiş işlemleri
+def banka_acilis_fisi(request,slug):
+    content ={}
+    content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
+    hesaplar = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) )
+    sistem = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =None)
+    kart = cari_kartlar.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    giderkartti = Giderler.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    gelirkartti = Gelirler.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    banka_karti = banka.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    subelerim = sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    kasa_bilgisi = Kasa.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    content["kart"] = kart
+    content["gelirkartti"] = gelirkartti
+    content["giderkartti"] = giderkartti
+    content["hesapplanlari"] = hesaplar
+    content["sistemhesapplanlari"] = sistem
+    content["banka_karti"] = banka_karti
+    content["subelerim"] = subelerim
+    content["kasa_bilgisi"] = kasa_bilgisi
+    if request.POST:
+        tarih = request.POST.get("tarih")
+        saat = request.POST.get("saat")
+        evrakno = request.POST.get("evrakno")
+        entkodu = request.POST.get("entkodu")
+        subebilgisi = request.POST.get("subebilgisi")
+        ozelkod1 = request.POST.get("ozelkod1")
+        ozelkod2 = request.POST.get("ozelkod2")
+        departman = request.POST.get("departman")
+        carikodu = request.POST.get("carikodu")
+        kasabilgisi = request.POST.get("kasabilgisi")
+        muhtasarkodu = request.POST.get("muhtasarkodu")
+        gelirkodu = request.POST.get("gelirkodu")
+        gelirmuhtasarkodu = request.POST.get("gelirmuhtasarkodu")
+        islemdovizcinsi = request.POST.get("islemdovizcinsi")
+        print(islemdovizcinsi,"işlem döviz cinsi")
+        aciklama = request.POST.get("aciklama")
+        tahsilatiodemeyiyapan= request.POST.get("tahsilatiodemeyiyapan")
+        tutar = request.POST.get("tutar") 
+        gunlukkur = request.POST.get("gunlukkur")
+        uygunkur =request.POST.get("uygunkur")
+        tutardoviz = request.POST.get("tutardoviz")
+        borcalacak = request.POST.get("borcalacak")
+        tutar_tl= request.POST.get("tutar_tl")
+        if tutardoviz =="" or tutardoviz == None:
+            tutardoviz = 0
+        if borcalacak == "B":
+            bankaFisIslemleri.objects.create(bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),
+            islem_turu = "Açılış Fişi",tarih =tarih,saat= saat,
+            evrak_no = evrakno,ent_kodu = entkodu,birinciislem_sube_bilgisi = get_object_or_404(sube,id=subebilgisi),
+            ozelkod1 = ozelkod1,ozelkod2 = ozelkod2,birinci_departman = departman,
+            birinci_banka_bilgisi = get_object_or_404(banka,id=kasabilgisi),birinci_banka_muh_kodu =muhtasarkodu,aciklama = aciklama,
+            islemi_yapan = tahsilatiodemeyiyapan,tutar= float(tutar),gunluk_kur = gunlukkur,uygun_kur = uygunkur
+            ,islem_doviz_cinsi = islemdovizcinsi,tutar_tl= tutar_tl)
+        else:
+            bankaFisIslemleri.objects.create(bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),
+            islem_turu = "Açılış Fişi",tarih =tarih,saat= saat,
+            evrak_no = evrakno,ent_kodu = entkodu,birinciislem_sube_bilgisi = get_object_or_404(sube,id=subebilgisi),
+            ozelkod1 = ozelkod1,ozelkod2 = ozelkod2,birinci_departman = departman,
+            birinci_banka_bilgisi = get_object_or_404(banka,id=kasabilgisi),birinci_banka_muh_kodu =muhtasarkodu,aciklama = aciklama,
+            islemi_yapan = tahsilatiodemeyiyapan,tutar= float(tutar),gunluk_kur = gunlukkur,uygun_kur = uygunkur
+            ,alacakbilgisi = borcalacak,islem_doviz_cinsi = islemdovizcinsi,tutar_tl= tutar_tl
+            )
+        if borcalacak == "B":
+            if tutardoviz:
+                k = get_object_or_404(banka,id=kasabilgisi)
+                
+                b = k.toplam_bakiye
+                k = k.toplam_cekilen
+                banka.objects.filter(id=kasabilgisi).update(toplam_cekilen = k+float(tutardoviz),toplam_bakiye = b-float(tutardoviz))
+            else:
+                k = get_object_or_404(banka,id=kasabilgisi)
+                b = k.toplam_bakiye
+                k = k.toplam_cekilen
+                
+                banka.objects.filter(id=kasabilgisi).update(toplam_cekilen = k+float(tutar),toplam_bakiye = b-float(tutar))
+        elif borcalacak == "A":
+            if tutardoviz:
+                k = get_object_or_404(banka,id=kasabilgisi)
+                b = k.toplam_bakiye
+                k = k.toplam_yatirilan
+                
+                banka.objects.filter(id=kasabilgisi).update(toplam_yatirilan = k+float(tutardoviz),toplam_bakiye = b+float(tutardoviz))
+            else:
+                k = get_object_or_404(banka,id=kasabilgisi)
+                b = k.toplam_bakiye
+                k = k.toplam_yatirilan
+                
+                banka.objects.filter(id=kasabilgisi).update(toplam_yatirilan = k+float(tutar),toplam_bakiye = b+float(tutar))
+        link = "/"+slug+"/banka/"
+        return redirect(link)
+    return render(request,"banka/fisler/acilisfisi.html",content)
 #banka fiş işlemleri

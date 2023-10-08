@@ -64,6 +64,9 @@ urlpatterns = [
     path("<str:slug>/bankadankasayayatirma/", views.kasadan_bankaya_yatirilan, name="kasadan_bankaya_yatirilan"),
     path("<str:slug>/bankakasacekmefisi/", views.bankadan_kasaya_yatirilan, name="bankadan_kasaya_yatirilan"),
     #banka fişi kasa
+    #banka fişleri
+    path("<str:slug>/bankaacilisfisi/", views.banka_acilis_fisi, name="banka_acilis_fisi"),
+    
     # Banka fişleri
     #kasadan_bankaya_yatirilan
 ]

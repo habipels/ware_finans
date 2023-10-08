@@ -868,7 +868,7 @@ class bankaFisIslemleri(models.Model):
     ozelkod1 = models.CharField(max_length=200, verbose_name="Özel Kod", blank=True, null=True)
     ozelkod2 = models.CharField(max_length=200, verbose_name="Özel Kod 2", blank=True, null=True)
     birinci_departman = models.CharField(max_length=200, verbose_name="Departman", blank=True, null=True)
-    birinci_banka_bilgisi = models.ForeignKey(Kasa, verbose_name="Birinci Kasa Bilgisi", blank=True, null=True,
+    birinci_banka_bilgisi = models.ForeignKey(banka, verbose_name="Birinci Kasa Bilgisi", blank=True, null=True,
                                              on_delete=models.SET_NULL, related_name='birinci_banka_fis_islemleri_set')
     birinci_banka_muh_kodu = models.CharField(max_length=200, verbose_name="Kasa Muhtasar Kodu", blank=True, null=True)
     gelir_bilgisi = models.ForeignKey(Gelirler, blank=True, null=True, verbose_name="Gelir Bilgisi",
@@ -892,7 +892,7 @@ class bankaFisIslemleri(models.Model):
                                              on_delete=models.SET_NULL,
                                              related_name='ikinci_gider_banka_fis_islemleri_set')
     gider_muh_kodu = models.CharField(max_length=200, verbose_name="Gİder Muhtasar Kodu", blank=True, null=True)
-    ikinci_banka_bilgisi = models.ForeignKey(Kasa, verbose_name="İkinci Kasa Bilgisi", blank=True, null=True,
+    ikinci_banka_bilgisi = models.ForeignKey(banka, verbose_name="İkinci Kasa Bilgisi", blank=True, null=True,
                                             on_delete=models.SET_NULL, related_name='ikinci_banka_fis_islemleri_set')
     ikinci_departman = models.CharField(max_length=200, verbose_name="Departman", blank=True, null=True)
     ikinci_banka_muh_kodu = models.CharField(max_length=200, verbose_name="Kasa Muhtasar Kodu", blank=True, null=True)
