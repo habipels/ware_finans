@@ -957,7 +957,7 @@ class cari_fisleri(models.Model):
     vade_gunu =  models.CharField(max_length=100, verbose_name="Vade Günü", blank=True, null=True)
     birinciislem_sube_bilgisi = models.ForeignKey(sube, blank=True, null=True, verbose_name="Şube",
                                                    on_delete=models.SET_NULL,
-                                                   related_name='birinciislem_kasa_fis_islemleri_set_banka')
+                                                   related_name='birinciislem_cari_fis_islemleri_set_banka')
     ozelkod1 = models.CharField(max_length=200, verbose_name="Özel Kod", blank=True, null=True)
     ozelkod2 = models.CharField(max_length=200, verbose_name="Özel Kod 2", blank=True, null=True)
     birinci_departman = models.CharField(max_length=200, verbose_name="Departman", blank=True, null=True)
@@ -1000,9 +1000,10 @@ class cari_fisleri(models.Model):
     bankasecme = models.ForeignKey(banka,blank=True,null=True,verbose_name="Banka Bilgisi",on_delete=models.SET_NULL)
     banka_bilgisi = models.ForeignKey(Kasa,blank=True,null=True,verbose_name="Kasa Bilgisi",on_delete=models.SET_NULL)
     kasa_banka_muh_kodu = models.CharField(max_length=200, verbose_name="Kasa Muhtasar Kodu", blank=True, null=True)
+    
     bagli_oldugu_firma = models.ForeignKey(firma,blank=True,null=True,on_delete=models.SET_NULL)
     silinme_bilgisi = models.BooleanField(default=False)
-    islem_sonucu_bakiye_birinci_banka = models.FloatField(verbose_name="İşlem Sonucu Bakiye",blank=True,null=True)
-    islem_sonucu_bakiye_ikinci_banka = models.FloatField(verbose_name="İşlem Sonucu Bakiye",blank=True,null=True)
-    islem_sonucu_bakiye_cari = models.FloatField(verbose_name="İşlem Sonucu Bakiye",blank=True,null=True)
+    islem_sonucu_bakiye_birinci_cari = models.FloatField(verbose_name="İşlem Sonucu Bakiye",blank=True,null=True)
+    islem_sonucu_bakiye_ikinci_cari = models.FloatField(verbose_name="İşlem Sonucu Bakiye",blank=True,null=True)
+    islem_sonucu_bakiye_banka = models.FloatField(verbose_name="İşlem Sonucu Bakiye",blank=True,null=True)
     islem_sonucu_bakiye_kasa = models.FloatField(verbose_name="İşlem Sonucu Bakiye",blank=True,null=True)
