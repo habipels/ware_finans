@@ -13,12 +13,12 @@
     <ul>
       <li>
         <ul>
-         <li><a href="/{{firma.firma_ozel_anahtar}}/" title="">Borç Dekontu </a></li>
-         <li><a href="/{{firma.firma_ozel_anahtar}}/" title="">Alacak Dekontu</a></li>
+         <li><a href="/{{firma.firma_ozel_anahtar}}/borcdekontu/" title="">Borç Dekontu </a></li>
+         <li><a href="/{{firma.firma_ozel_anahtar}}/alacakdekontu/" title="">Alacak Dekontu</a></li>
          <li><a href="/{{firma.firma_ozel_anahtar}}/" title="">Ödeme Fişi </a></li>
          <li><a href="/{{firma.firma_ozel_anahtar}}/" title="">Tahsilat Fişi</a></li>
-         <li><a href="/{{firma.firma_ozel_anahtar}}/" title="">Virman Fişi</a></li>
-         <li><a href="/{{firma.firma_ozel_anahtar}}/" title="">Açılış Fişi </a></li>
+         <li><a href="/{{firma.firma_ozel_anahtar}}/carivirman/" title="">Virman Fişi</a></li>
+         <li><a href="/{{firma.firma_ozel_anahtar}}/cariacilis/" title="">Açılış Fişi </a></li>
          <li><a href="/{{firma.firma_ozel_anahtar}}/" title="">Maaş Tahakkuku </a></li>
          <li><a href="/{{firma.firma_ozel_anahtar}}/" title="">Maaş Ödemesi</a></li>
          <li><a href="/{{firma.firma_ozel_anahtar}}/" title="">Toplu Dekont</a></li>
@@ -158,7 +158,6 @@
             <th class="text-center" style="min-width: 130px ;">Özel Kod(1)</th>
             <th class="text-center" style="min-width: 130px ;">Özel Kod(2)</th>
             <th class="text-center">Ent?</th>
-            <th class="text-center" >Kullanıcı</th>
             <th class="text-center" style="min-width: 150px ;">Vade Tarihi</th>
             <th class="text-center" >Satıcı</th>
             <th class="text-center" style="min-width: 100px ;">Kasa Adı</th>
@@ -168,125 +167,39 @@
          </tr>
         </thead>
         <tbody>
+        {% for i in carifisleri %}
           <tr>
-            <td>01</td>
+            <td>{{i.tarih}} {{i.saat}}</td>
+            <td>{{i.islem_turu}}</td>
+            <td>{{i.evrak_no}}</td>
+            <td>{{i.ent_kodu}}</td>
+            <td>{{i.aciklama}}</td>
+            <td>{{i.doviz_tutar}}</td>
+            {% if i.alacakbilgisi == "B" %}
+              <td>{{i.tutar}} </td>
+              <td>0</td>
+              {% elif i.alacakbilgisi == "A" %}
+              <td>0</td>
+              <td>{{i.tutar}}  </td>
+            {% else %}
+            <td>0</td>
+              <td>{{i.tutar}}  </td>
+            {% endif %}
+            <td>{{i.islem_sonucu_bakiye_birinci_cari}}  </td>
+            <td>{{i.alacakbilgisi }}  </td>
             <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            
+            <td>{{i.uygun_kur }}</td>
+            <td>{{i.ozelkod1 }}</td>
+            <td>{{i.ozelkod2 }}</td>
+            <td>h</td>
+            <td>{{i.vade_tarih }}</td>
+            <td>{{i.satici }}</td>
+            <td>{{i.banka_bilgisi.kasa_adi }}</td>
+            <td>{{i.bankasecme.banka_adi }}</td>
+            <td>{{i.birinci_cari_bilgisi.cari_kodu }}</td>
+            <td>{{i.birinci_cari_bilgisi.cari_adi }}</td>
           </tr>
-          <tr>
-            <td>01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            
-          </tr>
-          <tr>
-            <td>01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
+        {% endfor %}
         </tbody>
       </table>
     </div>

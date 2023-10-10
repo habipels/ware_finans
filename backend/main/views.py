@@ -330,6 +330,7 @@ def cari_sayfasi(request,slug):
     content ={}
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     content["carikartlari"] = cari_kartlar.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    content["carifisleri"] = cari_fisleri.objects.filter(bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
     return render(request,"cari/cari.html",content)
 def yeni_cari_karti(request,slug):
     content ={}
@@ -2642,3 +2643,355 @@ def banka_cari_gelen_havale(request,slug):
         return redirect(link)
     return render(request,"banka/cari/gelenhavale.html",content)
 #banka cari işlemleri
+
+#cari fişler 
+def cari_borcdekontu(request,slug):
+    content ={}
+    content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
+    hesaplar = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) )
+    sistem = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =None)
+    kart = cari_kartlar.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    giderkartti = Giderler.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    gelirkartti = Gelirler.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    banka_karti = banka.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    subelerim = sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    kasa_bilgisi = Kasa.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    content["kart"] = kart
+    content["gelirkartti"] = gelirkartti
+    content["giderkartti"] = giderkartti
+    content["hesapplanlari"] = hesaplar
+    content["sistemhesapplanlari"] = sistem
+    content["banka_karti"] = banka_karti
+    content["subelerim"] = subelerim
+    content["kasa_bilgisi"] = kasa_bilgisi
+    if request.POST:
+        tarih = request.POST.get("tarih")
+        saat = request.POST.get("saat")
+        evrakno = request.POST.get("evrakno")
+        entkodu = request.POST.get("entkodu")
+        subebilgisi = request.POST.get("subebilgisi")
+        ozelkod1 = request.POST.get("ozelkod1")
+        ozelkod2 = request.POST.get("ozelkod2")
+        departman = request.POST.get("departman")
+        carikodu = request.POST.get("carikodu")
+        kasabilgisi = request.POST.get("kasabilgisi")
+        muhtasarkodu = request.POST.get("muhtasarkodu")
+        gelirkodu = request.POST.get("gelirkodu")
+        gelirmuhtasarkodu = request.POST.get("gelirmuhtasarkodu")
+        islemdovizcinsi = request.POST.get("islemdovizcinsi")
+        aciklama = request.POST.get("aciklama")
+        tahsilatiodemeyiyapan= request.POST.get("tahsilatiodemeyiyapan")
+        tutar = request.POST.get("tutar") 
+        gideradi = request.POST.get("gideradi")
+        gunlukkur = request.POST.get("gunlukkur")
+        uygunkur =request.POST.get("uygunkur")
+        tutardoviz = request.POST.get("tutardoviz")
+        tutar_tl  = request.POST.get("tutar_tl")
+        idbilgisi= request.POST.get("idbilgisi")
+        vadetarih = request.POST.get("vadetarih")
+        vadehunu = request.POST.get("vadehunu")
+        if tutardoviz =="" or tutardoviz == None:
+            tutardoviz = 0
+        
+        if tutardoviz:
+            k = get_object_or_404(cari_kartlar,id=kasabilgisi)
+            b = k.bakiye_tutari
+            k = k.borc_tutari
+            cari_kartlar.objects.filter(id=kasabilgisi).update(borc_tutari = k+float(tutardoviz),bakiye_tutari = b-float(tutardoviz))
+            cari_fisleri.objects.create(bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),
+            islem_turu = "Borç Dekontu",tarih =tarih,saat= saat,
+            evrak_no = evrakno,ent_kodu = entkodu,birinciislem_sube_bilgisi = get_object_or_404(sube,id=subebilgisi),
+            ozelkod1 = ozelkod1,ozelkod2 = ozelkod2,birinci_departman = departman,
+            birinci_cari_bilgisi = get_object_or_404(cari_kartlar,id=kasabilgisi),birinci_cari_muh_kodu =muhtasarkodu,
+            gider_bilgisi = get_object_or_404(Giderler,id = idbilgisi,bagli_oldugu_firma=get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) )
+            ,gelir_muh_kodu = gelirmuhtasarkodu,islem_doviz_cinsi = islemdovizcinsi,aciklama = aciklama,
+            islemi_yapan = tahsilatiodemeyiyapan,tutar= float(tutardoviz),gunluk_kur = gunlukkur,uygun_kur = uygunkur,
+            doviz_tutar = tutar,alacakbilgisi ="B",tutar_tl = tutar_tl,islem_sonucu_bakiye_birinci_cari =  b-float(tutardoviz)
+            ,vade_tarih = vadetarih,vade_gunu = vadehunu
+            )
+            
+        else:
+            k = get_object_or_404(cari_kartlar,id=kasabilgisi)
+            b = k.bakiye_tutari
+            k = k.borc_tutari
+            cari_kartlar.objects.filter(id=kasabilgisi).update(borc_tutari = k+float(tutar),bakiye_tutari = b-float(tutar))
+            cari_fisleri.objects.create(bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),
+            islem_turu = "Borç Dekontu",tarih =tarih,saat= saat,
+            evrak_no = evrakno,ent_kodu = entkodu,birinciislem_sube_bilgisi = get_object_or_404(sube,id=subebilgisi),
+            ozelkod1 = ozelkod1,ozelkod2 = ozelkod2,birinci_departman = departman,
+            birinci_cari_bilgisi = get_object_or_404(cari_kartlar,id=kasabilgisi),birinci_cari_muh_kodu =muhtasarkodu,
+            gider_bilgisi = get_object_or_404(Giderler,id = idbilgisi,bagli_oldugu_firma=get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) )
+            ,gelir_muh_kodu = gelirmuhtasarkodu,islem_doviz_cinsi = islemdovizcinsi,aciklama = aciklama,
+            islemi_yapan = tahsilatiodemeyiyapan,tutar= float(tutar),gunluk_kur = gunlukkur,uygun_kur = uygunkur,
+            doviz_tutar = tutar,alacakbilgisi ="B",tutar_tl = tutar_tl,islem_sonucu_bakiye_birinci_cari =  b-float(tutar)
+            ,vade_tarih = vadetarih,vade_gunu = vadehunu)
+            
+        link = "/"+slug+"/cari/"
+        return redirect(link)
+    return render(request,"cari/fisler/borc_dekontu.html",content)
+
+def cari_alacakdekontu(request,slug):
+    content ={}
+    content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
+    hesaplar = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) )
+    sistem = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =None)
+    kart = cari_kartlar.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    giderkartti = Giderler.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    gelirkartti = Gelirler.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    banka_karti = banka.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    subelerim = sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    kasa_bilgisi = Kasa.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    content["kart"] = kart
+    content["gelirkartti"] = gelirkartti
+    content["giderkartti"] = giderkartti
+    content["hesapplanlari"] = hesaplar
+    content["sistemhesapplanlari"] = sistem
+    content["banka_karti"] = banka_karti
+    content["subelerim"] = subelerim
+    content["kasa_bilgisi"] = kasa_bilgisi
+    if request.POST:
+        tarih = request.POST.get("tarih")
+        saat = request.POST.get("saat")
+        evrakno = request.POST.get("evrakno")
+        entkodu = request.POST.get("entkodu")
+        subebilgisi = request.POST.get("subebilgisi")
+        ozelkod1 = request.POST.get("ozelkod1")
+        ozelkod2 = request.POST.get("ozelkod2")
+        departman = request.POST.get("departman")
+        carikodu = request.POST.get("carikodu")
+        kasabilgisi = request.POST.get("kasabilgisi")
+        muhtasarkodu = request.POST.get("muhtasarkodu")
+        gelirkodu = request.POST.get("gelirkodu")
+        gelirmuhtasarkodu = request.POST.get("gelirmuhtasarkodu")
+        islemdovizcinsi = request.POST.get("islemdovizcinsi")
+        aciklama = request.POST.get("aciklama")
+        tahsilatiodemeyiyapan= request.POST.get("tahsilatiodemeyiyapan")
+        tutar = request.POST.get("tutar") 
+        gideradi = request.POST.get("gideradi")
+        gunlukkur = request.POST.get("gunlukkur")
+        uygunkur =request.POST.get("uygunkur")
+        tutardoviz = request.POST.get("tutardoviz")
+        tutar_tl  = request.POST.get("tutar_tl")
+        idbilgisi= request.POST.get("idbilgisi")
+        vadetarih = request.POST.get("vadetarih")
+        vadehunu = request.POST.get("vadehunu")
+        if tutardoviz =="" or tutardoviz == None:
+            tutardoviz = 0
+        
+        if tutardoviz:
+            k = get_object_or_404(cari_kartlar,id=kasabilgisi)
+            b = k.bakiye_tutari
+            k = k.alacak_tutari
+            cari_kartlar.objects.filter(id=kasabilgisi).update(alacak_tutari = k+float(tutardoviz),bakiye_tutari = b+float(tutardoviz))
+            cari_fisleri.objects.create(bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),
+            islem_turu = "Alacak Dekontu",tarih =tarih,saat= saat,
+            evrak_no = evrakno,ent_kodu = entkodu,birinciislem_sube_bilgisi = get_object_or_404(sube,id=subebilgisi),
+            ozelkod1 = ozelkod1,ozelkod2 = ozelkod2,birinci_departman = departman,
+            birinci_cari_bilgisi = get_object_or_404(cari_kartlar,id=kasabilgisi),birinci_cari_muh_kodu =muhtasarkodu,
+            gider_bilgisi = get_object_or_404(Giderler,id = idbilgisi,bagli_oldugu_firma=get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) )
+            ,gelir_muh_kodu = gelirmuhtasarkodu,islem_doviz_cinsi = islemdovizcinsi,aciklama = aciklama,
+            islemi_yapan = tahsilatiodemeyiyapan,tutar= float(tutardoviz),gunluk_kur = gunlukkur,uygun_kur = uygunkur,
+            doviz_tutar = tutar,alacakbilgisi ="A",tutar_tl = tutar_tl,islem_sonucu_bakiye_birinci_cari =  b+float(tutardoviz)
+            ,vade_tarih = vadetarih,vade_gunu = vadehunu
+            )
+            
+        else:
+            k = get_object_or_404(cari_kartlar,id=kasabilgisi)
+            b = k.bakiye_tutari
+            k = k.alacak_tutari
+            cari_kartlar.objects.filter(id=kasabilgisi).update(alacak_tutari = k+float(tutar),bakiye_tutari = b+float(tutar))
+            cari_fisleri.objects.create(bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),
+            islem_turu = "Alacak Dekontu",tarih =tarih,saat= saat,
+            evrak_no = evrakno,ent_kodu = entkodu,birinciislem_sube_bilgisi = get_object_or_404(sube,id=subebilgisi),
+            ozelkod1 = ozelkod1,ozelkod2 = ozelkod2,birinci_departman = departman,
+            birinci_cari_bilgisi = get_object_or_404(cari_kartlar,id=kasabilgisi),birinci_cari_muh_kodu =muhtasarkodu,
+            gider_bilgisi = get_object_or_404(Giderler,id = idbilgisi,bagli_oldugu_firma=get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) )
+            ,gelir_muh_kodu = gelirmuhtasarkodu,islem_doviz_cinsi = islemdovizcinsi,aciklama = aciklama,
+            islemi_yapan = tahsilatiodemeyiyapan,tutar= float(tutar),gunluk_kur = gunlukkur,uygun_kur = uygunkur,
+            doviz_tutar = tutar,alacakbilgisi ="A",tutar_tl = tutar_tl,islem_sonucu_bakiye_birinci_cari =  b+float(tutar)
+            ,vade_tarih = vadetarih,vade_gunu = vadehunu)
+            
+        link = "/"+slug+"/cari/"
+        return redirect(link)
+    return render(request,"cari/fisler/alacak_dekontu.html",content)
+
+def cari_virman_fisi(request,slug):
+    content ={}
+    content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
+    hesaplar = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) )
+    sistem = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =None)
+    kart = cari_kartlar.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    giderkartti = Giderler.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    gelirkartti = Gelirler.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    banka_karti = banka.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    subelerim = sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    kasa_bilgisi = Kasa.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    content["kart"] = kart
+    content["gelirkartti"] = gelirkartti
+    content["giderkartti"] = giderkartti
+    content["hesapplanlari"] = hesaplar
+    content["sistemhesapplanlari"] = sistem
+    content["banka_karti"] = banka_karti
+    content["subelerim"] = subelerim
+    content["kasa_bilgisi"] = kasa_bilgisi
+    content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
+    if request.POST:
+        tarih = request.POST.get("tarih")
+        saat = request.POST.get("saat")
+        evrakno = request.POST.get("evrakno")
+        entkodu = request.POST.get("entkodu")
+        subebilgisi = request.POST.get("subebilgisi")
+        subebilgisi2 = request.POST.get("subebilgisi2")
+        departman2 = request.POST.get("departman2") 
+        ozelkod1 = request.POST.get("ozelkod1")
+        ozelkod2 = request.POST.get("ozelkod2")
+        departman = request.POST.get("departman")
+        kasabilgisi = request.POST.get("kasabilgisi")
+        kasabilgisi2 = request.POST.get("kasabilgisi2")
+        muhtasarkodu = request.POST.get("muhtasarkodu")
+        gelirkodu = request.POST.get("gelirkodu")
+        gelirmuhtasarkodu = request.POST.get("gelirmuhtasarkodu")
+        islemdovizcinsi = request.POST.get("islemdovizcinsi")
+        aciklama = request.POST.get("aciklama")
+        tahsilatiodemeyiyapan= request.POST.get("tahsilatiodemeyiyapan")
+        tutar = request.POST.get("tutar") 
+        gideradi = request.POST.get("gideradi")
+        gunlukkur = request.POST.get("gunlukkur")
+        uygunkur =request.POST.get("uygunkur")
+        tutardoviz = request.POST.get("tutardoviz")
+        if tutardoviz =="" or tutardoviz == None:
+            tutardoviz = 0
+        if tutardoviz:
+            k = get_object_or_404(cari_kartlar,id=kasabilgisi)
+            
+            b = k.bakiye_tutari
+            k = k.alacak_tutari
+            z = get_object_or_404(cari_kartlar,id=kasabilgisi2)
+            bak = z.bakiye_tutari
+            tahisi = z.borc_tutari
+            cari_kartlar.objects.filter(id=kasabilgisi).update(alacak_tutari = k+float(tutardoviz),bakiye_tutari = b-float(tutardoviz))
+            cari_kartlar.objects.filter(id=kasabilgisi2).update(borc_tutari = tahisi+float(tutar),bakiye_tutari = bak+float(tutar))
+            cari_fisleri.objects.create(bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),
+            islem_turu = "Virman Fişi",tarih =tarih,saat= saat,
+            evrak_no = evrakno,ent_kodu = entkodu,birinciislem_sube_bilgisi = get_object_or_404(sube,id=subebilgisi),
+            ozelkod1 = ozelkod1,ozelkod2 = ozelkod2,birinci_departman = departman,
+            birinci_cari_bilgisi = get_object_or_404(cari_kartlar,id=kasabilgisi),birinci_cari_muh_kodu =muhtasarkodu,
+            ikinci_cari_bilgisi =get_object_or_404(cari_kartlar,id=kasabilgisi2),ikinci_departman = departman2,aciklama = aciklama,
+            islemi_yapan = tahsilatiodemeyiyapan,tutar= float(tutar),ikinci_cari_muh_kodu = gelirmuhtasarkodu,gunluk_kur = gunlukkur,uygun_kur = uygunkur,
+            doviz_tutar = tutardoviz,islem_sonucu_bakiye_birinci_cari = b-float(tutardoviz),islem_sonucu_bakiye_ikinci_cari = bak+float(tutar)
+            )
+        else:
+            k = get_object_or_404(cari_kartlar,id=kasabilgisi)
+            b = k.bakiye_tutari
+            k = k.alacak_tutari
+            z = get_object_or_404(cari_kartlar,id=kasabilgisi2)
+            bak = z.bakiye_tutari
+            tahisi = z.borc_tutari
+            cari_kartlar.objects.filter(id=kasabilgisi).update(alacak_tutari = k+float(tutar),bakiye_tutari = b-float(tutar))
+            cari_kartlar.objects.filter(id=kasabilgisi2).update(toplam_tahsilat = tahisi+float(tutar),bakiye_tutari = bak+float(tutar))
+            cari_fisleri.objects.create(bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),
+            islem_turu = "Virman Fişi",tarih =tarih,saat= saat,
+            evrak_no = evrakno,ent_kodu = entkodu,birinciislem_sube_bilgisi = get_object_or_404(sube,id=subebilgisi),
+            ozelkod1 = ozelkod1,ozelkod2 = ozelkod2,birinci_departman = departman,
+            birinci_cari_bilgisi = get_object_or_404(cari_kartlar,id=kasabilgisi),birinci_cari_muh_kodu =muhtasarkodu,
+            ikinci_cari_bilgisi =get_object_or_404(cari_kartlar,id=kasabilgisi2),ikinci_departman = departman2,aciklama = aciklama,
+            islemi_yapan = tahsilatiodemeyiyapan,tutar= float(tutar),ikinci_cari_muh_kodu = gelirmuhtasarkodu,gunluk_kur = gunlukkur,uygun_kur = uygunkur,
+            doviz_tutar = tutardoviz,islem_sonucu_bakiye_birinci_cari = b-float(tutar),islem_sonucu_bakiye_ikinci_cari = bak+float(tutar)
+            )
+        
+        link = "/"+slug+"/cari/"
+        return redirect(link)
+    return render(request,"cari/fisler/virman.html",content)
+def cari_acilis_fisi(request,slug):
+    content ={}
+    content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
+    hesaplar = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) )
+    sistem = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =None)
+    kart = cari_kartlar.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    giderkartti = Giderler.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    gelirkartti = Gelirler.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    banka_karti = banka.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    subelerim = sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    kasa_bilgisi = Kasa.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    content["kart"] = kart
+    content["gelirkartti"] = gelirkartti
+    content["giderkartti"] = giderkartti
+    content["hesapplanlari"] = hesaplar
+    content["sistemhesapplanlari"] = sistem
+    content["banka_karti"] = banka_karti
+    content["subelerim"] = subelerim
+    content["kasa_bilgisi"] = kasa_bilgisi
+    if request.POST:
+        tarih = request.POST.get("tarih")
+        saat = request.POST.get("saat")
+        evrakno = request.POST.get("evrakno")
+        entkodu = request.POST.get("entkodu")
+        subebilgisi = request.POST.get("subebilgisi")
+        ozelkod1 = request.POST.get("ozelkod1")
+        ozelkod2 = request.POST.get("ozelkod2")
+        departman = request.POST.get("departman")
+        carikodu = request.POST.get("carikodu")
+        kasabilgisi = request.POST.get("kasabilgisi")
+        muhtasarkodu = request.POST.get("muhtasarkodu")
+        gelirkodu = request.POST.get("gelirkodu")
+        gelirmuhtasarkodu = request.POST.get("gelirmuhtasarkodu")
+        islemdovizcinsi = request.POST.get("islemdovizcinsi")
+        aciklama = request.POST.get("aciklama")
+        tahsilatiodemeyiyapan= request.POST.get("tahsilatiodemeyiyapan")
+        tutar = request.POST.get("tutar") 
+        gunlukkur = request.POST.get("gunlukkur")
+        uygunkur =request.POST.get("uygunkur")
+        tutardoviz = request.POST.get("tutardoviz")
+        borcalacak = request.POST.get("borcalacak")
+        tutar_tl= request.POST.get("tutar_tl")
+        vadetarih = request.POST.get("vadetarih")
+        vadehunu = request.POST.get("vadehunu")
+        if tutardoviz =="" or tutardoviz == None:
+            tutardoviz = 0
+        if borcalacak == "B":
+            KasaFisIslemleri.objects.create(bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),
+            islem_turu = "Açılış Fişi",tarih =tarih,saat= saat,
+            evrak_no = evrakno,ent_kodu = entkodu,birinciislem_sube_bilgisi = get_object_or_404(sube,id=subebilgisi),
+            ozelkod1 = ozelkod1,ozelkod2 = ozelkod2,birinci_departman = departman,
+            birinci_kasa_bilgisi = get_object_or_404(Kasa,id=kasabilgisi),birinci_kasa_muh_kodu =muhtasarkodu,aciklama = aciklama,
+            islemi_yapan = tahsilatiodemeyiyapan,tutar= float(tutar),gunluk_kur = gunlukkur,uygun_kur = uygunkur
+            ,islem_doviz_cinsi = islemdovizcinsi,tutar_tl= tutar_tl)
+        else:
+            KasaFisIslemleri.objects.create(bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),
+            islem_turu = "Açılış Fişi",tarih =tarih,saat= saat,
+            evrak_no = evrakno,ent_kodu = entkodu,birinciislem_sube_bilgisi = get_object_or_404(sube,id=subebilgisi),
+            ozelkod1 = ozelkod1,ozelkod2 = ozelkod2,birinci_departman = departman,
+            birinci_kasa_bilgisi = get_object_or_404(Kasa,id=kasabilgisi),birinci_kasa_muh_kodu =muhtasarkodu,aciklama = aciklama,
+            islemi_yapan = tahsilatiodemeyiyapan,tutar= float(tutar),gunluk_kur = gunlukkur,uygun_kur = uygunkur
+            ,alacakbilgisi = borcalacak,islem_doviz_cinsi = islemdovizcinsi,tutar_tl= tutar_tl
+            )
+        if borcalacak == "B":
+            if tutardoviz:
+                k = get_object_or_404(cari_kartlar,id=kasabilgisi)
+                
+                b = k.toplam_bakiye
+                k = k.toplam_odeme
+                cari_kartlar.objects.filter(id=kasabilgisi).update(toplam_odeme = k+float(tutardoviz),toplam_bakiye = b-float(tutardoviz))
+            else:
+                k = get_object_or_404(cari_kartlar,id=kasabilgisi)
+                b = k.toplam_bakiye
+                k = k.toplam_odeme
+                
+                cari_kartlar.objects.filter(id=kasabilgisi).update(toplam_odeme = k+float(tutar),toplam_bakiye = b-float(tutar))
+        elif borcalacak == "A":
+            if tutardoviz:
+                k = get_object_or_404(Kasa,id=kasabilgisi)
+                b = k.toplam_bakiye
+                k = k.toplam_tahsilat
+                
+                Kasa.objects.filter(id=kasabilgisi).update(toplam_tahsilat = k+float(tutardoviz),toplam_bakiye = b+float(tutardoviz))
+            else:
+                k = get_object_or_404(Kasa,id=kasabilgisi)
+                b = k.toplam_bakiye
+                k = k.toplam_tahsilat
+                
+                Kasa.objects.filter(id=kasabilgisi).update(toplam_tahsilat = k+float(tutar),toplam_bakiye = b+float(tutar))
+        link = "/"+slug+"/cari/"
+        return redirect(link)
+    return render(request,"cari/fisler/acilis.html",content)
+#cari fişler 
