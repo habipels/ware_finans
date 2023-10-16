@@ -113,9 +113,9 @@
             <td>{{i.borc_tutari}} {{i.takip_doviz_cinsi}}</td>
             <td>{{i.alacak_tutari}} {{i.takip_doviz_cinsi}}</td>
             <td>{{i.bakiye_tutari}} {{i.takip_doviz_cinsi}}</td>
-            <td>{% if i.borc_tutari > i.alacak_tutari %}
+            <td>{% if i.bakiye_tutari > 0 %}
                   B
-                {% elif i.borc_tutari > i.alacak_tutari %}
+                {% elif i.bakiye_tutari < 0 %}
                   A
                 {% else %}
                   -

@@ -2949,48 +2949,54 @@ def cari_acilis_fisi(request,slug):
         if tutardoviz =="" or tutardoviz == None:
             tutardoviz = 0
         if borcalacak == "B":
-            KasaFisIslemleri.objects.create(bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),
-            islem_turu = "Açılış Fişi",tarih =tarih,saat= saat,
-            evrak_no = evrakno,ent_kodu = entkodu,birinciislem_sube_bilgisi = get_object_or_404(sube,id=subebilgisi),
-            ozelkod1 = ozelkod1,ozelkod2 = ozelkod2,birinci_departman = departman,
-            birinci_kasa_bilgisi = get_object_or_404(Kasa,id=kasabilgisi),birinci_kasa_muh_kodu =muhtasarkodu,aciklama = aciklama,
-            islemi_yapan = tahsilatiodemeyiyapan,tutar= float(tutar),gunluk_kur = gunlukkur,uygun_kur = uygunkur
-            ,islem_doviz_cinsi = islemdovizcinsi,tutar_tl= tutar_tl)
-        else:
-            KasaFisIslemleri.objects.create(bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),
-            islem_turu = "Açılış Fişi",tarih =tarih,saat= saat,
-            evrak_no = evrakno,ent_kodu = entkodu,birinciislem_sube_bilgisi = get_object_or_404(sube,id=subebilgisi),
-            ozelkod1 = ozelkod1,ozelkod2 = ozelkod2,birinci_departman = departman,
-            birinci_kasa_bilgisi = get_object_or_404(Kasa,id=kasabilgisi),birinci_kasa_muh_kodu =muhtasarkodu,aciklama = aciklama,
-            islemi_yapan = tahsilatiodemeyiyapan,tutar= float(tutar),gunluk_kur = gunlukkur,uygun_kur = uygunkur
-            ,alacakbilgisi = borcalacak,islem_doviz_cinsi = islemdovizcinsi,tutar_tl= tutar_tl
-            )
-        if borcalacak == "B":
+            bakiye = 0
             if tutardoviz:
                 k = get_object_or_404(cari_kartlar,id=kasabilgisi)
                 
-                b = k.toplam_bakiye
-                k = k.toplam_odeme
-                cari_kartlar.objects.filter(id=kasabilgisi).update(toplam_odeme = k+float(tutardoviz),toplam_bakiye = b-float(tutardoviz))
+                b = k.bakiye_tutari
+                k = k.borc_tutari
+                bakiye = b-float(tutardoviz)
+                cari_kartlar.objects.filter(id=kasabilgisi).update(borc_tutari = k+float(tutardoviz),bakiye_tutari = b-float(tutardoviz))
             else:
                 k = get_object_or_404(cari_kartlar,id=kasabilgisi)
-                b = k.toplam_bakiye
-                k = k.toplam_odeme
-                
-                cari_kartlar.objects.filter(id=kasabilgisi).update(toplam_odeme = k+float(tutar),toplam_bakiye = b-float(tutar))
+                b = k.bakiye_tutari
+                k = k.borc_tutari
+                bakiye = b-float(tutar)
+                cari_kartlar.objects.filter(id=kasabilgisi).update(borc_tutari = k+float(tutar),bakiye_tutari = b-float(tutar))
         elif borcalacak == "A":
+            bakiye = 0
             if tutardoviz:
-                k = get_object_or_404(Kasa,id=kasabilgisi)
-                b = k.toplam_bakiye
-                k = k.toplam_tahsilat
-                
-                Kasa.objects.filter(id=kasabilgisi).update(toplam_tahsilat = k+float(tutardoviz),toplam_bakiye = b+float(tutardoviz))
+                k = get_object_or_404(cari_kartlar,id=kasabilgisi)
+                b = k.bakiye_tutari
+                k = k.alacak_tutari
+                bakiye = b+float(tutardoviz)
+                cari_kartlar.objects.filter(id=kasabilgisi).update(alacak_tutari = k+float(tutardoviz),bakiye_tutari = b+float(tutardoviz))
             else:
-                k = get_object_or_404(Kasa,id=kasabilgisi)
-                b = k.toplam_bakiye
-                k = k.toplam_tahsilat
-                
-                Kasa.objects.filter(id=kasabilgisi).update(toplam_tahsilat = k+float(tutar),toplam_bakiye = b+float(tutar))
+                k = get_object_or_404(cari_kartlar,id=kasabilgisi)
+                b = k.bakiye_tutari
+                k = k.alacak_tutari
+                bakiye = b+float(tutar)
+                cari_kartlar.objects.filter(id=kasabilgisi).update(alacak_tutari = k+float(tutar),bakiye_tutari = b+float(tutar))
+
+        if borcalacak == "B":
+            cari_fisleri.objects.create(bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),
+            islem_turu = "Açılış Fişi",tarih =tarih,saat= saat,
+            evrak_no = evrakno,ent_kodu = entkodu,birinciislem_sube_bilgisi = get_object_or_404(sube,id=subebilgisi),
+            ozelkod1 = ozelkod1,ozelkod2 = ozelkod2,birinci_departman = departman,
+            birinci_cari_bilgisi = get_object_or_404(cari_kartlar,id=kasabilgisi),birinci_cari_muh_kodu =muhtasarkodu,aciklama = aciklama,
+            islemi_yapan = tahsilatiodemeyiyapan,tutar= float(tutar),gunluk_kur = gunlukkur,uygun_kur = uygunkur
+            ,islem_doviz_cinsi = islemdovizcinsi,tutar_tl= tutar_tl,islem_sonucu_bakiye_birinci_cari = bakiye
+            ,vade_tarih = vadetarih,vade_gunu = vadehunu)
+        else:
+            cari_fisleri.objects.create(bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),
+            islem_turu = "Açılış Fişi",tarih =tarih,saat= saat,
+            evrak_no = evrakno,ent_kodu = entkodu,birinciislem_sube_bilgisi = get_object_or_404(sube,id=subebilgisi),
+            ozelkod1 = ozelkod1,ozelkod2 = ozelkod2,birinci_departman = departman,
+            birinci_cari_bilgisi = get_object_or_404(cari_kartlar,id=kasabilgisi),birinci_cari_muh_kodu =muhtasarkodu,aciklama = aciklama,
+            islemi_yapan = tahsilatiodemeyiyapan,tutar= float(tutar),gunluk_kur = gunlukkur,uygun_kur = uygunkur
+            ,alacakbilgisi = borcalacak,islem_doviz_cinsi = islemdovizcinsi,tutar_tl= tutar_tl,islem_sonucu_bakiye_birinci_cari=bakiye
+            ,vade_tarih = vadetarih,vade_gunu = vadehunu)
+        
         link = "/"+slug+"/cari/"
         return redirect(link)
     return render(request,"cari/fisler/acilis.html",content)
