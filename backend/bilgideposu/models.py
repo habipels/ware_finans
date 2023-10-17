@@ -1121,3 +1121,48 @@ class stok_detaylari(models.Model):
     ozellik28 = models.CharField(verbose_name="ozellil28",max_length=200,blank=True,null=True)
     ozellik29 = models.CharField(verbose_name="ozellil29",max_length=200,blank=True,null=True)
     ozellik30 = models.CharField(verbose_name="ozellil30",max_length=200,blank=True,null=True)
+
+class stok_recetesi(models.Model):
+    stok_karti_bilgisi = models.ForeignKey(stok_kartlar, verbose_name="Stok Kartı Bilgisi", blank=True, null=True,
+                                             on_delete=models.SET_NULL, related_name='stok_recetesi_karti_set')
+    brim_en = models.FloatField(verbose_name="Brim En",blank=True,null=True)
+    brim_boy = models.FloatField(verbose_name="Brim Boy",blank=True,null=True)
+    brim_kalinlik = models.FloatField(verbose_name="Brim Kalınlık",blank=True,null=True)
+    brim_bolunme_katsayisi = models.FloatField(verbose_name="Brim Bölünme Katsayısı",blank=True,null=True)
+    brim_cevrilecek_brim = models.FloatField(verbose_name="Brim Çevrilecek Brim",blank=True,null=True)
+    brim_islem_sonucu = models.FloatField(verbose_name="Brim İşlem Sonucu",blank=True,null=True)
+    stok_brimi = models.CharField(verbose_name="Stok Brimi",max_length=200,blank=True,null=True)
+    ozgul_agirlik = models.CharField(verbose_name="Özgül Ağırlık",max_length=200,blank=True,null=True)
+    islem = models.CharField(verbose_name="İşlem",max_length=200,blank=True,null=True)
+    recete_miktari = models.CharField(verbose_name="Reçete Miktarı",max_length=200,blank=True,null=True)
+    recete_brim_maliyeti = models.CharField(verbose_name="Reçete Brim Maliyeti",max_length=200,blank=True,null=True)
+    f_r = models.BooleanField(verbose_name="FR",default=False)
+    stok_kodu = models.ForeignKey(stok_kartlar, verbose_name="Stok Kartı", blank=True, null=True,
+                                             on_delete=models.SET_NULL, related_name='stok_stok_kodu_set')
+    brim_bilgisi = models.CharField(verbose_name="Brim Bilgisi",max_length=200,blank=True,null=True)
+    tur = models.CharField(verbose_name="Tür",max_length=200,blank=True,null=True)
+    miktar = models.FloatField(verbose_name="Miktarı",blank=True,null=True)
+    doviz_cinsi = models.CharField(verbose_name="Döviz Cinsi",max_length=200,blank=True,null=True)
+    brim_fiyati_tl = models.FloatField(verbose_name="Birim Fiyatı TL",blank=True,null=True)
+    birim_fiyati_dvz = models.FloatField(verbose_name="Birim Fiyati Döviz",blank=True,null=True)
+    fire_yuzdesi = models.FloatField(verbose_name="Fire Yüzdesi",blank=True,null=True)
+    fire_miktari = models.FloatField(verbose_name="Fire Miktarı",blank=True,null=True)
+    alternatif_stok_kodu = models.ForeignKey(stok_kartlar, verbose_name="Stok Kartı", blank=True, null=True,
+                                             on_delete=models.SET_NULL, related_name='stok_alternatif_stok_kodu_set')
+    gider_yuzdesi = models.FloatField(verbose_name="Gider Yüzdesi",blank=True,null=True)
+    son_guncelleme_tarihi = models.DateField(verbose_name="Son Güncelleme Tarihi",blank=True,null=True)
+    satis_aninda_miktar_kadar_uretim_yap = models.BooleanField(default=False,verbose_name="Satış Anında Miktar Kadar Üretim Yap")
+    uretimden_giriste_sarf_kaydi_yap = models.BooleanField(default=False,verbose_name="Satış Anında Miktar Kadar Üretim Yap")
+    sarf_kaydi_hesaplama_yontemi = models.CharField(verbose_name="Sarf Kaydı Hesaplama Yöntemi",max_length=200,blank=True,null=True)
+
+class stok_muhasabe_kodlari(models.Model):
+    stok_karti_bilgisi = models.ForeignKey(stok_kartlar, verbose_name="Stok Kartı Bilgisi", blank=True, null=True,
+                                             on_delete=models.SET_NULL, related_name='stok_muhasebekodlari_set')
+    grup_muh_kodu = models.CharField(max_length=100,verbose_name="Grup Muh Kodu",blank=True,null=True)
+    uretime_sevk_kodu= models.CharField(max_length=100,verbose_name="Üretime Sevk H. Kodu",blank=True,null=True)
+    uretime_sarf_h_kodu= models.CharField(max_length=100,verbose_name="Üretim Sarf H. Kodu",blank=True,null=True)
+    uretime_hesap_kodu= models.CharField(max_length=100,verbose_name="Üretim Hesap Kodu",blank=True,null=True)
+    depo_s_fazlasi_h_kodu= models.CharField(max_length=100,verbose_name="Depo S. Fazlası H. Kodu",blank=True,null=True)
+    depo_s_eksikligi_h_kodu= models.CharField(max_length=100,verbose_name="Depo S. Eksiği H. Kodu",blank=True,null=True)
+    sarf_hesap_kodu= models.CharField(max_length=100,verbose_name="Sarf Hesap Kodu",blank=True,null=True)
+    fire_hesap_kodu= models.CharField(max_length=100,verbose_name="Fire Hesap Kodu",blank=True,null=True)
