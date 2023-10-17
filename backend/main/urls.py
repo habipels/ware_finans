@@ -83,6 +83,8 @@ urlpatterns = [
     path("<str:slug>/cariacilis/", views.cari_acilis_fisi, name="cari_acilis_fisi"),
     path("<str:slug>/borcmakbuzu/", views.cari_borcmakbuzu, name="cari_borcmakbuzu"),
     path("<str:slug>/alacakmakbuzu/", views.cari_alacakmakbuzu, name="cari_alacakmakbuzu"),
+    path("<str:slug>/cariodemefisi/", views.cari_odeme_fisi, name="cari_odeme_fisi"),
+    path("<str:slug>/caritahsilatfisi/", views.cari_tahsilat_fisi, name="cari_tahsilat_fisi"),
     # Borç Dekontu
     #
 ]

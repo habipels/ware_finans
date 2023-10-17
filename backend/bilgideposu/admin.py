@@ -27,7 +27,7 @@ admin.site.register(stok_kartlar)
 admin.site.register(stok_birim_alis_satis_birimi)
 admin.site.register(bankaFisIslemleri)
 admin.site.register(cari_fisleri)
-#admin.site.register()
+admin.site.register(stok_alis_satis)
 #admin.site.register()
 #admin.site.register()
 
