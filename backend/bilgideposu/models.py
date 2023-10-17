@@ -1166,3 +1166,16 @@ class stok_muhasabe_kodlari(models.Model):
     depo_s_eksikligi_h_kodu= models.CharField(max_length=100,verbose_name="Depo S. Eksiği H. Kodu",blank=True,null=True)
     sarf_hesap_kodu= models.CharField(max_length=100,verbose_name="Sarf Hesap Kodu",blank=True,null=True)
     fire_hesap_kodu= models.CharField(max_length=100,verbose_name="Fire Hesap Kodu",blank=True,null=True)
+
+class stok_muhasebe_kodlari_evraklar(models.Model):
+    evrak_bagli_birim = models.ForeignKey(stok_muhasabe_kodlari, verbose_name="Stok Kartı Bilgisi", blank=True, null=True,
+                                             on_delete=models.SET_NULL, related_name='sevrak_bagli_birim_set')
+    evrak_turu = models.CharField(max_length=200,verbose_name="Evrak Türü",blank=True,null=True)
+    kdv_orani = models.CharField(max_length=20,verbose_name="KDV Oranı",blank=True,null=True)
+    tevkifat_orani = models.CharField(max_length=20,verbose_name="Tevkifat Oranı",blank=True,null=True)
+    stok_hesap_kodu = models.CharField(max_length=100,verbose_name="Stok Hesap Kodu",blank=True,null=True)
+    kdv_hesap_kodu = models.CharField(max_length=100,verbose_name="KDV Hesap Kodu",blank=True,null=True)
+    tevkifat_hesap_kodu1 = models.CharField(max_length=100,verbose_name="Tevkifat Hesap Kodu 1",blank=True,null=True)
+    tevkifat_hesap_kodu2 = models.CharField(max_length=100,verbose_name="Tevkifat Hesap Kodu 2",blank=True,null=True)
+    otv_hesap_kodu = models.CharField(max_length=100,verbose_name="ÖTV Hesap Kodu",blank=True,null=True)
+    otv_tescilb_hesap_kodu = models.CharField(max_length=100,verbose_name="ÖTV (Tescil B) Hesap Kodu",blank=True,null=True)
