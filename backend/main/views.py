@@ -751,6 +751,24 @@ def yeni_stok_karti(request,slug):
                 ozellik24 = ozellik24,ozellik25 = ozellik25,ozellik26 = ozellik26,
                 ozellik27 = ozellik27,ozellik28 = ozellik28,ozellik29 = ozellik29,ozellik30 = ozellik30
             )
+        if True:
+            stokrecetesien = request.POST.get("stokrecetesien")
+            stokrecetesiboy = request.POST.get("stokrecetesiboy")
+            stokrecetesikalinlik = request.POST.get("stokrecetesikalinlik")
+            stokrecetesicevrilecekbirim = request.POST.get("stokrecetesicevrilecekbirim")
+            stokrecetesibolunmekatsayisi = request.POST.get("stokrecetesibolunmekatsayisi")
+            stokrecetesiislemsonucu = request.POST.get("stokrecetesiislemsonucu")
+            stokrecetesistokbirimi = request.POST.get("stokrecetesistokbirimi")
+            stokrecetesiozgulagirlik = request.POST.get("stokrecetesiozgulagirlik")  
+            stok_recetesi.objects.create(
+                stok_karti_bilgisi = get_object_or_404(stok_kartlar,id=yeni.id),
+                brim_en = stokrecetesien,brim_boy = stokrecetesiboy,
+                brim_kalinlik =stokrecetesikalinlik ,brim_cevrilecek_brim = stokrecetesicevrilecekbirim,
+                brim_bolunme_katsayisi = stokrecetesibolunmekatsayisi,brim_islem_sonucu  =stokrecetesiislemsonucu ,
+                stok_brimi = stokrecetesistokbirimi,ozgul_agirlik = stokrecetesiozgulagirlik,
+                
+            
+            )
         #stok stok_kodlari
         #stok stok_kodlari
         link = "/"+slug+"/stok/"
