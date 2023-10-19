@@ -1034,6 +1034,7 @@ class stok_alis_satis(models.Model):
     satis_fiyati_9_dvz = models.FloatField(verbose_name="Satış fiyatı Döviz 9",blank=True,null=True)
     satis_fiyati_10_dvz = models.FloatField(verbose_name="Satış fiyatı Döviz 10",blank=True,null=True)
     aktif_satis_fiyati = models.CharField(max_length=20,verbose_name="Aktif Satış Fiyatı",blank=True,null=True)
+    satis_dovizcinsi = models.CharField(max_length=20,verbose_name="Secilen Döviz Seçeneği",blank=True,null=True)
     birim_secenegi = models.CharField(max_length=20,verbose_name="Secilen Birim Seçeneği",blank=True,null=True)
     alis_fiyati_1_tl = models.FloatField(verbose_name="Satış fiyatı tl 1",blank=True,null=True)
     alis_fiyati_2_tl = models.FloatField(verbose_name="Satış fiyatı tl 2",blank=True,null=True)
