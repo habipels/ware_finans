@@ -599,62 +599,105 @@ def yeni_stok_karti(request,slug):
             kdv_orani  = kdvorani,tevkifat_orani = tevkifatorani,lot_kullanimi = lotkullanim,serinokullan = serinokullan
             )
         #stok bilgileri
-        satis1 = request.POST.get("satis1")
-        satis2 = request.POST.get("satis2")
-        satis3 = request.POST.get("satis3")
-        satis4 = request.POST.get("satis4")
-        satis5 = request.POST.get("satis5")
-        satis6 = request.POST.get("satis6")
-        satis7 = request.POST.get("satis7")
-        satis8 = request.POST.get("satis8")
-        satis9 = request.POST.get("satis9")
-        satis10 = request.POST.get("satis10")
-        satis1dvz = request.POST.get("satis1dvz")
-        satis2dvz = request.POST.get("satis2dvz")
-        satis3dvz = request.POST.get("satis3dvz")
-        satis4dvz = request.POST.get("satis4dvz")
-        satis5dvz = request.POST.get("satis5dvz")
-        satis6dvz = request.POST.get("satis6dvz")
-        satis7dvz = request.POST.get("satis7dvz")
-        satis8dvz = request.POST.get("satis8dvz")
-        satis9dvz = request.POST.get("satis9dvz")
-        satis10dvz = request.POST.get("satis10dvz")
-        kullanilacak_satis_fiyati = request.POST.get("kullanilacak_satis_fiyati")
-        satisdovizcinsi = request.POST.get("satisdovizcinsi")
-        birim_secenegi = request.POST.get("birim_secenegi")
-        alis1 = request.POST.get("alis1")
-        alis2 = request.POST.get("alis2")
-        alis3 = request.POST.get("alis3")
-        alis4 = request.POST.get("alis4")
-        alis5 = request.POST.get("alis5")
-        alis1dvz = request.POST.get("alis1dvz")
-        alis2dvz = request.POST.get("alis2dvz")
-        alis3dvz = request.POST.get("alis3dvz")
-        alis4dvz = request.POST.get("alis4dvz")
-        alis5dvz = request.POST.get("alis5dvz")
-        kullanilacak_alis_fiyati = request.POST.get("kullanilacak_alis_fiyati")
-        alisdovizcinsi = request.POST.get("alisdovizcinsi")
-        alissatisaciklama = request.POST.get("alissatisaciklama")
-        alissatimaliyetyontemi = request.POST.get("alissatimaliyetyontemi")
-        alissatiskaryontemi = request.POST.get("alissatiskaryontemi")
-        karyuzdesi = request.POST.get("karyuzdesi")
-        stok_alis_satis.objects.create(
-            stok_karti_bilgisi = get_object_or_404(stok_kartlar,id=yeni.id),
-            satis_fiyati_1_tl = satis1 ,satis_fiyati_2_tl = satis2 ,satis_fiyati_3_tl =satis3 ,satis_fiyati_4_tl =satis4  ,
-            satis_fiyati_5_tl = satis5,satis_fiyati_6_tl = satis6 ,satis_fiyati_7_tl = satis7,
-            satis_fiyati_8_tl = satis8,satis_fiyati_9_tl =satis9 ,satis_fiyati_10_tl = satis10,
-            satis_fiyati_1_dvz = satis1dvz ,satis_fiyati_2_dvz = satis2dvz ,satis_fiyati_3_dvz =satis3dvz  ,
-            satis_fiyati_4_dvz = satis4dvz ,satis_fiyati_5_dvz = satis5dvz ,satis_fiyati_6_dvz = satis6dvz ,
-            satis_fiyati_7_dvz = satis7dvz ,satis_fiyati_8_dvz =satis8dvz  ,satis_fiyati_9_dvz = satis9dvz ,
-            satis_fiyati_10_dvz =satis10dvz  ,aktif_satis_fiyati = kullanilacak_satis_fiyati ,satis_dovizcinsi =satisdovizcinsi
-            ,birim_secenegi = birim_secenegi  ,alis_fiyati_1_tl = alis1 ,alis_fiyati_2_tl = alis2,alis_fiyati_3_tl =alis3 ,
-            alis_fiyati_4_tl =alis4 ,alis_fiyati_5_tl = alis5,alis_fiyati_1_dvz =alis1dvz  ,
-            alis_fiyati_2_dvz =alis2dvz  ,alis_fiyati_3_dvz =alis3dvz  ,alis_fiyati_4_dvz = alis4dvz ,
-            alis_fiyati_5_dvz = alis5dvz ,aktif_alis_fiyati = kullanilacak_alis_fiyati ,alis_dovizcinsi = alisdovizcinsi ,
-            aciklama = alissatisaciklama ,maliyet_yontemi = alissatimaliyetyontemi ,satis_kar_evrak = alissatiskaryontemi ,
-            satis_kar_yuzdesi =karyuzdesi 
-        )
-        #stok bilgileri
+        if True:
+            satis1 = request.POST.get("satis1")
+            satis2 = request.POST.get("satis2")
+            satis3 = request.POST.get("satis3")
+            satis4 = request.POST.get("satis4")
+            satis5 = request.POST.get("satis5")
+            satis6 = request.POST.get("satis6")
+            satis7 = request.POST.get("satis7")
+            satis8 = request.POST.get("satis8")
+            satis9 = request.POST.get("satis9")
+            satis10 = request.POST.get("satis10")
+            satis1dvz = request.POST.get("satis1dvz")
+            satis2dvz = request.POST.get("satis2dvz")
+            satis3dvz = request.POST.get("satis3dvz")
+            satis4dvz = request.POST.get("satis4dvz")
+            satis5dvz = request.POST.get("satis5dvz")
+            satis6dvz = request.POST.get("satis6dvz")
+            satis7dvz = request.POST.get("satis7dvz")
+            satis8dvz = request.POST.get("satis8dvz")
+            satis9dvz = request.POST.get("satis9dvz")
+            satis10dvz = request.POST.get("satis10dvz")
+            kullanilacak_satis_fiyati = request.POST.get("kullanilacak_satis_fiyati")
+            satisdovizcinsi = request.POST.get("satisdovizcinsi")
+            birim_secenegi = request.POST.get("birim_secenegi")
+            alis1 = request.POST.get("alis1")
+            alis2 = request.POST.get("alis2")
+            alis3 = request.POST.get("alis3")
+            alis4 = request.POST.get("alis4")
+            alis5 = request.POST.get("alis5")
+            alis1dvz = request.POST.get("alis1dvz")
+            alis2dvz = request.POST.get("alis2dvz")
+            alis3dvz = request.POST.get("alis3dvz")
+            alis4dvz = request.POST.get("alis4dvz")
+            alis5dvz = request.POST.get("alis5dvz")
+            kullanilacak_alis_fiyati = request.POST.get("kullanilacak_alis_fiyati")
+            alisdovizcinsi = request.POST.get("alisdovizcinsi")
+            alissatisaciklama = request.POST.get("alissatisaciklama")
+            alissatimaliyetyontemi = request.POST.get("alissatimaliyetyontemi")
+            alissatiskaryontemi = request.POST.get("alissatiskaryontemi")
+            karyuzdesi = request.POST.get("karyuzdesi")
+            stok_alis_satis.objects.create(
+                stok_karti_bilgisi = get_object_or_404(stok_kartlar,id=yeni.id),
+                satis_fiyati_1_tl = satis1 ,satis_fiyati_2_tl = satis2 ,satis_fiyati_3_tl =satis3 ,satis_fiyati_4_tl =satis4  ,
+                satis_fiyati_5_tl = satis5,satis_fiyati_6_tl = satis6 ,satis_fiyati_7_tl = satis7,
+                satis_fiyati_8_tl = satis8,satis_fiyati_9_tl =satis9 ,satis_fiyati_10_tl = satis10,
+                satis_fiyati_1_dvz = satis1dvz ,satis_fiyati_2_dvz = satis2dvz ,satis_fiyati_3_dvz =satis3dvz  ,
+                satis_fiyati_4_dvz = satis4dvz ,satis_fiyati_5_dvz = satis5dvz ,satis_fiyati_6_dvz = satis6dvz ,
+                satis_fiyati_7_dvz = satis7dvz ,satis_fiyati_8_dvz =satis8dvz  ,satis_fiyati_9_dvz = satis9dvz ,
+                satis_fiyati_10_dvz =satis10dvz  ,aktif_satis_fiyati = kullanilacak_satis_fiyati ,satis_dovizcinsi =satisdovizcinsi
+                ,birim_secenegi = birim_secenegi  ,alis_fiyati_1_tl = alis1 ,alis_fiyati_2_tl = alis2,alis_fiyati_3_tl =alis3 ,
+                alis_fiyati_4_tl =alis4 ,alis_fiyati_5_tl = alis5,alis_fiyati_1_dvz =alis1dvz  ,
+                alis_fiyati_2_dvz =alis2dvz  ,alis_fiyati_3_dvz =alis3dvz  ,alis_fiyati_4_dvz = alis4dvz ,
+                alis_fiyati_5_dvz = alis5dvz ,aktif_alis_fiyati = kullanilacak_alis_fiyati ,alis_dovizcinsi = alisdovizcinsi ,
+                aciklama = alissatisaciklama ,maliyet_yontemi = alissatimaliyetyontemi ,satis_kar_evrak = alissatiskaryontemi ,
+                satis_kar_yuzdesi =karyuzdesi 
+            )
+            #stok bilgileri
+        if True:
+            kodlarozelkod1 = request.POST.get("kodlarozelkod1")
+            kodlarozelkod2 = request.POST.get("kodlarozelkod2")
+            kodlargrupkodu1 = request.POST.get("kodlargrupkodu1")
+            kodlargrupkodu2  = request.POST.get("kodlargrupkodu2")
+            kodlargrupkodu3 = request.POST.get("kodlargrupkodu3")
+            gtipno = request.POST.get("gtipno")
+            kalitekodu = request.POST.get("kalitekodu") 
+            kodlarbarkodkodu=  request.POST.get("kodlarbarkodkodu")
+            kodlarbirimno = request.POST.get("kodlarbirimno") 
+            alternatifstokkodu1 = request.POST.get("alternatifstokkodu1")
+            alternatifstokadi1 = request.POST.get("alternatifstokadi1")
+            alternatifstokkodu2 = request.POST.get("alternatifstokkodu2") 
+            alternatifstokadi2 = request.POST.get("alternatifstokadi2")
+            alternatifstokkodu3 = request.POST.get("alternatifstokkodu3") 
+            alternatifstokadi3 = request.POST.get("alternatifstokadi3")
+            yazarkasadepartmani = request.POST.get("yazarkasadepartmani")
+            teraziurunkodu = request.POST.get("teraziurunkodu")
+            kodlarplukodu = request.POST.get("kodlarplukodu")
+            kodlarreyon = request.POST.get("kodlarreyon")
+            kodlarraf1 = request.POST.get("kodlarraf1")
+            kodlarraf2 = request.POST.get("kodlarraf2")
+            kodlarraf3 = request.POST.get("kodlarraf3")
+            stok_kodlari.objects.create(
+                stok_karti_bilgisi = get_object_or_404(stok_kartlar,id=yeni.id),
+                ozel_kod_1 = kodlarozelkod1,ozel_kod_2 = kodlarozelkod2,
+                grup_kod_1 = kodlargrupkodu1,grup_kod_2 = kodlargrupkodu2,grup_kod_3= kodlargrupkodu3,
+                gtipno=gtipno,kalitekodu = kalitekodu,barkod = kodlarbarkodkodu,brimno=kodlarbirimno,
+                alternatifstokkodu = alternatifstokkodu1,alternatifstokadi = alternatifstokadi1,
+                alternatifstokkodu2 = alternatifstokkodu2,alternatifstokadi2 = alternatifstokadi2,
+                alternatifstokkodu3 = alternatifstokkodu3,alternatifstokadi3 = alternatifstokadi3,
+                yazarkasadepartman = yazarkasadepartmani,tazeurunkodu = teraziurunkodu,
+                plukodu  = kodlarplukodu,reyon = kodlarreyon,raf1 = kodlarraf1,
+                raf2 = kodlarraf2,raf3 = kodlarraf3
+            )
+        if True:
+            parametreadi1  = request.POST.get("parametreadi1")
+            stok_detaylari.objects.create(
+                stok_karti_bilgisi = get_object_or_404(stok_kartlar,id=yeni.id),
+            )
+        #stok stok_kodlari
+        #stok stok_kodlari
         link = "/"+slug+"/stok/"
         return redirect(link)
     return render(request,"stok/yeni_stok.html",content)
