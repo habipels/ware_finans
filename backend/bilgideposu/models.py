@@ -1179,3 +1179,18 @@ class stok_muhasebe_kodlari_evraklar(models.Model):
     tevkifat_hesap_kodu2 = models.CharField(max_length=100,verbose_name="Tevkifat Hesap Kodu 2",blank=True,null=True)
     otv_hesap_kodu = models.CharField(max_length=100,verbose_name="ÖTV Hesap Kodu",blank=True,null=True)
     otv_tescilb_hesap_kodu = models.CharField(max_length=100,verbose_name="ÖTV (Tescil B) Hesap Kodu",blank=True,null=True)
+
+
+class stok_iliskili_gider_gelir(models.Model):
+    stok_karti_bilgisi = models.ForeignKey(stok_kartlar, verbose_name="Stok Kartı Bilgisi", blank=True, null=True,
+                                             on_delete=models.SET_NULL, related_name='stok_iliskili_gider_gelir_set')
+    gider = models.ForeignKey(Giderler,verbose_name="Gider",on_delete=models.SET_NULL,blank=True,null=True)
+    o_ekle_gider = models.CharField(max_length=200,verbose_name="Gider Ekle",blank=True,null=True)
+    gider_orani = models.FloatField(verbose_name="Gider Oranı",blank=True,null=True)
+    gelir = models.ForeignKey(Gelirler,verbose_name="Gelir",on_delete=models.SET_NULL,blank=True,null=True)
+    o_ekle_gelir = models.CharField(max_length=200,verbose_name="Gider Ekle",blank=True,null=True)
+    gelir_orani = models.FloatField(verbose_name="Gider Oranı",blank=True,null=True)
+    
+
+
+
