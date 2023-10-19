@@ -1210,3 +1210,16 @@ class stok_diger_kismi_agirliklar(models.Model):
     dara = models.FloatField(verbose_name="Dara",blank=True,null=True)
     p_miktari = models.FloatField(verbose_name="P miktari",blank=True,null=True)
     p_aciklamasi = models.TextField(verbose_name="P Açıklması",blank=True,null=True)
+
+class stok_diger_birim_durumu(models.Model):
+    stok_karti_bilgisi = models.ForeignKey(stok_kartlar, verbose_name="Stok Kartı Bilgisi", blank=True, null=True,
+                                             on_delete=models.SET_NULL, related_name='stok_diger_birim_durumu_set')
+    birim = models.CharField(max_length=10,verbose_name="Birim No",blank=True,null=True)
+    en = models.FloatField(verbose_name="En Ölçüsü",blank=True,null=True)
+    en_birimi = models.CharField(max_length=20,verbose_name="En Birimi")
+    boy = models.FloatField(verbose_name="Boy Ölçüsü",blank=True,null=True)
+    boy_birimi = models.CharField(max_length=20,verbose_name="Boy Birimi")
+    yukseklik = models.FloatField(verbose_name="Yükseklik Ölçüsü",blank=True,null=True)
+    yukseklik_birimi = models.CharField(max_length=20,verbose_name="Boy Birimi")   
+    ebat_birimi = models.CharField(max_length=20,verbose_name="Ebat Birimi")
+    hacim = models.FloatField(verbose_name="Hacim Ölçüsü",blank=True,null=True)
