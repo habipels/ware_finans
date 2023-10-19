@@ -1192,5 +1192,14 @@ class stok_iliskili_gider_gelir(models.Model):
     gelir_orani = models.FloatField(verbose_name="Gider Oranı",blank=True,null=True)
     
 
+class stok_diger_kismi_otv(models.Model):
+    stok_karti_bilgisi = models.ForeignKey(stok_kartlar, verbose_name="Stok Kartı Bilgisi", blank=True, null=True,
+                                             on_delete=models.SET_NULL, related_name='stok_diger_kismi_otv_set')
+    otv_orani = models.FloatField(verbose_name="ÖTV Oranı",blank=True,null=True)
+    otv_brim_fiyati = models.FloatField(verbose_name="ÖTV Brim Fiyatı",blank=True,null=True)
+    otv_tahsil_orani = models.FloatField(verbose_name="ÖTV Tahsil Oranı",blank=True,null=True)
+    otv_tecil_orani = models.FloatField(verbose_name="ÖTV Tecil Oranı",blank=True,null=True)
+    mera_fonu_orani = models.FloatField(verbose_name="Mera Fonu Oranı",blank=True,null=True)
+    fire_orani = models.FloatField(verbose_name="Fire Oranı",blank=True,null=True)
 
 
