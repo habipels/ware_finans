@@ -693,8 +693,63 @@ def yeni_stok_karti(request,slug):
             )
         if True:
             parametreadi1  = request.POST.get("parametreadi1")
+            parametredegeri = request.POST.get("parametredegeri")
+            parametreadi2 = request.POST.get("parametreadi2")
+            parametredegeri2 = request.POST.get("parametredegeri2")
+            detaylarbarkod = request.POST.get("detaylarbarkod")
+            detaylarkalite = request.POST.get("detaylarkalite")
+            detaylardetayozellikadi = request.POST.get("detaylardetayozellikadi")
+            detaylarvaryantsec = request.POST.get("detaylarvaryantsec")
+            detaylarvaryantkodu = request.POST.get("detaylarvaryantkodu")
+            detaylisecilimi = request.POST.get("detaylisecilimi")
+            detaylarvaryantkodutablo = request.POST.get("detaylarvaryantkodutablo")
+            ozellik1 = request.POST.get("ozellik1")
+            ozellik2 = request.POST.get("ozellik2")
+            ozellik3 = request.POST.get("ozellik3")
+            ozellik4 = request.POST.get("ozellik4")
+            ozellik5 = request.POST.get("ozellik5")
+            ozellik6 = request.POST.get("ozellik6")
+            ozellik7 = request.POST.get("ozellik7")
+            ozellik8 = request.POST.get("ozellik8")
+            ozellik9 = request.POST.get("ozellik9")
+            ozellik10 = request.POST.get("ozellik10")
+            ozellik11 = request.POST.get("ozellik11")
+            ozellik12 = request.POST.get("ozellik12")
+            ozellik13 = request.POST.get("ozellik13")
+            ozellik14 = request.POST.get("ozellik14")
+            ozellik15 = request.POST.get("ozellik15")
+            ozellik16 = request.POST.get("ozellik16")
+            ozellik17 = request.POST.get("ozellik17")
+            ozellik18 = request.POST.get("ozellik18")
+            ozellik19 = request.POST.get("ozellik19")
+            ozellik20 = request.POST.get("ozellik20")
+            ozellik21 = request.POST.get("ozellik21")
+            ozellik22 = request.POST.get("ozellik22")
+            ozellik23 = request.POST.get("ozellik23")
+            ozellik24 = request.POST.get("ozellik24")
+            ozellik25 = request.POST.get("ozellik25")
+            ozellik26 = request.POST.get("ozellik26")
+            ozellik27 = request.POST.get("ozellik27")
+            ozellik28 = request.POST.get("ozellik28")
+            ozellik29 = request.POST.get("ozellik29")
+            ozellik30 = request.POST.get("ozellik30")
             stok_detaylari.objects.create(
                 stok_karti_bilgisi = get_object_or_404(stok_kartlar,id=yeni.id),
+                parametreadi1 = parametreadi1,paremetredegeri1= parametredegeri,
+                parametreadi2 = parametreadi2,paremetredegeri2 = parametredegeri2,
+                barkod = detaylarbarkod,kalite = detaylarkalite,
+                detayozellikadi = detaylardetayozellikadi,varyant = detaylarvaryantsec,
+                varyantkodu = detaylarvaryantkodu,secili = detaylisecilimi,
+                varyantkodu2 = detaylarvaryantkodutablo,
+                ozellik1 = ozellik1,ozellik2 = ozellik2,ozellik3 = ozellik3,
+                ozellik4 = ozellik4,ozellik5 = ozellik5, ozellik6 = ozellik6,
+                ozellik7 = ozellik7,ozellik8 = ozellik8,ozellik9 = ozellik9,
+                ozellik10 = ozellik10,ozellik11 = ozellik11,ozellik12 = ozellik12,ozellik13 = ozellik13,
+                ozellik14 = ozellik14,ozellik15 = ozellik15,ozellik16 = ozellik16,ozellik17 = ozellik17,
+                ozellik18 = ozellik18,ozellik19 = ozellik19,ozellik20 = ozellik20,
+                ozellik21 = ozellik21,ozellik22 = ozellik22,ozellik23 = ozellik23,
+                ozellik24 = ozellik24,ozellik25 = ozellik25,ozellik26 = ozellik26,
+                ozellik27 = ozellik27,ozellik28 = ozellik28,ozellik29 = ozellik29,ozellik30 = ozellik30
             )
         #stok stok_kodlari
         #stok stok_kodlari
