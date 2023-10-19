@@ -1202,4 +1202,11 @@ class stok_diger_kismi_otv(models.Model):
     mera_fonu_orani = models.FloatField(verbose_name="Mera Fonu Oranı",blank=True,null=True)
     fire_orani = models.FloatField(verbose_name="Fire Oranı",blank=True,null=True)
 
-
+class stok_diger_kismi_agirliklar(models.Model):
+    stok_karti_bilgisi = models.ForeignKey(stok_kartlar, verbose_name="Stok Kartı Bilgisi", blank=True, null=True,
+                                             on_delete=models.SET_NULL, related_name='stok_diger_kismi_agirliklar_set')
+    net = models.FloatField(verbose_name="NET",blank=True,null=True)
+    brut = models.FloatField(verbose_name="Brüt",blank=True,null=True)
+    dara = models.FloatField(verbose_name="Dara",blank=True,null=True)
+    p_miktari = models.FloatField(verbose_name="P miktari",blank=True,null=True)
+    p_aciklamasi = models.TextField(verbose_name="P Açıklması",blank=True,null=True)
