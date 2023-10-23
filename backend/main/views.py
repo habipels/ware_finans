@@ -833,14 +833,15 @@ def yeni_stok_karti(request,slug):
             kodlartevkifathesapkodu2 = request.POST.getlist("kodlartevkifathesapkodu2")
             kodlarotvhesapkodu1 = request.POST.getlist("kodlarotvhesapkodu1")
             kodlarotvtescilhesapkodu1 = request.POST.getlist("kodlarotvtescilhesapkodu1")
+            print(kodlarevrak)
             for i , j in enumerate(kodlarevrak):
                 stok_muhasebe_kodlari_evraklar.objects.create(
                     evrak_bagli_birim = get_object_or_404(stok_muhasabe_kodlari,id = stok_olusturmakodlar.id),
-                    evrak_turu = kodlarevrak[i],kdv_orani = kodlarkdvbilgisi[j],
-                    tevkifat_orani = kodlartevkifatorani[j],stok_hesap_kodu = kodlarstokhesapkodu[j],
-                    kdv_hesap_kodu = kodlarkdvhesapkodu[j],tevkifat_hesap_kodu1 = kodlartevkifathesapkodu1[j]
-                    ,tevkifat_hesap_kodu2 = kodlartevkifathesapkodu2[j],otv_hesap_kodu = kodlarotvhesapkodu1[j],
-                    otv_tescilb_hesap_kodu = kodlarotvtescilhesapkodu1[j]
+                    evrak_turu = kodlarevrak[i],kdv_orani = kodlarkdvbilgisi[i],
+                    tevkifat_orani = kodlartevkifatorani[i],stok_hesap_kodu = kodlarstokhesapkodu[i],
+                    kdv_hesap_kodu = kodlarkdvhesapkodu[i],tevkifat_hesap_kodu1 = kodlartevkifathesapkodu1[i]
+                    ,tevkifat_hesap_kodu2 = kodlartevkifathesapkodu2[i],otv_hesap_kodu = kodlarotvhesapkodu1[i],
+                    otv_tescilb_hesap_kodu = kodlarotvtescilhesapkodu1[i]
                 )
         
         #stok stok_kodlari
