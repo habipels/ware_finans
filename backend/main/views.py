@@ -545,6 +545,7 @@ def yeni_stok_karti(request,slug):
     content ={}
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     content["kdv_istisna"] = kdv_istisna_kodu.objects.all()
+    content["stoklar"] = stok_kartlar.objects.filter(bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
     if request.POST:
         anastokkarti  = request.POST.get("anastokkarti")
         detay = request.POST.get("detay")
@@ -760,14 +761,68 @@ def yeni_stok_karti(request,slug):
             stokrecetesiislemsonucu = request.POST.get("stokrecetesiislemsonucu")
             stokrecetesistokbirimi = request.POST.get("stokrecetesistokbirimi")
             stokrecetesiozgulagirlik = request.POST.get("stokrecetesiozgulagirlik")  
+            recete_miktari = request.POST.get("recete_miktari")
+            fr = request.POST.get("fr")
+            if fr == "on":
+                fr = True
+            else:
+                fr = False
+            recete_brim_maliyeti = request.POST.get("recete_brim_maliyeti")
+            stokrecetesistokid = request.POST.get("stokrecetesistokid")
+            stokrecetesibirim = request.POST.get("stokrecetesibirim")
+            stokrecetesitur = request.POST.get("stokrecetesitur")
+            stokrecetesimiktar = request.POST.get("stokrecetesimiktar")
+            stokrecetesidovizcinsi = request.POST.get("stokrecetesidovizcinsi")
+            birimfiyatitl = request.POST.get("birimfiyatitl")
+            birimfiyatidvz = request.POST.get("birimfiyatidvz")
+            fireyuzde = request.POST.get("fireyuzde")
+            firemiktari=  request.POST.get("firemiktari")
+            stokgideryuzdesi = request.POST.get("stokgideryuzdesi")
+            stokrecetesiguncellemetarihi = request.POST.get("stokrecetesiguncellemetarihi")
+            satis_aninda_miktar_kadar_uretim_yap= request.POST.get("satis_aninda_miktar_kadar_uretim_yap")
+            if satis_aninda_miktar_kadar_uretim_yap == "on":
+                satis_aninda_miktar_kadar_uretim_yap = True
+            else:
+                satis_aninda_miktar_kadar_uretim_yap = False
+            uretimden_giriste_sarf_kaydi_yap = request.POST.get("uretimden_giriste_sarf_kaydi_yap")
+            if uretimden_giriste_sarf_kaydi_yap == "on":
+                uretimden_giriste_sarf_kaydi_yap = True
+            else:
+                uretimden_giriste_sarf_kaydi_yap = False
+            sarf_kaydi_hesaplama_yontemi = request.POST.get("sarf_kaydi_hesaplama_yontemi")
             stok_recetesi.objects.create(
                 stok_karti_bilgisi = get_object_or_404(stok_kartlar,id=yeni.id),
                 brim_en = stokrecetesien,brim_boy = stokrecetesiboy,
                 brim_kalinlik =stokrecetesikalinlik ,brim_cevrilecek_brim = stokrecetesicevrilecekbirim,
                 brim_bolunme_katsayisi = stokrecetesibolunmekatsayisi,brim_islem_sonucu  =stokrecetesiislemsonucu ,
                 stok_brimi = stokrecetesistokbirimi,ozgul_agirlik = stokrecetesiozgulagirlik,
-                
-            
+                recete_miktari = recete_miktari,f_r = fr,recete_brim_maliyeti = recete_brim_maliyeti,
+                stok_kodu = get_object_or_404(stok_kartlar,id = stokrecetesistokid),
+                brim_bilgisi = stokrecetesibirim,tur=stokrecetesitur,miktar =stokrecetesimiktar,
+                doviz_cinsi = stokrecetesidovizcinsi,brim_fiyati_tl = birimfiyatitl,
+                birim_fiyati_dvz = birimfiyatidvz,fire_yuzdesi = fireyuzde,
+                fire_miktari = firemiktari,gider_yuzdesi = stokgideryuzdesi,
+                son_guncelleme_tarihi = stokrecetesiguncellemetarihi,
+                satis_aninda_miktar_kadar_uretim_yap = satis_aninda_miktar_kadar_uretim_yap,
+                uretimden_giriste_sarf_kaydi_yap = uretimden_giriste_sarf_kaydi_yap,
+                sarf_kaydi_hesaplama_yontemi = sarf_kaydi_hesaplama_yontemi
+            )
+        if True:
+            kodlarmuhgrupkodu = request.POST.get("kodlarmuhgrupkodu")
+            kodlaruretime_sevk_kodu = request.POST.get("kodlaruretime_sevk_kodu")
+            kodlaruretime_sarf_h_kodu = request.POST.get("kodlaruretime_sarf_h_kodu")
+            kodlaruretime_hesap_kodu = request.POST.get("kodlaruretime_hesap_kodu")
+            kodlardepo_s_fazlasi_h_kodu = request.POST.get("kodlardepo_s_fazlasi_h_kodu")
+            kodlardepo_s_eksikligi_h_kodu = request.POST.get("kodlardepo_s_eksikligi_h_kodu")
+            kodlarsarf_hesap_kodu = request.POST.get("kodlarsarf_hesap_kodu")
+            stok_muhasabe_kodlari.objects.create(
+                stok_karti_bilgisi = get_object_or_404(stok_kartlar,id=yeni.id),
+                grup_muh_kodu = kodlarmuhgrupkodu,uretime_sevk_kodu=kodlaruretime_sevk_kodu,
+                uretime_sarf_h_kodu = kodlaruretime_sarf_h_kodu,uretime_hesap_kodu = kodlaruretime_hesap_kodu,
+                depo_s_fazlasi_h_kodu = kodlardepo_s_fazlasi_h_kodu,
+                depo_s_eksikligi_h_kodu = kodlardepo_s_eksikligi_h_kodu,
+                sarf_hesap_kodu = kodlarsarf_hesap_kodu,
+                fire_hesap_kodu  = request.POST.get("kodlarfire_hesap_kodu")
             )
         #stok stok_kodlari
         #stok stok_kodlari
