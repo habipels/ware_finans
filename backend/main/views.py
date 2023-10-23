@@ -815,7 +815,7 @@ def yeni_stok_karti(request,slug):
             kodlardepo_s_fazlasi_h_kodu = request.POST.get("kodlardepo_s_fazlasi_h_kodu")
             kodlardepo_s_eksikligi_h_kodu = request.POST.get("kodlardepo_s_eksikligi_h_kodu")
             kodlarsarf_hesap_kodu = request.POST.get("kodlarsarf_hesap_kodu")
-            stok_muhasabe_kodlari.objects.create(
+            stok_olusturmakodlar = stok_muhasabe_kodlari.objects.create(
                 stok_karti_bilgisi = get_object_or_404(stok_kartlar,id=yeni.id),
                 grup_muh_kodu = kodlarmuhgrupkodu,uretime_sevk_kodu=kodlaruretime_sevk_kodu,
                 uretime_sarf_h_kodu = kodlaruretime_sarf_h_kodu,uretime_hesap_kodu = kodlaruretime_hesap_kodu,
@@ -824,6 +824,25 @@ def yeni_stok_karti(request,slug):
                 sarf_hesap_kodu = kodlarsarf_hesap_kodu,
                 fire_hesap_kodu  = request.POST.get("kodlarfire_hesap_kodu")
             )
+            kodlarevrak = request.POST.getlist('kodlarevrak')
+            kodlarkdvbilgisi = request.POST.getlist("kodlarkdvbilgisi")
+            kodlartevkifatorani = request.POST.getlist("kodlartevkifatorani")
+            kodlarstokhesapkodu = request.POST.getlist("kodlarstokhesapkodu")
+            kodlarkdvhesapkodu = request.POST.getlist("kodlarkdvhesapkodu")
+            kodlartevkifathesapkodu1 = request.POST.getlist("kodlartevkifathesapkodu1")
+            kodlartevkifathesapkodu2 = request.POST.getlist("kodlartevkifathesapkodu2")
+            kodlarotvhesapkodu1 = request.POST.getlist("kodlarotvhesapkodu1")
+            kodlarotvtescilhesapkodu1 = request.POST.getlist("kodlarotvtescilhesapkodu1")
+            for i , j in enumerate(kodlarevrak):
+                stok_muhasebe_kodlari_evraklar.objects.create(
+                    evrak_bagli_birim = get_object_or_404(stok_muhasabe_kodlari,id = stok_olusturmakodlar.id),
+                    evrak_turu = kodlarevrak[i],kdv_orani = kodlarkdvbilgisi[j],
+                    tevkifat_orani = kodlartevkifatorani[j],stok_hesap_kodu = kodlarstokhesapkodu[j],
+                    kdv_hesap_kodu = kodlarkdvhesapkodu[j],tevkifat_hesap_kodu1 = kodlartevkifathesapkodu1[j]
+                    ,tevkifat_hesap_kodu2 = kodlartevkifathesapkodu2[j],otv_hesap_kodu = kodlarotvhesapkodu1[j],
+                    otv_tescilb_hesap_kodu = kodlarotvtescilhesapkodu1[j]
+                )
+        
         #stok stok_kodlari
         #stok stok_kodlari
         link = "/"+slug+"/stok/"
