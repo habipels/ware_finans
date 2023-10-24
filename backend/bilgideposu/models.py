@@ -1224,3 +1224,29 @@ class stok_diger_birim_durumu(models.Model):
     yukseklik_birimi = models.CharField(max_length=20,verbose_name="Boy Birimi")   
     ebat_birimi = models.CharField(max_length=20,verbose_name="Ebat Birimi")
     hacim = models.FloatField(verbose_name="Hacim Ölçüsü",blank=True,null=True)
+
+
+
+class siparis_olustur(models.Model):
+    siparis_turu_secim = (
+        ("",""),
+        ("Alınan Sipariş","Alınan Sipariş"),
+        ("Verilen Sipariş","Verilen Sipariş"),
+        ("Alınan Teklif","Alınan Teklif"),
+        ("Verilen Teklif","Verilen Teklif")
+    )
+    ent_kodu_secim = (
+        ("1","1"),
+        ("2","2")
+    )
+    kdv_durumu_secim = (
+        ("Hariç","Hariç"),
+        ("Dahil","Dahil")
+    )
+    siparis_tur = models.CharField(max_length=200,verbose_name="Sipariş Türü",choices=siparis_turu_secim,default="")
+    bagli_oldugu_firma = models.ForeignKey(firma,blank=True,null=True,on_delete=models.SET_NULL)
+    siparis_no = models.CharField(max_length=200,verbose_name="Sipariş No",blank=True,null=True)
+    tarih = models.DateField(verbose_name="Kayıt Tarihi",blank=True,null=True)
+    depo = models.CharField(max_length=200,verbose_name="Depo Adı",blank=True,null=True)
+    ent_kodu = models.CharField(max_length=20,verbose_name="Entegrasyon Kodu",choices=ent_kodu_secim,default="1")
+    kdv_durumu = models.CharField(max_length=200)
