@@ -4,6 +4,7 @@ from users.models import *
 from datetime import datetime
 from PIL import Image
 from io import BytesIO
+from ckeditor.fields import RichTextField
 class banka(models.Model):
     secim = (
         ("",""),
@@ -1227,7 +1228,7 @@ class stok_diger_birim_durumu(models.Model):
 
 
 
-class siparis_olustur(models.Model):
+"""class siparis_olustur(models.Model):
     siparis_turu_secim = (
         ("",""),
         ("Alınan Sipariş","Alınan Sipariş"),
@@ -1249,4 +1250,12 @@ class siparis_olustur(models.Model):
     tarih = models.DateField(verbose_name="Kayıt Tarihi",blank=True,null=True)
     depo = models.CharField(max_length=200,verbose_name="Depo Adı",blank=True,null=True)
     ent_kodu = models.CharField(max_length=20,verbose_name="Entegrasyon Kodu",choices=ent_kodu_secim,default="1")
-    kdv_durumu = models.CharField(max_length=200)
+    kdv_durumu = models.CharField(max_length=200,verbose_name="KDV Durumu",choices=kdv_durumu_secim,default="Hariç")
+    ozel_kod1 = models.CharField(verbose_name="Özel Kod",blank=True,null=True,max_length=200)
+    ozel_kod2 = models.CharField(verbose_name="Özel Kod 2",blank=True,null=True,max_length=200)"""
+
+
+class dilekceler(models.Model):
+    bagli_oldugu_firma = models.ForeignKey(firma,blank=True,null=True,on_delete=models.SET_NULL)
+    dilekce_adi = models.CharField(max_length=200,verbose_name="Dilekçe Adı",blank=True,null=True)
+    dilekce = RichTextField(verbose_name="Dilekçe Metni",blank=True,null=True)

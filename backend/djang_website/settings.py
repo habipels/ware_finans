@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #ckeditor
+    "ckeditor",
     # Add our new application
     'main',
     'users',
@@ -46,6 +48,7 @@ INSTALLED_APPS = [
     "firma_durumlari",
     #gelir gider 
     "gelir_gider",
+    
 
 ]
 
@@ -111,6 +114,13 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+CKEDITOR_UPLOAD_PATH = 'uploads/'
+CKEDITOR_IMAGE_BACKEND = "pillow"
+CKEDITOR_CONFIGS = {
+    'awesome_ckeditor': {
+        'toolbar': 'Basic',
+    },
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
@@ -124,6 +134,17 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+        'width': '100%',
+        
+        'wordcount': {
+            'minCharCount': 25
+        }
+    },
+}
 
 
 # Static files (CSS, JavaScript, Images)
