@@ -3547,3 +3547,14 @@ def cari_tahsilat_fisi(request,slug):
     return render(request,"cari/fisler/kasacaritahsilat.html",content)
 #
 #cari fişler 
+
+#dilekce
+def dilekcesayfasi(request,slug):
+    content = {}
+    content["firmalarim"] = firma.objects.filter(silinme_bilgisi = False,firma_muhasabecisi = request.user)
+    content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
+    content["subeleri"] =  sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    content["dilekcelerimiz"] = dilekceler.objects.filter(bagli_oldugu_firma = None)
+    content["dilekceleriniz"] = dilekceler.objects.filter(bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    return render(request,"dilekcelersayfasi/dilekce.html",content)
+#dilekce

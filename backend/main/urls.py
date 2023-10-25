@@ -86,5 +86,8 @@ urlpatterns = [
     path("<str:slug>/cariodemefisi/", views.cari_odeme_fisi, name="cari_odeme_fisi"),
     path("<str:slug>/caritahsilatfisi/", views.cari_tahsilat_fisi, name="cari_tahsilat_fisi"),
     # Borç Dekontu
+    #dilekçe
+    path("<str:slug>/dilekce/", views.dilekcesayfasi, name="dilekcesayfasi"),
+    #dilekçe
     #
 ]
