@@ -1148,13 +1148,16 @@
                                             <tbody>
                                               <tr>
                                     
-                                                <td> <input type="text"></td>
-                                                <td><input type="text"></td>
-                                                <td><select name="" id="">
-                                                    <option value="">Hayır</option>
-                                                    <option value="">Evet</option>
+                                                <td> <input data-bs-toggle="modal"
+                                                    data-bs-target="#iliskiligidersec" name="iliskiligiderkodu" id="iliskiligiderkodu" type="text"></td>
+                                                <td><input data-bs-toggle="modal"
+                                                    data-bs-target="#iliskiligidersec" name="iliskiligideradi" id="iliskiligideradi"  type="text">
+                                                <input type="text" style="display: none;" name="iliskiligiderid" id="iliskiligiderid"></td>
+                                                <td><select name="iliskiligiderekle" id="">
+                                                    <option value="Hayır">Hayır</option>
+                                                    <option value="Evet">Evet</option>
                                                 </select></td>
-                                                <td><input type="text"></td>
+                                                <td><input step="0.001" name="gideryuzdesi" type="number"></td>
                                                
                                               </tr>
                                             </tbody>
@@ -1169,25 +1172,28 @@
                                       overflow: auto;">
                                           <table class="table table-bordered ">
                                             <thead style="position: sticky;top: 0">
-                                              <tr>
-                                                <th class="text-center" style="min-width: 100px ;">Gelir Kodu </th>
-                                                <th class="text-center" style="min-width: 50px ;">Gelir Adı</th>
-                                                <th class="text-center" style="min-width: 150px ;">O. Ekle</th>
-                                                <th class="text-center" style="min-width: 100px ;">Oranı (%)</th>                                  
-                                              </tr>
+                                                <tr>
+                                                    <th class="text-center" style="min-width: 100px ;">Gelir Kodu </th>
+                                                    <th class="text-center" style="min-width: 50px ;">Gelir Adı</th>
+                                                    <th class="text-center" style="min-width: 150px ;">O. Ekle</th>
+                                                    <th class="text-center" style="min-width: 100px ;">Oranı (%)</th>                                  
+                                                  </tr>
                                             </thead>
                                             <tbody>
-                                              <tr>
+                                                <tr>
                                     
-                                                <td> <input type="text"><button>Seç</button></td>
-                                                <td><input type="text"><button>Seç</button></td>
-                                                <td><select name="" id="">
-                                                    <option value="">Hayır</option>
-                                                    <option value="">Evet</option>
-                                                </select></td>
-                                                <td><input type="text"></td>
-                                               
-                                              </tr>
+                                                    <td> <input data-bs-toggle="modal"
+                                                        data-bs-target="#iliskiligelirsec" name="iliskiligelirkodu" id="iliskiligelirkodu" type="text"></td>
+                                                    <td><input data-bs-toggle="modal"
+                                                        data-bs-target="#iliskiligelirsec" name="iliskiligeliradi" id="iliskiligeliradi"  type="text">
+                                                    <input type="text" style="display: none;" name="iliskiligelirid" id="iliskiligelirid"></td>
+                                                    <td><select name="iliskiligelirekle" id="">
+                                                        <option value="Hayır">Hayır</option>
+                                                        <option value="Evet">Evet</option>
+                                                    </select></td>
+                                                    <td><input step="0.001" name="geliryuzdesi" type="number"></td>
+                                                   
+                                                  </tr>
                                             </tbody>
                                           </table>
                                         </div>
@@ -1423,6 +1429,176 @@
               });
             }
           </script>
+<div class="modal" id="iliskiligidersec">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Gider Seç</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <input type="text" id="searchInputiliskiligidersec" class="form-control" placeholder="Arama...">
+
+                <table class="table table-striped mt-3 tableiliskiligidersec">
+                    <thead>
+                        <tr>
+                            <th>Gider Kodu</th>
+                            <th>Gider Adı</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in giderkartti %}
+                        <tr>
+                            <td>{{i.gider_kodu}}</td>
+                            <td>{{i.gider_adi}}</td>
+                            <td style="display: none;">{{i.id}}</td>
+                        </tr>
+                        {% endfor %}
+                       
+
+
+                        <!-- Diğer satırları burada ekleyin -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+            Seçmek için listeye Tıklamanız Yeterlidir.
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kapat</button>
+        </div>
+
+    </div>
+</div>
+<script>
+    const iliskiligidersec = document.getElementById('searchInputiliskiligidersec');
+    const tableiliskiligidersec = document.querySelector('.tableiliskiligidersec');
+    const iliskiligiderkodu = document.getElementById('iliskiligiderkodu');
+    const iliskiligideradi = document.getElementById('iliskiligideradi');
+    const iliskiligiderid = document.getElementById('iliskiligiderid');
+    iliskiligidersec.addEventListener('input', function () {
+        const tableiliskiligidersec1 = this.value.toLowerCase();
+
+        for (const row of tableiliskiligidersec.rows) {
+            let found = false;
+            for (const cell of row.cells) {
+                if (cell.textContent.toLowerCase().includes(tableiliskiligidersec1)) {
+                    found = true;
+                    break;
+                }
+            }
+            row.style.display = found ? '' : 'none';
+        }
+    });
+
+    // Tablo satırlarına tıklama olayını ekle
+    const tableiliskiligidersecRows = tableiliskiligidersec.getElementsByTagName('tr');
+    for (let i = 1; i < tableiliskiligidersecRows.length; i++) {
+        tableiliskiligidersecRows[i].addEventListener('click', function () {
+            const cells = this.cells;
+            const rowData = {
+                id: cells[0].textContent,
+                ad: cells[1].textContent,
+                soyad: cells[2].textContent,
+            };
+
+            // Seçilen veriyi input'a yaz
+            iliskiligiderkodu.value = `${rowData.id}`;
+            iliskiligideradi.value = `${rowData.ad}`;
+            iliskiligiderid.value = `${rowData.soyad}`;
+        });
+    }
+</script>
+<div class="modal" id="iliskiligelirsec">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Gelir Seç</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <input type="text" id="searchInputiliskiligelirsec" class="form-control" placeholder="Arama...">
+
+                <table class="table table-striped mt-3 tableiliskiligelirsec">
+                    <thead>
+                        <tr>
+                            <th>Gider Kodu</th>
+                            <th>Gider Adı</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in gelirkartti %}
+                        <tr>
+                            <td>{{i.gelir_kodu}}</td>
+                            <td>{{i.gelir_adi}}</td>
+                            <td style="display: none;">{{i.id}}</td>
+                        </tr>
+                        {% endfor %}
+                       
+
+
+                        <!-- Diğer satırları burada ekleyin -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+            Seçmek için listeye Tıklamanız Yeterlidir.
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kapat</button>
+        </div>
+
+    </div>
+</div>
+<script>
+    const iliskiligelirsec = document.getElementById('searchInputiliskiligelirsec');
+    const tableiliskiligelirsec = document.querySelector('.tableiliskiligelirsec');
+    const iliskiligelirkodu = document.getElementById('iliskiligelirkodu');
+    const iliskiligeliradi = document.getElementById('iliskiligeliradi');
+    const iliskiligelirid = document.getElementById('iliskiligelirid');
+    iliskiligelirsec.addEventListener('input', function () {
+        const tableiliskiligelirsec1 = this.value.toLowerCase();
+
+        for (const row of tableiliskiligelirsec.rows) {
+            let found = false;
+            for (const cell of row.cells) {
+                if (cell.textContent.toLowerCase().includes(tableiliskiligelirsec1)) {
+                    found = true;
+                    break;
+                }
+            }
+            row.style.display = found ? '' : 'none';
+        }
+    });
+
+    // Tablo satırlarına tıklama olayını ekle
+    const tableiliskiligelirsecRows = tableiliskiligelirsec.getElementsByTagName('tr');
+    for (let i = 1; i < tableiliskiligelirsecRows.length; i++) {
+        tableiliskiligelirsecRows[i].addEventListener('click', function () {
+            const cells = this.cells;
+            const rowData = {
+                id: cells[0].textContent,
+                ad: cells[1].textContent,
+                soyad: cells[2].textContent,
+            };
+
+            // Seçilen veriyi input'a yaz
+            iliskiligelirkodu.value = `${rowData.id}`;
+            iliskiligeliradi.value = `${rowData.ad}`;
+            iliskiligelirid.value = `${rowData.soyad}`;
+        });
+    }
+</script>
 {% endblock content %}
 
 {% block head %}

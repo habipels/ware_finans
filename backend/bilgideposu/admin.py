@@ -39,7 +39,7 @@ admin.site.register(stok_diger_kismi_agirliklar)
 admin.site.register(stok_diger_birim_durumu)
 #admin.site.register(siparis_olustur)
 admin.site.register(dilekceler)
-#admin.site.register()
+admin.site.register(siparisislem_durumlari)
 #admin.site.register()
 
 

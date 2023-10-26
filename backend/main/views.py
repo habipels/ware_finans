@@ -546,6 +546,22 @@ def yeni_stok_karti(request,slug):
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     content["kdv_istisna"] = kdv_istisna_kodu.objects.all()
     content["stoklar"] = stok_kartlar.objects.filter(bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    hesaplar = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) )
+    sistem = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =None)
+    kart = cari_kartlar.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    giderkartti = Giderler.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    gelirkartti = Gelirler.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    banka_karti = banka.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    subelerim = sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    kasa_bilgisi = Kasa.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    content["kart"] = kart
+    content["gelirkartti"] = gelirkartti
+    content["giderkartti"] = giderkartti
+    content["hesapplanlari"] = hesaplar
+    content["sistemhesapplanlari"] = sistem
+    content["banka_karti"] = banka_karti
+    content["subelerim"] = subelerim
+    content["kasa_bilgisi"] = kasa_bilgisi
     if request.POST:
         anastokkarti  = request.POST.get("anastokkarti")
         detay = request.POST.get("detay")
@@ -843,7 +859,20 @@ def yeni_stok_karti(request,slug):
                     ,tevkifat_hesap_kodu2 = kodlartevkifathesapkodu2[i],otv_hesap_kodu = kodlarotvhesapkodu1[i],
                     otv_tescilb_hesap_kodu = kodlarotvtescilhesapkodu1[i]
                 )
-        
+        if True:
+            iliskiligiderid = request.POST.get("iliskiligiderid")
+            iliskiligiderekle = request.POST.get("iliskiligiderekle")
+            gideryuzdesi = request.POST.get("gideryuzdesi")
+            iliskiligelirid = request.POST.get("iliskiligelirid")
+            iliskiligelirekle = request.POST.get("iliskiligelirekle")
+            geliryuzdesi = request.POST.get("geliryuzdesi")
+            stok_iliskili_gider_gelir.objects.create(
+                stok_karti_bilgisi = get_object_or_404(stok_kartlar,id=yeni.id),
+                gider = get_object_or_404(Giderler,id = iliskiligiderid),
+                o_ekle_gider = iliskiligiderekle,gider_orani = gideryuzdesi,
+                gelir = get_object_or_404(Gelirler,id = iliskiligelirid),
+                o_ekle_gelir = iliskiligelirekle,gelir_orani = geliryuzdesi
+            )
         #stok stok_kodlari
         #stok stok_kodlari
         link = "/"+slug+"/stok/"

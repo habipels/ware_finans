@@ -1226,9 +1226,11 @@ class stok_diger_birim_durumu(models.Model):
     ebat_birimi = models.CharField(max_length=20,verbose_name="Ebat Birimi")
     hacim = models.FloatField(verbose_name="Hacim Ölçüsü",blank=True,null=True)
 
-
-
-"""class siparis_olustur(models.Model):
+class siparisislem_durumlari(models.Model):
+    bagli_oldugu_firma = models.ForeignKey(firma,blank=True,null=True,on_delete=models.SET_NULL)
+    kayit_tarihi = models.DateTimeField(default=datetime.now,null=True)
+"""
+class siparis_olustur(models.Model):
     siparis_turu_secim = (
         ("",""),
         ("Alınan Sipariş","Alınan Sipariş"),
@@ -1252,8 +1254,8 @@ class stok_diger_birim_durumu(models.Model):
     ent_kodu = models.CharField(max_length=20,verbose_name="Entegrasyon Kodu",choices=ent_kodu_secim,default="1")
     kdv_durumu = models.CharField(max_length=200,verbose_name="KDV Durumu",choices=kdv_durumu_secim,default="Hariç")
     ozel_kod1 = models.CharField(verbose_name="Özel Kod",blank=True,null=True,max_length=200)
-    ozel_kod2 = models.CharField(verbose_name="Özel Kod 2",blank=True,null=True,max_length=200)"""
-
+    ozel_kod2 = models.CharField(verbose_name="Özel Kod 2",blank=True,null=True,max_length=200)
+"""
 
 class dilekceler(models.Model):
     bagli_oldugu_firma = models.ForeignKey(firma,blank=True,null=True,on_delete=models.SET_NULL)
