@@ -1231,7 +1231,7 @@ class stok_diger_birim_durumu(models.Model):
 class siparisislem_durumlari(models.Model):
     bagli_oldugu_firma = models.ForeignKey(firma,blank=True,null=True,on_delete=models.SET_NULL)
     kayit_tarihi = models.DateTimeField(default=datetime.now,null=True)
-"""
+
 class siparis_olustur(models.Model):
     siparis_turu_secim = (
         ("",""),
@@ -1248,6 +1248,12 @@ class siparis_olustur(models.Model):
         ("Hariç","Hariç"),
         ("Dahil","Dahil")
     )
+    doviz = (
+        ("", ""),
+        ("TL", "TL"),
+        ("Euro", "£"),
+        ("Dolar", "$")
+    )
     siparis_tur = models.CharField(max_length=200,verbose_name="Sipariş Türü",choices=siparis_turu_secim,default="")
     bagli_oldugu_firma = models.ForeignKey(firma,blank=True,null=True,on_delete=models.SET_NULL)
     siparis_no = models.CharField(max_length=200,verbose_name="Sipariş No",blank=True,null=True)
@@ -1257,7 +1263,16 @@ class siparis_olustur(models.Model):
     kdv_durumu = models.CharField(max_length=200,verbose_name="KDV Durumu",choices=kdv_durumu_secim,default="Hariç")
     ozel_kod1 = models.CharField(verbose_name="Özel Kod",blank=True,null=True,max_length=200)
     ozel_kod2 = models.CharField(verbose_name="Özel Kod 2",blank=True,null=True,max_length=200)
-"""
+    sube_kodu = models.ForeignKey(sube,blank=True,null=True,verbose_name="Gelir Bilgisi",on_delete=models.SET_NULL)
+    islem_doviz_cinsi = models.CharField(max_length=100, verbose_name="İşlem Döviz Cinsi", choices=doviz, default="")
+    satici = models.CharField(max_length=200, verbose_name="SAtıcı", blank=True, null=True)
+    departman = models.CharField(max_length=200, verbose_name="Departman", blank=True, null=True)
+    cari_unvan = models.ForeignKey(cari_kartlar,blank=True,null=True,verbose_name="Cari Unvan Bilgisi",on_delete=models.SET_NULL)
+    teslim_tarihi = models.DateField(verbose_name="Kayıt Tarihi",blank=True,null=True)
+    teslim_sekli = models.CharField(max_length=200, verbose_name="Teslim Şekli", blank=True, null=True)
+    
+
+
 
 class dilekceler(models.Model):
     bagli_oldugu_firma = models.ForeignKey(firma,blank=True,null=True,on_delete=models.SET_NULL)
