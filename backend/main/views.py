@@ -900,7 +900,24 @@ def yeni_stok_karti(request,slug):
                     dara = digerkisimlaragirlikdara[i],p_miktari = digerkisimlaragirlikpmiktari[i],
                     p_aciklamasi = digerkisimlaragirlikaciklama[i]
                 )
-
+        if True:
+            stokdigerkisimbirimno = request.POST.get("stokdigerkisimbirimno")
+            stokdigerkisimen = request.POST.get("stokdigerkisimen")
+            stokdigerkisimenbirimi = request.POST.get("stokdigerkisimenbirimi")
+            stokdigerkisiboy = request.POST.get("stokdigerkisiboy")
+            stokdigerkisiboybirimi = request.POST.get("stokdigerkisiboybirimi")
+            stokdigerkisiyukseklik = request.POST.get("stokdigerkisiyukseklik")
+            stokdigerkisiyukseklikbirimi = request.POST.get("stokdigerkisiyukseklikbirimi")
+            stokdigerkisiebatbirimi = request.POST.get("stokdigerkisiebatbirimi")
+            stokdigerkisihacim = request.POST.get("stokdigerkisihacim")
+            stok_diger_birim_durumu.objects.create(
+                stok_karti_bilgisi = get_object_or_404(stok_kartlar,id=yeni.id),
+                birim =stokdigerkisimbirimno ,en = stokdigerkisimen,
+                en_birimi = stokdigerkisimenbirimi ,boy = stokdigerkisiboy ,
+                boy_birimi= stokdigerkisiboybirimi,yukseklik = stokdigerkisiyukseklik,
+                yukseklik_birimi =stokdigerkisiyukseklikbirimi ,ebat_birimi = stokdigerkisiebatbirimi ,
+                hacim = stokdigerkisihacim
+            )
         #stok stok_kodlari
         #stok stok_kodlari
         link = "/"+slug+"/stok/"
