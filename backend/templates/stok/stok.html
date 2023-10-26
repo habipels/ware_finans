@@ -4,7 +4,7 @@
 
     <a href="/{{firma.firma_ozel_anahtar}}/yenistok/">Yeni Stok Kartı </a>
     <a href="">Kart İncele-Düzelt</a>
-    <a href="">Kart Sil</a>
+    <a style="color: white;" onclick="showConfirmationPopup()">Kart Sil</a>
     <a href="">İthalat/ihracat Dosyaları</a>
     <a href="" style="color:red;">Çıkış Yap (ESC)</a>
 
@@ -79,7 +79,7 @@
         <tbody>
         {% for i in stokkartlarim %}   
           <tr>
-            <td>{{i.stok_kodu}}</td>
+            <td><label for="kasakartisecim{{i.id}}"><input class="kasalar" name="kasakartlari" id="kasakartisecim{{i.id}}" value="{{i.id}}/" type="radio">{{i.stok_kodu}}</label></td>
             <td>{{i.stok_adi}}</td>
             <td>{% for j in stokkartozelligi1 %}
                 {% if i.id == j.stok_karti_bilgisi.id %}
@@ -312,4 +312,45 @@
         }
     }
 </script>
+<script>
+    function redirectToSelectedLink() {
+  const radioButtons = document.getElementsByName('kasakartlari');
+  let selectedLink = null;
+
+  for (const radioButton of radioButtons) {
+    if (radioButton.checked) {
+      selectedLink = radioButton.value;
+      break;
+    }
+  }
+
+  if (selectedLink) {
+    window.location.href = "/{{firma.firma_ozel_anahtar}}/kasakartiduzelt/"+selectedLink;
+  } else {
+    alert('Lütfen bir Kasa Kartı seçin.');
+  }
+}
+function showConfirmationPopup() {
+  const radioButtons = document.getElementsByName('kasakartlari');
+  let selectedLink = null;
+
+  for (const radioButton of radioButtons) {
+    if (radioButton.checked) {
+      selectedLink = radioButton.value;
+      break;
+    }
+  }
+
+    // Pop-up penceresini aç
+    const confirmation = confirm("Emin misiniz?");
+    
+    // Kullanıcının seçimine göre işlem yap
+    if (confirmation) {
+        // Kullanıcı "Evet" dedi, yönlendirme yap
+        window.location.href = "/{{firma.firma_ozel_anahtar}}/stoksil/"+selectedLink;
+    } else {
+        // Kullanıcı "Hayır" dedi, isteğe bağlı olarak başka bir işlem yapabilirsiniz
+    }
+}
+  </script>
 {% endblock content %}

@@ -1131,7 +1131,7 @@ class stok_recetesi(models.Model):
     brim_boy = models.FloatField(verbose_name="Brim Boy",blank=True,null=True)
     brim_kalinlik = models.FloatField(verbose_name="Brim Kalınlık",blank=True,null=True)
     brim_bolunme_katsayisi = models.FloatField(verbose_name="Brim Bölünme Katsayısı",blank=True,null=True)
-    brim_cevrilecek_brim = models.FloatField(verbose_name="Brim Çevrilecek Brim",blank=True,null=True)
+    brim_cevrilecek_brim = models.CharField(max_length=100,verbose_name="Brim Çevrilecek Brim",blank=True,null=True)
     brim_islem_sonucu = models.FloatField(verbose_name="Brim İşlem Sonucu",blank=True,null=True)
     stok_brimi = models.CharField(verbose_name="Stok Brimi",max_length=200,blank=True,null=True)
     ozgul_agirlik = models.CharField(verbose_name="Özgül Ağırlık",max_length=200,blank=True,null=True)

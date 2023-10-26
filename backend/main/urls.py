@@ -32,6 +32,7 @@ urlpatterns = [
     #stok İşlemelri
     #stok işlemelri
     path("<str:slug>/fatura/", views.fatura_sayfasi, name="fatura_sayfasi"),
+    path("<str:slug>/bankasil/<int:id>/", views.banka_silme_sayfasi, name="banka_silme_sayfasi"),
     #stok İşlemelri
     #siparis işlemleri 
     path("<str:slug>/siparis/", views.siparis_sayfasi, name="siparis_sayfasi"),
@@ -39,7 +40,7 @@ urlpatterns = [
     #Banka işlemleri 
     path("<str:slug>/banka/", views.banka_sayfasi, name="banka_sayfasi"),
     path("<str:slug>/yenibankakarti/", views.yeni_banka_karti, name="yeni_banka_karti"),
-    path("<str:slug>/bankasil/<int:id>/", views.banka_silme_sayfasi, name="banka_silme_sayfasi"),
+    path("<str:slug>/stoksil/<int:id>/", views.stok_sil, name="stok_sil"),
     #Banka işlemeleri
     #kasa Fiş İşlemeleri
     path("<str:slug>/kasatahsilfisi/", views.kasa_tahsilat_fisi, name="kasa_tahsilat_fisi"),

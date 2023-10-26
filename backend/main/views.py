@@ -893,7 +893,7 @@ def yeni_stok_karti(request,slug):
             digerkisimlaragirlikdara = request.POST.getlist("digerkisimlaragirlikdara")
             digerkisimlaragirlikpmiktari = request.POST.getlist("digerkisimlaragirlikpmiktari")
             digerkisimlaragirlikaciklama = request.POST.getlist("digerkisimlaragirlikaciklama")
-            for i , j in  digerkisimlaragirliknet:
+            for i  in  range(len(digerkisimlaragirliknet)):
                 stok_diger_kismi_agirliklar.objects.create(
                     stok_karti_bilgisi = get_object_or_404(stok_kartlar,id=yeni.id),
                     net = digerkisimlaragirliknet[i],brut = digerkisimlaragirlikbrut[i],
@@ -923,6 +923,14 @@ def yeni_stok_karti(request,slug):
         link = "/"+slug+"/stok/"
         return redirect(link)
     return render(request,"stok/yeni_stok.html",content)
+
+#stok sil
+def stok_sil(request,slug,id):
+    stokbilgikarti=stok_kartlar.objects.filter(id = id,silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    stokbilgikarti.update(silinme_bilgisi = True)
+    link = "/"+slug+"/stok/"
+    return redirect(link)
+#stok sil
 #Stok İşlemleri
 
 #Fatura İşlemleri
