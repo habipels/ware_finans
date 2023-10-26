@@ -1199,6 +1199,7 @@ class stok_diger_kismi_otv(models.Model):
                                              on_delete=models.SET_NULL, related_name='stok_diger_kismi_otv_set')
     otv_orani = models.FloatField(verbose_name="ÖTV Oranı",blank=True,null=True)
     otv_brim_fiyati = models.FloatField(verbose_name="ÖTV Brim Fiyatı",blank=True,null=True)
+    otv_brim_no = models.FloatField(verbose_name="ÖTV Brim No",blank=True,null=True)
     otv_tahsil_orani = models.FloatField(verbose_name="ÖTV Tahsil Oranı",blank=True,null=True)
     otv_tecil_orani = models.FloatField(verbose_name="ÖTV Tecil Oranı",blank=True,null=True)
     mera_fonu_orani = models.FloatField(verbose_name="Mera Fonu Oranı",blank=True,null=True)
@@ -1212,6 +1213,7 @@ class stok_diger_kismi_agirliklar(models.Model):
     dara = models.FloatField(verbose_name="Dara",blank=True,null=True)
     p_miktari = models.FloatField(verbose_name="P miktari",blank=True,null=True)
     p_aciklamasi = models.TextField(verbose_name="P Açıklması",blank=True,null=True)
+    
 
 class stok_diger_birim_durumu(models.Model):
     stok_karti_bilgisi = models.ForeignKey(stok_kartlar, verbose_name="Stok Kartı Bilgisi", blank=True, null=True,

@@ -873,6 +873,22 @@ def yeni_stok_karti(request,slug):
                 gelir = get_object_or_404(Gelirler,id = iliskiligelirid),
                 o_ekle_gelir = iliskiligelirekle,gelir_orani = geliryuzdesi
             )
+        if True:
+            digerkisimotvorani = request.POST.get("digerkisimotvorani")
+            otvbirimfiyati = request.POST.get("otvbirimfiyati")
+            otvdigerkisimotvbirimno = request.POST.get("otvdigerkisimotvbirimno")
+            digerkisimotvtahsilorani = request.POST.get("digerkisimotvtahsilorani")
+            digerkisimotvtescilorani = request.POST.get("digerkisimotvtescilorani")
+            digerkisimimerafonuorani = request.POST.get("digerkisimimerafonuorani")
+            digerkisimifireorani = request.POST.get("digerkisimifireorani")
+            stok_diger_kismi_otv.objects.create(
+                stok_karti_bilgisi = get_object_or_404(stok_kartlar,id=yeni.id),
+                otv_orani = digerkisimotvorani,otv_brim_fiyati = otvbirimfiyati,
+                otv_tahsil_orani = digerkisimotvtahsilorani,otv_tecil_orani = digerkisimotvtescilorani,
+                mera_fonu_orani = digerkisimimerafonuorani,fire_orani = digerkisimifireorani,otv_brim_no =otvdigerkisimotvbirimno
+            )
+        if True:
+            pass
         #stok stok_kodlari
         #stok stok_kodlari
         link = "/"+slug+"/stok/"
