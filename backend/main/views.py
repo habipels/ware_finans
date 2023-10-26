@@ -888,7 +888,19 @@ def yeni_stok_karti(request,slug):
                 mera_fonu_orani = digerkisimimerafonuorani,fire_orani = digerkisimifireorani,otv_brim_no =otvdigerkisimotvbirimno
             )
         if True:
-            pass
+            digerkisimlaragirliknet = request.POST.getlist("digerkisimlaragirliknet")
+            digerkisimlaragirlikbrut = request.POST.getlist("digerkisimlaragirlikbrut")
+            digerkisimlaragirlikdara = request.POST.getlist("digerkisimlaragirlikdara")
+            digerkisimlaragirlikpmiktari = request.POST.getlist("digerkisimlaragirlikpmiktari")
+            digerkisimlaragirlikaciklama = request.POST.getlist("digerkisimlaragirlikaciklama")
+            for i , j in  digerkisimlaragirliknet:
+                stok_diger_kismi_agirliklar.objects.create(
+                    stok_karti_bilgisi = get_object_or_404(stok_kartlar,id=yeni.id),
+                    net = digerkisimlaragirliknet[i],brut = digerkisimlaragirlikbrut[i],
+                    dara = digerkisimlaragirlikdara[i],p_miktari = digerkisimlaragirlikpmiktari[i],
+                    p_aciklamasi = digerkisimlaragirlikaciklama[i]
+                )
+
         #stok stok_kodlari
         #stok stok_kodlari
         link = "/"+slug+"/stok/"
