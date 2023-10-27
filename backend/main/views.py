@@ -944,6 +944,14 @@ def fatura_sayfasi(request,slug):
 def siparis_sayfasi(request,slug):
     content ={}
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
+    if request.POST:
+        if True:
+            siparisturu = request.POST.get("siparisturu")
+            grupturu=  request.POST.get("grupturu")
+            siparisno = request.POST.get("siparisno")
+            caribilgisi = request.POST.get("caribilgisi")
+            stokbilgisi = request.POST.get("stokbilgisi")
+            entkodu = request.POST.get("entkodu")
     return render(request,"siparis/siparis.html",content)
 #Sipariş Sayfası
 

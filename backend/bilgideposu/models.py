@@ -1273,9 +1273,10 @@ class siparisislem_durumlari(models.Model):
     faturaya_aktar = models.BooleanField(verbose_name="Faturaya Aktarıldı" , default=False)
     tutar_doviz = models.FloatField(verbose_name="Tutar Döviz",blank=True,null=True)
     tutar_tl = models.FloatField(verbose_name="Tutar TL",blank=True,null=True)
-class siparis_olustur(models.Model):
+class siparis_olustur(models.Model):    
     grup_kodu = models.ForeignKey(siparisislem_durumlari,blank=True,null=True,on_delete=models.SET_NULL,verbose_name="Grup Kodu")
     bagli_oldugu_firma = models.ForeignKey(firma,blank=True,null=True,on_delete=models.SET_NULL)
+    tip = models.CharField(max_length=200,verbose_name="tip",blank=True,null=True)
     teslim_tarihi = models.DateField(verbose_name="Kayıt Tarihi",blank=True,null=True)
     teslim_sekli = models.CharField(max_length=200, verbose_name="Teslim Şekli", blank=True, null=True)
     stok_karti_bilgisi = models.ForeignKey(stok_kartlar, verbose_name="Stok Kartı Bilgisi", blank=True, null=True,

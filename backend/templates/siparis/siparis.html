@@ -1,8 +1,10 @@
 {% extends "homebase.html" %}
 {% block content %}
   <div class="icon-bar">
-
-    <a href="yeni_kasakarti.html">Kaydet / Yeni</a>
+    <form method="post">
+      {% csrf_token %}
+    <button type="submit" class="btn btn-primary">Kaydet / <br> Yeni Sipariş <br> Oluştur</button>
+    <a href="">Bir Ürün Daha Ekle</a>
     <a href="">Kart İncele-Düzelt</a>
     <a href="">Kart Sil</a>
     <a href="" style="color:red;">Çıkış Yap (ESC)</a>
@@ -232,7 +234,8 @@
             <th class="text-center">Tip</th>
             <th class="text-center">Tür</th>
             <th class="text-center">Sipariş No</th>
-            <th class="text-center">Tarih-saat</th>
+            <th class="text-center" style="min-width: 200px;">Cari Unvan</th>
+            <th class="text-center" style="min-width: 200px;">Stok Kodu ve Stok Adı</th>
             <th class="text-center">Ent</th>
             <th class="text-center">KDV ?</th>
             <th class="text-center">Satıcı</th>
@@ -243,9 +246,6 @@
             <th class="text-center">Depo</th>
             <th class="text-center">Satıcı</th>
             <th class="text-center">Depertman</th>
-            <th class="text-center">Cari Unvan</th>
-            <th class="text-center">Stok Kodu</th>
-            <th class="text-center" style="min-width: 100px ;">Stok Adı</th>
             <th class="text-center">Miktar</th>
             <th class="text-center" style="min-width: 100px ;">Kalan Miktar</th>
             <th class="text-center">Birim</th>
@@ -287,108 +287,27 @@
         </thead>
         <tbody>
           <tr>
-            <td>01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td><select name="siparisturu" id="">
+              <option value="Normal">Normal</option>
+              <option value="İndirimli">İndirimli</option>
+            </select></td>
+            <td><select name="grupturu" id="">
+              <option value="Alınan Sipariş">Alınan Sipariş</option>
+              <option value="Verilen Sipariş">Verilen Sipariş</option>
+              <option value="Alınan Teklif">Alınan Teklif</option>
+              <option value="Verilen Teklif">Verilen Teklif</option>
+            </select></td>
+            <td><input type="text" name="siparisno"></td>
+            <td><b id="cariadi"></b>
+            <input style="display: none;" id="cariid" type="text" name="caribilgisi">
+          <button type="button" class="btn btn-primary">Cari Seç</button></td>
+            <td><b id="stokadi"></b>
+              <input style="display: none;" id="stokid" type="text" name="stokbilgisi">
+            <button type="button" class="btn btn-primary">Stok Seç</button></td>
+            <td><select name="entkodu" id="">
+              <option value="1">1</option>
+              <option value="2">2</option>
+            </select></td>
             <td></td>
             <td></td>
             <td></td>
@@ -398,7 +317,7 @@
       </table>
     </div>
   </div>
-
+</form>
   <script>
     function redirectToSelectedLink() {
   const radioButtons = document.getElementsByName('kasakartlari');
@@ -439,5 +358,7 @@ function showConfirmationPopup() {
         // Kullanıcı "Hayır" dedi, isteğe bağlı olarak başka bir işlem yapabilirsiniz
     }
 }
+
   </script>
+
 {% endblock content %}
