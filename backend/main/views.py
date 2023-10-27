@@ -944,14 +944,31 @@ def fatura_sayfasi(request,slug):
 def siparis_sayfasi(request,slug):
     content ={}
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
+    content["subeleri"] =  sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
     if request.POST:
         if True:
-            siparisturu = request.POST.get("siparisturu")
             grupturu=  request.POST.get("grupturu")
             siparisno = request.POST.get("siparisno")
             caribilgisi = request.POST.get("caribilgisi")
-            stokbilgisi = request.POST.get("stokbilgisi")
             entkodu = request.POST.get("entkodu")
+            kdvdurumu = request.POST.get("kdvdurumu")
+            satici = request.POST.get("satici")
+            sube_bilgisi = request.POST.get("sube")
+            dovizcinsi = request.POST.get("dovizcinsi")
+            depobilgisi = request.POST.get("depobilgisi")
+            teslimtarihi = request.POST.get("teslimtarihi")
+            teslimsekili = request.POST.get("teslimsekili")
+            departman = request.POST.get("departman") 
+            siparisislem = siparisislem_durumlari.objects.create(
+                bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),
+                siparis_tur= grupturu ,ent_kodu = entkodu,kdv_durumu = kdvdurumu,
+                siparis_no = siparisno,satici = satici,cari_unvan = get_object_or_404(cari_kartlar,id = caribilgisi),
+                sube_kodu = get_object_or_404(sube,id = sube_bilgisi),islem_doviz_cinsi  = dovizcinsi,
+                depo = depobilgisi,departman = departman,tarih  = teslimtarihi,teslim_sekli = teslimsekili
+            )
+            if True:
+                stokbilgisi = request.POST.getlist("stokbilgisi")
+                siparisturu = request.POST.get("siparisturu")
     return render(request,"siparis/siparis.html",content)
 #Sipariş Sayfası
 

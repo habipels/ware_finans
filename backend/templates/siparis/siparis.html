@@ -4,7 +4,7 @@
     <form method="post">
       {% csrf_token %}
     <button type="submit" class="btn btn-primary">Kaydet / <br> Yeni Sipariş <br> Oluştur</button>
-    <a href="">Bir Ürün Daha Ekle</a>
+    <a href="javascript:void(0);" onclick="ekleYeniSatir()">Bir Ürün Daha Ekle</a>
     <a href="">Kart İncele-Düzelt</a>
     <a href="">Kart Sil</a>
     <a href="" style="color:red;">Çıkış Yap (ESC)</a>
@@ -228,7 +228,7 @@
     <div class="table-responsive " style="
     height: 300px;
     overflow: auto;">
-      <table class="table table-bordered">
+      <table class="table table-bordered-second">
         <thead style="position: sticky;top: 0">
           <tr>
             <th class="text-center">Tip</th>
@@ -241,10 +241,9 @@
             <th class="text-center">Satıcı</th>
             <th class="text-center">Şube</th>
             <th class="text-center">Döviz Cinsi</th>
+            <th class="text-center">Depo</th>
             <th class="text-center">Teslim Tarihi</th>
             <th class="text-center">Teslim Şekli</th>
-            <th class="text-center">Depo</th>
-            <th class="text-center">Satıcı</th>
             <th class="text-center">Depertman</th>
             <th class="text-center">Miktar</th>
             <th class="text-center" style="min-width: 100px ;">Kalan Miktar</th>
@@ -308,7 +307,26 @@
               <option value="1">1</option>
               <option value="2">2</option>
             </select></td>
-            <td></td>
+            <td><select name="kdvdurumu" id="">
+              <option value="Hariç">Hariç</option>
+              <option value="Dahil">Dahil</option>
+            </select></td>
+            <td><input type="text" name="satici"></td>
+            <td><select name="sube" id="">
+              {% for i in subeleri %}
+              <option value="{{i.id}}">{{i.sube_adi}} {{i.sube_unvani}}</option>
+              {% endfor %}
+              
+            </select></td>
+            <td><select name="dovizcinsi" id="">
+              <option value="TL">TL</option>
+              <option value="Dolar">Dolar</option>
+              <option value="Euro">Euro</option>
+            </select></td>
+            <td><input type="text" name="depobilgisi"></td>
+            <td><input type="date" name="teslimtarihi"></td>
+            <td><input type="text" name="teslimsekili"></td>
+            <td><input type="text" name="departman"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -360,5 +378,37 @@ function showConfirmationPopup() {
 }
 
   </script>
+<script>
+  function ekleYeniSatir() {
+  // Yeni bir <tr> (satır) öğesi oluştur
+  var yeniSatir = document.createElement('tr');
 
+  // Satırın içeriğini belirle
+  yeniSatir.innerHTML = `
+    <td><select name="siparisturu" id="">
+      <option value="Normal">Normal</option>
+      <option value="İndirimli">İndirimli</option>
+    </select></td>
+    <td>SEÇİMİ YAPTINIZ</td>
+    <td>SEÇİMİ YAPTINIZ</td>
+    <td>SEÇİMİ YAPTINIZ</td>
+    <td>.</td>
+    <td>SEÇİMİ YAPTINIZ</td>
+    <td>SEÇİMİ YAPTINIZ</td>
+    <td>SEÇİMİ YAPTINIZ</td>
+    <td>SEÇİMİ YAPTINIZ</td>
+    <td>SEÇİMİ YAPTINIZ</td>
+    <td>SEÇİMİ YAPTINIZ</td>
+    <td>SEÇİMİ YAPTINIZ</td>
+    <td>SEÇİMİ YAPTINIZ</td>
+    <td>SEÇİMİ YAPTINIZ</td>
+  `;
+
+  // Tablonun <tbody> kısmını seç
+  var tabloGovdesi = document.querySelector('.table-bordered-second tbody');
+
+  // Yeni oluşturulan satırı tablonun sonuna ekle
+  tabloGovdesi.appendChild(yeniSatir);
+}
+</script>
 {% endblock content %}
