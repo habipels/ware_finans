@@ -297,12 +297,18 @@
               <option value="Verilen Teklif">Verilen Teklif</option>
             </select></td>
             <td><input type="text" name="siparisno"></td>
-            <td><b id="cariadi"></b>
-            <input style="display: none;" id="cariid" type="text" name="caribilgisi">
-          <button type="button" class="btn btn-primary">Cari Seç</button></td>
-            <td><b id="stokadi"></b>
-              <input style="display: none;" id="stokid" type="text" name="stokbilgisi">
-            <button type="button" class="btn btn-primary">Stok Seç</button></td>
+            <td><select name="carisecim" id="carisecim">
+              {% for i in carilerim %}
+              
+              <option value="{{i.id}}" id="{% for j in carilerimsube %}{% if i.id == j.cari_bilgisi.id %}{% if j.subebilgilerisubeadi %}{{j.subebilgilerisubeadi}}{% else %}{% endif %}{% else %}{% endif %}{% endfor %}" class="{{i.muhkodu}}">({{i.cari_kodu}}) {{i.cari_adi}}</option>
+              {% endfor %}
+          </select></td>
+            <td><select onchange="fillStockInformation(this)" name="stok" id="stoksecim">
+              {% for i in stokkartlarim %}
+                <option value="{{i.id}}">({{i.stok_kodu}}) {{i.stok_adi}}</option>
+              {% endfor %}
+              
+            </select></td>
             <td><select name="entkodu" id="">
               <option value="1">1</option>
               <option value="2">2</option>
@@ -327,9 +333,43 @@
             <td><input type="date" name="teslimtarihi"></td>
             <td><input type="text" name="teslimsekili"></td>
             <td><input type="text" name="departman"></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td><input type="number" step="0.001" name="stokmiktari"></td>
+            <td><input type="number" step="0.001" name="stokkalanmiktari"></td>
+            <td><input type="text" name="birimbilgisi"></td>
+            <td><input type="number" step="0.001" name="stokbirimfiyati"></td>
+            <td><input type="number" step="0.001" name="stokindirimyuzdesi"></td>
+            <td><input type="number" step="0.001" name="stokindirimtl"></td>
+            <td><input type="number" step="0.001" name="stoktutari"></td>
+            <td><input type="number" step="0.001" name="stokkdvyuzdesi"></td>
+            <td><input type="number" step="0.001" name="stokkdvtl"></td>
+            <td><input type="number" step="0.001" name="stokotvyuzdesi"></td>
+            <td><input type="number" step="0.001" name="stokotvtl"></td>
+            <td><input type="text" name="stokteslimsekli"></td>
+            <td><input type="date" name="urunteslimtarihi"></td>
+            <td><input type="text" name="stokdurumu"></td>
+            <td><input type="number" step="0.001" name="stokindirim1"></td>
+            <td><input type="number" step="0.001" name="stokindirim2"></td>
+            <td><input type="number" step="0.001" name="stokindirim3"></td>
+            <td><input type="text" name="stokozelkod1"></td>
+            <td><input type="text" name="stokozelkod2"></td>
+            <td><input type="text" name="stokdepartman"></td>
+            <td><input type="text" name="stoksatiraciklamasi"></td>
+            <td><input type="text" name="stokserino"></td>
+            <td><input type="text" name="stokbirimi"></td>
+            <td><input type="number" step="0.001" name="stokmiktaribilgisi"></td>
+            <td><input type="text" name="stokozellik1"></td>
+            <td><input type="text" name="stokozellik2"></td>
+            <td><input type="text" name="stokozellik3"></td>
+            <td><input type="text" name="stokozellik4"></td>
+            <td><input type="text" name="stokozellik5"></td>
+            <td><input type="text" name="stokalternatifstokkodu"></td>
+            <td><input type="text" name="stokalternatifstokadi"></td>
+            <td><input type="text" name="stokkalitekodu"></td>
+            <td><input type="number" step="0.001" name="stokanamiktari"></td>
+            <td><input type="number" step="0.001" name="stokanamiktaribirimfiyattl"></td>
+            <td><input type="number" step="0.001" name="stokanamiktaribirimfiyatdvz"></td>
+            <td><input type="text" name="stokpartikodu"></td>
+            <td><input type="date" name="sonkullanimtarihi"></td>
           </tr>
         </tbody>
       </table>
@@ -385,23 +425,67 @@ function showConfirmationPopup() {
 
   // Satırın içeriğini belirle
   yeniSatir.innerHTML = `
-    <td><select name="siparisturu" id="">
-      <option value="Normal">Normal</option>
-      <option value="İndirimli">İndirimli</option>
-    </select></td>
-    <td>SEÇİMİ YAPTINIZ</td>
-    <td>SEÇİMİ YAPTINIZ</td>
-    <td>SEÇİMİ YAPTINIZ</td>
-    <td>.</td>
-    <td>SEÇİMİ YAPTINIZ</td>
-    <td>SEÇİMİ YAPTINIZ</td>
-    <td>SEÇİMİ YAPTINIZ</td>
-    <td>SEÇİMİ YAPTINIZ</td>
-    <td>SEÇİMİ YAPTINIZ</td>
-    <td>SEÇİMİ YAPTINIZ</td>
-    <td>SEÇİMİ YAPTINIZ</td>
-    <td>SEÇİMİ YAPTINIZ</td>
-    <td>SEÇİMİ YAPTINIZ</td>
+  <tr>
+            <td><select name="siparisturu" id="">
+              <option value="Normal">Normal</option>
+              <option value="İndirimli">İndirimli</option>
+            </select></td>
+            <td>Seçim Yaptınız</td>
+            <td>Seçim Yaptınız</td>
+            <td>Seçim Yaptınız</td>
+            <td><select name="stok" id="stoksecim">
+              {% for i in stokkartlarim %}
+                <option value="{{i.id}}">({{i.stok_kodu}}) {{i.stok_adi}}</option>
+              {% endfor %}
+              
+            </select></td>
+            <td>Seçim Yaptınız</td>
+            <td>Seçim Yaptınız</td>
+            <td>Seçim Yaptınız</td>
+            <td>Seçim Yaptınız</td>
+            <td>Seçim Yaptınız</td>
+            <td>Seçim Yaptınız</td>
+            <td>Seçim Yaptınız</td>
+            <td>Seçim Yaptınız</td>
+            <td>Seçim Yaptınız</td>
+            <td><input type="number" step="0.001" name="stokmiktari"></td>
+            <td><input type="number" step="0.001" name="stokkalanmiktari"></td>
+            <td><input type="text" name="birimbilgisi"></td>
+            <td><input type="number" step="0.001" name="stokbirimfiyati"></td>
+            <td><input type="number" step="0.001" name="stokindirimyuzdesi"></td>
+            <td><input type="number" step="0.001" name="stokindirimtl"></td>
+            <td><input type="number" step="0.001" name="stoktutari"></td>
+            <td><input type="number" step="0.001" name="stokkdvyuzdesi"></td>
+            <td><input type="number" step="0.001" name="stokkdvtl"></td>
+            <td><input type="number" step="0.001" name="stokotvyuzdesi"></td>
+            <td><input type="number" step="0.001" name="stokotvtl"></td>
+            <td><input type="text" name="stokteslimsekli"></td>
+            <td><input type="date" name="urunteslimtarihi"></td>
+            <td><input type="text" name="stokdurumu"></td>
+            <td><input type="number" step="0.001" name="stokindirim1"></td>
+            <td><input type="number" step="0.001" name="stokindirim2"></td>
+            <td><input type="number" step="0.001" name="stokindirim3"></td>
+            <td><input type="text" name="stokozelkod1"></td>
+            <td><input type="text" name="stokozelkod2"></td>
+            <td><input type="text" name="stokdepartman"></td>
+            <td><input type="text" name="stoksatiraciklamasi"></td>
+            <td><input type="text" name="stokserino"></td>
+            <td><input type="text" name="stokbirimi"></td>
+            <td><input type="number" step="0.001" name="stokmiktaribilgisi"></td>
+            <td><input type="text" name="stokozellik1"></td>
+            <td><input type="text" name="stokozellik2"></td>
+            <td><input type="text" name="stokozellik3"></td>
+            <td><input type="text" name="stokozellik4"></td>
+            <td><input type="text" name="stokozellik5"></td>
+            <td><input type="text" name="stokalternatifstokkodu"></td>
+            <td><input type="text" name="stokalternatifstokadi"></td>
+            <td><input type="text" name="stokkalitekodu"></td>
+            <td><input type="number" step="0.001" name="stokanamiktari"></td>
+            <td><input type="number" step="0.001" name="stokanamiktaribirimfiyattl"></td>
+            <td><input type="number" step="0.001" name="stokanamiktaribirimfiyatdvz"></td>
+            <td><input type="text" name="stokpartikodu"></td>
+            <td><input type="date" name="sonkullanimtarihi"></td>
+          </tr>
   `;
 
   // Tablonun <tbody> kısmını seç
@@ -411,4 +495,20 @@ function showConfirmationPopup() {
   tabloGovdesi.appendChild(yeniSatir);
 }
 </script>
+<script>
+  function fillStockInformation(selectedStock) {
+    // Burada seçilen stokla ilgili bilgileri alarak, input alanlarına yerleştireceğiz
+    // Örneğin, seçilen stokun adını ve fiyatını alıp, ilgili input alanlarına ekleyebiliriz
+    // Bu örnek veri, seçilen stokun verilerini içermelidir, gerçek verilere göre düzenlenmelidir
+    var stockName = selectedStock.options[selectedStock.selectedIndex].text; // Seçilen stok adı
+    var stockPrice = "100"; // Örnek olarak sabit bir stok fiyatı
+  
+    // Örnek olarak fiyat bilgisini stok fiyatı alanına yerleştirme
+    document.getElementsByName('stokbirimfiyati')[0].value = stockPrice;
+  
+    // Stok adını stok adı alanına yerleştirme
+    document.getElementsByName('stokalternatifstokadi')[0].value = stockName;
+  }
+  </script>
+  
 {% endblock content %}

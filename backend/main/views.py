@@ -945,6 +945,26 @@ def siparis_sayfasi(request,slug):
     content ={}
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     content["subeleri"] =  sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    content["stokkartlarim"] =  stok_kartlar.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    content["stokkartozelligi1"] = stok_birim_alis_satis_birimi.objects.filter(stok_karti_bilgisi__bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    hesaplar = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) )
+    sistem = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =None)
+    kart = cari_kartlar.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    giderkartti = Giderler.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    gelirkartti = Gelirler.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    banka_karti = banka.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    subelerim = sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    kasa_bilgisi = Kasa.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    content["carilerim"]  = cari_kartlar.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    content["carilerimsube"] = cari_kartislemleri_sube_bilgiler.objects.filter(cari_bilgisi__bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    content["kart"] = kart
+    content["gelirkartti"] = gelirkartti
+    content["giderkartti"] = giderkartti
+    content["hesapplanlari"] = hesaplar
+    content["sistemhesapplanlari"] = sistem
+    content["banka_karti"] = banka_karti
+    content["subelerim"] = subelerim
+    content["kasa_bilgisi"] = kasa_bilgisi
     if request.POST:
         if True:
             grupturu=  request.POST.get("grupturu")
@@ -967,8 +987,62 @@ def siparis_sayfasi(request,slug):
                 depo = depobilgisi,departman = departman,tarih  = teslimtarihi,teslim_sekli = teslimsekili
             )
             if True:
-                stokbilgisi = request.POST.getlist("stokbilgisi")
-                siparisturu = request.POST.get("siparisturu")
+                stokbilgisi = request.POST.getlist("stok")
+                siparisturu = request.POST.getlist("siparisturu")
+                stokmiktari = request.POST.getlist("stokmiktari")
+                stokkalanmiktari = request.POST.getlist("stokkalanmiktari")
+                birimbilgisi = request.POST.getlist("birimbilgisi")
+                stokbirimfiyati = request.POST.getlist("stokbirimfiyati")
+                stokindirimyuzdesi = request.POST.getlist("stokindirimyuzdesi")
+                stokindirimtl = request.POST.getlist("stokindirimtl")
+                stokkdvyuzdesi = request.POST.getlist("stokkdvyuzdesi")
+                stokkdvtl = request.POST.getlist("stokkdvtl")
+                stokotvyuzdesi = request.POST.getlist("stokotvyuzdesi")
+                stokotvtl = request.POST.getlist("stokotvtl")
+                stoktutari = request.POST.getlist("stoktutari")
+                stokteslimsekli = request.POST.getlist("stokteslimsekli")
+                urunteslimtarihi = request.POST.getlist("urunteslimtarihi")
+                stokdurumu = request.POST.getlist("stokdurumu")
+                stokindirim1 =request.POST.getlist("stokindirim1")
+                stokindirim2 =request.POST.getlist("stokindirim2")
+                stokindirim3 =request.POST.getlist("stokindirim3")
+                stokozelkod1 =request.POST.getlist("stokozelkod1")
+                stokozelkod2 =request.POST.getlist("stokozelkod2")
+                stokdepartman =request.POST.getlist("stokdepartman")
+                stoksatiraciklamasi = request.POST.getlist("stoksatiraciklamasi")
+                stokserino = request.POST.getlist("stokserino")
+                stokbirimi = request.POST.getlist("stokbirimi")
+                stokmiktaribilgisi = request.POST.getlist("stokmiktaribilgisi")
+                stokozellik1 = request.POST.getlist("stokozellik1")
+                stokozellik2 = request.POST.getlist("stokozellik2")
+                stokozellik3 = request.POST.getlist("stokozellik3")
+                stokozellik4 = request.POST.getlist("stokozellik4")
+                stokozellik5 = request.POST.getlist("stokozellik5")
+                stokalternatifstokkodu = request.POST.getlist("stokalternatifstokkodu")
+                stokalternatifstokadi = request.POST.getlist("stokalternatifstokadi")
+                stokkalitekodu = request.POST.getlist("stokkalitekodu")
+                stokanamiktari = request.POST.getlist("stokanamiktari")
+                stokanamiktaribirimfiyattl = request.POST.getlist("stokanamiktaribirimfiyattl")
+                stokanamiktaribirimfiyatdvz = request.POST.getlist("stokanamiktaribirimfiyatdvz")
+                stokpartikodu = request.POST.getlist("stokpartikodu")
+                sonkullanimtarihi = request.POST.getlist("sonkullanimtarihi")
+                for i in range(len(stokbilgisi)):
+                    print(stokbilgisi[i],siparisturu[i],stokmiktari[i],
+                          stokkalanmiktari[i],birimbilgisi[i],
+                stokbirimfiyati[i],stokindirimyuzdesi[i],
+                stokindirimtl[i],stokkdvyuzdesi[i],
+                stokkdvtl[i],stokotvyuzdesi[i],stokotvtl[i],
+                stoktutari[i],stokteslimsekli[i],urunteslimtarihi[i],
+                stokdurumu[i],stokindirim1[i],stokindirim2[i],
+                stokindirim3[i],stokozelkod1[i],stokozelkod2[i],stokdepartman[i],
+                stoksatiraciklamasi[i],stokserino[i],stokbirimi[i],stokmiktaribilgisi[i],
+                stokozellik1[i],stokozellik2[i],stokozellik3[i],stokozellik4[i],
+                stokozellik5[i],stokalternatifstokkodu[i],stokalternatifstokadi[i],
+                stokkalitekodu[i],stokanamiktari[i],stokanamiktaribirimfiyattl[i],
+                stokanamiktaribirimfiyatdvz[i],stokpartikodu[i],sonkullanimtarihi[i]
+                          )
+        link = "/"+slug+"/siparis/"
+        return redirect(link)
     return render(request,"siparis/siparis.html",content)
 #Sipariş Sayfası
 
