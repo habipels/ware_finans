@@ -290,7 +290,7 @@
               <option value="Normal">Normal</option>
               <option value="İndirimli">İndirimli</option>
             </select></td>
-            <td><select name="grupturu" id="">
+            <td><select name="grupturu" id="grupturu">
               <option value="Alınan Sipariş">Alınan Sipariş</option>
               <option value="Verilen Sipariş">Verilen Sipariş</option>
               <option value="Alınan Teklif">Alınan Teklif</option>
@@ -502,7 +502,9 @@ function showConfirmationPopup() {
     // Bu örnek veri, seçilen stokun verilerini içermelidir, gerçek verilere göre düzenlenmelidir
     var stockName = selectedStock.options[selectedStock.selectedIndex].text; // Seçilen stok adı
     var stockPrice = "100"; // Örnek olarak sabit bir stok fiyatı
-  
+    var selectedStockValue = selectedStock.value;
+    var grupturu = document.getElementById("grupturu");
+    const grupturusecilen = grupturu.options[grupturu.selectedIndex];
     // Örnek olarak fiyat bilgisini stok fiyatı alanına yerleştirme
     document.getElementsByName('stokbirimfiyati')[0].value = stockPrice;
   
