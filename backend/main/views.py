@@ -965,8 +965,9 @@ def siparis_sayfasi(request,slug):
     content["banka_karti"] = banka_karti
     content["subelerim"] = subelerim
     content["kasa_bilgisi"] = kasa_bilgisi
-    stokalisveris = stok_birim_alis_satis_birimi.objects.filter(stok_karti_bilgisi__bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    stokalisveris = stok_alis_satis.objects.filter(stok_karti_bilgisi__bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
     content["stokalisveris"] = stokalisveris
+    content["stok_kodlari"] = stok_kodlari.objects.filter(stok_karti_bilgisi__bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
     if request.POST:
         if True:
             grupturu=  request.POST.get("grupturu")
