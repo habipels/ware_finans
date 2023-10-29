@@ -992,7 +992,7 @@ def siparis_sayfasi(request,slug):
                 stokbilgisi = request.POST.getlist("stok")
                 siparisturu = request.POST.getlist("siparisturu")
                 stokmiktari = request.POST.getlist("stokmiktari")
-                stokkalanmiktari = request.POST.getlist("stokkalanmiktari")
+                #stokkalanmiktari = request.POST.getlist("stokkalanmiktari")
                 birimbilgisi = request.POST.getlist("birimbilgisi")
                 stokbirimfiyati = request.POST.getlist("stokbirimfiyati")
                 stokindirimyuzdesi = request.POST.getlist("stokindirimyuzdesi")
@@ -1030,7 +1030,7 @@ def siparis_sayfasi(request,slug):
                 sonkullanimtarihi = request.POST.getlist("sonkullanimtarihi")
                 for i in range(len(stokbilgisi)):
                     print(stokbilgisi[i],siparisturu[i],stokmiktari[i],
-                          stokkalanmiktari[i],birimbilgisi[i],
+                          birimbilgisi[i],
                 stokbirimfiyati[i],stokindirimyuzdesi[i],
                 stokindirimtl[i],stokkdvyuzdesi[i],
                 stokkdvtl[i],stokotvyuzdesi[i],stokotvtl[i],
