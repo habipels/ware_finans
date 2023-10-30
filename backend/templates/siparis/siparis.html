@@ -297,7 +297,7 @@
               <option value="Verilen Teklif">Verilen Teklif</option>
             </select></td>
             <td><input type="text" name="siparisno"></td>
-            <td><select name="carisecim" id="carisecim">
+            <td><select name="caribilgisi" id="carisecim">
               {% for i in carilerim %}
               
               <option value="{{i.id}}" id="{% for j in carilerimsube %}{% if i.id == j.cari_bilgisi.id %}{% if j.subebilgilerisubeadi %}{{j.subebilgilerisubeadi}}{% else %}{% endif %}{% else %}{% endif %}{% endfor %}" class="{{i.muhkodu}}">({{i.cari_kodu}}) {{i.cari_adi}}</option>
@@ -335,16 +335,16 @@
             <td><input type="date" name="teslimtarihi"></td>
             <td><input type="text" name="teslimsekili"></td>
             <td><input type="text" name="departman"></td>
-            <td><input type="number" step="0.001" value="1" name="stokmiktari"></td>
+            <td><input type="number" step="0.001" oninput="hesaplaFiyat()" id:="stokmiktari" value="1" name="stokmiktari"></td>
             <td><input type="text" id="birimbilgisi" name="birimbilgisi"></td>
-            <td><input type="number" id="stokbirimfiyati" step="0.001" name="stokbirimfiyati"></td>
-            <td><input type="number" id="stokindirimyuzdesi" step="0.001" name="stokindirimyuzdesi"></td>
-            <td><input type="number" id="stokindirimtl" step="0.001" name="stokindirimtl"></td>
-            <td><input type="number" id="stoktutari" step="0.001" name="stoktutari"></td>
-            <td><input type="number" id="stokkdvyuzdesi" step="0.001" name="stokkdvyuzdesi"></td>
-            <td><input type="number" id="stokkdvtl" step="0.001" name="stokkdvtl"></td>
-            <td><input type="number" id="stokotvyuzdesi" step="0.001" name="stokotvyuzdesi"></td>
-            <td><input type="number" id="stokotvtl" step="0.001" name="stokotvtl"></td>
+            <td><input type="number" id="stokbirimfiyati" oninput="hesaplaFiyat()" step="0.001" name="stokbirimfiyati"></td>
+            <td><input type="number" id="stokindirimyuzdesi" oninput="hesaplaFiyat()" step="0.001" name="stokindirimyuzdesi"></td>
+            <td><input type="number" id="stokindirimtl" oninput="hesaplaFiyat()" step="0.001" name="stokindirimtl"></td>
+            <td><input type="number" id="stoktutari" oninput="hesaplaFiyat()" step="0.001" name="stoktutari"></td>
+            <td><input type="number" id="stokkdvyuzdesi" oninput="hesaplaFiyat()" step="0.001" name="stokkdvyuzdesi"></td>
+            <td><input type="number" id="stokkdvtl" oninput="hesaplaFiyat()" step="0.001" name="stokkdvtl"></td>
+            <td><input type="number" id="stokotvyuzdesi" oninput="hesaplaFiyat()" step="0.001" name="stokotvyuzdesi"></td>
+            <td><input type="number" id="stokotvtl" oninput="hesaplaFiyat()" step="0.001" name="stokotvtl"></td>
             <td><input type="text" name="stokteslimsekli"></td>
             <td><input type="date" name="urunteslimtarihi"></td>
             <td><input type="text" name="stokdurumu"></td>
@@ -413,6 +413,7 @@
  </table>
 </form>
   <script>
+  const selectIndexx ; 
     function redirectToSelectedLink() {
   const radioButtons = document.getElementsByName('kasakartlari');
   let selectedLink = null;
@@ -533,6 +534,7 @@ function showConfirmationPopup() {
 }
 </script>
 <script>
+  
   document.addEventListener('DOMContentLoaded', function() {
   // Sayfa yüklendiğinde çalışacak kodlar
   const selectedStock = document.getElementById('stoksecim'); // selectedStock elemanını buraya ekleyin
@@ -558,6 +560,7 @@ allCustomSelects.forEach((select, index) => {
     
     const selectedOption = event.target.value;
     const selectIndex = index ; // Seçeneğin sırasını almak için index'i kullanabilirsiniz.
+    selectIndexx = index;
     // Tıklanan seçeneğin ve sırasının konsola yazdırılması.
     // İstediğiniz işlemi bu noktada gerçekleştirebilirsiniz.
     var stockName = selectedStock.options[selectedStock.selectedIndex].text; // Seçilen stok adı
@@ -600,6 +603,32 @@ allCustomSelects.forEach((select, index) => {
     // Bu örnek veri, seçilen stokun verilerini içermelidir, gerçek verilere göre düzenlenmelidir
     
   }
+
   </script>
-  
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+  function hesaplaFiyat() {
+    var stokbirimfiyati = document.getElementById("stokbirimfiyati")[selectIndexx].value;
+    var stokindirimyuzdesi = document.getElementById("stokindirimyuzdesi")[selectIndexx].value;
+    var stokindirimtl = document.getElementById("stokindirimtl")[selectIndexx].value;
+    var stoktutari = document.getElementById("stoktutari")[selectIndexx].value;
+    var stokkdvyuzdesi = document.getElementById("stokkdvyuzdesi")[selectIndexx].value;
+    var stokkdvt = document.getElementById("stokkdvt")[selectIndexx].value;
+    var stokotvyuzdesi = document.getElementById("stokotvyuzdesi")[selectIndexx].value;
+    var stokotvtl = document.getElementById("stokotvtl")[selectIndexx].value;
+    var stokmiktari = document.getElementById("stokmiktari")[selectIndexx].value;
+    var fiyat;
+    var kdv;
+    var otv;
+    var vergisiztutar ;
+    //dahil
+    parseFloat(fiyat) = parseFloat(stokbirimfiyati) * parseFloat(stokmiktari)
+    parseFloat(kdv) = fiyat*100 / (parseFloat(stokkdvyuzdesi) + 100)
+    parseFloat(vergisiztutar) = fiyat - kdv
+    parseFloat(otv) = vergisiztutar*100 / (parseFloat(stokotvyuzdesi)+100)
+    parseFloat(vergisiztutar) = vergisiztutar - otv
+    alert(fiyat , kdv, otv ,vergisiztutar)
+    document.getElementById("sonuc").innerHTML = "Fiyat hesabı yapıldı. Sonuç: " + fiyat;
+} });
+  </script>
 {% endblock content %}

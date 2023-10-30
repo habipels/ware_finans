@@ -793,8 +793,6 @@ class stok_kartlar(models.Model):
                     self.image.save(self.image.name, content=buffer, save=False)
                     super(stok_kartlar, self).save(*args, **kwargs)
     kayit_tarihi = models.DateTimeField(default=datetime.now,null=True)
-
-
 class stok_birim_alis_satis_birimi(models.Model):
     brim_islemleri = (
         ("",""),

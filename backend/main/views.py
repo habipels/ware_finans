@@ -965,10 +965,6 @@ def siparis_sayfasi(request,slug):
     content["banka_karti"] = banka_karti
     content["subelerim"] = subelerim
     content["kasa_bilgisi"] = kasa_bilgisi
-    stokalisveris = stok_alis_satis.objects.filter(stok_karti_bilgisi__bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
-    content["stokalisveris"] = stokalisveris
-    content["stok_kodlari"] = stok_kodlari.objects.filter(stok_karti_bilgisi__bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
-    content["stok_detaylari"] = stok_detaylari.objects.filter(stok_karti_bilgisi__bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
     if request.POST:
         if True:
             grupturu=  request.POST.get("grupturu")
@@ -982,7 +978,8 @@ def siparis_sayfasi(request,slug):
             depobilgisi = request.POST.get("depobilgisi")
             teslimtarihi = request.POST.get("teslimtarihi")
             teslimsekili = request.POST.get("teslimsekili")
-            departman = request.POST.get("departman") 
+            departman = request.POST.get("departman")
+            print(caribilgisi) 
             siparisislem = siparisislem_durumlari.objects.create(
                 bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),
                 siparis_tur= grupturu ,ent_kodu = entkodu,kdv_durumu = kdvdurumu,
