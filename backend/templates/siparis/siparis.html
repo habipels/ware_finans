@@ -315,9 +315,9 @@
               <option value="1">1</option>
               <option value="2">2</option>
             </select></td>
-            <td><select name="kdvdurumu" id="">
-              <option value="Hariç">Hariç</option>
+            <td><select name="kdvdurumu" id="kdvdurumu">
               <option value="Dahil">Dahil</option>
+              <option value="Hariç">Hariç</option>
             </select></td>
             <td><input type="text" name="satici"></td>
             <td><select name="sube" id="">
@@ -335,16 +335,16 @@
             <td><input type="date" name="teslimtarihi"></td>
             <td><input type="text" name="teslimsekili"></td>
             <td><input type="text" name="departman"></td>
-            <td><input type="number" step="0.001" oninput="hesaplaFiyat()" id:="stokmiktari" value="1" name="stokmiktari"></td>
+            <td><input type="number" step="0.001" oninput="hesaplaFiyat()" id="stokmiktari" value="1" name="stokmiktari"></td>
             <td><input type="text" id="birimbilgisi" name="birimbilgisi"></td>
-            <td><input type="number" id="stokbirimfiyati" oninput="hesaplaFiyat()" step="0.001" name="stokbirimfiyati"></td>
-            <td><input type="number" id="stokindirimyuzdesi" oninput="hesaplaFiyat()" step="0.001" name="stokindirimyuzdesi"></td>
-            <td><input type="number" id="stokindirimtl" oninput="hesaplaFiyat()" step="0.001" name="stokindirimtl"></td>
-            <td><input type="number" id="stoktutari" oninput="hesaplaFiyat()" step="0.001" name="stoktutari"></td>
-            <td><input type="number" id="stokkdvyuzdesi" oninput="hesaplaFiyat()" step="0.001" name="stokkdvyuzdesi"></td>
-            <td><input type="number" id="stokkdvtl" oninput="hesaplaFiyat()" step="0.001" name="stokkdvtl"></td>
-            <td><input type="number" id="stokotvyuzdesi" oninput="hesaplaFiyat()" step="0.001" name="stokotvyuzdesi"></td>
-            <td><input type="number" id="stokotvtl" oninput="hesaplaFiyat()" step="0.001" name="stokotvtl"></td>
+            <td><input type="number" id="stokbirimfiyati" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokbirimfiyati"></td>
+            <td><input type="number" id="stokindirimyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokindirimyuzdesi"></td>
+            <td><input type="number" id="stokindirimtl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokindirimtl"></td>
+            <td><input type="number" id="stoktutari" oninput="hesaplaFiyat()" value="0" step="0.001" name="stoktutari"></td>
+            <td><input type="number" id="stokkdvyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokkdvyuzdesi"></td>
+            <td><input type="number" id="stokkdvtl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokkdvtl"></td>
+            <td><input type="number" id="stokotvyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvyuzdesi"></td>
+            <td><input type="number" id="stokotvtl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtl"></td>
             <td><input type="text" name="stokteslimsekli"></td>
             <td><input type="date" name="urunteslimtarihi"></td>
             <td><input type="text" name="stokdurumu"></td>
@@ -413,7 +413,6 @@
  </table>
 </form>
   <script>
-  const selectIndexx ; 
     function redirectToSelectedLink() {
   const radioButtons = document.getElementsByName('kasakartlari');
   let selectedLink = null;
@@ -560,7 +559,6 @@ allCustomSelects.forEach((select, index) => {
     
     const selectedOption = event.target.value;
     const selectIndex = index ; // Seçeneğin sırasını almak için index'i kullanabilirsiniz.
-    selectIndexx = index;
     // Tıklanan seçeneğin ve sırasının konsola yazdırılması.
     // İstediğiniz işlemi bu noktada gerçekleştirebilirsiniz.
     var stockName = selectedStock.options[selectedStock.selectedIndex].text; // Seçilen stok adı
@@ -606,29 +604,54 @@ allCustomSelects.forEach((select, index) => {
 
   </script>
   <script>
-    document.addEventListener("DOMContentLoaded", function() {
-  function hesaplaFiyat() {
-    var stokbirimfiyati = document.getElementById("stokbirimfiyati")[selectIndexx].value;
-    var stokindirimyuzdesi = document.getElementById("stokindirimyuzdesi")[selectIndexx].value;
-    var stokindirimtl = document.getElementById("stokindirimtl")[selectIndexx].value;
-    var stoktutari = document.getElementById("stoktutari")[selectIndexx].value;
-    var stokkdvyuzdesi = document.getElementById("stokkdvyuzdesi")[selectIndexx].value;
-    var stokkdvt = document.getElementById("stokkdvt")[selectIndexx].value;
-    var stokotvyuzdesi = document.getElementById("stokotvyuzdesi")[selectIndexx].value;
-    var stokotvtl = document.getElementById("stokotvtl")[selectIndexx].value;
-    var stokmiktari = document.getElementById("stokmiktari")[selectIndexx].value;
-    var fiyat;
-    var kdv;
-    var otv;
-    var vergisiztutar ;
-    //dahil
-    parseFloat(fiyat) = parseFloat(stokbirimfiyati) * parseFloat(stokmiktari)
-    parseFloat(kdv) = fiyat*100 / (parseFloat(stokkdvyuzdesi) + 100)
-    parseFloat(vergisiztutar) = fiyat - kdv
-    parseFloat(otv) = vergisiztutar*100 / (parseFloat(stokotvyuzdesi)+100)
-    parseFloat(vergisiztutar) = vergisiztutar - otv
-    alert(fiyat , kdv, otv ,vergisiztutar)
-    document.getElementById("sonuc").innerHTML = "Fiyat hesabı yapıldı. Sonuç: " + fiyat;
-} });
+ function hesaplaFiyat() {
+    const stokBirimFiyati = document.querySelectorAll("#stokbirimfiyati");
+    stokBirimFiyati.forEach((element, index) => {
+        var selectElementt = document.getElementById("kdvdurumu");
+        var selectedValueess = selectElementt.options[selectElementt.selectedIndex].value;
+        var stokBirimFiyatiValue = element.value;
+        var stokIndirimYuzdesiValue = document.querySelectorAll("#stokindirimyuzdesi")[index].value;
+        var stokIndirimTlValue = document.querySelectorAll("#stokindirimtl")[index].value;
+        var stokTutariValue = document.querySelectorAll("#stoktutari")[index].value;
+        var stokKdvYuzdesiValue = document.querySelectorAll("#stokkdvyuzdesi")[index].value;
+        var stokKdvTValue = document.querySelectorAll("#stokkdvtl")[index].value;
+        var stokOtvYuzdesiValue = document.querySelectorAll("#stokotvyuzdesi")[index].value;
+        var stokOtvTlValue = document.querySelectorAll("#stokotvtl")[index].value;
+        var stokMiktariValue = document.querySelectorAll("#stokmiktari")[index].value;
+        var fiyat;
+        var kdv;
+        var otv;
+        var vergisizTutar;
+        var den ; 
+        var indirim_tutari ;
+        if(selectedValueess == "Dahil"){
+          var toplam_tutar = parseFloat(stokBirimFiyatiValue)*parseFloat(stokMiktariValue);
+        document.querySelectorAll("#stoktutari")[index].value = toplam_tutar;
+        fiyat = toplam_tutar;
+        
+        vergisizTutar =  (fiyat * 100 ) / (parseFloat(stokKdvYuzdesiValue) + 100); 
+        kdv = fiyat - vergisizTutar;
+        otv = vergisizTutar-(vergisizTutar * 100 / (parseFloat(stokOtvYuzdesiValue) + 100));
+        vergisizTutar = vergisizTutar - otv;
+        indirim_tutari = vergisizTutar *parseFloat(stokIndirimYuzdesiValue)/100
+        document.querySelectorAll("#stokkdvtl")[index].value = kdv ;
+        document.querySelectorAll("#stokotvtl")[index].value = otv ;
+        document.querySelectorAll("#stokindirimtl")[index].value = indirim_tutari;
+        }
+        else{
+          var toplam_tutar = parseFloat(stokBirimFiyatiValue)*parseFloat(stokMiktariValue);
+        document.querySelectorAll("#stoktutari")[index].value = toplam_tutar;
+        vergisizTutar = toplam_tutar;
+        otv = (vergisizTutar *parseFloat(stokOtvYuzdesiValue) / 100);
+        fiyat = otv + vergisizTutar;
+        kdv =  (fiyat * parseFloat(stokKdvYuzdesiValue) / 100);
+        fiyat = fiyat + kdv;
+        document.querySelectorAll("#stokkdvtl")[index].value = kdv ;
+        document.querySelectorAll("#stokotvtl")[index].value = otv ;
+        alert(fiyat)
+        }
+        
+    });
+}
   </script>
 {% endblock content %}
