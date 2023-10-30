@@ -829,6 +829,7 @@ class stok_birim_alis_satis_birimi(models.Model):
     tevkifat_orani = models.CharField(max_length=20,verbose_name="Tev")
     lot_kullanimi = models.CharField(max_length=20,verbose_name="Lot Kullan",choices=lot_kullanim_secim,default="")
     serinokullan = models.CharField(max_length=20,verbose_name="Seri No Kullan",choices=lot_kullanim_secim,default="")
+    stokmiktari = models.FloatField(verbose_name="Stok Miktarı",blank=True,null=True)
 class bankaFisIslemleri(models.Model):
     islem_turu_secim = (
         ("",""),

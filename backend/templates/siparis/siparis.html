@@ -1,4 +1,5 @@
 {% extends "homebase.html" %}
+{% load custom_tags %}
 {% block content %}
   <div class="icon-bar">
     <form method="post">
@@ -380,35 +381,30 @@
     <tr id ="{{i.id}}">
     {% for j in stokkartozelligi1 %}
       {% if i.id == j.stok_karti_bilgisi.id %}
-      {% for k in stokalisveris %}
-        {% if  i.id == k.stok_karti_bilgisi.id  %}
         <td id="tbirimbilgisi" class="{{j.birinci_birim}}">{{j.birinci_birim}}</td> 
-        <td id="tstokbirimfiyati">{% if k.aktif_satis_fiyati == "1" %}{{k.satis_fiyati_1_tl}}{% elif k.aktif_satis_fiyati == "2"  %}{{k.satis_fiyati_2_tl}}{% elif k.aktif_satis_fiyati == "3"  %}{{k.satis_fiyati_3_tl}}{% elif k.aktif_satis_fiyati == "4"  %}{{k.satis_fiyati_4_tl}}{% elif k.aktif_satis_fiyati == "5"  %}{{k.satis_fiyati_5_tl}}{% elif k.aktif_satis_fiyati == "6"  %}{{k.satis_fiyati_6_tl}}{% elif k.aktif_satis_fiyati == "7"  %}{{k.satis_fiyati_7_tl}}{% elif k.aktif_satis_fiyati == "8"  %}{{k.satis_fiyati_8_tl}}{% elif k.aktif_satis_fiyati == "9"  %}{{k.satis_fiyati_9_tl}}{% elif k.aktif_satis_fiyati == "10"  %}{{k.satis_fiyati_10_tl}}{% endif %}</td> 
+        <td id="tstokbirimfiyati">{{ i|get_stokalisveris }}</td> 
         <td id="tstokindirimyuzdesi">{{j.indirim1}}</td> 
         <td id="tstokkdvyuzdesi">{{j.kdv_orani}}</td> 
-        <td id="tstokotvyuzdesi"></td> 
+        <td id="tstokotvyuzdesi">{{ i|get_otv_fiyati }}</td> 
         <td id="tstokindirim1">{{j.indirim1}}</td> 
         <td id="tstokindirim2">{{j.indirim2}}</td> 
         <td id="tstokindirim3">{{j.indirim3}}</td> 
-        <td id="tstokozelkod1"></td>
-        <td id="tstokozelkod2"></td> 
+        <td id="tstokozelkod1">{{i|get_stok_kodlari_ozel_kod_1}}</td>
+        <td id="tstokozelkod2">{{i|get_stok_kodlari_ozel_kod_2}}</td> 
         <td id="tstokdepartman"></td> 
-        <td id="tstokbirimi">{{i.serbest_stok_birimi}}</td> 
-        <td id="tstokmiktaribilgisi"></td> 
-        <td id="tstokozellik1"></td> 
-        <td id="tstokozellik2"></td> 
-        <td id="tstokozellik3"></td> 
-        <td id="tstokozellik4"></td> 
-        <td id="tstokozellik5"></td> 
-        <td id="tstokalternatifstokkodu"></td> 
-        <td id="tstokalternatifstokadi"></td> 
-        <td id="tstokkalitekodu"></td> 
+        <td id="tstokbirimi">{{j.serbest_stok_birimi}}</td> 
+        <td id="tstokmiktaribilgisi">{{j.stokmiktari}}</td>
+        <td id="tstokozellik1">{{ i|get_stok_detaylari_ozellik1 }}</td> 
+        <td id="tstokozellik2">{{ i|get_stok_detaylari_ozellik2 }}</td> 
+        <td id="tstokozellik3">{{ i|get_stok_detaylari_ozellik3 }}</td> 
+        <td id="tstokozellik4">{{ i|get_stok_detaylari_ozellik4 }}</td> 
+        <td id="tstokozellik5">{{ i|get_stok_detaylari_ozellik5 }}</td> 
+        <td id="tstokalternatifstokkodu">{{i|get_stok_kodlari_alternatifstokkodu}}</td> 
+        <td id="tstokalternatifstokadi">{{i|get_stok_kodlari_alternatifstokadi}}</td> 
+        <td id="tstokkalitekodu">{{i | get_stok_kodlari_kalitekodu}}</td> 
         <td id="tstokanamiktari"></td> 
         <td id="tstokanamiktaribirimfiyattl"></td> 
-        <td id="tstokanamiktaribirimfiyatdvz"></td> 
-      {% else %}
-        {% endif %}
-      {% endfor %}
+        <td id="tstokanamiktaribirimfiyatdvz"></td>
       {% else %}
       {% endif %}
     {% endfor %} 
@@ -573,8 +569,8 @@ allCustomSelects.forEach((select, index) => {
     document.getElementsByName('birimbilgisi')[selectIndex].value = document.getElementById(selectedOption).cells[0].innerText;
     document.getElementsByName('stokbirimfiyati')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[1].innerText.replace(",", "."));
     document.getElementsByName('stokindirimyuzdesi')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[2].innerText.replace(",", "."));
-    document.getElementsByName('stokkdvyuzdesi')[selectIndex].value = document.getElementById(selectedOption).cells[3].innerText;
-    document.getElementsByName('stokotvyuzdesi')[selectIndex].value = document.getElementById(selectedOption).cells[4].innerText;
+    document.getElementsByName('stokkdvyuzdesi')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[3].innerText.replace(",", "."));
+    document.getElementsByName('stokotvyuzdesi')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[4].innerText.replace(",", "."));
     document.getElementsByName('stokindirim1')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[5].innerText.replace(",", "."));
     document.getElementsByName('stokindirim2')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[6].innerText.replace(",", "."));
     document.getElementsByName('stokindirim3')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[7].innerText.replace(",", "."));
@@ -582,7 +578,7 @@ allCustomSelects.forEach((select, index) => {
     document.getElementsByName('stokozelkod2')[selectIndex].value = document.getElementById(selectedOption).cells[9].innerText;
     document.getElementsByName('stokdepartman')[selectIndex].value = document.getElementById(selectedOption).cells[10].innerText;
     document.getElementsByName('stokbirimi')[selectIndex].value = document.getElementById(selectedOption).cells[11].innerText;
-    document.getElementsByName('stokmiktaribilgisi')[selectIndex].value = document.getElementById(selectedOption).cells[12].innerText;
+    document.getElementsByName('stokmiktaribilgisi')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[12].innerText.replace(",", "."));
     document.getElementsByName('stokozellik1')[selectIndex].value = document.getElementById(selectedOption).cells[13].innerText;
     document.getElementsByName('stokozellik2')[selectIndex].value = document.getElementById(selectedOption).cells[14].innerText;
     document.getElementsByName('stokozellik3')[selectIndex].value = document.getElementById(selectedOption).cells[15].innerText;
@@ -591,7 +587,7 @@ allCustomSelects.forEach((select, index) => {
     document.getElementsByName('stokalternatifstokkodu')[selectIndex].value = document.getElementById(selectedOption).cells[18].innerText;
     document.getElementsByName('stokalternatifstokadi')[selectIndex].value = document.getElementById(selectedOption).cells[19].innerText;
     document.getElementsByName('stokkalitekodu')[selectIndex].value = document.getElementById(selectedOption).cells[20].innerText;
-    document.getElementsByName('stokanamiktari')[selectIndex].value = document.getElementById(selectedOption).cells[21].innerText;
+    document.getElementsByName('stokanamiktari')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[21].innerText.replace(",", "."));
     document.getElementsByName('stokanamiktaribirimfiyattl')[selectIndex].value = document.getElementById(selectedOption).cells[22].innerText;
     document.getElementsByName('stokanamiktaribirimfiyatdvz')[selectIndex].value = document.getElementById(selectedOption).cells[23].innerText;
   });
