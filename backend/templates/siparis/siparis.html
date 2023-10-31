@@ -650,11 +650,11 @@ allCustomSelects.forEach((select, index) => {
         otv = vergisizTutar-(vergisizTutar * 100 / (parseFloat(stokOtvYuzdesiValue) + 100));
         vergisizTutar = vergisizTutar - otv;
         indirim_tutari = vergisizTutar *parseFloat(stokIndirimYuzdesiValue)/100
-        document.querySelectorAll("#stokkdvtl")[index].value = kdv ;
-        document.querySelectorAll("#stokotvtl")[index].value = otv ;
-        document.querySelectorAll("#stokindirimtl")[index].value = indirim_tutari;
-        document.querySelectorAll("#vergisiztutar")[index].value = vergisizTutar;
-        document.querySelectorAll("#stoktutari")[index].value = toplam_tutar;
+        document.querySelectorAll("#stokkdvtl")[index].value = kdv.toFixed(2) ;
+        document.querySelectorAll("#stokotvtl")[index].value = otv.toFixed(2) ;
+        document.querySelectorAll("#stokindirimtl")[index].value = indirim_tutari.toFixed(2);
+        document.querySelectorAll("#vergisiztutar")[index].value = vergisizTutar.toFixed(2);
+        document.querySelectorAll("#stoktutari")[index].value = toplam_tutar.toFixed(2);
         }
         else{
           var toplam_tutar = parseFloat(stokBirimFiyatiValue)*parseFloat(stokMiktariValue);
@@ -666,11 +666,11 @@ allCustomSelects.forEach((select, index) => {
         fiyat = otv + vergisizTutar;
         kdv =  (fiyat * parseFloat(stokKdvYuzdesiValue) / 100);
         fiyat = fiyat + kdv;
-        document.querySelectorAll("#stokkdvtl")[index].value = kdv ;
-        document.querySelectorAll("#stokotvtl")[index].value = otv ;
-        document.querySelectorAll("#vergisiztutar")[index].value = vergisizTutar;
-        document.querySelectorAll("#stoktutari")[index].value = toplam_tutar;
-        document.querySelectorAll("#stokindirimtl")[index].value = indirim_tutari;
+        document.querySelectorAll("#stokkdvtl")[index].value = kdv.toFixed(2) ;
+        document.querySelectorAll("#stokotvtl")[index].value = otv.toFixed(2) ;
+        document.querySelectorAll("#vergisiztutar")[index].value = vergisizTutar.toFixed(2);
+        document.querySelectorAll("#stoktutari")[index].value = toplam_tutar.toFixed(2);
+        document.querySelectorAll("#stokindirimtl")[index].value = indirim_tutari.toFixed(2);
         }
         topla()
     });
@@ -700,11 +700,11 @@ function topla() {
       vergisiz_turar_bilgisi += parseFloat(input.value); // Değerlerin sayısal toplamı (eğer sayıysa)
     });
     genel_toplam = kdvtoplam+otvtoplam+vergisiz_turar_bilgisi-stokindirimtll;
-    document.getElementById("indirimtutari").innerHTML = stokindirimtll;
-    document.getElementById("kdvtutari").innerHTML = kdvtoplam;
-    document.getElementById("otvtutari").innerHTML = otvtoplam;
-    document.getElementById("geneltutar").innerHTML = vergisiz_turar_bilgisi;
-    document.getElementById("geneltoplam").innerHTML = genel_toplam;
+    document.getElementById("indirimtutari").innerHTML = stokindirimtll.toFixed(2);
+    document.getElementById("kdvtutari").innerHTML = kdvtoplam.toFixed(2);
+    document.getElementById("otvtutari").innerHTML = otvtoplam.toFixed(2);
+    document.getElementById("geneltutar").innerHTML = vergisiz_turar_bilgisi.toFixed(2);
+    document.getElementById("geneltoplam").innerHTML = genel_toplam.toFixed(2);
 
 }
   </script>
