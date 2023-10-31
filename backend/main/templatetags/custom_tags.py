@@ -52,7 +52,6 @@ def get_stok_kodlari_kalitekodu(stok_kart):
 def get_stokalisveris(stok_kart):
     
     satis_fiyati = stok_alis_satis.objects.filter(stok_karti_bilgisi=stok_kart.id).last()
-    print(satis_fiyati,"stok")
     if satis_fiyati.aktif_satis_fiyati == "1":
         satis_fiyati = satis_fiyati.satis_fiyati_1_tl
     elif satis_fiyati.aktif_satis_fiyati == "2":
