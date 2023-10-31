@@ -1291,6 +1291,7 @@ class siparis_olustur(models.Model):
     kdv_tutari_tl = models.FloatField(verbose_name="KDV Tutarı TL" ,blank=True,null=True,default=0)
     otv_yuzdesi = models.FloatField(verbose_name="ÖTV Yüzdesi" ,blank=True,null=True,default=0)
     otv_tutari_tl = models.FloatField(verbose_name="ÖTV Tutarı TL" ,blank=True,null=True,default=0)
+    stoktutari = models.FloatField(verbose_name="Stok Tutarı TL" ,blank=True,null=True,default=0)
     durumu = models.CharField(max_length=200,verbose_name="Durum",blank=True,null=True)
     indirim1 = models.FloatField(verbose_name="İndirim 1",blank=True,null=True)
     indirim2 = models.FloatField(verbose_name="İndirim 2",blank=True,null=True)
