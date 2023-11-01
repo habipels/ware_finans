@@ -338,7 +338,7 @@
               {% endfor %}
               
             </select></td>
-            <td><select name="dovizcinsi" id="">
+            <td><select onchange="hesaplaFiyat(this)" name="dovizcinsi" id="">
               <option value="TL">TL</option>
               <option value="Dolar">Dolar</option>
               <option value="Euro">Euro</option>
@@ -566,16 +566,17 @@ function showConfirmationPopup() {
 });
   yeniselect();
   function yeniselect(selectedStock) {
+    
   const allCustomSelects = document.querySelectorAll('#stoksecim');
 // Her bir <select> için olay dinleyici ekle
 allCustomSelects.forEach((select, index) => {
   hesaplaFiyat()
-  select.addEventListener('change', function(event) {
-    
-    const selectedOption = event.target.value;
+
+    const selectedOption = select.value;
     const selectIndex = index ; // Seçeneğin sırasını almak için index'i kullanabilirsiniz.
     // Tıklanan seçeneğin ve sırasının konsola yazdırılması.
     // İstediğiniz işlemi bu noktada gerçekleştirebilirsiniz.
+    
     var stockName = selectedStock.options[selectedStock.selectedIndex].text; // Seçilen stok adı
     var stockPrice = "100"+selectIndex; // Örnek olarak sabit bir stok fiyatı
     var selectedStockValue = selectedStock.value;
@@ -606,7 +607,7 @@ allCustomSelects.forEach((select, index) => {
     document.getElementsByName('stokanamiktari')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[21].innerText.replace(",", "."));
     document.getElementsByName('stokanamiktaribirimfiyattl')[selectIndex].value = document.getElementById(selectedOption).cells[22].innerText;
     document.getElementsByName('stokanamiktaribirimfiyatdvz')[selectIndex].value = document.getElementById(selectedOption).cells[23].innerText;
-  });
+    hesaplaFiyat()
 });};
   function fillStockInformation(selectedStock) {
     
