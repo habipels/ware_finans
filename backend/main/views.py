@@ -979,13 +979,15 @@ def siparis_sayfasi(request,slug):
             teslimtarihi = request.POST.get("teslimtarihi")
             teslimsekili = request.POST.get("teslimsekili")
             departman = request.POST.get("departman")
+            uygunkur = request.POST.get("uygunkur")
+            gunlukkur = request.POST.get("gunlukkur")
             print(caribilgisi) 
             siparisislem = siparisislem_durumlari.objects.create(
                 bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),
                 siparis_tur= grupturu ,ent_kodu = entkodu,kdv_durumu = kdvdurumu,
                 siparis_no = siparisno,satici = satici,cari_unvan = get_object_or_404(cari_kartlar,id = caribilgisi),
                 sube_kodu = get_object_or_404(sube,id = sube_bilgisi),islem_doviz_cinsi  = dovizcinsi,
-                depo = depobilgisi,departman = departman,tarih  = teslimtarihi,teslim_sekli = teslimsekili
+                depo = depobilgisi,departman = departman,tarih  = teslimtarihi,teslim_sekli = teslimsekili,gunluk_kur = gunlukkur,uygun_kur = uygunkur
             )
             if True:
                 stokbilgisi = request.POST.getlist("stok")
@@ -1027,6 +1029,7 @@ def siparis_sayfasi(request,slug):
                 stokanamiktaribirimfiyatdvz = request.POST.getlist("stokanamiktaribirimfiyatdvz")
                 stokpartikodu = request.POST.getlist("stokpartikodu")
                 sonkullanimtarihi = request.POST.getlist("sonkullanimtarihi")
+                birimfiyatdovz =  request.POST.getlist("birimfiyatdovz")
                 for i in range(len(stokbilgisi)):
                     siparis_olustur.objects.create(
                         grup_kodu = get_object_or_404(siparisislem_durumlari,id = siparisislem.id),
@@ -1046,7 +1049,7 @@ def siparis_sayfasi(request,slug):
                         ozellik3  =stokozellik3[i],ozellik4  = stokozellik4[i],ozellik5  = stokozellik5[i],
                         ana_miktar = stokanamiktari[i],ana_birim_fiyat_tl = stokanamiktaribirimfiyattl[i],
                         ana_birim_fiyat_dvz = stokanamiktaribirimfiyatdvz[i],parti_kodu  =stokpartikodu[i],
-                        son_kullanim_tarihi = sonkullanimtarihi[i],stoktutari = stoktutari[i]
+                        son_kullanim_tarihi = sonkullanimtarihi[i],stoktutari = stoktutari[i],birim_fiyat_dvz = birimfiyatdovz[i]
 
                         )
         link = "/"+slug+"/siparis/"

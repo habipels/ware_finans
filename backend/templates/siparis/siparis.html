@@ -236,13 +236,23 @@
     <span>Toplam İndirim TL:  <b id="indirimtutari"></b>|</span>
     <span>Toplam KDV TL: <b id="kdvtutari"></b>|</span>
     <span>Toplam ÖTV TL: <b id="otvtutari"></b>|</span>
-    <span>Genel Toplam  TL: <b id="geneltoplam"></b>|</span>
+    <span>Genel Toplam  TL: <b id="geneltoplam"></b>|
+      <input type="hidden" id="igeneltoplam" name="igeneltoplam" >
+      <input type="hidden" id="iotvtutari" name="iotvtutari" >
+      <input type="hidden" id="ikdvtutari" name="ikdvtutari" >
+      <input type="hidden" id="iindirimtutari" name="iindirimtutari" >
+      <input type="hidden" id="igeneltutar" name="igeneltutar" ></span>
     <br>
     <span>Toplam Tutar Döviz:  <b id="geneltutardvz"></b>| </span>
     <span>Toplam İndirim Döviz:  <b id="indirimtutaridvz"></b>|</span>
     <span>Toplam KDV Döviz: <b id="kdvtutaridvz"></b>|</span>
     <span>Toplam ÖTV Döviz: <b id="otvtutaridvz"></b>|</span>
-    <span>Genel Toplam  Döviz: <b id="geneltoplamdvz"></b>|</span>
+    <span>Genel Toplam  Döviz: <b id="geneltoplamdvz"></b>|
+      <input type="hidden" id="igeneltoplamdvz" name="igeneltoplamdvz" >
+      <input type="hidden" id="iotvtutaridvz" name="iotvtutaridvz" >
+      <input type="hidden" id="ikdvtutaridvz" name="ikdvtutaridvz" >
+      <input type="hidden" id="iindirimtutaridvz" name="iindirimtutaridvz" >
+      <input type="hidden" id="igeneltutardvz" name="igeneltutardvz" ></span>
     <div class="table-responsive " style="
     height: 300px;
     overflow: auto;">
@@ -344,7 +354,7 @@
               {% endfor %}
               
             </select></td>
-            <td><select onchange="dovizac(this)"  name="dovizcinsi" id="">
+            <td><select onchange="dovizac(this)"  name="dovizcinsi" id="dovizcinsi">
               <option value="TL">TL</option>
               <option value="Dolar">Dolar</option>
               <option value="Euro">Euro</option>
@@ -508,6 +518,7 @@ function showConfirmationPopup() {
             <td><b>Seçimi Yaptınız</b></td>
             <td><input type="text" name="departman"></td>
             <td><input type="number" step="0.001" oninput="hesaplaFiyat()" id="stokmiktari" value="1" name="stokmiktari"></td>
+            <td id="kur"><input type="number" id="birimfiyatdovz" oninput="hesaplaFiyat()" value="0" step="0.001" name="birimfiyatdovz"></td>
             <td><input type="text" id="birimbilgisi" name="birimbilgisi"></td>
             <td><input type="number" id="stokbirimfiyati" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokbirimfiyati"></td>
             <td><input type="number" id="stokindirimyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokindirimyuzdesi"></td>
@@ -619,7 +630,20 @@ allCustomSelects.forEach((select, index) => {
     hesaplaFiyat()
 });};
   function dovizac() {
-    document.querySelectorAll("#kur");
+    var selectElementtt = document.getElementById("dovizcinsi");
+    var selectedValueesss = selectElementtt.options[selectElementtt.selectedIndex].value;
+    if (selectedValueesss == "TL"){var doviz = document.querySelectorAll('[id="kur"]');
+    doviz.forEach(function(element) {
+        element.style.display = 'none';
+    });}
+    else{
+      var doviz = document.querySelectorAll('[id="kur"]');
+    doviz.forEach(function(element) {
+        element.style.display = 'block';
+    });
+    }
+
+    
   }
 
   </script>
@@ -629,6 +653,8 @@ allCustomSelects.forEach((select, index) => {
     stokBirimFiyati.forEach((element, index) => {
         var selectElementt = document.getElementById("kdvdurumu");
         var selectedValueess = selectElementt.options[selectElementt.selectedIndex].value;
+        var selectElementtt = document.getElementById("dovizcinsi");
+        var selectedValueesss = selectElementtt.options[selectElementtt.selectedIndex].value;
         var stokBirimFiyatiValue = element.value;
         var stokIndirimYuzdesiValue = document.querySelectorAll("#stokindirimyuzdesi")[index].value;
         var stokIndirimTlValue = document.querySelectorAll("#stokindirimtl")[index].value;
@@ -638,7 +664,8 @@ allCustomSelects.forEach((select, index) => {
         var stokOtvYuzdesiValue = document.querySelectorAll("#stokotvyuzdesi")[index].value;
         var stokOtvTlValue = document.querySelectorAll("#stokotvtl")[index].value;
         var stokMiktariValue = document.querySelectorAll("#stokmiktari")[index].value;
-        
+        var doviz = document.querySelectorAll("#birimfiyatdovz")[index].value;
+        var uygunkur = document.querySelectorAll("#uygunkur")[0].value;
         var fiyat;
         var kdv;
         var otv;
@@ -646,7 +673,13 @@ allCustomSelects.forEach((select, index) => {
         var den ; 
         var indirim_tutari ;
         if(selectedValueess == "Dahil"){
-          var toplam_tutar = parseFloat(stokBirimFiyatiValue)*parseFloat(stokMiktariValue);
+          if(selectedValueesss == "TL"){
+            var toplam_tutar = parseFloat(stokBirimFiyatiValue)*parseFloat(stokMiktariValue);
+          }
+          else{
+            var toplam_tutar = parseFloat(doviz)*parseFloat(stokMiktariValue)*parseFloat(uygunkur);
+          }
+          
         
         fiyat = toplam_tutar;
         
@@ -662,8 +695,12 @@ allCustomSelects.forEach((select, index) => {
         document.querySelectorAll("#stoktutari")[index].value = toplam_tutar.toFixed(2);
         }
         else{
-          var toplam_tutar = parseFloat(stokBirimFiyatiValue)*parseFloat(stokMiktariValue);
-        
+          if(selectedValueesss == "TL"){
+            var toplam_tutar = parseFloat(stokBirimFiyatiValue)*parseFloat(stokMiktariValue);
+          }
+          else{
+            var toplam_tutar = parseFloat(doviz)*parseFloat(stokMiktariValue)*parseFloat(uygunkur);
+          }
         vergisizTutar = toplam_tutar;
         indirim_tutari = vergisizTutar *parseFloat(stokIndirimYuzdesiValue)/100
         vergisizTutar = vergisizTutar - indirim_tutari
@@ -682,10 +719,14 @@ allCustomSelects.forEach((select, index) => {
 }
 function topla() {
     // Aynı ID'ye sahip inputları seçmek için bir sorgu kullanarak bir NodeList oluşturun
+    var selectElementtt = document.getElementById("dovizcinsi");
+    var selectedValueesss = selectElementtt.options[selectElementtt.selectedIndex].value;
     var inputs = document.querySelectorAll('[id="stokotvtl"]');
     var kdvs = document.querySelectorAll('[id="stokkdvtl"]');
     var stokindirimtls = document.querySelectorAll('[id="stokindirimtl"]');
     var vergisiz = document.querySelectorAll('[id="vergisiztutar"]');
+    var doviz = document.querySelectorAll('[id="birimfiyatdovz"]');
+    var uygunkur = document.querySelectorAll("#uygunkur")[0].value;
     var vergisiz_turar_bilgisi = 0;
     var otvtoplam = 0;
     var kdvtoplam = 0;
@@ -710,7 +751,26 @@ function topla() {
     document.getElementById("otvtutari").innerHTML = otvtoplam.toFixed(2);
     document.getElementById("geneltutar").innerHTML = vergisiz_turar_bilgisi.toFixed(2);
     document.getElementById("geneltoplam").innerHTML = genel_toplam.toFixed(2);
+    document.getElementById("iindirimtutari").value = stokindirimtll.toFixed(2);
+    document.getElementById("ikdvtutari").value = kdvtoplam.toFixed(2);
+    document.getElementById("iotvtutari").value = otvtoplam.toFixed(2);
+    document.getElementById("igeneltutar").value = vergisiz_turar_bilgisi.toFixed(2);
+    document.getElementById("igeneltoplam").value = genel_toplam.toFixed(2);
+    if(selectedValueesss == "TL"){
 
+    }
+    else{
+      document.getElementById("indirimtutaridvz").innerHTML = (stokindirimtll/parseFloat(uygunkur)).toFixed(2);
+      document.getElementById("kdvtutaridvz").innerHTML =(kdvtoplam/parseFloat(uygunkur)).toFixed(2);
+      document.getElementById("otvtutaridvz").innerHTML = (otvtoplam/parseFloat(uygunkur)).toFixed(2);
+      document.getElementById("geneltutardvz").innerHTML = (vergisiz_turar_bilgisi/parseFloat(uygunkur)).toFixed(2);
+      document.getElementById("geneltoplamdvz").innerHTML = (genel_toplam/parseFloat(uygunkur)).toFixed(2);
+      document.getElementById("iindirimtutaridvz").value = (stokindirimtll/parseFloat(uygunkur)).toFixed(2);
+      document.getElementById("ikdvtutaridvz").value =( kdvtoplam/parseFloat(uygunkur)).toFixed(2);
+      document.getElementById("iotvtutaridvz").value = (otvtoplam/parseFloat(uygunkur)).toFixed(2);
+      document.getElementById("igeneltutardvz").value = (vergisiz_turar_bilgisi/parseFloat(uygunkur)).toFixed(2);
+      document.getElementById("igeneltoplamdvz").value = (genel_toplam/parseFloat(uygunkur)).toFixed(2);
+    }
 }
   </script>
 {% endblock content %}
