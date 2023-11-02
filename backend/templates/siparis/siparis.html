@@ -29,6 +29,14 @@
       </li>
       <li>
         <ul>
+        </ul><a href="" title="">Aktif / Pasif</a>
+      </li>
+       <li>
+        <ul>
+        </ul><a href="" title="">Siparişe Onay Ver</a>
+      </li>
+      <li>
+        <ul>
         </ul><a href="" title="">Yazdır</a>
       </li>
     </ul>
@@ -70,162 +78,53 @@
           </tr>
         </thead>
         <tbody>
+          {% for i in siparisler %}
           <tr>
-
-            <td><input type="radio">01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>{{i.kayit_tarihi}}</td>
+            <td>{{i.siparis_no}}</td>
+            <td>{{i.siparis_tur}}</td>
+            <td>{% if i.irsaliyeye_aktar %}
+            Tamamı Teslim Edildi   
+            {% else %}
+            Beklemede
+            {% endif %}</td>
+            <td>{% if i.onay %}
+            Onaylandı
+              
+            {% else %}
+            Henüz Onaylanmadı
+            {% endif %}</td>
+            <td>{{i.ent_kodu}}</td>
+            <td>{{i}}</td>
+            
+            <td>{% if i.aktif_pasif %}
+            Pasif
+            {% else %}
+            Aktif
+            {% endif %}</td>
+            <td>{{i.cari_unvan.cari_adi}}</td>
+            <td>{{i.islem_doviz_cinsi}}</td>
+            <td>{{i.tutar_doviz}}</td>
+            <td>{{i.tutar_tl}}</td>
+            <td>{{i.ozel_kod1}}</td>
+            <td>{{i.ozel_kod2}}</td>
+            <td>{{i}}</td>
+            <td>{{i.depo}}</td>
+            <td>{{i.departman}}</td>
+            <td>{{i.sube_kodu.sube_adi}} {{i.sube_kodu.sube_unvani}}</td>
+            <td>{{i.satici}}</td>
+            <td>{{i}}</td>
+            <td>{{i.gunluk_kur}}</td>
+            <td>{{i.uygun_kur}}</td>
+            <td>{% if i.iptaledildi %}
+              Hayır
+            {% else %}
+            Evet
+            {% endif %}</td>
+            <td>{{i.bagli_oldugu_firma.firma_muhasabecisi.username}}</td>
+            <td>{{i.kayit_tarihi}}</td>
           </tr>
-          <tr>
-
-            <td><input type="radio">01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-
-            <td><input type="radio">01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-
-            <td><input type="radio">01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-
-            <td><input type="radio">01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-
-            <td><input type="radio">01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-
-            <td><input type="radio">01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-
-            <td><input type="radio">01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-
-            <td><input type="radio">01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-
-            <td><input type="radio">01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-
-            <td><input type="radio">01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-
-            <td><input type="radio">01</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
+          {% endfor %}
         </tbody>
       </table>
     </div>
@@ -237,22 +136,22 @@
     <span>Toplam KDV TL: <b id="kdvtutari"></b>|</span>
     <span>Toplam ÖTV TL: <b id="otvtutari"></b>|</span>
     <span>Genel Toplam  TL: <b id="geneltoplam"></b>|
-      <input type="hidden" id="igeneltoplam" name="igeneltoplam" >
-      <input type="hidden" id="iotvtutari" name="iotvtutari" >
-      <input type="hidden" id="ikdvtutari" name="ikdvtutari" >
-      <input type="hidden" id="iindirimtutari" name="iindirimtutari" >
-      <input type="hidden" id="igeneltutar" name="igeneltutar" ></span>
+      <input type="hidden" value="0" id="igeneltoplam" name="igeneltoplam" >
+      <input type="hidden" value="0" id="iotvtutari" name="iotvtutari" >
+      <input type="hidden" value="0" id="ikdvtutari" name="ikdvtutari" >
+      <input type="hidden" value="0" id="iindirimtutari" name="iindirimtutari" >
+      <input type="hidden" value="0" id="igeneltutar" name="igeneltutar" ></span>
     <br>
     <span>Toplam Tutar Döviz:  <b id="geneltutardvz"></b>| </span>
     <span>Toplam İndirim Döviz:  <b id="indirimtutaridvz"></b>|</span>
     <span>Toplam KDV Döviz: <b id="kdvtutaridvz"></b>|</span>
     <span>Toplam ÖTV Döviz: <b id="otvtutaridvz"></b>|</span>
     <span>Genel Toplam  Döviz: <b id="geneltoplamdvz"></b>|
-      <input type="hidden" id="igeneltoplamdvz" name="igeneltoplamdvz" >
-      <input type="hidden" id="iotvtutaridvz" name="iotvtutaridvz" >
-      <input type="hidden" id="ikdvtutaridvz" name="ikdvtutaridvz" >
-      <input type="hidden" id="iindirimtutaridvz" name="iindirimtutaridvz" >
-      <input type="hidden" id="igeneltutardvz" name="igeneltutardvz" ></span>
+      <input type="hidden" value="0" id="igeneltoplamdvz" name="igeneltoplamdvz" >
+      <input type="hidden" value="0" id="iotvtutaridvz" name="iotvtutaridvz" >
+      <input type="hidden" value="0" id="ikdvtutaridvz" name="ikdvtutaridvz" >
+      <input type="hidden" value="0" id="iindirimtutaridvz" name="iindirimtutaridvz" >
+      <input type="hidden" value="0" id="igeneltutardvz" name="igeneltutardvz" ></span>
     <div class="table-responsive " style="
     height: 300px;
     overflow: auto;">
@@ -360,7 +259,7 @@
               <option value="Euro">Euro</option>
             </select></td>
             <td><input type="text" name="depobilgisi"></td>
-            <td><input type="date" name="teslimtarihi"></td>
+            <td><input type="date" pattern="\d{4}-\d{2}-\d{2}" required name="teslimtarihi"></td>
             <td><input type="text" name="teslimsekili"></td>
             <td><input type="text" name="departman"></td>
             <td><input type="number" step="0.001" oninput="hesaplaFiyat()" id="stokmiktari" value="1" name="stokmiktari"></td>
@@ -378,7 +277,7 @@
             <td><input type="number" id="stokotvyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvyuzdesi"></td>
             <td><input type="number" id="stokotvtl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtl"></td>
             <td><input type="text" name="stokteslimsekli"></td>
-            <td><input type="date" name="urunteslimtarihi"></td>
+            <td><input type="date" pattern="\d{4}-\d{2}-\d{2}" required name="urunteslimtarihi"></td>
             <td><input type="text" name="stokdurumu"></td>
             <td><input type="number" id="stokindirim1" step="0.001" name="stokindirim1"></td>
             <td><input type="number" id="stokindirim2" step="0.001" name="stokindirim2"></td>
@@ -402,7 +301,7 @@
             <td><input type="number" id="stokanamiktaribirimfiyattl" step="0.001" name="stokanamiktaribirimfiyattl"></td>
             <td><input type="number" id="stokanamiktaribirimfiyatdvz" step="0.001" name="stokanamiktaribirimfiyatdvz"></td>
             <td><input type="text" id="stokpartikodu" name="stokpartikodu"></td>
-            <td><input type="date" id="sonkullanimtarihi" name="sonkullanimtarihi"></td>
+            <td><input type="date" pattern="\d{4}-\d{2}-\d{2}" required id="sonkullanimtarihi" name="sonkullanimtarihi"></td>
           </tr>
         </tbody>
       </table>
@@ -530,7 +429,7 @@ function showConfirmationPopup() {
             <td><input type="number" id="stokotvyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvyuzdesi"></td>
             <td><input type="number" id="stokotvtl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtl"></td>
             <td><input type="text" name="stokteslimsekli"></td>
-            <td><input type="date" name="urunteslimtarihi"></td>
+            <td><input type="date" pattern="\d{4}-\d{2}-\d{2}" required name="urunteslimtarihi"></td>
             <td><input type="text" name="stokdurumu"></td>
             <td><input type="number" id="stokindirim1" step="0.001" name="stokindirim1"></td>
             <td><input type="number" id="stokindirim2" step="0.001" name="stokindirim2"></td>
@@ -554,7 +453,7 @@ function showConfirmationPopup() {
             <td><input type="number" id="stokanamiktaribirimfiyattl" step="0.001" name="stokanamiktaribirimfiyattl"></td>
             <td><input type="number" id="stokanamiktaribirimfiyatdvz" step="0.001" name="stokanamiktaribirimfiyatdvz"></td>
             <td><input type="text" id="stokpartikodu" name="stokpartikodu"></td>
-            <td><input type="date" id="sonkullanimtarihi" name="sonkullanimtarihi"></td>
+            <td><input type="date" pattern="\d{4}-\d{2}-\d{2}" required id="sonkullanimtarihi" name="sonkullanimtarihi"></td>
           </tr>
   `;
 
@@ -678,6 +577,7 @@ allCustomSelects.forEach((select, index) => {
           }
           else{
             var toplam_tutar = parseFloat(doviz)*parseFloat(stokMiktariValue)*parseFloat(uygunkur);
+            document.querySelectorAll("#stokbirimfiyati")[index].value = (parseFloat(doviz)*parseFloat(uygunkur)).toFixed(2);
           }
           
         
@@ -700,6 +600,7 @@ allCustomSelects.forEach((select, index) => {
           }
           else{
             var toplam_tutar = parseFloat(doviz)*parseFloat(stokMiktariValue)*parseFloat(uygunkur);
+            document.querySelectorAll("#stokbirimfiyati")[index].value = (parseFloat(doviz)*parseFloat(uygunkur)).toFixed(2);
           }
         vergisizTutar = toplam_tutar;
         indirim_tutari = vergisizTutar *parseFloat(stokIndirimYuzdesiValue)/100

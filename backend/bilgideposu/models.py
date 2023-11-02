@@ -1273,6 +1273,11 @@ class siparisislem_durumlari(models.Model):
     tutar_doviz = models.FloatField(verbose_name="Tutar Döviz",blank=True,null=True)
     tutar_tl = models.FloatField(verbose_name="Tutar TL",blank=True,null=True)
     aktif_pasif = models.BooleanField(verbose_name="Aktif Pasif Olayı", default=False)
+    otv_tutari = models.FloatField(verbose_name="Ötv Tutarı TL",blank=True,null=True)
+    kdv_tutari = models.FloatField(verbose_name="KDV Tutarı TL",blank=True,null=True)
+    indirim_tutari = models.FloatField(verbose_name="İndirim Tutarı TL",blank=True,null=True)
+    genel_tutari = models.FloatField(verbose_name="Genel Tutarı TL",blank=True,null=True)
+    iptaledildi = models.BooleanField(verbose_name="İptal Edildi" , default=False)
 class siparis_olustur(models.Model):    
     grup_kodu = models.ForeignKey(siparisislem_durumlari,blank=True,null=True,on_delete=models.SET_NULL,verbose_name="Grup Kodu")
     bagli_oldugu_firma = models.ForeignKey(firma,blank=True,null=True,on_delete=models.SET_NULL)
