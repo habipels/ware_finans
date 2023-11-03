@@ -1324,6 +1324,73 @@ class siparis_olustur(models.Model):
     parti_kodu = models.CharField(max_length=200,verbose_name="Parti Kodu",blank=True,null=True)
     son_kullanim_tarihi = models.DateField(verbose_name="Kayıt Tarihi",blank=True,null=True)
 
+#irsaliye
+class irsaliyeislem_durumlari(models.Model):
+    siparis_turu_secim = (
+        ("",""),
+        ("Satış İrsaliyesi","Satış İrsaliyesi"),
+        ("Satış İade İrsaliyesi","Satış İade İrsaliyesi"),
+        ("Alış İrsaliyesi","Alış İrsaliyesi"),
+        ("Alış İade İrsaliyesi","Alış İade İrsaliyesi"),
+        ("Konsinye Çıkış İrsaliyesi","Konsinye Çıkış İrsaliyesi"),
+        ("Konsinye Çıkış İade İrsaliyesi","Konsinye Çıkış İade İrsaliyesi"),
+        ("Konsinye Giriş İrsaliyesi","Konsinye Giriş İrsaliyesi"),
+        ("Konsinye Giriş İade İrsaliyesi","Konsinye Giriş İade İrsaliyesi"),
+        ("Depo Sayım Fazlası","Depo Sayım Fazlası"),
+        ("Depo Sayım Eksikliği","Depo Sayım Eksikliği"),
+        ("Depo Transfer Fişi","Depo Transfer Fişi"),
+        ("Üretimden Giriş Fişi","Üretimden Giriş Fişi"),
+        ("Üretim Sevk Fişi","Üretim Sevk Fişi"),
+        ("Üretim Sevk iade Fişi","Üretim Sevk iade Fişi"),
+        ("Fire Fişi","Fire Fişi"),
+        ("Sarf Fişi","Sarf Fişi"),
+        ("Açılış Fişi","Açılış Fişi"),
+        ("Stok (Depo) Sayım Fişleri","Stok (Depo) Sayım Fişleri"),
+    )
+    ent_kodu_secim = (
+        ("1","1"),
+        ("2","2")
+    )
+    kdv_durumu_secim = (
+        ("Hariç","Hariç"),
+        ("Dahil","Dahil")
+    )
+    doviz = (
+        ("", ""),
+        ("TL", "TL"),
+        ("Euro", "£"),
+        ("Dolar", "$")
+    )
+    siparis_tur = models.CharField(max_length=200,verbose_name="Sipariş Türü",choices=siparis_turu_secim,default="")
+    bagli_oldugu_firma = models.ForeignKey(firma,blank=True,null=True,on_delete=models.SET_NULL)
+    kayit_tarihi = models.DateTimeField(default=datetime.now,null=True)
+    depo = models.CharField(max_length=200,verbose_name="Depo Adı",blank=True,null=True)
+    ent_kodu = models.CharField(max_length=20,verbose_name="Entegrasyon Kodu",choices=ent_kodu_secim,default="1")
+    kdv_durumu = models.CharField(max_length=200,verbose_name="KDV Durumu",choices=kdv_durumu_secim,default="Hariç")
+    siparis_no = models.CharField(max_length=200,verbose_name="Sipariş No",blank=True,null=True)
+    tarih = models.DateField(verbose_name="Kayıt Tarihi",blank=True,null=True)
+    teslim_sekli = models.CharField(max_length=200, verbose_name="Teslim Şekli", blank=True, null=True)
+    satici = models.CharField(max_length=200, verbose_name="SAtıcı", blank=True, null=True)
+    cari_unvan = models.ForeignKey(cari_kartlar,blank=True,null=True,verbose_name="Cari Unvan Bilgisi",on_delete=models.SET_NULL)
+    islem_doviz_cinsi = models.CharField(max_length=100, verbose_name="İşlem Döviz Cinsi", choices=doviz, default="")
+    sube_kodu = models.ForeignKey(sube,blank=True,null=True,verbose_name="Şube Bilgisi",on_delete=models.SET_NULL)
+    ozel_kod1 = models.CharField(verbose_name="Özel Kod",blank=True,null=True,max_length=200)
+    ozel_kod2 = models.CharField(verbose_name="Özel Kod 2",blank=True,null=True,max_length=200)
+    departman = models.CharField(verbose_name="departman",blank=True,null=True,max_length=200)
+    onay = models.BooleanField(verbose_name="Sipariş Onaylandı",default=False)
+    gunluk_kur = models.CharField(max_length=200, verbose_name="Günlük Kur", blank=True, null=True)
+    uygun_kur = models.CharField(max_length=200, verbose_name="Uygun Kur", blank=True, null=True)
+    faturaya_aktar = models.BooleanField(verbose_name="Faturaya Aktarıldı" , default=False)
+    tutar_doviz = models.FloatField(verbose_name="Tutar Döviz",blank=True,null=True)
+    tutar_tl = models.FloatField(verbose_name="Tutar TL",blank=True,null=True)
+    aktif_pasif = models.BooleanField(verbose_name="Aktif Pasif Olayı", default=False)
+    otv_tutari = models.FloatField(verbose_name="Ötv Tutarı TL",blank=True,null=True)
+    kdv_tutari = models.FloatField(verbose_name="KDV Tutarı TL",blank=True,null=True)
+    indirim_tutari = models.FloatField(verbose_name="İndirim Tutarı TL",blank=True,null=True)
+    genel_tutari = models.FloatField(verbose_name="Genel Tutarı TL",blank=True,null=True)
+    iptaledildi = models.BooleanField(verbose_name="İptal Edildi" , default=False)
+    silinme_bilgisi = models.BooleanField(verbose_name="Sİpariş Silme Durumu",default=False)
+
 class dilekceler(models.Model):
     bagli_oldugu_firma = models.ForeignKey(firma,blank=True,null=True,on_delete=models.SET_NULL)
     dilekce_adi = models.CharField(max_length=200,verbose_name="Dilekçe Adı",blank=True,null=True)
