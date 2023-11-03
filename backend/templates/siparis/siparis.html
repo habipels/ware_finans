@@ -80,7 +80,7 @@
         <tbody>
           {% for i in siparisler %}
           <tr>
-            <td>{% if i.onay %}
+            <td>{% if i.irsaliyeye_aktar %}
               {{i.kayit_tarihi}}
               {% else %}
               <label for="kasakartisecim{{i.id}}"><input class="kasalar" name="kasakartlari" id="kasakartisecim{{i.id}}" value="{{i.id}}/" type="radio">{{i.kayit_tarihi}}</label>
