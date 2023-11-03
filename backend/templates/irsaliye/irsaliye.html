@@ -216,13 +216,26 @@
           <tr>
             <td><select name="siparisturu" id="">
               <option value="Normal">Normal</option>
-              <option value="İndirimli">İndirimli</option>
             </select></td>
             <td><select name="grupturu" id="grupturu">
-              <option value="Alınan Sipariş">Alınan Sipariş</option>
-              <option value="Verilen Sipariş">Verilen Sipariş</option>
-              <option value="Alınan Teklif">Alınan Teklif</option>
-              <option value="Verilen Teklif">Verilen Teklif</option>
+              <option value="Satış İrsaliyesi">Satış İrsaliyesi</option>
+              <option value="Satış İade İrsaliyesi">Satış İade İrsaliyesi</option>
+              <option value="Alış İrsaliyesi">Alış İrsaliyesi</option>
+              <option value="Alış İade İrsaliyesi">Alış İade İrsaliyesi</option>
+              <option value="Konsinye Çıkış İrsaliyesi">Konsinye Çıkış İrsaliyesi</option>
+              <option value="Konsinye Çıkış İade İrsaliyesi">Konsinye Çıkış İade İrsaliyesi</option>
+              <option value="Konsinye Giriş İrsaliyesi">Konsinye Giriş İrsaliyesi</option>
+              <option value="Konsinye Giriş İade İrsaliyesi">Konsinye Giriş İade İrsaliyesi</option>
+              <option value="Depo Sayım Fazlası">Depo Sayım Fazlası</option>
+              <option value="Depo Sayım Eksikliği">Depo Sayım Eksikliği</option>
+              <option value="Depo Transfer Fişi">Depo Transfer Fişi</option>
+              <option value="Üretimden Giriş Fişi">Üretimden Giriş Fişi</option>
+              <option value="Üretim Sevk Fişi">Üretim Sevk Fişi</option>
+              <option value="Üretim Sevk iade Fişi">Üretim Sevk iade Fişi</option>
+              <option value="Fire Fişi">Fire Fişi</option>
+              <option value="Sarf Fişi">Sarf Fişi</option>
+              <option value="Açılış Fişi">Açılış Fişi</option>
+              <option value="Stok (Depo) Sayım Fişleri">Stok (Depo) Sayım Fişleri</option>
             </select></td>
             <td><input type="text" name="siparisno"></td>
             <td><select name="caribilgisi" id="carisecim">
@@ -260,8 +273,8 @@
               <option value="Euro">Euro</option>
             </select></td>
             <td><input type="text" name="depobilgisi"></td>
-            <td><input type="date" pattern="\d{4}-\d{2}-\d{2}" required name="teslimtarihi"></td>
-            <td><input type="text" name="teslimsekili"></td>
+            <td></td>
+            <td></td>
             <td><input type="text" name="departman"></td>
             <td><input type="number" step="0.001" oninput="hesaplaFiyat()" id="stokmiktari" value="1" name="stokmiktari"></td>
             <td id="kur"><input type="number" id="gunlukkur" oninput="hesaplaFiyat()" value="0" step="0.001" name="gunlukkur">,
