@@ -36,7 +36,13 @@ urlpatterns = [
     #stok İşlemelri
     #siparis işlemleri 
     path("<str:slug>/siparis/", views.siparis_sayfasi, name="siparis_sayfasi"),
+    path("<str:slug>/siparissil/<int:id>/", views.siparis_silme_sayfasi, name="siparis_silme_sayfasi"),
+    #
     #siparis işlemeleri
+    #irsaliye işlemleri 
+    path("<str:slug>/irsaliye/", views.irsaliye_sayfasi, name="irsaliye_sayfasi"),
+    path("<str:slug>/siparissil/<int:id>/", views.siparis_silme_sayfasi, name="siparis_silme_sayfasi"),
+    #irsaliye işlemleri
     #Banka işlemleri 
     path("<str:slug>/banka/", views.banka_sayfasi, name="banka_sayfasi"),
     path("<str:slug>/yenibankakarti/", views.yeni_banka_karti, name="yeni_banka_karti"),

@@ -83,3 +83,18 @@ def get_stok_kodlari_alternatifstokadi(stok_kart):
     
     satis_fiyati = stok_kodlari.objects.filter(stok_karti_bilgisi=stok_kart.id).last()
     return satis_fiyati.alternatifstokadi if satis_fiyati.alternatifstokadi else ""
+
+@register.filter()
+def get_stokalisverisalis(stok_kart):
+    satis_fiyati = stok_alis_satis.objects.filter(stok_karti_bilgisi=stok_kart.id).last()
+    if satis_fiyati.aktif_alis_fiyati == "1":
+        satis_fiyati = satis_fiyati.alis_fiyati_1_tl
+    elif satis_fiyati.aktif_alis_fiyati == "2":
+        satis_fiyati = satis_fiyati.alis_fiyati_2_tl
+    elif satis_fiyati.aktif_alis_fiyati == "3":
+        satis_fiyati = satis_fiyati.alis_fiyati_3_tl
+    elif satis_fiyati.aktif_alis_fiyati == "4":
+        satis_fiyati = satis_fiyati.alis_fiyati_4_tl
+    elif satis_fiyati.aktif_alis_fiyati == "5":
+        satis_fiyati = satis_fiyati.alis_fiyati_5_tl
+    return satis_fiyati if satis_fiyati else "0"

@@ -9,7 +9,7 @@
   <div class="icon-bar">
     <form method="post">
       {% csrf_token %}
-    <button type="submit" class="btn btn-primary">Kaydet / <br> Yeni Sipariş <br> Oluştur</button>
+    <button type="submit" class="btn btn-primary">Kaydet / <br> Yeni İrsaliye <br> Oluştur</button>
     <a href="javascript:void(0);" onclick="ekleYeniSatir()">Bir Ürün Daha Ekle</a>
     <a href="">Kart İncele-Düzelt</a>
     <a style="color: white;" onclick="showConfirmationPopup()">Kart Sil</a>
@@ -18,10 +18,6 @@
   </div>
   <div class="d-menu">
     <ul>
-      <li>
-        <ul>
-        </ul><a href="" title="">İrsaleye Aktar</a>
-      </li>
       <li>
         <ul>
         </ul><a href="" title="">Faturaya Aktar</a>
@@ -50,9 +46,9 @@
         <thead style="position: sticky;top: 0">
           <tr>
             <th class="text-center" style="min-width: 100px ;">Tarih</th>
-            <th class="text-center" style="min-width: 50px ;">Sipariş No</th>
+            <th class="text-center" style="min-width: 50px ;">İrsaliye / Fiş  No</th>
             <th class="text-center" style="min-width: 150px ;">İşlem Türü</th>
-            <th class="text-center" style="min-width: 100px ;">Durum</th>
+            <th class="text-center" style="min-width: 100px ;">Faturalaştı</th>
             <th class="text-center">Onay</th>
             <th class="text-center" style="min-width: 150px ;">E.Kodu</th>
             <th class="text-center" style="min-width: 150px ;">Y?</th>

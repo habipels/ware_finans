@@ -1278,6 +1278,7 @@ class siparisislem_durumlari(models.Model):
     indirim_tutari = models.FloatField(verbose_name="İndirim Tutarı TL",blank=True,null=True)
     genel_tutari = models.FloatField(verbose_name="Genel Tutarı TL",blank=True,null=True)
     iptaledildi = models.BooleanField(verbose_name="İptal Edildi" , default=False)
+    silinme_bilgisi = models.BooleanField(verbose_name="Sİpariş Silme Durumu",default=False)
 class siparis_olustur(models.Model):    
     grup_kodu = models.ForeignKey(siparisislem_durumlari,blank=True,null=True,on_delete=models.SET_NULL,verbose_name="Grup Kodu")
     bagli_oldugu_firma = models.ForeignKey(firma,blank=True,null=True,on_delete=models.SET_NULL)
