@@ -300,10 +300,9 @@
             <td><input type="text" id="stokalternatifstokkodu" name="stokalternatifstokkodu"></td>
             <td><input type="text" id="stokalternatifstokadi" name="stokalternatifstokadi"></td>
             <td><input type="text" id="stokkalitekodu" name="stokkalitekodu"></td>
-            
+            <td><input type="text" id="pkaciklamasi" name="pkaciklamasi"></td>
             <td><input type="number" id="stokanamiktari" step="0.001" value="0" name="stokanamiktari"></td>
             <td><input type="number" id="stokanamiktaribirimfiyattl" value="0" step="0.001" name="stokanamiktaribirimfiyattl"></td>
-            <td><input type="text" id="pkaciklamasi" name="pkaciklamasi"></td>
             <td><input type="number" id="stokanamiktaribirimfiyatdvz" value="0" step="0.001" name="stokanamiktaribirimfiyatdvz"></td>
             <td><input type="text" id="stokpartikodu" name="stokpartikodu"></td>
             <td><input type="date" pattern="\d{4}-\d{2}-\d{2}" required id="sonkullanimtarihi" name="sonkullanimtarihi"></td>
@@ -339,11 +338,10 @@
         <td id="tstokalternatifstokkodu">{{i|get_stok_kodlari_alternatifstokkodu}}</td> 
         <td id="tstokalternatifstokadi">{{i|get_stok_kodlari_alternatifstokadi}}</td> 
         <td id="tstokkalitekodu">{{i | get_stok_kodlari_kalitekodu}}</td> 
+        <td id="tstokanamiktaribirimfiyatdvz">{{ i | get_stok_diger_kismi_agirliklar_pkaciklamasi}}</td>
         <td id="tstokanamiktari">{{ i | get_stok_diger_kismi_agirliklar }}</td> 
         <td id="tstokanamiktaribirimfiyattl">{{i | get_stok_diger_kismi_agirliklar_burut}}</td> 
-        <td id="tstokanamiktaribirimfiyatdvz">{{ i | get_stok_diger_kismi_agirliklar_pkaciklamasi}}</td>
         <td id="tstokanamiktaribirimfiyatdvzm">{{ i | get_stok_diger_kismi_agirliklar_pkmiktari}}</td>
-        <td id="tstokbirimfiyatialis" >{{ i|get_stokalisverisalis }}</td> 
       {% else %}
       {% endif %}
     {% endfor %} 
@@ -508,6 +506,7 @@ allCustomSelects.forEach((select, index) => {
     var selectedStockValue = selectedStock.value;
     var grupturu = document.getElementById("grupturu");
     const grupturusecilen = grupturu.options[grupturu.selectedIndex].text;
+    
     // Örnek olarak fiyat bilgisini stok fiyatı alanına yerleştirme
     document.getElementsByName('birimbilgisi')[selectIndex].value = document.getElementById(selectedOption).cells[0].innerText;
     if  (grupturusecilen == "Alınan Sipariş"){
@@ -516,6 +515,7 @@ allCustomSelects.forEach((select, index) => {
     else if(grupturusecilen == "Verilen Sipariş"){
       document.getElementsByName('stokbirimfiyati')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[24].innerText.replace(",", "."));
     }
+    
     document.getElementsByName('stokindirimyuzdesi')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[2].innerText.replace(",", "."));
     document.getElementsByName('stokkdvyuzdesi')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[3].innerText.replace(",", "."));
     document.getElementsByName('stokindirim1')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[5].innerText.replace(",", "."));
@@ -534,10 +534,12 @@ allCustomSelects.forEach((select, index) => {
     document.getElementsByName('stokalternatifstokkodu')[selectIndex].value = document.getElementById(selectedOption).cells[18].innerText;
     document.getElementsByName('stokalternatifstokadi')[selectIndex].value = document.getElementById(selectedOption).cells[19].innerText;
     document.getElementsByName('stokkalitekodu')[selectIndex].value = document.getElementById(selectedOption).cells[20].innerText;
-    document.getElementsByName('stokanamiktari')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[21].innerText.replace(",", "."));
-    document.getElementsByName('stokanamiktaribirimfiyattl')[selectIndex].value = document.getElementById(selectedOption).cells[22].innerText;
-    document.getElementsByName('stokanamiktaribirimfiyatdvz')[selectIndex].value = document.getElementById(selectedOption).cells[25].innerText;
-    document.getElementsByName('pkaciklamasi')[selectIndex].value = document.getElementById(selectedOption).cells[24].innerText;
+    document.getElementsByName('pkaciklamasi')[selectIndex].value = document.getElementById(selectedOption).cells[21].innerText;
+    document.getElementsByName('stokanamiktari')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[22].innerText.replace(",", "."));
+    document.getElementsByName('stokanamiktaribirimfiyattl')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[23].innerText.replace(",", "."));
+    document.getElementsByName('stokanamiktaribirimfiyatdvz')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[24].innerText.replace(",", "."));
+    
+    
     hesaplaFiyat()
 });};
   function dovizac() {
