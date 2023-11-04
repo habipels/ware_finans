@@ -98,3 +98,30 @@ def get_stokalisverisalis(stok_kart):
     elif satis_fiyati.aktif_alis_fiyati == "5":
         satis_fiyati = satis_fiyati.alis_fiyati_5_tl
     return satis_fiyati if satis_fiyati else "0"
+
+
+@register.filter()
+def get_stok_diger_kismi_agirliklar(stok_kart):
+    
+    satis_fiyati = stok_diger_kismi_agirliklar.objects.filter(stok_karti_bilgisi=stok_kart.id).last()
+    return satis_fiyati.net if satis_fiyati.net else ""
+
+
+@register.filter()
+def get_stok_diger_kismi_agirliklar_burut(stok_kart):
+    
+    satis_fiyati = stok_diger_kismi_agirliklar.objects.filter(stok_karti_bilgisi=stok_kart.id).last()
+    return satis_fiyati.brut if satis_fiyati.brut else ""
+
+
+@register.filter()
+def get_stok_diger_kismi_agirliklar_pkaciklamasi(stok_kart):
+    
+    satis_fiyati = stok_diger_kismi_agirliklar.objects.filter(stok_karti_bilgisi=stok_kart.id).last()
+    return satis_fiyati.p_aciklamasi if satis_fiyati.p_aciklamasi else ""
+
+@register.filter()
+def get_stok_diger_kismi_agirliklar_pkmiktari(stok_kart):
+    
+    satis_fiyati = stok_diger_kismi_agirliklar.objects.filter(stok_karti_bilgisi=stok_kart.id).last()
+    return satis_fiyati.p_miktari if satis_fiyati.p_miktari else ""

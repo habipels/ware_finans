@@ -1369,7 +1369,6 @@ class irsaliyeislem_durumlari(models.Model):
     kdv_durumu = models.CharField(max_length=200,verbose_name="KDV Durumu",choices=kdv_durumu_secim,default="Hariç")
     siparis_no = models.CharField(max_length=200,verbose_name="Sipariş No",blank=True,null=True)
     tarih = models.DateField(verbose_name="Kayıt Tarihi",blank=True,null=True)
-    teslim_sekli = models.CharField(max_length=200, verbose_name="Teslim Şekli", blank=True, null=True)
     satici = models.CharField(max_length=200, verbose_name="SAtıcı", blank=True, null=True)
     cari_unvan = models.ForeignKey(cari_kartlar,blank=True,null=True,verbose_name="Cari Unvan Bilgisi",on_delete=models.SET_NULL)
     islem_doviz_cinsi = models.CharField(max_length=100, verbose_name="İşlem Döviz Cinsi", choices=doviz, default="")

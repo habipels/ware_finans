@@ -169,8 +169,6 @@
             <th class="text-center">Şube</th>
             <th class="text-center">Döviz Cinsi</th>
             <th class="text-center">Depo</th>
-            <th class="text-center"></th>
-            <th class="text-center"></th>
             <th class="text-center">Depertman</th>
             <th class="text-center">Miktar</th>
             <th class="text-center" id="kur">Günlük Kur , Uygun Kur , Birim Döviz Fiyatı </th>
@@ -182,10 +180,6 @@
             <th class="text-center" style="min-width: 100px ;">KDV (%)</th>
             <th class="text-center">KDV (TL)</th>
             <th class="text-center" style="min-width: 130px ;">M.F. Miktarı</th>
-            <th class="text-center" style="min-width: 130px ;"></th>
-            <th class="text-center"></th>
-            <th class="text-center" style="min-width: 100px ;"></th>
-            <th class="text-center" style="min-width: 100px ;"></th>
             <th class="text-center">İndirim 1</th>
             <th class="text-center">İndirim 2</th>
             <th class="text-center">İndirim 3</th>
@@ -204,12 +198,13 @@
             <th class="text-center">Alternatif Stok Kodu</th>
             <th class="text-center">Alternatif Stok Adı</th>
             <th class="text-center">Kalite</th>
+            <th class="text-center">Pk. Açıklaması</th>
             <th class="text-center">Net Ağırlık (KG)</th>
             <th class="text-center">Bürüt Ağırlık (KG)</th>
             <th class="text-center">Pk.Miktarı</th>
             <th class="text-center">Parti Kodu</th>
             <th class="text-center">Son Kullanım Tarihi</th>
-            <th class="text-center">Pk. Açıklaması</th>
+            
           </tr>
         </thead>
         <tbody>
@@ -273,8 +268,6 @@
               <option value="Euro">Euro</option>
             </select></td>
             <td><input type="text" name="depobilgisi"></td>
-            <td></td>
-            <td></td>
             <td><input type="text" name="departman"></td>
             <td><input type="number" step="0.001" oninput="hesaplaFiyat()" id="stokmiktari" value="1" name="stokmiktari"></td>
             <td id="kur"><input type="number" id="gunlukkur" oninput="hesaplaFiyat()" value="0" step="0.001" name="gunlukkur">,
@@ -288,11 +281,7 @@
               <input style="display: none;" type="number" id="vergisiztutar" oninput="hesaplaFiyat()" value="0" step="0.001" name="vergisiztutar"></td>
             <td><input type="number" id="stokkdvyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokkdvyuzdesi"></td>
             <td><input type="number" id="stokkdvtl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokkdvtl"></td>
-            <td><input type="number" id="stokotvyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvyuzdesi"></td>
-            <td><input type="number" id="stokotvtl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtl"></td>
-            <td><input type="text" name="stokteslimsekli"></td>
-            <td><input type="date" pattern="\d{4}-\d{2}-\d{2}" required name="urunteslimtarihi"></td>
-            <td><input type="text" name="stokdurumu"></td>
+            <td><input type="number" id="mfmiktari" oninput="hesaplaFiyat()" value="0" step="0.001" name="mfmiktari"></td>
             <td><input type="number" id="stokindirim1" step="0.001" name="stokindirim1"></td>
             <td><input type="number" id="stokindirim2" step="0.001" name="stokindirim2"></td>
             <td><input type="number" id="stokindirim3" step="0.001" name="stokindirim3"></td>
@@ -311,11 +300,14 @@
             <td><input type="text" id="stokalternatifstokkodu" name="stokalternatifstokkodu"></td>
             <td><input type="text" id="stokalternatifstokadi" name="stokalternatifstokadi"></td>
             <td><input type="text" id="stokkalitekodu" name="stokkalitekodu"></td>
+            
             <td><input type="number" id="stokanamiktari" step="0.001" value="0" name="stokanamiktari"></td>
             <td><input type="number" id="stokanamiktaribirimfiyattl" value="0" step="0.001" name="stokanamiktaribirimfiyattl"></td>
+            <td><input type="text" id="pkaciklamasi" name="pkaciklamasi"></td>
             <td><input type="number" id="stokanamiktaribirimfiyatdvz" value="0" step="0.001" name="stokanamiktaribirimfiyatdvz"></td>
             <td><input type="text" id="stokpartikodu" name="stokpartikodu"></td>
             <td><input type="date" pattern="\d{4}-\d{2}-\d{2}" required id="sonkullanimtarihi" name="sonkullanimtarihi"></td>
+            
           </tr>
         </tbody>
       </table>
@@ -348,9 +340,10 @@
         <td id="tstokalternatifstokkodu">{{i|get_stok_kodlari_alternatifstokkodu}}</td> 
         <td id="tstokalternatifstokadi">{{i|get_stok_kodlari_alternatifstokadi}}</td> 
         <td id="tstokkalitekodu">{{i | get_stok_kodlari_kalitekodu}}</td> 
-        <td id="tstokanamiktari"></td> 
-        <td id="tstokanamiktaribirimfiyattl"></td> 
-        <td id="tstokanamiktaribirimfiyatdvz"></td>
+        <td id="tstokanamiktari">{{ i | get_stok_diger_kismi_agirliklar }}</td> 
+        <td id="tstokanamiktaribirimfiyattl">{{i | get_stok_diger_kismi_agirliklar_burut}}</td> 
+        <td id="tstokanamiktaribirimfiyatdvz">{{ i | get_stok_diger_kismi_agirliklar_pkaciklamasi}}</td>
+        <td id="tstokanamiktaribirimfiyatdvzm">{{ i | get_stok_diger_kismi_agirliklar_pkmiktari}}</td>
         <td id="tstokbirimfiyatialis" >{{ i|get_stokalisverisalis }}</td> 
       {% else %}
       {% endif %}
@@ -410,9 +403,8 @@ function showConfirmationPopup() {
   // Satırın içeriğini belirle
   yeniSatir.innerHTML = `
   <tr>
-  <td><select name="siparisturu" id="">
+            <td><select name="siparisturu" id="">
               <option value="Normal">Normal</option>
-              <option value="İndirimli">İndirimli</option>
             </select></td>
             <td><b>Seçimi Yaptınız</b></td>
             <td><b>Seçimi Yaptınız</b></td>
@@ -420,11 +412,11 @@ function showConfirmationPopup() {
             <td><select onchange="yeniselect(this)" name="stok" id="stoksecim">
               <option value="">Stok Seçiniz</option>
               {% for i in stokkartlarim %}
+              
                 <option value="{{i.id}}">({{i.stok_kodu}}) {{i.stok_adi}}</option>
               {% endfor %}
+              
             </select></td>
-            <td><b>Seçimi Yaptınız</b></td>
-            <td><b>Seçimi Yaptınız</b></td>
             <td><b>Seçimi Yaptınız</b></td>
             <td><b>Seçimi Yaptınız</b></td>
             <td><b>Seçimi Yaptınız</b></td>
@@ -433,7 +425,9 @@ function showConfirmationPopup() {
             <td><b>Seçimi Yaptınız</b></td>
             <td><input type="text" name="departman"></td>
             <td><input type="number" step="0.001" oninput="hesaplaFiyat()" id="stokmiktari" value="1" name="stokmiktari"></td>
-            <td id="kur"><input type="number" id="birimfiyatdovz" oninput="hesaplaFiyat()" value="0" step="0.001" name="birimfiyatdovz"></td>
+            <td id="kur"><input type="number" id="gunlukkur" oninput="hesaplaFiyat()" value="0" step="0.001" name="gunlukkur">,
+              <input type="number" id="uygunkur" oninput="hesaplaFiyat()" value="0" step="0.001" name="uygunkur">,
+              <input type="number" id="birimfiyatdovz" oninput="hesaplaFiyat()" value="0" step="0.001" name="birimfiyatdovz"></td>
             <td><input type="text" id="birimbilgisi" name="birimbilgisi"></td>
             <td><input type="number" id="stokbirimfiyati" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokbirimfiyati"></td>
             <td><input type="number" id="stokindirimyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokindirimyuzdesi"></td>
@@ -442,11 +436,7 @@ function showConfirmationPopup() {
               <input style="display: none;" type="number" id="vergisiztutar" oninput="hesaplaFiyat()" value="0" step="0.001" name="vergisiztutar"></td>
             <td><input type="number" id="stokkdvyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokkdvyuzdesi"></td>
             <td><input type="number" id="stokkdvtl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokkdvtl"></td>
-            <td><input type="number" id="stokotvyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvyuzdesi"></td>
-            <td><input type="number" id="stokotvtl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtl"></td>
-            <td><input type="text" name="stokteslimsekli"></td>
-            <td><input type="date" pattern="\d{4}-\d{2}-\d{2}" required name="urunteslimtarihi"></td>
-            <td><input type="text" name="stokdurumu"></td>
+            <td><input type="number" id="mfmiktari" oninput="hesaplaFiyat()" value="0" step="0.001" name="mfmiktari"></td>
             <td><input type="number" id="stokindirim1" step="0.001" name="stokindirim1"></td>
             <td><input type="number" id="stokindirim2" step="0.001" name="stokindirim2"></td>
             <td><input type="number" id="stokindirim3" step="0.001" name="stokindirim3"></td>
@@ -465,11 +455,13 @@ function showConfirmationPopup() {
             <td><input type="text" id="stokalternatifstokkodu" name="stokalternatifstokkodu"></td>
             <td><input type="text" id="stokalternatifstokadi" name="stokalternatifstokadi"></td>
             <td><input type="text" id="stokkalitekodu" name="stokkalitekodu"></td>
+            <td><input type="text" id="pkaciklamasi" name="pkaciklamasi"></td>
             <td><input type="number" id="stokanamiktari" step="0.001" value="0" name="stokanamiktari"></td>
             <td><input type="number" id="stokanamiktaribirimfiyattl" value="0" step="0.001" name="stokanamiktaribirimfiyattl"></td>
             <td><input type="number" id="stokanamiktaribirimfiyatdvz" value="0" step="0.001" name="stokanamiktaribirimfiyatdvz"></td>
             <td><input type="text" id="stokpartikodu" name="stokpartikodu"></td>
             <td><input type="date" pattern="\d{4}-\d{2}-\d{2}" required id="sonkullanimtarihi" name="sonkullanimtarihi"></td>
+            
           </tr>
   `;
 
@@ -527,7 +519,6 @@ allCustomSelects.forEach((select, index) => {
     }
     document.getElementsByName('stokindirimyuzdesi')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[2].innerText.replace(",", "."));
     document.getElementsByName('stokkdvyuzdesi')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[3].innerText.replace(",", "."));
-    document.getElementsByName('stokotvyuzdesi')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[4].innerText.replace(",", "."));
     document.getElementsByName('stokindirim1')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[5].innerText.replace(",", "."));
     document.getElementsByName('stokindirim2')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[6].innerText.replace(",", "."));
     document.getElementsByName('stokindirim3')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[7].innerText.replace(",", "."));
@@ -546,7 +537,8 @@ allCustomSelects.forEach((select, index) => {
     document.getElementsByName('stokkalitekodu')[selectIndex].value = document.getElementById(selectedOption).cells[20].innerText;
     document.getElementsByName('stokanamiktari')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[21].innerText.replace(",", "."));
     document.getElementsByName('stokanamiktaribirimfiyattl')[selectIndex].value = document.getElementById(selectedOption).cells[22].innerText;
-    document.getElementsByName('stokanamiktaribirimfiyatdvz')[selectIndex].value = document.getElementById(selectedOption).cells[23].innerText;
+    document.getElementsByName('stokanamiktaribirimfiyatdvz')[selectIndex].value = document.getElementById(selectedOption).cells[25].innerText;
+    document.getElementsByName('pkaciklamasi')[selectIndex].value = document.getElementById(selectedOption).cells[24].innerText;
     hesaplaFiyat()
 });};
   function dovizac() {
@@ -581,8 +573,6 @@ allCustomSelects.forEach((select, index) => {
         var stokTutariValue = document.querySelectorAll("#stoktutari")[index].value;
         var stokKdvYuzdesiValue = document.querySelectorAll("#stokkdvyuzdesi")[index].value;
         var stokKdvTValue = document.querySelectorAll("#stokkdvtl")[index].value;
-        var stokOtvYuzdesiValue = document.querySelectorAll("#stokotvyuzdesi")[index].value;
-        var stokOtvTlValue = document.querySelectorAll("#stokotvtl")[index].value;
         var stokMiktariValue = document.querySelectorAll("#stokmiktari")[index].value;
         var doviz = document.querySelectorAll("#birimfiyatdovz")[index].value;
         var uygunkur = document.querySelectorAll("#uygunkur")[0].value;
@@ -606,11 +596,8 @@ allCustomSelects.forEach((select, index) => {
         
         vergisizTutar =  (fiyat * 100 ) / (parseFloat(stokKdvYuzdesiValue) + 100); 
         kdv = fiyat - vergisizTutar;
-        otv = vergisizTutar-(vergisizTutar * 100 / (parseFloat(stokOtvYuzdesiValue) + 100));
-        vergisizTutar = vergisizTutar - otv;
         indirim_tutari = vergisizTutar *parseFloat(stokIndirimYuzdesiValue)/100
         document.querySelectorAll("#stokkdvtl")[index].value = kdv.toFixed(2) ;
-        document.querySelectorAll("#stokotvtl")[index].value = otv.toFixed(2) ;
         document.querySelectorAll("#stokindirimtl")[index].value = indirim_tutari.toFixed(2);
         document.querySelectorAll("#vergisiztutar")[index].value = vergisizTutar.toFixed(2);
         document.querySelectorAll("#stoktutari")[index].value = toplam_tutar.toFixed(2);
@@ -626,12 +613,10 @@ allCustomSelects.forEach((select, index) => {
         vergisizTutar = toplam_tutar;
         indirim_tutari = vergisizTutar *parseFloat(stokIndirimYuzdesiValue)/100
         vergisizTutar = vergisizTutar - indirim_tutari
-        otv = (vergisizTutar *parseFloat(stokOtvYuzdesiValue) / 100);
-        fiyat = otv + vergisizTutar;
+        fiyat =vergisizTutar;
         kdv =  (fiyat * parseFloat(stokKdvYuzdesiValue) / 100);
         fiyat = fiyat + kdv;
         document.querySelectorAll("#stokkdvtl")[index].value = kdv.toFixed(2) ;
-        document.querySelectorAll("#stokotvtl")[index].value = otv.toFixed(2) ;
         document.querySelectorAll("#vergisiztutar")[index].value = vergisizTutar.toFixed(2);
         document.querySelectorAll("#stoktutari")[index].value = toplam_tutar.toFixed(2);
         document.querySelectorAll("#stokindirimtl")[index].value = indirim_tutari.toFixed(2);
@@ -643,7 +628,6 @@ function topla() {
     // Aynı ID'ye sahip inputları seçmek için bir sorgu kullanarak bir NodeList oluşturun
     var selectElementtt = document.getElementById("dovizcinsi");
     var selectedValueesss = selectElementtt.options[selectElementtt.selectedIndex].value;
-    var inputs = document.querySelectorAll('[id="stokotvtl"]');
     var kdvs = document.querySelectorAll('[id="stokkdvtl"]');
     var stokindirimtls = document.querySelectorAll('[id="stokindirimtl"]');
     var vergisiz = document.querySelectorAll('[id="vergisiztutar"]');
@@ -655,9 +639,6 @@ function topla() {
     var stokindirimtll = 0;
     var genel_toplam = 0;
     // NodeList üzerinde döngü ile değerleri toplayın
-    inputs.forEach(function(input) {
-      otvtoplam += parseFloat(input.value); // Değerlerin sayısal toplamı (eğer sayıysa)
-    });
     kdvs.forEach(function(input) {
       kdvtoplam += parseFloat(input.value); // Değerlerin sayısal toplamı (eğer sayıysa)
     });
@@ -667,15 +648,13 @@ function topla() {
     vergisiz.forEach(function(input) {
       vergisiz_turar_bilgisi += parseFloat(input.value); // Değerlerin sayısal toplamı (eğer sayıysa)
     });
-    genel_toplam = kdvtoplam+otvtoplam+vergisiz_turar_bilgisi-stokindirimtll;
+    genel_toplam = kdvtoplam+vergisiz_turar_bilgisi-stokindirimtll;
     document.getElementById("indirimtutari").innerHTML = stokindirimtll.toFixed(2);
     document.getElementById("kdvtutari").innerHTML = kdvtoplam.toFixed(2);
-    document.getElementById("otvtutari").innerHTML = otvtoplam.toFixed(2);
     document.getElementById("geneltutar").innerHTML = vergisiz_turar_bilgisi.toFixed(2);
     document.getElementById("geneltoplam").innerHTML = genel_toplam.toFixed(2);
     document.getElementById("iindirimtutari").value = stokindirimtll.toFixed(2);
     document.getElementById("ikdvtutari").value = kdvtoplam.toFixed(2);
-    document.getElementById("iotvtutari").value = otvtoplam.toFixed(2);
     document.getElementById("igeneltutar").value = vergisiz_turar_bilgisi.toFixed(2);
     document.getElementById("igeneltoplam").value = genel_toplam.toFixed(2);
     if(selectedValueesss == "TL"){
