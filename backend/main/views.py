@@ -3797,7 +3797,7 @@ def irsaliye_sayfasi(request,slug):
     content["banka_karti"] = banka_karti
     content["subelerim"] = subelerim
     content["kasa_bilgisi"] = kasa_bilgisi
-    content["siparisler"] = siparisislem_durumlari.objects.filter(bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),silinme_bilgisi = False)
+    content["siparisler"] = irsaliyeislem_durumlari.objects.filter(bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),silinme_bilgisi = False)
     
     if request.POST:
         if True:
@@ -3862,12 +3862,13 @@ def irsaliye_sayfasi(request,slug):
                 stokalternatifstokkodu = request.POST.getlist("stokalternatifstokkodu")
                 stokalternatifstokadi = request.POST.getlist("stokalternatifstokadi")
                 stokkalitekodu = request.POST.getlist("stokkalitekodu")
-                stokanamiktari = request.POST.getlist("stokanamiktari")
-                stokanamiktaribirimfiyattl = request.POST.getlist("stokanamiktaribirimfiyattl")
-                stokanamiktaribirimfiyatdvz = request.POST.getlist("stokanamiktaribirimfiyatdvz")
+                agirlik = request.POST.getlist("stokanamiktari")
+                burutagirlik = request.POST.getlist("stokanamiktaribirimfiyattl")
+                pkmiktari = request.POST.getlist("stokanamiktaribirimfiyatdvz")
                 stokpartikodu = request.POST.getlist("stokpartikodu")
                 sonkullanimtarihi = request.POST.getlist("sonkullanimtarihi")
                 birimfiyatdovz =  request.POST.getlist("birimfiyatdovz")
+                pkaciklamasi =  request.POST.getlist("pkaciklamasi")
                 for i in range(len(stokbilgisi)):
                     irsaliye_olustur.objects.create(
                         grup_kodu = get_object_or_404(irsaliyeislem_durumlari,id = siparisislem.id),
@@ -3876,17 +3877,16 @@ def irsaliye_sayfasi(request,slug):
                         tip = siparisturu[i],birim = birimbilgisi[i],birim_fiyat_tl = stokbirimfiyati[i],
                         miktar = stokmiktari[i],indirim_yuzdesi = stokindirimyuzdesi[i],
                         indirim_tutari_tl = stokindirimtl[i],kdv_yuzdesi = stokkdvyuzdesi[i],
-                        kdv_tutari_tl = stokkdvtl[i],otv_yuzdesi = stokotvyuzdesi[i],
-                        otv_tutari_tl = stokotvtl[i],indirim1 = stokindirim1[i],indirim2 = stokindirim2[i],
-                        indirim3 = stokindirim3[i],durumu  =stokdurumu[i],teslim_tarihi = urunteslimtarihi[i],
-                        teslim_sekli=stokteslimsekli[i],ozelkod1 = stokozelkod1[i],ozelkod2 = stokozelkod2[i],
+                        kdv_tutari_tl = stokkdvtl[i],indirim1 = stokindirim1[i],indirim2 = stokindirim2[i],
+                        indirim3 = stokindirim3[i],
+                        ozelkod1 = stokozelkod1[i],ozelkod2 = stokozelkod2[i],
                         departman = stokdepartman[i],satir_aciklamasi  =stoksatiraciklamasi[i],
                         serino = stokserino[i],s_brim = stokbirimi[i],s_miktar = stokmiktaribilgisi[i],
                         alternatifstokkodu =stokalternatifstokkodu[i], alternatifstokadi = stokalternatifstokadi[i],
                         kalite = stokkalitekodu[i],ozellik1  = stokozellik1[i],ozellik2  = stokozellik2[i],
                         ozellik3  =stokozellik3[i],ozellik4  = stokozellik4[i],ozellik5  = stokozellik5[i],
-                        ana_miktar = stokanamiktari[i],ana_birim_fiyat_tl = stokanamiktaribirimfiyattl[i],
-                        ana_birim_fiyat_dvz = stokanamiktaribirimfiyatdvz[i],parti_kodu  =stokpartikodu[i],
+                        net_agirlik_kg = agirlik[i],Burut_agirlik_kg = burutagirlik[i],
+                        pk_miktari = pkmiktari[i],parti_kodu  =stokpartikodu[i],pk_aciklamasi  =pkaciklamasi[i],
                         son_kullanim_tarihi = sonkullanimtarihi[i],stoktutari = stoktutari[i],birim_fiyat_dvz = birimfiyatdovz[i]
 
                         )
@@ -3895,12 +3895,12 @@ def irsaliye_sayfasi(request,slug):
     return render(request,"irsaliye/irsaliye.html",content)
 
 #sipariş silme
-def siparis_silme_sayfasi(request,slug,id):
+def irsaliye_silme_sayfasi(request,slug,id):
     content ={}
-    siparisislem_durumlari.objects.filter(id = id,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)).update(
+    irsaliyeislem_durumlari.objects.filter(id = id,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)).update(
             silinme_bilgisi = True
     )
-    link = "/"+slug+"/siparis/"
+    link = "/"+slug+"/irsaliye/"
     return redirect(link)
 #sipariş silme
 #irsaliye işlemleri

@@ -41,7 +41,7 @@ urlpatterns = [
     #siparis işlemeleri
     #irsaliye işlemleri 
     path("<str:slug>/irsaliye/", views.irsaliye_sayfasi, name="irsaliye_sayfasi"),
-    path("<str:slug>/siparissil/<int:id>/", views.siparis_silme_sayfasi, name="siparis_silme_sayfasi"),
+    path("<str:slug>/irsaliyesil/<int:id>/", views.irsaliye_silme_sayfasi, name="irsaliye_silme_sayfasi"),
     #irsaliye işlemleri
     #Banka işlemleri 
     path("<str:slug>/banka/", views.banka_sayfasi, name="banka_sayfasi"),

@@ -1391,7 +1391,7 @@ class irsaliyeislem_durumlari(models.Model):
     silinme_bilgisi = models.BooleanField(verbose_name="Sİpariş Silme Durumu",default=False)
 
 class irsaliye_olustur(models.Model):    
-    grup_kodu = models.ForeignKey(siparisislem_durumlari,blank=True,null=True,on_delete=models.SET_NULL,verbose_name="Grup Kodu")
+    grup_kodu = models.ForeignKey(irsaliyeislem_durumlari,blank=True,null=True,on_delete=models.SET_NULL,verbose_name="Grup Kodu")
     bagli_oldugu_firma = models.ForeignKey(firma,blank=True,null=True,on_delete=models.SET_NULL)
     tip = models.CharField(max_length=200,verbose_name="tip",blank=True,null=True)
     teslim_tarihi = models.DateField(verbose_name="Kayıt Tarihi",blank=True,null=True)
