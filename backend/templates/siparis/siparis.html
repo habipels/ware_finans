@@ -20,7 +20,7 @@
     <ul>
       <li>
         <ul>
-        </ul><a href="" title="">İrsaleye Aktar</a>
+        </ul><a style="color: white;" onclick="irsaliyeaktar()">İrsaleye Aktar</a>
       </li>
       <li>
         <ul>
@@ -389,7 +389,29 @@ function showConfirmationPopup() {
         // Kullanıcı "Hayır" dedi, isteğe bağlı olarak başka bir işlem yapabilirsiniz
     }
 }
+function irsaliyeaktar() {
+  const radioButtons = document.getElementsByName('kasakartlari');
+  let selectedLink = null;
 
+  for (const radioButton of radioButtons) {
+    if (radioButton.checked) {
+      selectedLink = radioButton.value;
+      break;
+    }
+  }
+
+    // Pop-up penceresini aç
+    const confirmation = confirm("Siparişi İrsaliyeye Aktarılsın mı ?");
+    
+    // Kullanıcının seçimine göre işlem yap
+    if (confirmation) {
+        // Kullanıcı "Evet" dedi, yönlendirme yap
+        window.location.href = "/{{firma.firma_ozel_anahtar}}/siparisaktarma/"+selectedLink;
+    } else {
+        // Kullanıcı "Hayır" dedi, isteğe bağlı olarak başka bir işlem yapabilirsiniz
+    }
+}
+  //
   </script>
 <script>
   function ekleYeniSatir() {
