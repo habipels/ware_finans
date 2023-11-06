@@ -33,7 +33,7 @@
       </li>
        <li>
         <ul>
-        </ul><a href="" title="">Siparişe Onay Ver</a>
+        </ul><a style="color: white;" onclick="siparisonaylama()"  >Siparişe Onay Ver</a>
       </li>
       <li>
         <ul>
@@ -423,12 +423,34 @@ function siparisiaktifpasifyapma() {
   }
 
     // Pop-up penceresini aç
-    const confirmation = confirm("Siparişi Aktiflik Pasiflik Durumunu değiştirmek istiyormusun?");
+    const confirmation = confirm("Siparişi Aktiflik Pasiflik Durumunu değiştirmek istiyor musun?");
     
     // Kullanıcının seçimine göre işlem yap
     if (confirmation) {
         // Kullanıcı "Evet" dedi, yönlendirme yap
         window.location.href = "/{{firma.firma_ozel_anahtar}}/siparisaktifpasif/"+selectedLink;
+    } else {
+        // Kullanıcı "Hayır" dedi, isteğe bağlı olarak başka bir işlem yapabilirsiniz
+    }
+}
+function siparisonaylama() {
+  const radioButtons = document.getElementsByName('kasakartlari');
+  let selectedLink = null;
+
+  for (const radioButton of radioButtons) {
+    if (radioButton.checked) {
+      selectedLink = radioButton.value;
+      break;
+    }
+  }
+
+    // Pop-up penceresini aç
+    const confirmation = confirm("Siparişi Onaylamak İstiyor musun?");
+    
+    // Kullanıcının seçimine göre işlem yap
+    if (confirmation) {
+        // Kullanıcı "Evet" dedi, yönlendirme yap
+        window.location.href = "/{{firma.firma_ozel_anahtar}}/siparisonaylama/"+selectedLink;
     } else {
         // Kullanıcı "Hayır" dedi, isteğe bağlı olarak başka bir işlem yapabilirsiniz
     }

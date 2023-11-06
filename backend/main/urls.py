@@ -38,6 +38,7 @@ urlpatterns = [
     path("<str:slug>/siparis/", views.siparis_sayfasi, name="siparis_sayfasi"),
     path("<str:slug>/siparissil/<int:id>/", views.siparis_silme_sayfasi, name="siparis_silme_sayfasi"),
     path("<str:slug>/siparisaktifpasif/<int:id>/", views.siparis_aktif_pasif_sayfasi, name="siparis_aktif_pasif_sayfasi"),
+    path("<str:slug>/siparisonaylama/<int:id>/", views.siparis_onaylama_sayfasi, name="siparis_onaylama_sayfasi"),
     #
     #siparis işlemeleri
     #irsaliye işlemleri 
