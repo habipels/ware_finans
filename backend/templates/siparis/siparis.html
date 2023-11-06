@@ -29,7 +29,7 @@
       </li>
       <li>
         <ul>
-        </ul><a href="" title="">Aktif / Pasif</a>
+        </ul><a style="color: white;" onclick="siparisiaktifpasifyapma()" >Aktif / Pasif</a>
       </li>
        <li>
         <ul>
@@ -407,6 +407,28 @@ function irsaliyeaktar() {
     if (confirmation) {
         // Kullanıcı "Evet" dedi, yönlendirme yap
         window.location.href = "/{{firma.firma_ozel_anahtar}}/siparisaktarma/"+selectedLink;
+    } else {
+        // Kullanıcı "Hayır" dedi, isteğe bağlı olarak başka bir işlem yapabilirsiniz
+    }
+}
+function siparisiaktifpasifyapma() {
+  const radioButtons = document.getElementsByName('kasakartlari');
+  let selectedLink = null;
+
+  for (const radioButton of radioButtons) {
+    if (radioButton.checked) {
+      selectedLink = radioButton.value;
+      break;
+    }
+  }
+
+    // Pop-up penceresini aç
+    const confirmation = confirm("Siparişi Aktiflik Pasiflik Durumunu değiştirmek istiyormusun?");
+    
+    // Kullanıcının seçimine göre işlem yap
+    if (confirmation) {
+        // Kullanıcı "Evet" dedi, yönlendirme yap
+        window.location.href = "/{{firma.firma_ozel_anahtar}}/siparisaktifpasif/"+selectedLink;
     } else {
         // Kullanıcı "Hayır" dedi, isteğe bağlı olarak başka bir işlem yapabilirsiniz
     }

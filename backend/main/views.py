@@ -1076,6 +1076,23 @@ def siparis_silme_sayfasi(request,slug,id):
     )
     link = "/"+slug+"/siparis/"
     return redirect(link)
+
+def siparis_aktif_pasif_sayfasi(request,slug,id):
+    content ={}
+    obje = get_object_or_404(siparisislem_durumlari,id = id,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    if obje.aktif_pasif:
+        siparisislem_durumlari.objects.filter(id = id,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)).update(
+                aktif_pasif = False
+        )
+    else:
+
+        siparisislem_durumlari.objects.filter(id = id,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)).update(
+                aktif_pasif = True
+        )
+    link = "/"+slug+"/siparis/"
+    return redirect(link)
+
+
 #sipariş silme 
 #Sipariş Sayfası
 
