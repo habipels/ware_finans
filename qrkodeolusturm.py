@@ -10,7 +10,7 @@ qr = qrcode.QRCode(
 )
 
 # karekod içinde saklamak istediğiniz verileriniz
-data = {"unvan":"ware yazılım","vkntckn":"3333333302", "avkntckn":"70673705960 ", "senaryo":"EARSIVFATURA", "tip":"SATIS", "tarih":"2023-10-07", "no":"GIB2023000007471", "ettn":"4ae13a87-3741-41eb-9346-43f59bbc7685", "parabirimi":"TRY", "malhizmettoplam":"15", "kdvmatrah(20)":"12.75", "hesaplanankdv(20)":"2.55","vergidahil":"15.3", "odenecek":"15.3"}
+data = {"unvan":"ferdi abi","vkntckn":"3333333302", "avkntckn":"70673705960 ", "senaryo":"EARSIVFATURA", "tip":"SATIS", "tarih":"2023-10-07", "no":"GIB2023000007471", "ettn":"4ae13a87-3741-41eb-9346-43f59bbc7685", "parabirimi":"TRY", "malhizmettoplam":"15", "kdvmatrah(20)":"12.75", "hesaplanankdv(20)":"2.55","vergidahil":"15.3", "odenecek":"15.3"}
 
 # Veriyi ekleme
 qr.add_data(data)

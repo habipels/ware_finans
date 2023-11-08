@@ -1003,6 +1003,7 @@ def siparis_sayfasi(request,slug):
             )
             if True:
                 stokbilgisi = request.POST.getlist("stok")
+                stokbilgisiii = request.POST.get("stok")
                 siparisturu = request.POST.getlist("siparisturu")
                 stokmiktari = request.POST.getlist("stokmiktari")
                 #stokkalanmiktari = request.POST.getlist("stokkalanmiktari")
@@ -1042,33 +1043,38 @@ def siparis_sayfasi(request,slug):
                 stokpartikodu = request.POST.getlist("stokpartikodu")
                 sonkullanimtarihi = request.POST.getlist("sonkullanimtarihi")
                 birimfiyatdovz =  request.POST.getlist("birimfiyatdovz")
-                for i in range(len(stokbilgisi)):
-                    siparis_olustur.objects.create(
-                        grup_kodu = get_object_or_404(siparisislem_durumlari,id = siparisislem.id),
-                        bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),
-                        stok_karti_bilgisi = get_object_or_404(stok_kartlar,id=stokbilgisi[i]),
-                        tip = siparisturu[i],birim = birimbilgisi[i],birim_fiyat_tl = stokbirimfiyati[i],
-                        miktar = stokmiktari[i],indirim_yuzdesi = stokindirimyuzdesi[i],
-                        indirim_tutari_tl = stokindirimtl[i],kdv_yuzdesi = stokkdvyuzdesi[i],
-                        kdv_tutari_tl = stokkdvtl[i],otv_yuzdesi = stokotvyuzdesi[i],
-                        otv_tutari_tl = stokotvtl[i],indirim1 = stokindirim1[i],indirim2 = stokindirim2[i],
-                        indirim3 = stokindirim3[i],durumu  =stokdurumu[i],teslim_tarihi = urunteslimtarihi[i],
-                        teslim_sekli=stokteslimsekli[i],ozelkod1 = stokozelkod1[i],ozelkod2 = stokozelkod2[i],
-                        departman = stokdepartman[i],satir_aciklamasi  =stoksatiraciklamasi[i],
-                        serino = stokserino[i],s_brim = stokbirimi[i],s_miktar = stokmiktaribilgisi[i],
-                        alternatifstokkodu =stokalternatifstokkodu[i], alternatifstokadi = stokalternatifstokadi[i],
-                        kalite = stokkalitekodu[i],ozellik1  = stokozellik1[i],ozellik2  = stokozellik2[i],
-                        ozellik3  =stokozellik3[i],ozellik4  = stokozellik4[i],ozellik5  = stokozellik5[i],
-                        ana_miktar = stokanamiktari[i],ana_birim_fiyat_tl = stokanamiktaribirimfiyattl[i],
-                        ana_birim_fiyat_dvz = stokanamiktaribirimfiyatdvz[i],parti_kodu  =stokpartikodu[i],
-                        son_kullanim_tarihi = sonkullanimtarihi[i],stoktutari = stoktutari[i],birim_fiyat_dvz = birimfiyatdovz[i]
 
-                        )
+                for i in range(len(stokbilgisi)):
+                    if  stokbilgisi[i] == "":
+                        pass
+                    else:
+                        siparis_olustur.objects.create(
+                            grup_kodu = get_object_or_404(siparisislem_durumlari,id = siparisislem.id),
+                            bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),
+                            stok_karti_bilgisi = get_object_or_404(stok_kartlar,id=stokbilgisi[i]),
+                            tip = siparisturu[i],birim = birimbilgisi[i],birim_fiyat_tl = stokbirimfiyati[i],
+                            miktar = stokmiktari[i],indirim_yuzdesi = stokindirimyuzdesi[i],
+                            indirim_tutari_tl = stokindirimtl[i],kdv_yuzdesi = stokkdvyuzdesi[i],
+                            kdv_tutari_tl = stokkdvtl[i],otv_yuzdesi = stokotvyuzdesi[i],
+                            otv_tutari_tl = stokotvtl[i],indirim1 = stokindirim1[i],indirim2 = stokindirim2[i],
+                            indirim3 = stokindirim3[i],durumu  =stokdurumu[i],teslim_tarihi = urunteslimtarihi[i],
+                            teslim_sekli=stokteslimsekli[i],ozelkod1 = stokozelkod1[i],ozelkod2 = stokozelkod2[i],
+                            departman = stokdepartman[i],satir_aciklamasi  =stoksatiraciklamasi[i],
+                            serino = stokserino[i],s_brim = stokbirimi[i],s_miktar = stokmiktaribilgisi[i],
+                            alternatifstokkodu =stokalternatifstokkodu[i], alternatifstokadi = stokalternatifstokadi[i],
+                            kalite = stokkalitekodu[i],ozellik1  = stokozellik1[i],ozellik2  = stokozellik2[i],
+                            ozellik3  =stokozellik3[i],ozellik4  = stokozellik4[i],ozellik5  = stokozellik5[i],
+                            ana_miktar = stokanamiktari[i],ana_birim_fiyat_tl = stokanamiktaribirimfiyattl[i],
+                            ana_birim_fiyat_dvz = stokanamiktaribirimfiyatdvz[i],parti_kodu  =stokpartikodu[i],
+                            son_kullanim_tarihi = sonkullanimtarihi[i],stoktutari = stoktutari[i],birim_fiyat_dvz = birimfiyatdovz[i]
+
+                            )
+                    print([i])
         link = "/"+slug+"/siparis/"
         return redirect(link)
     return render(request,"siparis/siparis.html",content)
 #siparis düzeltme
-def siparis_sayfasi(request,slug,id):
+def siparis_sayfasi_duzeltme(request,slug,id):
     content ={}
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     content["subeleri"] =  sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
@@ -1093,7 +1099,8 @@ def siparis_sayfasi(request,slug,id):
     content["subelerim"] = subelerim
     content["kasa_bilgisi"] = kasa_bilgisi
     content["siparisler"] = siparisislem_durumlari.objects.filter(bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),silinme_bilgisi = False)
-    content["duzeltileceksiparis"] =  siparis_olustur.objects.filter(grup_kodu = get_object_or_404(siparisislem_durumlari,id = id),bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),silinme_bilgisi = False)
+    content["duzeltileceksiparis"] =  siparis_olustur.objects.filter(grup_kodu = get_object_or_404(siparisislem_durumlari,id = id),bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    print(siparis_olustur.objects.filter(grup_kodu = get_object_or_404(siparisislem_durumlari,id = id),bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)))
     if request.POST:
         if True:
             grupturu=  request.POST.get("grupturu")
@@ -1169,6 +1176,7 @@ def siparis_sayfasi(request,slug,id):
                 stokpartikodu = request.POST.getlist("stokpartikodu")
                 sonkullanimtarihi = request.POST.getlist("sonkullanimtarihi")
                 birimfiyatdovz =  request.POST.getlist("birimfiyatdovz")
+                
                 for i in range(len(stokbilgisi)):
                     siparis_olustur.objects.create(
                         grup_kodu = get_object_or_404(siparisislem_durumlari,id = siparisislem.id),

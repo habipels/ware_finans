@@ -13,7 +13,7 @@
     <a href="javascript:void(0);" onclick="ekleYeniSatir()">Bir Ürün Daha Ekle</a>
     <a href="">Kart İncele-Düzelt</a>
     <a style="color: white;" onclick="showConfirmationPopup()">Kart Sil</a>
-    <a href="" style="color:red;">Çıkış Yap (ESC)</a>
+    <a href="/{{firma.firma_ozel_anahtar}}/siparis/" style="color:red;">Çıkış Yap (ESC)</a>
 
   </div>
   <div class="d-menu">
@@ -271,49 +271,49 @@
               <option value="Euro">Euro</option>
             </select></td>
             <td><input type="text" value="{{m.grup_kodu.depo}}" name="depobilgisi"></td>
-            <td><input type="date" pattern="\d{4}-\d{2}-\d{2}" required name="teslimtarihi"></td>
-            <td><input type="text" name="teslimsekili"></td>
-            <td><input type="text" name="departman"></td>
-            <td><input type="number" step="0.001" oninput="hesaplaFiyat()" id="stokmiktari" value="1" name="stokmiktari"></td>
-            <td id="kur"><input type="number" id="gunlukkur" oninput="hesaplaFiyat()" value="0" step="0.001" name="gunlukkur">,
-              <input type="number" id="uygunkur" oninput="hesaplaFiyat()" value="0" step="0.001" name="uygunkur">,
-              <input type="number" id="birimfiyatdovz" oninput="hesaplaFiyat()" value="0" step="0.001" name="birimfiyatdovz"></td>
-            <td><input type="text" id="birimbilgisi" name="birimbilgisi"></td>
-            <td><input type="number" id="stokbirimfiyati" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokbirimfiyati"></td>
-            <td><input type="number" id="stokindirimyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokindirimyuzdesi"></td>
-            <td><input type="number" id="stokindirimtl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokindirimtl"></td>
-            <td><input type="number" id="stoktutari" oninput="hesaplaFiyat()" value="0" step="0.001" name="stoktutari">
+            <td><input type="date" value="{{m.grup_kodu.tarih |date:'Y-m-d'}}" pattern="\d{4}-\d{2}-\d{2}" required name="teslimtarihi"></td>
+            <td><input type="text" value="{{m.grup_kodu.teslim_sekli}}" name="teslimsekili"></td>
+            <td><input type="text" value="{{m.grup_kodu.departman}}" name="departman"></td>
+            <td><input type="number" step="0.001"  oninput="hesaplaFiyat()" id="stokmiktari" value="{{ m.miktar|stringformat:'.3f' }}" name="stokmiktari"></td>
+            <td id="kur"><input type="number" id="gunlukkur" oninput="hesaplaFiyat()" value="{{ m.grup_kodu.gunluk_kur|stringformat:'.3f' }}"  step="0.001" name="gunlukkur">,
+              <input type="number" id="uygunkur" oninput="hesaplaFiyat()" value="{{ m.grup_kodu.uygun_kur|stringformat:'.3f' }}"  step="0.001" name="uygunkur">,
+              <input type="number" id="birimfiyatdovz" oninput="hesaplaFiyat()" value="{{ m.birim_fiyat_dvz|stringformat:'.3f' }}" step="0.001" name="birimfiyatdovz"></td>
+            <td><input type="text" id="birimbilgisi" value="{{ m.birim}}" name="birimbilgisi"></td>
+            <td><input type="number" id="stokbirimfiyati" oninput="hesaplaFiyat()" value="{{ m.birim_fiyat_tl|stringformat:'.3f' }}" value="0" step="0.001" name="stokbirimfiyati"></td>
+            <td><input type="number" id="stokindirimyuzdesi" oninput="hesaplaFiyat()" value="{{ m.indirim_yuzdesi|stringformat:'.3f' }}" value="0" step="0.001" name="stokindirimyuzdesi"></td>
+            <td><input type="number" id="stokindirimtl" oninput="hesaplaFiyat()" value="{{ m.indirim_tutari_tl|stringformat:'.3f' }}" step="0.001" name="stokindirimtl"></td>
+            <td><input type="number" id="stoktutari" oninput="hesaplaFiyat()" value="{{ m.stoktutari|stringformat:'.3f' }}" step="0.001" name="stoktutari">
               <input style="display: none;" type="number" id="vergisiztutar" oninput="hesaplaFiyat()" value="0" step="0.001" name="vergisiztutar"></td>
-            <td><input type="number" id="stokkdvyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokkdvyuzdesi"></td>
-            <td><input type="number" id="stokkdvtl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokkdvtl"></td>
-            <td><input type="number" id="stokotvyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvyuzdesi"></td>
-            <td><input type="number" id="stokotvtl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtl"></td>
-            <td><input type="text" name="stokteslimsekli"></td>
-            <td><input type="date" pattern="\d{4}-\d{2}-\d{2}" required name="urunteslimtarihi"></td>
-            <td><input type="text" name="stokdurumu"></td>
-            <td><input type="number" id="stokindirim1" step="0.001" name="stokindirim1"></td>
-            <td><input type="number" id="stokindirim2" step="0.001" name="stokindirim2"></td>
-            <td><input type="number" id="stokindirim3" step="0.001" name="stokindirim3"></td>
-            <td><input type="text" id="stokozelkod1" name="stokozelkod1"></td>
-            <td><input type="text" id="stokozelkod2" name="stokozelkod2"></td>
-            <td><input type="text" id="stokdepartman" name="stokdepartman"></td>
-            <td><input type="text" name="stoksatiraciklamasi"></td>
-            <td><input type="text" name="stokserino"></td>
-            <td><input type="text" id="stokbirimi" name="stokbirimi"></td>
-            <td><input type="number" id="stokmiktaribilgisi" step="0.001" name="stokmiktaribilgisi"></td>
-            <td><input type="text" id="stokozellik1" name="stokozellik1"></td>
-            <td><input type="text" id="stokozellik2" name="stokozellik2"></td>
-            <td><input type="text" id="stokozellik3" name="stokozellik3"></td>
-            <td><input type="text" id="stokozellik4" name="stokozellik4"></td>
-            <td><input type="text" id="stokozellik5" name="stokozellik5"></td>
-            <td><input type="text" id="stokalternatifstokkodu" name="stokalternatifstokkodu"></td>
-            <td><input type="text" id="stokalternatifstokadi" name="stokalternatifstokadi"></td>
-            <td><input type="text" id="stokkalitekodu" name="stokkalitekodu"></td>
-            <td><input type="number" id="stokanamiktari" step="0.001" value="0" name="stokanamiktari"></td>
-            <td><input type="number" id="stokanamiktaribirimfiyattl" value="0" step="0.001" name="stokanamiktaribirimfiyattl"></td>
-            <td><input type="number" id="stokanamiktaribirimfiyatdvz" value="0" step="0.001" name="stokanamiktaribirimfiyatdvz"></td>
-            <td><input type="text" id="stokpartikodu" name="stokpartikodu"></td>
-            <td><input type="date" pattern="\d{4}-\d{2}-\d{2}" required id="sonkullanimtarihi" name="sonkullanimtarihi"></td>
+            <td><input type="number" id="stokkdvyuzdesi" oninput="hesaplaFiyat()" value="{{ m.kdv_yuzdesi|stringformat:'.3f' }}" step="0.001" name="stokkdvyuzdesi"></td>
+            <td><input type="number" id="stokkdvtl" oninput="hesaplaFiyat()" value="{{ m.kdv_tutari_tl|stringformat:'.3f' }}" step="0.001" name="stokkdvtl"></td>
+            <td><input type="number" id="stokotvyuzdesi" oninput="hesaplaFiyat()" value="{{ m.otv_yuzdesi|stringformat:'.3f' }}" step="0.001" name="stokotvyuzdesi"></td>
+            <td><input type="number" id="stokotvtl" oninput="hesaplaFiyat()" value="{{ m.otv_tutari_tl|stringformat:'.3f' }}" step="0.001" name="stokotvtl"></td>
+            <td><input type="text" value="{{ m.teslim_sekli }}" name="stokteslimsekli"></td>
+            <td><input type="date" value="{{m.teslim_tarihi |date:'Y-m-d'}}" pattern="\d{4}-\d{2}-\d{2}" required name="urunteslimtarihi"></td>
+            <td><input type="text" value="{{ m.durumu }}"  name="stokdurumu"></td>
+            <td><input type="number" id="stokindirim1" value="{{ m.indirim1|stringformat:'.3f' }}" step="0.001" name="stokindirim1"></td>
+            <td><input type="number" id="stokindirim2" value="{{ m.indirim2|stringformat:'.3f' }}" step="0.001" name="stokindirim2"></td>
+            <td><input type="number" id="stokindirim3" value="{{ m.indirim3|stringformat:'.3f' }}" step="0.001" name="stokindirim3"></td>
+            <td><input type="text" id="stokozelkod1" value="{{ m.ozelkod1 }}" name="stokozelkod1"></td>
+            <td><input type="text" id="stokozelkod2" value="{{ m.ozelkod2 }}" name="stokozelkod2"></td>
+            <td><input type="text" id="stokdepartman" value="{{ m.departman }}" name="stokdepartman"></td>
+            <td><input type="text" value="{{ m.satir_aciklamasi }}" name="stoksatiraciklamasi"></td>
+            <td><input type="text" value="{{ m.serino }}" name="stokserino"></td>
+            <td><input type="text" value="{{ m.s_brim }}" id="stokbirimi" name="stokbirimi"></td>
+            <td><input type="number" value="{{ m.s_miktar }}" id="stokmiktaribilgisi" step="0.001" name="stokmiktaribilgisi"></td>
+            <td><input type="text" value="{{ m.ozellik1 }}" id="stokozellik1" name="stokozellik1"></td>
+            <td><input type="text" value="{{ m.ozellik2 }}" id="stokozellik2" name="stokozellik2"></td>
+            <td><input type="text" value="{{ m.ozellik3 }}" id="stokozellik3" name="stokozellik3"></td>
+            <td><input type="text" value="{{ m.ozellik4 }}" id="stokozellik4" name="stokozellik4"></td>
+            <td><input type="text" value="{{ m.ozellik5 }}" id="stokozellik5" name="stokozellik5"></td>
+            <td><input type="text" value="{{ m.alternatifstokkodu }}" id="stokalternatifstokkodu" name="stokalternatifstokkodu"></td>
+            <td><input type="text" value="{{ m.alternatifstokadi }}" id="stokalternatifstokadi" name="stokalternatifstokadi"></td>
+            <td><input type="text" value="{{ m.kalite }}"  id="stokkalitekodu" name="stokkalitekodu"></td>
+            <td><input type="number" id="stokanamiktari" step="0.001"  value="{{ m.ana_miktar|stringformat:'.3f' }}" name="stokanamiktari"></td>
+            <td><input type="number" id="stokanamiktaribirimfiyattl" value="{{ m.ana_birim_fiyat_tl|stringformat:'.3f' }}" step="0.001" name="stokanamiktaribirimfiyattl"></td>
+            <td><input type="number" id="stokanamiktaribirimfiyatdvz" value="{{ m.ana_birim_fiyat_dvz|stringformat:'.3f' }}" step="0.001" name="stokanamiktaribirimfiyatdvz"></td>
+            <td><input type="text" id="stokpartikodu" value="{{ m.parti_kodu}}" name="stokpartikodu"></td>
+            <td><input type="date" value="{{m.son_kullanim_tarihi |date:'Y-m-d'}}"  pattern="\d{4}-\d{2}-\d{2}" required id="sonkullanimtarihi" name="sonkullanimtarihi"></td>
           </tr>
           {% endfor %}
         </tbody>
