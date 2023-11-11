@@ -4039,26 +4039,29 @@ def irsaliye_sayfasi(request,slug):
                 birimfiyatdovz =  request.POST.getlist("birimfiyatdovz")
                 pkaciklamasi =  request.POST.getlist("pkaciklamasi")
                 for i in range(len(stokbilgisi)):
-                    irsaliye_olustur.objects.create(
-                        grup_kodu = get_object_or_404(irsaliyeislem_durumlari,id = siparisislem.id),
-                        bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),
-                        stok_karti_bilgisi = get_object_or_404(stok_kartlar,id=stokbilgisi[i]),
-                        tip = siparisturu[i],birim = birimbilgisi[i],birim_fiyat_tl = stokbirimfiyati[i],
-                        miktar = stokmiktari[i],indirim_yuzdesi = stokindirimyuzdesi[i],
-                        indirim_tutari_tl = stokindirimtl[i],kdv_yuzdesi = stokkdvyuzdesi[i],
-                        kdv_tutari_tl = stokkdvtl[i],indirim1 = stokindirim1[i],indirim2 = stokindirim2[i],
-                        indirim3 = stokindirim3[i],
-                        ozelkod1 = stokozelkod1[i],ozelkod2 = stokozelkod2[i],
-                        departman = stokdepartman[i],satir_aciklamasi  =stoksatiraciklamasi[i],
-                        serino = stokserino[i],s_brim = stokbirimi[i],s_miktar = stokmiktaribilgisi[i],
-                        alternatifstokkodu =stokalternatifstokkodu[i], alternatifstokadi = stokalternatifstokadi[i],
-                        kalite = stokkalitekodu[i],ozellik1  = stokozellik1[i],ozellik2  = stokozellik2[i],
-                        ozellik3  =stokozellik3[i],ozellik4  = stokozellik4[i],ozellik5  = stokozellik5[i],
-                        net_agirlik_kg = agirlik[i],Burut_agirlik_kg = burutagirlik[i],
-                        pk_miktari = pkmiktari[i],parti_kodu  =stokpartikodu[i],pk_aciklamasi  =pkaciklamasi[i],
-                        son_kullanim_tarihi = sonkullanimtarihi[i],stoktutari = stoktutari[i],birim_fiyat_dvz = birimfiyatdovz[i]
+                    if  stokbilgisi[i] == "":
+                        pass
+                    else:
+                        irsaliye_olustur.objects.create(
+                            grup_kodu = get_object_or_404(irsaliyeislem_durumlari,id = siparisislem.id),
+                            bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),
+                            stok_karti_bilgisi = get_object_or_404(stok_kartlar,id=stokbilgisi[i]),
+                            tip = siparisturu[i],birim = birimbilgisi[i],birim_fiyat_tl = stokbirimfiyati[i],
+                            miktar = stokmiktari[i],indirim_yuzdesi = stokindirimyuzdesi[i],
+                            indirim_tutari_tl = stokindirimtl[i],kdv_yuzdesi = stokkdvyuzdesi[i],
+                            kdv_tutari_tl = stokkdvtl[i],indirim1 = stokindirim1[i],indirim2 = stokindirim2[i],
+                            indirim3 = stokindirim3[i],
+                            ozelkod1 = stokozelkod1[i],ozelkod2 = stokozelkod2[i],
+                            departman = stokdepartman[i],satir_aciklamasi  =stoksatiraciklamasi[i],
+                            serino = stokserino[i],s_brim = stokbirimi[i],s_miktar = stokmiktaribilgisi[i],
+                            alternatifstokkodu =stokalternatifstokkodu[i], alternatifstokadi = stokalternatifstokadi[i],
+                            kalite = stokkalitekodu[i],ozellik1  = stokozellik1[i],ozellik2  = stokozellik2[i],
+                            ozellik3  =stokozellik3[i],ozellik4  = stokozellik4[i],ozellik5  = stokozellik5[i],
+                            net_agirlik_kg = agirlik[i],Burut_agirlik_kg = burutagirlik[i],
+                            pk_miktari = pkmiktari[i],parti_kodu  =stokpartikodu[i],pk_aciklamasi  =pkaciklamasi[i],
+                            son_kullanim_tarihi = sonkullanimtarihi[i],stoktutari = stoktutari[i],birim_fiyat_dvz = birimfiyatdovz[i]
 
-                        )
+                            )
         link = "/"+slug+"/irsaliye/"
         return redirect(link)
     return render(request,"irsaliye/irsaliye.html",content)
@@ -4172,7 +4175,10 @@ def siparisi_irsaliye_aktar(request,slug,id):
                 birimfiyatdovz =  request.POST.getlist("birimfiyatdovz")
                 pkaciklamasi =  request.POST.getlist("pkaciklamasi")
                 for i in range(len(stokbilgisi)):
-                    irsaliye_olustur.objects.create(
+                    if  stokbilgisi[i] == "":
+                        pass
+                    else:
+                        irsaliye_olustur.objects.create(
                         grup_kodu = get_object_or_404(irsaliyeislem_durumlari,id = siparisislem.id),
                         bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),
                         stok_karti_bilgisi = get_object_or_404(stok_kartlar,id=stokbilgisi[i]),
@@ -4191,7 +4197,7 @@ def siparisi_irsaliye_aktar(request,slug,id):
                         pk_miktari = pkmiktari[i],parti_kodu  =stokpartikodu[i],pk_aciklamasi  =pkaciklamasi[i],
                         son_kullanim_tarihi = sonkullanimtarihi[i],stoktutari = stoktutari[i],birim_fiyat_dvz = birimfiyatdovz[i]
 
-                        )
+                            )
         link = "/"+slug+"/irsaliye/"
         return redirect(link)
     return render(request,"irsaliye/irsaliyeye_aktar.html",content)
