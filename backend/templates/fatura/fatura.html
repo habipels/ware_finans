@@ -164,16 +164,13 @@
             <th class="text-center">Satıcı</th>
             <th class="text-center">Şube</th>
             <th class="text-center">Döviz Cinsi</th>
-            <th class="text-center">Tarih-Saat</th>
             <th class="text-center">Depo</th>
+            <th class="text-center">Tarih-Saat</th>
             <th class="text-center">Yİ - YD</th>
-            
-            
             <th class="text-center">Fatura Tipi</th>
             <th class="text-center">Kasa</th>
             <th class="text-center">Depertman</th>
             <th class="text-center">Banka</th>
-            
             <th class="text-center">Miktar</th>
             <th class="text-center">Birim</th>
             <th class="text-center">Birim Fiyat(TL)</th>
@@ -182,6 +179,7 @@
             <th class="text-center" style="min-width: 100px ;">Tutar </th>
             <th class="text-center" style="min-width: 100px ;">KDV (%)</th>
             <th class="text-center">KDV (TL)</th>
+            <th class="text-center" style="min-width: 100px ;">KDV İstisna (%)</th>
             <th class="text-center">KDV İstisna (TL)</th>
             <th class="text-center">KDV İstisna Kodu</th>
             <th class="text-center">KDV İstisna Açıklama</th>
@@ -196,12 +194,13 @@
             <th class="text-center" style="min-width: 130px ;">ÖTV Tahsil (%)</th>
             <th class="text-center" style="min-width: 130px ;">ÖTV Tecil (%)</th>
             <th class="text-center" style="min-width: 130px ;">ÖTV İstisna Kodu</th>
+            <th class="text-center" style="min-width: 130px ;">ÖTV Tevkifat (%)</th>
+            <th class="text-center" style="min-width: 130px ;">GV Stopaj (%)</th>
+            <th class="text-center" style="min-width: 130px ;">Mera Fonu (%)</th>
+            <th class="text-center" style="min-width: 130px ;">Mera Fonu Tuatarı</th>
             <th class="text-center">Muh. Kodu</th>
             <th class="text-center" style="min-width: 100px ;">KDV Muh. Kodu</th>
             <th class="text-center">Satır Açıklaması</th>
-            <th class="text-center" style="min-width: 150px ;">Depo</th>
-            <th class="text-center" style="min-width: 150px ;">Depertman</th>
-            <th class="text-center" style="min-width: 150px ;">Şube</th>
             <th class="text-center">Kampanya K.</th>
             <th class="text-center">M.F. Miktarı</th>
             <th class="text-center" style="min-width: 250px ;">Özel Kod 1</th>
@@ -316,17 +315,30 @@
             </select></td>
           <td><input type="text" name="depobilgisi"></td>
           <td><input type="date" pattern="\d{4}-\d{2}-\d{2}"  name="teslimtarihi"></td>
-          <td><input type="text" name="teslimsekili"></td>
+          <td><select name="yurticiyurtdisi" id="">
+            <option value="Yurt İçi">Yurt İçi</option>
+            <option value="Yurt Dışı">Yurt Dışı</option>
+          </select></td>
+          <td><select name="faturatipi" id="">
+            <option value="Kapalı">Kapalı</option>
+            <option value="Açık">Açık</option>
+          </select></td>
+          <td><input type="text" id="kasakoduveadi" name="kasa">
+          <input type="text" name="kasakodu" style="display: none;" id="kasakodu"></td>
           <td><input type="text" name="departman"></td>
+          <td><input type="text" id="bankakoduveadi" name="banka">
+            <input type="text" name="bankakodu" style="display: none;" id="bankakodu"></td>
+          
           <td><input type="number" step="0.001" oninput="hesaplaFiyat()" id="stokmiktari" value="1" name="stokmiktari">
           </td>
+          <td><input type="text" id="birimbilgisi" name="birimbilgisi"></td>
           <td id="kur"><input type="number" id="gunlukkur" oninput="hesaplaFiyat()" value="0" step="0.001"
               name="gunlukkur">,
             <input type="number" id="uygunkur" oninput="hesaplaFiyat()" value="0" step="0.001" name="uygunkur">,
             <input type="number" id="birimfiyatdovz" oninput="hesaplaFiyat()" value="0" step="0.001"
               name="birimfiyatdovz">
           </td>
-          <td><input type="text" id="birimbilgisi" name="birimbilgisi"></td>
+          
           <td><input type="number" id="stokbirimfiyati" oninput="hesaplaFiyat()" value="0" step="0.001"
               name="stokbirimfiyati"></td>
           <td><input type="number" id="stokindirimyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
@@ -340,20 +352,40 @@
           <td><input type="number" id="stokkdvyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
               name="stokkdvyuzdesi"></td>
           <td><input type="number" id="stokkdvtl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokkdvtl"></td>
+          <td><input type="number" id="stokkdvistisnayuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
+              name="stokkdvistisnayuzdesi"></td>
+          <td><input type="number" id="stokkdvistisnatl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokkdvistisnatl"></td>
+          <td><input type="text" name="stokkdvistisnakodu"></td>
+          <td><input type="text" name="stokkdvistisnaaciklamasi"></td>
+          <td><input type="text" name="stoktevkifatkodu"></td>
+          <td><input type="number" id="stoktevkifatyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
+            name="stoktevkifatyuzdesi"></td>
+          <td><input type="number" id="stoktevkifattl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stoktevkifattl"></td>
+          <td><input type="number" id="stokotvmatrahitl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvmatrahitl"></td>
           <td><input type="number" id="stokotvyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
-              name="stokotvyuzdesi"></td>
+            name="stokotvyuzdesi"></td>
+          <td><input type="number" id="stokotvbirimtl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvbirimtl"></td>
           <td><input type="number" id="stokotvtl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtl"></td>
-          <td><input type="text" name="stokteslimsekli"></td>
-          <td><input type="date" pattern="\d{4}-\d{2}-\d{2}"  name="urunteslimtarihi"></td>
-          <td><input type="text" name="stokdurumu"></td>
+          <td><input type="text" name="stokotvkodu"></td>
+          <td><input type="number" id="stokotvtahsilyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtahsilyuzdesi"></td>
+          <td><input type="number" id="stokotvtecillyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtecillyuzdesi"></td>
+          <td><input type="text" name="stokotvistisnakodu"></td>
+          <td><input type="number" id="stokotvtevkifatyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtevkifatyuzdesi"></td>
+          <td><input type="number" id="stokgvstopajyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokgvstopajyuzdesi"></td>
+          <td><input type="number" id="stokmerafonuyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokmerafonuyuzdesi"></td>
+          <td><input type="number" id="stokmerafonututari" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokmerafonututari"></td>
+          <td><input type="text" name="stokmuhtasarkodu"></td>
+          <td><input type="text" name="stokkdvmuhtasarkodu"></td>
+          <td><input type="text" name="stoksatiraciklamasi"></td>
+          <td><input type="text" name="stokkampanyakodu"></td>
+          <td><input type="number" id="stokmfmiktari" value="0" step="0.001"
+            name="stokmfmiktari"></td>
+            <td><input type="text" id="stokozelkod1" name="stokozelkod1"></td>
+          <td><input type="text" id="stokozelkod2" name="stokozelkod2"></td>
+          <td><input type="date" pattern="\d{4}-\d{2}-\d{2}"  name="vadetarihi"></td>
           <td><input type="number" id="stokindirim1" step="0.001" name="stokindirim1"></td>
           <td><input type="number" id="stokindirim2" step="0.001" name="stokindirim2"></td>
           <td><input type="number" id="stokindirim3" step="0.001" name="stokindirim3"></td>
-          <td><input type="text" id="stokozelkod1" name="stokozelkod1"></td>
-          <td><input type="text" id="stokozelkod2" name="stokozelkod2"></td>
-          <td><input type="text" id="stokdepartman" name="stokdepartman"></td>
-          <td><input type="text" name="stoksatiraciklamasi"></td>
-          <td><input type="text" name="stokserino"></td>
           <td><input type="text" id="stokbirimi" name="stokbirimi"></td>
           <td><input type="number" id="stokmiktaribilgisi" step="0.001" name="stokmiktaribilgisi"></td>
           <td><input type="text" id="stokozellik1" name="stokozellik1"></td>
@@ -361,461 +393,1311 @@
           <td><input type="text" id="stokozellik3" name="stokozellik3"></td>
           <td><input type="text" id="stokozellik4" name="stokozellik4"></td>
           <td><input type="text" id="stokozellik5" name="stokozellik5"></td>
+          <td><input type="text" id="stokozellik6" name="stokozellik6"></td>
+          <td><input type="text" id="stokozellik7" name="stokozellik7"></td>
+          <td><input type="text" id="stokozellik8" name="stokozellik8"></td>
+          <td><input type="text" id="stokozellik9" name="stokozellik9"></td>
+          <td><input type="text" id="stokozellik10" name="stokozellik10"></td>
+          <td><input type="text" id="stokozellik11" name="stokozellik11"></td>
+          <td><input type="text" id="stokozellik12" name="stokozellik12"></td>
+          <td><input type="text" id="stokozellik13" name="stokozellik13"></td>
+          <td><input type="text" id="stokozellik14" name="stokozellik14"></td>
+          <td><input type="text" id="stokozellik15" name="stokozellik15"></td>
+          <td><input type="text" id="stokozellik16" name="stokozellik16"></td>
+          <td><input type="text" id="stokozellik17" name="stokozellik17"></td>
+          <td><input type="text" id="stokozellik18" name="stokozellik18"></td>
+          <td><input type="text" id="stokozellik19" 1name="stokozellik19"></td>
+          <td><input type="text" id="stokozellik20" name="stokozellik20"></td>
           <td><input type="text" id="stokalternatifstokkodu" name="stokalternatifstokkodu"></td>
           <td><input type="text" id="stokalternatifstokadi" name="stokalternatifstokadi"></td>
-          <td><input type="text" id="stokkalitekodu" name="stokkalitekodu"></td>
-          <td><input type="number" id="stokanamiktari" step="0.001" value="0" name="stokanamiktari"></td>
-          <td><input type="number" id="stokanamiktaribirimfiyattl" value="0" step="0.001"
-              name="stokanamiktaribirimfiyattl"></td>
-          <td><input type="number" id="stokanamiktaribirimfiyatdvz" value="0" step="0.001"
-              name="stokanamiktaribirimfiyatdvz"></td>
+          <td><input type="text" id="stokserino" name="stokserino"></td>
+          <td><input type="text" id="stokteslimdurumu" name="stokteslimdurumu"></td>
+          <td><input type="text" id="stokoivkodu" name="stokoivkodu"></td>
+
+          <td><input type="number" id="netagirlik" step="0.001" value="0" name="netagirlik"></td>
+          <td><input type="number" id="brutagirlik" value="0" step="0.001"
+              name="brutagirlik"></td>
+          <td><input type="number" id="pkmiktari" step="0.001" value="0" name="pkmiktari"></td>
+          <td><input type="text" id="pkaciklamasi" name="pkaciklamasi"></td>
+          <td><input type="text" id="kalite" value="STANDART" name="kalite"></td>
           <td><input type="text" id="stokpartikodu" name="stokpartikodu"></td>
           <td><input type="date" pattern="\d{4}-\d{2}-\d{2}"  id="sonkullanimtarihi" name="sonkullanimtarihi">
           </td>
+          <td><input type="text" id="aciklama" name="aciklama"></td>
+          <td><input type="text" id="irsaliyeno" name="irsaliyeno"></td>
+          <td><input type="date" pattern="\d{4}-\d{2}-\d{2}"  id="irsaliyetarihi" name="irsaliyetarihi">
+          </td>
+          <td><input type="text" id="malkabulno" name="malkabulno"></td>
         </tr>
         <tr class="yeniform">
           <td><select name="siparisturu" id="">
-              <option value="Normal">Normal</option>
-              <option value="İndirimli">İndirimli</option>
-            </select></td>
-          <td><b>Seçimi Yaptınız</b></td>
-          <td><b>Seçimi Yaptınız</b></td>
-          <td><b>Seçimi Yaptınız</b></td>
-          <td><select onchange="yeniselect(this)" name="stok" id="stoksecim">
-              <option value="">Stok Seçiniz</option>
-              {% for i in stokkartlarim %}
-              <option value="{{i.id}}">({{i.stok_kodu}}) {{i.stok_adi}}</option>
-              {% endfor %}
-            </select></td>
-          <td><b>Seçimi Yaptınız</b></td>
-          <td><b>Seçimi Yaptınız</b></td>
-          <td><b>Seçimi Yaptınız</b></td>
-          <td><b>Seçimi Yaptınız</b></td>
-          <td><b>Seçimi Yaptınız</b></td>
-          <td><b>Seçimi Yaptınız</b></td>
-          <td><b>Seçimi Yaptınız</b></td>
-          <td><b>Seçimi Yaptınız</b></td>
-          <td><input type="text" name="departman"></td>
-          <td><input type="number" step="0.001" oninput="hesaplaFiyat()" id="stokmiktari" value="1" name="stokmiktari">
-          </td>
-          <td id="kur"><input type="number" id="birimfiyatdovz" oninput="hesaplaFiyat()" value="0" step="0.001"
-              name="birimfiyatdovz"></td>
-          <td><input type="text" id="birimbilgisi" name="birimbilgisi"></td>
-          <td><input type="number" id="stokbirimfiyati" oninput="hesaplaFiyat()" value="0" step="0.001"
-              name="stokbirimfiyati"></td>
-          <td><input type="number" id="stokindirimyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
-              name="stokindirimyuzdesi"></td>
-          <td><input type="number" id="stokindirimtl" oninput="hesaplaFiyat()" value="0" step="0.001"
-              name="stokindirimtl"></td>
-          <td><input type="number" id="stoktutari" oninput="hesaplaFiyat()" value="0" step="0.001" name="stoktutari">
-            <input style="display: none;" type="number" id="vergisiztutar" oninput="hesaplaFiyat()" value="0"
-              step="0.001" name="vergisiztutar">
-          </td>
-          <td><input type="number" id="stokkdvyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
-              name="stokkdvyuzdesi"></td>
-          <td><input type="number" id="stokkdvtl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokkdvtl"></td>
-          <td><input type="number" id="stokotvyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
-              name="stokotvyuzdesi"></td>
-          <td><input type="number" id="stokotvtl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtl"></td>
-          <td><input type="text" name="stokteslimsekli"></td>
-          <td><input type="date" pattern="\d{4}-\d{2}-\d{2}"  name="urunteslimtarihi"></td>
-          <td><input type="text" name="stokdurumu"></td>
-          <td><input type="number" id="stokindirim1" step="0.001" name="stokindirim1"></td>
-          <td><input type="number" id="stokindirim2" step="0.001" name="stokindirim2"></td>
-          <td><input type="number" id="stokindirim3" step="0.001" name="stokindirim3"></td>
+            <option value="Normal">Normal</option>
+            <option value="İndirim">İndirim</option>
+            <option value="Hizmet">Hizmet</option>
+            <option value="Vade Fark">Vade Farkı</option>
+            <option value="Fiyat Farkı">Fiyat Farkı</option>
+          </select></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><select onchange="yeniselect(this)" name="stok" id="stoksecim">
+            <option value="">Stok Seçiniz</option>
+            {% for i in stokkartlarim %}
+
+            <option value="{{i.id}}">({{i.stok_kodu}}) {{i.stok_adi}}</option>
+            {% endfor %}
+
+          </select></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><input type="number" step="0.001" oninput="hesaplaFiyat()" id="stokmiktari" value="1" name="stokmiktari">
+        </td>
+        <td><input type="text" id="birimbilgisi" name="birimbilgisi"></td>
+        <td id="kur"><b>Seçimi Yaptınız</b>
+        </td>
+        
+        <td><input type="number" id="stokbirimfiyati" oninput="hesaplaFiyat()" value="0" step="0.001"
+            name="stokbirimfiyati"></td>
+        <td><input type="number" id="stokindirimyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
+            name="stokindirimyuzdesi"></td>
+        <td><input type="number" id="stokindirimtl" oninput="hesaplaFiyat()" value="0" step="0.001"
+            name="stokindirimtl"></td>
+        <td><input type="number" id="stoktutari" oninput="hesaplaFiyat()" value="0" step="0.001" name="stoktutari">
+          <input style="display: none;" type="number" id="vergisiztutar" oninput="hesaplaFiyat()" value="0"
+            step="0.001" name="vergisiztutar">
+        </td>
+        <td><input type="number" id="stokkdvyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
+            name="stokkdvyuzdesi"></td>
+        <td><input type="number" id="stokkdvtl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokkdvtl"></td>
+        <td><input type="number" id="stokkdvistisnayuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
+            name="stokkdvistisnayuzdesi"></td>
+        <td><input type="number" id="stokkdvistisnatl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokkdvistisnatl"></td>
+        <td><input type="text" name="stokkdvistisnakodu"></td>
+        <td><input type="text" name="stokkdvistisnaaciklamasi"></td>
+        <td><input type="text" name="stoktevkifatkodu"></td>
+        <td><input type="number" id="stoktevkifatyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
+          name="stoktevkifatyuzdesi"></td>
+        <td><input type="number" id="stoktevkifattl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stoktevkifattl"></td>
+        <td><input type="number" id="stokotvmatrahitl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvmatrahitl"></td>
+        <td><input type="number" id="stokotvyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
+          name="stokotvyuzdesi"></td>
+        <td><input type="number" id="stokotvbirimtl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvbirimtl"></td>
+        <td><input type="number" id="stokotvtl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtl"></td>
+        <td><input type="text" name="stokotvkodu"></td>
+        <td><input type="number" id="stokotvtahsilyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtahsilyuzdesi"></td>
+        <td><input type="number" id="stokotvtecillyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtecillyuzdesi"></td>
+        <td><input type="text" name="stokotvistisnakodu"></td>
+        <td><input type="number" id="stokotvtevkifatyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtevkifatyuzdesi"></td>
+          <td><input type="number" id="stokgvstopajyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokgvstopajyuzdesi"></td>
+          <td><input type="number" id="stokmerafonuyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokmerafonuyuzdesi"></td>
+          <td><input type="number" id="stokmerafonututari" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokmerafonututari"></td>
+          <td><input type="text" name="stokmuhtasarkodu"></td>
+        <td><input type="text" name="stokkdvmuhtasarkodu"></td>
+        <td><input type="text" name="stoksatiraciklamasi"></td>
+        <td><input type="text" name="stokkampanyakodu"></td>
+        <td><input type="number" id="stokmfmiktari" value="0" step="0.001"
+          name="stokmfmiktari"></td>
           <td><input type="text" id="stokozelkod1" name="stokozelkod1"></td>
-          <td><input type="text" id="stokozelkod2" name="stokozelkod2"></td>
-          <td><input type="text" id="stokdepartman" name="stokdepartman"></td>
-          <td><input type="text" name="stoksatiraciklamasi"></td>
-          <td><input type="text" name="stokserino"></td>
-          <td><input type="text" id="stokbirimi" name="stokbirimi"></td>
-          <td><input type="number" id="stokmiktaribilgisi" step="0.001" name="stokmiktaribilgisi"></td>
-          <td><input type="text" id="stokozellik1" name="stokozellik1"></td>
-          <td><input type="text" id="stokozellik2" name="stokozellik2"></td>
-          <td><input type="text" id="stokozellik3" name="stokozellik3"></td>
-          <td><input type="text" id="stokozellik4" name="stokozellik4"></td>
-          <td><input type="text" id="stokozellik5" name="stokozellik5"></td>
-          <td><input type="text" id="stokalternatifstokkodu" name="stokalternatifstokkodu"></td>
-          <td><input type="text" id="stokalternatifstokadi" name="stokalternatifstokadi"></td>
-          <td><input type="text" id="stokkalitekodu" name="stokkalitekodu"></td>
-          <td><input type="number" id="stokanamiktari" step="0.001" value="0" name="stokanamiktari"></td>
-          <td><input type="number" id="stokanamiktaribirimfiyattl" value="0" step="0.001"
-              name="stokanamiktaribirimfiyattl"></td>
-          <td><input type="number" id="stokanamiktaribirimfiyatdvz" value="0" step="0.001"
-              name="stokanamiktaribirimfiyatdvz"></td>
-          <td><input type="text" id="stokpartikodu" name="stokpartikodu"></td>
-          <td><input type="date" pattern="\d{4}-\d{2}-\d{2}"  id="sonkullanimtarihi" name="sonkullanimtarihi">
-          </td>
+        <td><input type="text" id="stokozelkod2" name="stokozelkod2"></td>
+        <td><input type="date" pattern="\d{4}-\d{2}-\d{2}"  name="vadetarihi"></td>
+        <td><input type="number" id="stokindirim1" step="0.001" name="stokindirim1"></td>
+        <td><input type="number" id="stokindirim2" step="0.001" name="stokindirim2"></td>
+        <td><input type="number" id="stokindirim3" step="0.001" name="stokindirim3"></td>
+        <td><input type="text" id="stokbirimi" name="stokbirimi"></td>
+        <td><input type="number" id="stokmiktaribilgisi" step="0.001" name="stokmiktaribilgisi"></td>
+        <td><input type="text" id="stokozellik1" name="stokozellik1"></td>
+        <td><input type="text" id="stokozellik2" name="stokozellik2"></td>
+        <td><input type="text" id="stokozellik3" name="stokozellik3"></td>
+        <td><input type="text" id="stokozellik4" name="stokozellik4"></td>
+        <td><input type="text" id="stokozellik5" name="stokozellik5"></td>
+        <td><input type="text" id="stokozellik6" name="stokozellik6"></td>
+        <td><input type="text" id="stokozellik7" name="stokozellik7"></td>
+        <td><input type="text" id="stokozellik8" name="stokozellik8"></td>
+        <td><input type="text" id="stokozellik9" name="stokozellik9"></td>
+        <td><input type="text" id="stokozellik10" name="stokozellik10"></td>
+        <td><input type="text" id="stokozellik11" name="stokozellik11"></td>
+        <td><input type="text" id="stokozellik12" name="stokozellik12"></td>
+        <td><input type="text" id="stokozellik13" name="stokozellik13"></td>
+        <td><input type="text" id="stokozellik14" name="stokozellik14"></td>
+        <td><input type="text" id="stokozellik15" name="stokozellik15"></td>
+        <td><input type="text" id="stokozellik16" name="stokozellik16"></td>
+        <td><input type="text" id="stokozellik17" name="stokozellik17"></td>
+        <td><input type="text" id="stokozellik18" name="stokozellik18"></td>
+        <td><input type="text" id="stokozellik19" 1name="stokozellik19"></td>
+        <td><input type="text" id="stokozellik20" name="stokozellik20"></td>
+        <td><input type="text" id="stokalternatifstokkodu" name="stokalternatifstokkodu"></td>
+        <td><input type="text" id="stokalternatifstokadi" name="stokalternatifstokadi"></td>
+        <td><input type="text" id="stokserino" name="stokserino"></td>
+        <td><input type="text" id="stokteslimdurumu" name="stokteslimdurumu"></td>
+        <td><input type="text" id="stokoivkodu" name="stokoivkodu"></td>
+
+        <td><input type="number" id="netagirlik" step="0.001" value="0" name="netagirlik"></td>
+        <td><input type="number" id="brutagirlik" value="0" step="0.001"
+            name="brutagirlik"></td>
+        <td><input type="number" id="pkmiktari" step="0.001" value="0" name="pkmiktari"></td>
+        <td><input type="text" id="pkaciklamasi" name="pkaciklamasi"></td>
+        <td><input type="text" id="kalite" value="STANDART" name="kalite"></td>
+        <td><input type="text" id="stokpartikodu" name="stokpartikodu"></td>
+        <td><input type="date" pattern="\d{4}-\d{2}-\d{2}"  id="sonkullanimtarihi" name="sonkullanimtarihi">
+        </td>
+        <td><input type="text" id="aciklama" name="aciklama"></td>
+        <td><input type="text" id="irsaliyeno" name="irsaliyeno"></td>
+        <td><input type="date" pattern="\d{4}-\d{2}-\d{2}"  id="irsaliyetarihi" name="irsaliyetarihi">
+        </td>
+        <td><input type="text" id="malkabulno" name="malkabulno"></td>
         </tr>
         <tr class="yeniform">
           <td><select name="siparisturu" id="">
-              <option value="Normal">Normal</option>
-              <option value="İndirimli">İndirimli</option>
-            </select></td>
-          <td><b>Seçimi Yaptınız</b></td>
-          <td><b>Seçimi Yaptınız</b></td>
-          <td><b>Seçimi Yaptınız</b></td>
-          <td><select onchange="yeniselect(this)" name="stok" id="stoksecim">
-              <option value="">Stok Seçiniz</option>
-              {% for i in stokkartlarim %}
-              <option value="{{i.id}}">({{i.stok_kodu}}) {{i.stok_adi}}</option>
-              {% endfor %}
-            </select></td>
-          <td><b>Seçimi Yaptınız</b></td>
-          <td><b>Seçimi Yaptınız</b></td>
-          <td><b>Seçimi Yaptınız</b></td>
-          <td><b>Seçimi Yaptınız</b></td>
-          <td><b>Seçimi Yaptınız</b></td>
-          <td><b>Seçimi Yaptınız</b></td>
-          <td><b>Seçimi Yaptınız</b></td>
-          <td><b>Seçimi Yaptınız</b></td>
-          <td><input type="text" name="departman"></td>
-          <td><input type="number" step="0.001" oninput="hesaplaFiyat()" id="stokmiktari" value="1" name="stokmiktari">
-          </td>
-          <td id="kur"><input type="number" id="birimfiyatdovz" oninput="hesaplaFiyat()" value="0" step="0.001"
-              name="birimfiyatdovz"></td>
-          <td><input type="text" id="birimbilgisi" name="birimbilgisi"></td>
-          <td><input type="number" id="stokbirimfiyati" oninput="hesaplaFiyat()" value="0" step="0.001"
-              name="stokbirimfiyati"></td>
-          <td><input type="number" id="stokindirimyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
-              name="stokindirimyuzdesi"></td>
-          <td><input type="number" id="stokindirimtl" oninput="hesaplaFiyat()" value="0" step="0.001"
-              name="stokindirimtl"></td>
-          <td><input type="number" id="stoktutari" oninput="hesaplaFiyat()" value="0" step="0.001" name="stoktutari">
-            <input style="display: none;" type="number" id="vergisiztutar" oninput="hesaplaFiyat()" value="0"
-              step="0.001" name="vergisiztutar">
-          </td>
-          <td><input type="number" id="stokkdvyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
-              name="stokkdvyuzdesi"></td>
-          <td><input type="number" id="stokkdvtl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokkdvtl"></td>
-          <td><input type="number" id="stokotvyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
-              name="stokotvyuzdesi"></td>
-          <td><input type="number" id="stokotvtl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtl"></td>
-          <td><input type="text" name="stokteslimsekli"></td>
-          <td><input type="date" pattern="\d{4}-\d{2}-\d{2}"  name="urunteslimtarihi"></td>
-          <td><input type="text" name="stokdurumu"></td>
-          <td><input type="number" id="stokindirim1" step="0.001" name="stokindirim1"></td>
-          <td><input type="number" id="stokindirim2" step="0.001" name="stokindirim2"></td>
-          <td><input type="number" id="stokindirim3" step="0.001" name="stokindirim3"></td>
+            <option value="Normal">Normal</option>
+            <option value="İndirim">İndirim</option>
+            <option value="Hizmet">Hizmet</option>
+            <option value="Vade Fark">Vade Farkı</option>
+            <option value="Fiyat Farkı">Fiyat Farkı</option>
+          </select></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><select onchange="yeniselect(this)" name="stok" id="stoksecim">
+            <option value="">Stok Seçiniz</option>
+            {% for i in stokkartlarim %}
+
+            <option value="{{i.id}}">({{i.stok_kodu}}) {{i.stok_adi}}</option>
+            {% endfor %}
+
+          </select></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><input type="number" step="0.001" oninput="hesaplaFiyat()" id="stokmiktari" value="1" name="stokmiktari">
+        </td>
+        <td><input type="text" id="birimbilgisi" name="birimbilgisi"></td>
+        <td id="kur"><b>Seçimi Yaptınız</b>
+        </td>
+        
+        <td><input type="number" id="stokbirimfiyati" oninput="hesaplaFiyat()" value="0" step="0.001"
+            name="stokbirimfiyati"></td>
+        <td><input type="number" id="stokindirimyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
+            name="stokindirimyuzdesi"></td>
+        <td><input type="number" id="stokindirimtl" oninput="hesaplaFiyat()" value="0" step="0.001"
+            name="stokindirimtl"></td>
+        <td><input type="number" id="stoktutari" oninput="hesaplaFiyat()" value="0" step="0.001" name="stoktutari">
+          <input style="display: none;" type="number" id="vergisiztutar" oninput="hesaplaFiyat()" value="0"
+            step="0.001" name="vergisiztutar">
+        </td>
+        <td><input type="number" id="stokkdvyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
+            name="stokkdvyuzdesi"></td>
+        <td><input type="number" id="stokkdvtl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokkdvtl"></td>
+        <td><input type="number" id="stokkdvistisnayuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
+            name="stokkdvistisnayuzdesi"></td>
+        <td><input type="number" id="stokkdvistisnatl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokkdvistisnatl"></td>
+        <td><input type="text" name="stokkdvistisnakodu"></td>
+        <td><input type="text" name="stokkdvistisnaaciklamasi"></td>
+        <td><input type="text" name="stoktevkifatkodu"></td>
+        <td><input type="number" id="stoktevkifatyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
+          name="stoktevkifatyuzdesi"></td>
+        <td><input type="number" id="stoktevkifattl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stoktevkifattl"></td>
+        <td><input type="number" id="stokotvmatrahitl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvmatrahitl"></td>
+        <td><input type="number" id="stokotvyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
+          name="stokotvyuzdesi"></td>
+        <td><input type="number" id="stokotvbirimtl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvbirimtl"></td>
+        <td><input type="number" id="stokotvtl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtl"></td>
+        <td><input type="text" name="stokotvkodu"></td>
+        <td><input type="number" id="stokotvtahsilyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtahsilyuzdesi"></td>
+        <td><input type="number" id="stokotvtecillyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtecillyuzdesi"></td>
+        <td><input type="text" name="stokotvistisnakodu"></td>
+        <td><input type="number" id="stokotvtevkifatyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtevkifatyuzdesi"></td>
+          <td><input type="number" id="stokgvstopajyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokgvstopajyuzdesi"></td>
+          <td><input type="number" id="stokmerafonuyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokmerafonuyuzdesi"></td>
+          <td><input type="number" id="stokmerafonututari" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokmerafonututari"></td>
+          <td><input type="text" name="stokmuhtasarkodu"></td>
+        <td><input type="text" name="stokkdvmuhtasarkodu"></td>
+        <td><input type="text" name="stoksatiraciklamasi"></td>
+        <td><input type="text" name="stokkampanyakodu"></td>
+        <td><input type="number" id="stokmfmiktari" value="0" step="0.001"
+          name="stokmfmiktari"></td>
           <td><input type="text" id="stokozelkod1" name="stokozelkod1"></td>
-          <td><input type="text" id="stokozelkod2" name="stokozelkod2"></td>
-          <td><input type="text" id="stokdepartman" name="stokdepartman"></td>
-          <td><input type="text" name="stoksatiraciklamasi"></td>
-          <td><input type="text" name="stokserino"></td>
-          <td><input type="text" id="stokbirimi" name="stokbirimi"></td>
-          <td><input type="number" id="stokmiktaribilgisi" step="0.001" name="stokmiktaribilgisi"></td>
-          <td><input type="text" id="stokozellik1" name="stokozellik1"></td>
-          <td><input type="text" id="stokozellik2" name="stokozellik2"></td>
-          <td><input type="text" id="stokozellik3" name="stokozellik3"></td>
-          <td><input type="text" id="stokozellik4" name="stokozellik4"></td>
-          <td><input type="text" id="stokozellik5" name="stokozellik5"></td>
-          <td><input type="text" id="stokalternatifstokkodu" name="stokalternatifstokkodu"></td>
-          <td><input type="text" id="stokalternatifstokadi" name="stokalternatifstokadi"></td>
-          <td><input type="text" id="stokkalitekodu" name="stokkalitekodu"></td>
-          <td><input type="number" id="stokanamiktari" step="0.001" value="0" name="stokanamiktari"></td>
-          <td><input type="number" id="stokanamiktaribirimfiyattl" value="0" step="0.001"
-              name="stokanamiktaribirimfiyattl"></td>
-          <td><input type="number" id="stokanamiktaribirimfiyatdvz" value="0" step="0.001"
-              name="stokanamiktaribirimfiyatdvz"></td>
-          <td><input type="text" id="stokpartikodu" name="stokpartikodu"></td>
-          <td><input type="date" pattern="\d{4}-\d{2}-\d{2}"  id="sonkullanimtarihi" name="sonkullanimtarihi">
-          </td>
+        <td><input type="text" id="stokozelkod2" name="stokozelkod2"></td>
+        <td><input type="date" pattern="\d{4}-\d{2}-\d{2}"  name="vadetarihi"></td>
+        <td><input type="number" id="stokindirim1" step="0.001" name="stokindirim1"></td>
+        <td><input type="number" id="stokindirim2" step="0.001" name="stokindirim2"></td>
+        <td><input type="number" id="stokindirim3" step="0.001" name="stokindirim3"></td>
+        <td><input type="text" id="stokbirimi" name="stokbirimi"></td>
+        <td><input type="number" id="stokmiktaribilgisi" step="0.001" name="stokmiktaribilgisi"></td>
+        <td><input type="text" id="stokozellik1" name="stokozellik1"></td>
+        <td><input type="text" id="stokozellik2" name="stokozellik2"></td>
+        <td><input type="text" id="stokozellik3" name="stokozellik3"></td>
+        <td><input type="text" id="stokozellik4" name="stokozellik4"></td>
+        <td><input type="text" id="stokozellik5" name="stokozellik5"></td>
+        <td><input type="text" id="stokozellik6" name="stokozellik6"></td>
+        <td><input type="text" id="stokozellik7" name="stokozellik7"></td>
+        <td><input type="text" id="stokozellik8" name="stokozellik8"></td>
+        <td><input type="text" id="stokozellik9" name="stokozellik9"></td>
+        <td><input type="text" id="stokozellik10" name="stokozellik10"></td>
+        <td><input type="text" id="stokozellik11" name="stokozellik11"></td>
+        <td><input type="text" id="stokozellik12" name="stokozellik12"></td>
+        <td><input type="text" id="stokozellik13" name="stokozellik13"></td>
+        <td><input type="text" id="stokozellik14" name="stokozellik14"></td>
+        <td><input type="text" id="stokozellik15" name="stokozellik15"></td>
+        <td><input type="text" id="stokozellik16" name="stokozellik16"></td>
+        <td><input type="text" id="stokozellik17" name="stokozellik17"></td>
+        <td><input type="text" id="stokozellik18" name="stokozellik18"></td>
+        <td><input type="text" id="stokozellik19" 1name="stokozellik19"></td>
+        <td><input type="text" id="stokozellik20" name="stokozellik20"></td>
+        <td><input type="text" id="stokalternatifstokkodu" name="stokalternatifstokkodu"></td>
+        <td><input type="text" id="stokalternatifstokadi" name="stokalternatifstokadi"></td>
+        <td><input type="text" id="stokserino" name="stokserino"></td>
+        <td><input type="text" id="stokteslimdurumu" name="stokteslimdurumu"></td>
+        <td><input type="text" id="stokoivkodu" name="stokoivkodu"></td>
+
+        <td><input type="number" id="netagirlik" step="0.001" value="0" name="netagirlik"></td>
+        <td><input type="number" id="brutagirlik" value="0" step="0.001"
+            name="brutagirlik"></td>
+        <td><input type="number" id="pkmiktari" step="0.001" value="0" name="pkmiktari"></td>
+        <td><input type="text" id="pkaciklamasi" name="pkaciklamasi"></td>
+        <td><input type="text" id="kalite" value="STANDART" name="kalite"></td>
+        <td><input type="text" id="stokpartikodu" name="stokpartikodu"></td>
+        <td><input type="date" pattern="\d{4}-\d{2}-\d{2}"  id="sonkullanimtarihi" name="sonkullanimtarihi">
+        </td>
+        <td><input type="text" id="aciklama" name="aciklama"></td>
+        <td><input type="text" id="irsaliyeno" name="irsaliyeno"></td>
+        <td><input type="date" pattern="\d{4}-\d{2}-\d{2}"  id="irsaliyetarihi" name="irsaliyetarihi">
+        </td>
+        <td><input type="text" id="malkabulno" name="malkabulno"></td>
         </tr>
         <tr class="yeniform">
           <td><select name="siparisturu" id="">
-              <option value="Normal">Normal</option>
-              <option value="İndirimli">İndirimli</option>
-            </select></td>
-          <td><b>Seçimi Yaptınız</b></td>
-          <td><b>Seçimi Yaptınız</b></td>
-          <td><b>Seçimi Yaptınız</b></td>
-          <td><select onchange="yeniselect(this)" name="stok" id="stoksecim">
-              <option value="">Stok Seçiniz</option>
-              {% for i in stokkartlarim %}
-              <option value="{{i.id}}">({{i.stok_kodu}}) {{i.stok_adi}}</option>
-              {% endfor %}
-            </select></td>
-          <td><b>Seçimi Yaptınız</b></td>
-          <td><b>Seçimi Yaptınız</b></td>
-          <td><b>Seçimi Yaptınız</b></td>
-          <td><b>Seçimi Yaptınız</b></td>
-          <td><b>Seçimi Yaptınız</b></td>
-          <td><b>Seçimi Yaptınız</b></td>
-          <td><b>Seçimi Yaptınız</b></td>
-          <td><b>Seçimi Yaptınız</b></td>
-          <td><input type="text" name="departman"></td>
-          <td><input type="number" step="0.001" oninput="hesaplaFiyat()" id="stokmiktari" value="1" name="stokmiktari">
-          </td>
-          <td id="kur"><input type="number" id="birimfiyatdovz" oninput="hesaplaFiyat()" value="0" step="0.001"
-              name="birimfiyatdovz"></td>
-          <td><input type="text" id="birimbilgisi" name="birimbilgisi"></td>
-          <td><input type="number" id="stokbirimfiyati" oninput="hesaplaFiyat()" value="0" step="0.001"
-              name="stokbirimfiyati"></td>
-          <td><input type="number" id="stokindirimyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
-              name="stokindirimyuzdesi"></td>
-          <td><input type="number" id="stokindirimtl" oninput="hesaplaFiyat()" value="0" step="0.001"
-              name="stokindirimtl"></td>
-          <td><input type="number" id="stoktutari" oninput="hesaplaFiyat()" value="0" step="0.001" name="stoktutari">
-            <input style="display: none;" type="number" id="vergisiztutar" oninput="hesaplaFiyat()" value="0"
-              step="0.001" name="vergisiztutar">
-          </td>
-          <td><input type="number" id="stokkdvyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
-              name="stokkdvyuzdesi"></td>
-          <td><input type="number" id="stokkdvtl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokkdvtl"></td>
-          <td><input type="number" id="stokotvyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
-              name="stokotvyuzdesi"></td>
-          <td><input type="number" id="stokotvtl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtl"></td>
-          <td><input type="text" name="stokteslimsekli"></td>
-          <td><input type="date" pattern="\d{4}-\d{2}-\d{2}"  name="urunteslimtarihi"></td>
-          <td><input type="text" name="stokdurumu"></td>
-          <td><input type="number" id="stokindirim1" step="0.001" name="stokindirim1"></td>
-          <td><input type="number" id="stokindirim2" step="0.001" name="stokindirim2"></td>
-          <td><input type="number" id="stokindirim3" step="0.001" name="stokindirim3"></td>
+            <option value="Normal">Normal</option>
+            <option value="İndirim">İndirim</option>
+            <option value="Hizmet">Hizmet</option>
+            <option value="Vade Fark">Vade Farkı</option>
+            <option value="Fiyat Farkı">Fiyat Farkı</option>
+          </select></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><select onchange="yeniselect(this)" name="stok" id="stoksecim">
+            <option value="">Stok Seçiniz</option>
+            {% for i in stokkartlarim %}
+
+            <option value="{{i.id}}">({{i.stok_kodu}}) {{i.stok_adi}}</option>
+            {% endfor %}
+
+          </select></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><input type="number" step="0.001" oninput="hesaplaFiyat()" id="stokmiktari" value="1" name="stokmiktari">
+        </td>
+        <td><input type="text" id="birimbilgisi" name="birimbilgisi"></td>
+        <td id="kur"><b>Seçimi Yaptınız</b>
+        </td>
+        
+        <td><input type="number" id="stokbirimfiyati" oninput="hesaplaFiyat()" value="0" step="0.001"
+            name="stokbirimfiyati"></td>
+        <td><input type="number" id="stokindirimyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
+            name="stokindirimyuzdesi"></td>
+        <td><input type="number" id="stokindirimtl" oninput="hesaplaFiyat()" value="0" step="0.001"
+            name="stokindirimtl"></td>
+        <td><input type="number" id="stoktutari" oninput="hesaplaFiyat()" value="0" step="0.001" name="stoktutari">
+          <input style="display: none;" type="number" id="vergisiztutar" oninput="hesaplaFiyat()" value="0"
+            step="0.001" name="vergisiztutar">
+        </td>
+        <td><input type="number" id="stokkdvyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
+            name="stokkdvyuzdesi"></td>
+        <td><input type="number" id="stokkdvtl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokkdvtl"></td>
+        <td><input type="number" id="stokkdvistisnayuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
+            name="stokkdvistisnayuzdesi"></td>
+        <td><input type="number" id="stokkdvistisnatl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokkdvistisnatl"></td>
+        <td><input type="text" name="stokkdvistisnakodu"></td>
+        <td><input type="text" name="stokkdvistisnaaciklamasi"></td>
+        <td><input type="text" name="stoktevkifatkodu"></td>
+        <td><input type="number" id="stoktevkifatyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
+          name="stoktevkifatyuzdesi"></td>
+        <td><input type="number" id="stoktevkifattl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stoktevkifattl"></td>
+        <td><input type="number" id="stokotvmatrahitl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvmatrahitl"></td>
+        <td><input type="number" id="stokotvyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
+          name="stokotvyuzdesi"></td>
+        <td><input type="number" id="stokotvbirimtl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvbirimtl"></td>
+        <td><input type="number" id="stokotvtl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtl"></td>
+        <td><input type="text" name="stokotvkodu"></td>
+        <td><input type="number" id="stokotvtahsilyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtahsilyuzdesi"></td>
+        <td><input type="number" id="stokotvtecillyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtecillyuzdesi"></td>
+        <td><input type="text" name="stokotvistisnakodu"></td>
+        <td><input type="number" id="stokotvtevkifatyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtevkifatyuzdesi"></td>
+          <td><input type="number" id="stokgvstopajyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokgvstopajyuzdesi"></td>
+          <td><input type="number" id="stokmerafonuyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokmerafonuyuzdesi"></td>
+          <td><input type="number" id="stokmerafonututari" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokmerafonututari"></td>
+          <td><input type="text" name="stokmuhtasarkodu"></td>
+        <td><input type="text" name="stokkdvmuhtasarkodu"></td>
+        <td><input type="text" name="stoksatiraciklamasi"></td>
+        <td><input type="text" name="stokkampanyakodu"></td>
+        <td><input type="number" id="stokmfmiktari" value="0" step="0.001"
+          name="stokmfmiktari"></td>
           <td><input type="text" id="stokozelkod1" name="stokozelkod1"></td>
-          <td><input type="text" id="stokozelkod2" name="stokozelkod2"></td>
-          <td><input type="text" id="stokdepartman" name="stokdepartman"></td>
-          <td><input type="text" name="stoksatiraciklamasi"></td>
-          <td><input type="text" name="stokserino"></td>
-          <td><input type="text" id="stokbirimi" name="stokbirimi"></td>
-          <td><input type="number" id="stokmiktaribilgisi" step="0.001" name="stokmiktaribilgisi"></td>
-          <td><input type="text" id="stokozellik1" name="stokozellik1"></td>
-          <td><input type="text" id="stokozellik2" name="stokozellik2"></td>
-          <td><input type="text" id="stokozellik3" name="stokozellik3"></td>
-          <td><input type="text" id="stokozellik4" name="stokozellik4"></td>
-          <td><input type="text" id="stokozellik5" name="stokozellik5"></td>
-          <td><input type="text" id="stokalternatifstokkodu" name="stokalternatifstokkodu"></td>
-          <td><input type="text" id="stokalternatifstokadi" name="stokalternatifstokadi"></td>
-          <td><input type="text" id="stokkalitekodu" name="stokkalitekodu"></td>
-          <td><input type="number" id="stokanamiktari" step="0.001" value="0" name="stokanamiktari"></td>
-          <td><input type="number" id="stokanamiktaribirimfiyattl" value="0" step="0.001"
-              name="stokanamiktaribirimfiyattl"></td>
-          <td><input type="number" id="stokanamiktaribirimfiyatdvz" value="0" step="0.001"
-              name="stokanamiktaribirimfiyatdvz"></td>
-          <td><input type="text" id="stokpartikodu" name="stokpartikodu"></td>
-          <td><input type="date" pattern="\d{4}-\d{2}-\d{2}"  id="sonkullanimtarihi" name="sonkullanimtarihi">
-          </td>
+        <td><input type="text" id="stokozelkod2" name="stokozelkod2"></td>
+        <td><input type="date" pattern="\d{4}-\d{2}-\d{2}"  name="vadetarihi"></td>
+        <td><input type="number" id="stokindirim1" step="0.001" name="stokindirim1"></td>
+        <td><input type="number" id="stokindirim2" step="0.001" name="stokindirim2"></td>
+        <td><input type="number" id="stokindirim3" step="0.001" name="stokindirim3"></td>
+        <td><input type="text" id="stokbirimi" name="stokbirimi"></td>
+        <td><input type="number" id="stokmiktaribilgisi" step="0.001" name="stokmiktaribilgisi"></td>
+        <td><input type="text" id="stokozellik1" name="stokozellik1"></td>
+        <td><input type="text" id="stokozellik2" name="stokozellik2"></td>
+        <td><input type="text" id="stokozellik3" name="stokozellik3"></td>
+        <td><input type="text" id="stokozellik4" name="stokozellik4"></td>
+        <td><input type="text" id="stokozellik5" name="stokozellik5"></td>
+        <td><input type="text" id="stokozellik6" name="stokozellik6"></td>
+        <td><input type="text" id="stokozellik7" name="stokozellik7"></td>
+        <td><input type="text" id="stokozellik8" name="stokozellik8"></td>
+        <td><input type="text" id="stokozellik9" name="stokozellik9"></td>
+        <td><input type="text" id="stokozellik10" name="stokozellik10"></td>
+        <td><input type="text" id="stokozellik11" name="stokozellik11"></td>
+        <td><input type="text" id="stokozellik12" name="stokozellik12"></td>
+        <td><input type="text" id="stokozellik13" name="stokozellik13"></td>
+        <td><input type="text" id="stokozellik14" name="stokozellik14"></td>
+        <td><input type="text" id="stokozellik15" name="stokozellik15"></td>
+        <td><input type="text" id="stokozellik16" name="stokozellik16"></td>
+        <td><input type="text" id="stokozellik17" name="stokozellik17"></td>
+        <td><input type="text" id="stokozellik18" name="stokozellik18"></td>
+        <td><input type="text" id="stokozellik19" 1name="stokozellik19"></td>
+        <td><input type="text" id="stokozellik20" name="stokozellik20"></td>
+        <td><input type="text" id="stokalternatifstokkodu" name="stokalternatifstokkodu"></td>
+        <td><input type="text" id="stokalternatifstokadi" name="stokalternatifstokadi"></td>
+        <td><input type="text" id="stokserino" name="stokserino"></td>
+        <td><input type="text" id="stokteslimdurumu" name="stokteslimdurumu"></td>
+        <td><input type="text" id="stokoivkodu" name="stokoivkodu"></td>
+
+        <td><input type="number" id="netagirlik" step="0.001" value="0" name="netagirlik"></td>
+        <td><input type="number" id="brutagirlik" value="0" step="0.001"
+            name="brutagirlik"></td>
+        <td><input type="number" id="pkmiktari" step="0.001" value="0" name="pkmiktari"></td>
+        <td><input type="text" id="pkaciklamasi" name="pkaciklamasi"></td>
+        <td><input type="text" id="kalite" value="STANDART" name="kalite"></td>
+        <td><input type="text" id="stokpartikodu" name="stokpartikodu"></td>
+        <td><input type="date" pattern="\d{4}-\d{2}-\d{2}"  id="sonkullanimtarihi" name="sonkullanimtarihi">
+        </td>
+        <td><input type="text" id="aciklama" name="aciklama"></td>
+        <td><input type="text" id="irsaliyeno" name="irsaliyeno"></td>
+        <td><input type="date" pattern="\d{4}-\d{2}-\d{2}"  id="irsaliyetarihi" name="irsaliyetarihi">
+        </td>
+        <td><input type="text" id="malkabulno" name="malkabulno"></td>
         </tr>
         <tr class="yeniform">
           <td><select name="siparisturu" id="">
-              <option value="Normal">Normal</option>
-              <option value="İndirimli">İndirimli</option>
-            </select></td>
-          <td><b>Seçimi Yaptınız</b></td>
-          <td><b>Seçimi Yaptınız</b></td>
-          <td><b>Seçimi Yaptınız</b></td>
-          <td><select onchange="yeniselect(this)" name="stok" id="stoksecim">
-              <option value="">Stok Seçiniz</option>
-              {% for i in stokkartlarim %}
-              <option value="{{i.id}}">({{i.stok_kodu}}) {{i.stok_adi}}</option>
-              {% endfor %}
-            </select></td>
-          <td><b>Seçimi Yaptınız</b></td>
-          <td><b>Seçimi Yaptınız</b></td>
-          <td><b>Seçimi Yaptınız</b></td>
-          <td><b>Seçimi Yaptınız</b></td>
-          <td><b>Seçimi Yaptınız</b></td>
-          <td><b>Seçimi Yaptınız</b></td>
-          <td><b>Seçimi Yaptınız</b></td>
-          <td><b>Seçimi Yaptınız</b></td>
-          <td><input type="text" name="departman"></td>
-          <td><input type="number" step="0.001" oninput="hesaplaFiyat()" id="stokmiktari" value="1" name="stokmiktari">
-          </td>
-          <td id="kur"><input type="number" id="birimfiyatdovz" oninput="hesaplaFiyat()" value="0" step="0.001"
-              name="birimfiyatdovz"></td>
-          <td><input type="text" id="birimbilgisi" name="birimbilgisi"></td>
-          <td><input type="number" id="stokbirimfiyati" oninput="hesaplaFiyat()" value="0" step="0.001"
-              name="stokbirimfiyati"></td>
-          <td><input type="number" id="stokindirimyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
-              name="stokindirimyuzdesi"></td>
-          <td><input type="number" id="stokindirimtl" oninput="hesaplaFiyat()" value="0" step="0.001"
-              name="stokindirimtl"></td>
-          <td><input type="number" id="stoktutari" oninput="hesaplaFiyat()" value="0" step="0.001" name="stoktutari">
-            <input style="display: none;" type="number" id="vergisiztutar" oninput="hesaplaFiyat()" value="0"
-              step="0.001" name="vergisiztutar">
-          </td>
-          <td><input type="number" id="stokkdvyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
-              name="stokkdvyuzdesi"></td>
-          <td><input type="number" id="stokkdvtl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokkdvtl"></td>
-          <td><input type="number" id="stokotvyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
-              name="stokotvyuzdesi"></td>
-          <td><input type="number" id="stokotvtl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtl"></td>
-          <td><input type="text" name="stokteslimsekli"></td>
-          <td><input type="date" pattern="\d{4}-\d{2}-\d{2}"  name="urunteslimtarihi"></td>
-          <td><input type="text" name="stokdurumu"></td>
-          <td><input type="number" id="stokindirim1" step="0.001" name="stokindirim1"></td>
-          <td><input type="number" id="stokindirim2" step="0.001" name="stokindirim2"></td>
-          <td><input type="number" id="stokindirim3" step="0.001" name="stokindirim3"></td>
+            <option value="Normal">Normal</option>
+            <option value="İndirim">İndirim</option>
+            <option value="Hizmet">Hizmet</option>
+            <option value="Vade Fark">Vade Farkı</option>
+            <option value="Fiyat Farkı">Fiyat Farkı</option>
+          </select></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><select onchange="yeniselect(this)" name="stok" id="stoksecim">
+            <option value="">Stok Seçiniz</option>
+            {% for i in stokkartlarim %}
+
+            <option value="{{i.id}}">({{i.stok_kodu}}) {{i.stok_adi}}</option>
+            {% endfor %}
+
+          </select></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><input type="number" step="0.001" oninput="hesaplaFiyat()" id="stokmiktari" value="1" name="stokmiktari">
+        </td>
+        <td><input type="text" id="birimbilgisi" name="birimbilgisi"></td>
+        <td id="kur"><b>Seçimi Yaptınız</b>
+        </td>
+        
+        <td><input type="number" id="stokbirimfiyati" oninput="hesaplaFiyat()" value="0" step="0.001"
+            name="stokbirimfiyati"></td>
+        <td><input type="number" id="stokindirimyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
+            name="stokindirimyuzdesi"></td>
+        <td><input type="number" id="stokindirimtl" oninput="hesaplaFiyat()" value="0" step="0.001"
+            name="stokindirimtl"></td>
+        <td><input type="number" id="stoktutari" oninput="hesaplaFiyat()" value="0" step="0.001" name="stoktutari">
+          <input style="display: none;" type="number" id="vergisiztutar" oninput="hesaplaFiyat()" value="0"
+            step="0.001" name="vergisiztutar">
+        </td>
+        <td><input type="number" id="stokkdvyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
+            name="stokkdvyuzdesi"></td>
+        <td><input type="number" id="stokkdvtl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokkdvtl"></td>
+        <td><input type="number" id="stokkdvistisnayuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
+            name="stokkdvistisnayuzdesi"></td>
+        <td><input type="number" id="stokkdvistisnatl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokkdvistisnatl"></td>
+        <td><input type="text" name="stokkdvistisnakodu"></td>
+        <td><input type="text" name="stokkdvistisnaaciklamasi"></td>
+        <td><input type="text" name="stoktevkifatkodu"></td>
+        <td><input type="number" id="stoktevkifatyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
+          name="stoktevkifatyuzdesi"></td>
+        <td><input type="number" id="stoktevkifattl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stoktevkifattl"></td>
+        <td><input type="number" id="stokotvmatrahitl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvmatrahitl"></td>
+        <td><input type="number" id="stokotvyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
+          name="stokotvyuzdesi"></td>
+        <td><input type="number" id="stokotvbirimtl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvbirimtl"></td>
+        <td><input type="number" id="stokotvtl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtl"></td>
+        <td><input type="text" name="stokotvkodu"></td>
+        <td><input type="number" id="stokotvtahsilyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtahsilyuzdesi"></td>
+        <td><input type="number" id="stokotvtecillyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtecillyuzdesi"></td>
+        <td><input type="text" name="stokotvistisnakodu"></td>
+        <td><input type="number" id="stokotvtevkifatyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtevkifatyuzdesi"></td>
+          <td><input type="number" id="stokgvstopajyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokgvstopajyuzdesi"></td>
+          <td><input type="number" id="stokmerafonuyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokmerafonuyuzdesi"></td>
+          <td><input type="number" id="stokmerafonututari" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokmerafonututari"></td>
+          <td><input type="text" name="stokmuhtasarkodu"></td>
+        <td><input type="text" name="stokkdvmuhtasarkodu"></td>
+        <td><input type="text" name="stoksatiraciklamasi"></td>
+        <td><input type="text" name="stokkampanyakodu"></td>
+        <td><input type="number" id="stokmfmiktari" value="0" step="0.001"
+          name="stokmfmiktari"></td>
           <td><input type="text" id="stokozelkod1" name="stokozelkod1"></td>
-          <td><input type="text" id="stokozelkod2" name="stokozelkod2"></td>
-          <td><input type="text" id="stokdepartman" name="stokdepartman"></td>
-          <td><input type="text" name="stoksatiraciklamasi"></td>
-          <td><input type="text" name="stokserino"></td>
-          <td><input type="text" id="stokbirimi" name="stokbirimi"></td>
-          <td><input type="number" id="stokmiktaribilgisi" step="0.001" name="stokmiktaribilgisi"></td>
-          <td><input type="text" id="stokozellik1" name="stokozellik1"></td>
-          <td><input type="text" id="stokozellik2" name="stokozellik2"></td>
-          <td><input type="text" id="stokozellik3" name="stokozellik3"></td>
-          <td><input type="text" id="stokozellik4" name="stokozellik4"></td>
-          <td><input type="text" id="stokozellik5" name="stokozellik5"></td>
-          <td><input type="text" id="stokalternatifstokkodu" name="stokalternatifstokkodu"></td>
-          <td><input type="text" id="stokalternatifstokadi" name="stokalternatifstokadi"></td>
-          <td><input type="text" id="stokkalitekodu" name="stokkalitekodu"></td>
-          <td><input type="number" id="stokanamiktari" step="0.001" value="0" name="stokanamiktari"></td>
-          <td><input type="number" id="stokanamiktaribirimfiyattl" value="0" step="0.001"
-              name="stokanamiktaribirimfiyattl"></td>
-          <td><input type="number" id="stokanamiktaribirimfiyatdvz" value="0" step="0.001"
-              name="stokanamiktaribirimfiyatdvz"></td>
-          <td><input type="text" id="stokpartikodu" name="stokpartikodu"></td>
-          <td><input type="date" pattern="\d{4}-\d{2}-\d{2}"  id="sonkullanimtarihi" name="sonkullanimtarihi">
-          </td>
+        <td><input type="text" id="stokozelkod2" name="stokozelkod2"></td>
+        <td><input type="date" pattern="\d{4}-\d{2}-\d{2}"  name="vadetarihi"></td>
+        <td><input type="number" id="stokindirim1" step="0.001" name="stokindirim1"></td>
+        <td><input type="number" id="stokindirim2" step="0.001" name="stokindirim2"></td>
+        <td><input type="number" id="stokindirim3" step="0.001" name="stokindirim3"></td>
+        <td><input type="text" id="stokbirimi" name="stokbirimi"></td>
+        <td><input type="number" id="stokmiktaribilgisi" step="0.001" name="stokmiktaribilgisi"></td>
+        <td><input type="text" id="stokozellik1" name="stokozellik1"></td>
+        <td><input type="text" id="stokozellik2" name="stokozellik2"></td>
+        <td><input type="text" id="stokozellik3" name="stokozellik3"></td>
+        <td><input type="text" id="stokozellik4" name="stokozellik4"></td>
+        <td><input type="text" id="stokozellik5" name="stokozellik5"></td>
+        <td><input type="text" id="stokozellik6" name="stokozellik6"></td>
+        <td><input type="text" id="stokozellik7" name="stokozellik7"></td>
+        <td><input type="text" id="stokozellik8" name="stokozellik8"></td>
+        <td><input type="text" id="stokozellik9" name="stokozellik9"></td>
+        <td><input type="text" id="stokozellik10" name="stokozellik10"></td>
+        <td><input type="text" id="stokozellik11" name="stokozellik11"></td>
+        <td><input type="text" id="stokozellik12" name="stokozellik12"></td>
+        <td><input type="text" id="stokozellik13" name="stokozellik13"></td>
+        <td><input type="text" id="stokozellik14" name="stokozellik14"></td>
+        <td><input type="text" id="stokozellik15" name="stokozellik15"></td>
+        <td><input type="text" id="stokozellik16" name="stokozellik16"></td>
+        <td><input type="text" id="stokozellik17" name="stokozellik17"></td>
+        <td><input type="text" id="stokozellik18" name="stokozellik18"></td>
+        <td><input type="text" id="stokozellik19" 1name="stokozellik19"></td>
+        <td><input type="text" id="stokozellik20" name="stokozellik20"></td>
+        <td><input type="text" id="stokalternatifstokkodu" name="stokalternatifstokkodu"></td>
+        <td><input type="text" id="stokalternatifstokadi" name="stokalternatifstokadi"></td>
+        <td><input type="text" id="stokserino" name="stokserino"></td>
+        <td><input type="text" id="stokteslimdurumu" name="stokteslimdurumu"></td>
+        <td><input type="text" id="stokoivkodu" name="stokoivkodu"></td>
+
+        <td><input type="number" id="netagirlik" step="0.001" value="0" name="netagirlik"></td>
+        <td><input type="number" id="brutagirlik" value="0" step="0.001"
+            name="brutagirlik"></td>
+        <td><input type="number" id="pkmiktari" step="0.001" value="0" name="pkmiktari"></td>
+        <td><input type="text" id="pkaciklamasi" name="pkaciklamasi"></td>
+        <td><input type="text" id="kalite" value="STANDART" name="kalite"></td>
+        <td><input type="text" id="stokpartikodu" name="stokpartikodu"></td>
+        <td><input type="date" pattern="\d{4}-\d{2}-\d{2}"  id="sonkullanimtarihi" name="sonkullanimtarihi">
+        </td>
+        <td><input type="text" id="aciklama" name="aciklama"></td>
+        <td><input type="text" id="irsaliyeno" name="irsaliyeno"></td>
+        <td><input type="date" pattern="\d{4}-\d{2}-\d{2}"  id="irsaliyetarihi" name="irsaliyetarihi">
+        </td>
+        <td><input type="text" id="malkabulno" name="malkabulno"></td>
         </tr>
         <tr class="yeniform">
           <td><select name="siparisturu" id="">
-              <option value="Normal">Normal</option>
-              <option value="İndirimli">İndirimli</option>
-            </select></td>
-          <td><b>Seçimi Yaptınız</b></td>
-          <td><b>Seçimi Yaptınız</b></td>
-          <td><b>Seçimi Yaptınız</b></td>
-          <td><select onchange="yeniselect(this)" name="stok" id="stoksecim">
-              <option value="">Stok Seçiniz</option>
-              {% for i in stokkartlarim %}
-              <option value="{{i.id}}">({{i.stok_kodu}}) {{i.stok_adi}}</option>
-              {% endfor %}
-            </select></td>
-          <td><b>Seçimi Yaptınız</b></td>
-          <td><b>Seçimi Yaptınız</b></td>
-          <td><b>Seçimi Yaptınız</b></td>
-          <td><b>Seçimi Yaptınız</b></td>
-          <td><b>Seçimi Yaptınız</b></td>
-          <td><b>Seçimi Yaptınız</b></td>
-          <td><b>Seçimi Yaptınız</b></td>
-          <td><b>Seçimi Yaptınız</b></td>
-          <td><input type="text" name="departman"></td>
-          <td><input type="number" step="0.001" oninput="hesaplaFiyat()" id="stokmiktari" value="1" name="stokmiktari">
-          </td>
-          <td id="kur"><input type="number" id="birimfiyatdovz" oninput="hesaplaFiyat()" value="0" step="0.001"
-              name="birimfiyatdovz"></td>
-          <td><input type="text" id="birimbilgisi" name="birimbilgisi"></td>
-          <td><input type="number" id="stokbirimfiyati" oninput="hesaplaFiyat()" value="0" step="0.001"
-              name="stokbirimfiyati"></td>
-          <td><input type="number" id="stokindirimyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
-              name="stokindirimyuzdesi"></td>
-          <td><input type="number" id="stokindirimtl" oninput="hesaplaFiyat()" value="0" step="0.001"
-              name="stokindirimtl"></td>
-          <td><input type="number" id="stoktutari" oninput="hesaplaFiyat()" value="0" step="0.001" name="stoktutari">
-            <input style="display: none;" type="number" id="vergisiztutar" oninput="hesaplaFiyat()" value="0"
-              step="0.001" name="vergisiztutar">
-          </td>
-          <td><input type="number" id="stokkdvyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
-              name="stokkdvyuzdesi"></td>
-          <td><input type="number" id="stokkdvtl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokkdvtl"></td>
-          <td><input type="number" id="stokotvyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
-              name="stokotvyuzdesi"></td>
-          <td><input type="number" id="stokotvtl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtl"></td>
-          <td><input type="text" name="stokteslimsekli"></td>
-          <td><input type="date" pattern="\d{4}-\d{2}-\d{2}"  name="urunteslimtarihi"></td>
-          <td><input type="text" name="stokdurumu"></td>
-          <td><input type="number" id="stokindirim1" step="0.001" name="stokindirim1"></td>
-          <td><input type="number" id="stokindirim2" step="0.001" name="stokindirim2"></td>
-          <td><input type="number" id="stokindirim3" step="0.001" name="stokindirim3"></td>
+            <option value="Normal">Normal</option>
+            <option value="İndirim">İndirim</option>
+            <option value="Hizmet">Hizmet</option>
+            <option value="Vade Fark">Vade Farkı</option>
+            <option value="Fiyat Farkı">Fiyat Farkı</option>
+          </select></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><select onchange="yeniselect(this)" name="stok" id="stoksecim">
+            <option value="">Stok Seçiniz</option>
+            {% for i in stokkartlarim %}
+
+            <option value="{{i.id}}">({{i.stok_kodu}}) {{i.stok_adi}}</option>
+            {% endfor %}
+
+          </select></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><input type="number" step="0.001" oninput="hesaplaFiyat()" id="stokmiktari" value="1" name="stokmiktari">
+        </td>
+        <td><input type="text" id="birimbilgisi" name="birimbilgisi"></td>
+        <td id="kur"><b>Seçimi Yaptınız</b>
+        </td>
+        
+        <td><input type="number" id="stokbirimfiyati" oninput="hesaplaFiyat()" value="0" step="0.001"
+            name="stokbirimfiyati"></td>
+        <td><input type="number" id="stokindirimyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
+            name="stokindirimyuzdesi"></td>
+        <td><input type="number" id="stokindirimtl" oninput="hesaplaFiyat()" value="0" step="0.001"
+            name="stokindirimtl"></td>
+        <td><input type="number" id="stoktutari" oninput="hesaplaFiyat()" value="0" step="0.001" name="stoktutari">
+          <input style="display: none;" type="number" id="vergisiztutar" oninput="hesaplaFiyat()" value="0"
+            step="0.001" name="vergisiztutar">
+        </td>
+        <td><input type="number" id="stokkdvyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
+            name="stokkdvyuzdesi"></td>
+        <td><input type="number" id="stokkdvtl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokkdvtl"></td>
+        <td><input type="number" id="stokkdvistisnayuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
+            name="stokkdvistisnayuzdesi"></td>
+        <td><input type="number" id="stokkdvistisnatl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokkdvistisnatl"></td>
+        <td><input type="text" name="stokkdvistisnakodu"></td>
+        <td><input type="text" name="stokkdvistisnaaciklamasi"></td>
+        <td><input type="text" name="stoktevkifatkodu"></td>
+        <td><input type="number" id="stoktevkifatyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
+          name="stoktevkifatyuzdesi"></td>
+        <td><input type="number" id="stoktevkifattl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stoktevkifattl"></td>
+        <td><input type="number" id="stokotvmatrahitl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvmatrahitl"></td>
+        <td><input type="number" id="stokotvyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
+          name="stokotvyuzdesi"></td>
+        <td><input type="number" id="stokotvbirimtl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvbirimtl"></td>
+        <td><input type="number" id="stokotvtl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtl"></td>
+        <td><input type="text" name="stokotvkodu"></td>
+        <td><input type="number" id="stokotvtahsilyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtahsilyuzdesi"></td>
+        <td><input type="number" id="stokotvtecillyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtecillyuzdesi"></td>
+        <td><input type="text" name="stokotvistisnakodu"></td>
+        <td><input type="number" id="stokotvtevkifatyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtevkifatyuzdesi"></td>
+          <td><input type="number" id="stokgvstopajyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokgvstopajyuzdesi"></td>
+          <td><input type="number" id="stokmerafonuyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokmerafonuyuzdesi"></td>
+          <td><input type="number" id="stokmerafonututari" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokmerafonututari"></td>
+          <td><input type="text" name="stokmuhtasarkodu"></td>
+        <td><input type="text" name="stokkdvmuhtasarkodu"></td>
+        <td><input type="text" name="stoksatiraciklamasi"></td>
+        <td><input type="text" name="stokkampanyakodu"></td>
+        <td><input type="number" id="stokmfmiktari" value="0" step="0.001"
+          name="stokmfmiktari"></td>
           <td><input type="text" id="stokozelkod1" name="stokozelkod1"></td>
-          <td><input type="text" id="stokozelkod2" name="stokozelkod2"></td>
-          <td><input type="text" id="stokdepartman" name="stokdepartman"></td>
-          <td><input type="text" name="stoksatiraciklamasi"></td>
-          <td><input type="text" name="stokserino"></td>
-          <td><input type="text" id="stokbirimi" name="stokbirimi"></td>
-          <td><input type="number" id="stokmiktaribilgisi" step="0.001" name="stokmiktaribilgisi"></td>
-          <td><input type="text" id="stokozellik1" name="stokozellik1"></td>
-          <td><input type="text" id="stokozellik2" name="stokozellik2"></td>
-          <td><input type="text" id="stokozellik3" name="stokozellik3"></td>
-          <td><input type="text" id="stokozellik4" name="stokozellik4"></td>
-          <td><input type="text" id="stokozellik5" name="stokozellik5"></td>
-          <td><input type="text" id="stokalternatifstokkodu" name="stokalternatifstokkodu"></td>
-          <td><input type="text" id="stokalternatifstokadi" name="stokalternatifstokadi"></td>
-          <td><input type="text" id="stokkalitekodu" name="stokkalitekodu"></td>
-          <td><input type="number" id="stokanamiktari" step="0.001" value="0" name="stokanamiktari"></td>
-          <td><input type="number" id="stokanamiktaribirimfiyattl" value="0" step="0.001"
-              name="stokanamiktaribirimfiyattl"></td>
-          <td><input type="number" id="stokanamiktaribirimfiyatdvz" value="0" step="0.001"
-              name="stokanamiktaribirimfiyatdvz"></td>
-          <td><input type="text" id="stokpartikodu" name="stokpartikodu"></td>
-          <td><input type="date" pattern="\d{4}-\d{2}-\d{2}"  id="sonkullanimtarihi" name="sonkullanimtarihi">
-          </td>
+        <td><input type="text" id="stokozelkod2" name="stokozelkod2"></td>
+        <td><input type="date" pattern="\d{4}-\d{2}-\d{2}"  name="vadetarihi"></td>
+        <td><input type="number" id="stokindirim1" step="0.001" name="stokindirim1"></td>
+        <td><input type="number" id="stokindirim2" step="0.001" name="stokindirim2"></td>
+        <td><input type="number" id="stokindirim3" step="0.001" name="stokindirim3"></td>
+        <td><input type="text" id="stokbirimi" name="stokbirimi"></td>
+        <td><input type="number" id="stokmiktaribilgisi" step="0.001" name="stokmiktaribilgisi"></td>
+        <td><input type="text" id="stokozellik1" name="stokozellik1"></td>
+        <td><input type="text" id="stokozellik2" name="stokozellik2"></td>
+        <td><input type="text" id="stokozellik3" name="stokozellik3"></td>
+        <td><input type="text" id="stokozellik4" name="stokozellik4"></td>
+        <td><input type="text" id="stokozellik5" name="stokozellik5"></td>
+        <td><input type="text" id="stokozellik6" name="stokozellik6"></td>
+        <td><input type="text" id="stokozellik7" name="stokozellik7"></td>
+        <td><input type="text" id="stokozellik8" name="stokozellik8"></td>
+        <td><input type="text" id="stokozellik9" name="stokozellik9"></td>
+        <td><input type="text" id="stokozellik10" name="stokozellik10"></td>
+        <td><input type="text" id="stokozellik11" name="stokozellik11"></td>
+        <td><input type="text" id="stokozellik12" name="stokozellik12"></td>
+        <td><input type="text" id="stokozellik13" name="stokozellik13"></td>
+        <td><input type="text" id="stokozellik14" name="stokozellik14"></td>
+        <td><input type="text" id="stokozellik15" name="stokozellik15"></td>
+        <td><input type="text" id="stokozellik16" name="stokozellik16"></td>
+        <td><input type="text" id="stokozellik17" name="stokozellik17"></td>
+        <td><input type="text" id="stokozellik18" name="stokozellik18"></td>
+        <td><input type="text" id="stokozellik19" 1name="stokozellik19"></td>
+        <td><input type="text" id="stokozellik20" name="stokozellik20"></td>
+        <td><input type="text" id="stokalternatifstokkodu" name="stokalternatifstokkodu"></td>
+        <td><input type="text" id="stokalternatifstokadi" name="stokalternatifstokadi"></td>
+        <td><input type="text" id="stokserino" name="stokserino"></td>
+        <td><input type="text" id="stokteslimdurumu" name="stokteslimdurumu"></td>
+        <td><input type="text" id="stokoivkodu" name="stokoivkodu"></td>
+
+        <td><input type="number" id="netagirlik" step="0.001" value="0" name="netagirlik"></td>
+        <td><input type="number" id="brutagirlik" value="0" step="0.001"
+            name="brutagirlik"></td>
+        <td><input type="number" id="pkmiktari" step="0.001" value="0" name="pkmiktari"></td>
+        <td><input type="text" id="pkaciklamasi" name="pkaciklamasi"></td>
+        <td><input type="text" id="kalite" value="STANDART" name="kalite"></td>
+        <td><input type="text" id="stokpartikodu" name="stokpartikodu"></td>
+        <td><input type="date" pattern="\d{4}-\d{2}-\d{2}"  id="sonkullanimtarihi" name="sonkullanimtarihi">
+        </td>
+        <td><input type="text" id="aciklama" name="aciklama"></td>
+        <td><input type="text" id="irsaliyeno" name="irsaliyeno"></td>
+        <td><input type="date" pattern="\d{4}-\d{2}-\d{2}"  id="irsaliyetarihi" name="irsaliyetarihi">
+        </td>
+        <td><input type="text" id="malkabulno" name="malkabulno"></td>
         </tr>
         <tr class="yeniform">
           <td><select name="siparisturu" id="">
-              <option value="Normal">Normal</option>
-              <option value="İndirimli">İndirimli</option>
-            </select></td>
-          <td><b>Seçimi Yaptınız</b></td>
-          <td><b>Seçimi Yaptınız</b></td>
-          <td><b>Seçimi Yaptınız</b></td>
-          <td><select onchange="yeniselect(this)" name="stok" id="stoksecim">
-              <option value="">Stok Seçiniz</option>
-              {% for i in stokkartlarim %}
-              <option value="{{i.id}}">({{i.stok_kodu}}) {{i.stok_adi}}</option>
-              {% endfor %}
-            </select></td>
-          <td><b>Seçimi Yaptınız</b></td>
-          <td><b>Seçimi Yaptınız</b></td>
-          <td><b>Seçimi Yaptınız</b></td>
-          <td><b>Seçimi Yaptınız</b></td>
-          <td><b>Seçimi Yaptınız</b></td>
-          <td><b>Seçimi Yaptınız</b></td>
-          <td><b>Seçimi Yaptınız</b></td>
-          <td><b>Seçimi Yaptınız</b></td>
-          <td><input type="text" name="departman"></td>
-          <td><input type="number" step="0.001" oninput="hesaplaFiyat()" id="stokmiktari" value="1" name="stokmiktari">
-          </td>
-          <td id="kur"><input type="number" id="birimfiyatdovz" oninput="hesaplaFiyat()" value="0" step="0.001"
-              name="birimfiyatdovz"></td>
-          <td><input type="text" id="birimbilgisi" name="birimbilgisi"></td>
-          <td><input type="number" id="stokbirimfiyati" oninput="hesaplaFiyat()" value="0" step="0.001"
-              name="stokbirimfiyati"></td>
-          <td><input type="number" id="stokindirimyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
-              name="stokindirimyuzdesi"></td>
-          <td><input type="number" id="stokindirimtl" oninput="hesaplaFiyat()" value="0" step="0.001"
-              name="stokindirimtl"></td>
-          <td><input type="number" id="stoktutari" oninput="hesaplaFiyat()" value="0" step="0.001" name="stoktutari">
-            <input style="display: none;" type="number" id="vergisiztutar" oninput="hesaplaFiyat()" value="0"
-              step="0.001" name="vergisiztutar">
-          </td>
-          <td><input type="number" id="stokkdvyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
-              name="stokkdvyuzdesi"></td>
-          <td><input type="number" id="stokkdvtl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokkdvtl"></td>
-          <td><input type="number" id="stokotvyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
-              name="stokotvyuzdesi"></td>
-          <td><input type="number" id="stokotvtl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtl"></td>
-          <td><input type="text" name="stokteslimsekli"></td>
-          <td><input type="date" pattern="\d{4}-\d{2}-\d{2}"  name="urunteslimtarihi"></td>
-          <td><input type="text" name="stokdurumu"></td>
-          <td><input type="number" id="stokindirim1" step="0.001" name="stokindirim1"></td>
-          <td><input type="number" id="stokindirim2" step="0.001" name="stokindirim2"></td>
-          <td><input type="number" id="stokindirim3" step="0.001" name="stokindirim3"></td>
+            <option value="Normal">Normal</option>
+            <option value="İndirim">İndirim</option>
+            <option value="Hizmet">Hizmet</option>
+            <option value="Vade Fark">Vade Farkı</option>
+            <option value="Fiyat Farkı">Fiyat Farkı</option>
+          </select></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><select onchange="yeniselect(this)" name="stok" id="stoksecim">
+            <option value="">Stok Seçiniz</option>
+            {% for i in stokkartlarim %}
+
+            <option value="{{i.id}}">({{i.stok_kodu}}) {{i.stok_adi}}</option>
+            {% endfor %}
+
+          </select></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><input type="number" step="0.001" oninput="hesaplaFiyat()" id="stokmiktari" value="1" name="stokmiktari">
+        </td>
+        <td><input type="text" id="birimbilgisi" name="birimbilgisi"></td>
+        <td id="kur"><b>Seçimi Yaptınız</b>
+        </td>
+        
+        <td><input type="number" id="stokbirimfiyati" oninput="hesaplaFiyat()" value="0" step="0.001"
+            name="stokbirimfiyati"></td>
+        <td><input type="number" id="stokindirimyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
+            name="stokindirimyuzdesi"></td>
+        <td><input type="number" id="stokindirimtl" oninput="hesaplaFiyat()" value="0" step="0.001"
+            name="stokindirimtl"></td>
+        <td><input type="number" id="stoktutari" oninput="hesaplaFiyat()" value="0" step="0.001" name="stoktutari">
+          <input style="display: none;" type="number" id="vergisiztutar" oninput="hesaplaFiyat()" value="0"
+            step="0.001" name="vergisiztutar">
+        </td>
+        <td><input type="number" id="stokkdvyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
+            name="stokkdvyuzdesi"></td>
+        <td><input type="number" id="stokkdvtl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokkdvtl"></td>
+        <td><input type="number" id="stokkdvistisnayuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
+            name="stokkdvistisnayuzdesi"></td>
+        <td><input type="number" id="stokkdvistisnatl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokkdvistisnatl"></td>
+        <td><input type="text" name="stokkdvistisnakodu"></td>
+        <td><input type="text" name="stokkdvistisnaaciklamasi"></td>
+        <td><input type="text" name="stoktevkifatkodu"></td>
+        <td><input type="number" id="stoktevkifatyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
+          name="stoktevkifatyuzdesi"></td>
+        <td><input type="number" id="stoktevkifattl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stoktevkifattl"></td>
+        <td><input type="number" id="stokotvmatrahitl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvmatrahitl"></td>
+        <td><input type="number" id="stokotvyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
+          name="stokotvyuzdesi"></td>
+        <td><input type="number" id="stokotvbirimtl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvbirimtl"></td>
+        <td><input type="number" id="stokotvtl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtl"></td>
+        <td><input type="text" name="stokotvkodu"></td>
+        <td><input type="number" id="stokotvtahsilyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtahsilyuzdesi"></td>
+        <td><input type="number" id="stokotvtecillyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtecillyuzdesi"></td>
+        <td><input type="text" name="stokotvistisnakodu"></td>
+        <td><input type="number" id="stokotvtevkifatyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtevkifatyuzdesi"></td>
+          <td><input type="number" id="stokgvstopajyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokgvstopajyuzdesi"></td>
+          <td><input type="number" id="stokmerafonuyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokmerafonuyuzdesi"></td>
+          <td><input type="number" id="stokmerafonututari" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokmerafonututari"></td>
+          <td><input type="text" name="stokmuhtasarkodu"></td>
+        <td><input type="text" name="stokkdvmuhtasarkodu"></td>
+        <td><input type="text" name="stoksatiraciklamasi"></td>
+        <td><input type="text" name="stokkampanyakodu"></td>
+        <td><input type="number" id="stokmfmiktari" value="0" step="0.001"
+          name="stokmfmiktari"></td>
           <td><input type="text" id="stokozelkod1" name="stokozelkod1"></td>
-          <td><input type="text" id="stokozelkod2" name="stokozelkod2"></td>
-          <td><input type="text" id="stokdepartman" name="stokdepartman"></td>
-          <td><input type="text" name="stoksatiraciklamasi"></td>
-          <td><input type="text" name="stokserino"></td>
-          <td><input type="text" id="stokbirimi" name="stokbirimi"></td>
-          <td><input type="number" id="stokmiktaribilgisi" step="0.001" name="stokmiktaribilgisi"></td>
-          <td><input type="text" id="stokozellik1" name="stokozellik1"></td>
-          <td><input type="text" id="stokozellik2" name="stokozellik2"></td>
-          <td><input type="text" id="stokozellik3" name="stokozellik3"></td>
-          <td><input type="text" id="stokozellik4" name="stokozellik4"></td>
-          <td><input type="text" id="stokozellik5" name="stokozellik5"></td>
-          <td><input type="text" id="stokalternatifstokkodu" name="stokalternatifstokkodu"></td>
-          <td><input type="text" id="stokalternatifstokadi" name="stokalternatifstokadi"></td>
-          <td><input type="text" id="stokkalitekodu" name="stokkalitekodu"></td>
-          <td><input type="number" id="stokanamiktari" step="0.001" value="0" name="stokanamiktari"></td>
-          <td><input type="number" id="stokanamiktaribirimfiyattl" value="0" step="0.001"
-              name="stokanamiktaribirimfiyattl"></td>
-          <td><input type="number" id="stokanamiktaribirimfiyatdvz" value="0" step="0.001"
-              name="stokanamiktaribirimfiyatdvz"></td>
-          <td><input type="text" id="stokpartikodu" name="stokpartikodu"></td>
-          <td><input type="date" pattern="\d{4}-\d{2}-\d{2}"  id="sonkullanimtarihi" name="sonkullanimtarihi">
-          </td>
+        <td><input type="text" id="stokozelkod2" name="stokozelkod2"></td>
+        <td><input type="date" pattern="\d{4}-\d{2}-\d{2}"  name="vadetarihi"></td>
+        <td><input type="number" id="stokindirim1" step="0.001" name="stokindirim1"></td>
+        <td><input type="number" id="stokindirim2" step="0.001" name="stokindirim2"></td>
+        <td><input type="number" id="stokindirim3" step="0.001" name="stokindirim3"></td>
+        <td><input type="text" id="stokbirimi" name="stokbirimi"></td>
+        <td><input type="number" id="stokmiktaribilgisi" step="0.001" name="stokmiktaribilgisi"></td>
+        <td><input type="text" id="stokozellik1" name="stokozellik1"></td>
+        <td><input type="text" id="stokozellik2" name="stokozellik2"></td>
+        <td><input type="text" id="stokozellik3" name="stokozellik3"></td>
+        <td><input type="text" id="stokozellik4" name="stokozellik4"></td>
+        <td><input type="text" id="stokozellik5" name="stokozellik5"></td>
+        <td><input type="text" id="stokozellik6" name="stokozellik6"></td>
+        <td><input type="text" id="stokozellik7" name="stokozellik7"></td>
+        <td><input type="text" id="stokozellik8" name="stokozellik8"></td>
+        <td><input type="text" id="stokozellik9" name="stokozellik9"></td>
+        <td><input type="text" id="stokozellik10" name="stokozellik10"></td>
+        <td><input type="text" id="stokozellik11" name="stokozellik11"></td>
+        <td><input type="text" id="stokozellik12" name="stokozellik12"></td>
+        <td><input type="text" id="stokozellik13" name="stokozellik13"></td>
+        <td><input type="text" id="stokozellik14" name="stokozellik14"></td>
+        <td><input type="text" id="stokozellik15" name="stokozellik15"></td>
+        <td><input type="text" id="stokozellik16" name="stokozellik16"></td>
+        <td><input type="text" id="stokozellik17" name="stokozellik17"></td>
+        <td><input type="text" id="stokozellik18" name="stokozellik18"></td>
+        <td><input type="text" id="stokozellik19" 1name="stokozellik19"></td>
+        <td><input type="text" id="stokozellik20" name="stokozellik20"></td>
+        <td><input type="text" id="stokalternatifstokkodu" name="stokalternatifstokkodu"></td>
+        <td><input type="text" id="stokalternatifstokadi" name="stokalternatifstokadi"></td>
+        <td><input type="text" id="stokserino" name="stokserino"></td>
+        <td><input type="text" id="stokteslimdurumu" name="stokteslimdurumu"></td>
+        <td><input type="text" id="stokoivkodu" name="stokoivkodu"></td>
+
+        <td><input type="number" id="netagirlik" step="0.001" value="0" name="netagirlik"></td>
+        <td><input type="number" id="brutagirlik" value="0" step="0.001"
+            name="brutagirlik"></td>
+        <td><input type="number" id="pkmiktari" step="0.001" value="0" name="pkmiktari"></td>
+        <td><input type="text" id="pkaciklamasi" name="pkaciklamasi"></td>
+        <td><input type="text" id="kalite" value="STANDART" name="kalite"></td>
+        <td><input type="text" id="stokpartikodu" name="stokpartikodu"></td>
+        <td><input type="date" pattern="\d{4}-\d{2}-\d{2}"  id="sonkullanimtarihi" name="sonkullanimtarihi">
+        </td>
+        <td><input type="text" id="aciklama" name="aciklama"></td>
+        <td><input type="text" id="irsaliyeno" name="irsaliyeno"></td>
+        <td><input type="date" pattern="\d{4}-\d{2}-\d{2}"  id="irsaliyetarihi" name="irsaliyetarihi">
+        </td>
+        <td><input type="text" id="malkabulno" name="malkabulno"></td>
+        </tr>
+        <tr class="yeniform">
+          <td><select name="siparisturu" id="">
+            <option value="Normal">Normal</option>
+            <option value="İndirim">İndirim</option>
+            <option value="Hizmet">Hizmet</option>
+            <option value="Vade Fark">Vade Farkı</option>
+            <option value="Fiyat Farkı">Fiyat Farkı</option>
+          </select></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><select onchange="yeniselect(this)" name="stok" id="stoksecim">
+            <option value="">Stok Seçiniz</option>
+            {% for i in stokkartlarim %}
+
+            <option value="{{i.id}}">({{i.stok_kodu}}) {{i.stok_adi}}</option>
+            {% endfor %}
+
+          </select></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><input type="number" step="0.001" oninput="hesaplaFiyat()" id="stokmiktari" value="1" name="stokmiktari">
+        </td>
+        <td><input type="text" id="birimbilgisi" name="birimbilgisi"></td>
+        <td id="kur"><b>Seçimi Yaptınız</b>
+        </td>
+        
+        <td><input type="number" id="stokbirimfiyati" oninput="hesaplaFiyat()" value="0" step="0.001"
+            name="stokbirimfiyati"></td>
+        <td><input type="number" id="stokindirimyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
+            name="stokindirimyuzdesi"></td>
+        <td><input type="number" id="stokindirimtl" oninput="hesaplaFiyat()" value="0" step="0.001"
+            name="stokindirimtl"></td>
+        <td><input type="number" id="stoktutari" oninput="hesaplaFiyat()" value="0" step="0.001" name="stoktutari">
+          <input style="display: none;" type="number" id="vergisiztutar" oninput="hesaplaFiyat()" value="0"
+            step="0.001" name="vergisiztutar">
+        </td>
+        <td><input type="number" id="stokkdvyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
+            name="stokkdvyuzdesi"></td>
+        <td><input type="number" id="stokkdvtl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokkdvtl"></td>
+        <td><input type="number" id="stokkdvistisnayuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
+            name="stokkdvistisnayuzdesi"></td>
+        <td><input type="number" id="stokkdvistisnatl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokkdvistisnatl"></td>
+        <td><input type="text" name="stokkdvistisnakodu"></td>
+        <td><input type="text" name="stokkdvistisnaaciklamasi"></td>
+        <td><input type="text" name="stoktevkifatkodu"></td>
+        <td><input type="number" id="stoktevkifatyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
+          name="stoktevkifatyuzdesi"></td>
+        <td><input type="number" id="stoktevkifattl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stoktevkifattl"></td>
+        <td><input type="number" id="stokotvmatrahitl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvmatrahitl"></td>
+        <td><input type="number" id="stokotvyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
+          name="stokotvyuzdesi"></td>
+        <td><input type="number" id="stokotvbirimtl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvbirimtl"></td>
+        <td><input type="number" id="stokotvtl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtl"></td>
+        <td><input type="text" name="stokotvkodu"></td>
+        <td><input type="number" id="stokotvtahsilyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtahsilyuzdesi"></td>
+        <td><input type="number" id="stokotvtecillyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtecillyuzdesi"></td>
+        <td><input type="text" name="stokotvistisnakodu"></td>
+        <td><input type="number" id="stokotvtevkifatyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtevkifatyuzdesi"></td>
+          <td><input type="number" id="stokgvstopajyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokgvstopajyuzdesi"></td>
+          <td><input type="number" id="stokmerafonuyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokmerafonuyuzdesi"></td>
+          <td><input type="number" id="stokmerafonututari" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokmerafonututari"></td>
+          <td><input type="text" name="stokmuhtasarkodu"></td>
+        <td><input type="text" name="stokkdvmuhtasarkodu"></td>
+        <td><input type="text" name="stoksatiraciklamasi"></td>
+        <td><input type="text" name="stokkampanyakodu"></td>
+        <td><input type="number" id="stokmfmiktari" value="0" step="0.001"
+          name="stokmfmiktari"></td>
+          <td><input type="text" id="stokozelkod1" name="stokozelkod1"></td>
+        <td><input type="text" id="stokozelkod2" name="stokozelkod2"></td>
+        <td><input type="date" pattern="\d{4}-\d{2}-\d{2}"  name="vadetarihi"></td>
+        <td><input type="number" id="stokindirim1" step="0.001" name="stokindirim1"></td>
+        <td><input type="number" id="stokindirim2" step="0.001" name="stokindirim2"></td>
+        <td><input type="number" id="stokindirim3" step="0.001" name="stokindirim3"></td>
+        <td><input type="text" id="stokbirimi" name="stokbirimi"></td>
+        <td><input type="number" id="stokmiktaribilgisi" step="0.001" name="stokmiktaribilgisi"></td>
+        <td><input type="text" id="stokozellik1" name="stokozellik1"></td>
+        <td><input type="text" id="stokozellik2" name="stokozellik2"></td>
+        <td><input type="text" id="stokozellik3" name="stokozellik3"></td>
+        <td><input type="text" id="stokozellik4" name="stokozellik4"></td>
+        <td><input type="text" id="stokozellik5" name="stokozellik5"></td>
+        <td><input type="text" id="stokozellik6" name="stokozellik6"></td>
+        <td><input type="text" id="stokozellik7" name="stokozellik7"></td>
+        <td><input type="text" id="stokozellik8" name="stokozellik8"></td>
+        <td><input type="text" id="stokozellik9" name="stokozellik9"></td>
+        <td><input type="text" id="stokozellik10" name="stokozellik10"></td>
+        <td><input type="text" id="stokozellik11" name="stokozellik11"></td>
+        <td><input type="text" id="stokozellik12" name="stokozellik12"></td>
+        <td><input type="text" id="stokozellik13" name="stokozellik13"></td>
+        <td><input type="text" id="stokozellik14" name="stokozellik14"></td>
+        <td><input type="text" id="stokozellik15" name="stokozellik15"></td>
+        <td><input type="text" id="stokozellik16" name="stokozellik16"></td>
+        <td><input type="text" id="stokozellik17" name="stokozellik17"></td>
+        <td><input type="text" id="stokozellik18" name="stokozellik18"></td>
+        <td><input type="text" id="stokozellik19" 1name="stokozellik19"></td>
+        <td><input type="text" id="stokozellik20" name="stokozellik20"></td>
+        <td><input type="text" id="stokalternatifstokkodu" name="stokalternatifstokkodu"></td>
+        <td><input type="text" id="stokalternatifstokadi" name="stokalternatifstokadi"></td>
+        <td><input type="text" id="stokserino" name="stokserino"></td>
+        <td><input type="text" id="stokteslimdurumu" name="stokteslimdurumu"></td>
+        <td><input type="text" id="stokoivkodu" name="stokoivkodu"></td>
+
+        <td><input type="number" id="netagirlik" step="0.001" value="0" name="netagirlik"></td>
+        <td><input type="number" id="brutagirlik" value="0" step="0.001"
+            name="brutagirlik"></td>
+        <td><input type="number" id="pkmiktari" step="0.001" value="0" name="pkmiktari"></td>
+        <td><input type="text" id="pkaciklamasi" name="pkaciklamasi"></td>
+        <td><input type="text" id="kalite" value="STANDART" name="kalite"></td>
+        <td><input type="text" id="stokpartikodu" name="stokpartikodu"></td>
+        <td><input type="date" pattern="\d{4}-\d{2}-\d{2}"  id="sonkullanimtarihi" name="sonkullanimtarihi">
+        </td>
+        <td><input type="text" id="aciklama" name="aciklama"></td>
+        <td><input type="text" id="irsaliyeno" name="irsaliyeno"></td>
+        <td><input type="date" pattern="\d{4}-\d{2}-\d{2}"  id="irsaliyetarihi" name="irsaliyetarihi">
+        </td>
+        <td><input type="text" id="malkabulno" name="malkabulno"></td>
+        </tr>
+        <tr class="yeniform">
+          <td><select name="siparisturu" id="">
+            <option value="Normal">Normal</option>
+            <option value="İndirim">İndirim</option>
+            <option value="Hizmet">Hizmet</option>
+            <option value="Vade Fark">Vade Farkı</option>
+            <option value="Fiyat Farkı">Fiyat Farkı</option>
+          </select></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><select onchange="yeniselect(this)" name="stok" id="stoksecim">
+            <option value="">Stok Seçiniz</option>
+            {% for i in stokkartlarim %}
+
+            <option value="{{i.id}}">({{i.stok_kodu}}) {{i.stok_adi}}</option>
+            {% endfor %}
+
+          </select></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><input type="number" step="0.001" oninput="hesaplaFiyat()" id="stokmiktari" value="1" name="stokmiktari">
+        </td>
+        <td><input type="text" id="birimbilgisi" name="birimbilgisi"></td>
+        <td id="kur"><b>Seçimi Yaptınız</b>
+        </td>
+        
+        <td><input type="number" id="stokbirimfiyati" oninput="hesaplaFiyat()" value="0" step="0.001"
+            name="stokbirimfiyati"></td>
+        <td><input type="number" id="stokindirimyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
+            name="stokindirimyuzdesi"></td>
+        <td><input type="number" id="stokindirimtl" oninput="hesaplaFiyat()" value="0" step="0.001"
+            name="stokindirimtl"></td>
+        <td><input type="number" id="stoktutari" oninput="hesaplaFiyat()" value="0" step="0.001" name="stoktutari">
+          <input style="display: none;" type="number" id="vergisiztutar" oninput="hesaplaFiyat()" value="0"
+            step="0.001" name="vergisiztutar">
+        </td>
+        <td><input type="number" id="stokkdvyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
+            name="stokkdvyuzdesi"></td>
+        <td><input type="number" id="stokkdvtl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokkdvtl"></td>
+        <td><input type="number" id="stokkdvistisnayuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
+            name="stokkdvistisnayuzdesi"></td>
+        <td><input type="number" id="stokkdvistisnatl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokkdvistisnatl"></td>
+        <td><input type="text" name="stokkdvistisnakodu"></td>
+        <td><input type="text" name="stokkdvistisnaaciklamasi"></td>
+        <td><input type="text" name="stoktevkifatkodu"></td>
+        <td><input type="number" id="stoktevkifatyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
+          name="stoktevkifatyuzdesi"></td>
+        <td><input type="number" id="stoktevkifattl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stoktevkifattl"></td>
+        <td><input type="number" id="stokotvmatrahitl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvmatrahitl"></td>
+        <td><input type="number" id="stokotvyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
+          name="stokotvyuzdesi"></td>
+        <td><input type="number" id="stokotvbirimtl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvbirimtl"></td>
+        <td><input type="number" id="stokotvtl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtl"></td>
+        <td><input type="text" name="stokotvkodu"></td>
+        <td><input type="number" id="stokotvtahsilyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtahsilyuzdesi"></td>
+        <td><input type="number" id="stokotvtecillyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtecillyuzdesi"></td>
+        <td><input type="text" name="stokotvistisnakodu"></td>
+        <td><input type="number" id="stokotvtevkifatyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtevkifatyuzdesi"></td>
+          <td><input type="number" id="stokgvstopajyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokgvstopajyuzdesi"></td>
+          <td><input type="number" id="stokmerafonuyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokmerafonuyuzdesi"></td>
+          <td><input type="number" id="stokmerafonututari" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokmerafonututari"></td>
+          <td><input type="text" name="stokmuhtasarkodu"></td>
+        <td><input type="text" name="stokkdvmuhtasarkodu"></td>
+        <td><input type="text" name="stoksatiraciklamasi"></td>
+        <td><input type="text" name="stokkampanyakodu"></td>
+        <td><input type="number" id="stokmfmiktari" value="0" step="0.001"
+          name="stokmfmiktari"></td>
+          <td><input type="text" id="stokozelkod1" name="stokozelkod1"></td>
+        <td><input type="text" id="stokozelkod2" name="stokozelkod2"></td>
+        <td><input type="date" pattern="\d{4}-\d{2}-\d{2}"  name="vadetarihi"></td>
+        <td><input type="number" id="stokindirim1" step="0.001" name="stokindirim1"></td>
+        <td><input type="number" id="stokindirim2" step="0.001" name="stokindirim2"></td>
+        <td><input type="number" id="stokindirim3" step="0.001" name="stokindirim3"></td>
+        <td><input type="text" id="stokbirimi" name="stokbirimi"></td>
+        <td><input type="number" id="stokmiktaribilgisi" step="0.001" name="stokmiktaribilgisi"></td>
+        <td><input type="text" id="stokozellik1" name="stokozellik1"></td>
+        <td><input type="text" id="stokozellik2" name="stokozellik2"></td>
+        <td><input type="text" id="stokozellik3" name="stokozellik3"></td>
+        <td><input type="text" id="stokozellik4" name="stokozellik4"></td>
+        <td><input type="text" id="stokozellik5" name="stokozellik5"></td>
+        <td><input type="text" id="stokozellik6" name="stokozellik6"></td>
+        <td><input type="text" id="stokozellik7" name="stokozellik7"></td>
+        <td><input type="text" id="stokozellik8" name="stokozellik8"></td>
+        <td><input type="text" id="stokozellik9" name="stokozellik9"></td>
+        <td><input type="text" id="stokozellik10" name="stokozellik10"></td>
+        <td><input type="text" id="stokozellik11" name="stokozellik11"></td>
+        <td><input type="text" id="stokozellik12" name="stokozellik12"></td>
+        <td><input type="text" id="stokozellik13" name="stokozellik13"></td>
+        <td><input type="text" id="stokozellik14" name="stokozellik14"></td>
+        <td><input type="text" id="stokozellik15" name="stokozellik15"></td>
+        <td><input type="text" id="stokozellik16" name="stokozellik16"></td>
+        <td><input type="text" id="stokozellik17" name="stokozellik17"></td>
+        <td><input type="text" id="stokozellik18" name="stokozellik18"></td>
+        <td><input type="text" id="stokozellik19" 1name="stokozellik19"></td>
+        <td><input type="text" id="stokozellik20" name="stokozellik20"></td>
+        <td><input type="text" id="stokalternatifstokkodu" name="stokalternatifstokkodu"></td>
+        <td><input type="text" id="stokalternatifstokadi" name="stokalternatifstokadi"></td>
+        <td><input type="text" id="stokserino" name="stokserino"></td>
+        <td><input type="text" id="stokteslimdurumu" name="stokteslimdurumu"></td>
+        <td><input type="text" id="stokoivkodu" name="stokoivkodu"></td>
+
+        <td><input type="number" id="netagirlik" step="0.001" value="0" name="netagirlik"></td>
+        <td><input type="number" id="brutagirlik" value="0" step="0.001"
+            name="brutagirlik"></td>
+        <td><input type="number" id="pkmiktari" step="0.001" value="0" name="pkmiktari"></td>
+        <td><input type="text" id="pkaciklamasi" name="pkaciklamasi"></td>
+        <td><input type="text" id="kalite" value="STANDART" name="kalite"></td>
+        <td><input type="text" id="stokpartikodu" name="stokpartikodu"></td>
+        <td><input type="date" pattern="\d{4}-\d{2}-\d{2}"  id="sonkullanimtarihi" name="sonkullanimtarihi">
+        </td>
+        <td><input type="text" id="aciklama" name="aciklama"></td>
+        <td><input type="text" id="irsaliyeno" name="irsaliyeno"></td>
+        <td><input type="date" pattern="\d{4}-\d{2}-\d{2}"  id="irsaliyetarihi" name="irsaliyetarihi">
+        </td>
+        <td><input type="text" id="malkabulno" name="malkabulno"></td>
+        </tr>
+        <tr class="yeniform">
+          <td><select name="siparisturu" id="">
+            <option value="Normal">Normal</option>
+            <option value="İndirim">İndirim</option>
+            <option value="Hizmet">Hizmet</option>
+            <option value="Vade Fark">Vade Farkı</option>
+            <option value="Fiyat Farkı">Fiyat Farkı</option>
+          </select></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><select onchange="yeniselect(this)" name="stok" id="stoksecim">
+            <option value="">Stok Seçiniz</option>
+            {% for i in stokkartlarim %}
+
+            <option value="{{i.id}}">({{i.stok_kodu}}) {{i.stok_adi}}</option>
+            {% endfor %}
+
+          </select></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><input type="number" step="0.001" oninput="hesaplaFiyat()" id="stokmiktari" value="1" name="stokmiktari">
+        </td>
+        <td><input type="text" id="birimbilgisi" name="birimbilgisi"></td>
+        <td id="kur"><b>Seçimi Yaptınız</b>
+        </td>
+        
+        <td><input type="number" id="stokbirimfiyati" oninput="hesaplaFiyat()" value="0" step="0.001"
+            name="stokbirimfiyati"></td>
+        <td><input type="number" id="stokindirimyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
+            name="stokindirimyuzdesi"></td>
+        <td><input type="number" id="stokindirimtl" oninput="hesaplaFiyat()" value="0" step="0.001"
+            name="stokindirimtl"></td>
+        <td><input type="number" id="stoktutari" oninput="hesaplaFiyat()" value="0" step="0.001" name="stoktutari">
+          <input style="display: none;" type="number" id="vergisiztutar" oninput="hesaplaFiyat()" value="0"
+            step="0.001" name="vergisiztutar">
+        </td>
+        <td><input type="number" id="stokkdvyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
+            name="stokkdvyuzdesi"></td>
+        <td><input type="number" id="stokkdvtl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokkdvtl"></td>
+        <td><input type="number" id="stokkdvistisnayuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
+            name="stokkdvistisnayuzdesi"></td>
+        <td><input type="number" id="stokkdvistisnatl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokkdvistisnatl"></td>
+        <td><input type="text" name="stokkdvistisnakodu"></td>
+        <td><input type="text" name="stokkdvistisnaaciklamasi"></td>
+        <td><input type="text" name="stoktevkifatkodu"></td>
+        <td><input type="number" id="stoktevkifatyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
+          name="stoktevkifatyuzdesi"></td>
+        <td><input type="number" id="stoktevkifattl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stoktevkifattl"></td>
+        <td><input type="number" id="stokotvmatrahitl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvmatrahitl"></td>
+        <td><input type="number" id="stokotvyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
+          name="stokotvyuzdesi"></td>
+        <td><input type="number" id="stokotvbirimtl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvbirimtl"></td>
+        <td><input type="number" id="stokotvtl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtl"></td>
+        <td><input type="text" name="stokotvkodu"></td>
+        <td><input type="number" id="stokotvtahsilyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtahsilyuzdesi"></td>
+        <td><input type="number" id="stokotvtecillyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtecillyuzdesi"></td>
+        <td><input type="text" name="stokotvistisnakodu"></td>
+        <td><input type="number" id="stokotvtevkifatyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtevkifatyuzdesi"></td>
+          <td><input type="number" id="stokgvstopajyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokgvstopajyuzdesi"></td>
+          <td><input type="number" id="stokmerafonuyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokmerafonuyuzdesi"></td>
+          <td><input type="number" id="stokmerafonututari" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokmerafonututari"></td>
+          <td><input type="text" name="stokmuhtasarkodu"></td>
+        <td><input type="text" name="stokkdvmuhtasarkodu"></td>
+        <td><input type="text" name="stoksatiraciklamasi"></td>
+        <td><input type="text" name="stokkampanyakodu"></td>
+        <td><input type="number" id="stokmfmiktari" value="0" step="0.001"
+          name="stokmfmiktari"></td>
+          <td><input type="text" id="stokozelkod1" name="stokozelkod1"></td>
+        <td><input type="text" id="stokozelkod2" name="stokozelkod2"></td>
+        <td><input type="date" pattern="\d{4}-\d{2}-\d{2}"  name="vadetarihi"></td>
+        <td><input type="number" id="stokindirim1" step="0.001" name="stokindirim1"></td>
+        <td><input type="number" id="stokindirim2" step="0.001" name="stokindirim2"></td>
+        <td><input type="number" id="stokindirim3" step="0.001" name="stokindirim3"></td>
+        <td><input type="text" id="stokbirimi" name="stokbirimi"></td>
+        <td><input type="number" id="stokmiktaribilgisi" step="0.001" name="stokmiktaribilgisi"></td>
+        <td><input type="text" id="stokozellik1" name="stokozellik1"></td>
+        <td><input type="text" id="stokozellik2" name="stokozellik2"></td>
+        <td><input type="text" id="stokozellik3" name="stokozellik3"></td>
+        <td><input type="text" id="stokozellik4" name="stokozellik4"></td>
+        <td><input type="text" id="stokozellik5" name="stokozellik5"></td>
+        <td><input type="text" id="stokozellik6" name="stokozellik6"></td>
+        <td><input type="text" id="stokozellik7" name="stokozellik7"></td>
+        <td><input type="text" id="stokozellik8" name="stokozellik8"></td>
+        <td><input type="text" id="stokozellik9" name="stokozellik9"></td>
+        <td><input type="text" id="stokozellik10" name="stokozellik10"></td>
+        <td><input type="text" id="stokozellik11" name="stokozellik11"></td>
+        <td><input type="text" id="stokozellik12" name="stokozellik12"></td>
+        <td><input type="text" id="stokozellik13" name="stokozellik13"></td>
+        <td><input type="text" id="stokozellik14" name="stokozellik14"></td>
+        <td><input type="text" id="stokozellik15" name="stokozellik15"></td>
+        <td><input type="text" id="stokozellik16" name="stokozellik16"></td>
+        <td><input type="text" id="stokozellik17" name="stokozellik17"></td>
+        <td><input type="text" id="stokozellik18" name="stokozellik18"></td>
+        <td><input type="text" id="stokozellik19" 1name="stokozellik19"></td>
+        <td><input type="text" id="stokozellik20" name="stokozellik20"></td>
+        <td><input type="text" id="stokalternatifstokkodu" name="stokalternatifstokkodu"></td>
+        <td><input type="text" id="stokalternatifstokadi" name="stokalternatifstokadi"></td>
+        <td><input type="text" id="stokserino" name="stokserino"></td>
+        <td><input type="text" id="stokteslimdurumu" name="stokteslimdurumu"></td>
+        <td><input type="text" id="stokoivkodu" name="stokoivkodu"></td>
+
+        <td><input type="number" id="netagirlik" step="0.001" value="0" name="netagirlik"></td>
+        <td><input type="number" id="brutagirlik" value="0" step="0.001"
+            name="brutagirlik"></td>
+        <td><input type="number" id="pkmiktari" step="0.001" value="0" name="pkmiktari"></td>
+        <td><input type="text" id="pkaciklamasi" name="pkaciklamasi"></td>
+        <td><input type="text" id="kalite" value="STANDART" name="kalite"></td>
+        <td><input type="text" id="stokpartikodu" name="stokpartikodu"></td>
+        <td><input type="date" pattern="\d{4}-\d{2}-\d{2}"  id="sonkullanimtarihi" name="sonkullanimtarihi">
+        </td>
+        <td><input type="text" id="aciklama" name="aciklama"></td>
+        <td><input type="text" id="irsaliyeno" name="irsaliyeno"></td>
+        <td><input type="date" pattern="\d{4}-\d{2}-\d{2}"  id="irsaliyetarihi" name="irsaliyetarihi">
+        </td>
+        <td><input type="text" id="malkabulno" name="malkabulno"></td>
+        </tr>
+        <tr class="yeniform">
+          <td><select name="siparisturu" id="">
+            <option value="Normal">Normal</option>
+            <option value="İndirim">İndirim</option>
+            <option value="Hizmet">Hizmet</option>
+            <option value="Vade Fark">Vade Farkı</option>
+            <option value="Fiyat Farkı">Fiyat Farkı</option>
+          </select></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><select onchange="yeniselect(this)" name="stok" id="stoksecim">
+            <option value="">Stok Seçiniz</option>
+            {% for i in stokkartlarim %}
+
+            <option value="{{i.id}}">({{i.stok_kodu}}) {{i.stok_adi}}</option>
+            {% endfor %}
+
+          </select></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><b>Seçimi Yaptınız</b></td>
+        <td><input type="number" step="0.001" oninput="hesaplaFiyat()" id="stokmiktari" value="1" name="stokmiktari">
+        </td>
+        <td><input type="text" id="birimbilgisi" name="birimbilgisi"></td>
+        <td id="kur"><b>Seçimi Yaptınız</b>
+        </td>
+        
+        <td><input type="number" id="stokbirimfiyati" oninput="hesaplaFiyat()" value="0" step="0.001"
+            name="stokbirimfiyati"></td>
+        <td><input type="number" id="stokindirimyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
+            name="stokindirimyuzdesi"></td>
+        <td><input type="number" id="stokindirimtl" oninput="hesaplaFiyat()" value="0" step="0.001"
+            name="stokindirimtl"></td>
+        <td><input type="number" id="stoktutari" oninput="hesaplaFiyat()" value="0" step="0.001" name="stoktutari">
+          <input style="display: none;" type="number" id="vergisiztutar" oninput="hesaplaFiyat()" value="0"
+            step="0.001" name="vergisiztutar">
+        </td>
+        <td><input type="number" id="stokkdvyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
+            name="stokkdvyuzdesi"></td>
+        <td><input type="number" id="stokkdvtl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokkdvtl"></td>
+        <td><input type="number" id="stokkdvistisnayuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
+            name="stokkdvistisnayuzdesi"></td>
+        <td><input type="number" id="stokkdvistisnatl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokkdvistisnatl"></td>
+        <td><input type="text" name="stokkdvistisnakodu"></td>
+        <td><input type="text" name="stokkdvistisnaaciklamasi"></td>
+        <td><input type="text" name="stoktevkifatkodu"></td>
+        <td><input type="number" id="stoktevkifatyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
+          name="stoktevkifatyuzdesi"></td>
+        <td><input type="number" id="stoktevkifattl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stoktevkifattl"></td>
+        <td><input type="number" id="stokotvmatrahitl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvmatrahitl"></td>
+        <td><input type="number" id="stokotvyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
+          name="stokotvyuzdesi"></td>
+        <td><input type="number" id="stokotvbirimtl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvbirimtl"></td>
+        <td><input type="number" id="stokotvtl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtl"></td>
+        <td><input type="text" name="stokotvkodu"></td>
+        <td><input type="number" id="stokotvtahsilyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtahsilyuzdesi"></td>
+        <td><input type="number" id="stokotvtecillyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtecillyuzdesi"></td>
+        <td><input type="text" name="stokotvistisnakodu"></td>
+        <td><input type="number" id="stokotvtevkifatyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtevkifatyuzdesi"></td>
+          <td><input type="number" id="stokgvstopajyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokgvstopajyuzdesi"></td>
+          <td><input type="number" id="stokmerafonuyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokmerafonuyuzdesi"></td>
+          <td><input type="number" id="stokmerafonututari" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokmerafonututari"></td>
+          <td><input type="text" name="stokmuhtasarkodu"></td>
+        <td><input type="text" name="stokkdvmuhtasarkodu"></td>
+        <td><input type="text" name="stoksatiraciklamasi"></td>
+        <td><input type="text" name="stokkampanyakodu"></td>
+        <td><input type="number" id="stokmfmiktari" value="0" step="0.001"
+          name="stokmfmiktari"></td>
+          <td><input type="text" id="stokozelkod1" name="stokozelkod1"></td>
+        <td><input type="text" id="stokozelkod2" name="stokozelkod2"></td>
+        <td><input type="date" pattern="\d{4}-\d{2}-\d{2}"  name="vadetarihi"></td>
+        <td><input type="number" id="stokindirim1" step="0.001" name="stokindirim1"></td>
+        <td><input type="number" id="stokindirim2" step="0.001" name="stokindirim2"></td>
+        <td><input type="number" id="stokindirim3" step="0.001" name="stokindirim3"></td>
+        <td><input type="text" id="stokbirimi" name="stokbirimi"></td>
+        <td><input type="number" id="stokmiktaribilgisi" step="0.001" name="stokmiktaribilgisi"></td>
+        <td><input type="text" id="stokozellik1" name="stokozellik1"></td>
+        <td><input type="text" id="stokozellik2" name="stokozellik2"></td>
+        <td><input type="text" id="stokozellik3" name="stokozellik3"></td>
+        <td><input type="text" id="stokozellik4" name="stokozellik4"></td>
+        <td><input type="text" id="stokozellik5" name="stokozellik5"></td>
+        <td><input type="text" id="stokozellik6" name="stokozellik6"></td>
+        <td><input type="text" id="stokozellik7" name="stokozellik7"></td>
+        <td><input type="text" id="stokozellik8" name="stokozellik8"></td>
+        <td><input type="text" id="stokozellik9" name="stokozellik9"></td>
+        <td><input type="text" id="stokozellik10" name="stokozellik10"></td>
+        <td><input type="text" id="stokozellik11" name="stokozellik11"></td>
+        <td><input type="text" id="stokozellik12" name="stokozellik12"></td>
+        <td><input type="text" id="stokozellik13" name="stokozellik13"></td>
+        <td><input type="text" id="stokozellik14" name="stokozellik14"></td>
+        <td><input type="text" id="stokozellik15" name="stokozellik15"></td>
+        <td><input type="text" id="stokozellik16" name="stokozellik16"></td>
+        <td><input type="text" id="stokozellik17" name="stokozellik17"></td>
+        <td><input type="text" id="stokozellik18" name="stokozellik18"></td>
+        <td><input type="text" id="stokozellik19" 1name="stokozellik19"></td>
+        <td><input type="text" id="stokozellik20" name="stokozellik20"></td>
+        <td><input type="text" id="stokalternatifstokkodu" name="stokalternatifstokkodu"></td>
+        <td><input type="text" id="stokalternatifstokadi" name="stokalternatifstokadi"></td>
+        <td><input type="text" id="stokserino" name="stokserino"></td>
+        <td><input type="text" id="stokteslimdurumu" name="stokteslimdurumu"></td>
+        <td><input type="text" id="stokoivkodu" name="stokoivkodu"></td>
+
+        <td><input type="number" id="netagirlik" step="0.001" value="0" name="netagirlik"></td>
+        <td><input type="number" id="brutagirlik" value="0" step="0.001"
+            name="brutagirlik"></td>
+        <td><input type="number" id="pkmiktari" step="0.001" value="0" name="pkmiktari"></td>
+        <td><input type="text" id="pkaciklamasi" name="pkaciklamasi"></td>
+        <td><input type="text" id="kalite" value="STANDART" name="kalite"></td>
+        <td><input type="text" id="stokpartikodu" name="stokpartikodu"></td>
+        <td><input type="date" pattern="\d{4}-\d{2}-\d{2}"  id="sonkullanimtarihi" name="sonkullanimtarihi">
+        </td>
+        <td><input type="text" id="aciklama" name="aciklama"></td>
+        <td><input type="text" id="irsaliyeno" name="irsaliyeno"></td>
+        <td><input type="date" pattern="\d{4}-\d{2}-\d{2}"  id="irsaliyetarihi" name="irsaliyetarihi">
+        </td>
+        <td><input type="text" id="malkabulno" name="malkabulno"></td>
         </tr>
         
       </tbody>
