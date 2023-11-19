@@ -1916,14 +1916,12 @@ let z = 0;
 
     yeniselect(selectedStock); // Fonksiyonu sayfa yüklendiğinde çağır
   });
-  yeniselect();
+  //yeniselect();
   function yeniselect(selectedStock) {
-
     const allCustomSelects = document.querySelectorAll('#stoksecim');
     // Her bir <select> için olay dinleyici ekle
     allCustomSelects.forEach((select, index) => {
-      hesaplaFiyat()
-
+      //hesaplaFiyat()
       const selectedOption = select.value;
       const selectIndex = index; // Seçeneğin sırasını almak için index'i kullanabilirsiniz.
       // Tıklanan seçeneğin ve sırasının konsola yazdırılması.
@@ -1945,27 +1943,51 @@ let z = 0;
       document.getElementsByName('stokbirimfiyati')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[2].innerText.replace(",", "."));
       document.getElementsByName('stokindirimyuzdesi')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[3].innerText.replace(",", "."));
       document.getElementsByName('stokkdvyuzdesi')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[4].innerText.replace(",", "."));
-      document.getElementsByName('stokotvyuzdesi')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[4].innerText.replace(",", "."));
-      document.getElementsByName('stokindirim1')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[5].innerText.replace(",", "."));
-      document.getElementsByName('stokindirim2')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[6].innerText.replace(",", "."));
-      document.getElementsByName('stokindirim3')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[7].innerText.replace(",", "."));
-      document.getElementsByName('stokozelkod1')[selectIndex].value = document.getElementById(selectedOption).cells[8].innerText;
-      document.getElementsByName('stokozelkod2')[selectIndex].value = document.getElementById(selectedOption).cells[9].innerText;
-      document.getElementsByName('stokdepartman')[selectIndex].value = document.getElementById(selectedOption).cells[10].innerText;
-      document.getElementsByName('stokbirimi')[selectIndex].value = document.getElementById(selectedOption).cells[11].innerText;
-      document.getElementsByName('stokmiktaribilgisi')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[12].innerText.replace(",", "."));
-      document.getElementsByName('stokozellik1')[selectIndex].value = document.getElementById(selectedOption).cells[13].innerText;
-      document.getElementsByName('stokozellik2')[selectIndex].value = document.getElementById(selectedOption).cells[14].innerText;
-      document.getElementsByName('stokozellik3')[selectIndex].value = document.getElementById(selectedOption).cells[15].innerText;
-      document.getElementsByName('stokozellik4')[selectIndex].value = document.getElementById(selectedOption).cells[16].innerText;
-      document.getElementsByName('stokozellik5')[selectIndex].value = document.getElementById(selectedOption).cells[17].innerText;
-      document.getElementsByName('stokalternatifstokkodu')[selectIndex].value = document.getElementById(selectedOption).cells[18].innerText;
-      document.getElementsByName('stokalternatifstokadi')[selectIndex].value = document.getElementById(selectedOption).cells[19].innerText;
-      document.getElementsByName('stokkalitekodu')[selectIndex].value = document.getElementById(selectedOption).cells[20].innerText;
-      document.getElementsByName('stokanamiktari')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[21].innerText.replace(",", "."));
-      document.getElementsByName('stokanamiktaribirimfiyattl')[selectIndex].value = document.getElementById(selectedOption).cells[22].innerText;
-      document.getElementsByName('stokanamiktaribirimfiyatdvz')[selectIndex].value = document.getElementById(selectedOption).cells[23].innerText;
-      hesaplaFiyat()
+      document.getElementsByName('stokotvyuzdesi')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[16].innerText.replace(",", "."));
+      document.getElementsByName('stokotvbirimtl')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[17].innerText.replace(",", "."));
+      document.getElementsByName('stokotvtahsilyuzdesi')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[18].innerText.replace(",", "."));
+      document.getElementsByName('stokotvtecillyuzdesi')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[19].innerText.replace(",", "."));
+      document.getElementsByName('stokmerafonuyuzdesi')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[20].innerText.replace(",", "."));
+      document.getElementsByName('stokmuhtasarkodu')[selectIndex].value = document.getElementById(selectedOption).cells[21].innerText;
+      document.getElementsByName('stokkdvmuhtasarkodu')[selectIndex].value = document.getElementById(selectedOption).cells[22].innerText;
+      document.getElementsByName('stokmfmiktari')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[23].innerText.replace(",", "."));
+      document.getElementsByName('stokindirim1')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[24].innerText.replace(",", "."));
+      document.getElementsByName('stokindirim2')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[25].innerText.replace(",", "."));
+      document.getElementsByName('stokindirim3')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[26].innerText.replace(",", "."));
+      document.getElementsByName('stokbirimi')[selectIndex].value = document.getElementById(selectedOption).cells[27].innerText;
+      document.getElementsByName('stokmiktaribilgisi')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[28].innerText.replace(",", "."));
+      document.getElementsByName('stokozellik1')[selectIndex].value = document.getElementById(selectedOption).cells[29].innerText;
+      document.getElementsByName('stokozellik2')[selectIndex].value = document.getElementById(selectedOption).cells[30].innerText;
+      document.getElementsByName('stokozellik3')[selectIndex].value = document.getElementById(selectedOption).cells[31].innerText;
+      document.getElementsByName('stokozellik4')[selectIndex].value = document.getElementById(selectedOption).cells[32].innerText;
+      document.getElementsByName('stokozellik5')[selectIndex].value = document.getElementById(selectedOption).cells[33].innerText;
+      document.getElementsByName('stokozellik6')[selectIndex].value = document.getElementById(selectedOption).cells[34].innerText;
+      document.getElementsByName('stokozellik7')[selectIndex].value = document.getElementById(selectedOption).cells[35].innerText;
+      document.getElementsByName('stokozellik8')[selectIndex].value = document.getElementById(selectedOption).cells[36].innerText;
+      document.getElementsByName('stokozellik9')[selectIndex].value = document.getElementById(selectedOption).cells[37].innerText;
+      document.getElementsByName('stokozellik10')[selectIndex].value = document.getElementById(selectedOption).cells[38].innerText;
+      document.getElementsByName('stokozellik11')[selectIndex].value = document.getElementById(selectedOption).cells[39].innerText;
+      document.getElementsByName('stokozellik12')[selectIndex].value = document.getElementById(selectedOption).cells[40].innerText;
+      document.getElementsByName('stokozellik13')[selectIndex].value = document.getElementById(selectedOption).cells[41].innerText;
+      document.getElementsByName('stokozellik14')[selectIndex].value = document.getElementById(selectedOption).cells[42].innerText;
+      document.getElementsByName('stokozellik15')[selectIndex].value = document.getElementById(selectedOption).cells[43].innerText;
+      document.getElementsByName('stokozellik16')[selectIndex].value = document.getElementById(selectedOption).cells[44].innerText;
+      document.getElementsByName('stokozellik17')[selectIndex].value = document.getElementById(selectedOption).cells[45].innerText;
+      document.getElementsByName('stokozellik18')[selectIndex].value = document.getElementById(selectedOption).cells[46].innerText;
+      alert("işlemdort");
+      document.getElementsByName('stokozellik19')[selectIndex].value = document.getElementById(selectedOption).cells[47].innerText;
+      document.getElementsByName('stokozellik20')[selectIndex].value = document.getElementById(selectedOption).cells[48].innerText;
+      
+      document.getElementsByName('stokalternatifstokkodu')[selectIndex].value = document.getElementById(selectedOption).cells[49].innerText;
+      document.getElementsByName('stokalternatifstokadi')[selectIndex].value = document.getElementById(selectedOption).cells[50].innerText;
+      
+      document.getElementsByName('stokoivkodu')[selectIndex].value = document.getElementById(selectedOption).cells[51].innerText;
+      
+      document.getElementsByName('netagirlik')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[52].innerText.replace(",", "."));
+      document.getElementsByName('brutagirlik')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[53].innerText.replace(",", "."));
+      document.getElementsByName('pkmiktari')[selectIndex].value =  parseFloat(document.getElementById(selectedOption).cells[54].innerText.replace(",", "."));
+      document.getElementsByName('pkaciklamasi')[selectIndex].value =  document.getElementById(selectedOption).cells[55].innerText;
+      //hesaplaFiyat()
     });
   };
   function dovizac() {
