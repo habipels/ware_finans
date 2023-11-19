@@ -1709,32 +1709,65 @@
   <tr id="{{i.id}}">
     {% for j in stokkartozelligi1 %}
     {% if i.id == j.stok_karti_bilgisi.id %}
-    <td id="tbirimbilgisi" class="{{j.birinci_birim}}">{{j.birinci_birim}}</td>
-    <td id="tstokbirimfiyati">{{ i|get_stokalisveris }}</td>
-
-    <td id="tstokindirimyuzdesi">{{j.indirim1}}</td>
-    <td id="tstokkdvyuzdesi">{{j.kdv_orani}}</td>
-    <td id="tstokotvyuzdesi">{{ i|get_otv_fiyati }}</td>
-    <td id="tstokindirim1">{{j.indirim1}}</td>
-    <td id="tstokindirim2">{{j.indirim2}}</td>
-    <td id="tstokindirim3">{{j.indirim3}}</td>
-    <td id="tstokozelkod1">{{i|get_stok_kodlari_ozel_kod_1}}</td>
-    <td id="tstokozelkod2">{{i|get_stok_kodlari_ozel_kod_2}}</td>
-    <td id="tstokdepartman"></td>
-    <td id="tstokbirimi">{{j.serbest_stok_birimi}}</td>
-    <td id="tstokmiktaribilgisi">{{j.stokmiktari}}</td>
-    <td id="tstokozellik1">{{ i|get_stok_detaylari_ozellik1 }}</td>
-    <td id="tstokozellik2">{{ i|get_stok_detaylari_ozellik2 }}</td>
-    <td id="tstokozellik3">{{ i|get_stok_detaylari_ozellik3 }}</td>
-    <td id="tstokozellik4">{{ i|get_stok_detaylari_ozellik4 }}</td>
-    <td id="tstokozellik5">{{ i|get_stok_detaylari_ozellik5 }}</td>
-    <td id="tstokalternatifstokkodu">{{i|get_stok_kodlari_alternatifstokkodu}}</td>
-    <td id="tstokalternatifstokadi">{{i|get_stok_kodlari_alternatifstokadi}}</td>
-    <td id="tstokkalitekodu">{{i | get_stok_kodlari_kalitekodu}}</td>
-    <td id="tstokanamiktari"></td>
-    <td id="tstokanamiktaribirimfiyattl"></td>
-    <td id="tstokanamiktaribirimfiyatdvz"></td>
-    <td id="tstokbirimfiyatialis">{{ i|get_stokalisverisalis }}</td>
+    <td>0</td>
+    <td>{{j.birinci_birim}}</td>
+    <td>{{ i|get_stokalisveris }}</td>
+    <td>{{j.indirim1}}</td>
+    <td>{{j.kdv_orani}}</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>{{ i|get_otv_fiyati }}</td>
+    <td>{{ i|get_otv_fiyati_birim }}</td>
+    <td>{{i| get_otv_fiyati_otv_tahsil_orani}}</td>
+    <td>{{i| get_otv_fiyati_otv_tecil_orani}}</td>
+    <td>{{i |get_otv_fiyati_mera_fonu_orani}}</td>
+    <td>muh</td>
+    <td>kdvmuh</td>
+    <td>mfmiktari</td>
+    <td>{{j.indirim1}}</td>
+    <td>{{j.indirim2}}</td>
+    <td>{{j.indirim3}}</td>
+    <td>{{j.serbest_stok_birimi}}</td>
+    <td>{{j.stokmiktari}}</td>
+    <td>{{ i|get_stok_detaylari_ozellik1 }}</td>
+    <td>{{ i|get_stok_detaylari_ozellik2 }}</td>
+    <td>{{ i|get_stok_detaylari_ozellik3 }}</td>
+    <td>{{ i|get_stok_detaylari_ozellik4 }}</td>
+    <td>{{ i|get_stok_detaylari_ozellik5 }}</td>
+    <td>{{ i|get_stok_detaylari_ozellik6 }}</td>
+    <td>{{ i|get_stok_detaylari_ozellik7 }}</td>
+    <td>{{ i|get_stok_detaylari_ozellik8 }}</td>
+    <td>{{ i|get_stok_detaylari_ozellik9 }}</td>
+    <td>{{ i|get_stok_detaylari_ozellik10 }}</td>
+    <td>{{ i|get_stok_detaylari_ozellik11 }}</td>
+    <td>{{ i|get_stok_detaylari_ozellik12 }}</td>
+    <td>{{ i|get_stok_detaylari_ozellik13 }}</td>
+    <td>{{ i|get_stok_detaylari_ozellik14 }}</td>
+    <td>{{ i|get_stok_detaylari_ozellik15 }}</td>
+    <td>{{ i|get_stok_detaylari_ozellik16 }}</td>
+    <td>{{ i|get_stok_detaylari_ozellik17 }}</td>
+    <td>{{ i|get_stok_detaylari_ozellik18 }}</td>
+    <td>{{ i|get_stok_detaylari_ozellik19 }}</td>
+    <td>{{ i|get_stok_detaylari_ozellik20 }}</td>
+    <td >{{i|get_stok_kodlari_alternatifstokkodu}}</td>
+    <td >{{i|get_stok_kodlari_alternatifstokadi}}</td>
+    <td>oiv</td>
+    <td id="tstokanamiktari">{{ i | get_stok_diger_kismi_agirliklar }}</td>
+    <td id="tstokanamiktaribirimfiyattl">{{i | get_stok_diger_kismi_agirliklar_burut}}</td>
+    <td id="tstokanamiktaribirimfiyatdvzm">{{ i | get_stok_diger_kismi_agirliklar_pkmiktari}}</td>
+    <td id="tstokanamiktaribirimfiyatdvz">{{ i | get_stok_diger_kismi_agirliklar_pkaciklamasi}}</td>
+    <td>irsaliyeno</td>
+    <td></td>
+    <td>mal kabul no</td>
     {% else %}
     {% endif %}
     {% endfor %}
@@ -1902,15 +1935,16 @@ let z = 0;
       var grupturu = document.getElementById("grupturu");
       const grupturusecilen = grupturu.options[grupturu.selectedIndex].text;
       // Örnek olarak fiyat bilgisini stok fiyatı alanına yerleştirme
-      document.getElementsByName('birimbilgisi')[selectIndex].value = document.getElementById(selectedOption).cells[0].innerText;
+      document.getElementsByName('birimbilgisi')[selectIndex].value = document.getElementById(selectedOption).cells[1].innerText;
       if (grupturusecilen == "Alınan Sipariş") {
-        document.getElementsByName('stokbirimfiyati')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[1].innerText.replace(",", "."));
+        document.getElementsByName('stokbirimfiyati')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[2].innerText.replace(",", "."));
       }
       else if (grupturusecilen == "Verilen Sipariş") {
         document.getElementsByName('stokbirimfiyati')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[24].innerText.replace(",", "."));
       }
-      document.getElementsByName('stokindirimyuzdesi')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[2].innerText.replace(",", "."));
-      document.getElementsByName('stokkdvyuzdesi')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[3].innerText.replace(",", "."));
+      document.getElementsByName('stokbirimfiyati')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[2].innerText.replace(",", "."));
+      document.getElementsByName('stokindirimyuzdesi')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[3].innerText.replace(",", "."));
+      document.getElementsByName('stokkdvyuzdesi')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[4].innerText.replace(",", "."));
       document.getElementsByName('stokotvyuzdesi')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[4].innerText.replace(",", "."));
       document.getElementsByName('stokindirim1')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[5].innerText.replace(",", "."));
       document.getElementsByName('stokindirim2')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[6].innerText.replace(",", "."));

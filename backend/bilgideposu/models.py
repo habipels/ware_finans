@@ -1598,6 +1598,37 @@ class fatura_olustur(models.Model):
     irsaliye_no = models.CharField(max_length=200,verbose_name="İrsaliye No",blank=True,null=True)
     mal_kabul_no = models.CharField(max_length=200,verbose_name="İrsaliye No",blank=True,null=True)
 
+class cek_senet_durumu(models.Model):
+    ent_kodu_secim = (
+        ("1","1"),
+        ("2","2")
+    )
+    kdv_durumu_secim = (
+        ("Hariç","Hariç"),
+        ("Dahil","Dahil")
+    )
+    doviz = (
+        ("", ""),
+        ("TL", "TL"),
+        ("Euro", "£"),
+        ("Dolar", "$")
+    )
+    bodro_tarihi = models.DateField(verbose_name="Kayıt Tarihi",blank=True,null=True)
+    bodro_no = models.CharField(max_length=200,verbose_name="Bodro No",blank=True,null=True)
+    ent_kodu = models.CharField(max_length=20,verbose_name="Entegrasyon Kodu",choices=ent_kodu_secim,default="1")
+    sube_kodu = models.ForeignKey(sube,blank=True,null=True,verbose_name="Şube Bilgisi",on_delete=models.SET_NULL)
+    saat = models.TimeField(verbose_name="Saat",blank=True,null=True)
+    devir_mi = models.BooleanField(verbose_name="Devir Mi ? ",default=False)
+    cari_unvan = models.ForeignKey(cari_kartlar,blank=True,null=True,verbose_name="Cari Unvan Bilgisi",on_delete=models.SET_NULL)
+    islem_doviz_cinsi = models.CharField(max_length=100, verbose_name="İşlem Döviz Cinsi", choices=doviz, default="")
+    ozel_kod1 = models.CharField(verbose_name="Özel Kod",blank=True,null=True,max_length=200)
+    ozel_kod2 = models.CharField(verbose_name="Özel Kod 2",blank=True,null=True,max_length=200)
+    departman = models.CharField(verbose_name="departman",blank=True,null=True,max_length=200)
+    kampkodu = models.CharField(verbose_name="Kamp Kod",blank=True,null=True,max_length=200)
+    muh_kodu = models.CharField(verbose_name="muh. Kod 2",blank=True,null=True,max_length=200)
+    aciklama = models.CharField(verbose_name="açıklama",blank=True,null=True,max_length=200)
+    tahsilati_ismeli_yapan = models.CharField(verbose_name="Tahsilati İşlemi Yapan",blank=True,null=True,max_length=200)
+    
 #fatura
 class dilekceler(models.Model):
     bagli_oldugu_firma = models.ForeignKey(firma,blank=True,null=True,on_delete=models.SET_NULL)

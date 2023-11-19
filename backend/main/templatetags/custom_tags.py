@@ -10,6 +10,26 @@ def get_otv_fiyati(stok_kart):
     return satis_fiyati.otv_orani if satis_fiyati else 0
 
 @register.filter
+def get_otv_fiyati_otv_tahsil_orani(stok_kart):
+    
+    satis_fiyati = stok_diger_kismi_otv.objects.filter(stok_karti_bilgisi=stok_kart.id).last()
+    return satis_fiyati.otv_tahsil_orani if satis_fiyati else 0
+@register.filter
+def get_otv_fiyati_mera_fonu_orani(stok_kart):
+    
+    satis_fiyati = stok_diger_kismi_otv.objects.filter(stok_karti_bilgisi=stok_kart.id).last()
+    return satis_fiyati.mera_fonu_orani if satis_fiyati else 0
+@register.filter
+def get_otv_fiyati_otv_tecil_orani(stok_kart):
+    
+    satis_fiyati = stok_diger_kismi_otv.objects.filter(stok_karti_bilgisi=stok_kart.id).last()
+    return satis_fiyati.otv_tecil_orani if satis_fiyati else 0
+@register.filter
+def get_otv_fiyati_birim(stok_kart):
+    
+    satis_fiyati = stok_diger_kismi_otv.objects.filter(stok_karti_bilgisi=stok_kart.id).last()
+    return satis_fiyati.otv_brim_fiyati if satis_fiyati else 0
+@register.filter
 def get_stok_detaylari_ozellik1(stok_kart):
     
     satis_fiyati = stok_detaylari.objects.filter(stok_karti_bilgisi=stok_kart.id).last()
@@ -125,3 +145,84 @@ def get_stok_diger_kismi_agirliklar_pkmiktari(stok_kart):
     
     satis_fiyati = stok_diger_kismi_agirliklar.objects.filter(stok_karti_bilgisi=stok_kart.id).last()
     return satis_fiyati.p_miktari if satis_fiyati.p_miktari else ""
+
+
+@register.filter
+def get_stok_detaylari_ozellik6(stok_kart):
+    
+    satis_fiyati = stok_detaylari.objects.filter(stok_karti_bilgisi=stok_kart.id).last()
+    return satis_fiyati.ozellik6 if satis_fiyati.ozellik5 else ""
+@register.filter
+def get_stok_detaylari_ozellik7(stok_kart):
+    
+    satis_fiyati = stok_detaylari.objects.filter(stok_karti_bilgisi=stok_kart.id).last()
+    return satis_fiyati.ozellik7 if satis_fiyati.ozellik5 else ""
+@register.filter
+def get_stok_detaylari_ozellik8(stok_kart):
+    
+    satis_fiyati = stok_detaylari.objects.filter(stok_karti_bilgisi=stok_kart.id).last()
+    return satis_fiyati.ozellik8 if satis_fiyati.ozellik5 else ""
+@register.filter
+def get_stok_detaylari_ozellik9(stok_kart):
+    
+    satis_fiyati = stok_detaylari.objects.filter(stok_karti_bilgisi=stok_kart.id).last()
+    return satis_fiyati.ozellik9 if satis_fiyati.ozellik5 else ""
+@register.filter
+def get_stok_detaylari_ozellik10(stok_kart):
+    
+    satis_fiyati = stok_detaylari.objects.filter(stok_karti_bilgisi=stok_kart.id).last()
+    return satis_fiyati.ozellik10 if satis_fiyati.ozellik5 else ""
+@register.filter
+def get_stok_detaylari_ozellik11(stok_kart):
+    
+    satis_fiyati = stok_detaylari.objects.filter(stok_karti_bilgisi=stok_kart.id).last()
+    return satis_fiyati.ozellik11 if satis_fiyati.ozellik5 else ""
+
+@register.filter
+def get_stok_detaylari_ozellik12(stok_kart):
+    
+    satis_fiyati = stok_detaylari.objects.filter(stok_karti_bilgisi=stok_kart.id).last()
+    return satis_fiyati.ozellik12 if satis_fiyati.ozellik5 else ""
+
+@register.filter
+def get_stok_detaylari_ozellik13(stok_kart):
+    
+    satis_fiyati = stok_detaylari.objects.filter(stok_karti_bilgisi=stok_kart.id).last()
+    return satis_fiyati.ozellik13 if satis_fiyati.ozellik5 else ""
+@register.filter
+def get_stok_detaylari_ozellik14(stok_kart):
+    
+    satis_fiyati = stok_detaylari.objects.filter(stok_karti_bilgisi=stok_kart.id).last()
+    return satis_fiyati.ozellik14 if satis_fiyati.ozellik5 else ""
+
+@register.filter
+def get_stok_detaylari_ozellik15(stok_kart):
+    
+    satis_fiyati = stok_detaylari.objects.filter(stok_karti_bilgisi=stok_kart.id).last()
+    return satis_fiyati.ozellik15 if satis_fiyati.ozellik5 else ""
+@register.filter
+def get_stok_detaylari_ozellik16(stok_kart):
+    
+    satis_fiyati = stok_detaylari.objects.filter(stok_karti_bilgisi=stok_kart.id).last()
+    return satis_fiyati.ozellik16 if satis_fiyati.ozellik5 else ""
+
+@register.filter
+def get_stok_detaylari_ozellik17(stok_kart):
+    
+    satis_fiyati = stok_detaylari.objects.filter(stok_karti_bilgisi=stok_kart.id).last()
+    return satis_fiyati.ozellik17 if satis_fiyati.ozellik5 else ""
+@register.filter
+def get_stok_detaylari_ozellik18(stok_kart):
+    
+    satis_fiyati = stok_detaylari.objects.filter(stok_karti_bilgisi=stok_kart.id).last()
+    return satis_fiyati.ozellik18 if satis_fiyati.ozellik5 else ""
+@register.filter
+def get_stok_detaylari_ozellik19(stok_kart):
+    
+    satis_fiyati = stok_detaylari.objects.filter(stok_karti_bilgisi=stok_kart.id).last()
+    return satis_fiyati.ozellik19 if satis_fiyati.ozellik5 else ""
+@register.filter
+def get_stok_detaylari_ozellik20(stok_kart):
+    
+    satis_fiyati = stok_detaylari.objects.filter(stok_karti_bilgisi=stok_kart.id).last()
+    return satis_fiyati.ozellik20 if satis_fiyati.ozellik5 else ""
