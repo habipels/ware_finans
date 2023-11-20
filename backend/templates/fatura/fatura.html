@@ -129,6 +129,9 @@
   <span>Toplam İndirim TL: <b id="indirimtutari"></b>|</span>
   <span>Toplam KDV TL: <b id="kdvtutari"></b>|</span>
   <span>Toplam ÖTV TL: <b id="otvtutari"></b>|</span>
+  <span>Toplam Tevkifat TL: <b id="tevkifat"></b>|</span>
+  <span>Toplam G.V Stopaj TL: <b id="gvstopaj"></b>|</span>
+  <span>Toplam Mera Fonu TL: <b id="merafonu"></b>|</span>
   <span>Genel Toplam TL: <b id="geneltoplam"></b>|
     <input type="hidden" value="20" id="igeneltoplammm" name="igeneltoplammm">
     <input type="hidden" value="10" id="igeneltoplammm" name="igeneltoplammm">
@@ -333,7 +336,7 @@
           </td>
           <td><input type="text" id="birimbilgisi" name="birimbilgisi"></td>
           <td id="kur"><input type="number" id="gunlukkur" oninput="hesaplaFiyat()" value="0" step="0.001"
-              name="gunlukkur">,
+              name="gunlukkur">
             <input type="number" id="uygunkur" oninput="hesaplaFiyat()" value="0" step="0.001" name="uygunkur">,
             <input type="number" id="birimfiyatdovz" oninput="hesaplaFiyat()" value="0" step="0.001"
               name="birimfiyatdovz">
@@ -464,7 +467,9 @@
         </td>
         <td><input type="text" id="birimbilgisi" name="birimbilgisi"></td>
         <td id="kur"><b>Seçimi Yaptınız</b>
-        </td>
+         <input type="number" id="birimfiyatdovz" oninput="hesaplaFiyat()" value="0" step="0.001"
+              name="birimfiyatdovz">
+          </td>
         
         <td><input type="number" id="stokbirimfiyati" oninput="hesaplaFiyat()" value="0" step="0.001"
             name="stokbirimfiyati"></td>
@@ -533,7 +538,7 @@
         <td><input type="text" id="stokozellik16" name="stokozellik16"></td>
         <td><input type="text" id="stokozellik17" name="stokozellik17"></td>
         <td><input type="text" id="stokozellik18" name="stokozellik18"></td>
-        <td><input type="text" id="stokozellik19" 1name="stokozellik19"></td>
+        <td><input type="text" id="stokozellik19" name="stokozellik19"></td>
         <td><input type="text" id="stokozellik20" name="stokozellik20"></td>
         <td><input type="text" id="stokalternatifstokkodu" name="stokalternatifstokkodu"></td>
         <td><input type="text" id="stokalternatifstokadi" name="stokalternatifstokadi"></td>
@@ -591,7 +596,9 @@
         </td>
         <td><input type="text" id="birimbilgisi" name="birimbilgisi"></td>
         <td id="kur"><b>Seçimi Yaptınız</b>
-        </td>
+         <input type="number" id="birimfiyatdovz" oninput="hesaplaFiyat()" value="0" step="0.001"
+              name="birimfiyatdovz">
+          </td>
         
         <td><input type="number" id="stokbirimfiyati" oninput="hesaplaFiyat()" value="0" step="0.001"
             name="stokbirimfiyati"></td>
@@ -660,7 +667,7 @@
         <td><input type="text" id="stokozellik16" name="stokozellik16"></td>
         <td><input type="text" id="stokozellik17" name="stokozellik17"></td>
         <td><input type="text" id="stokozellik18" name="stokozellik18"></td>
-        <td><input type="text" id="stokozellik19" 1name="stokozellik19"></td>
+        <td><input type="text" id="stokozellik19" name="stokozellik19"></td>
         <td><input type="text" id="stokozellik20" name="stokozellik20"></td>
         <td><input type="text" id="stokalternatifstokkodu" name="stokalternatifstokkodu"></td>
         <td><input type="text" id="stokalternatifstokadi" name="stokalternatifstokadi"></td>
@@ -718,7 +725,9 @@
         </td>
         <td><input type="text" id="birimbilgisi" name="birimbilgisi"></td>
         <td id="kur"><b>Seçimi Yaptınız</b>
-        </td>
+         <input type="number" id="birimfiyatdovz" oninput="hesaplaFiyat()" value="0" step="0.001"
+              name="birimfiyatdovz">
+          </td>
         
         <td><input type="number" id="stokbirimfiyati" oninput="hesaplaFiyat()" value="0" step="0.001"
             name="stokbirimfiyati"></td>
@@ -787,7 +796,7 @@
         <td><input type="text" id="stokozellik16" name="stokozellik16"></td>
         <td><input type="text" id="stokozellik17" name="stokozellik17"></td>
         <td><input type="text" id="stokozellik18" name="stokozellik18"></td>
-        <td><input type="text" id="stokozellik19" 1name="stokozellik19"></td>
+        <td><input type="text" id="stokozellik19" name="stokozellik19"></td>
         <td><input type="text" id="stokozellik20" name="stokozellik20"></td>
         <td><input type="text" id="stokalternatifstokkodu" name="stokalternatifstokkodu"></td>
         <td><input type="text" id="stokalternatifstokadi" name="stokalternatifstokadi"></td>
@@ -845,7 +854,9 @@
         </td>
         <td><input type="text" id="birimbilgisi" name="birimbilgisi"></td>
         <td id="kur"><b>Seçimi Yaptınız</b>
-        </td>
+         <input type="number" id="birimfiyatdovz" oninput="hesaplaFiyat()" value="0" step="0.001"
+              name="birimfiyatdovz">
+          </td>
         
         <td><input type="number" id="stokbirimfiyati" oninput="hesaplaFiyat()" value="0" step="0.001"
             name="stokbirimfiyati"></td>
@@ -914,7 +925,7 @@
         <td><input type="text" id="stokozellik16" name="stokozellik16"></td>
         <td><input type="text" id="stokozellik17" name="stokozellik17"></td>
         <td><input type="text" id="stokozellik18" name="stokozellik18"></td>
-        <td><input type="text" id="stokozellik19" 1name="stokozellik19"></td>
+        <td><input type="text" id="stokozellik19" name="stokozellik19"></td>
         <td><input type="text" id="stokozellik20" name="stokozellik20"></td>
         <td><input type="text" id="stokalternatifstokkodu" name="stokalternatifstokkodu"></td>
         <td><input type="text" id="stokalternatifstokadi" name="stokalternatifstokadi"></td>
@@ -972,7 +983,9 @@
         </td>
         <td><input type="text" id="birimbilgisi" name="birimbilgisi"></td>
         <td id="kur"><b>Seçimi Yaptınız</b>
-        </td>
+         <input type="number" id="birimfiyatdovz" oninput="hesaplaFiyat()" value="0" step="0.001"
+              name="birimfiyatdovz">
+          </td>
         
         <td><input type="number" id="stokbirimfiyati" oninput="hesaplaFiyat()" value="0" step="0.001"
             name="stokbirimfiyati"></td>
@@ -1041,7 +1054,7 @@
         <td><input type="text" id="stokozellik16" name="stokozellik16"></td>
         <td><input type="text" id="stokozellik17" name="stokozellik17"></td>
         <td><input type="text" id="stokozellik18" name="stokozellik18"></td>
-        <td><input type="text" id="stokozellik19" 1name="stokozellik19"></td>
+        <td><input type="text" id="stokozellik19" name="stokozellik19"></td>
         <td><input type="text" id="stokozellik20" name="stokozellik20"></td>
         <td><input type="text" id="stokalternatifstokkodu" name="stokalternatifstokkodu"></td>
         <td><input type="text" id="stokalternatifstokadi" name="stokalternatifstokadi"></td>
@@ -1099,7 +1112,9 @@
         </td>
         <td><input type="text" id="birimbilgisi" name="birimbilgisi"></td>
         <td id="kur"><b>Seçimi Yaptınız</b>
-        </td>
+         <input type="number" id="birimfiyatdovz" oninput="hesaplaFiyat()" value="0" step="0.001"
+              name="birimfiyatdovz">
+          </td>
         
         <td><input type="number" id="stokbirimfiyati" oninput="hesaplaFiyat()" value="0" step="0.001"
             name="stokbirimfiyati"></td>
@@ -1168,7 +1183,7 @@
         <td><input type="text" id="stokozellik16" name="stokozellik16"></td>
         <td><input type="text" id="stokozellik17" name="stokozellik17"></td>
         <td><input type="text" id="stokozellik18" name="stokozellik18"></td>
-        <td><input type="text" id="stokozellik19" 1name="stokozellik19"></td>
+        <td><input type="text" id="stokozellik19" name="stokozellik19"></td>
         <td><input type="text" id="stokozellik20" name="stokozellik20"></td>
         <td><input type="text" id="stokalternatifstokkodu" name="stokalternatifstokkodu"></td>
         <td><input type="text" id="stokalternatifstokadi" name="stokalternatifstokadi"></td>
@@ -1226,7 +1241,9 @@
         </td>
         <td><input type="text" id="birimbilgisi" name="birimbilgisi"></td>
         <td id="kur"><b>Seçimi Yaptınız</b>
-        </td>
+         <input type="number" id="birimfiyatdovz" oninput="hesaplaFiyat()" value="0" step="0.001"
+              name="birimfiyatdovz">
+          </td>
         
         <td><input type="number" id="stokbirimfiyati" oninput="hesaplaFiyat()" value="0" step="0.001"
             name="stokbirimfiyati"></td>
@@ -1295,7 +1312,7 @@
         <td><input type="text" id="stokozellik16" name="stokozellik16"></td>
         <td><input type="text" id="stokozellik17" name="stokozellik17"></td>
         <td><input type="text" id="stokozellik18" name="stokozellik18"></td>
-        <td><input type="text" id="stokozellik19" 1name="stokozellik19"></td>
+        <td><input type="text" id="stokozellik19" name="stokozellik19"></td>
         <td><input type="text" id="stokozellik20" name="stokozellik20"></td>
         <td><input type="text" id="stokalternatifstokkodu" name="stokalternatifstokkodu"></td>
         <td><input type="text" id="stokalternatifstokadi" name="stokalternatifstokadi"></td>
@@ -1353,7 +1370,9 @@
         </td>
         <td><input type="text" id="birimbilgisi" name="birimbilgisi"></td>
         <td id="kur"><b>Seçimi Yaptınız</b>
-        </td>
+         <input type="number" id="birimfiyatdovz" oninput="hesaplaFiyat()" value="0" step="0.001"
+              name="birimfiyatdovz">
+          </td>
         
         <td><input type="number" id="stokbirimfiyati" oninput="hesaplaFiyat()" value="0" step="0.001"
             name="stokbirimfiyati"></td>
@@ -1422,7 +1441,7 @@
         <td><input type="text" id="stokozellik16" name="stokozellik16"></td>
         <td><input type="text" id="stokozellik17" name="stokozellik17"></td>
         <td><input type="text" id="stokozellik18" name="stokozellik18"></td>
-        <td><input type="text" id="stokozellik19" 1name="stokozellik19"></td>
+        <td><input type="text" id="stokozellik19" name="stokozellik19"></td>
         <td><input type="text" id="stokozellik20" name="stokozellik20"></td>
         <td><input type="text" id="stokalternatifstokkodu" name="stokalternatifstokkodu"></td>
         <td><input type="text" id="stokalternatifstokadi" name="stokalternatifstokadi"></td>
@@ -1480,7 +1499,9 @@
         </td>
         <td><input type="text" id="birimbilgisi" name="birimbilgisi"></td>
         <td id="kur"><b>Seçimi Yaptınız</b>
-        </td>
+         <input type="number" id="birimfiyatdovz" oninput="hesaplaFiyat()" value="0" step="0.001"
+              name="birimfiyatdovz">
+          </td>
         
         <td><input type="number" id="stokbirimfiyati" oninput="hesaplaFiyat()" value="0" step="0.001"
             name="stokbirimfiyati"></td>
@@ -1549,7 +1570,7 @@
         <td><input type="text" id="stokozellik16" name="stokozellik16"></td>
         <td><input type="text" id="stokozellik17" name="stokozellik17"></td>
         <td><input type="text" id="stokozellik18" name="stokozellik18"></td>
-        <td><input type="text" id="stokozellik19" 1name="stokozellik19"></td>
+        <td><input type="text" id="stokozellik19" name="stokozellik19"></td>
         <td><input type="text" id="stokozellik20" name="stokozellik20"></td>
         <td><input type="text" id="stokalternatifstokkodu" name="stokalternatifstokkodu"></td>
         <td><input type="text" id="stokalternatifstokadi" name="stokalternatifstokadi"></td>
@@ -1607,7 +1628,9 @@
         </td>
         <td><input type="text" id="birimbilgisi" name="birimbilgisi"></td>
         <td id="kur"><b>Seçimi Yaptınız</b>
-        </td>
+         <input type="number" id="birimfiyatdovz" oninput="hesaplaFiyat()" value="0" step="0.001"
+              name="birimfiyatdovz">
+          </td>
         
         <td><input type="number" id="stokbirimfiyati" oninput="hesaplaFiyat()" value="0" step="0.001"
             name="stokbirimfiyati"></td>
@@ -1676,7 +1699,7 @@
         <td><input type="text" id="stokozellik16" name="stokozellik16"></td>
         <td><input type="text" id="stokozellik17" name="stokozellik17"></td>
         <td><input type="text" id="stokozellik18" name="stokozellik18"></td>
-        <td><input type="text" id="stokozellik19" 1name="stokozellik19"></td>
+        <td><input type="text" id="stokozellik19" name="stokozellik19"></td>
         <td><input type="text" id="stokozellik20" name="stokozellik20"></td>
         <td><input type="text" id="stokalternatifstokkodu" name="stokalternatifstokkodu"></td>
         <td><input type="text" id="stokalternatifstokadi" name="stokalternatifstokadi"></td>
