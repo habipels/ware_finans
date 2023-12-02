@@ -1506,9 +1506,12 @@ class fatura_durumlari(models.Model):
     silinme_bilgisi = models.BooleanField(verbose_name="Sİpariş Silme Durumu",default=False)
     kasa = models.ForeignKey(Kasa, verbose_name="Kasa Bilgisi", blank=True, null=True,
                                              on_delete=models.SET_NULL)
+    banka = models.ForeignKey(banka, verbose_name="Banka Bilgisi", blank=True, null=True,
+                                             on_delete=models.SET_NULL)
     deg_tarih = models.DateField(verbose_name="Kayıt Tarihi",blank=True,null=True)
     proje_adi = models.CharField(max_length=200,verbose_name="Proje Adı",blank=True,null=True)
     fatura_yeri = models.CharField(max_length=200,verbose_name="Yurt İçi / Dışı",choices=faturaislem_turu,default="Yurt İçi")
+    fatura_tipi= models.CharField(max_length=200,verbose_name="Açık Kapalı",blank=True,null=True)
 class fatura_olustur(models.Model):    
     grup_kodu = models.ForeignKey(fatura_durumlari,blank=True,null=True,on_delete=models.SET_NULL,verbose_name="Grup Kodu")
     bagli_oldugu_firma = models.ForeignKey(firma,blank=True,null=True,on_delete=models.SET_NULL)

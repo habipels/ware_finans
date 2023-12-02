@@ -976,7 +976,19 @@ def fatura_sayfasi(request,slug):
             departman = request.POST.get("departman")
             banka_bilgisi = request.POST.get("bankakodu")
             gunlukkur = request.POST.get("gunlukkur")
-            uygunkur = request.POST.get("uygunkur"),
+            uygunkur = request.POST.get("uygunkur")
+            siparisislem = fatura_durumlari.objects.create(
+                siparis_tur = grupturu,
+                bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),
+                depo  = depobilgisi,ent_kodu = entkodu,kdv_durumu = kdvdurumu,
+                fatura_no = siparisno,tarih = tarih_saat,satici = satici,
+                cari_unvan = get_object_or_404(cari_kartlar,id = caribilgisi),
+                sube_kodu = get_object_or_404(sube,id = sube_bilgisi),
+                islem_doviz_cinsi = dovizcinsi,departman = departman,
+                gunluk_kur = gunlukkur,uygun_kur = uygunkur,fatura_yeri = yurticiyurtdisi,
+                fatura_tipi = faturatipi,kasa = get_object_or_404(Kasa,id = kasa_bilgisi_),
+                banka = get_object_or_404(banka,id = banka_bilgisi),
+            )
         if True:
             siparisturu = request.POST.getlist("siparisturu")
             stok = request.POST.getlist("stok")
