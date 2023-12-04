@@ -977,6 +977,22 @@ def fatura_sayfasi(request,slug):
             banka_bilgisi = request.POST.get("bankakodu")
             gunlukkur = request.POST.get("gunlukkur")
             uygunkur = request.POST.get("uygunkur")
+            toplamtutartl = request.POST.get("toplamtutartl")
+            toplamtutarindirim = request.POST.get("toplamtutarindirim")
+            toplamtutarkdv = request.POST.get("toplamtutarkdv")
+            toplamtutarotv = request.POST.get("toplamtutarotv")
+            toplamtutartevkifat = request.POST.get("toplamtutartevkifat")
+            toplamtutargvstopaj = request.POST.get("toplamtutargvstopaj")
+            toplamtutarmerafonu = request.POST.get("toplamtutarmerafonu")
+            toplamtutargenel = request.POST.get("toplamtutargenel")
+            toplamtutartldvz = request.POST.get("toplamtutartldvz")
+            toplamtutarindirimdvz = request.POST.get("toplamtutarindirimdvz")
+            toplamtutarkdvdvz = request.POST.get("toplamtutarkdvdvz")
+            toplamtutarotvdvz = request.POST.get("toplamtutarotvdvz")
+            toplamtutartevkifatdvz = request.POST.get("toplamtutartevkifatdvz")
+            toplamtutargvstopajdvz = request.POST.get("toplamtutargvstopajdvz")
+            toplamtutarmerafonudvz = request.POST.get("toplamtutarmerafonudvz")
+            toplamtutargeneldvz = request.POST.get("toplamtutargeneldvz")
             siparisislem = fatura_durumlari.objects.create(
                 siparis_tur = grupturu,
                 bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),
