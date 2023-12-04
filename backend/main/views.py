@@ -1088,6 +1088,26 @@ def fatura_sayfasi(request,slug):
             irsaliyeno = request.POST.getlist("irsaliyeno")
             irsaliyetarihi = request.POST.getlist("irsaliyetarihi")
             malkabulno = request.POST.getlist("malkabulno")
+            for i in range(len(stok)):
+                    if  stok[i] == "":
+                        pass
+                    else:
+                        fatura_olustur.objects.create(
+                            grup_kodu = get_object_or_404(siparisislem_durumlari,id = siparisislem.id),
+                            bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),
+                            tip = siparisturu[i],stok_karti_bilgisi = get_object_or_404(stok_kartlar,id = stok[i].id),
+                            miktar = stokmiktari[i],birim = birimbilgisi[i],birim_fiyat_dvz = birimfiyatdovz[i],
+                            birim_fiyat_tl  = stokbirimfiyati[i],indirim_yuzdesi  = stokindirimyuzdesi[i],
+                            indirim_tutari_tl  = stokindirimtl[i],kdv_yuzdesi = stokkdvyuzdesi[i],
+                            kdv_tutari_tl  = stokkdvtl[i],otv_yuzdesi  = stokotvyuzdesi[i],otv_tutari_tl  =stokotvtl[i],
+                            stoktutari =  stoktutari[i],indirim1  = stokindirim1[i],indirim2=stokindirim2[i] ,indirim3=stokindirim3[i],
+                            satir_aciklamasi = stoksatiraciklamasi[i],serino  = stokserino[i],
+                            s_brim  = stokbirimi[i],durumu  =stokteslimdurumu[i],ozellik1 = stokozellik1[i], 
+                            ozellik2 = stokozellik2[i], ozellik3 = stokozellik3[i], ozellik4 = stokozellik4[i],
+                            ozellik5 = stokozellik5[i], ozellik6 = stokozellik6[i], ozellik7 = stokozellik7[i],
+                            ozellik1 = stokozellik1[i], ozellik1 = stokozellik1[i], ozellik1 = stokozellik1[i],   
+                        
+                        )
     return render(request,"fatura/fatura.html",content)
 #Fatura İşlemleri
 
