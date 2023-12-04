@@ -335,10 +335,11 @@
             <option value="Kapalı">Kapalı</option>
             <option value="Açık">Açık</option>
           </select></td>
-          <td><input type="text" id="kasakoduveadi" name="kasa">
+          <td><input type="text" id="kasakoduveadi" data-bs-toggle="modal"
+            data-bs-target="#muhkodukdv1" name="kasa">
           <input type="text" name="kasakodu" style="display: none;" id="kasakodu"></td>
           <td><input type="text" name="departman"></td>
-          <td><input type="text" id="bankakoduveadi" name="banka">
+          <td><input type="text" data-bs-toggle="modal" data-bs-target="#muhkodu11" id="bankakoduveadi" name="banka">
             <input type="text" name="bankakodu" style="display: none;" id="bankakodu"></td>
           
           <td><input type="number" step="0.001" oninput="hesaplaFiyat()" id="stokmiktari" value="1" name="stokmiktari">
@@ -371,6 +372,7 @@
           <td><input type="text" name="stokkdvistisnaaciklamasi"></td>
           <td><input type="text" name="stoktevkifatkodu"></td>
           <td><select onchange="hesaplaFiyat(this)"  id="stoktevkifatyuzdesi" name="stoktevkifatyuzdesi">
+            <option value="0">0</option>
             <option value="100">10/10</option>
             <option value="20">2/10</option>
             <option value="30">3/10</option>
@@ -508,6 +510,7 @@
         <td><input type="text" name="stokkdvistisnaaciklamasi"></td>
         <td><input type="text" name="stoktevkifatkodu"></td>
         <td><select onchange="hesaplaFiyat(this)"  id="stoktevkifatyuzdesi" name="stoktevkifatyuzdesi">
+            <option value="0">0</option>
             <option value="100">10/10</option>
             <option value="20">2/10</option>
             <option value="30">3/10</option>
@@ -645,6 +648,8 @@
         <td><input type="text" name="stokkdvistisnaaciklamasi"></td>
         <td><input type="text" name="stoktevkifatkodu"></td>
         <td><select onchange="hesaplaFiyat(this)"  id="stoktevkifatyuzdesi" name="stoktevkifatyuzdesi">
+          
+            <option value="0">0</option>
             <option value="100">10/10</option>
             <option value="20">2/10</option>
             <option value="30">3/10</option>
@@ -782,6 +787,7 @@
         <td><input type="text" name="stokkdvistisnaaciklamasi"></td>
         <td><input type="text" name="stoktevkifatkodu"></td>
         <td><select onchange="hesaplaFiyat(this)"  id="stoktevkifatyuzdesi" name="stoktevkifatyuzdesi">
+            <option value="0">0</option>
             <option value="100">10/10</option>
             <option value="20">2/10</option>
             <option value="30">3/10</option>
@@ -919,6 +925,7 @@
         <td><input type="text" name="stokkdvistisnaaciklamasi"></td>
         <td><input type="text" name="stoktevkifatkodu"></td>
         <td><select onchange="hesaplaFiyat(this)"  id="stoktevkifatyuzdesi" name="stoktevkifatyuzdesi">
+            <option value="0">0</option>
             <option value="100">10/10</option>
             <option value="20">2/10</option>
             <option value="30">3/10</option>
@@ -1056,6 +1063,7 @@
         <td><input type="text" name="stokkdvistisnaaciklamasi"></td>
         <td><input type="text" name="stoktevkifatkodu"></td>
         <td><select onchange="hesaplaFiyat(this)"  id="stoktevkifatyuzdesi" name="stoktevkifatyuzdesi">
+            <option value="0">0</option>
             <option value="100">10/10</option>
             <option value="20">2/10</option>
             <option value="30">3/10</option>
@@ -1193,6 +1201,7 @@
         <td><input type="text" name="stokkdvistisnaaciklamasi"></td>
         <td><input type="text" name="stoktevkifatkodu"></td>
         <td><select onchange="hesaplaFiyat(this)"  id="stoktevkifatyuzdesi" name="stoktevkifatyuzdesi">
+            <option value="0">0</option>
             <option value="100">10/10</option>
             <option value="20">2/10</option>
             <option value="30">3/10</option>
@@ -1330,6 +1339,7 @@
         <td><input type="text" name="stokkdvistisnaaciklamasi"></td>
         <td><input type="text" name="stoktevkifatkodu"></td>
         <td><select onchange="hesaplaFiyat(this)"  id="stoktevkifatyuzdesi" name="stoktevkifatyuzdesi">
+            <option value="0">0</option>
             <option value="100">10/10</option>
             <option value="20">2/10</option>
             <option value="30">3/10</option>
@@ -1467,6 +1477,7 @@
         <td><input type="text" name="stokkdvistisnaaciklamasi"></td>
         <td><input type="text" name="stoktevkifatkodu"></td>
         <td><select onchange="hesaplaFiyat(this)"  id="stoktevkifatyuzdesi" name="stoktevkifatyuzdesi">
+            <option value="0">0</option>
             <option value="100">10/10</option>
             <option value="20">2/10</option>
             <option value="30">3/10</option>
@@ -1604,6 +1615,7 @@
         <td><input type="text" name="stokkdvistisnaaciklamasi"></td>
         <td><input type="text" name="stoktevkifatkodu"></td>
         <td><select onchange="hesaplaFiyat(this)"  id="stoktevkifatyuzdesi" name="stoktevkifatyuzdesi">
+            <option value="0">0</option>
             <option value="100">10/10</option>
             <option value="20">2/10</option>
             <option value="30">3/10</option>
@@ -1741,6 +1753,7 @@
         <td><input type="text" name="stokkdvistisnaaciklamasi"></td>
         <td><input type="text" name="stoktevkifatkodu"></td>
         <td><select onchange="hesaplaFiyat(this)"  id="stoktevkifatyuzdesi" name="stoktevkifatyuzdesi">
+            <option value="0">0</option>
             <option value="100">10/10</option>
             <option value="20">2/10</option>
             <option value="30">3/10</option>
@@ -2300,6 +2313,178 @@ let z = 0;
 
     
     }
+  }
+</script>
+<div class="modal" id="muhkodukdv1">
+  <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+
+          <!-- Modal Header -->
+          <div class="modal-header">
+              <h4 class="modal-title">Kasa Seç</h4>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+
+          <!-- Modal body -->
+          <div class="modal-body">
+              <input type="text" id="searchInputmuhkodukdv1" class="form-control" placeholder="Arama...">
+
+              <table class="table table-striped mt-3 tablemuhkodukdv1">
+                  <thead>
+                      <tr>
+                          <th>Kasa Kodu</th>
+                          <th>Kasa AdI</th>
+                          <th>Kasa Döviz Cinsi</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      {% for i in kasa_bilgisi %}
+                      <tr>
+                          <td>{{i.kasa_kodu}}</td>
+                          <td>{{i.kasa_adi}}</td>
+                          <td>{{i.doviz_cinsi}}</td>
+                          <td style="display: none;">{{i.id}}</td>
+                      </tr>
+                      {% endfor %}
+                      
+
+
+                      <!-- Diğer satırları burada ekleyin -->
+                  </tbody>
+              </table>
+          </div>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+          Seçmek için listeye Tıklamanız Yeterlidir.
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kapat</button>
+      </div>
+
+  </div>
+</div>
+
+<div class="modal" id="muhkodu11">
+  <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+
+          <!-- Modal Header -->
+          <div class="modal-header">
+              <h4 class="modal-title">Banka Seç</h4>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+
+          <!-- Modal body -->
+          <div class="modal-body">
+              <input type="text" id="searchInputmuhkodu11" class="form-control" placeholder="Arama...">
+
+              <table class="table table-striped mt-3 tablemuhkodu11">
+                  <thead>
+                    <tr>
+                      <th>Banka Kodu</th>
+                      <th>Banka Adı</th>
+                      <th>Banka Döviz Cinsi</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  {% for i in banka_karti %}
+                  <tr>
+                      <td>{{i.banka_kodu}}</td>
+                      <td>{{i.banka_adi}}</td>
+                      <td>{{i.doviz_cinsi}}</td>
+                      <td style="display: none;">{{i.id}}</td>
+                  </tr>
+                  {% endfor %}
+
+                      <!-- Diğer satırları burada ekleyin -->
+                  </tbody>
+              </table>
+          </div>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+          Seçmek için listeye Tıklamanız Yeterlidir.
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kapat</button>
+      </div>
+
+  </div>
+</div>
+<script>
+  const muhkodukdv1 = document.getElementById('searchInputmuhkodukdv1');
+  const tablemuhkodukdv1 = document.querySelector('.tablemuhkodukdv1');
+  const muhkodukdv = document.getElementById('kasakodu');
+  const muhkodukdvs = document.getElementById('kasakoduveadi');
+  muhkodukdv1.addEventListener('input', function () {
+      const tablemuhkodukdv111 = this.value.toLowerCase();
+
+      for (const row of tablemuhkodukdv1.rows) {
+          let found = false;
+          for (const cell of row.cells) {
+              if (cell.textContent.toLowerCase().includes(tablemuhkodukdv111)) {
+                  found = true;
+                  break;
+              }
+          }
+          row.style.display = found ? '' : 'none';
+      }
+  });
+
+  // Tablo satırlarına tıklama olayını ekle
+  const tablemuhkodukdv1Rows = tablemuhkodukdv1.getElementsByTagName('tr');
+  for (let i = 1; i < tablemuhkodukdv1Rows.length; i++) {
+      tablemuhkodukdv1Rows[i].addEventListener('click', function () {
+          const cells = this.cells;
+          const rowData = {
+              id: cells[0].textContent,
+              ad: cells[1].textContent,
+              soyad: cells[2].textContent,
+              bil: cells[3].textContent,
+          };
+
+          // Seçilen veriyi input'a yaz
+          muhkodukdv.value = `${rowData.bil}`;
+          muhkodukdvs.value = `${rowData.id}`;
+      });
+  }
+</script>
+
+<script>
+  const muhkodu11 = document.getElementById('searchInputmuhkodu11');
+  const tablemuhkodu11 = document.querySelector('.tablemuhkodu11');
+  const muhkodu1 = document.getElementById('bankakoduveadi');
+  const muhkodu1s = document.getElementById('bankakodu');
+  muhkodu11.addEventListener('input', function () {
+      const tablemuhkodu111 = this.value.toLowerCase();
+
+      for (const row of tablemuhkodu11.rows) {
+          let found = false;
+          for (const cell of row.cells) {
+              if (cell.textContent.toLowerCase().includes(tablemuhkodu111)) {
+                  found = true;
+                  break;
+              }
+          }
+          row.style.display = found ? '' : 'none';
+      }
+  });
+
+  // Tablo satırlarına tıklama olayını ekle
+  const tablemuhkodu11Rows = tablemuhkodu11.getElementsByTagName('tr');
+  for (let i = 1; i < tablemuhkodu11Rows.length; i++) {
+      tablemuhkodu11Rows[i].addEventListener('click', function () {
+          const cells = this.cells;
+          const rowData = {
+            id: cells[0].textContent,
+              ad: cells[1].textContent,
+              soyad: cells[2].textContent,
+              bil: cells[3].textContent,
+          };
+
+          // Seçilen veriyi input'a yaz
+          muhkodu1.value = `${rowData.id}`;
+          muhkodu1s.value = `${rowData.bil}`; 
+      });
   }
 </script>
 {% endblock content %}
