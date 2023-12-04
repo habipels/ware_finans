@@ -180,8 +180,9 @@
             <th class="text-center">Depertman</th>
             <th class="text-center">Banka</th>
             <th class="text-center">Miktar</th>
-            <th class="text-center" id="kur">Günlük Kur , Uygun Kur , Birim Döviz Fiyatı </th>
+            
             <th class="text-center">Birim</th>
+            <th class="text-center" id="kur">Günlük Kur , Uygun Kur , Birim Döviz Fiyatı </th>
             <th class="text-center">Birim Fiyat(TL)</th>
             <th class="text-center">İndirim (%)</th>
             <th class="text-center" style="min-width: 100px ;">İndirim (TL)</th>
@@ -367,8 +368,15 @@
           <td><input type="text" name="stokkdvistisnakodu"></td>
           <td><input type="text" name="stokkdvistisnaaciklamasi"></td>
           <td><input type="text" name="stoktevkifatkodu"></td>
-          <td><input type="number" id="stoktevkifatyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
-            name="stoktevkifatyuzdesi"></td>
+          <td><select onchange="hesaplaFiyat(this)"  id="stoktevkifatyuzdesi" name="stoktevkifatyuzdesi">
+            <option value="100">10/10</option>
+            <option value="20">2/10</option>
+            <option value="30">3/10</option>
+            <option value="40">4/10</option>
+            <option value="50">5/10</option>
+            <option value="70">7/10</option>
+            <option value="90">9/10</option>
+          </td>
           <td><input type="number" id="stoktevkifattl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stoktevkifattl"></td>
           <td><input type="number" id="stokotvmatrahitl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvmatrahitl"></td>
           <td><input type="number" id="stokotvyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
@@ -380,7 +388,8 @@
           <td><input type="number" id="stokotvtecillyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtecillyuzdesi"></td>
           <td><input type="text" name="stokotvistisnakodu"></td>
           <td><input type="number" id="stokotvtevkifatyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtevkifatyuzdesi"></td>
-          <td><input type="number" id="stokgvstopajyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokgvstopajyuzdesi"></td>
+          <td><input type="number" id="stokgvstopajyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokgvstopajyuzdesi">
+          <input type="number" value="0" step="0.001" id="gvstopaj" style="display: none;" name="gvstopaj"></td>
           <td><input type="number" id="stokmerafonuyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokmerafonuyuzdesi"></td>
           <td><input type="number" id="stokmerafonututari" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokmerafonututari"></td>
           <td><input type="text" name="stokmuhtasarkodu"></td>
@@ -496,8 +505,15 @@
         <td><input type="text" name="stokkdvistisnakodu"></td>
         <td><input type="text" name="stokkdvistisnaaciklamasi"></td>
         <td><input type="text" name="stoktevkifatkodu"></td>
-        <td><input type="number" id="stoktevkifatyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
-          name="stoktevkifatyuzdesi"></td>
+        <td><select onchange="hesaplaFiyat(this)"  id="stoktevkifatyuzdesi" name="stoktevkifatyuzdesi">
+            <option value="100">10/10</option>
+            <option value="20">2/10</option>
+            <option value="30">3/10</option>
+            <option value="40">4/10</option>
+            <option value="50">5/10</option>
+            <option value="70">7/10</option>
+            <option value="90">9/10</option>
+          </td>
         <td><input type="number" id="stoktevkifattl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stoktevkifattl"></td>
         <td><input type="number" id="stokotvmatrahitl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvmatrahitl"></td>
         <td><input type="number" id="stokotvyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
@@ -509,7 +525,8 @@
         <td><input type="number" id="stokotvtecillyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtecillyuzdesi"></td>
         <td><input type="text" name="stokotvistisnakodu"></td>
         <td><input type="number" id="stokotvtevkifatyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtevkifatyuzdesi"></td>
-          <td><input type="number" id="stokgvstopajyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokgvstopajyuzdesi"></td>
+          <td><input type="number" id="stokgvstopajyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokgvstopajyuzdesi">
+          <input type="number" value="0" step="0.001" id="gvstopaj" style="display: none;" name="gvstopaj"></td>
           <td><input type="number" id="stokmerafonuyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokmerafonuyuzdesi"></td>
           <td><input type="number" id="stokmerafonututari" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokmerafonututari"></td>
           <td><input type="text" name="stokmuhtasarkodu"></td>
@@ -625,8 +642,15 @@
         <td><input type="text" name="stokkdvistisnakodu"></td>
         <td><input type="text" name="stokkdvistisnaaciklamasi"></td>
         <td><input type="text" name="stoktevkifatkodu"></td>
-        <td><input type="number" id="stoktevkifatyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
-          name="stoktevkifatyuzdesi"></td>
+        <td><select onchange="hesaplaFiyat(this)"  id="stoktevkifatyuzdesi" name="stoktevkifatyuzdesi">
+            <option value="100">10/10</option>
+            <option value="20">2/10</option>
+            <option value="30">3/10</option>
+            <option value="40">4/10</option>
+            <option value="50">5/10</option>
+            <option value="70">7/10</option>
+            <option value="90">9/10</option>
+          </td>
         <td><input type="number" id="stoktevkifattl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stoktevkifattl"></td>
         <td><input type="number" id="stokotvmatrahitl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvmatrahitl"></td>
         <td><input type="number" id="stokotvyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
@@ -638,7 +662,8 @@
         <td><input type="number" id="stokotvtecillyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtecillyuzdesi"></td>
         <td><input type="text" name="stokotvistisnakodu"></td>
         <td><input type="number" id="stokotvtevkifatyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtevkifatyuzdesi"></td>
-          <td><input type="number" id="stokgvstopajyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokgvstopajyuzdesi"></td>
+          <td><input type="number" id="stokgvstopajyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokgvstopajyuzdesi">
+          <input type="number" value="0" step="0.001" id="gvstopaj" style="display: none;" name="gvstopaj"></td>
           <td><input type="number" id="stokmerafonuyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokmerafonuyuzdesi"></td>
           <td><input type="number" id="stokmerafonututari" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokmerafonututari"></td>
           <td><input type="text" name="stokmuhtasarkodu"></td>
@@ -754,8 +779,15 @@
         <td><input type="text" name="stokkdvistisnakodu"></td>
         <td><input type="text" name="stokkdvistisnaaciklamasi"></td>
         <td><input type="text" name="stoktevkifatkodu"></td>
-        <td><input type="number" id="stoktevkifatyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
-          name="stoktevkifatyuzdesi"></td>
+        <td><select onchange="hesaplaFiyat(this)"  id="stoktevkifatyuzdesi" name="stoktevkifatyuzdesi">
+            <option value="100">10/10</option>
+            <option value="20">2/10</option>
+            <option value="30">3/10</option>
+            <option value="40">4/10</option>
+            <option value="50">5/10</option>
+            <option value="70">7/10</option>
+            <option value="90">9/10</option>
+          </td>
         <td><input type="number" id="stoktevkifattl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stoktevkifattl"></td>
         <td><input type="number" id="stokotvmatrahitl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvmatrahitl"></td>
         <td><input type="number" id="stokotvyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
@@ -767,7 +799,8 @@
         <td><input type="number" id="stokotvtecillyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtecillyuzdesi"></td>
         <td><input type="text" name="stokotvistisnakodu"></td>
         <td><input type="number" id="stokotvtevkifatyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtevkifatyuzdesi"></td>
-          <td><input type="number" id="stokgvstopajyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokgvstopajyuzdesi"></td>
+          <td><input type="number" id="stokgvstopajyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokgvstopajyuzdesi">
+          <input type="number" value="0" step="0.001" id="gvstopaj" style="display: none;" name="gvstopaj"></td>
           <td><input type="number" id="stokmerafonuyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokmerafonuyuzdesi"></td>
           <td><input type="number" id="stokmerafonututari" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokmerafonututari"></td>
           <td><input type="text" name="stokmuhtasarkodu"></td>
@@ -883,8 +916,15 @@
         <td><input type="text" name="stokkdvistisnakodu"></td>
         <td><input type="text" name="stokkdvistisnaaciklamasi"></td>
         <td><input type="text" name="stoktevkifatkodu"></td>
-        <td><input type="number" id="stoktevkifatyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
-          name="stoktevkifatyuzdesi"></td>
+        <td><select onchange="hesaplaFiyat(this)"  id="stoktevkifatyuzdesi" name="stoktevkifatyuzdesi">
+            <option value="100">10/10</option>
+            <option value="20">2/10</option>
+            <option value="30">3/10</option>
+            <option value="40">4/10</option>
+            <option value="50">5/10</option>
+            <option value="70">7/10</option>
+            <option value="90">9/10</option>
+          </td>
         <td><input type="number" id="stoktevkifattl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stoktevkifattl"></td>
         <td><input type="number" id="stokotvmatrahitl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvmatrahitl"></td>
         <td><input type="number" id="stokotvyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
@@ -896,7 +936,8 @@
         <td><input type="number" id="stokotvtecillyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtecillyuzdesi"></td>
         <td><input type="text" name="stokotvistisnakodu"></td>
         <td><input type="number" id="stokotvtevkifatyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtevkifatyuzdesi"></td>
-          <td><input type="number" id="stokgvstopajyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokgvstopajyuzdesi"></td>
+          <td><input type="number" id="stokgvstopajyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokgvstopajyuzdesi">
+          <input type="number" value="0" step="0.001" id="gvstopaj" style="display: none;" name="gvstopaj"></td>
           <td><input type="number" id="stokmerafonuyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokmerafonuyuzdesi"></td>
           <td><input type="number" id="stokmerafonututari" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokmerafonututari"></td>
           <td><input type="text" name="stokmuhtasarkodu"></td>
@@ -1012,8 +1053,15 @@
         <td><input type="text" name="stokkdvistisnakodu"></td>
         <td><input type="text" name="stokkdvistisnaaciklamasi"></td>
         <td><input type="text" name="stoktevkifatkodu"></td>
-        <td><input type="number" id="stoktevkifatyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
-          name="stoktevkifatyuzdesi"></td>
+        <td><select onchange="hesaplaFiyat(this)"  id="stoktevkifatyuzdesi" name="stoktevkifatyuzdesi">
+            <option value="100">10/10</option>
+            <option value="20">2/10</option>
+            <option value="30">3/10</option>
+            <option value="40">4/10</option>
+            <option value="50">5/10</option>
+            <option value="70">7/10</option>
+            <option value="90">9/10</option>
+          </td>
         <td><input type="number" id="stoktevkifattl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stoktevkifattl"></td>
         <td><input type="number" id="stokotvmatrahitl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvmatrahitl"></td>
         <td><input type="number" id="stokotvyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
@@ -1025,7 +1073,8 @@
         <td><input type="number" id="stokotvtecillyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtecillyuzdesi"></td>
         <td><input type="text" name="stokotvistisnakodu"></td>
         <td><input type="number" id="stokotvtevkifatyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtevkifatyuzdesi"></td>
-          <td><input type="number" id="stokgvstopajyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokgvstopajyuzdesi"></td>
+          <td><input type="number" id="stokgvstopajyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokgvstopajyuzdesi">
+          <input type="number" value="0" step="0.001" id="gvstopaj" style="display: none;" name="gvstopaj"></td>
           <td><input type="number" id="stokmerafonuyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokmerafonuyuzdesi"></td>
           <td><input type="number" id="stokmerafonututari" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokmerafonututari"></td>
           <td><input type="text" name="stokmuhtasarkodu"></td>
@@ -1141,8 +1190,15 @@
         <td><input type="text" name="stokkdvistisnakodu"></td>
         <td><input type="text" name="stokkdvistisnaaciklamasi"></td>
         <td><input type="text" name="stoktevkifatkodu"></td>
-        <td><input type="number" id="stoktevkifatyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
-          name="stoktevkifatyuzdesi"></td>
+        <td><select onchange="hesaplaFiyat(this)"  id="stoktevkifatyuzdesi" name="stoktevkifatyuzdesi">
+            <option value="100">10/10</option>
+            <option value="20">2/10</option>
+            <option value="30">3/10</option>
+            <option value="40">4/10</option>
+            <option value="50">5/10</option>
+            <option value="70">7/10</option>
+            <option value="90">9/10</option>
+          </td>
         <td><input type="number" id="stoktevkifattl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stoktevkifattl"></td>
         <td><input type="number" id="stokotvmatrahitl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvmatrahitl"></td>
         <td><input type="number" id="stokotvyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
@@ -1154,7 +1210,8 @@
         <td><input type="number" id="stokotvtecillyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtecillyuzdesi"></td>
         <td><input type="text" name="stokotvistisnakodu"></td>
         <td><input type="number" id="stokotvtevkifatyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtevkifatyuzdesi"></td>
-          <td><input type="number" id="stokgvstopajyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokgvstopajyuzdesi"></td>
+          <td><input type="number" id="stokgvstopajyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokgvstopajyuzdesi">
+          <input type="number" value="0" step="0.001" id="gvstopaj" style="display: none;" name="gvstopaj"></td>
           <td><input type="number" id="stokmerafonuyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokmerafonuyuzdesi"></td>
           <td><input type="number" id="stokmerafonututari" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokmerafonututari"></td>
           <td><input type="text" name="stokmuhtasarkodu"></td>
@@ -1270,8 +1327,15 @@
         <td><input type="text" name="stokkdvistisnakodu"></td>
         <td><input type="text" name="stokkdvistisnaaciklamasi"></td>
         <td><input type="text" name="stoktevkifatkodu"></td>
-        <td><input type="number" id="stoktevkifatyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
-          name="stoktevkifatyuzdesi"></td>
+        <td><select onchange="hesaplaFiyat(this)"  id="stoktevkifatyuzdesi" name="stoktevkifatyuzdesi">
+            <option value="100">10/10</option>
+            <option value="20">2/10</option>
+            <option value="30">3/10</option>
+            <option value="40">4/10</option>
+            <option value="50">5/10</option>
+            <option value="70">7/10</option>
+            <option value="90">9/10</option>
+          </td>
         <td><input type="number" id="stoktevkifattl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stoktevkifattl"></td>
         <td><input type="number" id="stokotvmatrahitl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvmatrahitl"></td>
         <td><input type="number" id="stokotvyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
@@ -1283,7 +1347,8 @@
         <td><input type="number" id="stokotvtecillyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtecillyuzdesi"></td>
         <td><input type="text" name="stokotvistisnakodu"></td>
         <td><input type="number" id="stokotvtevkifatyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtevkifatyuzdesi"></td>
-          <td><input type="number" id="stokgvstopajyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokgvstopajyuzdesi"></td>
+          <td><input type="number" id="stokgvstopajyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokgvstopajyuzdesi">
+          <input type="number" value="0" step="0.001" id="gvstopaj" style="display: none;" name="gvstopaj"></td>
           <td><input type="number" id="stokmerafonuyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokmerafonuyuzdesi"></td>
           <td><input type="number" id="stokmerafonututari" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokmerafonututari"></td>
           <td><input type="text" name="stokmuhtasarkodu"></td>
@@ -1399,8 +1464,15 @@
         <td><input type="text" name="stokkdvistisnakodu"></td>
         <td><input type="text" name="stokkdvistisnaaciklamasi"></td>
         <td><input type="text" name="stoktevkifatkodu"></td>
-        <td><input type="number" id="stoktevkifatyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
-          name="stoktevkifatyuzdesi"></td>
+        <td><select onchange="hesaplaFiyat(this)"  id="stoktevkifatyuzdesi" name="stoktevkifatyuzdesi">
+            <option value="100">10/10</option>
+            <option value="20">2/10</option>
+            <option value="30">3/10</option>
+            <option value="40">4/10</option>
+            <option value="50">5/10</option>
+            <option value="70">7/10</option>
+            <option value="90">9/10</option>
+          </td>
         <td><input type="number" id="stoktevkifattl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stoktevkifattl"></td>
         <td><input type="number" id="stokotvmatrahitl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvmatrahitl"></td>
         <td><input type="number" id="stokotvyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
@@ -1412,7 +1484,8 @@
         <td><input type="number" id="stokotvtecillyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtecillyuzdesi"></td>
         <td><input type="text" name="stokotvistisnakodu"></td>
         <td><input type="number" id="stokotvtevkifatyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtevkifatyuzdesi"></td>
-          <td><input type="number" id="stokgvstopajyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokgvstopajyuzdesi"></td>
+          <td><input type="number" id="stokgvstopajyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokgvstopajyuzdesi">
+          <input type="number" value="0" step="0.001" id="gvstopaj" style="display: none;" name="gvstopaj"></td>
           <td><input type="number" id="stokmerafonuyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokmerafonuyuzdesi"></td>
           <td><input type="number" id="stokmerafonututari" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokmerafonututari"></td>
           <td><input type="text" name="stokmuhtasarkodu"></td>
@@ -1528,8 +1601,15 @@
         <td><input type="text" name="stokkdvistisnakodu"></td>
         <td><input type="text" name="stokkdvistisnaaciklamasi"></td>
         <td><input type="text" name="stoktevkifatkodu"></td>
-        <td><input type="number" id="stoktevkifatyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
-          name="stoktevkifatyuzdesi"></td>
+        <td><select onchange="hesaplaFiyat(this)"  id="stoktevkifatyuzdesi" name="stoktevkifatyuzdesi">
+            <option value="100">10/10</option>
+            <option value="20">2/10</option>
+            <option value="30">3/10</option>
+            <option value="40">4/10</option>
+            <option value="50">5/10</option>
+            <option value="70">7/10</option>
+            <option value="90">9/10</option>
+          </td>
         <td><input type="number" id="stoktevkifattl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stoktevkifattl"></td>
         <td><input type="number" id="stokotvmatrahitl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvmatrahitl"></td>
         <td><input type="number" id="stokotvyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
@@ -1541,7 +1621,8 @@
         <td><input type="number" id="stokotvtecillyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtecillyuzdesi"></td>
         <td><input type="text" name="stokotvistisnakodu"></td>
         <td><input type="number" id="stokotvtevkifatyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtevkifatyuzdesi"></td>
-          <td><input type="number" id="stokgvstopajyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokgvstopajyuzdesi"></td>
+          <td><input type="number" id="stokgvstopajyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokgvstopajyuzdesi">
+          <input type="number" value="0" step="0.001" id="gvstopaj" style="display: none;" name="gvstopaj"></td>
           <td><input type="number" id="stokmerafonuyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokmerafonuyuzdesi"></td>
           <td><input type="number" id="stokmerafonututari" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokmerafonututari"></td>
           <td><input type="text" name="stokmuhtasarkodu"></td>
@@ -1657,8 +1738,15 @@
         <td><input type="text" name="stokkdvistisnakodu"></td>
         <td><input type="text" name="stokkdvistisnaaciklamasi"></td>
         <td><input type="text" name="stoktevkifatkodu"></td>
-        <td><input type="number" id="stoktevkifatyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
-          name="stoktevkifatyuzdesi"></td>
+        <td><select onchange="hesaplaFiyat(this)"  id="stoktevkifatyuzdesi" name="stoktevkifatyuzdesi">
+            <option value="100">10/10</option>
+            <option value="20">2/10</option>
+            <option value="30">3/10</option>
+            <option value="40">4/10</option>
+            <option value="50">5/10</option>
+            <option value="70">7/10</option>
+            <option value="90">9/10</option>
+          </td>
         <td><input type="number" id="stoktevkifattl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stoktevkifattl"></td>
         <td><input type="number" id="stokotvmatrahitl" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvmatrahitl"></td>
         <td><input type="number" id="stokotvyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001"
@@ -1670,7 +1758,8 @@
         <td><input type="number" id="stokotvtecillyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtecillyuzdesi"></td>
         <td><input type="text" name="stokotvistisnakodu"></td>
         <td><input type="number" id="stokotvtevkifatyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokotvtevkifatyuzdesi"></td>
-          <td><input type="number" id="stokgvstopajyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokgvstopajyuzdesi"></td>
+          <td><input type="number" id="stokgvstopajyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokgvstopajyuzdesi">
+          <input type="number" value="0" step="0.001" id="gvstopaj" style="display: none;" name="gvstopaj"></td>
           <td><input type="number" id="stokmerafonuyuzdesi" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokmerafonuyuzdesi"></td>
           <td><input type="number" id="stokmerafonututari" oninput="hesaplaFiyat()" value="0" step="0.001" name="stokmerafonututari"></td>
           <td><input type="text" name="stokmuhtasarkodu"></td>
@@ -2047,6 +2136,9 @@ let z = 0;
       var selectedValueesss = selectElementtt.options[selectElementtt.selectedIndex].value;
       var stokBirimFiyatiValue = element.value;
       //
+      if (stokBirimFiyatiValue != 0.0) {
+        
+      
     var stokmiktari = parseFloat(document.querySelectorAll("#stokmiktari")[index].value) || 0;
     var birimfiyat = parseFloat(document.querySelectorAll("#stokbirimfiyati")[index].value) || 0;
     var indirimYuzdesi = parseFloat(document.querySelectorAll("#stokindirimyuzdesi")[index].value) || 0;
@@ -2059,26 +2151,63 @@ let z = 0;
     var otvTevkifatYuzdesi = parseFloat(document.querySelectorAll("#stokotvtevkifatyuzdesi")[index].value) || 0;
     var gvStopajYuzdesi = parseFloat(document.querySelectorAll("#stokgvstopajyuzdesi")[index].value) || 0;
     var meraFonuYuzdesi = parseFloat(document.querySelectorAll("#stokmerafonuyuzdesi")[index].value) || 0;
+    var doviz = parseFloat(document.querySelectorAll("#birimfiyatdovz")[index].value);
+    var uygunkur = parseFloat(document.querySelectorAll("#uygunkur")[0].value);
 
+    var doviz_birim = 0;  
+    var vergisiz_tutar = 0;
+    var otvli_fiyat = 0 ; 
+    if (selectedValueesss == "TL") {
+        doviz_birim = birimfiyat;
+      }
+      else{
+        doviz_birim = uygunkur*birimfiyat;
+      }
+      if (selectedValueess == "Hariç") {
+        var tutar = stokmiktari * doviz_birim;
+        var indirimTutari = tutar * (indirimYuzdesi / 100);
+        vergisiz_tutar = tutar- indirimTutari;
+        var kdvIstisnaTutari = (tutar - indirimTutari) * (kdvIstisnaYuzdesi / 100);
+        var otvTutari = vergisiz_tutar * (otvYuzdesi / 100);
+        otvli_fiyat = vergisiz_tutar + otvTutari;
+        var kdvTutari =  otvli_fiyat * (kdvYuzdesi / 100);
+        var tevkifatTutari = kdvTutari * (tevkifatYuzdesi / 100);
+        var otvTecilTutari = otvTutari * (otvTecilYuzdesi / 100);
+        var otvTevkifatTutari = otvTutari * (otvTevkifatYuzdesi / 100);
+        var gvStopajTutari = vergisiz_tutar * (gvStopajYuzdesi / 100);
+        var meraFonuTutari = vergisiz_tutar * (meraFonuYuzdesi / 100);
+        var genel_toplam = vergisiz_tutar+otvTutari+kdvTutari-tevkifatTutari-otvTecilTutari-otvTevkifatTutari-gvStopajTutari;
+      }
+      else{
+        var tutar = stokmiktari * doviz_birim;
+        var kdvTutari =  tutar-((tutar*100 )/ (kdvYuzdesi + 100));
+        vergisiz_tutar = tutar- kdvTutari;
+        var otvTutari = vergisiz_tutar-((vergisiz_tutar*100) / (otvYuzdesi + 100));
+        vergisiz_tutar = vergisiz_tutar- otvTutari;
+        var indirimTutari = vergisiz_tutar * (indirimYuzdesi / 100);
+        vergisiz_tutar = vergisiz_tutar -indirimTutari
+        var kdvIstisnaTutari = vergisiz_tutar * (kdvIstisnaYuzdesi / 100);  
+        var tevkifatTutari = kdvTutari * (tevkifatYuzdesi / 100);
+        var otvTecilTutari = otvTutari * (otvTecilYuzdesi / 100);
+        var otvTevkifatTutari = otvTutari * (otvTevkifatYuzdesi / 100);
+        var gvStopajTutari = vergisiz_tutar * (gvStopajYuzdesi / 100);
+        var meraFonuTutari = vergisiz_tutar * (meraFonuYuzdesi / 100);
+        var genel_toplam = vergisiz_tutar+otvTutari+kdvTutari-tevkifatTutari-otvTecilTutari-otvTevkifatTutari-gvStopajTutari;
+        
+      }
     // Hesaplamaları yap
-    var tutar = stokmiktari * birimfiyat;
-    var indirimTutari = tutar * (indirimYuzdesi / 100);
-    var kdvTutari = (tutar - indirimTutari) * (kdvYuzdesi / 100);
-    var kdvIstisnaTutari = (tutar - indirimTutari) * (kdvIstisnaYuzdesi / 100);
-    var tevkifatTutari = tutar * (tevkifatYuzdesi / 100);
-    var otvTutari = tutar * (otvYuzdesi / 100);
-    var otvTahsilTutari = tutar * (otvTahsilYuzdesi / 100);
-    var otvTecilTutari = tutar * (otvTecilYuzdesi / 100);
-    var otvTevkifatTutari = tutar * (otvTevkifatYuzdesi / 100);
-    var gvStopajTutari = tutar * (gvStopajYuzdesi / 100);
-    var meraFonuTutari = tutar * (meraFonuYuzdesi / 100);
-
-    var toplamTutar = tutar + kdvTutari - indirimTutari;
-    var toplamIndirim = indirimTutari;
-    var toplamKDV = kdvTutari - kdvIstisnaTutari;
-    var genelToplam = toplamTutar + otvTutari + otvTahsilTutari + otvTecilTutari - otvTevkifatTutari + gvStopajTutari + meraFonuTutari - tevkifatTutari;
-      
-      topla()
+    document.querySelectorAll("#stokkdvtl")[index].value = kdvTutari.toFixed(2);
+    document.querySelectorAll("#stokotvtl")[index].value = otvTutari.toFixed(2);
+    document.querySelectorAll("#stokindirimtl")[index].value = indirimTutari.toFixed(2);
+    document.querySelectorAll("#vergisiztutar")[index].value = vergisiz_tutar.toFixed(2);
+    document.querySelectorAll("#stoktutari")[index].value = genel_toplam.toFixed(2); 
+    document.querySelectorAll("#stokkdvistisnatl")[index].value = kdvIstisnaTutari.toFixed(2);
+    document.querySelectorAll("#stoktevkifattl")[index].value = tevkifatTutari.toFixed(2);
+    document.querySelectorAll("#stokmerafonututari")[index].value = meraFonuTutari.toFixed(2);
+    document.querySelectorAll("#gvstopaj")[index].value = gvStopajTutari.toFixed(2);
+    
+    topla()
+    }
     });
   }
   function topla() {
