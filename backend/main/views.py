@@ -1003,7 +1003,9 @@ def fatura_sayfasi(request,slug):
                 islem_doviz_cinsi = dovizcinsi,departman = departman,
                 gunluk_kur = gunlukkur,uygun_kur = uygunkur,fatura_yeri = yurticiyurtdisi,
                 fatura_tipi = faturatipi,kasa = get_object_or_404(Kasa,id = kasa_bilgisi_),
-                banka = get_object_or_404(banka,id = banka_bilgisi),
+                banka = get_object_or_404(banka,id = banka_bilgisi),tutar_doviz = toplamtutartldvz,
+                tutar_tl = toplamtutartl,kdv_doviz = toplamtutarkdvdvz,kdv_tutari = toplamtutarkdv,
+                indirim_tutari = toplamtutarindirim,genel_tutari = toplamtutargenel
             )
         if True:
             siparisturu = request.POST.getlist("siparisturu")
