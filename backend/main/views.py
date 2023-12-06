@@ -1092,7 +1092,7 @@ def fatura_sayfasi(request,slug):
                     if  stok[i] == "":
                         pass
                     else:
-                        fatura_olustur.objects.create(
+                        """fatura_olustur.objects.create(
                             grup_kodu = get_object_or_404(siparisislem_durumlari,id = siparisislem.id),
                             bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),
                             tip = siparisturu[i],stok_karti_bilgisi = get_object_or_404(stok_kartlar,id = stok[i].id),
@@ -1107,7 +1107,8 @@ def fatura_sayfasi(request,slug):
                             ozellik5 = stokozellik5[i], ozellik6 = stokozellik6[i], ozellik7 = stokozellik7[i],
                             ozellik1 = stokozellik1[i], ozellik1 = stokozellik1[i], ozellik1 = stokozellik1[i],   
                         
-                        )
+                        )"""
+                        pass
     return render(request,"fatura/fatura.html",content)
 #Fatura İşlemleri
 
