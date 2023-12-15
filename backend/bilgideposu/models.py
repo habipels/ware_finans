@@ -1647,3 +1647,15 @@ class genel_muhasebe(models.Model):
     fis_tarihi = models.DateField(verbose_name="Fiş Tarihi",blank=True,null=True)
     fis_no = models.CharField(max_length=200,verbose_name="Fiş No",blank=True,null=True)
     yevmiye_no = models.CharField(max_length=200,verbose_name="yevmiye No",blank=True,null=True)
+
+class genel_muhasebe_fis( models.Model):
+    bagli_oldugu_firma = models.ForeignKey(firma,blank=True,null=True,on_delete=models.SET_NULL)
+    bagli_oldugufis = models.ForeignKey(genel_muhasebe,blank=True,null=True,on_delete=models.SET_NULL)
+    hesap_plani_secim = models.ForeignKey(HesapPlanlari,blank=True,null=True,on_delete=models.SET_NULL)
+    evrak_tarihi = models.DateField(verbose_name="Evrak Tarihi",blank=True,null=True)
+    bt_turu = models.CharField(max_length= 200,blank=True,null=True,verbose_name = "BT Türü")
+    vergi_numarasi = models.CharField(max_length= 200,blank=True,null=True,verbose_name = "Vergi Nuımarası")
+    aciklama = models.TextField(blank=True,null=True,verbose_name = "Açıklama")
+    aciklama8belgesi = models.TextField(blank=True,null=True,verbose_name = "aciklama8belgesi")
+    borc = models.FloatField(verbose_name="Borç Bilgisi",default = 0)
+    alacak_bilgisi = models.FloatField(verbose_name="Borç Bilgisi",default = 0)
