@@ -4407,97 +4407,39 @@ def genel_muhasebe_sayfasi(request,slug):
     
     if request.POST:
         if True:
+            fistarihi=  request.POST.get("fistarihi")
             grupturu=  request.POST.get("grupturu")
             siparisno = request.POST.get("siparisno")
-            caribilgisi = request.POST.get("caribilgisi")
-            entkodu = request.POST.get("entkodu")
-            kdvdurumu = request.POST.get("kdvdurumu")
-            satici = request.POST.get("satici")
-            sube_bilgisi = request.POST.get("sube")
-            dovizcinsi = request.POST.get("dovizcinsi")
-            depobilgisi = request.POST.get("depobilgisi")
-            departman = request.POST.get("departman")
-            uygunkur = request.POST.get("uygunkur")
-            gunlukkur = request.POST.get("gunlukkur")
-            ikdvtutari = request.POST.get("ikdvtutari")
-            iindirimtutari = request.POST.get("iindirimtutari")
-            igeneltutar = request.POST.get("igeneltutar")
-            igeneltoplam = request.POST.get("igeneltoplam")
-            igeneltoplamdvz = request.POST.get("igeneltoplamdvz")
-            siparisislem = irsaliyeislem_durumlari.objects.create(
+            yevmiyeno = request.POST.get("yevmiyeno")
+
+            ##
+            siparisislem = genel_muhasebe.objects.create(
                 bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),
-                siparis_tur= grupturu ,ent_kodu = entkodu,kdv_durumu = kdvdurumu,
-                siparis_no = siparisno,satici = satici,cari_unvan = get_object_or_404(cari_kartlar,id = caribilgisi),
-                sube_kodu = get_object_or_404(sube,id = sube_bilgisi),islem_doviz_cinsi  = dovizcinsi,
-                depo = depobilgisi,departman = departman,gunluk_kur = gunlukkur,uygun_kur = uygunkur,
-                kdv_tutari = ikdvtutari,indirim_tutari =iindirimtutari,
-                tutar_tl =  igeneltutar,genel_tutari = igeneltoplam,tutar_doviz = igeneltoplamdvz
+                fis_turu =grupturu,fis_tarihi =fistarihi,fis_no = siparisno,
+                yevmiye_no = yevmiyeno
             )
             if True:
-                stokbilgisi = request.POST.getlist("stok")
-                siparisturu = request.POST.getlist("siparisturu")
-                stokmiktari = request.POST.getlist("stokmiktari")
-                #stokkalanmiktari = request.POST.getlist("stokkalanmiktari")
-                birimbilgisi = request.POST.getlist("birimbilgisi")
-                stokbirimfiyati = request.POST.getlist("stokbirimfiyati")
-                stokindirimyuzdesi = request.POST.getlist("stokindirimyuzdesi")
-                stokindirimtl = request.POST.getlist("stokindirimtl")
-                stokkdvyuzdesi = request.POST.getlist("stokkdvyuzdesi")
-                stokkdvtl = request.POST.getlist("stokkdvtl")
-                stokotvyuzdesi = request.POST.getlist("stokotvyuzdesi")
-                stokotvtl = request.POST.getlist("stokotvtl")
-                stoktutari = request.POST.getlist("stoktutari")
-                stokteslimsekli = request.POST.getlist("stokteslimsekli")
-                urunteslimtarihi = request.POST.getlist("urunteslimtarihi")
-                stokdurumu = request.POST.getlist("stokdurumu")
-                stokindirim1 =request.POST.getlist("stokindirim1")
-                stokindirim2 =request.POST.getlist("stokindirim2")
-                stokindirim3 =request.POST.getlist("stokindirim3")
-                stokozelkod1 =request.POST.getlist("stokozelkod1")
-                stokozelkod2 =request.POST.getlist("stokozelkod2")
-                stokdepartman =request.POST.getlist("stokdepartman")
-                stoksatiraciklamasi = request.POST.getlist("stoksatiraciklamasi")
-                stokserino = request.POST.getlist("stokserino")
-                stokbirimi = request.POST.getlist("stokbirimi")
-                stokmiktaribilgisi = request.POST.getlist("stokmiktaribilgisi")
-                stokozellik1 = request.POST.getlist("stokozellik1")
-                stokozellik2 = request.POST.getlist("stokozellik2")
-                stokozellik3 = request.POST.getlist("stokozellik3")
-                stokozellik4 = request.POST.getlist("stokozellik4")
-                stokozellik5 = request.POST.getlist("stokozellik5")
-                stokalternatifstokkodu = request.POST.getlist("stokalternatifstokkodu")
-                stokalternatifstokadi = request.POST.getlist("stokalternatifstokadi")
-                stokkalitekodu = request.POST.getlist("stokkalitekodu")
-                agirlik = request.POST.getlist("stokanamiktari")
-                burutagirlik = request.POST.getlist("stokanamiktaribirimfiyattl")
-                pkmiktari = request.POST.getlist("stokanamiktaribirimfiyatdvz")
-                stokpartikodu = request.POST.getlist("stokpartikodu")
-                sonkullanimtarihi = request.POST.getlist("sonkullanimtarihi")
-                birimfiyatdovz =  request.POST.getlist("birimfiyatdovz")
-                pkaciklamasi =  request.POST.getlist("pkaciklamasi")
-                for i in range(len(stokbilgisi)):
-                    if  stokbilgisi[i] == "":
+                hesapkoduid  = request.POST.getlist("hesapkoduid")
+                evrakTarihi  = request.POST.getlist("evrakTarihi")
+                evrakno  = request.POST.getlist("evrakno")
+                bt  = request.POST.getlist("bt")
+                vergitc  = request.POST.getlist("vergitc")
+                Aciklama  = request.POST.getlist("Aciklama")
+                Borclu  = request.POST.getlist("Borclu")
+                alacakli  = request.POST.getlist("alacakli")
+                belgeturuaciklamsi  = request.POST.getlist("belgeturuaciklamsi")
+                ##
+                for i in range(len(hesapkoduid)):
+                    if  hesapkoduid[i] == "":
                         pass
                     else:
-                        irsaliye_olustur.objects.create(
-                            grup_kodu = get_object_or_404(irsaliyeislem_durumlari,id = siparisislem.id),
+                        genel_muhasebe_fis.objects.create(
+                            bagli_oldugufis = get_object_or_404(genel_muhasebe,id = siparisislem.id),
                             bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),
-                            stok_karti_bilgisi = get_object_or_404(stok_kartlar,id=stokbilgisi[i]),
-                            tip = siparisturu[i],birim = birimbilgisi[i],birim_fiyat_tl = stokbirimfiyati[i],
-                            miktar = stokmiktari[i],indirim_yuzdesi = stokindirimyuzdesi[i],
-                            indirim_tutari_tl = stokindirimtl[i],kdv_yuzdesi = stokkdvyuzdesi[i],
-                            kdv_tutari_tl = stokkdvtl[i],indirim1 = stokindirim1[i],indirim2 = stokindirim2[i],
-                            indirim3 = stokindirim3[i],
-                            ozelkod1 = stokozelkod1[i],ozelkod2 = stokozelkod2[i],
-                            departman = stokdepartman[i],satir_aciklamasi  =stoksatiraciklamasi[i],
-                            serino = stokserino[i],s_brim = stokbirimi[i],s_miktar = stokmiktaribilgisi[i],
-                            alternatifstokkodu =stokalternatifstokkodu[i], alternatifstokadi = stokalternatifstokadi[i],
-                            kalite = stokkalitekodu[i],ozellik1  = stokozellik1[i],ozellik2  = stokozellik2[i],
-                            ozellik3  =stokozellik3[i],ozellik4  = stokozellik4[i],ozellik5  = stokozellik5[i],
-                            net_agirlik_kg = agirlik[i],Burut_agirlik_kg = burutagirlik[i],
-                            pk_miktari = pkmiktari[i],parti_kodu  =stokpartikodu[i],pk_aciklamasi  =pkaciklamasi[i],
-                            son_kullanim_tarihi = sonkullanimtarihi[i],stoktutari = stoktutari[i],birim_fiyat_dvz = birimfiyatdovz[i]
-
+                            hesap_plani_secim = get_object_or_404(HesapPlanlari,id = hesapkoduid[i]),
+                            evrak_tarihi = evrakTarihi[i],bt_turu = bt[i],vergi_numarasi = vergitc[i],
+                            aciklama = Aciklama[i],aciklama8belgesi = belgeturuaciklamsi[i],
+                            borc = Borclu[i],alacak_bilgisi = alacakli[i],evrak_no = evrakno[i]
                             )
         link = "/"+slug+"/genelmuhasebe/"
         return redirect(link)
