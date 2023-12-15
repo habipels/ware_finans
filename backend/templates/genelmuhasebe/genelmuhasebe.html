@@ -1,0 +1,940 @@
+{% extends "homebase.html" %}
+{% load custom_tags %}
+{% block content %}
+<style>
+  #kur {
+    display: none;
+  }
+  .yeniform {
+    display: none;
+  }
+</style>
+<div class="icon-bar">
+  <form method="post">
+    {% csrf_token %}
+    <a href="javascript:void(0);" >Hesap Planı</a>
+    <a href="javascript:void(0);" >Muavin</a>
+    <a href="javascript:void(0);" >Mizan</a>
+    <button type="submit" class="btn btn-primary">Kaydet / <br> Yeni  Fiş <br> Oluştur</button>
+    <a href="javascript:void(0);" onclick="ekleYeniSatir()">Bir Fiş Daha Ekle</a>
+    <a href="">Fiş İncele-Düzelt</a>
+    <a style="color: white;" onclick="showConfirmationPopup()">Fiş Sil</a>
+    <a href="" style="color:red;">Çıkış Yap (ESC)</a>
+
+</div>
+  <div class="d-menu">
+    <ul>
+        <li>
+            <ul>
+              <li><a href="kasacariodeme.html" title="">Mali Tablolar</a></li>
+              <li><a href="kasacaritahsilat.html" title="">Yevmiye</a></li>
+              <li><a href="" title="">Kebir</a></li>
+              <li><a href="" title="">Yansıtma İşlemleri</a></li>
+              <li><a href="" title="">Otomatik Bilanço</a></li>
+              <li><a href="" title="">Geçici Vergi Gelir Tablosu</a></li>
+              <li><a href="" title="">Demirbaş Fişleri Kes</a></li>
+              <li><a href="" title="">Envanter Defteri</a></li>
+              <li><a href="" title="">Rasyonel Analiz</a></li>
+              <li><a href="" title="">Kur Farkı Fişleri</a></li>
+              <li><a href="" title="">Karşıt İnceleme Tutanağı</a></li>
+              <li><a href="" title="">Hesap Kapatma Fişleri</a></li>
+              <li><a href="" title="">Otomatik Poliçe Mahsup Fişi </a></li>
+              <li><a href="" title="">Banka Kredisi Mahsup Fişi </a></li>
+              <li><a href="" title="">Açılış Fişi </a></li>
+              <li><a href="" title="">Kapanış Fişi </a></li>
+            </ul><a href="" title="">Otomatik / Dönem Sonu İşlemleri</a>
+    
+          </li>
+      <li>
+        <ul>
+        </ul><a href="" title="">Aylık Özet</a>
+      </li>
+      
+      <li>
+        <ul>
+          <li><a href="bankayayatirilan.html" title="">KDV</a></li>
+          <li><a href="bankadancekilen.html" title="">KDV Özeti</a></li>
+          <li><a href="bankadancekilen.html" title="">Cariler</a></li>
+        </ul><a href="" title="">KDV</a>
+      </li>
+      <li>
+        <ul>
+          <li><a href="" title="">Hızlı Fiş</a></li>
+          <li><a href="" title="">Seri Fiş</a></li>
+          <li><a href="" title="">Üstat Fiş</a></li>
+        </ul><a href="" title="">Fiş</a>
+      </li>
+    </ul>
+  </div>
+
+<div class="container mt-3 tablo">
+  <span>Hesap Adı : <b id="geneltutar"></b>| </span>
+  <span>Borç (B): <b id="indirimtutari"></b>|</span>
+  <span>Alacak (A): <b id="kdvtutari"></b>|</span>
+  <span>Genel Toplam TL: <b id="geneltoplam"></b>|
+    <input type="hidden" value="0" id="igeneltoplam" name="igeneltoplam">
+    <input type="hidden" value="0" id="iotvtutari" name="iotvtutari">
+    <input type="hidden" value="0" id="ikdvtutari" name="ikdvtutari">
+    <input type="hidden" value="0" id="iindirimtutari" name="iindirimtutari">
+    <input type="hidden" value="0" id="igeneltutar" name="igeneltutar"></span>
+  <br>
+  <span>Toplam : <b id="geneltutar"></b>| </span>
+  <span>Bakiye: <b id="indirimtutari"></b>|</span>
+  <span>KDV: <b id="kdvtutari"></b>|</span>
+  <span>Genel Toplam TL: <b id="geneltoplam"></b>|
+    <input type="hidden" value="0" id="igeneltoplam" name="igeneltoplam">
+    <input type="hidden" value="0" id="iotvtutari" name="iotvtutari">
+    <input type="hidden" value="0" id="ikdvtutari" name="ikdvtutari">
+    <input type="hidden" value="0" id="iindirimtutari" name="iindirimtutari">
+    <input type="hidden" value="0" id="igeneltutar" name="igeneltutar"></span>
+  <div class="table-responsive " style="
+    height: 300px;
+    overflow: auto;">
+    <table class="table table-bordered-second">
+      <thead style="position: sticky;top: 0">
+        <tr>
+            <th class="text-center">Fiş Tarihi</th>
+            <th class="text-center">Fiş Türü</th>
+            <th class="text-center">Fiş No</th>
+            <th class="text-center" style="min-width: 200px;">Yevmiye No</th>
+            <th class="text-center" style="min-width: 100px ;">Hesap Kodu</th>
+            <th class="text-center" style="min-width: 50px ;">Evrak Tarihi</th>
+            <th class="text-center" style="min-width: 150px ;">Evrak No</th>
+            <th class="text-center" style="min-width: 100px ;">B.T</th>
+            <th class="text-center">Vergi/T.C No</th>
+            <th class="text-center" style="min-width: 150px ;">Açıklama</th>
+            <th class="text-center" style="min-width: 150px ;">Borçlu</th>
+            <th class="text-center">Alacaklı</th>
+            <th class="text-center" style="min-width: 100px ;">Belge Türü Açıklaması (B. Türü 8 ise)</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input type="date" name="fistarihi"></td>
+          <td><select name="grupturu" id="grupturu">
+              <option value="0 - Açılış">0 - Açılış</option>
+              <option value="1 - Tahsil">1 - Tahsil</option>
+              <option value="2 - Tediye">2 - Tediye</option>
+              <option value="3 - Mahsup">3 - Mahsup</option>
+              <option value="9 - Kapanış">9 - Kapanış</option>
+
+            </select></td>
+          <td><input type="text" name="siparisno"></td>
+          <td><input type="text" name="yevmiyeno"></td>
+          <td><input type="text" name="hesapkodu">
+            <input hidden type="text" name="hesapkoduid"></td>
+
+            <td><input type="date" name="evrak Tarihi"></td>
+            <td><input type="text" name="evrakno"></td>
+
+            <td><select name="bt" id="bt">
+                <option value="Fatura">Fatura</option>
+                <option value="Çek">Çek</option>
+                <option value="Makbuz">Makbuz</option>
+                <option value="Müşteri Sipariş Belgesi">Müşteri Sipariş Belgesi</option>
+                <option value="Satıcı Sipariş Belgesi">Satıcı Sipariş Belgesi</option>
+                <option value="Senet">Senet</option>
+                <option value="Navlum">Navlum</option>
+                <option value="Diğer">Diğer</option>
+                <option value="Belge Yok">Belge Yok</option>
+  
+              </select></td>
+              <td><input type="text" name="vergitc"></td>
+              <td><input type="text" name="Aciklama"></td>
+              <td><input type="number" step="0.001" id="Borclu" name="Borclu"></td>
+              <td><input type="number" step="0.001" id="alacakli" name="alacakli"></td>
+              <td><input type="text" name="belgeturuaciklamsi"></td>
+        </tr>
+
+        <tr class="yeniform">
+            <td><b>Seçim Yapıldı</b></td>
+            <td><b>Seçim Yapıldı</b></td>
+            <td><b>Seçim Yapıldı</b></td>
+            <td><b>Seçim Yapıldı</b></td>
+            <td><input type="text" name="hesapkodu">
+              <input hidden type="text" name="hesapkoduid"></td>
+  
+              <td><input type="date" name="evrak Tarihi"></td>
+              <td><input type="text" name="evrakno"></td>
+  
+              <td><select name="bt" id="bt">
+                  <option value="Fatura">Fatura</option>
+                  <option value="Çek">Çek</option>
+                  <option value="Makbuz">Makbuz</option>
+                  <option value="Müşteri Sipariş Belgesi">Müşteri Sipariş Belgesi</option>
+                  <option value="Satıcı Sipariş Belgesi">Satıcı Sipariş Belgesi</option>
+                  <option value="Senet">Senet</option>
+                  <option value="Navlum">Navlum</option>
+                  <option value="Diğer">Diğer</option>
+                  <option value="Belge Yok">Belge Yok</option>
+    
+                </select></td>
+                <td><input type="text" name="vergitc"></td>
+                <td><input type="text" name="Aciklama"></td>
+                <td><input type="number" step="0.001" id="Borclu" name="Borclu"></td>
+                <td><input type="number" step="0.001" id="alacakli" name="alacakli"></td>
+                <td><input type="text" name="belgeturuaciklamsi"></td>
+        </tr>
+        <tr class="yeniform">
+            <td><b>Seçim Yapıldı</b></td>
+            <td><b>Seçim Yapıldı</b></td>
+            <td><b>Seçim Yapıldı</b></td>
+            <td><b>Seçim Yapıldı</b></td>
+            <td><input type="text" name="hesapkodu">
+              <input hidden type="text" name="hesapkoduid"></td>
+  
+              <td><input type="date" name="evrak Tarihi"></td>
+              <td><input type="text" name="evrakno"></td>
+  
+              <td><select name="bt" id="bt">
+                  <option value="Fatura">Fatura</option>
+                  <option value="Çek">Çek</option>
+                  <option value="Makbuz">Makbuz</option>
+                  <option value="Müşteri Sipariş Belgesi">Müşteri Sipariş Belgesi</option>
+                  <option value="Satıcı Sipariş Belgesi">Satıcı Sipariş Belgesi</option>
+                  <option value="Senet">Senet</option>
+                  <option value="Navlum">Navlum</option>
+                  <option value="Diğer">Diğer</option>
+                  <option value="Belge Yok">Belge Yok</option>
+    
+                </select></td>
+                <td><input type="text" name="vergitc"></td>
+                <td><input type="text" name="Aciklama"></td>
+                <td><input type="number" step="0.001" id="Borclu" name="Borclu"></td>
+                <td><input type="number" step="0.001" id="alacakli" name="alacakli"></td>
+                <td><input type="text" name="belgeturuaciklamsi"></td>
+        </tr>
+        <tr class="yeniform">
+            <td><b>Seçim Yapıldı</b></td>
+            <td><b>Seçim Yapıldı</b></td>
+            <td><b>Seçim Yapıldı</b></td>
+            <td><b>Seçim Yapıldı</b></td>
+            <td><input type="text" name="hesapkodu">
+              <input hidden type="text" name="hesapkoduid"></td>
+  
+              <td><input type="date" name="evrak Tarihi"></td>
+              <td><input type="text" name="evrakno"></td>
+  
+              <td><select name="bt" id="bt">
+                  <option value="Fatura">Fatura</option>
+                  <option value="Çek">Çek</option>
+                  <option value="Makbuz">Makbuz</option>
+                  <option value="Müşteri Sipariş Belgesi">Müşteri Sipariş Belgesi</option>
+                  <option value="Satıcı Sipariş Belgesi">Satıcı Sipariş Belgesi</option>
+                  <option value="Senet">Senet</option>
+                  <option value="Navlum">Navlum</option>
+                  <option value="Diğer">Diğer</option>
+                  <option value="Belge Yok">Belge Yok</option>
+    
+                </select></td>
+                <td><input type="text" name="vergitc"></td>
+                <td><input type="text" name="Aciklama"></td>
+                <td><input type="number" step="0.001" id="Borclu" name="Borclu"></td>
+                <td><input type="number" step="0.001" id="alacakli" name="alacakli"></td>
+                <td><input type="text" name="belgeturuaciklamsi"></td>
+        </tr>
+        <tr class="yeniform">
+            <td><b>Seçim Yapıldı</b></td>
+            <td><b>Seçim Yapıldı</b></td>
+            <td><b>Seçim Yapıldı</b></td>
+            <td><b>Seçim Yapıldı</b></td>
+            <td><input type="text" name="hesapkodu">
+              <input hidden type="text" name="hesapkoduid"></td>
+  
+              <td><input type="date" name="evrak Tarihi"></td>
+              <td><input type="text" name="evrakno"></td>
+  
+              <td><select name="bt" id="bt">
+                  <option value="Fatura">Fatura</option>
+                  <option value="Çek">Çek</option>
+                  <option value="Makbuz">Makbuz</option>
+                  <option value="Müşteri Sipariş Belgesi">Müşteri Sipariş Belgesi</option>
+                  <option value="Satıcı Sipariş Belgesi">Satıcı Sipariş Belgesi</option>
+                  <option value="Senet">Senet</option>
+                  <option value="Navlum">Navlum</option>
+                  <option value="Diğer">Diğer</option>
+                  <option value="Belge Yok">Belge Yok</option>
+    
+                </select></td>
+                <td><input type="text" name="vergitc"></td>
+                <td><input type="text" name="Aciklama"></td>
+                <td><input type="number" step="0.001" id="Borclu" name="Borclu"></td>
+                <td><input type="number" step="0.001" id="alacakli" name="alacakli"></td>
+                <td><input type="text" name="belgeturuaciklamsi"></td>
+        </tr>
+        <tr class="yeniform">
+            <td><b>Seçim Yapıldı</b></td>
+            <td><b>Seçim Yapıldı</b></td>
+            <td><b>Seçim Yapıldı</b></td>
+            <td><b>Seçim Yapıldı</b></td>
+            <td><input type="text" name="hesapkodu">
+              <input hidden type="text" name="hesapkoduid"></td>
+  
+              <td><input type="date" name="evrak Tarihi"></td>
+              <td><input type="text" name="evrakno"></td>
+  
+              <td><select name="bt" id="bt">
+                  <option value="Fatura">Fatura</option>
+                  <option value="Çek">Çek</option>
+                  <option value="Makbuz">Makbuz</option>
+                  <option value="Müşteri Sipariş Belgesi">Müşteri Sipariş Belgesi</option>
+                  <option value="Satıcı Sipariş Belgesi">Satıcı Sipariş Belgesi</option>
+                  <option value="Senet">Senet</option>
+                  <option value="Navlum">Navlum</option>
+                  <option value="Diğer">Diğer</option>
+                  <option value="Belge Yok">Belge Yok</option>
+    
+                </select></td>
+                <td><input type="text" name="vergitc"></td>
+                <td><input type="text" name="Aciklama"></td>
+                <td><input type="number" step="0.001" id="Borclu" name="Borclu"></td>
+                <td><input type="number" step="0.001" id="alacakli" name="alacakli"></td>
+                <td><input type="text" name="belgeturuaciklamsi"></td>
+        </tr>
+        <tr class="yeniform">
+            <td><b>Seçim Yapıldı</b></td>
+            <td><b>Seçim Yapıldı</b></td>
+            <td><b>Seçim Yapıldı</b></td>
+            <td><b>Seçim Yapıldı</b></td>
+            <td><input type="text" name="hesapkodu">
+              <input hidden type="text" name="hesapkoduid"></td>
+  
+              <td><input type="date" name="evrak Tarihi"></td>
+              <td><input type="text" name="evrakno"></td>
+  
+              <td><select name="bt" id="bt">
+                  <option value="Fatura">Fatura</option>
+                  <option value="Çek">Çek</option>
+                  <option value="Makbuz">Makbuz</option>
+                  <option value="Müşteri Sipariş Belgesi">Müşteri Sipariş Belgesi</option>
+                  <option value="Satıcı Sipariş Belgesi">Satıcı Sipariş Belgesi</option>
+                  <option value="Senet">Senet</option>
+                  <option value="Navlum">Navlum</option>
+                  <option value="Diğer">Diğer</option>
+                  <option value="Belge Yok">Belge Yok</option>
+    
+                </select></td>
+                <td><input type="text" name="vergitc"></td>
+                <td><input type="text" name="Aciklama"></td>
+                <td><input type="number" step="0.001" id="Borclu" name="Borclu"></td>
+                <td><input type="number" step="0.001" id="alacakli" name="alacakli"></td>
+                <td><input type="text" name="belgeturuaciklamsi"></td>
+        </tr>
+        <tr class="yeniform">
+            <td><b>Seçim Yapıldı</b></td>
+            <td><b>Seçim Yapıldı</b></td>
+            <td><b>Seçim Yapıldı</b></td>
+            <td><b>Seçim Yapıldı</b></td>
+            <td><input type="text" name="hesapkodu">
+              <input hidden type="text" name="hesapkoduid"></td>
+  
+              <td><input type="date" name="evrak Tarihi"></td>
+              <td><input type="text" name="evrakno"></td>
+  
+              <td><select name="bt" id="bt">
+                  <option value="Fatura">Fatura</option>
+                  <option value="Çek">Çek</option>
+                  <option value="Makbuz">Makbuz</option>
+                  <option value="Müşteri Sipariş Belgesi">Müşteri Sipariş Belgesi</option>
+                  <option value="Satıcı Sipariş Belgesi">Satıcı Sipariş Belgesi</option>
+                  <option value="Senet">Senet</option>
+                  <option value="Navlum">Navlum</option>
+                  <option value="Diğer">Diğer</option>
+                  <option value="Belge Yok">Belge Yok</option>
+    
+                </select></td>
+                <td><input type="text" name="vergitc"></td>
+                <td><input type="text" name="Aciklama"></td>
+                <td><input type="number" step="0.001" id="Borclu" name="Borclu"></td>
+                <td><input type="number" step="0.001" id="alacakli" name="alacakli"></td>
+                <td><input type="text" name="belgeturuaciklamsi"></td>
+        </tr>
+        <tr class="yeniform">
+            <td><b>Seçim Yapıldı</b></td>
+            <td><b>Seçim Yapıldı</b></td>
+            <td><b>Seçim Yapıldı</b></td>
+            <td><b>Seçim Yapıldı</b></td>
+            <td><input type="text" name="hesapkodu">
+              <input hidden type="text" name="hesapkoduid"></td>
+  
+              <td><input type="date" name="evrak Tarihi"></td>
+              <td><input type="text" name="evrakno"></td>
+  
+              <td><select name="bt" id="bt">
+                  <option value="Fatura">Fatura</option>
+                  <option value="Çek">Çek</option>
+                  <option value="Makbuz">Makbuz</option>
+                  <option value="Müşteri Sipariş Belgesi">Müşteri Sipariş Belgesi</option>
+                  <option value="Satıcı Sipariş Belgesi">Satıcı Sipariş Belgesi</option>
+                  <option value="Senet">Senet</option>
+                  <option value="Navlum">Navlum</option>
+                  <option value="Diğer">Diğer</option>
+                  <option value="Belge Yok">Belge Yok</option>
+    
+                </select></td>
+                <td><input type="text" name="vergitc"></td>
+                <td><input type="text" name="Aciklama"></td>
+                <td><input type="number" step="0.001" id="Borclu" name="Borclu"></td>
+                <td><input type="number" step="0.001" id="alacakli" name="alacakli"></td>
+                <td><input type="text" name="belgeturuaciklamsi"></td>
+        </tr>
+        <tr class="yeniform">
+            <td><b>Seçim Yapıldı</b></td>
+            <td><b>Seçim Yapıldı</b></td>
+            <td><b>Seçim Yapıldı</b></td>
+            <td><b>Seçim Yapıldı</b></td>
+            <td><input type="text" name="hesapkodu">
+              <input hidden type="text" name="hesapkoduid"></td>
+  
+              <td><input type="date" name="evrak Tarihi"></td>
+              <td><input type="text" name="evrakno"></td>
+  
+              <td><select name="bt" id="bt">
+                  <option value="Fatura">Fatura</option>
+                  <option value="Çek">Çek</option>
+                  <option value="Makbuz">Makbuz</option>
+                  <option value="Müşteri Sipariş Belgesi">Müşteri Sipariş Belgesi</option>
+                  <option value="Satıcı Sipariş Belgesi">Satıcı Sipariş Belgesi</option>
+                  <option value="Senet">Senet</option>
+                  <option value="Navlum">Navlum</option>
+                  <option value="Diğer">Diğer</option>
+                  <option value="Belge Yok">Belge Yok</option>
+    
+                </select></td>
+                <td><input type="text" name="vergitc"></td>
+                <td><input type="text" name="Aciklama"></td>
+                <td><input type="number" step="0.001" id="Borclu" name="Borclu"></td>
+                <td><input type="number" step="0.001" id="alacakli" name="alacakli"></td>
+                <td><input type="text" name="belgeturuaciklamsi"></td>
+        </tr>
+        <tr class="yeniform">
+            <td><b>Seçim Yapıldı</b></td>
+            <td><b>Seçim Yapıldı</b></td>
+            <td><b>Seçim Yapıldı</b></td>
+            <td><b>Seçim Yapıldı</b></td>
+            <td><input type="text" name="hesapkodu">
+              <input hidden type="text" name="hesapkoduid"></td>
+  
+              <td><input type="date" name="evrak Tarihi"></td>
+              <td><input type="text" name="evrakno"></td>
+  
+              <td><select name="bt" id="bt">
+                  <option value="Fatura">Fatura</option>
+                  <option value="Çek">Çek</option>
+                  <option value="Makbuz">Makbuz</option>
+                  <option value="Müşteri Sipariş Belgesi">Müşteri Sipariş Belgesi</option>
+                  <option value="Satıcı Sipariş Belgesi">Satıcı Sipariş Belgesi</option>
+                  <option value="Senet">Senet</option>
+                  <option value="Navlum">Navlum</option>
+                  <option value="Diğer">Diğer</option>
+                  <option value="Belge Yok">Belge Yok</option>
+    
+                </select></td>
+                <td><input type="text" name="vergitc"></td>
+                <td><input type="text" name="Aciklama"></td>
+                <td><input type="number" step="0.001" id="Borclu" name="Borclu"></td>
+                <td><input type="number" step="0.001" id="alacakli" name="alacakli"></td>
+                <td><input type="text" name="belgeturuaciklamsi"></td>
+        </tr>
+        <tr class="yeniform">
+            <td><b>Seçim Yapıldı</b></td>
+            <td><b>Seçim Yapıldı</b></td>
+            <td><b>Seçim Yapıldı</b></td>
+            <td><b>Seçim Yapıldı</b></td>
+            <td><input type="text" name="hesapkodu">
+              <input hidden type="text" name="hesapkoduid"></td>
+  
+              <td><input type="date" name="evrak Tarihi"></td>
+              <td><input type="text" name="evrakno"></td>
+  
+              <td><select name="bt" id="bt">
+                  <option value="Fatura">Fatura</option>
+                  <option value="Çek">Çek</option>
+                  <option value="Makbuz">Makbuz</option>
+                  <option value="Müşteri Sipariş Belgesi">Müşteri Sipariş Belgesi</option>
+                  <option value="Satıcı Sipariş Belgesi">Satıcı Sipariş Belgesi</option>
+                  <option value="Senet">Senet</option>
+                  <option value="Navlum">Navlum</option>
+                  <option value="Diğer">Diğer</option>
+                  <option value="Belge Yok">Belge Yok</option>
+    
+                </select></td>
+                <td><input type="text" name="vergitc"></td>
+                <td><input type="text" name="Aciklama"></td>
+                <td><input type="number" step="0.001" id="Borclu" name="Borclu"></td>
+                <td><input type="number" step="0.001" id="alacakli" name="alacakli"></td>
+                <td><input type="text" name="belgeturuaciklamsi"></td>
+        </tr>
+        <tr class="yeniform">
+            <td><b>Seçim Yapıldı</b></td>
+            <td><b>Seçim Yapıldı</b></td>
+            <td><b>Seçim Yapıldı</b></td>
+            <td><b>Seçim Yapıldı</b></td>
+            <td><input type="text" name="hesapkodu">
+              <input hidden type="text" name="hesapkoduid"></td>
+  
+              <td><input type="date" name="evrak Tarihi"></td>
+              <td><input type="text" name="evrakno"></td>
+  
+              <td><select name="bt" id="bt">
+                  <option value="Fatura">Fatura</option>
+                  <option value="Çek">Çek</option>
+                  <option value="Makbuz">Makbuz</option>
+                  <option value="Müşteri Sipariş Belgesi">Müşteri Sipariş Belgesi</option>
+                  <option value="Satıcı Sipariş Belgesi">Satıcı Sipariş Belgesi</option>
+                  <option value="Senet">Senet</option>
+                  <option value="Navlum">Navlum</option>
+                  <option value="Diğer">Diğer</option>
+                  <option value="Belge Yok">Belge Yok</option>
+    
+                </select></td>
+                <td><input type="text" name="vergitc"></td>
+                <td><input type="text" name="Aciklama"></td>
+                <td><input type="number" step="0.001" id="Borclu" name="Borclu"></td>
+                <td><input type="number" step="0.001" id="alacakli" name="alacakli"></td>
+                <td><input type="text" name="belgeturuaciklamsi"></td>
+        </tr>
+        <tr class="yeniform">
+            <td><b>Seçim Yapıldı</b></td>
+            <td><b>Seçim Yapıldı</b></td>
+            <td><b>Seçim Yapıldı</b></td>
+            <td><b>Seçim Yapıldı</b></td>
+            <td><input type="text" name="hesapkodu">
+              <input hidden type="text" name="hesapkoduid"></td>
+  
+              <td><input type="date" name="evrak Tarihi"></td>
+              <td><input type="text" name="evrakno"></td>
+  
+              <td><select name="bt" id="bt">
+                  <option value="Fatura">Fatura</option>
+                  <option value="Çek">Çek</option>
+                  <option value="Makbuz">Makbuz</option>
+                  <option value="Müşteri Sipariş Belgesi">Müşteri Sipariş Belgesi</option>
+                  <option value="Satıcı Sipariş Belgesi">Satıcı Sipariş Belgesi</option>
+                  <option value="Senet">Senet</option>
+                  <option value="Navlum">Navlum</option>
+                  <option value="Diğer">Diğer</option>
+                  <option value="Belge Yok">Belge Yok</option>
+    
+                </select></td>
+                <td><input type="text" name="vergitc"></td>
+                <td><input type="text" name="Aciklama"></td>
+                <td><input type="number" step="0.001" id="Borclu" name="Borclu"></td>
+                <td><input type="number" step="0.001" id="alacakli" name="alacakli"></td>
+                <td><input type="text" name="belgeturuaciklamsi"></td>
+        </tr>
+        <tr class="yeniform">
+            <td><b>Seçim Yapıldı</b></td>
+            <td><b>Seçim Yapıldı</b></td>
+            <td><b>Seçim Yapıldı</b></td>
+            <td><b>Seçim Yapıldı</b></td>
+            <td><input type="text" name="hesapkodu">
+              <input hidden type="text" name="hesapkoduid"></td>
+  
+              <td><input type="date" name="evrak Tarihi"></td>
+              <td><input type="text" name="evrakno"></td>
+  
+              <td><select name="bt" id="bt">
+                  <option value="Fatura">Fatura</option>
+                  <option value="Çek">Çek</option>
+                  <option value="Makbuz">Makbuz</option>
+                  <option value="Müşteri Sipariş Belgesi">Müşteri Sipariş Belgesi</option>
+                  <option value="Satıcı Sipariş Belgesi">Satıcı Sipariş Belgesi</option>
+                  <option value="Senet">Senet</option>
+                  <option value="Navlum">Navlum</option>
+                  <option value="Diğer">Diğer</option>
+                  <option value="Belge Yok">Belge Yok</option>
+    
+                </select></td>
+                <td><input type="text" name="vergitc"></td>
+                <td><input type="text" name="Aciklama"></td>
+                <td><input type="number" step="0.001" id="Borclu" name="Borclu"></td>
+                <td><input type="number" step="0.001" id="alacakli" name="alacakli"></td>
+                <td><input type="text" name="belgeturuaciklamsi"></td>
+        </tr>
+        <tr class="yeniform">
+            <td><b>Seçim Yapıldı</b></td>
+            <td><b>Seçim Yapıldı</b></td>
+            <td><b>Seçim Yapıldı</b></td>
+            <td><b>Seçim Yapıldı</b></td>
+            <td><input type="text" name="hesapkodu">
+              <input hidden type="text" name="hesapkoduid"></td>
+  
+              <td><input type="date" name="evrak Tarihi"></td>
+              <td><input type="text" name="evrakno"></td>
+  
+              <td><select name="bt" id="bt">
+                  <option value="Fatura">Fatura</option>
+                  <option value="Çek">Çek</option>
+                  <option value="Makbuz">Makbuz</option>
+                  <option value="Müşteri Sipariş Belgesi">Müşteri Sipariş Belgesi</option>
+                  <option value="Satıcı Sipariş Belgesi">Satıcı Sipariş Belgesi</option>
+                  <option value="Senet">Senet</option>
+                  <option value="Navlum">Navlum</option>
+                  <option value="Diğer">Diğer</option>
+                  <option value="Belge Yok">Belge Yok</option>
+    
+                </select></td>
+                <td><input type="text" name="vergitc"></td>
+                <td><input type="text" name="Aciklama"></td>
+                <td><input type="number" step="0.001" id="Borclu" name="Borclu"></td>
+                <td><input type="number" step="0.001" id="alacakli" name="alacakli"></td>
+                <td><input type="text" name="belgeturuaciklamsi"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<table style="display: none;">
+  {% for i in stokkartlarim %}
+  <tr id="{{i.id}}">
+    {% for j in stokkartozelligi1 %}
+    {% if i.id == j.stok_karti_bilgisi.id %}
+    <td id="tbirimbilgisi" class="{{j.birinci_birim}}">{{j.birinci_birim}}</td>
+    <td id="tstokbirimfiyati">{{ i|get_stokalisveris }}</td>
+    <td id="tstokindirimyuzdesi">{{j.indirim1}}</td>
+    <td id="tstokkdvyuzdesi">{{j.kdv_orani}}</td>
+    <td id="tstokotvyuzdesi">{{ i|get_otv_fiyati }}</td>
+    <td id="tstokindirim1">{{j.indirim1}}</td>
+    <td id="tstokindirim2">{{j.indirim2}}</td>
+    <td id="tstokindirim3">{{j.indirim3}}</td>
+    <td id="tstokozelkod1">{{i|get_stok_kodlari_ozel_kod_1}}</td>
+    <td id="tstokozelkod2">{{i|get_stok_kodlari_ozel_kod_2}}</td>
+    <td id="tstokdepartman"></td>
+    <td id="tstokbirimi">{{j.serbest_stok_birimi}}</td>
+    <td id="tstokmiktaribilgisi">{{j.stokmiktari}}</td>
+    <td id="tstokozellik1">{{ i|get_stok_detaylari_ozellik1 }}</td>
+    <td id="tstokozellik2">{{ i|get_stok_detaylari_ozellik2 }}</td>
+    <td id="tstokozellik3">{{ i|get_stok_detaylari_ozellik3 }}</td>
+    <td id="tstokozellik4">{{ i|get_stok_detaylari_ozellik4 }}</td>
+    <td id="tstokozellik5">{{ i|get_stok_detaylari_ozellik5 }}</td>
+    <td id="tstokalternatifstokkodu">{{i|get_stok_kodlari_alternatifstokkodu}}</td>
+    <td id="tstokalternatifstokadi">{{i|get_stok_kodlari_alternatifstokadi}}</td>
+    <td id="tstokkalitekodu">{{i | get_stok_kodlari_kalitekodu}}</td>
+    <td id="tstokanamiktaribirimfiyatdvz">{{ i | get_stok_diger_kismi_agirliklar_pkaciklamasi}}</td>
+    <td id="tstokanamiktari">{{ i | get_stok_diger_kismi_agirliklar }}</td>
+    <td id="tstokanamiktaribirimfiyattl">{{i | get_stok_diger_kismi_agirliklar_burut}}</td>
+    <td id="tstokanamiktaribirimfiyatdvzm">{{ i | get_stok_diger_kismi_agirliklar_pkmiktari}}</td>
+    {% else %}
+    {% endif %}
+    {% endfor %}
+  </tr>
+  {% endfor %}
+</table>
+</form>
+<script>
+  function redirectToSelectedLink() {
+    const radioButtons = document.getElementsByName('kasakartlari');
+    let selectedLink = null;
+
+    for (const radioButton of radioButtons) {
+      if (radioButton.checked) {
+        selectedLink = radioButton.value;
+        break;
+      }
+    }
+
+    if (selectedLink) {
+      window.location.href = "/{{firma.firma_ozel_anahtar}}/kasakartiduzelt/" + selectedLink;
+    } else {
+      alert('Lütfen bir Kasa Kartı seçin.');
+    }
+  }
+  function showConfirmationPopup() {
+    const radioButtons = document.getElementsByName('kasakartlari');
+    let selectedLink = null;
+
+    for (const radioButton of radioButtons) {
+      if (radioButton.checked) {
+        selectedLink = radioButton.value;
+        break;
+      }
+    }
+
+    // Pop-up penceresini aç
+    const confirmation = confirm("Emin misiniz?");
+
+    // Kullanıcının seçimine göre işlem yap
+    if (confirmation) {
+      // Kullanıcı "Evet" dedi, yönlendirme yap
+      window.location.href = "/{{firma.firma_ozel_anahtar}}/irsaliyesil/" + selectedLink;
+    } else {
+      // Kullanıcı "Hayır" dedi, isteğe bağlı olarak başka bir işlem yapabilirsiniz
+    }
+  }
+
+</script>
+<script>
+  let z = 0;
+  function ekleYeniSatir() {
+    
+    var elements = document.getElementsByClassName('yeniform');
+
+    if (elements[z]) {
+        elements[z].classList.remove('yeniform');
+    } else {
+        console.error("Ürün Sınırına Ulaştınız");
+    }
+
+    yeniselect();
+  }
+</script>
+<script>
+
+  document.addEventListener('DOMContentLoaded', function () {
+    // Sayfa yüklendiğinde çalışacak kodlar
+    const selectedStock = document.getElementById('stoksecim'); // selectedStock elemanını buraya ekleyin
+
+    function yeniselect(selectedStock) {
+      const allCustomSelects = document.querySelectorAll('#stoksecim');
+      allCustomSelects.forEach((select, index) => {
+        select.addEventListener('change', function (event) {
+          // Etkinlik dinleyicisinin içeriği burada
+          // ... (diğer kodlar)
+        });
+      });
+    }
+
+    yeniselect(selectedStock); // Fonksiyonu sayfa yüklendiğinde çağır
+  });
+  yeniselect();
+  function yeniselect(selectedStock) {
+
+    const allCustomSelects = document.querySelectorAll('#stoksecim');
+    // Her bir <select> için olay dinleyici ekle
+    allCustomSelects.forEach((select, index) => {
+      hesaplaFiyat()
+
+      const selectedOption = select.value;
+      const selectIndex = index; // Seçeneğin sırasını almak için index'i kullanabilirsiniz.
+      // Tıklanan seçeneğin ve sırasının konsola yazdırılması.
+      // İstediğiniz işlemi bu noktada gerçekleştirebilirsiniz.
+
+      var stockName = selectedStock.options[selectedStock.selectedIndex].text; // Seçilen stok adı
+      var stockPrice = "100" + selectIndex; // Örnek olarak sabit bir stok fiyatı
+      var selectedStockValue = selectedStock.value;
+      var grupturu = document.getElementById("grupturu");
+      const grupturusecilen = grupturu.options[grupturu.selectedIndex].text;
+
+      // Örnek olarak fiyat bilgisini stok fiyatı alanına yerleştirme
+      document.getElementsByName('birimbilgisi')[selectIndex].value = document.getElementById(selectedOption).cells[0].innerText;
+      if (grupturusecilen == "Alınan Sipariş") {
+
+      }
+      else if (grupturusecilen == "Verilen Sipariş") {
+        document.getElementsByName('stokbirimfiyati')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[24].innerText.replace(",", "."));
+      }
+      document.getElementsByName('stokbirimfiyati')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[1].innerText.replace(",", "."));
+      document.getElementsByName('stokindirimyuzdesi')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[2].innerText.replace(",", "."));
+      document.getElementsByName('stokkdvyuzdesi')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[3].innerText.replace(",", "."));
+      document.getElementsByName('stokindirim1')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[5].innerText.replace(",", "."));
+      document.getElementsByName('stokindirim2')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[6].innerText.replace(",", "."));
+      document.getElementsByName('stokindirim3')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[7].innerText.replace(",", "."));
+      document.getElementsByName('stokozelkod1')[selectIndex].value = document.getElementById(selectedOption).cells[8].innerText;
+      document.getElementsByName('stokozelkod2')[selectIndex].value = document.getElementById(selectedOption).cells[9].innerText;
+      document.getElementsByName('stokdepartman')[selectIndex].value = document.getElementById(selectedOption).cells[10].innerText;
+      document.getElementsByName('stokbirimi')[selectIndex].value = document.getElementById(selectedOption).cells[11].innerText;
+      document.getElementsByName('stokmiktaribilgisi')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[12].innerText.replace(",", "."));
+      document.getElementsByName('stokozellik1')[selectIndex].value = document.getElementById(selectedOption).cells[13].innerText;
+      document.getElementsByName('stokozellik2')[selectIndex].value = document.getElementById(selectedOption).cells[14].innerText;
+      document.getElementsByName('stokozellik3')[selectIndex].value = document.getElementById(selectedOption).cells[15].innerText;
+      document.getElementsByName('stokozellik4')[selectIndex].value = document.getElementById(selectedOption).cells[16].innerText;
+      document.getElementsByName('stokozellik5')[selectIndex].value = document.getElementById(selectedOption).cells[17].innerText;
+      document.getElementsByName('stokalternatifstokkodu')[selectIndex].value = document.getElementById(selectedOption).cells[18].innerText;
+      document.getElementsByName('stokalternatifstokadi')[selectIndex].value = document.getElementById(selectedOption).cells[19].innerText;
+      document.getElementsByName('stokkalitekodu')[selectIndex].value = document.getElementById(selectedOption).cells[20].innerText;
+      document.getElementsByName('pkaciklamasi')[selectIndex].value = document.getElementById(selectedOption).cells[21].innerText;
+      document.getElementsByName('stokanamiktari')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[22].innerText.replace(",", "."));
+      document.getElementsByName('stokanamiktaribirimfiyattl')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[23].innerText.replace(",", "."));
+      document.getElementsByName('stokanamiktaribirimfiyatdvz')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[24].innerText.replace(",", "."));
+
+
+      hesaplaFiyat()
+    });
+  };
+  function dovizac() {
+    var selectElementtt = document.getElementById("dovizcinsi");
+    var selectedValueesss = selectElementtt.options[selectElementtt.selectedIndex].value;
+    if (selectedValueesss == "TL") {
+      var doviz = document.querySelectorAll('[id="kur"]');
+      doviz.forEach(function (element) {
+        element.style.display = 'none';
+      });
+    }
+    else {
+      var doviz = document.querySelectorAll('[id="kur"]');
+      doviz.forEach(function (element) {
+        element.style.display = 'block';
+      });
+    }
+
+
+  }
+
+</script>
+<script>
+  function hesaplaFiyat() {
+    const stokBirimFiyati = document.querySelectorAll("#stokbirimfiyati");
+    stokBirimFiyati.forEach((element, index) => {
+      var selectElementt = document.getElementById("kdvdurumu");
+      var selectedValueess = selectElementt.options[selectElementt.selectedIndex].value;
+      var selectElementtt = document.getElementById("dovizcinsi");
+      var selectedValueesss = selectElementtt.options[selectElementtt.selectedIndex].value;
+      var stokBirimFiyatiValue = element.value;
+      var stokIndirimYuzdesiValue = document.querySelectorAll("#stokindirimyuzdesi")[index].value;
+      var stokIndirimTlValue = document.querySelectorAll("#stokindirimtl")[index].value;
+      var stokTutariValue = document.querySelectorAll("#stoktutari")[index].value;
+      var stokKdvYuzdesiValue = document.querySelectorAll("#stokkdvyuzdesi")[index].value;
+      var stokKdvTValue = document.querySelectorAll("#stokkdvtl")[index].value;
+      var stokMiktariValue = document.querySelectorAll("#stokmiktari")[index].value;
+      var doviz = document.querySelectorAll("#birimfiyatdovz")[index].value;
+      var uygunkur = document.querySelectorAll("#uygunkur")[0].value;
+      var fiyat;
+      var kdv;
+      var otv;
+      var vergisizTutar;
+      var den;
+      var indirim_tutari;
+      if (selectedValueess == "Dahil") {
+        if (selectedValueesss == "TL") {
+          var toplam_tutar = parseFloat(stokBirimFiyatiValue) * parseFloat(stokMiktariValue);
+        }
+        else {
+          var toplam_tutar = parseFloat(doviz) * parseFloat(stokMiktariValue) * parseFloat(uygunkur);
+          document.querySelectorAll("#stokbirimfiyati")[index].value = (parseFloat(doviz) * parseFloat(uygunkur)).toFixed(2);
+        }
+
+
+        fiyat = toplam_tutar;
+
+        vergisizTutar = (fiyat * 100) / (parseFloat(stokKdvYuzdesiValue) + 100);
+        kdv = fiyat - vergisizTutar;
+        indirim_tutari = vergisizTutar * parseFloat(stokIndirimYuzdesiValue) / 100
+        document.querySelectorAll("#stokkdvtl")[index].value = kdv.toFixed(2);
+        document.querySelectorAll("#stokindirimtl")[index].value = indirim_tutari.toFixed(2);
+        document.querySelectorAll("#vergisiztutar")[index].value = vergisizTutar.toFixed(2);
+        document.querySelectorAll("#stoktutari")[index].value = toplam_tutar.toFixed(2);
+      }
+      else {
+        if (selectedValueesss == "TL") {
+          var toplam_tutar = parseFloat(stokBirimFiyatiValue) * parseFloat(stokMiktariValue);
+        }
+        else {
+          var toplam_tutar = parseFloat(doviz) * parseFloat(stokMiktariValue) * parseFloat(uygunkur);
+          document.querySelectorAll("#stokbirimfiyati")[index].value = (parseFloat(doviz) * parseFloat(uygunkur)).toFixed(2);
+        }
+        vergisizTutar = toplam_tutar;
+        indirim_tutari = vergisizTutar * parseFloat(stokIndirimYuzdesiValue) / 100
+        vergisizTutar = vergisizTutar - indirim_tutari
+        fiyat = vergisizTutar;
+        kdv = (fiyat * parseFloat(stokKdvYuzdesiValue) / 100);
+        fiyat = fiyat + kdv;
+        document.querySelectorAll("#stokkdvtl")[index].value = kdv.toFixed(2);
+        document.querySelectorAll("#vergisiztutar")[index].value = vergisizTutar.toFixed(2);
+        document.querySelectorAll("#stoktutari")[index].value = toplam_tutar.toFixed(2);
+        document.querySelectorAll("#stokindirimtl")[index].value = indirim_tutari.toFixed(2);
+      }
+      topla()
+    });
+  }
+  function topla() {
+    // Aynı ID'ye sahip inputları seçmek için bir sorgu kullanarak bir NodeList oluşturun
+    var selectElementtt = document.getElementById("dovizcinsi");
+    var selectedValueesss = selectElementtt.options[selectElementtt.selectedIndex].value;
+    var kdvs = document.querySelectorAll('[id="stokkdvtl"]');
+    var stokindirimtls = document.querySelectorAll('[id="stokindirimtl"]');
+    var vergisiz = document.querySelectorAll('[id="vergisiztutar"]');
+    var doviz = document.querySelectorAll('[id="birimfiyatdovz"]');
+    var uygunkur = document.querySelectorAll("#uygunkur")[0].value;
+    var vergisiz_turar_bilgisi = 0;
+    var otvtoplam = 0;
+    var kdvtoplam = 0;
+    var stokindirimtll = 0;
+    var genel_toplam = 0;
+    // NodeList üzerinde döngü ile değerleri toplayın
+    kdvs.forEach(function (input) {
+      kdvtoplam += parseFloat(input.value); // Değerlerin sayısal toplamı (eğer sayıysa)
+    });
+    stokindirimtls.forEach(function (input) {
+      stokindirimtll += parseFloat(input.value); // Değerlerin sayısal toplamı (eğer sayıysa)
+    });
+    vergisiz.forEach(function (input) {
+      vergisiz_turar_bilgisi += parseFloat(input.value); // Değerlerin sayısal toplamı (eğer sayıysa)
+    });
+    genel_toplam = kdvtoplam + vergisiz_turar_bilgisi - stokindirimtll;
+    document.getElementById("indirimtutari").innerHTML = stokindirimtll.toFixed(2);
+    document.getElementById("kdvtutari").innerHTML = kdvtoplam.toFixed(2);
+    document.getElementById("geneltutar").innerHTML = vergisiz_turar_bilgisi.toFixed(2);
+    document.getElementById("geneltoplam").innerHTML = genel_toplam.toFixed(2);
+    document.getElementById("iindirimtutari").value = stokindirimtll.toFixed(2);
+    document.getElementById("ikdvtutari").value = kdvtoplam.toFixed(2);
+    document.getElementById("igeneltutar").value = vergisiz_turar_bilgisi.toFixed(2);
+    document.getElementById("igeneltoplam").value = genel_toplam.toFixed(2);
+    if (selectedValueesss == "TL") {
+
+    }
+    else {
+      document.getElementById("indirimtutaridvz").innerHTML = (stokindirimtll / parseFloat(uygunkur)).toFixed(2);
+      document.getElementById("kdvtutaridvz").innerHTML = (kdvtoplam / parseFloat(uygunkur)).toFixed(2);
+      document.getElementById("otvtutaridvz").innerHTML = (otvtoplam / parseFloat(uygunkur)).toFixed(2);
+      document.getElementById("geneltutardvz").innerHTML = (vergisiz_turar_bilgisi / parseFloat(uygunkur)).toFixed(2);
+      document.getElementById("geneltoplamdvz").innerHTML = (genel_toplam / parseFloat(uygunkur)).toFixed(2);
+      document.getElementById("iindirimtutaridvz").value = (stokindirimtll / parseFloat(uygunkur)).toFixed(2);
+      document.getElementById("ikdvtutaridvz").value = (kdvtoplam / parseFloat(uygunkur)).toFixed(2);
+      document.getElementById("iotvtutaridvz").value = (otvtoplam / parseFloat(uygunkur)).toFixed(2);
+      document.getElementById("igeneltutardvz").value = (vergisiz_turar_bilgisi / parseFloat(uygunkur)).toFixed(2);
+      document.getElementById("igeneltoplamdvz").value = (genel_toplam / parseFloat(uygunkur)).toFixed(2);
+    }
+  }
+</script>
+
+<div class="modal" id="muhkodukdv1">
+  <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+
+          <!-- Modal Header -->
+          <div class="modal-header">
+              <h4 class="modal-title">Kasa Seç</h4>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+
+          <!-- Modal body -->
+          <div class="modal-body">
+              <input type="text" id="searchInputmuhkodukdv1" class="form-control" placeholder="Arama...">
+
+              <table class="table table-striped mt-3 tablemuhkodukdv1">
+                  <thead>
+                      <tr>
+                          <th>Kasa Kodu</th>
+                          <th>Kasa AdI</th>
+                          <th>Kasa Döviz Cinsi</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      {% for i in kasa_bilgisi %}
+                      <tr>
+                          <td>{{i.kasa_kodu}}</td>
+                          <td>{{i.kasa_adi}}</td>
+                          <td>{{i.doviz_cinsi}}</td>
+                          <td style="display: none;">{{i.id}}</td>
+                      </tr>
+                      {% endfor %}
+                      
+
+
+                      <!-- Diğer satırları burada ekleyin -->
+                  </tbody>
+              </table>
+          </div>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+          Seçmek için listeye Tıklamanız Yeterlidir.
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kapat</button>
+      </div>
+
+  </div>
+</div>
+{% endblock content %}

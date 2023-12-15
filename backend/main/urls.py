@@ -101,5 +101,8 @@ urlpatterns = [
     #dilekçe
     path("<str:slug>/dilekce/", views.dilekcesayfasi, name="dilekcesayfasi"),
     #dilekçe
+    #Genel Muhasebe
+    path("<str:slug>/genelmuhasebe/", views.genel_muhasebe_sayfasi, name="genel_muhasebe_sayfasi"),
+    #Genel Muhasebe
     #
 ]
