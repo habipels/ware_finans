@@ -122,8 +122,11 @@
             </select></td>
           <td><input type="text" name="siparisno"></td>
           <td><input type="text" name="yevmiyeno"></td>
-          <td><input type="text" name="hesapkodu">
-            <input hidden type="text" name="hesapkoduid"></td>
+          <td><input type="text" id="hesapkodu" name="hesapkodu">
+            <input hidden type="text" id="hesapkoduid" name="hesapkoduid">
+            <button data-bs-toggle="modal"
+            data-bs-target="#muhkodukdv1"   type="button" class="click-button btn btn-primary" >Seç</button>
+        </td>
 
             <td><input type="date" name="evrak Tarihi"></td>
             <td><input type="text" name="evrakno"></td>
@@ -152,8 +155,10 @@
             <td><b>Seçim Yapıldı</b></td>
             <td><b>Seçim Yapıldı</b></td>
             <td><b>Seçim Yapıldı</b></td>
-            <td><input type="text" name="hesapkodu">
-              <input hidden type="text" name="hesapkoduid"></td>
+            <td><input type="text" id="hesapkodu" name="hesapkodu">
+              <input hidden type="text" id="hesapkoduid" name="hesapkoduid">
+              <button data-bs-toggle="modal"
+              data-bs-target="#muhkodukdv1" type="button"   class="click-button btn btn-primary" >Seç</button></td>
   
               <td><input type="date" name="evrak Tarihi"></td>
               <td><input type="text" name="evrakno"></td>
@@ -181,8 +186,10 @@
             <td><b>Seçim Yapıldı</b></td>
             <td><b>Seçim Yapıldı</b></td>
             <td><b>Seçim Yapıldı</b></td>
-            <td><input type="text" name="hesapkodu">
-              <input hidden type="text" name="hesapkoduid"></td>
+            <td><input type="text" id="hesapkodu" name="hesapkodu">
+              <input hidden type="text" id="hesapkoduid" name="hesapkoduid">
+              <button data-bs-toggle="modal"
+              data-bs-target="#muhkodukdv1" type="button"   class="click-button btn btn-primary" >Seç</button></td>
   
               <td><input type="date" name="evrak Tarihi"></td>
               <td><input type="text" name="evrakno"></td>
@@ -210,356 +217,10 @@
             <td><b>Seçim Yapıldı</b></td>
             <td><b>Seçim Yapıldı</b></td>
             <td><b>Seçim Yapıldı</b></td>
-            <td><input type="text" name="hesapkodu">
-              <input hidden type="text" name="hesapkoduid"></td>
-  
-              <td><input type="date" name="evrak Tarihi"></td>
-              <td><input type="text" name="evrakno"></td>
-  
-              <td><select name="bt" id="bt">
-                  <option value="Fatura">Fatura</option>
-                  <option value="Çek">Çek</option>
-                  <option value="Makbuz">Makbuz</option>
-                  <option value="Müşteri Sipariş Belgesi">Müşteri Sipariş Belgesi</option>
-                  <option value="Satıcı Sipariş Belgesi">Satıcı Sipariş Belgesi</option>
-                  <option value="Senet">Senet</option>
-                  <option value="Navlum">Navlum</option>
-                  <option value="Diğer">Diğer</option>
-                  <option value="Belge Yok">Belge Yok</option>
-    
-                </select></td>
-                <td><input type="text" name="vergitc"></td>
-                <td><input type="text" name="Aciklama"></td>
-                <td><input type="number" step="0.001" id="Borclu" name="Borclu"></td>
-                <td><input type="number" step="0.001" id="alacakli" name="alacakli"></td>
-                <td><input type="text" name="belgeturuaciklamsi"></td>
-        </tr>
-        <tr class="yeniform">
-            <td><b>Seçim Yapıldı</b></td>
-            <td><b>Seçim Yapıldı</b></td>
-            <td><b>Seçim Yapıldı</b></td>
-            <td><b>Seçim Yapıldı</b></td>
-            <td><input type="text" name="hesapkodu">
-              <input hidden type="text" name="hesapkoduid"></td>
-  
-              <td><input type="date" name="evrak Tarihi"></td>
-              <td><input type="text" name="evrakno"></td>
-  
-              <td><select name="bt" id="bt">
-                  <option value="Fatura">Fatura</option>
-                  <option value="Çek">Çek</option>
-                  <option value="Makbuz">Makbuz</option>
-                  <option value="Müşteri Sipariş Belgesi">Müşteri Sipariş Belgesi</option>
-                  <option value="Satıcı Sipariş Belgesi">Satıcı Sipariş Belgesi</option>
-                  <option value="Senet">Senet</option>
-                  <option value="Navlum">Navlum</option>
-                  <option value="Diğer">Diğer</option>
-                  <option value="Belge Yok">Belge Yok</option>
-    
-                </select></td>
-                <td><input type="text" name="vergitc"></td>
-                <td><input type="text" name="Aciklama"></td>
-                <td><input type="number" step="0.001" id="Borclu" name="Borclu"></td>
-                <td><input type="number" step="0.001" id="alacakli" name="alacakli"></td>
-                <td><input type="text" name="belgeturuaciklamsi"></td>
-        </tr>
-        <tr class="yeniform">
-            <td><b>Seçim Yapıldı</b></td>
-            <td><b>Seçim Yapıldı</b></td>
-            <td><b>Seçim Yapıldı</b></td>
-            <td><b>Seçim Yapıldı</b></td>
-            <td><input type="text" name="hesapkodu">
-              <input hidden type="text" name="hesapkoduid"></td>
-  
-              <td><input type="date" name="evrak Tarihi"></td>
-              <td><input type="text" name="evrakno"></td>
-  
-              <td><select name="bt" id="bt">
-                  <option value="Fatura">Fatura</option>
-                  <option value="Çek">Çek</option>
-                  <option value="Makbuz">Makbuz</option>
-                  <option value="Müşteri Sipariş Belgesi">Müşteri Sipariş Belgesi</option>
-                  <option value="Satıcı Sipariş Belgesi">Satıcı Sipariş Belgesi</option>
-                  <option value="Senet">Senet</option>
-                  <option value="Navlum">Navlum</option>
-                  <option value="Diğer">Diğer</option>
-                  <option value="Belge Yok">Belge Yok</option>
-    
-                </select></td>
-                <td><input type="text" name="vergitc"></td>
-                <td><input type="text" name="Aciklama"></td>
-                <td><input type="number" step="0.001" id="Borclu" name="Borclu"></td>
-                <td><input type="number" step="0.001" id="alacakli" name="alacakli"></td>
-                <td><input type="text" name="belgeturuaciklamsi"></td>
-        </tr>
-        <tr class="yeniform">
-            <td><b>Seçim Yapıldı</b></td>
-            <td><b>Seçim Yapıldı</b></td>
-            <td><b>Seçim Yapıldı</b></td>
-            <td><b>Seçim Yapıldı</b></td>
-            <td><input type="text" name="hesapkodu">
-              <input hidden type="text" name="hesapkoduid"></td>
-  
-              <td><input type="date" name="evrak Tarihi"></td>
-              <td><input type="text" name="evrakno"></td>
-  
-              <td><select name="bt" id="bt">
-                  <option value="Fatura">Fatura</option>
-                  <option value="Çek">Çek</option>
-                  <option value="Makbuz">Makbuz</option>
-                  <option value="Müşteri Sipariş Belgesi">Müşteri Sipariş Belgesi</option>
-                  <option value="Satıcı Sipariş Belgesi">Satıcı Sipariş Belgesi</option>
-                  <option value="Senet">Senet</option>
-                  <option value="Navlum">Navlum</option>
-                  <option value="Diğer">Diğer</option>
-                  <option value="Belge Yok">Belge Yok</option>
-    
-                </select></td>
-                <td><input type="text" name="vergitc"></td>
-                <td><input type="text" name="Aciklama"></td>
-                <td><input type="number" step="0.001" id="Borclu" name="Borclu"></td>
-                <td><input type="number" step="0.001" id="alacakli" name="alacakli"></td>
-                <td><input type="text" name="belgeturuaciklamsi"></td>
-        </tr>
-        <tr class="yeniform">
-            <td><b>Seçim Yapıldı</b></td>
-            <td><b>Seçim Yapıldı</b></td>
-            <td><b>Seçim Yapıldı</b></td>
-            <td><b>Seçim Yapıldı</b></td>
-            <td><input type="text" name="hesapkodu">
-              <input hidden type="text" name="hesapkoduid"></td>
-  
-              <td><input type="date" name="evrak Tarihi"></td>
-              <td><input type="text" name="evrakno"></td>
-  
-              <td><select name="bt" id="bt">
-                  <option value="Fatura">Fatura</option>
-                  <option value="Çek">Çek</option>
-                  <option value="Makbuz">Makbuz</option>
-                  <option value="Müşteri Sipariş Belgesi">Müşteri Sipariş Belgesi</option>
-                  <option value="Satıcı Sipariş Belgesi">Satıcı Sipariş Belgesi</option>
-                  <option value="Senet">Senet</option>
-                  <option value="Navlum">Navlum</option>
-                  <option value="Diğer">Diğer</option>
-                  <option value="Belge Yok">Belge Yok</option>
-    
-                </select></td>
-                <td><input type="text" name="vergitc"></td>
-                <td><input type="text" name="Aciklama"></td>
-                <td><input type="number" step="0.001" id="Borclu" name="Borclu"></td>
-                <td><input type="number" step="0.001" id="alacakli" name="alacakli"></td>
-                <td><input type="text" name="belgeturuaciklamsi"></td>
-        </tr>
-        <tr class="yeniform">
-            <td><b>Seçim Yapıldı</b></td>
-            <td><b>Seçim Yapıldı</b></td>
-            <td><b>Seçim Yapıldı</b></td>
-            <td><b>Seçim Yapıldı</b></td>
-            <td><input type="text" name="hesapkodu">
-              <input hidden type="text" name="hesapkoduid"></td>
-  
-              <td><input type="date" name="evrak Tarihi"></td>
-              <td><input type="text" name="evrakno"></td>
-  
-              <td><select name="bt" id="bt">
-                  <option value="Fatura">Fatura</option>
-                  <option value="Çek">Çek</option>
-                  <option value="Makbuz">Makbuz</option>
-                  <option value="Müşteri Sipariş Belgesi">Müşteri Sipariş Belgesi</option>
-                  <option value="Satıcı Sipariş Belgesi">Satıcı Sipariş Belgesi</option>
-                  <option value="Senet">Senet</option>
-                  <option value="Navlum">Navlum</option>
-                  <option value="Diğer">Diğer</option>
-                  <option value="Belge Yok">Belge Yok</option>
-    
-                </select></td>
-                <td><input type="text" name="vergitc"></td>
-                <td><input type="text" name="Aciklama"></td>
-                <td><input type="number" step="0.001" id="Borclu" name="Borclu"></td>
-                <td><input type="number" step="0.001" id="alacakli" name="alacakli"></td>
-                <td><input type="text" name="belgeturuaciklamsi"></td>
-        </tr>
-        <tr class="yeniform">
-            <td><b>Seçim Yapıldı</b></td>
-            <td><b>Seçim Yapıldı</b></td>
-            <td><b>Seçim Yapıldı</b></td>
-            <td><b>Seçim Yapıldı</b></td>
-            <td><input type="text" name="hesapkodu">
-              <input hidden type="text" name="hesapkoduid"></td>
-  
-              <td><input type="date" name="evrak Tarihi"></td>
-              <td><input type="text" name="evrakno"></td>
-  
-              <td><select name="bt" id="bt">
-                  <option value="Fatura">Fatura</option>
-                  <option value="Çek">Çek</option>
-                  <option value="Makbuz">Makbuz</option>
-                  <option value="Müşteri Sipariş Belgesi">Müşteri Sipariş Belgesi</option>
-                  <option value="Satıcı Sipariş Belgesi">Satıcı Sipariş Belgesi</option>
-                  <option value="Senet">Senet</option>
-                  <option value="Navlum">Navlum</option>
-                  <option value="Diğer">Diğer</option>
-                  <option value="Belge Yok">Belge Yok</option>
-    
-                </select></td>
-                <td><input type="text" name="vergitc"></td>
-                <td><input type="text" name="Aciklama"></td>
-                <td><input type="number" step="0.001" id="Borclu" name="Borclu"></td>
-                <td><input type="number" step="0.001" id="alacakli" name="alacakli"></td>
-                <td><input type="text" name="belgeturuaciklamsi"></td>
-        </tr>
-        <tr class="yeniform">
-            <td><b>Seçim Yapıldı</b></td>
-            <td><b>Seçim Yapıldı</b></td>
-            <td><b>Seçim Yapıldı</b></td>
-            <td><b>Seçim Yapıldı</b></td>
-            <td><input type="text" name="hesapkodu">
-              <input hidden type="text" name="hesapkoduid"></td>
-  
-              <td><input type="date" name="evrak Tarihi"></td>
-              <td><input type="text" name="evrakno"></td>
-  
-              <td><select name="bt" id="bt">
-                  <option value="Fatura">Fatura</option>
-                  <option value="Çek">Çek</option>
-                  <option value="Makbuz">Makbuz</option>
-                  <option value="Müşteri Sipariş Belgesi">Müşteri Sipariş Belgesi</option>
-                  <option value="Satıcı Sipariş Belgesi">Satıcı Sipariş Belgesi</option>
-                  <option value="Senet">Senet</option>
-                  <option value="Navlum">Navlum</option>
-                  <option value="Diğer">Diğer</option>
-                  <option value="Belge Yok">Belge Yok</option>
-    
-                </select></td>
-                <td><input type="text" name="vergitc"></td>
-                <td><input type="text" name="Aciklama"></td>
-                <td><input type="number" step="0.001" id="Borclu" name="Borclu"></td>
-                <td><input type="number" step="0.001" id="alacakli" name="alacakli"></td>
-                <td><input type="text" name="belgeturuaciklamsi"></td>
-        </tr>
-        <tr class="yeniform">
-            <td><b>Seçim Yapıldı</b></td>
-            <td><b>Seçim Yapıldı</b></td>
-            <td><b>Seçim Yapıldı</b></td>
-            <td><b>Seçim Yapıldı</b></td>
-            <td><input type="text" name="hesapkodu">
-              <input hidden type="text" name="hesapkoduid"></td>
-  
-              <td><input type="date" name="evrak Tarihi"></td>
-              <td><input type="text" name="evrakno"></td>
-  
-              <td><select name="bt" id="bt">
-                  <option value="Fatura">Fatura</option>
-                  <option value="Çek">Çek</option>
-                  <option value="Makbuz">Makbuz</option>
-                  <option value="Müşteri Sipariş Belgesi">Müşteri Sipariş Belgesi</option>
-                  <option value="Satıcı Sipariş Belgesi">Satıcı Sipariş Belgesi</option>
-                  <option value="Senet">Senet</option>
-                  <option value="Navlum">Navlum</option>
-                  <option value="Diğer">Diğer</option>
-                  <option value="Belge Yok">Belge Yok</option>
-    
-                </select></td>
-                <td><input type="text" name="vergitc"></td>
-                <td><input type="text" name="Aciklama"></td>
-                <td><input type="number" step="0.001" id="Borclu" name="Borclu"></td>
-                <td><input type="number" step="0.001" id="alacakli" name="alacakli"></td>
-                <td><input type="text" name="belgeturuaciklamsi"></td>
-        </tr>
-        <tr class="yeniform">
-            <td><b>Seçim Yapıldı</b></td>
-            <td><b>Seçim Yapıldı</b></td>
-            <td><b>Seçim Yapıldı</b></td>
-            <td><b>Seçim Yapıldı</b></td>
-            <td><input type="text" name="hesapkodu">
-              <input hidden type="text" name="hesapkoduid"></td>
-  
-              <td><input type="date" name="evrak Tarihi"></td>
-              <td><input type="text" name="evrakno"></td>
-  
-              <td><select name="bt" id="bt">
-                  <option value="Fatura">Fatura</option>
-                  <option value="Çek">Çek</option>
-                  <option value="Makbuz">Makbuz</option>
-                  <option value="Müşteri Sipariş Belgesi">Müşteri Sipariş Belgesi</option>
-                  <option value="Satıcı Sipariş Belgesi">Satıcı Sipariş Belgesi</option>
-                  <option value="Senet">Senet</option>
-                  <option value="Navlum">Navlum</option>
-                  <option value="Diğer">Diğer</option>
-                  <option value="Belge Yok">Belge Yok</option>
-    
-                </select></td>
-                <td><input type="text" name="vergitc"></td>
-                <td><input type="text" name="Aciklama"></td>
-                <td><input type="number" step="0.001" id="Borclu" name="Borclu"></td>
-                <td><input type="number" step="0.001" id="alacakli" name="alacakli"></td>
-                <td><input type="text" name="belgeturuaciklamsi"></td>
-        </tr>
-        <tr class="yeniform">
-            <td><b>Seçim Yapıldı</b></td>
-            <td><b>Seçim Yapıldı</b></td>
-            <td><b>Seçim Yapıldı</b></td>
-            <td><b>Seçim Yapıldı</b></td>
-            <td><input type="text" name="hesapkodu">
-              <input hidden type="text" name="hesapkoduid"></td>
-  
-              <td><input type="date" name="evrak Tarihi"></td>
-              <td><input type="text" name="evrakno"></td>
-  
-              <td><select name="bt" id="bt">
-                  <option value="Fatura">Fatura</option>
-                  <option value="Çek">Çek</option>
-                  <option value="Makbuz">Makbuz</option>
-                  <option value="Müşteri Sipariş Belgesi">Müşteri Sipariş Belgesi</option>
-                  <option value="Satıcı Sipariş Belgesi">Satıcı Sipariş Belgesi</option>
-                  <option value="Senet">Senet</option>
-                  <option value="Navlum">Navlum</option>
-                  <option value="Diğer">Diğer</option>
-                  <option value="Belge Yok">Belge Yok</option>
-    
-                </select></td>
-                <td><input type="text" name="vergitc"></td>
-                <td><input type="text" name="Aciklama"></td>
-                <td><input type="number" step="0.001" id="Borclu" name="Borclu"></td>
-                <td><input type="number" step="0.001" id="alacakli" name="alacakli"></td>
-                <td><input type="text" name="belgeturuaciklamsi"></td>
-        </tr>
-        <tr class="yeniform">
-            <td><b>Seçim Yapıldı</b></td>
-            <td><b>Seçim Yapıldı</b></td>
-            <td><b>Seçim Yapıldı</b></td>
-            <td><b>Seçim Yapıldı</b></td>
-            <td><input type="text" name="hesapkodu">
-              <input hidden type="text" name="hesapkoduid"></td>
-  
-              <td><input type="date" name="evrak Tarihi"></td>
-              <td><input type="text" name="evrakno"></td>
-  
-              <td><select name="bt" id="bt">
-                  <option value="Fatura">Fatura</option>
-                  <option value="Çek">Çek</option>
-                  <option value="Makbuz">Makbuz</option>
-                  <option value="Müşteri Sipariş Belgesi">Müşteri Sipariş Belgesi</option>
-                  <option value="Satıcı Sipariş Belgesi">Satıcı Sipariş Belgesi</option>
-                  <option value="Senet">Senet</option>
-                  <option value="Navlum">Navlum</option>
-                  <option value="Diğer">Diğer</option>
-                  <option value="Belge Yok">Belge Yok</option>
-    
-                </select></td>
-                <td><input type="text" name="vergitc"></td>
-                <td><input type="text" name="Aciklama"></td>
-                <td><input type="number" step="0.001" id="Borclu" name="Borclu"></td>
-                <td><input type="number" step="0.001" id="alacakli" name="alacakli"></td>
-                <td><input type="text" name="belgeturuaciklamsi"></td>
-        </tr>
-        <tr class="yeniform">
-            <td><b>Seçim Yapıldı</b></td>
-            <td><b>Seçim Yapıldı</b></td>
-            <td><b>Seçim Yapıldı</b></td>
-            <td><b>Seçim Yapıldı</b></td>
-            <td><input type="text" name="hesapkodu">
-              <input hidden type="text" name="hesapkoduid"></td>
+            <td><input type="text" id="hesapkodu" name="hesapkodu">
+              <input hidden type="text"  id="hesapkoduid" name="hesapkoduid">
+              <button data-bs-toggle="modal"
+              data-bs-target="#muhkodukdv1" type="button"   class="click-button btn btn-primary" >Seç</button></td>
   
               <td><input type="date" name="evrak Tarihi"></td>
               <td><input type="text" name="evrakno"></td>
@@ -895,7 +556,7 @@
 
           <!-- Modal Header -->
           <div class="modal-header">
-              <h4 class="modal-title">Kasa Seç</h4>
+              <h4 class="modal-title">Hesap Planı Seç</h4>
               <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
           </div>
 
@@ -906,17 +567,16 @@
               <table class="table table-striped mt-3 tablemuhkodukdv1">
                   <thead>
                       <tr>
-                          <th>Kasa Kodu</th>
-                          <th>Kasa AdI</th>
-                          <th>Kasa Döviz Cinsi</th>
+                          <th>Hesap Kodu</th>
+                          <th>Hesap AdI</th>
+                          
                       </tr>
                   </thead>
                   <tbody>
-                      {% for i in kasa_bilgisi %}
+                      {% for i in hesapplanlari %}
                       <tr>
-                          <td>{{i.kasa_kodu}}</td>
-                          <td>{{i.kasa_adi}}</td>
-                          <td>{{i.doviz_cinsi}}</td>
+                          <td>{{i.hesap_kodu}}</td>
+                          <td>{{i.hesap_adi}}</td>
                           <td style="display: none;">{{i.id}}</td>
                       </tr>
                       {% endfor %}
@@ -937,4 +597,56 @@
 
   </div>
 </div>
+<script>
+    var butonverisi ;
+    const buttons = document.querySelectorAll('.click-button');
+
+// Her bir buton için tıklanma sayısını tutacak bir dizi oluştur
+const clickCounts = new Array(buttons.length).fill(0);
+
+// Her bir butonun tıklanma sayısını izle
+buttons.forEach((button, index) => {
+  button.addEventListener('click', () => {
+    butonverisi = index;
+  });
+});
+</script>
+<script>
+    const muhkodukdv1 = document.getElementById('searchInputmuhkodukdv1');
+    const tablemuhkodukdv1 = document.querySelector('.tablemuhkodukdv1');
+    const muhkodukdv = document.querySelectorAll('#hesapkodu')[butonverisi];
+    const muhkodukdvs = document.querySelectorAll('#hesapkoduid')[butonverisi];
+    muhkodukdv1.addEventListener('input', function () {
+        const tablemuhkodukdv111 = this.value.toLowerCase();
+  
+        for (const row of tablemuhkodukdv1.rows) {
+            let found = false;
+            for (const cell of row.cells) {
+                if (cell.textContent.toLowerCase().includes(tablemuhkodukdv111)) {
+                    found = true;
+                    break;
+                }
+            }
+            row.style.display = found ? '' : 'none';
+        }
+    });
+  
+    // Tablo satırlarına tıklama olayını ekle
+    const tablemuhkodukdv1Rows = tablemuhkodukdv1.getElementsByTagName('tr');
+    for (let i = 1; i < tablemuhkodukdv1Rows.length; i++) {
+        tablemuhkodukdv1Rows[i].addEventListener('click', function () {
+            const cells = this.cells;
+            const rowData = {
+                id: cells[0].textContent,
+                ad: cells[1].textContent,
+                bil: cells[2].textContent,
+            };
+  
+            // Seçilen veriyi input'a yaz
+            document.querySelectorAll('#hesapkodu')[butonverisi].value =`${rowData.id}` ;
+            document.querySelectorAll('#hesapkoduid')[butonverisi].value =`${rowData.bil}` ;
+        });
+    }
+  </script>
+  
 {% endblock content %}
