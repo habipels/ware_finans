@@ -3,9 +3,9 @@
   <!--Header-->
   <div class="icon-bar">
 
-    <a href="/{{firma.firma_ozel_anahtar}}/yenikasakarti/">Yeni Kasa Kartı </a>
-    <a style="color: white;" onclick="redirectToSelectedLink()">Kart İncele-Düzelt</a>
-    <a style="color: white;" onclick="showConfirmationPopup()">Kart Sil</a>
+    <a href="/{{firma.firma_ozel_anahtar}}/yenikasakarti/">Yeni Hesap</a>
+    <a style="color: white;" onclick="redirectToSelectedLink()">Hesap İncele-Düzelt</a>
+    <a style="color: white;" onclick="showConfirmationPopup()">Hesap Sil</a>
     <a href="">Ödeme Tahsilat</a>
     <a href="" style="color:red;">Çıkış Yap (ESC)</a>
 
@@ -74,23 +74,168 @@
             <th class="text-center" style="min-width: 150px ;">Borç</th>
             <th class="text-center" style="min-width: 150px ;">Alacak</th>
             <th class="text-center">Bakiye Toplam</th>
-            <th class="text-center" style="min-width: 100px ;">Özel Kod</th>
-            <th class="text-center" style="min-width: 150px ;">Muhasebe Kodu</th>
+            <th class="text-center" style="min-width: 100px ;">Bakiye Tipi</th>
+            <th class="text-center" style="min-width: 150px ;">Borçlu/Alacaklı</th>
+            <th class="text-center">Miktarlı</th>
+            <th class="text-center" style="min-width: 100px ;">Stok Kodu</th>
+            <th class="text-center" style="min-width: 150px ;">KDV Oranı</th>
+            <th class="text-center">İlişkili KDV Hesap Kodu</th>
+            <th class="text-center" style="min-width: 100px ;">Kamu / Özel ? (120 ler veya 320 ler)</th>
+            <th class="text-center" style="min-width: 150px ;">Hesap Açıklama Yabancı Dil</th>
+            <th class="text-center" style="min-width: 150px ;">Grup Kodu</th>
+            <th class="text-center" style="min-width: 150px ;">Ba Bs Kullanılsın Mı ?</th>
+            <th class="text-center" style="min-width: 150px ;">Kur Farkında Kullan</th>
+            <th class="text-center" style="min-width: 150px ;">Stopaj Hesap Kodu</th>
+            <th class="text-center" style="min-width: 150px ;">Stopaj Oranı (%)</th>
+            <th class="text-center" style="min-width: 150px ;">Stopaj Tür Kodu</th>
+            <th class="text-center" style="min-width: 150px ;">Stopaj Belge Türü</th>
+            <th class="text-center" style="min-width: 150px ;">Tevkifat Hesap Kodu</th>
+            <th class="text-center" style="min-width: 150px ;">KDV İşlem Türü</th>
+            <th class="text-center" style="min-width: 150px ;">Tevkifat Oranı (2/10,3/10,4/10,5/10,7/10,9/10)</th>
+            <th class="text-center" style="min-width: 150px ;">İlave Edilecek KDV mi ? </th>
+            <th class="text-center" style="min-width: 150px ;">İade KDV Mi ?</th>
+            <th class="text-center" style="min-width: 150px ;">Özel Matrah Mı ?</th>
+            <th class="text-center" style="min-width: 150px ;">Kredi KArtı Satış Mı?</th>
+            <th class="text-center" style="min-width: 150px ;">Yüklenilen / iaddeye konu olan KDV mi ? (ihrç. kayıtlı Satış Hariç)</th>
+            <th class="text-center" style="min-width: 150px ;">İhraç Kayıtlı Satışlar İçin Yüklenilen KDV Mi ? (No 85)</th>
+            <th class="text-center" style="min-width: 150px ;">İhraç Kayıtlı Satışlar İçin Yüklenilen KDV Mi ? (No 87)</th>
+            <th class="text-center" style="min-width: 150px ;">Yurtiçi Satış Mı ? (600 601 602 Hariç)</th>
+            <th class="text-center" style="min-width: 150px ;">Mutakabat Ay ? </th>
           </tr>
         </thead>
         <tbody>
-        {% for i in kasakartlarim %}
+        {% for i in hesapplanlari %}
           <tr>
-            <td><label for="kasakartisecim{{i.id}}"><input class="kasalar" name="kasakartlari" id="kasakartisecim{{i.id}}" value="{{i.id}}/" type="radio">{{i.kasa_kodu}}</label></td>
-            <td>{{i.kasa_adi}}</td>
-            <td>{{i.aciklama}}</td>
-            <td>{{i.doviz_cinsi}}</td>
-            <td>{{i.entkodu}}</td>
-            <td>{{i.toplam_tahsilat}} {{i.doviz_cinsi}}</td>
-            <td>{{i.toplam_odeme}} {{i.doviz_cinsi}}</td>
-            <td>{{i.toplam_bakiye}} {{i.doviz_cinsi}}</td>
-            <td>{{i.ozel_kod}}</td>
-            <td>{{i.muh_kodu}}</td>
+            <td><label for="kasakartisecim{{i.id}}"><input class="kasalar" name="kasakartlari" id="kasakartisecim{{i.id}}" value="{{i.id}}/" type="radio">{{i.hesap_kodu}}</label></td>
+            <td>{{i.hesap_adi}}</td>
+            <td>{% if i.detay %}
+                {{i.detay}}
+            {% else %}
+
+            {% endif %}
+            </td>
+            <td>{% if i.vergi_tc_no %}
+                {{i.vergi_tc_no}}
+            
+            {% endif %}
+            </td>
+            <td>{% if i.vergi_dairesi %}
+                {{i.vergi_dairesi}}
+            
+            {% endif %}</td>
+            <td>{{i.borc_toplam}}</td>
+            <td>{{i.alacak_toplam}}</td>
+            <td>{{i.bakiye_toplam}}</td>
+            <td>{% if i.bakiye_tipi %}
+                {{i.bakiye_tipi}}
+            {% endif %}
+            </td>
+            <td>{{i.borclu_alacakli}}</td>
+
+            <td>{% if i.miktarli %}
+                {{i.miktarli}}
+            {% endif %}
+            </td>
+            <td>{% if i.stok_kodu %}
+                {{i.stok_kodu}}
+            {% endif %}
+            </td>
+            <td>{% if i.kdv_orani %}
+                {{i.kdv_orani}}
+            {% endif %}
+            </td>
+            <td>{% if i.iliskili_kdv_hesap_kodu2 %}
+                {{i.iliskili_kdv_hesap_kodu2}}
+            {% endif %}
+            </td>
+            <td>{% if i.kamumu_ozelmi %}
+                {{i.kamumu_ozelmi}}
+            {% endif %}
+            </td>
+            <td>{% if i.hesap_aciklamasi %}
+                {{i.hesap_aciklamasi}}
+            {% endif %}
+            </td>
+            <td>{% if i.grup_kodu %}
+                {{i.grup_kodu}}
+            {% endif %}
+            </td>
+            <td>{% if i.ba_bslerde_kullanilsinmi %}
+                {{i.ba_bslerde_kullanilsinmi}}
+            {% endif %}
+            </td>
+            <td>{% if i.kur_farkinida_kullan %}
+                {{i.kur_farkinida_kullan}}
+            {% endif %}
+            </td>
+            <td>{% if i.stopaj_hesap_kodu2 %}
+                {{i.stopaj_hesap_kodu2}}
+            {% endif %}
+            </td>
+            <td>{% if i.stopaj_orani %}
+                {{i.stopaj_orani}}
+            {% endif %}
+            </td>
+            <td>{% if i.stopaj_tur_kodu %}
+                {{i.stopaj_tur_kodu}}
+            {% endif %}
+            </td>
+            <td>{% if i.stopaj_belge_turu %}
+                {{i.stopaj_belge_turu}}
+            {% endif %}
+            </td>
+
+
+            <td>{% if i.tevkifat_hesap_kodu2 %}
+                {{i.tevkifat_hesap_kodu2}}
+            {% endif %}
+            </td>
+            <td>{% if i.kdv_islem_turu %}
+                {{i.kdv_islem_turu}}
+            {% endif %}
+            </td>
+            <td>{% if i.tevkifat_orani %}
+                {{i.tevkifat_orani}}
+            {% endif %}
+            </td>
+            <td>{% if i.ilave_edilecek_kdv_mi %}
+                {{i.ilave_edilecek_kdv_mi}}
+            {% endif %}
+            </td>
+            <td>{% if i.iade_edilecek_kdv_mi %}
+                {{i.iade_edilecek_kdv_mi}}
+            {% endif %}
+            </td>
+            <td>{% if i.ozel_matrah_mi %}
+                {{i.ozel_matrah_mi}}
+            {% endif %}
+            </td>
+
+
+            <td>{% if i.kredi_karti_satis_mi %}
+                {{i.kredi_karti_satis_mi}}
+            {% endif %}
+            </td>
+            <td>{% if i.yuklenilen_iadeli_konu_olan_kdv_mi %}
+                {{i.yuklenilen_iadeli_konu_olan_kdv_mi}}
+            {% endif %}
+            </td>
+            <td>{% if i.ihrac_kayitli_satis_kdv_mi_85 %}
+                {{i.ihrac_kayitli_satis_kdv_mi_85}}
+            {% endif %}
+            </td>
+            <td>{% if i.ihrac_kayitli_satis_kdv_mi_87 %}
+                {{i.ihrac_kayitli_satis_kdv_mi_87}}
+            {% endif %}
+            </td>
+            <td>{% if i.yurt_ici_satis_mi %}
+                {{i.yurt_ici_satis_mi}}
+            {% endif %}
+            </td>
+            <td>{% if i.mutabakat_ayi %}
+                {{i.mutabakat_ayi}}
+            {% endif %}
+            </td>
           </tr>
           {% endfor %}
         </tbody>
