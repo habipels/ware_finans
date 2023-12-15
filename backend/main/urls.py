@@ -104,5 +104,8 @@ urlpatterns = [
     #Genel Muhasebe
     path("<str:slug>/genelmuhasebe/", views.genel_muhasebe_sayfasi, name="genel_muhasebe_sayfasi"),
     #Genel Muhasebe
+    #Hesap Planları
+    path("<str:slug>/hesapplanlari/", views.hesap_planlari_ayarlari, name="hesap_planlari_ayarlari"),
+    #Hesap Planları
     #
 ]

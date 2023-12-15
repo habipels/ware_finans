@@ -1,0 +1,144 @@
+{% extends "homebase.html" %}
+{% block content %}
+  <!--Header-->
+  <div class="icon-bar">
+
+    <a href="/{{firma.firma_ozel_anahtar}}/yenikasakarti/">Yeni Kasa Kartı </a>
+    <a style="color: white;" onclick="redirectToSelectedLink()">Kart İncele-Düzelt</a>
+    <a style="color: white;" onclick="showConfirmationPopup()">Kart Sil</a>
+    <a href="">Ödeme Tahsilat</a>
+    <a href="" style="color:red;">Çıkış Yap (ESC)</a>
+
+  </div>
+  <div class="d-menu">
+    <ul>
+      <li>
+        <ul>
+          <li><a href="/{{firma.firma_ozel_anahtar}}/kasatahsilfisi/" title="">Tahsilat Fişi</a></li>
+          <li><a href="/{{firma.firma_ozel_anahtar}}/kasaodemefisi/" title="">Ödeme Fişi</a></li>
+          <li><a href="/{{firma.firma_ozel_anahtar}}/virmanfisi/" title="">Virman Fişi</a></li>
+          <li><a href="/{{firma.firma_ozel_anahtar}}/dovizfisi/" title="">Döviz Fişi</a></li>
+          <li><a href="/{{firma.firma_ozel_anahtar}}/kasaacilisfisi/" title="">Açılış Fişi</a></li>
+          <li><a href="/{{firma.firma_ozel_anahtar}}/kasatahsilatmakbuzu/" title="">Kasa Tahsilat Makbuzu</a></li>
+          <li><a href="/{{firma.firma_ozel_anahtar}}/kasaodememakbuzu/" title="">Kasa Ödeme Makbuzu</a></li>
+          <li><a href="/{{firma.firma_ozel_anahtar}}/kasamaasodeme/" title="">Maaş Ödeme (Kasa)</a></li>
+        </ul><a href="" title="">Kasa Fiş İşlemleri</a>
+      </li>
+      <li>
+        <ul>
+          <li><a href="/{{firma.firma_ozel_anahtar}}/kasacariodeme/" title="">Ödeme Fişi</a></li>
+          <li><a href="/{{firma.firma_ozel_anahtar}}/kasacaritahsilat/" title="">Tahsilat Fişi</a></li>
+          <li><a href="" title="">Maaş Ödemesi (Kasa)</a></li>
+        </ul><a href="" title="">Cari Fiş İşlemleri</a>
+
+      </li>
+      <li>
+        <ul>
+          <li><a href="/{{firma.firma_ozel_anahtar}}/kasabankayayatirmafisi/" title="">Bankaya Yatırılan</a></li>
+          <li><a href="/{{firma.firma_ozel_anahtar}}/kasabankacekmefisi/" title="">Bankadan Çekilen</a></li>
+        </ul><a href="" title="">Banka Fiş İşlemleri</a>
+      </li>
+      <li>
+        <ul>
+          <li><a href="" title="">Çek/Senet Tahsili</a></li>
+          <li><a href="" title="">Senet Ödemesi</a></li>
+        </ul><a href="" title="">Çek/Senet İşlemleri</a>
+      </li>
+      <li>
+        <a href="" title="">Evrak Bul</a>
+      </li>
+      <li>
+        <a href="" title="">Fiş İncele</a>
+      </li>
+      <li>
+        <a href="" title="">Fiş Düzelt</a>
+      </li>
+      <li>
+        <a href="" title="">Fiş Sil</a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="container mt-3 tablo">
+    <div class="table-responsive " style="
+  height: 300px;
+  overflow: auto;">
+      <table class="table table-bordered ">
+        <thead style="position: sticky;top: 0">
+          <tr>
+            <th class="text-center" style="min-width: 100px ;">Hesap Kodu</th>
+            <th class="text-center" style="min-width: 50px ;">Hesap Adı</th>
+            <th class="text-center" style="min-width: 150px ;">Detay</th>
+            <th class="text-center" style="min-width: 100px ;">Vergi TC No</th>
+            <th class="text-center">Vergi Dairesi</th>
+            <th class="text-center" style="min-width: 150px ;">Borç</th>
+            <th class="text-center" style="min-width: 150px ;">Alacak</th>
+            <th class="text-center">Bakiye Toplam</th>
+            <th class="text-center" style="min-width: 100px ;">Özel Kod</th>
+            <th class="text-center" style="min-width: 150px ;">Muhasebe Kodu</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for i in kasakartlarim %}
+          <tr>
+            <td><label for="kasakartisecim{{i.id}}"><input class="kasalar" name="kasakartlari" id="kasakartisecim{{i.id}}" value="{{i.id}}/" type="radio">{{i.kasa_kodu}}</label></td>
+            <td>{{i.kasa_adi}}</td>
+            <td>{{i.aciklama}}</td>
+            <td>{{i.doviz_cinsi}}</td>
+            <td>{{i.entkodu}}</td>
+            <td>{{i.toplam_tahsilat}} {{i.doviz_cinsi}}</td>
+            <td>{{i.toplam_odeme}} {{i.doviz_cinsi}}</td>
+            <td>{{i.toplam_bakiye}} {{i.doviz_cinsi}}</td>
+            <td>{{i.ozel_kod}}</td>
+            <td>{{i.muh_kodu}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+
+  <script>
+    function redirectToSelectedLink() {
+  const radioButtons = document.getElementsByName('kasakartlari');
+  let selectedLink = null;
+
+  for (const radioButton of radioButtons) {
+    if (radioButton.checked) {
+      selectedLink = radioButton.value;
+      break;
+    }
+  }
+
+  if (selectedLink) {
+    window.location.href = "/{{firma.firma_ozel_anahtar}}/kasakartiduzelt/"+selectedLink;
+  } else {
+    alert('Lütfen bir Kasa Kartı seçin.');
+  }
+}
+function showConfirmationPopup() {
+  const radioButtons = document.getElementsByName('kasakartlari');
+  let selectedLink = null;
+
+  for (const radioButton of radioButtons) {
+    if (radioButton.checked) {
+      selectedLink = radioButton.value;
+      break;
+    }
+  }
+
+    // Pop-up penceresini aç
+    const confirmation = confirm("Emin misiniz?");
+    
+    // Kullanıcının seçimine göre işlem yap
+    if (confirmation) {
+        // Kullanıcı "Evet" dedi, yönlendirme yap
+        window.location.href = "/{{firma.firma_ozel_anahtar}}/kasakartisil/"+selectedLink;
+    } else {
+        // Kullanıcı "Hayır" dedi, isteğe bağlı olarak başka bir işlem yapabilirsiniz
+    }
+}
+  </script>
+{% endblock content %}
