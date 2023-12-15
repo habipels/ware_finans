@@ -3,65 +3,17 @@
   <!--Header-->
   <div class="icon-bar">
 
-    <a href="/{{firma.firma_ozel_anahtar}}/yenikasakarti/">Yeni Hesap</a>
+    <a href="/{{firma.firma_ozel_anahtar}}/hesapplaniekle/">Yeni Hesap</a>
     <a style="color: white;" onclick="redirectToSelectedLink()">Hesap İncele-Düzelt</a>
     <a style="color: white;" onclick="showConfirmationPopup()">Hesap Sil</a>
-    <a href="">Ödeme Tahsilat</a>
     <a href="" style="color:red;">Çıkış Yap (ESC)</a>
 
   </div>
-  <div class="d-menu">
-    <ul>
-      <li>
-        <ul>
-          <li><a href="/{{firma.firma_ozel_anahtar}}/kasatahsilfisi/" title="">Tahsilat Fişi</a></li>
-          <li><a href="/{{firma.firma_ozel_anahtar}}/kasaodemefisi/" title="">Ödeme Fişi</a></li>
-          <li><a href="/{{firma.firma_ozel_anahtar}}/virmanfisi/" title="">Virman Fişi</a></li>
-          <li><a href="/{{firma.firma_ozel_anahtar}}/dovizfisi/" title="">Döviz Fişi</a></li>
-          <li><a href="/{{firma.firma_ozel_anahtar}}/kasaacilisfisi/" title="">Açılış Fişi</a></li>
-          <li><a href="/{{firma.firma_ozel_anahtar}}/kasatahsilatmakbuzu/" title="">Kasa Tahsilat Makbuzu</a></li>
-          <li><a href="/{{firma.firma_ozel_anahtar}}/kasaodememakbuzu/" title="">Kasa Ödeme Makbuzu</a></li>
-          <li><a href="/{{firma.firma_ozel_anahtar}}/kasamaasodeme/" title="">Maaş Ödeme (Kasa)</a></li>
-        </ul><a href="" title="">Kasa Fiş İşlemleri</a>
-      </li>
-      <li>
-        <ul>
-          <li><a href="/{{firma.firma_ozel_anahtar}}/kasacariodeme/" title="">Ödeme Fişi</a></li>
-          <li><a href="/{{firma.firma_ozel_anahtar}}/kasacaritahsilat/" title="">Tahsilat Fişi</a></li>
-          <li><a href="" title="">Maaş Ödemesi (Kasa)</a></li>
-        </ul><a href="" title="">Cari Fiş İşlemleri</a>
 
-      </li>
-      <li>
-        <ul>
-          <li><a href="/{{firma.firma_ozel_anahtar}}/kasabankayayatirmafisi/" title="">Bankaya Yatırılan</a></li>
-          <li><a href="/{{firma.firma_ozel_anahtar}}/kasabankacekmefisi/" title="">Bankadan Çekilen</a></li>
-        </ul><a href="" title="">Banka Fiş İşlemleri</a>
-      </li>
-      <li>
-        <ul>
-          <li><a href="" title="">Çek/Senet Tahsili</a></li>
-          <li><a href="" title="">Senet Ödemesi</a></li>
-        </ul><a href="" title="">Çek/Senet İşlemleri</a>
-      </li>
-      <li>
-        <a href="" title="">Evrak Bul</a>
-      </li>
-      <li>
-        <a href="" title="">Fiş İncele</a>
-      </li>
-      <li>
-        <a href="" title="">Fiş Düzelt</a>
-      </li>
-      <li>
-        <a href="" title="">Fiş Sil</a>
-      </li>
-    </ul>
-  </div>
 
   <div class="container mt-3 tablo">
     <div class="table-responsive " style="
-  height: 300px;
+  height: 500px;
   overflow: auto;">
       <table class="table table-bordered ">
         <thead style="position: sticky;top: 0">
@@ -106,7 +58,13 @@
         <tbody>
         {% for i in hesapplanlari %}
           <tr>
-            <td><label for="kasakartisecim{{i.id}}"><input class="kasalar" name="kasakartlari" id="kasakartisecim{{i.id}}" value="{{i.id}}/" type="radio">{{i.hesap_kodu}}</label></td>
+            <td><label for="kasakartisecim{{i.id}}">
+            {% if i.degistiremez_bilgisi %}
+            
+            {% else %}
+            <input class="kasalar" name="kasakartlari" id="kasakartisecim{{i.id}}" value="{{i.id}}/" type="radio">
+            {% endif %}
+            {{i.hesap_kodu}}</label></td>
             <td>{{i.hesap_adi}}</td>
             <td>{% if i.detay %}
                 {{i.detay}}

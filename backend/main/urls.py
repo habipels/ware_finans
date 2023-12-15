@@ -106,6 +106,7 @@ urlpatterns = [
     #Genel Muhasebe
     #Hesap Planları
     path("<str:slug>/hesapplanlari/", views.hesap_planlari_ayarlari, name="hesap_planlari_ayarlari"),
+    path("<str:slug>/hesapplaniekle/", views.hesap_planlari_ekle, name="hesap_planlari_ekle"),
     #Hesap Planları
     #
 ]

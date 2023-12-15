@@ -283,6 +283,7 @@ class HesapPlanlari(models.Model):
     bagli_oldugu_firma = models.ForeignKey(firma, blank=True, null=True, on_delete=models.SET_NULL)
     aciklama = models.TextField(verbose_name="Açıklama",blank=True, null=True)
     silinme_bilgisi = models.BooleanField(default=False)
+    degistiremez_bilgisi = models.BooleanField(default=False)
 
 class banka_kart_bilgileri(models.Model):
     hafta = (
