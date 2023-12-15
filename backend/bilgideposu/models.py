@@ -1637,3 +1637,13 @@ class dilekceler(models.Model):
     bagli_oldugu_firma = models.ForeignKey(firma,blank=True,null=True,on_delete=models.SET_NULL)
     dilekce_adi = models.CharField(max_length=200,verbose_name="Dilekçe Adı",blank=True,null=True)
     dilekce = RichTextField(verbose_name="Dilekçe Metni",blank=True,null=True)
+
+
+
+#genel muhasebe 
+
+class genel_muhasebe(models.Model):
+    bagli_oldugu_firma = models.ForeignKey(firma,blank=True,null=True,on_delete=models.SET_NULL)
+    fis_tarihi = models.DateField(verbose_name="Fiş Tarihi",blank=True,null=True)
+    fis_no = models.CharField(max_length=200,verbose_name="Fiş No",blank=True,null=True)
+    yevmiye_no = models.CharField(max_length=200,verbose_name="yevmiye No",blank=True,null=True)
