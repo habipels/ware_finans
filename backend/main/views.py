@@ -4507,7 +4507,8 @@ def hesap_planlari_ekle(request,slug):
     if request.POST:
         hesapkodu = request.POST.get("hesapkodu")
         hesapadi = request.POST.get("hesapadi")
-        hesapadi = request.POST.get("hesapadi")
+        grupkodu = request.POST.get("grupkodu")
+        hesapdetayi = request.POST.get("hesapdetayi")
         hesapadiyabancidil = request.POST.get("hesapadiyabancidil")
         kdvyuzdesi = request.POST.get("kdvyuzdesi")
         kdvhesapkodu = request.POST.get("kdvhesapkodu")
@@ -4520,7 +4521,6 @@ def hesap_planlari_ekle(request,slug):
         stopajhesapkodu = request.POST.get("stopajhesapkodu")
         stopajturkodu = request.POST.get("stopajturkodu")
         stopajbelgeturu = request.POST.get("stopajbelgeturu")
-        hesapdetayi = request.POSt.get("hesapdetayi")
         borclualacakli = request.POST.get("borclualacakli")
         babs = request.POST.get("babs")
         kurfarkindakullan = request.POST.get("kurfarkindakullan")
@@ -4534,8 +4534,17 @@ def hesap_planlari_ekle(request,slug):
         iadeyekonu = request.POST.get("iadeyekonu")
         ihrackayitlisatislar = request.POST.get("ihrackayitlisatislar")
         ihrackayitlisatislar87 = request.POST.get("ihrackayitlisatislar87")
+        
+            
         HesapPlanlari.objects.create(
-            bagli_oldugu_firma =  get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),
-            hesap_kodu = 
-        )
+                bagli_oldugu_firma =  get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),
+                hesap_kodu = hesapkodu,hesap_adi = hesapadi,detay = hesapdetayi,
+                borclu_alacakli = borclualacakli,miktarli = miktarli,
+                stok_kodu = stoknumarasi,kdv_orani = kdvyuzdesi,iliskili_kdv_hesap_kodu2 = get_object_or_404(HesapPlanlari,id = kdvhesapkodu),
+                kamumu_ozelmi = kamuozel,hesap_aciklamasi = hesapadiyabancidil,
+                grup_kodu = grupkodu,ba_bslerde_kullanilsinmi = babs,kur_farkinida_kullan = kurfarkindakullan,
+                stopaj_hesap_kodu2 = get_object_or_404(HesapPlanlari,id = stopajhesapkodu),stopaj_orani = stopajyuzdesi,
+                stopaj_tur_kodu = stopajturkodu,stopaj_belge_turu=stopajbelgeturu,tevkifat_hesap_kodu2 = get_object_or_404(HesapPlanlari,id = tevkifathesapkodu),
+                kdv_islem_turu = get_object_or_404(tevkifat_tur_kodu,id = tevkifathesapkodutur),stopaj_orani = stopajyuzdesi,
+            )
     return render(request,"hesapplanlari/hesapplanlariekle.html",content)
