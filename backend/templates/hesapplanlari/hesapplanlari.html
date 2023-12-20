@@ -103,7 +103,7 @@
             {% endif %}
             </td>
             <td>{% if i.iliskili_kdv_hesap_kodu2 %}
-                {{i.iliskili_kdv_hesap_kodu2}}
+                {{i.iliskili_kdv_hesap_kodu2.hesap_adi}}
             {% endif %}
             </td>
             <td>{% if i.kamumu_ozelmi %}
@@ -127,7 +127,7 @@
             {% endif %}
             </td>
             <td>{% if i.stopaj_hesap_kodu2 %}
-                {{i.stopaj_hesap_kodu2}}
+                {{i.stopaj_hesap_kodu2.hesap_adi}}
             {% endif %}
             </td>
             <td>{% if i.stopaj_orani %}
@@ -145,7 +145,7 @@
 
 
             <td>{% if i.tevkifat_hesap_kodu2 %}
-                {{i.tevkifat_hesap_kodu2}}
+                {{i.tevkifat_hesap_kodu2.hesap_adi}}
             {% endif %}
             </td>
             <td>{% if i.kdv_islem_turu %}

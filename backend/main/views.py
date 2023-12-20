@@ -4525,7 +4525,7 @@ def hesap_planlari_ekle(request,slug):
         babs = request.POST.get("babs")
         kurfarkindakullan = request.POST.get("kurfarkindakullan")
         mutabakatayi = request.POST.get("mutabakatayi")
-        kamuozel = request.POSt.get("kamuozel")
+        kamuozel = request.POST.get("kamuozel")
         yurticisatismi = request.POST.get("yurticisatismi")
         ilaveedilecekkdv = request.POST.get("ilaveedilecekkdv")
         iadekdvmi = request.POST.get("iadekdvmi")
@@ -4552,5 +4552,6 @@ def hesap_planlari_ekle(request,slug):
                 yurt_ici_satis_mi = yurticisatismi,yuklenilen_iadeli_konu_olan_kdv_mi = iadeyekonu
                 
             )
-        #
+        link = "/"+slug+"/hesapplanlari/"
+        return redirect(link)
     return render(request,"hesapplanlari/hesapplanlariekle.html",content)
