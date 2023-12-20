@@ -7,6 +7,10 @@ from django.db.models import Q
 def homepage(request):
     content = {}
     content["firmalarim"] = firma.objects.filter(silinme_bilgisi = False,firma_muhasabecisi = request.user)
+    if request.user.is_authenticated:
+        pass
+    else:
+        return redirect("/users/loginandregister/")
     return render(request,"index.html",content)
 
 def firma_sayfasi(request,slug):
@@ -4480,7 +4484,7 @@ def hesap_planlari_ekle(request,slug):
     content["subeleri"] =  sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
     content["stokkartlarim"] =  stok_kartlar.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
     content["stokkartozelligi1"] = stok_birim_alis_satis_birimi.objects.filter(stok_karti_bilgisi__bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
-    hesaplar = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) )
+    hesaplar = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),detay = "Evet" )
     sistem = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =None)
     kart = cari_kartlar.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
     giderkartti = Giderler.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
@@ -4498,5 +4502,40 @@ def hesap_planlari_ekle(request,slug):
     content["banka_karti"] = banka_karti
     content["subelerim"] = subelerim
     content["kasa_bilgisi"] = kasa_bilgisi
+    content["tevkifa_hesaplari"] = tevkifat_tur_kodu.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
     content["siparisler"] = irsaliyeislem_durumlari.objects.filter(bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),silinme_bilgisi = False)
+    if request.POST:
+        hesapkodu = request.POST.get("hesapkodu")
+        hesapadi = request.POST.get("hesapadi")
+        hesapadi = request.POST.get("hesapadi")
+        hesapadiyabancidil = request.POST.get("hesapadiyabancidil")
+        kdvyuzdesi = request.POST.get("kdvyuzdesi")
+        kdvhesapkodu = request.POST.get("kdvhesapkodu")
+        miktarli = request.POST.get("miktarli")
+        stoknumarasi = request.POST.get("stoknumarasi")
+        tevkifatorani = request.POST.get("tevkifatorani")
+        tevkifathesapkodu = request.POST.get("tevkifathesapkodu")
+        tevkifathesapkodutur = request.POST.get("tevkifathesapkodutur")
+        stopajyuzdesi = request.POST.get("stopajyuzdesi")
+        stopajhesapkodu = request.POST.get("stopajhesapkodu")
+        stopajturkodu = request.POST.get("stopajturkodu")
+        stopajbelgeturu = request.POST.get("stopajbelgeturu")
+        hesapdetayi = request.POSt.get("hesapdetayi")
+        borclualacakli = request.POST.get("borclualacakli")
+        babs = request.POST.get("babs")
+        kurfarkindakullan = request.POST.get("kurfarkindakullan")
+        mutabakatayi = request.POST.get("mutabakatayi")
+        kamuozel = request.POSt.get("kamuozel")
+        yurticisatismi = request.POST.get("yurticisatismi")
+        ilaveedilecekkdv = request.POST.get("ilaveedilecekkdv")
+        iadekdvmi = request.POST.get("iadekdvmi")
+        ozelmatrah = request.POST.get("ozelmatrah")
+        kredikartli = request.POST.get("kredikartli")
+        iadeyekonu = request.POST.get("iadeyekonu")
+        ihrackayitlisatislar = request.POST.get("ihrackayitlisatislar")
+        ihrackayitlisatislar87 = request.POST.get("ihrackayitlisatislar87")
+        HesapPlanlari.objects.create(
+            bagli_oldugu_firma =  get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),
+            hesap_kodu = 
+        )
     return render(request,"hesapplanlari/hesapplanlariekle.html",content)

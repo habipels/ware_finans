@@ -176,7 +176,10 @@ class tevkifat_tur_kodu (models.Model):
     ihrac_kayitli_satis_kdv_mi_87 = models.CharField(max_length=100,verbose_name="İhraç Kayıtlı Satış KDV Mi? (87)",blank=True,null=True,choices=secme,default="")
     mutabakat_ayi = models.CharField(max_length=100,verbose_name="Mutabakat Ayı",blank=True,null=True,choices=ay,default="")
     yurt_ici_satis_mi = models.CharField(max_length=100,verbose_name="Yurt İçi Satış Mi? (600,601,602 Hariç)",blank=True,null=True,choices=secme,default="")
-    
+    bagli_oldugu_firma = models.ForeignKey(firma, blank=True, null=True, on_delete=models.SET_NULL)
+    aciklama = models.TextField(verbose_name="Açıklama",blank=True, null=True)
+    silinme_bilgisi = models.BooleanField(default=False)
+    degistiremez_bilgisi = models.BooleanField(default=False)
 class HesapPlanlari(models.Model):
     hesap_turu = (
         ("1", "Genel Planlar"),

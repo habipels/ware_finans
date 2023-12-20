@@ -1,164 +1,375 @@
 {% extends "homebase.html" %}
 {% block content %}
 <div class="container mt-5">
-    <div class="row">
-        <div class="col-2">
+  <div class="row">
+    <div class="col-2">
 
-        </div>
-        <div class="col-12" style="border: 1px solid black; padding: 20px;">
-            <div class="text-center" ><h2>Yeni Hesap Planı Oluşturma</h2>
-            <hr></div>
-            
-            <form method="post">
-                {% csrf_token %}
-                <div class="row genel">
-                    <div class="col-6">
-                        <label for="">Kasa Kodu</label>
-                        <br>
-                        <input name="kasakodu" type="text" >
-                    </div>
-                    <div class="col-6">
-                        <label for="">Kasa Adı</label>
-                        <br>
-                        <input name="kasaadi" type="text">
-                    </div>
-                    <div class="col-6">
-                        <label for="">Kasa Açıklaması</label>
-                        <br>
-                        <input name="kasaaciklamasi"  type="text">
-                    </div>
-                    <div class="col-6">
-                        <label for="">Muh. Kodu</label>
-                        <div class="row">
-                            <div class="col-10"><input name="muhtasarkodu" id="hesapplani" type="text"></div>
-                            <div class="col-2"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
-                        seç
-                      </button></div>
-                        </div>
-
-                    </div>
-                    <div class="col-4"><label for="">Ent. Kodu</label>
-                        <br>
-                    <select name="entkodu" id="">
-                        <option value="0"></option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                    </select></div>
-                    <div class="col-4"><label for="">Döviz Cinsi</label>
-                        <br>
-                        <select name="dovizcinsi" id="">
-                            
-                            <option value="TL">TL</option>
-                            <option value="Euro">EURO</option>
-                            <option value="Dolar">Dolar</option>
-                        </select></div>
-                    <div class="col-4">
-                        <label for="">Özel Kod</label><br>
-                        <input name="ozelkod" type="text">
-                    </div>
-                    <div class="mt-5" ></div>
-                    <div class="col-4">
-                        <button type="submit" class="btn btn-primary">Kaydet</button></div>
-                    <div class="col-4"><button>Kaydet Yenisini Oluştur</button></div>
-                    <div class="col-4"><a href="/{{firma.firma_ozel_anahtar}}/kasa/" class="btn btn-danger">İptal Et</a></div>
-                </div>
-
-            </form>
-        </div>
-        <div class="col-2">
-            
-        </div>
     </div>
+    <div class="col-12" style="border: 1px solid black; padding: 20px;">
+      <div class="text-center">
+        <h2>Yeni Hesap Planı Oluşturma</h2>
+        <hr>
+      </div>
+
+      <form method="post">
+        {% csrf_token %}
+        <div class="row genel">
+          <div class="col-3">
+            <label for="">Hesap Kodu</label>
+            <br>
+            <input name="hesapkodu" type="text">
+          </div>
+          <div class="col-3">
+            <label for="">Hesap Adı</label>
+            <br>
+            <input name="hesapadi" type="text">
+          </div>
+          <div class="col-3">
+            <label for="">Grup Kodu</label>
+            <br>
+            <input name="grupkodu" type="text">
+          </div>
+          <div class="col-3">
+            <label for="">Hesap Adı (Yabancı Dil)</label>
+            <br>
+            <input name="hesapadiyabancidil" type="text">
+          </div>
+          <div class="col-3">
+            <label for="">KDV (%)</label>
+            <br>
+            <input name="kdvyuzdesi" step="0.01" type="number">
+          </div>
+          <div class="col-3">
+            <label for="">KDV Hesap Kodu</label>
+            <br>
+            <select name="kdvhesapkodu" id="">
+              {% for i in hesapplanlari %}
+              <option value="{{i.id}}">{{i.hesap_kodu}} {{i.hesap_adi}}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="col-3">
+
+          </div>
+          <hr>
+          <div class="col-3">
+            <label for="">Miktarlı</label>
+            <br>
+            <select name="miktarli" id="">
+              <option value=""></option>
+              <option value="Evet">Evet</option>
+              <option value="Hayır">Hayır</option>
+            </select>
+          </div>
+          <div class="col-3">
+            <label for="">Stok Kodu</label>
+            <br>
+            <input name="stoknumarasi" type="text">
+          </div>
+          <div class="col-3">
+            <label for="">Tevkifat Oranı</label>
+            <br>
+            <select name="tevkifatorani" id="">
+              <option value=""></option>
+              <option value="2/10">2/10</option>
+              <option value="3/10">3/10</option>
+              <option value="4/10">4/10</option>
+              <option value="5/10">5/10</option>
+              <option value="7/10">7/10</option>
+              <option value="9/10">9/10</option>
+            </select>
+          </div>
+          <div class="col-3">
+            <label for="">Tevkifat Hesap Kodu</label>
+            <br>
+            <select name="tevkifathesapkodu" id="">
+              {% for i in hesapplanlari %}
+              <option value="{{i.id}}">{{i.hesap_kodu}} {{i.hesap_adi}}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="col-3">
+            <label for="">KDV İşlem Türü (Tevkifat Hesap Kodu)</label>
+            <br>
+            <select name="tevkifathesapkodutur" id="">
+              {% for i in tevkifa_hesaplari %}
+              <option value="{{i.id}}">{{i.hesap_kodu}} {{i.hesap_adi}}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="col-3">
+            <label for="">Stopaj Oranı (%)</label>
+            <br>
+            <input name="stopajyuzdesi" step="0.01" type="number">
+          </div>
+          <div class="col-3">
+            <label for="">Stopaj Hesap Kodu</label>
+            <br>
+            <select name="stopajhesapkodu" id="">
+              {% for i in hesapplanlari %}
+              <option value="{{i.id}}">{{i.hesap_kodu}} {{i.hesap_adi}}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="col-3">
+            <label for="">Stopaj Tür Kodu</label>
+            <br>
+            <input name="stopajturkodu" type="text">
+          </div>
+          <div class="col-3">
+            <label for="">Stopaj Belge Türü</label>
+            <br>
+            <select name="stopajbelgeturu" id="">
+              <option value="">Yok</option>
+              <option value="S.M.M Makbuzu">S.M.M Makbuzu</option>
+              <option value="M. Makbuzu">M. Makbuzu</option>
+              <option value="Gider Pusulası">Gider Pusulası</option>
+              <option value="Fatura">Fatura</option>
+              <option value="Diğer">Diğer</option>
+            </select>
+          </div>
+          <hr>
+          <div class="col-3">
+            <label for="">Hesap Detayı</label>
+            <br>
+            <select name="hesapdetayi" id="">
+              <option value=""></option>
+              <option value="Evet">Evet</option>
+              <option value="Hayır">Hayır</option>              
+            </select>
+          </div>
+          <div class="col-3">
+            <label for="">Borçlu Alacaklı ? </label>
+            <br>
+            <select name="borclualacakli" id="">
+              <option value=""></option>
+              <option value="Borçlu">Borçlu</option>
+              <option value="Alacaklı">Alacaklı</option>              
+            </select>
+          </div>
+          <div class="col-3">
+            <label for="">Ba Bs ? </label>
+            <br>
+            <select name="babs" id="">
+              <option value=""></option>
+              <option value="Evet">Evet</option>
+              <option value="Hayır">Hayır</option>              
+            </select>
+          </div>
+          <div class="col-3">
+            <label for="">Kur Farkında Kullan </label>
+            <br>
+            <select name="kurfarkindakullan" id="">
+              <option value=""></option>
+              <option value="Evet">Evet</option>
+              <option value="Hayır">Hayır</option>              
+            </select>
+          </div>
+          <hr>
+          <div class="col-3">
+            <label for="">Mutabakat Ayı </label>
+            <br>
+            <select name="mutabakatayi" id="">
+              <option value=""></option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+            </select>
+          </div>
+          <div class="col-3">
+            <label for="">Kamu Özel</label>
+            <br>
+            <select name="kamuozel" id="">
+              <option value=""></option>
+              <option value="Kamu Kuruluşlar">Kamu Kuruluşlar</option>
+              <option value="Özel Sektör">Özel Sektör</option>              
+            </select>
+          </div>
+          <div class="col-3">
+            <label for="">Yurtiçi Satış Mı ? (600, 601, 602 Hariç) </label>
+            <br>
+            <select name="yurticisatismi" id="">
+              <option value=""></option>
+              <option value="Evet">Evet</option>
+              <option value="Hayır">Hayır</option>              
+            </select>
+          </div>
+          <div class="col-3">
+            <label for="">İlave Edilecek KDV Mi?  </label>
+            <br>
+            <select name="ilaveedilecekkdv" id="">
+              <option value=""></option>
+              <option value="Evet">Evet</option>
+              <option value="Hayır">Hayır</option>              
+            </select>
+          </div>
+          <hr>
+          <div class="col-3">
+            <label for="">İade KDV Mi?  </label>
+            <br>
+            <select name="iadekdvmi" id="">
+              <option value=""></option>
+              <option value="Evet">Evet</option>
+              <option value="Hayır">Hayır</option>              
+            </select>
+          </div>
+          <div class="col-3">
+            <label for="">Özel Matrah Mı?  </label>
+            <br>
+            <select name="ozelmatrah" id="">
+              <option value=""></option>
+              <option value="Evet">Evet</option>
+              <option value="Hayır">Hayır</option>              
+            </select>
+          </div>
+          <div class="col-3">
+            <label for="">Kredi Kartlı Satış Mı ?   </label>
+            <br>
+            <select name="kredikartli" id="">
+              <option value=""></option>
+              <option value="Evet">Evet</option>
+              <option value="Hayır">Hayır</option>              
+            </select>
+          </div>
+          <div class="col-3">
+            <label for="">Yüklenilen / İadeye Konu Olan KDV Mi ? (İhraç Kayıtlı Satışlar Hariç) </label>
+            <br>
+            <select name="iadeyekonu" id="">
+              <option value=""></option>
+              <option value="Evet">Evet</option>
+              <option value="Hayır">Hayır</option>              
+            </select>
+          </div>
+          <hr>
+          <div class="col-3">
+            <label for="">İhraç Kayıtlı Satışlar İçin mi ? (No 85)  </label>
+            <br>
+            <select name="ihrackayitlisatislar" id="">
+              <option value=""></option>
+              <option value="Evet">Evet</option>
+              <option value="Hayır">Hayır</option>              
+            </select>
+          </div>
+          <div class="col-3">
+            <label for="">İhraç Kayıtlı Satışlar İçin mi ? (No 87)  </label>
+            <br>
+            <select name="ihrackayitlisatislar87" id="">
+              <option value=""></option>
+              <option value="Evet">Evet</option>
+              <option value="Hayır">Hayır</option>              
+            </select>
+          </div>
+          <hr>
+          <div class="col-4"></div>
+          <div class="col-4"><button type="submit" class="btn btn-warning" >Kaydet Yenisini Oluştur</button></div>
+          <div class="col-4"><a href="/{{firma.firma_ozel_anahtar}}/hesapplanlari/" class="btn btn-danger">İptal Et</a></div>
+        </div>
+
+      </form>
+    </div>
+    <div class="col-2">
+
+    </div>
+  </div>
 </div>
-  <div class="modal" id="myModal">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-  
-        <!-- Modal Header -->
-        <div class="modal-header">
-          <h4 class="modal-title">Hesap Planı Seç</h4>
-          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-        </div>
-  
-        <!-- Modal body -->
-        <div class="modal-body">
-          <input type="text" id="searchInput" class="form-control" placeholder="Arama...">
-  
-  <table class="table table-striped mt-3">
-    <thead>
-      <tr>
-        <th>Hesap Kodu</th>
-        <th>Hesap AdI</th>
-      </tr>
-    </thead>
-    <tbody>
-    {% for i in sistemhesapplanlari %}
-    <tr>
-        <td>{{i.hesap_kodu}}</td>
-        <td>{{i.hesap_adi}}</td>
-        
-      </tr>
-    {% endfor %}
-    {% for i in hesapplanlari %}
-    <tr>
-           <td>{{i.hesap_kodu}}</td>
-        <td>{{i.hesap_adi}}</td>
-        
-      </tr>
-    {% endfor %}
-      
-      
-      <!-- Diğer satırları burada ekleyin -->
-    </tbody>
-  </table>
-</div>
-        </div>
-  
-        <!-- Modal footer -->
-        <div class="modal-footer">
-        Seçmek için listeye Tıklamanız Yeterlidir.
-          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kapat</button>
-        </div>
-  
+<div class="modal" id="myModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Hesap Planı Seç</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <input type="text" id="searchInput" class="form-control" placeholder="Arama...">
+
+        <table class="table table-striped mt-3">
+          <thead>
+            <tr>
+              <th>Hesap Kodu</th>
+              <th>Hesap AdI</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for i in sistemhesapplanlari %}
+            <tr>
+              <td>{{i.hesap_kodu}}</td>
+              <td>{{i.hesap_adi}}</td>
+
+            </tr>
+            {% endfor %}
+            {% for i in hesapplanlari %}
+            <tr>
+              <td>{{i.hesap_kodu}}</td>
+              <td>{{i.hesap_adi}}</td>
+
+            </tr>
+            {% endfor %}
+
+
+            <!-- Diğer satırları burada ekleyin -->
+          </tbody>
+        </table>
       </div>
     </div>
 
-    <script>
-        const searchInput = document.getElementById('searchInput');
-        const table = document.querySelector('.table');
-        const firmavergidairesikodu = document.getElementById('hesapplani');
-        const firmavergidairesi = document.getElementById("hesapplani");
-        searchInput.addEventListener('input', function () {
-          const searchText = this.value.toLowerCase();
-      
-          for (const row of table.rows) {
-            let found = false;
-            for (const cell of row.cells) {
-              if (cell.textContent.toLowerCase().includes(searchText)) {
-                found = true;
-                break;
-              }
-            }
-            row.style.display = found ? '' : 'none';
-          }
-        });
-      
-        // Tablo satırlarına tıklama olayını ekle
-        const tableRows = table.getElementsByTagName('tr');
-        for (let i = 1; i < tableRows.length; i++) {
-          tableRows[i].addEventListener('click', function () {
-            const cells = this.cells;
-            const rowData = {
-              id: cells[0].textContent,
-              ad: cells[1].textContent,
-            };
-      
-            // Seçilen veriyi input'a yaz
-            firmavergidairesi.value = `${rowData.id}`;
-            firmavergidairesikodu.value = `${rowData.id}`;
-          });
+    <!-- Modal footer -->
+    <div class="modal-footer">
+      Seçmek için listeye Tıklamanız Yeterlidir.
+      <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kapat</button>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  const searchInput = document.getElementById('searchInput');
+  const table = document.querySelector('.table');
+  const firmavergidairesikodu = document.getElementById('hesapplani');
+  const firmavergidairesi = document.getElementById("hesapplani");
+  searchInput.addEventListener('input', function () {
+    const searchText = this.value.toLowerCase();
+
+    for (const row of table.rows) {
+      let found = false;
+      for (const cell of row.cells) {
+        if (cell.textContent.toLowerCase().includes(searchText)) {
+          found = true;
+          break;
         }
-      </script>
+      }
+      row.style.display = found ? '' : 'none';
+    }
+  });
+
+  // Tablo satırlarına tıklama olayını ekle
+  const tableRows = table.getElementsByTagName('tr');
+  for (let i = 1; i < tableRows.length; i++) {
+    tableRows[i].addEventListener('click', function () {
+      const cells = this.cells;
+      const rowData = {
+        id: cells[0].textContent,
+        ad: cells[1].textContent,
+      };
+
+      // Seçilen veriyi input'a yaz
+      firmavergidairesi.value = `${rowData.id}`;
+      firmavergidairesikodu.value = `${rowData.id}`;
+    });
+  }
+</script>
 <script src="https://unpkg.com/popper.js/dist/umd/popper.min.js"></script>
-<script src="https://unpkg.com/bootstrap/dist/js/bootstrap.min.js"></script>  
+<script src="https://unpkg.com/bootstrap/dist/js/bootstrap.min.js"></script>
 {% endblock content %}
