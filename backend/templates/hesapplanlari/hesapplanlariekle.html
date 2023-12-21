@@ -111,7 +111,7 @@
             <label for="">Stopaj Hesap Kodu</label>
             <br>
             <select name="stopajhesapkodu" id="">
-            <option value="{{hes.id}}">{{hes.stopaj_hesap_kodu2.hesap_kodu}} {{hes.stopaj_hesap_kodu2.hesap_adi}}</option>
+            <option value="{{hes.stopaj_hesap_kodu2.id}}">{{hes.stopaj_hesap_kodu2.hesap_kodu}} {{hes.stopaj_hesap_kodu2.hesap_adi}}</option>
               {% for i in hesapplanlari %}
               <option value="{{i.id}}">{{i.hesap_kodu}} {{i.hesap_adi}}</option>
               {% endfor %}
@@ -120,12 +120,13 @@
           <div class="col-3">
             <label for="">Stopaj Tür Kodu</label>
             <br>
-            <input name="stopajturkodu" type="text">
+            <input value="{{hes.stopaj_tur_kodu}}" name="stopajturkodu" type="text">
           </div>
           <div class="col-3">
             <label for="">Stopaj Belge Türü</label>
             <br>
             <select name="stopajbelgeturu" id="">
+            <option value="{{hes.stopaj_belge_turu}}">{{hes.stopaj_belge_turu}}</option>
               <option value="">Yok</option>
               <option value="S.M.M Makbuzu">S.M.M Makbuzu</option>
               <option value="M. Makbuzu">M. Makbuzu</option>
@@ -139,6 +140,7 @@
             <label for="">Hesap Detayı</label>
             <br>
             <select name="hesapdetayi" id="">
+              <option value="{{hes.detay}}">{{hes.detay}}</option>
               <option value=""></option>
               <option value="Evet">Evet</option>
               <option value="Hayır">Hayır</option>              
@@ -148,6 +150,7 @@
             <label for="">Borçlu Alacaklı ? </label>
             <br>
             <select name="borclualacakli" id="">
+            <option value="{{hes.borclu_alacakli}}">{{hes.borclu_alacakli}}</option>
               <option value=""></option>
               <option value="Borçlu">Borçlu</option>
               <option value="Alacaklı">Alacaklı</option>              
@@ -157,6 +160,7 @@
             <label for="">Ba Bs ? </label>
             <br>
             <select name="babs" id="">
+            <option value="{{hes.ba_bslerde_kullanilsinmi}}">{{hes.ba_bslerde_kullanilsinmi}}</option>
               <option value=""></option>
               <option value="Evet">Evet</option>
               <option value="Hayır">Hayır</option>              
@@ -166,6 +170,7 @@
             <label for="">Kur Farkında Kullan </label>
             <br>
             <select name="kurfarkindakullan" id="">
+            <option value="{{hes.kur_farkinida_kullan}}">{{hes.kur_farkinida_kullan}}</option>
               <option value=""></option>
               <option value="Evet">Evet</option>
               <option value="Hayır">Hayır</option>              
@@ -176,6 +181,7 @@
             <label for="">Mutabakat Ayı </label>
             <br>
             <select name="mutabakatayi" id="">
+            <option value="{{hes.mutabakat_ayi}}">{{hes.mutabakat_ayi}}</option>
               <option value=""></option>
               <option value="1">1</option>
               <option value="2">2</option>
@@ -195,6 +201,7 @@
             <label for="">Kamu Özel</label>
             <br>
             <select name="kamuozel" id="">
+            <option value="{{hes.kamumu_ozelmi}}">{{hes.kamumu_ozelmi}}</option>
               <option value=""></option>
               <option value="Kamu Kuruluşlar">Kamu Kuruluşlar</option>
               <option value="Özel Sektör">Özel Sektör</option>              
@@ -204,6 +211,7 @@
             <label for="">Yurtiçi Satış Mı ? (600, 601, 602 Hariç) </label>
             <br>
             <select name="yurticisatismi" id="">
+            <option value="{{hes.yurt_ici_satis_mi}}">{{hes.yurt_ici_satis_mi}}</option>
               <option value=""></option>
               <option value="Evet">Evet</option>
               <option value="Hayır">Hayır</option>              
@@ -213,6 +221,7 @@
             <label for="">İlave Edilecek KDV Mi?  </label>
             <br>
             <select name="ilaveedilecekkdv" id="">
+            <option value="{{hes.ilave_edilecek_kdv_mi}}">{{hes.ilave_edilecek_kdv_mi}}</option>
               <option value=""></option>
               <option value="Evet">Evet</option>
               <option value="Hayır">Hayır</option>              
@@ -223,6 +232,7 @@
             <label for="">İade KDV Mi?  </label>
             <br>
             <select name="iadekdvmi" id="">
+            <option value="{{hes.iade_edilecek_kdv_mi}}">{{hes.iade_edilecek_kdv_mi}}</option>
               <option value=""></option>
               <option value="Evet">Evet</option>
               <option value="Hayır">Hayır</option>              
@@ -232,6 +242,7 @@
             <label for="">Özel Matrah Mı?  </label>
             <br>
             <select name="ozelmatrah" id="">
+            <option value="{{hes.ozel_matrah_mi}}">{{hes.ozel_matrah_mi}}</option>
               <option value=""></option>
               <option value="Evet">Evet</option>
               <option value="Hayır">Hayır</option>              
@@ -241,6 +252,7 @@
             <label for="">Kredi Kartlı Satış Mı ?   </label>
             <br>
             <select name="kredikartli" id="">
+            <option value="{{hes.kredi_karti_satis_mi}}">{{hes.kredi_karti_satis_mi}}</option>
               <option value=""></option>
               <option value="Evet">Evet</option>
               <option value="Hayır">Hayır</option>              
@@ -250,6 +262,7 @@
             <label for="">Yüklenilen / İadeye Konu Olan KDV Mi ? (İhraç Kayıtlı Satışlar Hariç) </label>
             <br>
             <select name="iadeyekonu" id="">
+            <option value="{{hes.yuklenilen_iadeli_konu_olan_kdv_mi}}">{{hes.yuklenilen_iadeli_konu_olan_kdv_mi}}</option>
               <option value=""></option>
               <option value="Evet">Evet</option>
               <option value="Hayır">Hayır</option>              
@@ -260,6 +273,7 @@
             <label for="">İhraç Kayıtlı Satışlar İçin mi ? (No 85)  </label>
             <br>
             <select name="ihrackayitlisatislar" id="">
+             <option value="{{hes.ihrac_kayitli_satis_kdv_mi_85}}">{{hes.ihrac_kayitli_satis_kdv_mi_85}}</option>
               <option value=""></option>
               <option value="Evet">Evet</option>
               <option value="Hayır">Hayır</option>              
@@ -269,6 +283,7 @@
             <label for="">İhraç Kayıtlı Satışlar İçin mi ? (No 87)  </label>
             <br>
             <select name="ihrackayitlisatislar87" id="">
+            <option value="{{hes.ihrac_kayitli_satis_kdv_mi_87}}">{{hes.ihrac_kayitli_satis_kdv_mi_87}}</option>
               <option value=""></option>
               <option value="Evet">Evet</option>
               <option value="Hayır">Hayır</option>              
