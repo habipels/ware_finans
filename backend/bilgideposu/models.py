@@ -240,7 +240,7 @@ class HesapPlanlari(models.Model):
     borclu_alacakli = models.CharField(max_length=100, verbose_name="Borçlu Alacaklı", blank=True, null=True)
     miktarli = models.CharField(max_length=100, verbose_name="Miktarlı", blank=True, null=True, choices=secme, default="")
     stok_kodu = models.CharField(max_length=100, verbose_name="Stok Kodu", blank=True, null=True)
-    kdv_orani = models.BigIntegerField(verbose_name="KDV Oranı", default=0)
+    kdv_orani = models.FloatField(verbose_name="KDV Oranı", default=0)
     iliskili_kdv_hesap_kodu2 = models.ForeignKey('self', related_name="iliskili_kdv_hesap_kodlari", blank=True,
                                                 null=True, verbose_name="İlişkili KDV Hesap Kodu",
                                                 on_delete=models.CASCADE)

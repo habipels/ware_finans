@@ -4553,3 +4553,96 @@ def hesap_planlari_ekle(request,slug):
         link = "/"+slug+"/hesapplanlari/"
         return redirect(link)
     return render(request,"hesapplanlari/hesapplanlariekle.html",content)
+
+
+def hesap_planlari_silme(request,slug,id):
+    HesapPlanlari.objects.filter(id = id,bagli_oldugu_firma =
+                                 get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),degistiremez_bilgisi = False).update(silinme_bilgisi = True)
+    link = "/"+slug+"/hesapplanlari/"
+    return redirect(link)
+
+def hesap_planlari_detay_degistirme(request,slug,id):
+    HesapPlanlari.objects.filter(id = id,bagli_oldugu_firma =
+                                 get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)).update(detay = "Evet")
+    link = "/"+slug+"/hesapplanlari/"
+    return redirect(link)
+
+
+def hesap_planlari_duzenle(request,slug,id):
+    content ={}
+    content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
+    content["subeleri"] =  sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    content["stokkartlarim"] =  stok_kartlar.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    content["stokkartozelligi1"] = stok_birim_alis_satis_birimi.objects.filter(stok_karti_bilgisi__bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    hesaplar = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),detay = "Evet" )
+    sistem = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =None)
+    kart = cari_kartlar.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    giderkartti = Giderler.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    gelirkartti = Gelirler.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    banka_karti = banka.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    subelerim = sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    kasa_bilgisi = Kasa.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    content["carilerim"]  = cari_kartlar.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    content["carilerimsube"] = cari_kartislemleri_sube_bilgiler.objects.filter(cari_bilgisi__bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    content["kart"] = kart
+    content["gelirkartti"] = gelirkartti
+    content["giderkartti"] = giderkartti
+    content["hesapplanlari"] = hesaplar
+    content["sistemhesapplanlari"] = sistem
+    content["banka_karti"] = banka_karti
+    content["subelerim"] = subelerim
+    content["kasa_bilgisi"] = kasa_bilgisi
+    content["tevkifa_hesaplari"] = tevkifat_tur_kodu.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    content["siparisler"] = irsaliyeislem_durumlari.objects.filter(bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),silinme_bilgisi = False)
+    content["hes"]=get_object_or_404(HesapPlanlari,id = id,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) )
+    if request.POST:
+        hesapkodu = request.POST.get("hesapkodu")
+        hesapadi = request.POST.get("hesapadi")
+        grupkodu = request.POST.get("grupkodu")
+        hesapdetayi = request.POST.get("hesapdetayi")
+        hesapadiyabancidil = request.POST.get("hesapadiyabancidil")
+        kdvyuzdesi = request.POST.get("kdvyuzdesi")
+        kdvhesapkodu = request.POST.get("kdvhesapkodu")
+        miktarli = request.POST.get("miktarli")
+        stoknumarasi = request.POST.get("stoknumarasi")
+        tevkifatorani = request.POST.get("tevkifatorani")
+        tevkifathesapkodu = request.POST.get("tevkifathesapkodu")
+        tevkifathesapkodutur = request.POST.get("tevkifathesapkodutur")
+        stopajyuzdesi = request.POST.get("stopajyuzdesi")
+        stopajhesapkodu = request.POST.get("stopajhesapkodu")
+        stopajturkodu = request.POST.get("stopajturkodu")
+        stopajbelgeturu = request.POST.get("stopajbelgeturu")
+        borclualacakli = request.POST.get("borclualacakli")
+        babs = request.POST.get("babs")
+        kurfarkindakullan = request.POST.get("kurfarkindakullan")
+        mutabakatayi = request.POST.get("mutabakatayi")
+        kamuozel = request.POST.get("kamuozel")
+        yurticisatismi = request.POST.get("yurticisatismi")
+        ilaveedilecekkdv = request.POST.get("ilaveedilecekkdv")
+        iadekdvmi = request.POST.get("iadekdvmi")
+        ozelmatrah = request.POST.get("ozelmatrah")
+        kredikartli = request.POST.get("kredikartli")
+        iadeyekonu = request.POST.get("iadeyekonu")
+        ihrackayitlisatislar = request.POST.get("ihrackayitlisatislar")
+        ihrackayitlisatislar87 = request.POST.get("ihrackayitlisatislar87")
+        
+            
+        HesapPlanlari.objects.create(
+                bagli_oldugu_firma =  get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),
+                hesap_kodu = hesapkodu,hesap_adi = hesapadi,detay = hesapdetayi,
+                borclu_alacakli = borclualacakli,miktarli = miktarli,
+                stok_kodu = stoknumarasi,kdv_orani = kdvyuzdesi,iliskili_kdv_hesap_kodu2 = get_object_or_404(HesapPlanlari,id = kdvhesapkodu),
+                kamumu_ozelmi = kamuozel,hesap_aciklamasi = hesapadiyabancidil,
+                grup_kodu = grupkodu,ba_bslerde_kullanilsinmi = babs,kur_farkinida_kullan = kurfarkindakullan,
+                stopaj_hesap_kodu2 = get_object_or_404(HesapPlanlari,id = stopajhesapkodu),stopaj_orani = stopajyuzdesi,
+                stopaj_tur_kodu = stopajturkodu,stopaj_belge_turu=stopajbelgeturu,tevkifat_hesap_kodu2 = get_object_or_404(HesapPlanlari,id = tevkifathesapkodu),
+                kdv_islem_turu = get_object_or_404(tevkifat_tur_kodu,id = tevkifathesapkodutur),tevkifat_orani = tevkifatorani,
+                ilave_edilecek_kdv_mi = ilaveedilecekkdv,iade_edilecek_kdv_mi = iadekdvmi,
+                ozel_matrah_mi = ozelmatrah,kredi_karti_satis_mi  =kredikartli,ihrac_kayitli_satis_kdv_mi_85 =ihrackayitlisatislar,
+                ihrac_kayitli_satis_kdv_mi_87 = ihrackayitlisatislar87,mutabakat_ayi = mutabakatayi,
+                yurt_ici_satis_mi = yurticisatismi,yuklenilen_iadeli_konu_olan_kdv_mi = iadeyekonu
+                
+            )
+        link = "/"+slug+"/hesapplanlari/"
+        return redirect(link)
+    return render(request,"hesapplanlari/hesapplanlariekle.html",content)

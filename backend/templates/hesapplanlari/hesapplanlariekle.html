@@ -17,32 +17,33 @@
           <div class="col-3">
             <label for="">Hesap Kodu</label>
             <br>
-            <input name="hesapkodu" type="text">
+            <input name="hesapkodu" value="{{ hes.hesap_kodu }}" type="text">
           </div>
           <div class="col-3">
             <label for="">Hesap Adı</label>
             <br>
-            <input name="hesapadi" type="text">
+            <input value="{{ hes.hesap_adi }}" name="hesapadi" type="text">
           </div>
           <div class="col-3">
             <label for="">Grup Kodu</label>
             <br>
-            <input name="grupkodu" type="text">
+            <input value="{{ hes.grup_kodu }}" name="grupkodu" type="text">
           </div>
           <div class="col-3">
             <label for="">Hesap Adı (Yabancı Dil)</label>
             <br>
-            <input name="hesapadiyabancidil" type="text">
+            <input value="{{ hes.hesap_aciklamasi }}" name="hesapadiyabancidil" type="text">
           </div>
           <div class="col-3">
             <label for="">KDV (%)</label>
             <br>
-            <input name="kdvyuzdesi" step="0.01" type="number">
+            <input value="{{ hes.kdv_orani|stringformat:'.2f' }}" name="kdvyuzdesi" step="0.01" type="number">
           </div>
           <div class="col-3">
             <label for="">KDV Hesap Kodu</label>
             <br>
             <select name="kdvhesapkodu" id="">
+            <option value="{{hes.iliskili_kdv_hesap_kodu2.id}}">{{hes.iliskili_kdv_hesap_kodu2.hesap_kodu}} {{hes.iliskili_kdv_hesap_kodu2.hesap_adi}}</option>
               {% for i in hesapplanlari %}
               <option value="{{i.id}}">{{i.hesap_kodu}} {{i.hesap_adi}}</option>
               {% endfor %}
@@ -56,6 +57,7 @@
             <label for="">Miktarlı</label>
             <br>
             <select name="miktarli" id="">
+            <option value="{{hes.miktarli}}">{{hes.miktarli}}</option>
               <option value=""></option>
               <option value="Evet">Evet</option>
               <option value="Hayır">Hayır</option>
@@ -64,12 +66,13 @@
           <div class="col-3">
             <label for="">Stok Kodu</label>
             <br>
-            <input name="stoknumarasi" type="text">
+            <input value="{{hes.stok_kodu}}" name="stoknumarasi" type="text">
           </div>
           <div class="col-3">
             <label for="">Tevkifat Oranı</label>
             <br>
             <select name="tevkifatorani" id="">
+              <option value="{{hes.tevkifat_orani}}">{{hes.tevkifat_orani}}</option>
               <option value=""></option>
               <option value="2/10">2/10</option>
               <option value="3/10">3/10</option>
@@ -83,6 +86,7 @@
             <label for="">Tevkifat Hesap Kodu</label>
             <br>
             <select name="tevkifathesapkodu" id="">
+            <option value="{{hes.tevkifat_hesap_kodu2.id}}">{{hes.tevkifat_hesap_kodu2.hesap_kodu}} {{hes.tevkifat_hesap_kodu2.hesap_adi}}</option>
               {% for i in hesapplanlari %}
               <option value="{{i.id}}">{{i.hesap_kodu}} {{i.hesap_adi}}</option>
               {% endfor %}
@@ -92,6 +96,7 @@
             <label for="">KDV İşlem Türü (Tevkifat Hesap Kodu)</label>
             <br>
             <select name="tevkifathesapkodutur" id="">
+            <option value="{{hes.kdv_islem_turu.id}}">{{hes.kdv_islem_turu.hesap_kodu}} {{hes.kdv_islem_turu.hesap_adi}}</option>
               {% for i in tevkifa_hesaplari %}
               <option value="{{i.id}}">{{i.hesap_kodu}} {{i.hesap_adi}}</option>
               {% endfor %}
@@ -100,12 +105,13 @@
           <div class="col-3">
             <label for="">Stopaj Oranı (%)</label>
             <br>
-            <input name="stopajyuzdesi" step="0.01" type="number">
+            <input value="{{ hes.stopaj_orani|stringformat:'.2f' }}"  name="stopajyuzdesi" step="0.01" type="number">
           </div>
           <div class="col-3">
             <label for="">Stopaj Hesap Kodu</label>
             <br>
             <select name="stopajhesapkodu" id="">
+            <option value="{{hes.id}}">{{hes.stopaj_hesap_kodu2.hesap_kodu}} {{hes.stopaj_hesap_kodu2.hesap_adi}}</option>
               {% for i in hesapplanlari %}
               <option value="{{i.id}}">{{i.hesap_kodu}} {{i.hesap_adi}}</option>
               {% endfor %}

@@ -107,6 +107,9 @@ urlpatterns = [
     #Hesap Planları
     path("<str:slug>/hesapplanlari/", views.hesap_planlari_ayarlari, name="hesap_planlari_ayarlari"),
     path("<str:slug>/hesapplaniekle/", views.hesap_planlari_ekle, name="hesap_planlari_ekle"),
+    path("<str:slug>/hesapplanisil/<int:id>/", views.hesap_planlari_silme, name="hesap_planlari_silme"),
+    path("<str:slug>/hesapplandetaydegistir/<int:id>/", views.hesap_planlari_detay_degistirme, name="hesap_planlari_detay_degistirme"),
+    path("<str:slug>/hesapplaniduzenle/<int:id>/", views.hesap_planlari_duzenle, name="hesap_planlari_duzenle"),
     #Hesap Planları
     #
 ]
