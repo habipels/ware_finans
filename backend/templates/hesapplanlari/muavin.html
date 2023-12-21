@@ -137,27 +137,8 @@
                     <th class="text-center" style="min-width: 150px ;">Miktar</th>
                     <th class="text-center" style="min-width: 150px ;">Bakiye Miktarı</th>
                     <th class="text-center" style="min-width: 150px ;">Borçlu Alacaklı ?</th>
-                    <th class="text-center" style="min-width: 150px ;">Kur Farkında Kullan</th>
-                    <th class="text-center" style="min-width: 150px ;">Stopaj Hesap Kodu</th>
-                    <th class="text-center" style="min-width: 150px ;">Stopaj Oranı (%)</th>
-                    <th class="text-center" style="min-width: 150px ;">Stopaj Tür Kodu</th>
-                    <th class="text-center" style="min-width: 150px ;">Stopaj Belge Türü</th>
-                    <th class="text-center" style="min-width: 150px ;">Tevkifat Hesap Kodu</th>
-                    <th class="text-center" style="min-width: 150px ;">KDV İşlem Türü</th>
-                    <th class="text-center" style="min-width: 150px ;">Tevkifat Oranı (2/10,3/10,4/10,5/10,7/10,9/10)
-                    </th>
-                    <th class="text-center" style="min-width: 150px ;">İlave Edilecek KDV mi ? </th>
-                    <th class="text-center" style="min-width: 150px ;">İade KDV Mi ?</th>
-                    <th class="text-center" style="min-width: 150px ;">Özel Matrah Mı ?</th>
-                    <th class="text-center" style="min-width: 150px ;">Kredi KArtı Satış Mı?</th>
-                    <th class="text-center" style="min-width: 150px ;">Yüklenilen / iaddeye konu olan KDV mi ? (ihrç.
-                        kayıtlı Satış Hariç)</th>
-                    <th class="text-center" style="min-width: 150px ;">İhraç Kayıtlı Satışlar İçin Yüklenilen KDV Mi ?
-                        (No 85)</th>
-                    <th class="text-center" style="min-width: 150px ;">İhraç Kayıtlı Satışlar İçin Yüklenilen KDV Mi ?
-                        (No 87)</th>
-                    <th class="text-center" style="min-width: 150px ;">Yurtiçi Satış Mı ? (600 601 602 Hariç)</th>
-                    <th class="text-center" style="min-width: 150px ;">Mutakabat Ay ? </th>
+                    <th class="text-center" style="min-width: 150px ;">Belge Türü</th>
+                    <th class="text-center" style="min-width: 150px ;">Belge Açıklaması</th>
                 </tr>
             </thead>
             <tbody>
@@ -220,115 +201,25 @@
                     <td>
                         {% bakiye_degeri_i  i.alacak_bilgisi i.borc %}
                     </td>
-                    <td>{{i.hesap_plani_secim.bakiye_toplam}}</td>
+                  
                     <td>{% if i.bakiye_tipi %}
                         {{i.bakiye_tipi}}
                         {% endif %}
                     </td>
                     <td>{{i.borclu_alacakli}}</td>
-
-                    <td>{% if i.miktarli %}
-                        {{i.miktarli}}
+                      <td>{{i.hesap_plani_secim.bakiye_toplam}}</td>
+                    <td>{% if i.hesap_plani_secim.alacak_toplam > i.hesap_plani_secim.borc_toplam %}
+                        A
+                        {% else %}
+                        B
                         {% endif %}
                     </td>
-                    <td>{% if i.stok_kodu %}
-                        {{i.stok_kodu}}
+                     <td>{% if i.bt_turu %}
+                        {{i.bt_turu}}
                         {% endif %}
                     </td>
-                    <td>{% if i.kdv_orani %}
-                        {{i.kdv_orani}}
-                        {% endif %}
-                    </td>
-                    <td>{% if i.iliskili_kdv_hesap_kodu2 %}
-                        {{i.iliskili_kdv_hesap_kodu2.hesap_adi}}
-                        {% endif %}
-                    </td>
-                    <td>{% if i.kamumu_ozelmi %}
-                        {{i.kamumu_ozelmi}}
-                        {% endif %}
-                    </td>
-                    <td>{% if i.hesap_aciklamasi %}
-                        {{i.hesap_aciklamasi}}
-                        {% endif %}
-                    </td>
-                    <td>{% if i.grup_kodu %}
-                        {{i.grup_kodu}}
-                        {% endif %}
-                    </td>
-                    <td>{% if i.ba_bslerde_kullanilsinmi %}
-                        {{i.ba_bslerde_kullanilsinmi}}
-                        {% endif %}
-                    </td>
-                    <td>{% if i.kur_farkinida_kullan %}
-                        {{i.kur_farkinida_kullan}}
-                        {% endif %}
-                    </td>
-                    <td>{% if i.stopaj_hesap_kodu2 %}
-                        {{i.stopaj_hesap_kodu2.hesap_adi}}
-                        {% endif %}
-                    </td>
-                    <td>{% if i.stopaj_orani %}
-                        {{i.stopaj_orani}}
-                        {% endif %}
-                    </td>
-                    <td>{% if i.stopaj_tur_kodu %}
-                        {{i.stopaj_tur_kodu.hesap_adi}}
-                        {% endif %}
-                    </td>
-                    <td>{% if i.stopaj_belge_turu %}
-                        {{i.stopaj_belge_turu}}
-                        {% endif %}
-                    </td>
-
-
-                    <td>{% if i.tevkifat_hesap_kodu2 %}
-                        {{i.tevkifat_hesap_kodu2.hesap_adi}}
-                        {% endif %}
-                    </td>
-                    <td>{% if i.kdv_islem_turu %}
-                        {{i.kdv_islem_turu.hesap_adi}}
-                        {% endif %}
-                    </td>
-                    <td>{% if i.tevkifat_orani %}
-                        {{i.tevkifat_orani}}
-                        {% endif %}
-                    </td>
-                    <td>{% if i.ilave_edilecek_kdv_mi %}
-                        {{i.ilave_edilecek_kdv_mi}}
-                        {% endif %}
-                    </td>
-                    <td>{% if i.iade_edilecek_kdv_mi %}
-                        {{i.iade_edilecek_kdv_mi}}
-                        {% endif %}
-                    </td>
-                    <td>{% if i.ozel_matrah_mi %}
-                        {{i.ozel_matrah_mi}}
-                        {% endif %}
-                    </td>
-
-
-                    <td>{% if i.kredi_karti_satis_mi %}
-                        {{i.kredi_karti_satis_mi}}
-                        {% endif %}
-                    </td>
-                    <td>{% if i.yuklenilen_iadeli_konu_olan_kdv_mi %}
-                        {{i.yuklenilen_iadeli_konu_olan_kdv_mi}}
-                        {% endif %}
-                    </td>
-                    <td>{% if i.ihrac_kayitli_satis_kdv_mi_85 %}
-                        {{i.ihrac_kayitli_satis_kdv_mi_85}}
-                        {% endif %}
-                    </td>
-                    <td>{% if i.ihrac_kayitli_satis_kdv_mi_87 %}
-                        {{i.ihrac_kayitli_satis_kdv_mi_87}}
-                        {% endif %}
-                    </td>
-                    <td>{% if i.yurt_ici_satis_mi %}
-                        {{i.yurt_ici_satis_mi}}
-                        {% endif %}
-                    </td>
-                    <td>{% if i.mutabakat_ayi %}
-                        {{i.mutabakat_ayi}}
+                    <td>{% if i.aciklama8belgesi %}
+                        {{i.aciklama8belgesi}}
                         {% endif %}
                     </td>
                 </tr>
