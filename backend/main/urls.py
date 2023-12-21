@@ -111,5 +111,7 @@ urlpatterns = [
     path("<str:slug>/hesapplandetaydegistir/<int:id>/", views.hesap_planlari_detay_degistirme, name="hesap_planlari_detay_degistirme"),
     path("<str:slug>/hesapplaniduzenle/<int:id>/", views.hesap_planlari_duzenle, name="hesap_planlari_duzenle"),
     #Hesap Planları
-    #
+    #muavin
+    path("<str:slug>/muavin/", views.muavin, name="muavin"),
+    #muavin
 ]

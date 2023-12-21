@@ -6,7 +6,7 @@
     <a href="/{{firma.firma_ozel_anahtar}}/hesapplaniekle/">Yeni Hesap</a>
     <a style="color: white;" onclick="redirectToSelectedLink()">Hesap İncele-Düzelt</a>
     <a style="color: white;" onclick="showConfirmationPopup()">Hesap Sil</a>
-    <a href="" style="color:red;">Çıkış Yap (ESC)</a>
+    <a href="/{{firma.firma_ozel_anahtar}}/genelmuhasebe/" style="color:red;">Çıkış Yap (ESC)</a>
 
   </div>
 
@@ -140,7 +140,7 @@
             {% endif %}
             </td>
             <td>{% if i.stopaj_tur_kodu %}
-                {{i.stopaj_tur_kodu}}
+                {{i.stopaj_tur_kodu.hesap_adi}}
             {% endif %}
             </td>
             <td>{% if i.stopaj_belge_turu %}
@@ -154,7 +154,7 @@
             {% endif %}
             </td>
             <td>{% if i.kdv_islem_turu %}
-                {{i.kdv_islem_turu}}
+                {{i.kdv_islem_turu.hesap_adi}}
             {% endif %}
             </td>
             <td>{% if i.tevkifat_orani %}

@@ -1,0 +1,384 @@
+{% extends "homebase.html" %}
+{% load custom_tags %}
+{% block content %}
+<!--Header-->
+<div class="icon-bar">
+
+    <a href="/{{firma.firma_ozel_anahtar}}/hesapplaniekle/">Yeni Hesap</a>
+    <a style="color: white;" onclick="redirectToSelectedLink()">Hesap İncele-Düzelt</a>
+    <a style="color: white;" onclick="showConfirmationPopup()">Hesap Sil</a>
+    <a href="/{{firma.firma_ozel_anahtar}}/genelmuhasebe/" style="color:red;">Çıkış Yap (ESC)</a>
+
+</div>
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-4"><label for="firmalar">Firmalar <br>
+                <select onchange="if (this.value) window.location.href=this.value" style="box-sizing: content-box;"
+                    id="firmalar">
+                    <option value="/{{firma.firma_ozel_anahtar}}">{{firma.firma_unvani}} {{firma.Firma_unvani2}}
+                        ({{firma.tanitici_isim}})</option>
+                    {% for i in firmalarim %}
+                    {% if firma.id == i.id %}
+
+                    {% else %}
+                    <option value="/{{i.firma_ozel_anahtar}}/">{{i.firma_unvani}} {{i.Firma_unvani2}}
+                        ({{i.tanitici_isim}})</option>
+                    {% endif %}
+
+                    {% endfor %}
+                </select> </label></div>
+        <div class="col-2"></div>
+        <div class="col-4">
+        </div>
+        <div class="col-2">
+
+        </div>
+    </div>
+</div>
+<div class="container">
+
+    <form method="get">
+        <div class="row">
+            <hr>
+            <div class="col-4">
+                <label for="">Hesap Kodları: </label>
+
+                <select name="hesa" id="">
+                    {% for i in hesapplanlari %}
+                    <option value="{{i.id}}">{{i.hesap_kodu}} {{i.hesap_adi}}</option>
+                    {% endfor %}
+
+                </select>
+            </div>
+            <div class="col-4">
+                <label for="">Başlangıç Tarihi
+                    <input  name="baslangictarihi" type="date">
+                </label>
+            </div>
+            <div class="col-4">
+                <label for="">Bitiş Tarihi
+                    <input  name="bitistarihi" type="date">
+                </label>
+            </div>
+            <hr>
+            <div class="col-4">
+                <label for="">Ay</label>
+                <select name="ay" id="">
+                    <option value=""></option>
+                    <option value="1">Ocak</option>
+                    <option value="2">Şubat</option>
+                    <option value="3">Mart</option>
+                    <option value="4">Nisan</option>
+                    <option value="5">Mayıs</option>
+                    <option value="6">Haziran</option>
+                    <option value="7">Temmuz</option>
+                    <option value="8">Ağustos</option>
+                    <option value="9">Eylül</option>
+                    <option value="10">Ekim</option>
+                    <option value="11">Kasım</option>
+                    <option value="12">Aralık</option>
+                </select>
+            </div>
+            <div class="col-4">
+                <label for="">Borçlu Alacaklı</label>
+                <select name="borclualacakli" id="">
+                    <option value="">Tümü</option>
+                    <option value="Borçlu">Borçlu</option>
+                    <option value="Alacaklı">Alacaklı</option>
+                </select>
+            </div>
+            <div class="col-4">
+                <label for="">Fiş Numarası</label>
+                <input name="fisnumarasi" type="text">
+            </div>
+            <hr>
+            <div class="col-4">
+                <label for="">Evrak Numarası</label>
+                <input name="evraknumarasi" type="text">
+            </div>
+            <div class="col-4">
+                <label for="">Vergi / TC No</label>
+                <input name="vergitcno" type="text">
+            </div>
+            <div class="col-4">
+                <label for="">Açıklama</label>
+                <input name="aciklama" type="text">
+            </div>
+            
+            <button class="btn btn-success" type="submit">Ara</button>
+        </div>
+    </form>
+
+</div>
+<div class="container mt-3 tablo">
+    <div class="table-responsive " style="
+  height: 500px;
+  overflow: auto;">
+        <table class="table table-bordered ">
+            <thead style="position: sticky;top: 0">
+                <tr>
+                    <th class="text-center" style="min-width: 100px ;">Hesap Adı</th>
+                    <th class="text-center" style="min-width: 50px ;">Fiş Tarihi</th>
+                    <th class="text-center" style="min-width: 150px ;">Tür</th>
+                    <th class="text-center" style="min-width: 100px ;">Fiş No</th>
+                    <th class="text-center">Yev. No</th>
+                    <th class="text-center" style="min-width: 150px ;">Evrak Tarihi</th>
+                    <th class="text-center" style="min-width: 150px ;">Seri</th>
+                    <th class="text-center">Evrak No</th>
+                    <th class="text-center" style="min-width: 100px ;">Verigi / Tc No</th>
+                    <th class="text-center" style="min-width: 150px ;">Açıklama</th>
+                    <th class="text-center">Borç Tutarı</th>
+                    <th class="text-center" style="min-width: 100px ;">Alacak Tutarı</th>
+                    <th class="text-center" style="min-width: 150px ;">Bakiye</th>
+                    <th class="text-center">Borçlu Alacaklı ? </th>
+                    <th class="text-center" style="min-width: 100px ;">Stok Kodu</th>
+                    <th class="text-center" style="min-width: 150px ;">Miktar</th>
+                    <th class="text-center" style="min-width: 150px ;">Bakiye Miktarı</th>
+                    <th class="text-center" style="min-width: 150px ;">Borçlu Alacaklı ?</th>
+                    <th class="text-center" style="min-width: 150px ;">Kur Farkında Kullan</th>
+                    <th class="text-center" style="min-width: 150px ;">Stopaj Hesap Kodu</th>
+                    <th class="text-center" style="min-width: 150px ;">Stopaj Oranı (%)</th>
+                    <th class="text-center" style="min-width: 150px ;">Stopaj Tür Kodu</th>
+                    <th class="text-center" style="min-width: 150px ;">Stopaj Belge Türü</th>
+                    <th class="text-center" style="min-width: 150px ;">Tevkifat Hesap Kodu</th>
+                    <th class="text-center" style="min-width: 150px ;">KDV İşlem Türü</th>
+                    <th class="text-center" style="min-width: 150px ;">Tevkifat Oranı (2/10,3/10,4/10,5/10,7/10,9/10)
+                    </th>
+                    <th class="text-center" style="min-width: 150px ;">İlave Edilecek KDV mi ? </th>
+                    <th class="text-center" style="min-width: 150px ;">İade KDV Mi ?</th>
+                    <th class="text-center" style="min-width: 150px ;">Özel Matrah Mı ?</th>
+                    <th class="text-center" style="min-width: 150px ;">Kredi KArtı Satış Mı?</th>
+                    <th class="text-center" style="min-width: 150px ;">Yüklenilen / iaddeye konu olan KDV mi ? (ihrç.
+                        kayıtlı Satış Hariç)</th>
+                    <th class="text-center" style="min-width: 150px ;">İhraç Kayıtlı Satışlar İçin Yüklenilen KDV Mi ?
+                        (No 85)</th>
+                    <th class="text-center" style="min-width: 150px ;">İhraç Kayıtlı Satışlar İçin Yüklenilen KDV Mi ?
+                        (No 87)</th>
+                    <th class="text-center" style="min-width: 150px ;">Yurtiçi Satış Mı ? (600 601 602 Hariç)</th>
+                    <th class="text-center" style="min-width: 150px ;">Mutakabat Ay ? </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in filtrelenmis_fis_icerigi %}
+                <tr>
+                    <td><label for="kasakartisecim{{i.id}}">
+                            
+                            {{i.hesap_plani_secim.hesap_adi}}</label></td>
+                    
+                    <td>{% if i.bagli_oldugufis.fis_tarihi %}
+                        {{i.bagli_oldugufis.fis_tarihi}}
+                        {% else %}
+                        
+                        {% endif %}
+                    </td>
+                    <td>{% if i.bagli_oldugufis.fis_turu %}
+                        {{i.bagli_oldugufis.fis_turu}}
+                        {% else %}
+                        
+                        {% endif %}
+                    </td>
+                    <td>{% if i.bagli_oldugufis.fis_no %}
+                        {{i.bagli_oldugufis.fis_no}}
+                        {% else %}
+                        
+                        {% endif %}
+                    </td>
+                    <td>{% if i.bagli_oldugufis.yevmiye_no %}
+                        {{i.bagli_oldugufis.yevmiye_no}}
+                        {% else %}
+                        
+                        {% endif %}
+                    </td>
+                    <td>{% if i.evrak_tarihi %}
+                        {{i.evrak_tarihi}}
+
+                        {% endif %}
+                    </td>
+                    <td></td>
+                    <td>{% if i.evrak_no %}
+                        {{i.evrak_no}}
+
+                        {% endif %}
+                    </td>
+                    <td>{% if i.vergi_numarasi %}
+                        {{i.vergi_numarasi}}
+
+                        {% endif %}
+                    </td>
+                    <td>{% if i.aciklama %}
+                        {{i.aciklama}}
+
+                        {% endif %}</td>
+                    <td>{{i.borc}}</td>
+                    <td>{{i.alacak_bilgisi}}</td>
+                    <td>
+                    {% bakiye_degeri  i.alacak_bilgisi i.borc %}
+                         
+                    </td>
+                    <td>
+                        {% bakiye_degeri_i  i.alacak_bilgisi i.borc %}
+                    </td>
+                    <td>{{i.hesap_plani_secim.bakiye_toplam}}</td>
+                    <td>{% if i.bakiye_tipi %}
+                        {{i.bakiye_tipi}}
+                        {% endif %}
+                    </td>
+                    <td>{{i.borclu_alacakli}}</td>
+
+                    <td>{% if i.miktarli %}
+                        {{i.miktarli}}
+                        {% endif %}
+                    </td>
+                    <td>{% if i.stok_kodu %}
+                        {{i.stok_kodu}}
+                        {% endif %}
+                    </td>
+                    <td>{% if i.kdv_orani %}
+                        {{i.kdv_orani}}
+                        {% endif %}
+                    </td>
+                    <td>{% if i.iliskili_kdv_hesap_kodu2 %}
+                        {{i.iliskili_kdv_hesap_kodu2.hesap_adi}}
+                        {% endif %}
+                    </td>
+                    <td>{% if i.kamumu_ozelmi %}
+                        {{i.kamumu_ozelmi}}
+                        {% endif %}
+                    </td>
+                    <td>{% if i.hesap_aciklamasi %}
+                        {{i.hesap_aciklamasi}}
+                        {% endif %}
+                    </td>
+                    <td>{% if i.grup_kodu %}
+                        {{i.grup_kodu}}
+                        {% endif %}
+                    </td>
+                    <td>{% if i.ba_bslerde_kullanilsinmi %}
+                        {{i.ba_bslerde_kullanilsinmi}}
+                        {% endif %}
+                    </td>
+                    <td>{% if i.kur_farkinida_kullan %}
+                        {{i.kur_farkinida_kullan}}
+                        {% endif %}
+                    </td>
+                    <td>{% if i.stopaj_hesap_kodu2 %}
+                        {{i.stopaj_hesap_kodu2.hesap_adi}}
+                        {% endif %}
+                    </td>
+                    <td>{% if i.stopaj_orani %}
+                        {{i.stopaj_orani}}
+                        {% endif %}
+                    </td>
+                    <td>{% if i.stopaj_tur_kodu %}
+                        {{i.stopaj_tur_kodu.hesap_adi}}
+                        {% endif %}
+                    </td>
+                    <td>{% if i.stopaj_belge_turu %}
+                        {{i.stopaj_belge_turu}}
+                        {% endif %}
+                    </td>
+
+
+                    <td>{% if i.tevkifat_hesap_kodu2 %}
+                        {{i.tevkifat_hesap_kodu2.hesap_adi}}
+                        {% endif %}
+                    </td>
+                    <td>{% if i.kdv_islem_turu %}
+                        {{i.kdv_islem_turu.hesap_adi}}
+                        {% endif %}
+                    </td>
+                    <td>{% if i.tevkifat_orani %}
+                        {{i.tevkifat_orani}}
+                        {% endif %}
+                    </td>
+                    <td>{% if i.ilave_edilecek_kdv_mi %}
+                        {{i.ilave_edilecek_kdv_mi}}
+                        {% endif %}
+                    </td>
+                    <td>{% if i.iade_edilecek_kdv_mi %}
+                        {{i.iade_edilecek_kdv_mi}}
+                        {% endif %}
+                    </td>
+                    <td>{% if i.ozel_matrah_mi %}
+                        {{i.ozel_matrah_mi}}
+                        {% endif %}
+                    </td>
+
+
+                    <td>{% if i.kredi_karti_satis_mi %}
+                        {{i.kredi_karti_satis_mi}}
+                        {% endif %}
+                    </td>
+                    <td>{% if i.yuklenilen_iadeli_konu_olan_kdv_mi %}
+                        {{i.yuklenilen_iadeli_konu_olan_kdv_mi}}
+                        {% endif %}
+                    </td>
+                    <td>{% if i.ihrac_kayitli_satis_kdv_mi_85 %}
+                        {{i.ihrac_kayitli_satis_kdv_mi_85}}
+                        {% endif %}
+                    </td>
+                    <td>{% if i.ihrac_kayitli_satis_kdv_mi_87 %}
+                        {{i.ihrac_kayitli_satis_kdv_mi_87}}
+                        {% endif %}
+                    </td>
+                    <td>{% if i.yurt_ici_satis_mi %}
+                        {{i.yurt_ici_satis_mi}}
+                        {% endif %}
+                    </td>
+                    <td>{% if i.mutabakat_ayi %}
+                        {{i.mutabakat_ayi}}
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+<script>
+    function redirectToSelectedLink() {
+        const radioButtons = document.getElementsByName('kasakartlari');
+        let selectedLink = null;
+
+        for (const radioButton of radioButtons) {
+            if (radioButton.checked) {
+                selectedLink = radioButton.value;
+                break;
+            }
+        }
+
+        if (selectedLink) {
+            window.location.href = "/{{firma.firma_ozel_anahtar}}/hesapplaniduzenle/" + selectedLink;
+        } else {
+            alert('Lütfen bir Kasa Kartı seçin.');
+        }
+    }
+    function showConfirmationPopup() {
+        const radioButtons = document.getElementsByName('kasakartlari');
+        let selectedLink = null;
+
+        for (const radioButton of radioButtons) {
+            if (radioButton.checked) {
+                selectedLink = radioButton.value;
+                break;
+            }
+        }
+
+        // Pop-up penceresini aç
+        const confirmation = confirm("Emin misiniz?");
+
+        // Kullanıcının seçimine göre işlem yap
+        if (confirmation) {
+            // Kullanıcı "Evet" dedi, yönlendirme yap
+            window.location.href = "/{{firma.firma_ozel_anahtar}}/hesapplanisil/" + selectedLink;
+        } else {
+            // Kullanıcı "Hayır" dedi, isteğe bağlı olarak başka bir işlem yapabilirsiniz
+        }
+    }
+</script>
+{% endblock content %}

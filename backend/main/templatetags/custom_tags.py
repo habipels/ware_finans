@@ -226,3 +226,18 @@ def get_stok_detaylari_ozellik20(stok_kart):
     
     satis_fiyati = stok_detaylari.objects.filter(stok_karti_bilgisi=stok_kart.id).last()
     return satis_fiyati.ozellik20 if satis_fiyati.ozellik5 else ""
+
+@register.simple_tag
+def bakiye_degeri(a,b):
+    if round(float(a-b),2) > 0:
+        return round(float(a-b),2)
+    else:
+        return (-1)*(round(float(a-b),2))
+
+
+@register.simple_tag
+def bakiye_degeri_i(a,b):
+    if round(float(a-b),2) > 0:
+        return "A"
+    else:
+        return "B"
