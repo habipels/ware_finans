@@ -149,7 +149,7 @@
                 {% for i in filtrelenmis_fis_icerigi %}
                 <tr>
                     <td><label for="kasakartisecim{{i.id}}">
-                            
+                            <input class="kasalar" name="kasakartlari" id="kasakartisecim{{i.id}}" value="{{i.id}}/" type="radio">
                             {{i.hesap_plani_secim.hesap_adi}}</label></td>
                     
                     <td>{% if i.bagli_oldugufis.fis_tarihi %}
