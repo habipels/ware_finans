@@ -4,7 +4,7 @@
 <!--Header-->
 <div class="icon-bar">
 
-    <a href="/{{firma.firma_ozel_anahtar}}/hesapplaniekle/">Fişi Düzenle</a>
+    <a style="color: white;" onclick="fisduzenleme()">Fişi Düzenle</a>
     <a style="color: white;" onclick="redirectToSelectedLink()">Fişi Göster</a>
     <a style="color: white;" onclick="showConfirmationPopup()">Mizan</a>
     <a style="color: white;" onclick="showConfirmationPopup()">Ba Bs Formu</a>
@@ -148,7 +148,7 @@
             <tbody>
                 {% for i in filtrelenmis_fis_icerigi %}
                 <tr>
-                    <td><label for="kasakartisecim{{i.id}}">
+                    <td><label for="kasakartisecim{{i.bagli_oldugufis.id}}">
                             <input class="kasalar" name="kasakartlari" id="kasakartisecim{{i.id}}" value="{{i.id}}/" type="radio">
                             {{i.hesap_plani_secim.hesap_adi}}</label></td>
                     
@@ -249,6 +249,24 @@
 
         if (selectedLink) {
             window.location.href = "/{{firma.firma_ozel_anahtar}}/hesapplaniduzenle/" + selectedLink;
+        } else {
+            alert('Lütfen bir Kasa Kartı seçin.');
+        }
+    }
+
+    function fisduzenleme() {
+        const radioButtons = document.getElementsByName('kasakartlari');
+        let selectedLink = null;
+
+        for (const radioButton of radioButtons) {
+            if (radioButton.checked) {
+                selectedLink = radioButton.value;
+                break;
+            }
+        }
+
+        if (selectedLink) {
+            window.location.href = "/{{firma.firma_ozel_anahtar}}/genelmuhasebefis/" + selectedLink;
         } else {
             alert('Lütfen bir Kasa Kartı seçin.');
         }

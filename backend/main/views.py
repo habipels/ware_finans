@@ -4733,7 +4733,8 @@ def genel_muhasebe_sayfasi_fis_duzenleme(request,slug,id):
     content["subelerim"] = subelerim
     content["kasa_bilgisi"] = kasa_bilgisi
     content["siparisler"] = irsaliyeislem_durumlari.objects.filter(bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),silinme_bilgisi = False)
-    
+    content["fis_duzelt"] = get_object_or_404(genel_muhasebe,id = id,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    content["fisler"] = genel_muhasebe_fis.objects.filter(bagli_oldugufis = get_object_or_404(genel_muhasebe,id = id,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)))
     if request.POST:
         if True:
             fistarihi=  request.POST.get("fistarihi")
@@ -4773,6 +4774,6 @@ def genel_muhasebe_sayfasi_fis_duzenleme(request,slug,id):
                             )
         link = "/"+slug+"/genelmuhasebe/"
         return redirect(link)
-    return render(request,"genelmuhasebe/genelmuhasebe.html",content)
+    return render(request,"genelmuhasebe/fis_duzenle.html",content)
 
 #sipariş silme
