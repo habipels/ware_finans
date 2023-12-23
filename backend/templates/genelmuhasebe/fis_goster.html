@@ -11,62 +11,10 @@
   }
 </style>
 <div class="icon-bar">
-  <form method="post">
-    {% csrf_token %}
-    <a href="/{{firma.firma_ozel_anahtar}}/hesapplanlari/">Hesap Planı</a>
-    <a href="/{{firma.firma_ozel_anahtar}}/muavin/">Muavin</a>
-    <a href="javascript:void(0);">Mizan</a>
-    <button type="submit" class="btn btn-primary">Kaydet / <br> Yeni Fiş <br> Oluştur</button>
-    <a href="javascript:void(0);" onclick="ekleYeniSatir()">Bir Fiş Daha Ekle</a>
-    <a href="">Fiş İncele-Düzelt</a>
-    <a style="color: white;" onclick="showConfirmationPopup()">Fiş Sil</a>
-    <a href="" style="color:red;">Çıkış Yap (ESC)</a>
+    <a href="/{{firma.firma_ozel_anahtar}}/genelmuhasebe/" style="color:red;">Çıkış Yap (ESC)</a>
 
 </div>
-<div class="d-menu">
-  <ul>
-    <li>
-      <ul>
-        <li><a href="kasacariodeme.html" title="">Mali Tablolar</a></li>
-        <li><a href="kasacaritahsilat.html" title="">Yevmiye</a></li>
-        <li><a href="" title="">Kebir</a></li>
-        <li><a href="" title="">Yansıtma İşlemleri</a></li>
-        <li><a href="" title="">Otomatik Bilanço</a></li>
-        <li><a href="" title="">Geçici Vergi Gelir Tablosu</a></li>
-        <li><a href="" title="">Demirbaş Fişleri Kes</a></li>
-        <li><a href="" title="">Envanter Defteri</a></li>
-        <li><a href="" title="">Rasyonel Analiz</a></li>
-        <li><a href="" title="">Kur Farkı Fişleri</a></li>
-        <li><a href="" title="">Karşıt İnceleme Tutanağı</a></li>
-        <li><a href="" title="">Hesap Kapatma Fişleri</a></li>
-        <li><a href="" title="">Otomatik Poliçe Mahsup Fişi </a></li>
-        <li><a href="" title="">Banka Kredisi Mahsup Fişi </a></li>
-        <li><a href="" title="">Açılış Fişi </a></li>
-        <li><a href="" title="">Kapanış Fişi </a></li>
-      </ul><a href="" title="">Otomatik / Dönem Sonu İşlemleri</a>
 
-    </li>
-    <li>
-      <ul>
-      </ul><a href="" title="">Aylık Özet</a>
-    </li>
-
-    <li>
-      <ul>
-        <li><a href="bankayayatirilan.html" title="">KDV</a></li>
-        <li><a href="bankadancekilen.html" title="">KDV Özeti</a></li>
-        <li><a href="bankadancekilen.html" title="">Cariler</a></li>
-      </ul><a href="" title="">KDV</a>
-    </li>
-    <li>
-      <ul>
-        <li><a href="" title="">Hızlı Fiş</a></li>
-        <li><a href="" title="">Seri Fiş</a></li>
-        <li><a href="" title="">Üstat Fiş</a></li>
-      </ul><a href="" title="">Fiş</a>
-    </li>
-  </ul>
-</div>
 
 <div class="container mt-3 tablo">
   <span>Hesap Adı : <b id="geneltutar"></b>| </span>
@@ -89,7 +37,7 @@
     <input type="hidden" value="0" id="iindirimtutari" name="iindirimtutari">
     <input type="hidden" value="0" id="igeneltutar" name="igeneltutar"></span>
   <div class="table-responsive " style="
-    height: 300px;
+    height: 500px;
     overflow: auto;">
     <table class="table table-bordered-second">
       <thead style="position: sticky;top: 0">
@@ -119,33 +67,19 @@
           <td>{{i.bagli_oldugufis.fis_turu}}</td>
           <td>{{i.bagli_oldugufis.fis_no}}</td>
           <td>{{i.bagli_oldugufis.yevmiye_no}}</td>
-          <td><input type="text" value="{{i.hesap_plani_secim.hesap_kodu}}"  id="hesapkodu" name="hesapkodu">
-            <input hidden type="text" value="{{i.hesap_plani_secim.id}}" id="hesapkoduid" name="hesapkoduid">
-            <button data-bs-toggle="modal" data-bs-target="#muhkodukdv1" type="button"
-              class="click-button btn btn-primary">Seç</button>
+          <td>{{i.hesap_plani_secim.hesap_kodu}} {{i.hesap_plani_secim.hesap_adi}}
           </td>
 
-          <td><input type="date" value="{{i.evrak_tarihi |date:'Y-m-d'}}" name="evrakTarihi"></td>
-          <td><input type="text" value="{{i.evrak_no}}" name="evrakno"></td>
+          <td>{{i.evrak_tarihi |date:'Y-m-d'}}</td>
+          <td>{{i.evrak_no}}</td>
 
-          <td><select name="bt" id="bt">
-          <option value="{{i.bt_turu}}">{{i.bt_turu}}</option>
-              <option value="Fatura">Fatura</option>
-              <option value="Çek">Çek</option>
-              <option value="Makbuz">Makbuz</option>
-              <option value="Müşteri Sipariş Belgesi">Müşteri Sipariş Belgesi</option>
-              <option value="Satıcı Sipariş Belgesi">Satıcı Sipariş Belgesi</option>
-              <option value="Senet">Senet</option>
-              <option value="Navlum">Navlum</option>
-              <option value="Diğer">Diğer</option>
-              <option value="Belge Yok">Belge Yok</option>
-
-            </select></td>
-          <td><input value="{{i.vergi_numarasi}}" type="text" name="vergitc"></td>
-          <td><input value="{{i.aciklama}}"  type="text" name="Aciklama"></td>
-          <td><input value="{{i.borc |stringformat:'.2f'}}" type="number" step="0.001" id="Borclu" name="Borclu"></td>
-          <td><input value="{{i.alacak_bilgisi |stringformat:'.2f'}}" type="number" step="0.001" id="alacakli" name="alacakli"></td>
-          <td><input value="{{i.aciklama8belgesi }}" type="text" name="belgeturuaciklamsi"></td>
+          <td>{{i.bt_turu}}
+          </td>
+          <td>{{i.vergi_numarasi}}</td>
+          <td>{{i.aciklama}}</td>
+          <td>{{i.borc |stringformat:'.2f'}}</td>
+          <td>{{i.alacak_bilgisi |stringformat:'.2f'}}</td>
+          <td>{{i.aciklama8belgesi }}</td>
         </tr>
         {% endfor %}
 
@@ -455,7 +389,6 @@
   </tr>
   {% endfor %}
 </table>
-</form>
 <script>
   function redirectToSelectedLink() {
     const radioButtons = document.getElementsByName('kasakartlari');

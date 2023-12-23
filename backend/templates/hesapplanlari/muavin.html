@@ -5,7 +5,7 @@
 <div class="icon-bar">
 
     <a style="color: white;" onclick="fisduzenleme()">Fişi Düzenle</a>
-    <a style="color: white;" onclick="redirectToSelectedLink()">Fişi Göster</a>
+    <a style="color: white;" onclick="fisgoster()">Fişi Göster</a>
     <a style="color: white;" onclick="showConfirmationPopup()">Mizan</a>
     <a style="color: white;" onclick="showConfirmationPopup()">Ba Bs Formu</a>
     <a style="color: white;" onclick="showConfirmationPopup()">Yazdır</a>
@@ -149,7 +149,7 @@
                 {% for i in filtrelenmis_fis_icerigi %}
                 <tr>
                     <td><label for="kasakartisecim{{i.bagli_oldugufis.id}}">
-                            <input class="kasalar" name="kasakartlari" id="kasakartisecim{{i.id}}" value="{{i.id}}/" type="radio">
+                            <input class="kasalar" name="kasakartlari" id="kasakartisecim{{i.bagli_oldugufis.id}}" value="{{i.bagli_oldugufis.id}}/" type="radio">
                             {{i.hesap_plani_secim.hesap_adi}}</label></td>
                     
                     <td>{% if i.bagli_oldugufis.fis_tarihi %}
@@ -253,7 +253,6 @@
             alert('Lütfen bir Kasa Kartı seçin.');
         }
     }
-
     function fisduzenleme() {
         const radioButtons = document.getElementsByName('kasakartlari');
         let selectedLink = null;
@@ -267,6 +266,23 @@
 
         if (selectedLink) {
             window.location.href = "/{{firma.firma_ozel_anahtar}}/genelmuhasebefis/" + selectedLink;
+        } else {
+            alert('Lütfen bir Kasa Kartı seçin.');
+        }
+    }
+    function fisgoster() {
+        const radioButtons = document.getElementsByName('kasakartlari');
+        let selectedLink = null;
+
+        for (const radioButton of radioButtons) {
+            if (radioButton.checked) {
+                selectedLink = radioButton.value;
+                break;
+            }
+        }
+
+        if (selectedLink) {
+            window.location.href = "/{{firma.firma_ozel_anahtar}}/genelmuhasebefisgoster/" + selectedLink;
         } else {
             alert('Lütfen bir Kasa Kartı seçin.');
         }

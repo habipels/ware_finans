@@ -114,5 +114,6 @@ urlpatterns = [
     #muavin
     path("<str:slug>/muavin/", views.muavin, name="muavin"),
     path("<str:slug>/genelmuhasebefis/<int:id>/", views.genel_muhasebe_sayfasi_fis_duzenleme, name="genel_muhasebe_sayfasi_fis_duzenleme"),
-    #muavin
+    path("<str:slug>/genelmuhasebefisgoster/<int:id>/", views.genel_muhasebe_sayfasi_fis_goster, name="genel_muhasebe_sayfasi_fis_goster"),
+    #
 ]#
