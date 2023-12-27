@@ -241,3 +241,53 @@ def bakiye_degeri_i(a,b):
         return "A"
     else:
         return "B"
+
+@register.simple_tag
+def mizan_fis_islemleri_kontrol(id):
+    a = genel_muhasebe_fis.objects.filter(hesap_plani_secim__id = id).count()
+    
+    return a
+
+@register.simple_tag
+def mizan_fis_islemleri_borc(id):
+    a = genel_muhasebe_fis.objects.filter(hesap_plani_secim__id = id)
+    sonuc = 0
+    for i in a:
+        sonuc = sonuc + i.borc
+    return sonuc
+
+@register.simple_tag
+def mizan_fis_islemleri_alacak(id):
+    a = genel_muhasebe_fis.objects.filter(hesap_plani_secim__id = id)
+    sonuc = 0
+    for i in a:
+        sonuc = sonuc + i.alacak_bilgisi
+    return sonuc
+
+@register.simple_tag
+def mizan_fis_islemleri_borc_yazdirma(id):
+    a = genel_muhasebe_fis.objects.filter(hesap_plani_secim__id = id)
+    borc = 0
+    alacak = 0
+    for i in a:
+        borc = borc + i.borc
+    for i in a:
+        alacak = alacak + i.alacak_bilgisi
+    if borc > alacak:
+
+        return borc-alacak
+    return ""
+
+@register.simple_tag
+def mizan_fis_islemleri_alacak_yazdirma(id):
+    a = genel_muhasebe_fis.objects.filter(hesap_plani_secim__id = id)
+    borc = 0
+    alacak = 0
+    for i in a:
+        borc = borc + i.borc
+    for i in a:
+        alacak = alacak + i.alacak_bilgisi
+    if borc < alacak:
+
+        return alacak-borc
+    return ""

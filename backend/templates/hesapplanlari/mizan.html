@@ -1,0 +1,255 @@
+{% extends "homebase.html" %}
+{% load custom_tags %}
+{% block content %}
+<!--Header-->
+<div class="icon-bar">
+
+    <a style="color: white;" href="/{{firma.firma_ozel_anahtar}}/muavin/">Muavin</a>
+    <a style="color: white;" onclick="fisgoster()">Aylık Özet</a>
+    <a style="color: white;" onclick="showConfirmationPopup()">Karşılaştır</a>
+    <a style="color: white;" onclick="showConfirmationPopup()">Mizanı Yenile</a>
+    <a style="color: white;" onclick="showConfirmationPopup()">KDV Sayfası</a>
+    <a style="color: white;" onclick="showConfirmationPopup()">Muh.Sgk Sayfası</a>
+    <a style="color: white;" onclick="showConfirmationPopup()">Aylık Özet</a>
+    <a style="color: white;" onclick="showConfirmationPopup()">Yazdır</a>
+    <a href="/{{firma.firma_ozel_anahtar}}/genelmuhasebe/" style="color:red;">Çıkış Yap (ESC)</a>
+
+</div>
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-4"><label for="firmalar">Firmalar <br>
+                <select onchange="if (this.value) window.location.href=this.value" style="box-sizing: content-box;"
+                    id="firmalar">
+                    <option value="/{{firma.firma_ozel_anahtar}}">{{firma.firma_unvani}} {{firma.Firma_unvani2}}
+                        ({{firma.tanitici_isim}})</option>
+                    {% for i in firmalarim %}
+                    {% if firma.id == i.id %}
+
+                    {% else %}
+                    <option value="/{{i.firma_ozel_anahtar}}/">{{i.firma_unvani}} {{i.Firma_unvani2}}
+                        ({{i.tanitici_isim}})</option>
+                    {% endif %}
+
+                    {% endfor %}
+                </select> </label></div>
+        <div class="col-2"></div>
+        <div class="col-4">
+        </div>
+        <div class="col-2">
+
+        </div>
+    </div>
+</div>
+<div class="container">
+
+    <form method="get">
+        <div class="row">
+            <hr>
+            <div class="col-4">
+                <label for="">Hesap Kodları: </label>
+
+                <select name="hesa" id="">
+                    {% for i in hesapplanlari %}
+                    <option value="{{i.id}}">{{i.hesap_kodu}} {{i.hesap_adi}}</option>
+                    {% endfor %}
+
+                </select>
+            </div>
+            <div class="col-4">
+                <label for="">Başlangıç Tarihi
+                    <input  name="baslangictarihi" type="date">
+                </label>
+            </div>
+            <div class="col-4">
+                <label for="">Bitiş Tarihi
+                    <input  name="bitistarihi" type="date">
+                </label>
+            </div>
+            <hr>
+            <div class="col-4">
+                <label for="">Ay</label>
+                <select name="ay" id="">
+                    <option value=""></option>
+                    <option value="1">Ocak</option>
+                    <option value="2">Şubat</option>
+                    <option value="3">Mart</option>
+                    <option value="4">Nisan</option>
+                    <option value="5">Mayıs</option>
+                    <option value="6">Haziran</option>
+                    <option value="7">Temmuz</option>
+                    <option value="8">Ağustos</option>
+                    <option value="9">Eylül</option>
+                    <option value="10">Ekim</option>
+                    <option value="11">Kasım</option>
+                    <option value="12">Aralık</option>
+                </select>
+            </div>
+            <div class="col-4">
+                <label for="">Borçlu Alacaklı</label>
+                <select name="borclualacakli" id="">
+                    <option value="">Tümü</option>
+                    <option value="Borçlu">Borçlu</option>
+                    <option value="Alacaklı">Alacaklı</option>
+                </select>
+            </div>
+            <div class="col-4">
+                <label for="">Fiş Numarası</label>
+                <input name="fisnumarasi" type="text">
+            </div>
+            <hr>
+            <div class="col-4">
+                <label for="">Evrak Numarası</label>
+                <input name="evraknumarasi" type="text">
+            </div>
+            <div class="col-4">
+                <label for="">Vergi / TC No</label>
+                <input name="vergitcno" type="text">
+            </div>
+            <div class="col-4">
+                <label for="">Açıklama</label>
+                <input name="aciklama" type="text">
+            </div>
+            
+            <button class="btn btn-success" type="submit">Ara</button>
+        </div>
+    </form>
+
+</div>
+<div class="container mt-3 tablo">
+ <span>Borç Toplam : <b id="geneltutar"></b>| </span>
+  <span>Alacak Toplam: <b id="indirimtutari"></b>|</span>
+  <span>Borç Bakiye: <b id="kdvtutari"></b>|</span>
+  <span>Alacak Bakiye: <b id="geneltoplam"></b>|
+    </span>
+    <div class="table-responsive " style="
+  height: 500px;
+  overflow: auto;">
+        <table class="table table-bordered ">
+            <thead style="position: sticky;top: 0">
+                <tr>
+                    <th class="text-center" style="min-width: 100px ;">Hesap Kodu</th>
+                    <th class="text-center" style="min-width: 50px ;">Hesap Adı</th>
+                    <th class="text-center" style="min-width: 150px ;">Detay</th>
+                    <th class="text-center" style="min-width: 100px ;">Borç Toplamı</th>
+                    <th class="text-center">Alacak Toplamı</th>
+                    <th class="text-center" style="min-width: 150px ;">Borç Bakiye</th>
+                    <th class="text-center" style="min-width: 150px ;">Alacak Bakiye</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in filtrelenmis_fis_icerigi %}
+                {% mizan_fis_islemleri_kontrol i.id as sonnuc %}
+                {% if sonnuc %}
+                
+                
+                <tr>
+                    <td><label for="kasakartisecim{{i.bagli_oldugufis.id}}">
+                            <input class="kasalar" name="kasakartlari" id="kasakartisecim{{i.bagli_oldugufis.id}}" value="{{i.bagli_oldugufis.id}}/" type="radio">
+                            {{i.hesap_kodu}}</label></td>
+                    
+                    <td>{% if i.hesap_adi %}
+                        {{i.hesap_adi}}
+                        {% else %}
+                        
+                        {% endif %}
+                    </td>
+                    <td>{% if i.detay %}
+                        {{i.detay}}
+                        {% else %}
+                        
+                        {% endif %}
+                    </td>
+                    <td>{% mizan_fis_islemleri_borc i.id %}
+                    </td>
+                    <td>{% mizan_fis_islemleri_alacak i.id %}</td>
+                    <td>{% mizan_fis_islemleri_borc_yazdirma i.id %}</td>
+                    <td>{% mizan_fis_islemleri_alacak_yazdirma i.id %}</td> 
+                </tr>
+                {% else %}
+                {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+<script>
+    function redirectToSelectedLink() {
+        const radioButtons = document.getElementsByName('kasakartlari');
+        let selectedLink = null;
+
+        for (const radioButton of radioButtons) {
+            if (radioButton.checked) {
+                selectedLink = radioButton.value;
+                break;
+            }
+        }
+
+        if (selectedLink) {
+            window.location.href = "/{{firma.firma_ozel_anahtar}}/hesapplaniduzenle/" + selectedLink;
+        } else {
+            alert('Lütfen bir Kasa Kartı seçin.');
+        }
+    }
+    function fisduzenleme() {
+        const radioButtons = document.getElementsByName('kasakartlari');
+        let selectedLink = null;
+
+        for (const radioButton of radioButtons) {
+            if (radioButton.checked) {
+                selectedLink = radioButton.value;
+                break;
+            }
+        }
+
+        if (selectedLink) {
+            window.location.href = "/{{firma.firma_ozel_anahtar}}/genelmuhasebefis/" + selectedLink;
+        } else {
+            alert('Lütfen bir Kasa Kartı seçin.');
+        }
+    }
+    function fisgoster() {
+        const radioButtons = document.getElementsByName('kasakartlari');
+        let selectedLink = null;
+
+        for (const radioButton of radioButtons) {
+            if (radioButton.checked) {
+                selectedLink = radioButton.value;
+                break;
+            }
+        }
+
+        if (selectedLink) {
+            window.location.href = "/{{firma.firma_ozel_anahtar}}/genelmuhasebefisgoster/" + selectedLink;
+        } else {
+            alert('Lütfen bir Kasa Kartı seçin.');
+        }
+    }
+    function showConfirmationPopup() {
+        const radioButtons = document.getElementsByName('kasakartlari');
+        let selectedLink = null;
+
+        for (const radioButton of radioButtons) {
+            if (radioButton.checked) {
+                selectedLink = radioButton.value;
+                break;
+            }
+        }
+
+        // Pop-up penceresini aç
+        const confirmation = confirm("Emin misiniz?");
+
+        // Kullanıcının seçimine göre işlem yap
+        if (confirmation) {
+            // Kullanıcı "Evet" dedi, yönlendirme yap
+            window.location.href = "/{{firma.firma_ozel_anahtar}}/hesapplanisil/" + selectedLink;
+        } else {
+            // Kullanıcı "Hayır" dedi, isteğe bağlı olarak başka bir işlem yapabilirsiniz
+        }
+    }
+</script>
+{% endblock content %}

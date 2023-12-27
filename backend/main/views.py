@@ -4532,18 +4532,33 @@ def hesap_planlari_ekle(request,slug):
         iadeyekonu = request.POST.get("iadeyekonu")
         ihrackayitlisatislar = request.POST.get("ihrackayitlisatislar")
         ihrackayitlisatislar87 = request.POST.get("ihrackayitlisatislar87")
+        if kdvhesapkodu :
+            a = get_object_or_404(HesapPlanlari,id = kdvhesapkodu)
+        else:
+            a = None
+        if stopajhesapkodu :
+            b = get_object_or_404(HesapPlanlari,id = stopajhesapkodu)
+        else:
+            b = None
+        if tevkifathesapkodutur :
+            c = get_object_or_404(tevkifat_tur_kodu,id = tevkifathesapkodutur)
+        else:
+            c = None
+        if tevkifathesapkodu :
+            d = get_object_or_404(HesapPlanlari,id = tevkifathesapkodu)
+        else:
+            d = None
         
-            
         HesapPlanlari.objects.create(
                 bagli_oldugu_firma =  get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),
                 hesap_kodu = hesapkodu,hesap_adi = hesapadi,detay = hesapdetayi,
                 borclu_alacakli = borclualacakli,miktarli = miktarli,
-                stok_kodu = stoknumarasi,kdv_orani = kdvyuzdesi,iliskili_kdv_hesap_kodu2 = get_object_or_404(HesapPlanlari,id = kdvhesapkodu),
+                stok_kodu = stoknumarasi,kdv_orani = kdvyuzdesi,iliskili_kdv_hesap_kodu2 = a,
                 kamumu_ozelmi = kamuozel,hesap_aciklamasi = hesapadiyabancidil,
                 grup_kodu = grupkodu,ba_bslerde_kullanilsinmi = babs,kur_farkinida_kullan = kurfarkindakullan,
-                stopaj_hesap_kodu2 = get_object_or_404(HesapPlanlari,id = stopajhesapkodu),stopaj_orani = stopajyuzdesi,
-                stopaj_tur_kodu = stopajturkodu,stopaj_belge_turu=stopajbelgeturu,tevkifat_hesap_kodu2 = get_object_or_404(HesapPlanlari,id = tevkifathesapkodu),
-                kdv_islem_turu = get_object_or_404(tevkifat_tur_kodu,id = tevkifathesapkodutur),tevkifat_orani = tevkifatorani,
+                stopaj_hesap_kodu2 = b ,stopaj_orani = stopajyuzdesi,
+                stopaj_tur_kodu = stopajturkodu,stopaj_belge_turu=stopajbelgeturu,tevkifat_hesap_kodu2 = d,
+                kdv_islem_turu = c,tevkifat_orani = tevkifatorani,
                 ilave_edilecek_kdv_mi = ilaveedilecekkdv,iade_edilecek_kdv_mi = iadekdvmi,
                 ozel_matrah_mi = ozelmatrah,kredi_karti_satis_mi  =kredikartli,ihrac_kayitli_satis_kdv_mi_85 =ihrackayitlisatislar,
                 ihrac_kayitli_satis_kdv_mi_87 = ihrackayitlisatislar87,mutabakat_ayi = mutabakatayi,
@@ -4805,3 +4820,64 @@ def genel_muhasebe_sayfasi_fis_goster(request,slug,id):
     content["fisler"] = genel_muhasebe_fis.objects.filter(bagli_oldugufis = get_object_or_404(genel_muhasebe,id = id,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)))
     return render(request,"genelmuhasebe/fis_goster.html",content)
 #sipariş silme
+
+
+#mizan
+def mizan(request,slug):
+    content ={}
+    content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
+    content["subeleri"] =  sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    content["stokkartlarim"] =  stok_kartlar.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    content["stokkartozelligi1"] = stok_birim_alis_satis_birimi.objects.filter(stok_karti_bilgisi__bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    hesaplar = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),detay = "Evet" )
+    sistem = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =None)
+    kart = cari_kartlar.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    giderkartti = Giderler.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    gelirkartti = Gelirler.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    banka_karti = banka.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    subelerim = sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    kasa_bilgisi = Kasa.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    content["carilerim"]  = cari_kartlar.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    content["carilerimsube"] = cari_kartislemleri_sube_bilgiler.objects.filter(cari_bilgisi__bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    content["kart"] = kart
+    content["gelirkartti"] = gelirkartti
+    content["giderkartti"] = giderkartti
+    content["hesapplanlari"] = hesaplar
+    content["sistemhesapplanlari"] = sistem
+    content["banka_karti"] = banka_karti
+    content["subelerim"] = subelerim
+    content["kasa_bilgisi"] = kasa_bilgisi
+    content["tevkifa_hesaplari"] = tevkifat_tur_kodu.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    content["siparisler"] = irsaliyeislem_durumlari.objects.filter(bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),silinme_bilgisi = False)
+    content["filtrelenmis_fis_icerigi"] = HesapPlanlari.objects.filter(bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    if request.GET:
+        hesa = request.GET.get("hesa")
+        ay = request.GET.get("ay")
+        borclualacakli = request.GET.get("borclualacakli")
+        fisnumarasi = request.GET.get("fisnumarasi")
+        evraknumarasi = request.GET.get("evraknumarasi")
+        vergitcno = request.GET.get("vergitcno")
+        aciklama = request.GET.get("aciklama")
+        baslangictarihi = request.GET.get("baslangictarihi")
+        bitistarihi = request.GET.get("bitistarihi")
+        fis = genel_muhasebe_fis.objects.filter()
+        if hesa:
+            fis = fis.filter(hesap_plani_secim = get_object_or_404(HesapPlanlari,id = hesa))
+        if borclualacakli:
+            if borclualacakli == "Tümü":
+                fis = fis.filter(hesap_plani_secim = get_object_or_404(HesapPlanlari,id = hesa))
+            if borclualacakli == "Borçlu":
+                fis = fis.filter(borc__gte = 0)
+            if borclualacakli == "Alacaklı":
+                fis = fis.filter(alacak_bilgisi__gte = 0)
+        if fisnumarasi:
+            fis = fis.filter(bagli_oldugufis__fis_no__icontains = fisnumarasi)
+        if evraknumarasi:
+            fis = fis.filter(evrak_no__icontains = evraknumarasi)
+        if vergitcno:
+            fis = fis.filter(vergi_numarasi__icontains = vergitcno)
+        if aciklama:
+            fis = fis.filter(aciklama__icontains = aciklama)
+        content["filtrelenmis_fis_icerigi"] = fis
+    return render(request,"hesapplanlari/mizan.html",content) 
+#mizan

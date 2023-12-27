@@ -14,7 +14,7 @@
     {% csrf_token %}
     <a href="/{{firma.firma_ozel_anahtar}}/hesapplanlari/" >Hesap Planı</a>
     <a href="/{{firma.firma_ozel_anahtar}}/muavin/" >Muavin</a>
-    <a href="javascript:void(0);" >Mizan</a>
+    <a href="/{{firma.firma_ozel_anahtar}}/mizan/" >Mizan</a>
     <button type="submit" class="btn btn-primary">Kaydet / <br> Yeni  Fiş <br> Oluştur</button>
     <a href="javascript:void(0);" onclick="ekleYeniSatir()">Bir Fiş Daha Ekle</a>
     <a href="">Fiş İncele-Düzelt</a>

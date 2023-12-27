@@ -37,7 +37,12 @@
           <div class="col-3">
             <label for="">KDV (%)</label>
             <br>
-            <input value="{{ hes.kdv_orani|stringformat:'.2f' }}" name="kdvyuzdesi" step="0.01" type="number">
+            {% if hes.kdv_orani %}
+           <input value="{{ hes.kdv_orani|stringformat:'.2f' }}" name="kdvyuzdesi" step="0.01" type="number">
+            {% else %}
+           <input value="0" name="kdvyuzdesi" step="0.01" type="number">
+            {% endif %}
+            
           </div>
           <div class="col-3">
             <label for="">KDV Hesap Kodu</label>
@@ -105,7 +110,12 @@
           <div class="col-3">
             <label for="">Stopaj Oranı (%)</label>
             <br>
-            <input value="{{ hes.stopaj_orani|stringformat:'.2f' }}"  name="stopajyuzdesi" step="0.01" type="number">
+            {% if hes.stopaj_orani %}
+           <input value="{{ hes.stopaj_orani|stringformat:'.2f' }}"  name="stopajyuzdesi" step="0.01" type="number">
+            {% else %}
+            <input value="0"  name="stopajyuzdesi" step="0.01" type="number">
+            {% endif %}
+            
           </div>
           <div class="col-3">
             <label for="">Stopaj Hesap Kodu</label>
