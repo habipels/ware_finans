@@ -1116,7 +1116,8 @@
                 <h6 style="font-weight: 700;" class="text-center">Beyanammenin Hangi Sıfatla Verildiği</h6>
                 <div class="row ">
                   <div class="col-1"></div>
-                  <div class="col-3"><input  name="beyannamehangisifatlaverildi" type="radio" id="html" value="mukellef">
+                  {% if  beyannamebilgileri.beyannamehangisifatlaverildi == "mukellef" %}
+                  <div class="col-3"><input checked  name="beyannamehangisifatlaverildi" type="radio" id="html" value="mukellef">
                     <label for="html">Mükellef</label>
                   </div>
                   <div class="col-3"><input name="beyannamehangisifatlaverildi" type="radio" id="css" value="mirascı">
@@ -1125,6 +1126,29 @@
                   <div class="col-3"><input name="beyannamehangisifatlaverildi" type="radio" id="javascript" value="kanunitemsilci">
                     <label for="javascript">Kanuni Temsilci</label>
                   </div>
+                  {% elif beyannamebilgileri.beyannamehangisifatlaverildi == "mirascı" %}
+                  <div class="col-3"><input   name="beyannamehangisifatlaverildi" type="radio" id="html" value="mukellef">
+                    <label for="html">Mükellef</label>
+                  </div>
+                  <div class="col-3"><input checked name="beyannamehangisifatlaverildi" type="radio" id="css" value="mirascı">
+                    <label for="css">Mirascı</label>
+                  </div>
+                  <div class="col-3"><input name="beyannamehangisifatlaverildi" type="radio" id="javascript" value="kanunitemsilci">
+                    <label for="javascript">Kanuni Temsilci</label>
+                  </div>
+                  {% else %}
+                  <div class="col-3"><input   name="beyannamehangisifatlaverildi" type="radio" id="html" value="mukellef">
+                    <label for="html">Mükellef</label>
+                  </div>
+                  <div class="col-3"><input  name="beyannamehangisifatlaverildi" type="radio" id="css" value="mirascı">
+                    <label for="css">Mirascı</label>
+                  </div>
+                  <div class="col-3"><input checked name="beyannamehangisifatlaverildi" type="radio" id="javascript" value="kanunitemsilci">
+                    <label for="javascript">Kanuni Temsilci</label>
+                  </div>
+                  {% endif %}
+
+
                 </div>
 
               </div>
@@ -1132,33 +1156,33 @@
               <div class="row genel">
                 <div class="col-6"><label for="tc">TC Kimlik No
 
-                  </label><br><input name="mirascibilgisitc" type="text"></div>
+                  </label><br><input value="{{beyannamebilgileri.mirascibilgisitc}}" name="mirascibilgisitc" type="text"></div>
                 <div class="col-6"><label for="vn">Vergi No
 
-                  </label><br><input name="mirascivergino" type="text"></div>
+                  </label><br><input value="{{beyannamebilgileri.mirascivergino}}" name="mirascivergino" type="text"></div>
               </div>
 
               <div class="row genel">
                 <div class="col-4"><label for="s">Soyadı (Unvan)
 
                   </label></div>
-                <div class="col-8"><input name="beyannamesoyadiunvan" type="text"></div>
+                <div class="col-8"><input  value="{{beyannamebilgileri.beyannamesoyadiunvan}}" name="beyannamesoyadiunvan" type="text"></div>
               </div>
               <div class="row genel">
                 <div class="col-4"><label for="s">Adı (Unvan Devamı)
                   </label></div>
-                <div class="col-8"><input name="beyannameadiunvandevami" type="text"></div>
+                <div class="col-8"><input value="{{beyannamebilgileri.beyannameadiunvandevami}}" name="beyannameadiunvandevami" type="text"></div>
                 <div class="col-4"><label for="s">Ticaret Sicil No
 
                   </label></div>
-                <div class="col-8"><input name="beyannameyeaitticaretsicilno" type="text"></div>
+                <div class="col-8"><input value="{{beyannamebilgileri.beyannameyeaitticaretsicilno}}" name="beyannameyeaitticaretsicilno" type="text"></div>
                 <div class="col-4"><label for="s">e-Posta Adresi
                   </label></div>
-                <div class="col-8"><input name="beyannameemailadresi" type="email"></div>
+                <div class="col-8"><input value="{{beyannamebilgileri.beyannameemailadresi}}" name="beyannameemailadresi" type="email"></div>
                 <div class="col-4"><label for="s">Telefon No
 
                   </label></div>
-                <div class="col-8"><input name="beyannametelefonumarasi" type="tel"></div>
+                <div class="col-8"><input value="{{beyannamebilgileri.beyannametelefonumarasi}}" name="beyannametelefonumarasi" type="tel"></div>
               </div>
 
 
@@ -1168,33 +1192,33 @@
               <div class="row genel">
                 <div class="col-6"><label name="beyannamekanunitemsicitc" for="tc">TC Kimlik No
 
-                  </label><br><input type="text"></div>
+                  </label><br><input value="{{beyannamekanun.beyannamekanunitemsicitc}}" type="text"></div>
                 <div class="col-6"><label for="vn">Vergi No
 
-                  </label><br><input name="beyannamekanunitemsicivergino" type="text"></div>
+                  </label><br><input value="{{beyannamekanun.beyannamekanunitemsicivergino}}" name="beyannamekanunitemsicivergino" type="text"></div>
               </div>
 
               <div class="row genel">
                 <div class="col-4"><label for="s">Soyadı (Unvan)
 
                   </label></div>
-                <div class="col-8"><input name="beyannamekanunitemsicisoyadi" type="text"></div>
+                <div class="col-8"><input value="{{beyannamekanun.beyannamekanunitemsicisoyadi}}" name="beyannamekanunitemsicisoyadi" type="text"></div>
               </div>
               <div class="row genel">
                 <div class="col-4"><label for="s">Adı (Unvan Devamı)
                   </label></div>
-                <div class="col-8"><input name="beyannamekanunitemsiciadiunvandevami" type="text"></div>
+                <div class="col-8"><input value="{{beyannamekanun.beyannamekanunitemsiciadiunvandevami}}" name="beyannamekanunitemsiciadiunvandevami" type="text"></div>
                 <div class="col-4"><label for="s">Ticaret Sicil No
 
                   </label></div>
-                <div class="col-8"><input name="beyannamekanunitemsiciticaretsicilno" type="text"></div>
+                <div class="col-8"><input value="{{beyannamekanun.beyannamekanunitemsiciticaretsicilno}}" name="beyannamekanunitemsiciticaretsicilno" type="text"></div>
                 <div class="col-4"><label for="s">e-Posta Adresi
                   </label></div>
-                <div class="col-8"><input name="beyannamekanunitemsicieposta" type="email"></div>
+                <div class="col-8"><input value="{{beyannamekanun.beyannamekanunitemsicieposta}}" name="beyannamekanunitemsicieposta" type="email"></div>
                 <div class="col-4"><label for="s">Telefon No
 
                   </label></div>
-                <div class="col-8"><input name="beyannamekanunitemsicitelefon" type="tel"></div>
+                <div class="col-8"><input  value="{{beyannamekanun.beyannamekanunitemsicitelefon}}" name="beyannamekanunitemsicitelefon" type="tel"></div>
               </div>
             </div>
             <div class="col-6">
@@ -1202,33 +1226,33 @@
               <div class="row genel">
                 <div class="col-6"><label for="tc">TC Kimlik No
 
-                  </label><br><input name="beyannameduzenleyeneaittc" type="text"></div>
+                  </label><br><input value="{{beyannameyi_duzenleyen.beyannameduzenleyeneaittc}}" name="beyannameduzenleyeneaittc" type="text"></div>
                 <div class="col-6"><label for="vn">Vergi No
 
-                  </label><br><input name="beyannameduzenleyeneaitvergino" type="text"></div>
+                  </label><br><input value="{{beyannameyi_duzenleyen.beyannameduzenleyeneaitvergino}}" name="beyannameduzenleyeneaitvergino" type="text"></div>
               </div>
 
               <div class="row genel">
                 <div class="col-4"><label for="s">Soyadı (Unvan)
 
                   </label></div>
-                <div class="col-8"><input name="beyannameduzenleyeneaitsoyadiunvan" type="text"></div>
+                <div class="col-8"><input value="{{beyannameyi_duzenleyen.beyannameduzenleyeneaitsoyadiunvan}}" name="beyannameduzenleyeneaitsoyadiunvan" type="text"></div>
               </div>
               <div class="row genel">
                 <div class="col-4"><label for="s">Adı (Unvan Devamı)
                   </label></div>
-                <div class="col-8"><input name="beyannameduzenleyeneaitadiunvandevami" type="text"></div>
+                <div class="col-8"><input value="{{beyannameyi_duzenleyen.beyannameduzenleyeneaitadiunvandevami}}" name="beyannameduzenleyeneaitadiunvandevami" type="text"></div>
                 <div class="col-4"><label for="s">Ticaret Sicil No
 
                   </label></div>
-                <div class="col-8"><input name="beyannameduzenleyeneaitticaretsicilno" type="text"></div>
+                <div class="col-8"><input value="{{beyannameyi_duzenleyen.beyannameduzenleyeneaitticaretsicilno}}" name="beyannameduzenleyeneaitticaretsicilno" type="text"></div>
                 <div class="col-4"><label for="s">e-Posta Adresi
                   </label></div>
-                <div class="col-8"><input name="beyannameduzenleyeneaiteposta" type="email"></div>
+                <div class="col-8"><input value="{{beyannameyi_duzenleyen.beyannameduzenleyeneaiteposta}}" name="beyannameduzenleyeneaiteposta" type="email"></div>
                 <div class="col-4"><label for="s">Telefon No
 
                   </label></div>
-                <div class="col-8"><input name="beyannameduzenleyeneaittelefon" type="tel"></div>
+                <div class="col-8"><input value="{{beyannameyi_duzenleyen.beyannameduzenleyeneaittelefon}}" name="beyannameduzenleyeneaittelefon" type="tel"></div>
               </div>
               <h5 class="text-center">YMM Bilgileri</h5>
               <div class="row genel">
