@@ -364,8 +364,12 @@ def firma_ekleme(request):
 
 def firma_gosterme(request,slug):
     kayitli_firmam = get_object_or_404(firma,silinme_bilgisi = False,firma_ozel_anahtar = slug)
-    sube_bilgisi = get_object_or_404(sube,bagli_oldugu_firma =  kayitli_firmam)
+    sube_bilgisi = sube.objects.filter(bagli_oldugu_firma =  kayitli_firmam).first()
+    adres = adresler.objects.filter(id  = sube_bilgisi.adres_bilgisi.id ).first()
     content = {}
     content["kayitlifirmam"]= kayitli_firmam
     content["sube_bilgisi"] = sube_bilgisi
+    content["adres"] = adres
+    content["firmalarim"] = firma.objects.filter(silinme_bilgisi = False,firma_muhasabecisi = request.user)
+    content["subeleri"] =  sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
     return render (request,"firma_durumlari/firma_duzeletme.html",content)

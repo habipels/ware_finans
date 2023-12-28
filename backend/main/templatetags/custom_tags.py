@@ -294,26 +294,42 @@ def mizan_fis_islemleri_alacak_yazdirma(id):
 
 
 @register.simple_tag
-def mizan_fislerin_borc_toplam_hesaplanmasi(request,slug):
-    for i in HesapPlanlari.objects.filter(bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)) :
-        print(i.id)
+def mizan_fislerin_borc_toplam_hesaplanmasi(veri):
+    borc = 0
+    alacak = 0
+    for i in veri :
         a = genel_muhasebe_fis.objects.filter(hesap_plani_secim__id = i.id)
-        borc = 0
-        alacak = 0
+        
         for i in a:
             borc = borc + i.borc
         for i in a:
             alacak = alacak + i.alacak_bilgisi
-        return borc
+    print(borc)
+    return borc
 
 @register.simple_tag
 def mizan_fislerin_alacak_toplam_hesaplanmasi(veri):
+    borc = 0
+    alacak = 0
     for i in veri :
         a = genel_muhasebe_fis.objects.filter(hesap_plani_secim__id = i.id)
-        borc = 0
-        alacak = 0
+        
         for i in a:
             borc = borc + i.borc
         for i in a:
             alacak = alacak + i.alacak_bilgisi
-        return alacak
+    return alacak
+
+@register.simple_tag
+def mizan_fislerin_borc_toplam_hesaplanmasi_bakiye(veri):
+    borc = 0
+    alacak = 0
+    for i in veri :
+        a = genel_muhasebe_fis.objects.filter(hesap_plani_secim__id = i.id)
+        
+        for i in a:
+            borc = borc + i.borc
+        for i in a:
+            alacak = alacak + i.alacak_bilgisi
+    
+    return borc-alacak
