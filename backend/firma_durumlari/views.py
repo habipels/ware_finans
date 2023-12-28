@@ -370,6 +370,9 @@ def firma_gosterme(request,slug):
     content["kayitlifirmam"]= kayitli_firmam
     content["sube_bilgisi"] = sube_bilgisi
     content["adres"] = adres
+    content["faliyet_bilgisi"] =  sube_faliyet_bilgileri.objects.filter(sube_bilgisi__id = sube_bilgisi.id).first()
+    content["ihale"] = ihale_bilgileri.objects.filter(sube_bilgisi__id = sube_bilgisi.id).first()
+    content["taseronbilgileri"] = taseronbilgileri.objects.filter(sube_bilgisi__id = sube_bilgisi.id).first()
     content["firmalarim"] = firma.objects.filter(silinme_bilgisi = False,firma_muhasabecisi = request.user)
     content["subeleri"] =  sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
     return render (request,"firma_durumlari/firma_duzeletme.html",content)
