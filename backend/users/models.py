@@ -416,7 +416,7 @@ class beyanname_bilgileri(models.Model):
     beyannamehangisifatlaverildi_secim =(
         ("",""),
         ("mukellef","Mükellef"),
-        ("mirascı","Miradscı"),
+        ("mirascı","Mirascı"),
         ("kanunitemsilci","Kanuni Temsilci")
     )
     sube_bilgisi = models.ForeignKey(sube,blank=True, null=True,on_delete=models.CASCADE)
