@@ -7,9 +7,9 @@
   {% csrf_token %}
   <div class="icon-bar">
 
-    <a href="">Yeni Firma</a>
-    <a href="">Yeni Şube</a>
-    <a href="">Firmayi Sil</a>
+    <a href="/company/companysettings/">Yeni Firma</a>
+    <a href="/company/addsite/{{kayitlifirmam.firma_ozel_anahtar}}">Yeni Şube</a>
+    <a href="/company/deletecompany/{{kayitlifirmam.firma_ozel_anahtar}}">Firmayi Sil</a>
     <a href="">Şubeyi Sil</a>
     <button type="submit">Kaydet</button>
   </div>
@@ -61,12 +61,11 @@
       <div class="col-4">
 
         <label for="firmalar">Şubeler <br>
-          <select style="box-sizing: content-box;" id="firmalar">
-          <option value=""></option>
-            <option value="01">Osman Aga Şubesi</option>
-            <option value="02">Habip Reis Şubesi</option>
-            <option value="03">İkiz Kardeşler Subesi</option>
-          </select> </label>
+          <select onchange="if (this.value) window.location.href=this.value"  style="box-sizing: content-box;" id="firmalar">
+            {% for i in sube_bilgisi %}
+            <option value="/company/show/{{i.bagli_oldugu_firma.firma_ozel_anahtar}}/{{i.id}}">{{i.sube_adi}}</option>
+          {% endfor %}
+          </select></label>
       </div>
       <div class="col-2">
 

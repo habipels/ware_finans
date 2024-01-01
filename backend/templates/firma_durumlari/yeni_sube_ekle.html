@@ -10,7 +10,7 @@
     <a href="/company/companysettings/">Yeni Firma</a>
     <a href="/company/addsite/{{kayitlifirmam.firma_ozel_anahtar}}">Yeni Şube</a>
     <a href="/company/deletecompany/{{kayitlifirmam.firma_ozel_anahtar}}">Firmayi Sil</a>
-    <a href="/company/delete/{{kayitlifirmam.firma_ozel_anahtar}}/{{sube_bilgisi.id}}">Şubeyi Sil</a>
+    <a href="">Şubeyi Sil</a>
     <button type="submit">Kaydet</button>
   </div>
   <div class="d-menu">
@@ -53,7 +53,7 @@
       <div class="col-4"><label for="firmalar">Firmalar <br>
           <select onchange="if (this.value) window.location.href=this.value" style="box-sizing: content-box;" id="firmalar">
             <option value="/company/show/{{kayitlifirmam.firma_ozel_anahtar}}">{{kayitlifirmam.firma_unvani}} {{kayitlifirmam.Firma_unvani2}} ({{kayitlifirmam.tanitici_isim}})</option>
-            {% for i in firmalarim %}
+            {% for i in firmalrim %}
               <option value="/company/show/{{i.firma_ozel_anahtar}}">{{i.firma_unvani}} {{i.Firma_unvani2}} ({{i.tanitici_isim}})</option>
             {% endfor %}
           </select> </label></div>
@@ -62,21 +62,11 @@
 
         <label for="firmalar">Şubeler <br>
           <select onchange="if (this.value) window.location.href=this.value"  style="box-sizing: content-box;" id="firmalar">
-            <option value="/company/show/{{sube_bilgisi.bagli_oldugu_firma.firma_ozel_anahtar}}/{{sube_bilgisi.id}}">{{sube_bilgisi.sube_adi}}</option>
             <option value="/company/show/{{kayitlifirmam.firma_ozel_anahtar}}"></option>
-            
-            {% for i in subeleri %}
-            {% if i.id == sube_bilgisi.id %}
-            
-            {% else %}
+            {% for i in sube_bilgisi %}
             <option value="/company/show/{{i.bagli_oldugu_firma.firma_ozel_anahtar}}/{{i.id}}">{{i.sube_adi}}</option>
-            {% endif %}
-            
           {% endfor %}
-         
-            
-          </select>
-          </select> </label>
+          </select></label>
       </div>
       <div class="col-2">
 
@@ -105,45 +95,12 @@
                 <hr style="color:black !important;border-top:2px solid black !important;">
                 <div class="row genel">
                   <div class="col-4">
-                    <label for="firmaunvanad">
-                      Tanıtıcı İsim:
-
-                    </label>
-                  </div>
-                  <div class="col-8">
-                    <input name="firmataniticiadi" value="{{kayitlifirmam.tanitici_isim}}" type="text">
-                  </div>
-                </div>
-                <div class="row genel">
-                  <div class="col-4">
-                    <label for="firmaunvanad">
-                      Firma Unvanı (Adı):
-
-                    </label>
-                  </div>
-                  <div class="col-8">
-                    <input  value="{{kayitlifirmam.firma_unvani}}" name="firmaunvanadi" type="text">
-                  </div>
-                </div>
-                <div class="row genel">
-                  <div class="col-4">
-                    <label for="firmaunvansoyadi">
-                      Firma Unvanı (Soyadı):
-
-                    </label>
-                  </div>
-                  <div  class="col-8"><input value="{{kayitlifirmam.Firma_unvani2}}" name="firmaunvansoyadi" type="text"></div>
-                </div>
-                
-
-                <div class="row genel">
-                  <div class="col-4">
                     <label for="subead">
                       Şube Adı:
 
                     </label>
                   </div>
-                  <div class="col-8"><input value="{{sube_bilgisi.sube_adi}}" name="subeadi" type="text"></div>
+                  <div class="col-8"><input value="" name="subeadi" type="text"></div>
                 </div>
 
                 <div class="row genel">
@@ -151,7 +108,7 @@
                       Şube Unvanı :
 
                     </label></div>
-                  <div class="col-8"><input value="{{sube_bilgisi.sube_unvani}}" name="subeunvani" type="text"></div>
+                  <div class="col-8"><input name="subeunvani" type="text"></div>
                 </div>
 
 
@@ -163,7 +120,7 @@
                       Adres :
 
                     </label></div>
-                  <div class="col-8"><input value="{{adres.adres}}" name="adresaciklama" type="text"></div>
+                  <div class="col-8"><input name="adresaciklama" type="text"></div>
                 </div>
                 <div class="row genel">
                   <div class="col-4"><label for="mahalle">
@@ -171,13 +128,13 @@
 
                     </label>
                     <br>
-                    <input value="{{adres.mahhalle_koy}}" name="mahallekoy" type="text">
+                    <input name="mahallekoy" type="text">
                   </div>
                   <div class="col-4"><label for="buluvar">
                       Buluvar :
 
                     </label>
-                    <br><input value="{{adres.bulvar}}" name="bulvar" type="text">
+                    <br><input name="bulvar" type="text">
                   </div>
                   <div class="col-4">
                     <label for="cadde">
@@ -185,7 +142,7 @@
 
                     </label>
                     <br>
-                    <input value="{{adres.cadde}}" name="cadde" type="text">
+                    <input name="cadde" type="text">
                   </div>
                 </div>
 
@@ -195,7 +152,7 @@
 
                     </label>
                     <br>
-                    <input value="{{adres.sokak}}" name="sokak" type="text">
+                    <input name="sokak" type="text">
                   </div>
                   <div class="col-4">
                     <div class="row">
@@ -205,14 +162,14 @@
 
                         </label>
                         <br>
-                        <input value="{{adres.adaparselno}}" name="adaparselno" type="text">
+                        <input name="adaparselno" type="text">
                       </div>
                       <div class="col-6">
                         <label for="diskapi">
                           Dış Kapı No :
 
                         </label>
-                        <br><input value="{{adres.diskapino}}" name="diskapino" type="text">
+                        <br><input name="diskapino" type="text">
                       </div>
                     </div>
                   </div>
@@ -223,7 +180,7 @@
 
                         </label>
                         <br>
-                        <input value="{{adres.ickapino}}" name="ickapino" type="text">
+                        <input name="ickapino" type="text">
                       </div>
                       <div class="col-6">
                         <label for="postakodu">
@@ -231,7 +188,7 @@
 
                         </label>
                         <br>
-                        <input value="{{adres.posta_kodu}}" name="postakodu" type="text">
+                        <input name="postakodu" type="text">
                       </div>
                     </div>
                   </div>
@@ -242,25 +199,24 @@
                       Semt :
                     </label>
                     <br>
-                    <input value="{{adres.semt}}" name="semt" type="text">
+                    <input name="semt" type="text">
                   </div>
                   <div class="col-4">
                     <label for="ilce">
                       İlçe :
                     </label>
                     <br>
-                    <input value="{{adres.ilce}}" name="ilce" type="text">
+                    <input name="ilce" type="text">
                   </div>
                   <div class="col-4">
                     <label for="il">İl:</label>
                     <br>
                     <select name="il" id="il">
-                    <option value="{{adres.il}}">{{adres.il}}</option>
-                      <option value="Adana">Adana</option>
-                      <option value="Ankara">Ankara</option>
-                      <option value="Gaziantep">Gaziantep</option>
-                      <option value="İstanbul">İstanbul</option>
-                      <option value="Van">Van</option>
+                      <option value="01">Adana</option>
+                      <option value="06">Ankara</option>
+                      <option value="27">Gaziantep</option>
+                      <option value="34">İstanbul</option>
+                      <option value="65">Van</option>
                     </select>
                   </div>
                 </div>
@@ -272,7 +228,7 @@
                       Vergi Dairesi
                     </label>
                     <br>
-                    <input value="{{sube_bilgisi.vergi_dairesi_adi.vergi_dairesi_adi}}" name="firmavergidairesi" id ="firmavergidairesi"  type="text">
+                    <input name="firmavergidairesi" id ="firmavergidairesi"  type="text">
                   </div>
                   <div class="col-4">
                     <label for="">
@@ -280,7 +236,7 @@
                     </label>
                     <br>
                     <div class="row">
-                      <div class="col-8"><input value="{{sube_bilgisi.vergi_dairesi_adi.vergi_dairesi_kodu}}" id="firmavergidairesikodu" name="firmavergidairesikodu" type="text"></div>
+                      <div class="col-8"><input id="firmavergidairesikodu" name="firmavergidairesikodu" type="text"></div>
                       <div class="col-4"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
                         seç
                       </button></div>
@@ -292,7 +248,7 @@
                       Vergi Numarası
                     </label>
                     <br>
-                    <input value="{{sube_bilgisi.vergi_numarasi}}" name="firmaverginumarasi" type="text">
+                    <input name="firmaverginumarasi" type="text">
                   </div>
 
                 </div>
@@ -300,22 +256,22 @@
                   <div class="col-3"><label for="">
                       Şahıs İse T.C. NO
                     </label><br>
-                    <input value="{{sube_bilgisi.sahis_ise_tc}}" name="sahisisetc" type="text">
+                    <input name="sahisisetc" type="text">
                   </div>
                   <div class="col-3"><label for="">
                       e-Posta Adresi
 
                     </label><br>
-                    <input value="{{sube_bilgisi.email_adresi}}" name="firmaeposta" type="email">
+                    <input name="firmaeposta" type="email">
                   </div>
                   <div class="col-3"><label for="">
                       Firma Web Adresi
                     </label>
-                    <br><input value="{{sube_bilgisi.web_adresi}}" name="firmawebadresi" type="url">
+                    <br><input name="firmawebadresi" type="url">
                   </div>
                   <div class="col-3"><label for="">
                       Firma Telefon
-                    </label><br><input value="{{sube_bilgisi.telefon_numarasi}}" name="firmatelefon" type="text"></div>
+                    </label><br><input name="firmatelefon" type="text"></div>
                 </div>
 
 
@@ -328,138 +284,50 @@
                 <hr style="color:black !important;border-top:2px solid black !important;">
                 <div class="row" style="margin-left:0 !important;">
                   <div class="col-3" style="border: 1px solid brown;">
-                    <h5 class="text-center">Defter Türü</h5>
-                    {% if sube_bilgisi.sube_defter_turu == "Genel Muhasebe" %}
-                      <input type="radio" checked name="defterturu" id="html" value="genelmuhasabe">
-                    <label for="html">Genel Muhasebe</label><br>
-                    <input type="radio" name="defterturu" id="css" value="isletmedefteri">
-                    <label for="css">İşletme Defteri</label><br>
-                    {% elif  sube_bilgisi.sube_defter_turu == "İşletme Defteri" %}
-                    <input type="radio"  name="defterturu" id="html" value="genelmuhasabe">
-                    <label for="html">Genel Muhasebe</label><br>
-                    <input type="radio" checked name="defterturu" id="css" value="isletmedefteri">
-                    <label for="css">İşletme Defteri</label><br>
-                    {% endif %}  
                   </div>
                   <div class="col-2" style="border: 1px solid brown;">
-                    <h5 class="text-center">KDV1</h5>
-                    {% if sube_bilgisi.kdv1 == "Aylık"  %}
-                        <input name="kdv1" checked type="radio" id="html" value="kdv1aylik">
-                      <label for="html">Aylık</label><br>
-                      <input name="kdv1"  type="radio" id="css" value="kdv1ucaylik">
-                      <label for="css">3 Aylık</label><br>
-                    {% elif  sube_bilgisi.kdv1 == "Üç Aylık" %}
-                    <input name="kdv1" type="radio" id="html" value="kdv1aylik">
-                    <label for="html">Aylık</label><br>
-                    <input name="kdv1" checked  type="radio" id="css" value="kdv1ucaylik">
-                    <label for="css">3 Aylık</label><br>
-                    {% endif %}
-                    
+                   
                   </div>
                   <div class="col-2" style="border: 1px solid brown;">
                     <h5 class="text-center">Turizim Türü</h5>
-                    {% if sube_bilgisi.turizm == "Aylık"  %}
-                        <input checked name="turizim" type="radio" id="html" value="turizimaylik">
-                        <label for="html">Aylık</label><br>
-                        <input name="turizim" type="radio" id="css" value="turizimucaylik">
-                        <label for="css">3 Aylık</label><br>
-                    {% elif  sube_bilgisi.turizm == "Üç Aylık" %}
-                      <input name="turizim" type="radio" id="html" value="turizimaylik">
-                      <label for="html">Aylık</label><br>
-                      <input checked name="turizim" type="radio" id="css" value="turizimucaylik">
-                      <label for="css">3 Aylık</label><br>
-                    {% endif %}
-                    
+                    <input name="turizim" type="radio" id="html" value="turizimaylik">
+                    <label for="html">Aylık</label><br>
+                    <input name="turizim" type="radio" id="css" value="turizimucaylik">
+                    <label for="css">3 Aylık</label><br>
                   </div>
                   <div class="col-2" style="border: 1px solid brown;">
                     <h5 class="text-center">MuhSGK</h5>
-                    {% if sube_bilgisi.muhsgk == "Aylık"  %}
-                        <input name="muhsgk" checked type="radio" id="html" value="sgkaylik">
+                    <input name="muhsgk" type="radio" id="html" value="sgkaylik">
                     <label for="html">Aylık</label><br>
                     <input name="muhsgk" type="radio" id="css" value="sgkucaylik">
                     <label for="css">3 Aylık</label><br>
-                    {% elif  sube_bilgisi.muhsgk == "Üç Aylık" %}
-                        <input name="muhsgk" type="radio" id="html" value="sgkaylik">
-                    <label for="html">Aylık</label><br>
-                    <input checked name="muhsgk" type="radio" id="css" value="sgkucaylik">
-                    <label for="css">3 Aylık</label><br>
-                    {% endif %}
-                    
                   </div>
                   <div class="col-3" style="border: 1px solid brown;">
                     <h5 class="text-center">Poşet</h5>
-                    {% if sube_bilgisi.poset == "Aylık"  %}
-                        <input checked name="poset" type="radio" id="html" value="posetaylik">
-                    <label for="html">Aylık</label><br>
-                    <input name="poset"  type="radio" id="css" value="posetucaylik">
-                    <label for="css">3 Aylık</label><br>
-                    <input name="poset"  type="radio" id="java" value="posetaltiaylik">
-                    <label for="java">6 Aylık</label><br>
-                    {% elif  sube_bilgisi.poset == "Üç Aylık" %}
-                      <input name="poset" type="radio" id="html" value="posetaylik">
-                    <label for="html">Aylık</label><br>
-                    <input name="poset" checked  type="radio" id="css" value="posetucaylik">
-                    <label for="css">3 Aylık</label><br>
-                    <input name="poset"  type="radio" id="java" value="posetaltiaylik">
-                    <label for="java">6 Aylık</label><br>
-                    {% elif  sube_bilgisi.poset == "Altı Aylık" %}
                     <input name="poset" type="radio" id="html" value="posetaylik">
                     <label for="html">Aylık</label><br>
                     <input name="poset"  type="radio" id="css" value="posetucaylik">
                     <label for="css">3 Aylık</label><br>
-                    <input name="poset" checked type="radio" id="java" value="posetaltiaylik">
+                    <input name="poset"  type="radio" id="java" value="posetaltiaylik">
                     <label for="java">6 Aylık</label><br>
-                    {% endif %}
-                    
                   </div>
                 </div>
                 <div class="row" style="margin-left:0 !important;">
                   <div class="col-6">
                     <div class="row" style="margin-left:-7px !important;">
                       <div class="col-8" style="border: 1px solid brown;">
-                        <h5 class="text-center">Firma Defter Türü </h5>
-                        {% if sube_bilgisi.firma_defter_turu == "İşletme"  %}
-                        <input type="radio" id="html" checked value="isletme">
-                        <label name="firmadefterturu" for="html">İşletme</label><br>
-                        <input type="radio" id="css" value="serbestmeslekdefteri">
-                        <label name="firmadefterturu" for="css">Serbest Meslek Defteri</label><br>
-                    {% elif  sube_bilgisi.firma_defter_turu == "Serbest Meslek Defteri" %}
-                       <input type="radio" id="html" value="isletme">
-                        <label name="firmadefterturu" for="html">İşletme</label><br>
-                        <input type="radio" id="css" checked value="serbestmeslekdefteri">
-                        <label name="firmadefterturu" for="css">Serbest Meslek Defteri</label><br>
-                      {% else %}
-                      <input type="radio" id="html" value="isletme">
-                        <label name="firmadefterturu" for="html">İşletme</label><br>
-                        <input type="radio" id="css"  value="serbestmeslekdefteri">
-                        <label name="firmadefterturu" for="css">Serbest Meslek Defteri</label><br>
-                    {% endif %}
-                        
-
                       </div>
                       <div class="col-4" style="border: 1px solid brown;">
 
                         <h5 class="text-center">KDV2</h5>
-                        {% if sube_bilgisi.kdv2 == "Aylık"  %}
-                        <input name="kdv2" checked type="radio" id="html" value="kdv2aylik">
+                        <input name="kdv2" type="radio" id="html" value="kdv2aylik">
                         <label for="html">Aylık</label><br>
                         <input name="kdv2" type="radio" id="css" value="kdv2ucaylik">
                         <label for="css">3 Aylık</label><br>
-                    {% elif  sube_bilgisi.kdv2 == "Üç Aylık" %}
-                      <input name="kdv2" type="radio" id="html" value="kdv2aylik">
-                        <label for="html">Aylık</label><br>
-                        <input name="kdv2" checked type="radio" id="css" value="kdv2ucaylik">
-                        <label for="css">3 Aylık</label><br>
-                    {% endif %}
-                        
                       </div>
                     </div>
                   </div>
                   <div class="col-6">
-                    <input name="muhasebeci_bilgisigorunsun" type="checkbox" id="vehicle1" value="muhasebeci_bilgisigorunsun">
-                    <label for="vehicle1" style="font-size: 10px;"> Muhasebeci Bilgilerini Beyannameye Yaz</label><br>
-                    <input name="firmaadiortaklimi" type="checkbox" id="vehicle2" value="firmaadiortaklimi">
-                    <label for="vehicle2" style="font-size: 10px;"> Firma Adı Ortaklı Mı?</label><br>
                     <input name="listedegorunsun" type="checkbox" id="vehicle3" value="listedegorunsun">
                     <label for="vehicle3" style="font-size: 10px;"> 2000/5000 Listede Görünsün</label><br>
                     <input name="aktif" type="checkbox" id="vehicle4" value="aktif">
@@ -467,49 +335,6 @@
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-6">
-                    <label for="mulk">Mükellefiyet Türü:</label>
-                    <select name="firmamt" id="il">
-                    <option value="{{sube_bilgisi.mukellefiyet_turu}}">{{sube_bilgisi.mukellefiyet_turu}}</option>
-                      <option value="Gerçek Kişi">Gerçek Kişi</option>
-                      <option value="Kollektif Şirket">Kollektif Şirket</option>
-                      <option value="Adi Komandit Şirket">Adi Komandit Şirket</option>
-                      <option value="Eshamlı Komandit Şirket">Eshamlı Komandit Şirket</option>
-                      <option value="Limited Şirket">Limited Şirket</option>
-                      <option value="Anonim Şirket">Anonim Şirket</option>
-                      <option value="Kooperatif">Kooperatif</option>
-                      <option value="Yabancı Kişi">Yabancı Kişi</option>
-                      <option value="Diğer">Diğer</option>
-                      <option value="Apartman Yönetimi">Apartman Yönetimi</option>
-                      <option value="Avukatlık Ortaklığı">Avukatlık Ortaklığı</option>
-                      <option value="Basın">Basın</option>
-                      <option value="Birlik Ve Üst Birlik">Birlik Ve Üst Birlik</option>
-                      <option value="Dernek">Dernek</option>
-                      <option value="İş Ortaklığı">İş Ortaklığı</option>
-                      <option value="Sendika">Sendika</option>
-                      <option value="Site Yönetimi">Site Yönetimi</option>
-                      <option value="Siyasi Parti">Siyasi Parti</option>
-                      <option value="Spor Klübü">Spor Klübü</option>
-                      <option value="Vakıf">Vakıf</option>
-                      <option value="Kamu İktisadi Teşebbüsü">Kamu İktisadi Teşebbüsü</option>
-                      <option value="Belediye İktisadi Teşebbüsü">Belediye İktisadi Teşebbüsü</option>
-                    </select>
-                  </div>
-
-                  <div class="col-6">
-                    <label for="stok">Stok Envanter Bilgileri:</label>
-                    <select name="firmastokenvanter" id="il">
-                    <option value="{{sube_bilgisi.stok_bilgisi}}">{{sube_bilgisi.stok_bilgisi}}</option>
-                      <option value="FİFO">FİFO</option>
-                      <option value="LİFO">LİFO</option>
-                      <option value="Agirlikli Ortalama">Agirlikli Ortalama</option>
-                      <option value="Basit Ortalama">Basit Ortalama</option>
-                      <option value="Hareketli Agirlikli Ortalama">Hareketli Agirlikli Ortalama</option>
-                      <option value="Her Kartın Kendi Yöntemine Göre">Her Kartın Kendi Yöntemine Göre</option>
-
-                    </select>
-                    <label for="kdv">Geçici Vergi Oranı(%) : <input value="{{sube_bilgisi.gecici_vergi_orani | stringformat:'.2f'}}" name="kdvorani" step="0.001" type="number"></label>
-                  </div>
                 </div>
               </div>
             </div>
@@ -528,13 +353,13 @@
                   <label for="kurlustarihi">Kuruluş Tarihi
                   </label>
                   <br>
-                  <input type="date" min="1997-01-01" value="{{faliyet_bilgisi.kurulus_tarihi | date:'Y-m-d'}}" max="2030-12-31" name="faliyet_kurulus_tarihi" id="tarih">
+                  <input type="date" min="1997-01-01" max="2030-12-31" name="faliyet_kurulus_tarihi" id="tarih">
                 </div>
                 <div class="col-6">
                   <label for="terktarihi">Terk Tarihi
                   </label>
                   <br>
-                  <input type="date" min="1997-01-01" value="{{faliyet_bilgisi.terk_tarihi | date:'Y-m-d'}}" max="2030-12-31" name="faliyet_terk_tarihi" id="tarih">
+                  <input type="date" min="1997-01-01" max="2030-12-31" name="faliyet_terk_tarihi" id="tarih">
                 </div>
 
               </div>
@@ -544,7 +369,7 @@
                     Faliyet Nace Kodu
                   </label>
                   <div class="row genel">
-                      <div class="col-8"><input id="faliyetnacekodu" value="{{faliyet_bilgisi.faliyet_nace_kodu.faliyet_kodu}}"  name="faliyetnacekodu" type="text"></div>
+                      <div class="col-8"><input id="faliyetnacekodu" name="faliyetnacekodu" type="text"></div>
                       <div class="col-4"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#faliyetnacekodumodal">
                         seç
                       </button></div>
@@ -558,7 +383,7 @@
 
                   </label>
                   <br>
-                  <input id = "nacetehlikesinifi" value="{{faliyet_bilgisi.faliyet_nace_kodu.tehlike}}" name="nacetehlikesinifi" type="text">
+                  <input id = "nacetehlikesinifi" name="nacetehlikesinifi" type="text">
                 </div>
 
               </div>
@@ -569,7 +394,7 @@
 
                   </label>
                   <br>
-                  <input name="nacefaliyetadi" value="{{faliyet_bilgisi.faliyet_nace_kodu.faliyet_adi}}" id="nacefaliyetadi" type="text">
+                  <input name="nacefaliyetadi" id="nacefaliyetadi" type="text">
                 </div>
               </div>
 
@@ -580,7 +405,6 @@
                   </label>
                   <br>
                   <select name="faliyetniteligi" id="nitelik">
-                  <option value="{{faliyet_bilgisi.faliyet_niteligi}}">{{faliyet_bilgisi.faliyet_niteligi}}</option>
                     <option value="Devamlı">Devamlı</option>
                     <option value="Mevsimlik">Mevsimlik</option>
                     <option value="Geçici">Geçici</option>
@@ -593,7 +417,6 @@
                   </label>
                   <br>
                   <select name="faliyetsektoru" id="sektor">
-                  <option value="{{faliyet_bilgisi.tabi_oldugu_sektor}}">{{faliyet_bilgisi.tabi_oldugu_sektor}}</option>
                     <option value="Şirket türü">Şirket türü</option>
                     <option value="Dernek">Dernek</option>
                     <option value="Vakıf">Vakıf</option>
@@ -613,7 +436,7 @@
                     Yapılan İşin Niteliği
                   </label>
                   <br>
-                  <input value="{{faliyet_bilgisi.yapilan_is_niteligi}}" name="yapilanisinniteligi" type="text">
+                  <input name="yapilanisinniteligi" type="text">
                 </div>
               </div>
 
@@ -625,7 +448,6 @@
                   </label>
                   <br>
                   <select name="faliyetcalismasgi" id="csgk">
-                  <option value="{{faliyet_bilgisi.calisma_ve_sosyal_is_kolu.id}}">{{faliyet_bilgisi.calisma_ve_sosyal_is_kolu.kod_baslik}}</option>
                     {% for i in cvsgik %}
                       <option value="{{i.id}}">{{i.kod_baslik}}</option>
                     {% endfor %}
@@ -640,7 +462,7 @@
                     Şahıs ise Ticaret Unvanı
                   </label>
                   <br>
-                  <input value="{{faliyet_bilgisi.sahis_ise_ticaret_unvani}}" name="sahisisetu" type="text">
+                  <input name="sahisisetu" type="text">
                 </div>
               </div>
               <div class="row genel ">
@@ -648,20 +470,20 @@
                   <label for="ticarisicilgazatesitarihi">Ticari Sicil Gazatesi Tarihi
                   </label>
                   <br>
-                  <input value="{{faliyet_bilgisi.ticaret_sicil_gazete | date:'Y-m-d'}}" name="ticarisicilgazatesitarihi" type="date" min="1997-01-01" max="2030-12-31" id="tarih">
+                  <input name="ticarisicilgazatesitarihi" type="date" min="1997-01-01" max="2030-12-31" id="tarih">
                 </div>
                 <div class="col-4">
                   <label for="tsgsayfano">
                     Ticari Sicil Gazatesi Sayfa No
                   </label>
                   <br>
-                  <input value="{{faliyet_bilgisi.ticaret_sicil_gazete_sayfa_no}}" name="tsgsayfano" type="text">
+                  <input name="tsgsayfano" type="text">
                 </div>
                 <div class="col-4">
                   <label for="tsgazateno">
                     Ticari Sicil Gazate No
                   </label><br>
-                  <input value="{{faliyet_bilgisi.ticaret_sicil_gazete_no}}" name="tsgazateno" type="text">
+                  <input name="tsgazateno" type="text">
                 </div>
               </div>
               <div class="row genel">
@@ -670,13 +492,13 @@
                     Meslek Teşekkülü Adı
                   </label>
                   <br>
-                  <input value="{{faliyet_bilgisi.meslek_tesekkul_adi}}" name="meslektesekkuladi" type="text">
+                  <input name="meslektesekkuladi" type="text">
                 </div>
                 <div class="col-6">
                   <label for="meslektesekkulno">
                     Meslek Teşekkülü No
                   </label>
-                  <br><input value="{{faliyet_bilgisi.meslek_tesekkul_no}}" name="meslektesekkulno" type="text">
+                  <br><input name="meslektesekkulno" type="text">
                 </div>
               </div>
 
@@ -688,19 +510,19 @@
                   <label for="adresno">
                     Adres No
                   </label><br>
-                  <input value="{{faliyet_bilgisi.adres_no}}" name="adresno" type="text">
+                  <input name="adresno" type="text">
                 </div>
                 <div class="col-4">
                   <label for="tahutedilensermaye">
                     Taahhüt Edilen Sermaye
                   </label>
-                  <br><input value="{{faliyet_bilgisi.taahut_edilen_sermaye}}" name="tahutedilensermaye" type="text">
+                  <br><input name="tahutedilensermaye" type="text">
                 </div>
                 <div class="col-4">
                   <label for="odenensermaye">
                     Ödenen Sermaye
                   </label>
-                  <br><input value="{{faliyet_bilgisi.odenen_sermaye}}" name="odenensermaye" type="text">
+                  <br><input name="odenensermaye" type="text">
                 </div>
               </div>
               <div class="row genel">
@@ -709,7 +531,7 @@
                     E-Posta Adresi 2
                   </label>
                   <br>
-                  <input value="{{faliyet_bilgisi.e_posta_adresi2}}" name="epostaadresi2" type="email">
+                  <input name="epostaadresi2" type="email">
                 </div>
               </div>
               <div class="row genel">
@@ -719,13 +541,13 @@
                   </label>
                   <br>
                   <select name = "kotsmi" id="kotsmi">
-                    <option value="{{faliyet_bilgisi.kayitli_oldugu_il}}">{{faliyet_bilgisi.kayitli_oldugu_il}}</option>
-                    <option value="van">van</option>
-                    <option value="ankara">ankara</option>
-                    <option value="istanbul">istanbul</option>
-                    <option value="adana">adana</option>
-                    <option value="mersin">mersin</option>
-                    <option value="Batman">Batman</option>
+                    <option value="00"></option>
+                    <option value="01">van</option>
+                    <option value="02">ankara</option>
+                    <option value="03">istanbul</option>
+                    <option value="04">adana</option>
+                    <option value="05">mersin</option>
+                    <option value="06">Batman</option>
                   </select>
                 </div>
               </div>
@@ -735,14 +557,14 @@
                     Ticaret Sicil No
                   </label>
                   <br>
-                  <input value="{{faliyet_bilgisi.ticaret_sicil_no}}" name="ticaretsicilno" type="text">
+                  <input name="ticaretsicilno" type="text">
                 </div>
                 <div class="col-6">
                   <label for="mersisno">
                     Mersis No
                   </label>
                   <br>
-                  <input value="{{faliyet_bilgisi.mersis_no}}" name="mersisno" type="text">
+                  <input name="mersisno" type="text">
                 </div>
               </div>
 
@@ -753,7 +575,6 @@
                   </label>
                   <br>
                   <select name="isyerituru" id="isyerituru">
-                  <option value="{{faliyet_bilgisi.isyeri_turu}}">{{faliyet_bilgisi.isyeri_turu}}</option>
                     <option value="Merkez">Merkez</option>
                     <option value="Mükellefiyetsiz Şube">Mükellefiyetsiz Şube</option>
 
@@ -762,7 +583,7 @@
                 <div class="col-6">
                   <label for="">İşyeri Kodu</label>
                   <br>
-                  <input value="{{faliyet_bilgisi.isyeri_kodu}}" name="faliyetisyerikodu" type="text">
+                  <input name="faliyetisyerikodu" type="text">
                 </div>
               </div>
 
@@ -771,7 +592,6 @@
                     İşyeri Mülkiyet Durumu</label>
                   <br>
                   <select name="faliyetisyerimulkiyet" id="isyerimd">
-                    <option value="{{faliyet_bilgisi.isyeri_mulkiyet}}">{{faliyet_bilgisi.isyeri_mulkiyet}}</option>
                     <option value="Kira">Kira</option>
                     <option value="Mal Sahibi">Mal Sahibi</option>
                     <option value="Diğer">Diğer</option>
@@ -781,7 +601,7 @@
                     KDV1/KDV2 Beyannamesi İçin Vergi Dairesi Kodu
                   </label><br>
                   <div class="row">
-                    <div class="col-8"><input value="{{faliyet_bilgisi.vergi_dairesi_adi.vergi_dairesi_kodu}}" id="faliyetvergidairesikodu" name="faliyetvergidairesikodu" type="text"></div>
+                    <div class="col-8"><input id="faliyetvergidairesikodu" name="faliyetvergidairesikodu" type="text"></div>
                     <div class="col-4"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#faliyetvergidairesikodumodal">
                       seç
                     </button></div>
@@ -795,34 +615,34 @@
                     Yetkili Adı Soyadı
                   </label>
                   <br>
-                  <input value="{{faliyet_bilgisi.yetkili_adi_soyadi}}" name="yetkiliadisoyadi" type="text">
+                  <input name="yetkiliadisoyadi" type="text">
                 </div>
                 <div class="col-4">
                   <label for="vergikimlikno">
                     Vergi Kimlik No
                   </label>
                   <br>
-                  <input value="{{faliyet_bilgisi.vergi_kimlikno}}" name="vergikimlikno" type="number" maxlength="11">
+                  <input name="vergikimlikno" type="number" value="0" maxlength="11">
                 </div>
                 <div class="col-4"><label for="vergikimlikno">
                     T.C. Kimlik No
                   </label>
                   <br>
-                  <input value="{{faliyet_bilgisi.yetkili_tckimlikno}}" name="faliyettckimlik" type="number" maxlength="11">
+                  <input name="faliyettckimlik" type="number" value="0" maxlength="11">
                 </div>
                 <div class="col-4"><label for="baglioosn">
                     Bağlı Olduğu Oda Sicil No
                   </label><br>
-                  <input value="{{faliyet_bilgisi.oda_sicil_no}}" name="faliyetboosn" type="text" maxlength="11">
+                  <input name="faliyetboosn" type="text" maxlength="11">
                 </div>
                 <div class="col-4"><label for="ctvn">
                     Çevre Temizlik Vergi No
                   </label>
-                  <br><input value="{{faliyet_bilgisi.cevre_temizlik_vergi_no}}" name="faliyetcyvn" type="text" maxlength="15">
+                  <br><input name="faliyetcyvn" type="text" maxlength="15">
                 </div>
                 <div class="col-4"><label for="birvn">
                     Belediye İlan Reklam Vergi No
-                  </label><br><input value="{{faliyet_bilgisi.beldye_ilan_reklam_vergi_no}}" name="faliyetbirvn" type="text" maxlength="16"></div>
+                  </label><br><input name="faliyetbirvn" type="text" maxlength="16"></div>
 
               </div>
             </div>
@@ -840,15 +660,15 @@
                     İhale Konusu İşlerde İhaleyi Yapan Makam
 
                   </label><br>
-                  <input value="{{ihale.ihalekonusundaihaleyapanmakam}}" name="ihaleyi_yapan_makam" type="text">
+                  <input name="ihaleyi_yapan_makam" type="text">
                 </div>
                 <div class="col-6"><label for="ibi">
                     İşyeri Bildirgesini İmzalayan</label>
                   <br>
                   <select name="isyeribildirgesi_imzalayan" id="ibi">
-                    <option value="{{ihale.isyeri_bildirgersi_imzalayan}}" >{{ihale.isyeri_bildirgersi_imzalayan}}</option>
-                    <option value="İşveren">İş Veren</option>
-                    <option value="İşveren Vekili">İşveren Yetkili</option>
+                    <option value="00"></option>
+                    <option value="01">İş Veren</option>
+                    <option value="02">İşveren Yetkili</option>
                   </select>
                 </div>
               </div>
@@ -856,15 +676,15 @@
                 <div class="col-6"><label for="ikiiyma">
                     İhale Konusu İşlerde İhaleyi Yapan Makam Adresi
                   </label><br>
-                  <input value="{{ihale.ihalekonusundaihaleyapanmakamadresi}}" name="ihaleyiyapanmakamadresi" type="text">
+                  <input name="ihaleyiyapanmakamadresi" type="text">
                 </div>
                 <div class="col-6"><label for="it">
                     İşveren Tipi</label><br>
                   <select name="ihaleisverentipi" id="it">
-                    <option value="{{ihale.isveren_tipi}}">{{ihale.isveren_tipi}}</option>
-                    <option value=""></option>
-                    <option value="Asıl İşveren">Asıl İşveren</option>
-                    <option value="Alt Yüklenici">Alt Yüklenici</option>
+
+                    <option value="00"></option>
+                    <option value="01">Asıl İşveren</option>
+                    <option value="02">Alt Yüklenici</option>
                   </select>
                 </div>
               </div>
@@ -878,7 +698,7 @@
                     Unvan
                   </label>
                 </div>
-                <div class="col-8"><input value="{{taseronbilgileri.taseronunvanbilgisi}}" name="taseronunvanbilgisi" type="text"></div>
+                <div class="col-8"><input name="taseronunvanbilgisi" type="text"></div>
 
               </div>
               <div class="row genel">
@@ -886,7 +706,7 @@
                     Adres :
 
                   </label></div>
-                <div class="col-8"><input value="{{taseronbilgileri.adres_bilgisi.adres}}" name="adresaciklamat" type="text"></div>
+                <div class="col-8"><input name="adresaciklamat" type="text"></div>
               </div>
               <div class="row genel">
                 <div class="col-4"><label for="mahalle">
@@ -894,13 +714,13 @@
 
                   </label>
                   <br>
-                  <input value="{{taseronbilgileri.adres_bilgisi.mahhalle_koy}}" name="mahallekoyt" type="text">
+                  <input name="mahallekoyt" type="text">
                 </div>
                 <div class="col-4"><label for="buluvar">
                     Buluvar :
 
                   </label>
-                  <br><input value="{{taseronbilgileri.adres_bilgisi.bulvar}}" name="bulvart" type="text">
+                  <br><input name="bulvart" type="text">
                 </div>
                 <div class="col-4">
                   <label for="cadde">
@@ -908,7 +728,7 @@
 
                   </label>
                   <br>
-                  <input  value="{{taseronbilgileri.adres_bilgisi.cadde}}" name="caddet" type="text">
+                  <input name="caddet" type="text">
                 </div>
               </div>
 
@@ -918,7 +738,7 @@
 
                   </label>
                   <br>
-                  <input value="{{taseronbilgileri.adres_bilgisi.sokak}}" name="sokakt" type="text">
+                  <input name="sokakt" type="text">
                 </div>
                 <div class="col-4">
                   <div class="row">
@@ -928,14 +748,14 @@
 
                       </label>
                       <br>
-                      <input value="{{taseronbilgileri.adres_bilgisi.adaparselno}}" name="adaparselnot" type="text">
+                      <input name="adaparselnot" type="text">
                     </div>
                     <div class="col-6">
                       <label for="diskapi">
                         Dış Kapı No :
 
                       </label>
-                      <br><input value="{{taseronbilgileri.adres_bilgisi.diskapino}}" name="diskapinot" type="text">
+                      <br><input name="diskapinot" type="text">
                     </div>
                   </div>
                 </div>
@@ -946,7 +766,7 @@
 
                       </label>
                       <br>
-                      <input value="{{taseronbilgileri.adres_bilgisi.ickapino}}" name="ickapinot" type="text">
+                      <input name="ickapinot" type="text">
                     </div>
                     <div class="col-6">
                       <label for="postakodu">
@@ -954,7 +774,7 @@
 
                       </label>
                       <br>
-                      <input value="{{taseronbilgileri.adres_bilgisi.posta_kodu}}" name="postakodut" type="text">
+                      <input name="postakodut" type="text">
                     </div>
                   </div>
                 </div>
@@ -965,20 +785,20 @@
                     Semt :
                   </label>
                   <br>
-                  <input value="{{taseronbilgileri.adres_bilgisi.semt}}" name="semtt" type="text">
+                  <input name="semtt" type="text">
                 </div>
                 <div class="col-4">
                   <label for="ilce">
                     İlçe :
                   </label>
                   <br>
-                  <input value="{{taseronbilgileri.adres_bilgisi.ilce}}" name="ilcet" type="text">
+                  <input name="ilcet" type="text">
                 </div>
                 <div class="col-4">
                   <label for="il">İl:</label>
                   <br>
                   <select name="ilt" id="il">
-                    <option value="{{taseronbilgileri.adres_bilgisi.il}}">{{taseronbilgileri.adres_bilgisi.il}}</option>
+                    <option value="01">Adana</option>
                     <option value="06">Ankara</option>
                     <option value="27">Gaziantep</option>
                     <option value="34">İstanbul</option>
@@ -992,7 +812,7 @@
                     Telefon Numarası</label>
                   <br>
 
-                  <input value="{{taseronbilgileri.telefon_numarasi}}" name="taserontelefon" type="text">
+                  <input name="taserontelefon" type="text">
 
                 </div>
                 <div class="col-6">
@@ -1000,21 +820,21 @@
                     E-Posta</label>
                   <br>
 
-                  <input value="{{taseronbilgileri.email_adresi}}" name="taseroneposta" type="email">
+                  <input name="taseroneposta" type="email">
 
                 </div>
                 <div class="col-6"><label for="">
                     Vergi Kimlik No
 
                   </label><br>
-                  <input value="{{taseronbilgileri.vergi_numarasi}}" name="taseronvergikimlikno" type="text">
+                  <input name="taseronvergikimlikno" type="text">
                 </div>
                 <div class="col-6">
                   <label for="">
                     T.C. NO</label>
                   <br>
 
-                  <input value="{{taseronbilgileri.sahis_tc}}" name="taserontcno" type="text">
+                  <input name="taserontcno" type="text">
 
                 </div>
 
@@ -1028,12 +848,12 @@
                   <label for="vkntc">
                     Vergi Kimlik No (T.C. Kimlik No )
                   </label><br>
-                  <input value="{{kurumlardar.kurumlarvergiveyatckimlikno}}" name="kurumlarvergiveyatckimlikno" type="text">
+                  
                 </div>
                 <div class="col-6"><label for="vkn">
                     Vergi Kimlik No
                   </label><br>
-                  <input value="{{kurumlardar.kurumlarvergikimlikno}}" name="kurumlarvergikimlikno" type="text">
+                  
                 </div>
               </div>
               <div class="row genel">
@@ -1043,7 +863,7 @@
                     Soyadı (Unvan)
 
                   </label><br>
-                  <input value="{{kurumlardar.kurumlarsoyadiunvan}}" name="kurumlarsoyadiunvan" type="text">
+                  
                 </div>
               </div>
 
@@ -1052,13 +872,13 @@
                   <label for="a">
                     Adı (Unvanın Devamı)
 
-                  </label><br><input value="{{kurumlardar.kurumlaradiunvan}}" name="kurumlaradiunvan" type="text">
+                  
                 </div>
                 <div class="col-6">
                   <label for="a">
                     Ticaret Sicil No
 
-                  </label><br><input value="{{kurumlardar.kurumlarticaretsicilno}}" name="kurumlarticaretsicilno" type="text">
+                  
                 </div>
               </div>
               <div class="row genel">
@@ -1067,14 +887,14 @@
                     e-posta Adresi
 
                   </label><br>
-                  <input value="{{kurumlardar.Kurumlarepostaadresi}}" name="Kurumlarepostaadresi" type="email">
+                  
                 </div>
                 <div class="col-6">
                   <label for="a">
                     İrtibat Telefon No.
 
                   </label><br>
-                  <input value="{{kurumlardar.kurumlarirtibatnumarasi}}" name="kurumlarirtibatnumarasi" type="text">
+                 
                 </div>
               </div>
 
@@ -1085,31 +905,31 @@
               <div class="row genel">
                 <div class="col-3"><label for="sube">
                     Şube
-                  </label><br><input  value="{{kurumlardar.kurumlarsube}}" name="kurumlarsube" type="text"></div>
+                  </label><br></div>
                 <div class="col-3"><label for="cikisyeri">
                     Çıkış Yeri
 
-                  </label><br><input value="{{kurumlardar.cikisyeri}}" name="cikisyeri" type="text"></div>
+                  </label><br></div>
                 <div class="col-3"><label for="ajanlik">
                     Ajanlık
 
-                  </label><br><input value="{{kurumlardar.kurumlarajanlik}}" name="kurumlarajanlik" type="text"></div>
+                  </label><br></div>
                 <div class="col-3"><label for="imalatyeri">
                     İmalat Yeri
 
-                  </label><br> <input value="{{kurumlardar.kurmlarimalatyeri}}" name="kurmlarimalatyeri" type="text"></div>
+                  </label><br> </div>
                 <div class="col-3"><label for="satisyeri">
                     Satış Yeri
 
-                  </label><br><input value="{{kurumlardar.kurumlarsatisyeri}}" name="kurumlarsatisyeri" type="text"></div>
+                  </label><br></div>
                 <div class="col-3"><label for="sair">
                     Sair
 
-                  </label><br><input value="{{kurumlardar.kurumlarsair}}" name="kurumlarsair" type="text"></div>
+                  </label><br></div>
                 <div class="col-3"><label for="toplam">
                     Toplam
 
-                  </label><br><input value="{{kurumlardar.kurumlartoplam}}" name="kurumlartoplam" type="text"></div>
+                  </label><br></div>
               </div>
               
             </div>
@@ -1123,76 +943,38 @@
           <div class="row">
             <div class="col-6" style="border-right: 1px solid black;">
               <div style="border: 1px solid black;">
-                <h6 style="font-weight: 700;" class="text-center">Beyanammenin Hangi Sıfatla Verildiği</h6>
-                <div class="row ">
-                  <div class="col-1"></div>
-                  {% if  beyannamebilgileri.beyannamehangisifatlaverildi == "mukellef" %}
-                  <div class="col-3"><input checked  name="beyannamehangisifatlaverildi" type="radio" id="html" value="mukellef">
-                    <label for="html">Mükellef</label>
-                  </div>
-                  <div class="col-3"><input name="beyannamehangisifatlaverildi" type="radio" id="css" value="mirascı">
-                    <label for="css">Mirascı</label>
-                  </div>
-                  <div class="col-3"><input name="beyannamehangisifatlaverildi" type="radio" id="javascript" value="kanunitemsilci">
-                    <label for="javascript">Kanuni Temsilci</label>
-                  </div>
-                  {% elif beyannamebilgileri.beyannamehangisifatlaverildi == "mirascı" %}
-                  <div class="col-3"><input   name="beyannamehangisifatlaverildi" type="radio" id="html" value="mukellef">
-                    <label for="html">Mükellef</label>
-                  </div>
-                  <div class="col-3"><input checked name="beyannamehangisifatlaverildi" type="radio" id="css" value="mirascı">
-                    <label for="css">Mirascı</label>
-                  </div>
-                  <div class="col-3"><input name="beyannamehangisifatlaverildi" type="radio" id="javascript" value="kanunitemsilci">
-                    <label for="javascript">Kanuni Temsilci</label>
-                  </div>
-                  {% else %}
-                  <div class="col-3"><input   name="beyannamehangisifatlaverildi" type="radio" id="html" value="mukellef">
-                    <label for="html">Mükellef</label>
-                  </div>
-                  <div class="col-3"><input  name="beyannamehangisifatlaverildi" type="radio" id="css" value="mirascı">
-                    <label for="css">Mirascı</label>
-                  </div>
-                  <div class="col-3"><input checked name="beyannamehangisifatlaverildi" type="radio" id="javascript" value="kanunitemsilci">
-                    <label for="javascript">Kanuni Temsilci</label>
-                  </div>
-                  {% endif %}
-
-
-                </div>
-
               </div>
               <h5 class="text-center">Mirasçı Bilgileri</h5>
               <div class="row genel">
                 <div class="col-6"><label for="tc">TC Kimlik No
 
-                  </label><br><input value="{{beyannamebilgileri.mirascibilgisitc}}" name="mirascibilgisitc" type="text"></div>
+                  </label><br><input name="mirascibilgisitc" type="text"></div>
                 <div class="col-6"><label for="vn">Vergi No
 
-                  </label><br><input value="{{beyannamebilgileri.mirascivergino}}" name="mirascivergino" type="text"></div>
+                  </label><br><input name="mirascivergino" type="text"></div>
               </div>
 
               <div class="row genel">
                 <div class="col-4"><label for="s">Soyadı (Unvan)
 
                   </label></div>
-                <div class="col-8"><input  value="{{beyannamebilgileri.beyannamesoyadiunvan}}" name="beyannamesoyadiunvan" type="text"></div>
+                <div class="col-8"><input name="beyannamesoyadiunvan" type="text"></div>
               </div>
               <div class="row genel">
                 <div class="col-4"><label for="s">Adı (Unvan Devamı)
                   </label></div>
-                <div class="col-8"><input value="{{beyannamebilgileri.beyannameadiunvandevami}}" name="beyannameadiunvandevami" type="text"></div>
+                <div class="col-8"><input name="beyannameadiunvandevami" type="text"></div>
                 <div class="col-4"><label for="s">Ticaret Sicil No
 
                   </label></div>
-                <div class="col-8"><input value="{{beyannamebilgileri.beyannameyeaitticaretsicilno}}" name="beyannameyeaitticaretsicilno" type="text"></div>
+                <div class="col-8"><input name="beyannameyeaitticaretsicilno" type="text"></div>
                 <div class="col-4"><label for="s">e-Posta Adresi
                   </label></div>
-                <div class="col-8"><input value="{{beyannamebilgileri.beyannameemailadresi}}" name="beyannameemailadresi" type="email"></div>
+                <div class="col-8"><input name="beyannameemailadresi" type="email"></div>
                 <div class="col-4"><label for="s">Telefon No
 
                   </label></div>
-                <div class="col-8"><input value="{{beyannamebilgileri.beyannametelefonumarasi}}" name="beyannametelefonumarasi" type="tel"></div>
+                <div class="col-8"><input name="beyannametelefonumarasi" type="tel"></div>
               </div>
 
 
@@ -1202,33 +984,33 @@
               <div class="row genel">
                 <div class="col-6"><label name="beyannamekanunitemsicitc" for="tc">TC Kimlik No
 
-                  </label><br><input value="{{beyannamekanun.beyannamekanunitemsicitc}}" type="text"></div>
+                  </label><br><input type="text"></div>
                 <div class="col-6"><label for="vn">Vergi No
 
-                  </label><br><input value="{{beyannamekanun.beyannamekanunitemsicivergino}}" name="beyannamekanunitemsicivergino" type="text"></div>
+                  </label><br><input name="beyannamekanunitemsicivergino" type="text"></div>
               </div>
 
               <div class="row genel">
                 <div class="col-4"><label for="s">Soyadı (Unvan)
 
                   </label></div>
-                <div class="col-8"><input value="{{beyannamekanun.beyannamekanunitemsicisoyadi}}" name="beyannamekanunitemsicisoyadi" type="text"></div>
+                <div class="col-8"><input name="beyannamekanunitemsicisoyadi" type="text"></div>
               </div>
               <div class="row genel">
                 <div class="col-4"><label for="s">Adı (Unvan Devamı)
                   </label></div>
-                <div class="col-8"><input value="{{beyannamekanun.beyannamekanunitemsiciadiunvandevami}}" name="beyannamekanunitemsiciadiunvandevami" type="text"></div>
+                <div class="col-8"><input name="beyannamekanunitemsiciadiunvandevami" type="text"></div>
                 <div class="col-4"><label for="s">Ticaret Sicil No
 
                   </label></div>
-                <div class="col-8"><input value="{{beyannamekanun.beyannamekanunitemsiciticaretsicilno}}" name="beyannamekanunitemsiciticaretsicilno" type="text"></div>
+                <div class="col-8"><input name="beyannamekanunitemsiciticaretsicilno" type="text"></div>
                 <div class="col-4"><label for="s">e-Posta Adresi
                   </label></div>
-                <div class="col-8"><input value="{{beyannamekanun.beyannamekanunitemsicieposta}}" name="beyannamekanunitemsicieposta" type="email"></div>
+                <div class="col-8"><input name="beyannamekanunitemsicieposta" type="email"></div>
                 <div class="col-4"><label for="s">Telefon No
 
                   </label></div>
-                <div class="col-8"><input  value="{{beyannamekanun.beyannamekanunitemsicitelefon}}" name="beyannamekanunitemsicitelefon" type="tel"></div>
+                <div class="col-8"><input name="beyannamekanunitemsicitelefon" type="tel"></div>
               </div>
             </div>
             <div class="col-6">
@@ -1236,65 +1018,65 @@
               <div class="row genel">
                 <div class="col-6"><label for="tc">TC Kimlik No
 
-                  </label><br><input value="{{beyannameyi_duzenleyen.beyannameduzenleyeneaittc}}" name="beyannameduzenleyeneaittc" type="text"></div>
+                  </label><br><input name="beyannameduzenleyeneaittc" type="text"></div>
                 <div class="col-6"><label for="vn">Vergi No
 
-                  </label><br><input value="{{beyannameyi_duzenleyen.beyannameduzenleyeneaitvergino}}" name="beyannameduzenleyeneaitvergino" type="text"></div>
+                  </label><br><input name="beyannameduzenleyeneaitvergino" type="text"></div>
               </div>
 
               <div class="row genel">
                 <div class="col-4"><label for="s">Soyadı (Unvan)
 
                   </label></div>
-                <div class="col-8"><input value="{{beyannameyi_duzenleyen.beyannameduzenleyeneaitsoyadiunvan}}" name="beyannameduzenleyeneaitsoyadiunvan" type="text"></div>
+                <div class="col-8"><input name="beyannameduzenleyeneaitsoyadiunvan" type="text"></div>
               </div>
               <div class="row genel">
                 <div class="col-4"><label for="s">Adı (Unvan Devamı)
                   </label></div>
-                <div class="col-8"><input value="{{beyannameyi_duzenleyen.beyannameduzenleyeneaitadiunvandevami}}" name="beyannameduzenleyeneaitadiunvandevami" type="text"></div>
+                <div class="col-8"><input name="beyannameduzenleyeneaitadiunvandevami" type="text"></div>
                 <div class="col-4"><label for="s">Ticaret Sicil No
 
                   </label></div>
-                <div class="col-8"><input value="{{beyannameyi_duzenleyen.beyannameduzenleyeneaitticaretsicilno}}" name="beyannameduzenleyeneaitticaretsicilno" type="text"></div>
+                <div class="col-8"><input name="beyannameduzenleyeneaitticaretsicilno" type="text"></div>
                 <div class="col-4"><label for="s">e-Posta Adresi
                   </label></div>
-                <div class="col-8"><input value="{{beyannameyi_duzenleyen.beyannameduzenleyeneaiteposta}}" name="beyannameduzenleyeneaiteposta" type="email"></div>
+                <div class="col-8"><input name="beyannameduzenleyeneaiteposta" type="email"></div>
                 <div class="col-4"><label for="s">Telefon No
 
                   </label></div>
-                <div class="col-8"><input value="{{beyannameyi_duzenleyen.beyannameduzenleyeneaittelefon}}" name="beyannameduzenleyeneaittelefon" type="tel"></div>
+                <div class="col-8"><input name="beyannameduzenleyeneaittelefon" type="tel"></div>
               </div>
               <h5 class="text-center">YMM Bilgileri</h5>
               <div class="row genel">
                 <div class="col-6"><label for="tc">TC Kimlik No
 
-                  </label><br><input value="{{ymm.ymmaitbilgilertc}}" name="ymmaitbilgilertc" type="text"></div>
+                  </label><br><input name="ymmaitbilgilertc" type="text"></div>
                 <div class="col-6"><label for="vn">Vergi No
 
-                  </label><br><input value="{{ymm.ymmaitbilgilervergino}}" name="ymmaitbilgilervergino" type="text"></div>
+                  </label><br><input name="ymmaitbilgilervergino" type="text"></div>
               </div>
 
               <div class="row genel">
                 <div class="col-4"><label for="s">Soyadı (Unvan)
 
                   </label></div>
-                <div class="col-8"><input value="{{ymm.ymmaitbilgilersoyadiunvan}}" name="ymmaitbilgilersoyadiunvan" type="text"></div>
+                <div class="col-8"><input name="ymmaitbilgilersoyadiunvan" type="text"></div>
               </div>
               <div class="row genel">
                 <div class="col-4"><label for="s">Adı (Unvan Devamı)
                   </label></div>
-                <div class="col-8"><input value="{{ymm.ymmaitbilgileradiunvanbilgisi}}" name="ymmaitbilgileradiunvanbilgisi" type="text"></div>
+                <div class="col-8"><input name="ymmaitbilgileradiunvanbilgisi" type="text"></div>
                 <div class="col-4"><label for="s">Ticaret Sicil No
 
                   </label></div>
-                <div class="col-8"><input value="{{ymm.ymmaitbilgileraditicaretsicilno}}" name="ymmaitbilgileraditicaretsicilno" type="text"></div>
+                <div class="col-8"><input name="ymmaitbilgileraditicaretsicilno" type="text"></div>
                 <div class="col-4"><label for="s">e-Posta Adresi
                   </label></div>
-                <div class="col-8"><input value="{{ymm.ymmaitbilgilereposta}}" name="ymmaitbilgilereposta" type="email"></div>
+                <div class="col-8"><input name="ymmaitbilgilereposta" type="email"></div>
                 <div class="col-4"><label for="s">Telefon No
 
                   </label></div>
-                <div class="col-8"><input value="{{ymm.ymmaitbilgilertelefonbilgisi}}" name="ymmaitbilgilertelefonbilgisi" type="tel"></div>
+                <div class="col-8"><input name="ymmaitbilgilertelefonbilgisi" type="tel"></div>
               </div>
               <h5 class="text-center">Beyannameyi Gönderen Bilgileri
                 (Hesap Bilgilerindeki Muhasebeci Bilgilerinden Farklı İse Doldurulacak)
@@ -1302,33 +1084,33 @@
               <div class="row genel">
                 <div class="col-6"><label for="tc">TC Kimlik No
 
-                  </label><br><input value="{{Beyannameyi_g_b.beyannamegonderentc}}" name="beyannamegonderentc" type="text"></div>
+                  </label><br><input name="beyannamegonderentc" type="text"></div>
                 <div class="col-6"><label for="vn">Vergi No
 
-                  </label><br><input value="{{Beyannameyi_g_b.beyannamegonderenvergino}}" name="beyannamegonderenvergino" type="text"></div>
+                  </label><br><input name="beyannamegonderenvergino" type="text"></div>
               </div>
 
               <div class="row genel">
                 <div class="col-4"><label for="s">Soyadı (Unvan)
 
                   </label></div>
-                <div class="col-8"><input value="{{Beyannameyi_g_b.beyannamegonderensoyadiunvan}}" name="beyannamegonderensoyadiunvan" type="text"></div>
+                <div class="col-8"><input name="beyannamegonderensoyadiunvan" type="text"></div>
               </div>
               <div class="row genel">
                 <div class="col-4"><label for="s">Adı (Unvan Devamı)
                   </label></div>
-                <div class="col-8"><input value="{{Beyannameyi_g_b.beyannamegonderenadiunvandevami}}" name="beyannamegonderenadiunvandevami" type="text"></div>
+                <div class="col-8"><input name="beyannamegonderenadiunvandevami" type="text"></div>
                 <div class="col-4"><label for="s">Ticaret Sicil No
 
                   </label></div>
-                <div class="col-8"><input value="{{Beyannameyi_g_b.beyannamegonderentivaretsicilno}}" name="beyannamegonderentivaretsicilno" type="text"></div>
+                <div class="col-8"><input name="beyannamegonderentivaretsicilno" type="text"></div>
                 <div class="col-4"><label for="s">e-Posta Adresi
                   </label></div>
-                <div class="col-8"><input value="{{Beyannameyi_g_b.beyannamegondereneposta}}" name="beyannamegondereneposta" type="email"></div>
+                <div class="col-8"><input name="beyannamegondereneposta" type="email"></div>
                 <div class="col-4"><label for="s">Telefon No
 
                   </label></div>
-                <div class="col-8"><input value="{{Beyannameyi_g_b.beyannamegonderentelefon}}" name="beyannamegonderentelefon" type="tel"></div>
+                <div class="col-8"><input name="beyannamegonderentelefon" type="tel"></div>
               </div>
             </div>
 
@@ -1345,11 +1127,11 @@
                 <div class="col-6"><label for="sgkdat">
                     SGK Dosya Açılış Tarihi
 
-                  </label><br><input value="{{sgk_bigileri.sgkdosyaacilistarihi | date:'Y-m-d' }}" name="sgkdosyaacilistarihi" type="date" min="1997-01-01" max="2030-12-31"></div>
+                  </label><br><input name="sgkdosyaacilistarihi" type="date" min="1997-01-01" max="2030-12-31"></div>
                 <div class="col-6"><label for="sgkdkt">
                     SGK Dosya Kapanış Tarihi
 
-                  </label><br><input value="{{sgk_bigileri.sgkdosyakapanistarihi | date:'Y-m-d' }}" name="sgkdosyakapanistarihi" type="date" min="1997-01-01" max="2030-12-31"></div>
+                  </label><br><input name="sgkdosyakapanistarihi" type="date" min="1997-01-01" max="2030-12-31"></div>
               </div>
 
               <div style="margin-top: 5px;" class="row genel">
@@ -1398,37 +1180,37 @@
               </div>
               <div class="row genel">
                 <div class="col-1">
-                  <input value="{{sgk_bigileri.sgkdosyam}}" name="sgkdosyam" type="text"><br>
+                  <input name="sgkdosyam" type="text"><br>
                 </div>
                 <div class="col-2">
 
-                  <input value="{{sgk_bigileri.sgkdosyaiskolukod}}" name="sgkdosyaiskolukod" type="text">
+                  <input name="sgkdosyaiskolukod" type="text">
                 </div>
                 <div class="col-1">
 
-                  <input value="{{sgk_bigileri.sgkdosyayeni}}" name="sgkdosyayeni" type="text">
+                  <input name="sgkdosyayeni" type="text">
                 </div>
                 <div class="col-1">
 
-                  <input value="{{sgk_bigileri.sgkdosyaeski}}" name="sgkdosyaeski" type="text">
+                  <input name="sgkdosyaeski" type="text">
                 </div>
                 <div class="col-3">
 
-                  <input value="{{sgk_bigileri.sgkdosyaisyerisirano}}" name="sgkdosyaisyerisirano" type="text">
+                  <input name="sgkdosyaisyerisirano" type="text">
                 </div>
                 <div class="col-1">
 
-                  <input value="{{sgk_bigileri.sgkdosyailkodu}}" name="sgkdosyailkodu" type="text">
+                  <input name="sgkdosyailkodu" type="text">
                 </div>
                 <div class="col-1">
-                  <input value="{{sgk_bigileri.sgkdosyailcekodu}}" name="sgkdosyailcekodu" type="text">
+                  <input name="sgkdosyailcekodu" type="text">
                 </div>
                 <div class="col-1">
-                  <input value="{{sgk_bigileri.sgkdosyakontrolno}}" name="sgkdosyakontrolno" type="text">
+                  <input name="sgkdosyakontrolno" type="text">
                 </div>
                 <div class="col-1">
 
-                  <input value="{{sgk_bigileri.sgkdosyaarackodu}}" name="sgkdosyaarackodu" type="text">
+                  <input name="sgkdosyaarackodu" type="text">
                 </div>
               </div>
               <div class="row genel">
@@ -1437,7 +1219,6 @@
                     İş Kodu</label><br>
 
                   <select name="sgkdosyaiskodu" id="iskodu">
-                    <option value="{{sgk_bigileri.sgkdosyaiskodu}}">{{sgk_bigileri.sgkdosyaiskodu}}</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -1449,19 +1230,19 @@
                   <label for="il">SGK Bölge Müd.
 
                   </label><br>
-                  <input value="{{sgk_bigileri.sgkdosyasfkbolgemud}}" name="sgkdosyasfkbolgemud" type="text">
+                  <input name="sgkdosyasfkbolgemud" type="text">
                 </div>
                 <div class="col-3">
                   <label for="il">il
 
                   </label><br>
-                  <input value="{{sgk_bigileri.sgkdosyail}}" name="sgkdosyail" type="text">
+                  <input name="sgkdosyail" type="text">
                 </div>
                 <div class="col-3">
                   <label for="ilce">İlçe
 
                   </label><br>
-                  <input value="{{sgk_bigileri.sgkdosyailce}}" name="sgkdosyailce" type="text">
+                  <input name="sgkdosyailce" type="text">
                 </div>
               </div>
               <div class="row genel">
@@ -1481,14 +1262,13 @@
               <div class="row genel">
                 <div class="col-4">
                   <select name="sgkdosyatehlikederecesi" id="iktd">
-                    <option value="{{sgk_bigileri.sgkdosyatehlikederecesi}}">{{sgk_bigileri.sgkdosyatehlikederecesi}}</option>
                     <option value="Alt">Alt</option>
                     <option value="Üst">Üst</option>
                     <option value="Normal">Normal</option>
                   </select>
                 </div>
-                <div class="col-4"><input value="{{sgk_bigileri.sgkdosyatehlikesinifi}}" name="sgkdosyatehlikesinifi" type="text"></div>
-                <div class="col-4"><input  value="{{sgk_bigileri.sgkdosyaprimorani | stringformat:'.2f' }}" name="sgkdosyaprimorani" type="number"></div>
+                <div class="col-4"><input name="sgkdosyatehlikesinifi" type="text"></div>
+                <div class="col-4"><input name="sgkdosyaprimorani" type="number" value="0"></div>
               </div>
               <div class="row genel">
                 <div class="col-6">
@@ -1497,8 +1277,8 @@
                   </label>
                   <br>
                   <div class="row">
-                    <div class="col-6"><input value="{{sgk_bigileri.sgkfazlamesaiyuzdesialt | stringformat:'.2f' }}"  name="sgkfazlamesaiyuzdesialt" type="text" value="50"></div>
-                    <div class="col-6"><input value="{{sgk_bigileri.sgkfazlamesaiyuzdesiust | stringformat:'.2f' }}" name="sgkfazlamesaiyuzdesiust" type="text" value="150"></div>
+                    <div class="col-6"><input name="sgkfazlamesaiyuzdesialt" type="text" value="50"></div>
+                    <div class="col-6"><input name="sgkfazlamesaiyuzdesiust" type="text" value="150"></div>
                   </div>
 
 
@@ -1512,7 +1292,6 @@
                     <div class="col-4"></div>
                     <div class="col-6">
                       <select name="sgkdosyalaribesuygulamasi" id="">
-                        <option value="{{sgk_bigileri.sgkdosyalaribesuygulamasi  }}">{{sgk_bigileri.sgkdosyalaribesuygulamasi  }}</option>
                         <option value="E">EVET</option>
                         <option value="H">Hayır</option>
                       </select>
@@ -1530,7 +1309,6 @@
                   </label></div>
                 <div class="col-4">
                   <select name="sgkdosyatesfik6111kanun" id="">
-                    <option value="{{sgk_bigileri.sgkdosyatesfik6111kanun  }}">{{sgk_bigileri.sgkdosyatesfik6111kanun  }}</option>
                     <option value="E">EVET</option>
                     <option value="H">Hayır</option>
                   </select>
@@ -1542,7 +1320,7 @@
                   </label>
                 </div>
                 <div class="col-3">
-                  <input value="{{sgk_bigileri.sgkdosyatesfik6111faydalanmaayi }}" name="sgkdosyatesfik6111faydalanmaayi" type="text">
+                  <input name="sgkdosyatesfik6111faydalanmaayi" type="text">
                 </div>
                 <div class="col-1">Ay</div>
                 <div class="col-8"><label for="pgoakn">
@@ -1550,7 +1328,6 @@
 
                   </label></div>
                 <div  class="col-4"><select name ="personel_girisinde_otomatik_kanun" id="pgoakn">
-                    <option value="{{sgk_bigileri.personel_girisinde_otomatik_kanun.id }}">{{sgk_bigileri.personel_girisinde_otomatik_kanun.isim }}</option>
                     {% for i in sgkpersonelkanun %}
                       <option value="{{i.id}}">{{i.isim}}</option>
                     {% endfor %}
@@ -1561,8 +1338,7 @@
 
                   </label></div>
                 <div class="col-4"><select name ="personel_6116645yararlanmiyorsayenikanun" id="ptyykn">
-                  <option value="{{sgk_bigileri.personel_6116645yararlanmiyorsayenikanun }}">{{sgk_bigileri.personel_6116645yararlanmiyorsayenikanun }}</option>  
-                  {% for i in sgkpersonelkanun %}
+                    {% for i in sgkpersonelkanun %}
                       <option value="{{i.id}}">{{i.isim}}</option>
                     {% endfor %}
                   </select></div>
@@ -1597,27 +1373,27 @@
                   </label>
                 </div>
                 <div class="col-1">
-                  <input value="{{sgkbm.sgkbolges}}" name="sgkbolges" type="text">
+                  <input name="sgkbolges" type="text">
                 </div>
                 <div class="col-4">
-                  <input value="{{sgkbm.sgkbolgemeslek}}" name="sgkbolgemeslek" type="text">
+                  <input name="sgkbolgemeslek" type="text">
                 </div>
                 <div class="col-4">
-                  <input value="{{sgkbm.sgkbolgedosyano}}" name="sgkbolgedosyano" type="text">
+                  <input name="sgkbolgedosyano" type="text">
                 </div>
                 <div class="col-3">
-                  <input value="{{sgkbm.sgkbolgeilkodu}}" name="sgkbolgeilkodu" type="text">
+                  <input name="sgkbolgeilkodu" type="text">
                 </div>
               </div>
               <div class="row genel">
                 <div class="col-6"><label for="yazismaadresi">
                     Yazışma Adresi
 
-                  </label><input value="{{sgkbm.sgkbolgeyazismaadresi}}" name="sgkbolgeyazismaadresi" type="text"></div>
+                  </label><input name="sgkbolgeyazismaadresi" type="text"></div>
                 <div class="col-6"><label for="taseronadisoyadi">
                     Taşeron Adı Soyadı
 
-                  </label><input value="{{sgkbm.sgkbolgetaseronadisoyadi}}" name="sgkbolgetaseronadisoyadi" type="text"></div>
+                  </label><input name="sgkbolgetaseronadisoyadi" type="text"></div>
               </div>
 
 
@@ -1627,20 +1403,20 @@
                     İşyeri Numarası
 
                   </label><br>
-                  <input value="{{iskur.iskurisyerinumarasi}}" name="iskurisyerinumarasi" type="text">
+                  <input name="iskurisyerinumarasi" type="text">
                 </div>
                 <div class="col-6"><label for="isverentckimlikno">
                     İşveren TC Kimlik No
 
-                  </label><br><input value="{{iskur.iskurisverentc}}" name="iskurisverentc" type="text"></div>
+                  </label><br><input name="iskurisverentc" type="text"></div>
                 <div class="col-6"><label for="ilmkt">
                     İl Müdürlüğü'ne Kayıt Tarihi
 
-                  </label><br><input value="{{iskur.iskurilmudkayittarihi | date:'Y-m-d'}}"  name="iskurilmudkayittarihi" type="date" min="1997-01-01" max="2030-12-31"></div>
+                  </label><br><input name="iskurilmudkayittarihi" type="date" min="1997-01-01" max="2030-12-31"></div>
                 <div class="col-6"><label for="iskursifresi">
                     İşkur Şifresi
 
-                  </label><br><input  value="{{iskur.iskursifresi}}" name="iskursifresi" type="text"></div>
+                  </label><br><input name="iskursifresi" type="text"></div>
               </div>
 
 
