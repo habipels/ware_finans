@@ -118,4 +118,8 @@ urlpatterns = [
     #mizan
     path("<str:slug>/mizan/", views.mizan, name="mizan"),
     #mizan
-]#
+    #musavir_cari
+    path("<str:slug>/mustericari/", views.musavir_cari, name="musavir_cari"),
+    #musavir_cari
+]
+#

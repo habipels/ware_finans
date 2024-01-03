@@ -4881,3 +4881,6 @@ def mizan(request,slug):
         content["filtrelenmis_fis_icerigi"] = fis
     return render(request,"hesapplanlari/mizan.html",content) 
 #mizan
+
+def musavir_cari(request,slug):
+    return render(request,"musavir_cari/musavir_cari.html")

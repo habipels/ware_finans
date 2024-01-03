@@ -1665,3 +1665,16 @@ class genel_muhasebe_fis( models.Model):
     aciklama8belgesi = models.TextField(blank=True,null=True,verbose_name = "aciklama8belgesi")
     borc = models.FloatField(verbose_name="Borç Bilgisi",default = 0)
     alacak_bilgisi = models.FloatField(verbose_name="Borç Bilgisi",default = 0)
+
+
+class musteri_cari(models.Model):
+    bagli_oldugu_firma = models.ForeignKey(firma,blank=True,null=True,on_delete=models.SET_NULL)
+    cari_adi = models.CharField(max_length = 200 ,verbose_name = "Cari Adı",blank = True,null = True)
+
+class musteri_cari_fis(models.Model):
+    bagli_oldugu_firma = models.ForeignKey(firma,blank=True,null=True,on_delete=models.SET_NULL)
+    bagli_oldugu_cari = models.ForeignKey(musteri_cari,blank=True,null=True,on_delete=models.SET_NULL)
+    evrak_tarihi = models.DateField(verbose_name="evrak Tarihi",blank = True,null = True)
+    aciklama = models.TextField(verbose_name="Açıklama",blank = True,null = True)
+    alacak = models.FloatField(verbose_name="Alacak ",default = 0)
+    borc = models.FloatField(verbose_name="Borc ",default = 0)
