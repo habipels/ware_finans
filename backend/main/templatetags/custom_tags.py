@@ -333,3 +333,48 @@ def mizan_fislerin_borc_toplam_hesaplanmasi_bakiye(veri):
             alacak = alacak + i.alacak_bilgisi
     
     return borc-alacak
+
+@register.simple_tag
+def borc_topam(id):
+    borc_topam_ = 0
+    a = musteri_cari_fis.objects.filter(bagli_oldugu_cari__id = id)
+    for i in a:
+        borc_topam_ = borc_topam_+ float(i.borc)
+    return borc_topam_
+
+@register.simple_tag
+def alacak_topam(id):
+    borc_topam_ = 0
+    a = musteri_cari_fis.objects.filter(bagli_oldugu_cari__id = id)
+    for i in a:
+        borc_topam_ = borc_topam_+ float(i.alacak)
+    return borc_topam_
+
+@register.simple_tag
+def bakiye_topam(id):
+    borc_topam_ = 0
+    alacak_topam_ = 0
+    sonuc = 0
+    a = musteri_cari_fis.objects.filter(bagli_oldugu_cari__id = id)
+    for i in a:
+        alacak_topam_ = alacak_topam_+ float(i.alacak)
+    for i in a:
+        borc_topam_ = borc_topam_+ float(i.borc)
+    if borc_topam_ > alacak_topam_:
+        sonuc =  borc_topam_ - alacak_topam_
+    else:
+        sonuc =  alacak_topam_ - borc_topam_ 
+    return sonuc
+@register.simple_tag
+def alacak_vericek_topam(id):
+    borc_topam_ = 0
+    alacak_topam_ = 0
+    a = musteri_cari_fis.objects.filter(bagli_oldugu_cari__id = id)
+    for i in a:
+        alacak_topam_ = alacak_topam_+ float(i.alacak)
+    for i in a:
+        borc_topam_ = borc_topam_+ float(i.borc)
+    if borc_topam_ > alacak_topam_:
+        return "B"
+    else:
+        return "A"

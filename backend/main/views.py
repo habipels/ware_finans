@@ -4883,4 +4883,46 @@ def mizan(request,slug):
 #mizan
 
 def musavir_cari(request,slug):
-    return render(request,"musavir_cari/musavir_cari.html")
+    content ={}
+    content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
+    content["subeleri"] =  sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    content["cari_bilgileri"] = musteri_cari.objects.filter(sininme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) )
+    if request.POST:
+        cari = request.POST.get("cari")
+        tarih = request.POST.getlist("tarih")
+        aciklama = request.POST.getlist("aciklama")
+        borc = request.POST.getlist("borc")
+        alacak = request.POST.getlist("alacak")
+        for i in range(0,len(tarih)) :
+            if tarih[i]:
+                musteri_cari_fis.objects.create(
+                    bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),
+                    bagli_oldugu_cari = get_object_or_404(musteri_cari,id =cari ),
+                    evrak_tarihi = tarih[i],aciklama=aciklama[i],
+                    alacak = float(alacak[i]),borc = float(borc[i])
+                )
+    return render(request,"musavir_cari/musavir_cari.html",content)
+
+def musteri_cari_kart_olustur(request,slug):
+    if request.POST:
+        slug = request.POST.get("slug")
+        isim = request.POST.get("isim")
+        musteri_cari.objects.create(bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),
+                                    cari_adi = isim)
+    z = "/"+slug+"/mustericari/"
+    return redirect(z)
+def musteri_cari_kart_sil(request,slug,id):
+    
+    musteri_cari.objects.filter(id = id,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
+                            ).update(sininme_bilgisi = True)
+    z = "/"+slug+"/mustericari/"
+    return redirect(z)
+
+def musteri_cari_kart_duzelt(request,slug):
+    if request.POST:
+        id = request.POST.get("slug")
+        isim = request.POST.get("isim")
+        musteri_cari.objects.filter(id = id,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)).update(
+                                    cari_adi = isim)
+    z = "/"+slug+"/mustericari/"
+    return redirect(z)

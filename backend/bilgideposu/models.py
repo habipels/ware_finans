@@ -1670,7 +1670,7 @@ class genel_muhasebe_fis( models.Model):
 class musteri_cari(models.Model):
     bagli_oldugu_firma = models.ForeignKey(firma,blank=True,null=True,on_delete=models.SET_NULL)
     cari_adi = models.CharField(max_length = 200 ,verbose_name = "Cari Adı",blank = True,null = True)
-
+    sininme_bilgisi = models.BooleanField(default = False)
 class musteri_cari_fis(models.Model):
     bagli_oldugu_firma = models.ForeignKey(firma,blank=True,null=True,on_delete=models.SET_NULL)
     bagli_oldugu_cari = models.ForeignKey(musteri_cari,blank=True,null=True,on_delete=models.SET_NULL)

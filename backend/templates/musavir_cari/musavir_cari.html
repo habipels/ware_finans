@@ -1,0 +1,376 @@
+{% extends "homebase.html" %}
+{% load custom_tags %}
+{% block content %}
+<style>
+  #kur {
+    display: none;
+  }
+  .yeniform {
+    display: none;
+  }
+
+</style>
+<div class="icon-bar">
+  <form  method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-primary">Kaydet </button>
+    <a href="javascript:void(0);" onclick="ekleYeniSatir()">Bir Satır Daha Ekle</a>
+    <a href="" style="color:red;">Çıkış Yap (ESC)</a>
+
+</div>
+<div class="d-menu">
+  <ul>
+    <li>
+      <ul>
+      </ul>
+      <a type="button" style="color: white;" data-toggle="modal" data-target="#myModal">Yeni Cari Oluştur</a>
+    </li>
+    <li>
+      <ul>
+      </ul><a href="javascript:void(0);" onclick="showConfirmationPopup()">Cari Kartını Sil</a>
+    </li>
+    <li>
+      <ul>
+      </ul><a href="" title="">Raporla / Yazdır</a>
+    </li>
+  </ul>
+</div>
+
+<div class="container mt-3 tablo">
+  <div class="table-responsive " style="
+  height: 300px;
+  overflow: auto;">
+    <table class="table table-bordered ">
+      <thead style="position: sticky;top: 0">
+        <tr>
+          <th class="text-center" style="min-width: 100px ;">Cari Adı</th>
+          <th class="text-center" style="min-width: 50px ;">Borç Toplam</th>
+          <th class="text-center" style="min-width: 150px ;">Alacak Toplam</th>
+          <th class="text-center" style="min-width: 150px ;">Bakiye</th>
+          <th class="text-center" style="min-width: 100px ;">Borçlu Alacaklı</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for i in cari_bilgileri %}
+        <tr>
+          <td>
+            <label for="kasakartisecim{{i.id}}"><input class="kasalar" name="kasakartlari" id="kasakartisecim{{i.id}}"
+                value="{{i.id}}/" type="radio">{{i.cari_adi}}</label>
+                <a type="button" class="btn btn-primary" style="color: white;" data-toggle="modal" data-target="#duzelt{{i.id}}">Düzelt</a>
+          </td>
+          <td>{% borc_topam i.id %}</td>
+          <td>{% alacak_topam i.id %}</td>
+          <td>{% bakiye_topam i.id %}</td>
+          <td>{% alacak_vericek_topam i.id %}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="container mt-3 tablo">
+  
+  <div class="table-responsive " style="
+    height: 300px;
+    overflow: auto;">
+    <table class="table table-bordered-second">
+      <thead style="position: sticky;top: 0">
+        <tr>
+        <th class="text-center">Cari Seç</th>
+          <th class="text-center">Evrak Tarihi</th>
+          <th class="text-center">Açıklama</th>
+          <th class="text-center">Borç Tutar</th>
+          <th class="text-center" style="min-width: 200px;">Alacak Tutar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><select name="cari" id="">
+            {% for i in cari_bilgileri %}
+              <option value="{{i.id}}">{{i.cari_adi}}</option>
+              {% endfor %}
+            </select></td>
+          <td><input type="date" name="tarih" id="tarih"></td>
+          <td><input type="text" name="aciklama"></td>
+          <td><input type="number" value="0" step="0.01" name="borc"></td>
+          <td><input type="number" value="0" step="0.01" name="alacak"></td>
+        </tr>
+        <!--yeniform-->
+        <tr class="yeniform">
+            <td><b>Seçim Yaptınız</b></td>
+            <td><input type="date" name="tarih" id="tarih"></td>
+            <td><input type="text" name="aciklama"></td>
+            <td><input type="number" value="0" step="0.01" name="borc"></td>
+            <td><input type="number" value="0" step="0.01" name="alacak"></td>
+          </tr>
+          <tr class="yeniform">
+            <td><b>Seçim Yaptınız</b></td>
+            <td><input type="date" name="tarih" id="tarih"></td>
+            <td><input type="text" name="aciklama"></td>
+            <td><input type="number" value="0" step="0.01" name="borc"></td>
+            <td><input type="number" value="0" step="0.01" name="alacak"></td>
+          </tr>
+          <tr class="yeniform">
+            <td><b>Seçim Yaptınız</b></td>
+            <td><input type="date" name="tarih" id="tarih"></td>
+            <td><input type="text" name="aciklama"></td>
+            <td><input type="number" value="0" step="0.01" name="borc"></td>
+            <td><input type="number" value="0" step="0.01" name="alacak"></td>
+          </tr>
+          <tr class="yeniform">
+            <td><b>Seçim Yaptınız</b></td>
+            <td><input type="date" name="tarih" id="tarih"></td>
+            <td><input type="text" name="aciklama"></td>
+            <td><input type="number" value="0" step="0.01" name="borc"></td>
+            <td><input type="number" value="0" step="0.01" name="alacak"></td>
+          </tr>
+          <tr class="yeniform">
+            <td><b>Seçim Yaptınız</b></td>
+            <td><input type="date" name="tarih" id="tarih"></td>
+            <td><input type="text" name="aciklama"></td>
+            <td><input type="number" value="0" step="0.01" name="borc"></td>
+            <td><input type="number" value="0" step="0.01" name="alacak"></td>
+          </tr>
+          <tr class="yeniform">
+            <td><b>Seçim Yaptınız</b></td>
+            <td><input type="date" name="tarih" id="tarih"></td>
+            <td><input type="text" name="aciklama"></td>
+            <td><input type="number" value="0" step="0.01" name="borc"></td>
+            <td><input type="number" value="0" step="0.01" name="alacak"></td>
+          </tr>
+          <tr class="yeniform">
+            <td><b>Seçim Yaptınız</b></td>
+            <td><input type="date" name="tarih" id="tarih"></td>
+            <td><input type="text" name="aciklama"></td>
+            <td><input type="number" value="0" step="0.01" name="borc"></td>
+            <td><input type="number" value="0" step="0.01" name="alacak"></td>
+          </tr>
+          <tr class="yeniform">
+            <td><b>Seçim Yaptınız</b></td>
+            <td><input type="date" name="tarih" id="tarih"></td>
+            <td><input type="text" name="aciklama"></td>
+            <td><input type="number" value="0" step="0.01" name="borc"></td>
+            <td><input type="number" value="0" step="0.01" name="alacak"></td>
+          </tr>
+          <tr class="yeniform">
+            <td><b>Seçim Yaptınız</b></td>
+            <td><input type="date" name="tarih" id="tarih"></td>
+            <td><input type="text" name="aciklama"></td>
+            <td><input type="number" value="0" step="0.01" name="borc"></td>
+            <td><input type="number" value="0" step="0.01" name="alacak"></td>
+          </tr>
+          <tr class="yeniform">
+            <td><b>Seçim Yaptınız</b></td>
+            <td><input type="date" name="tarih" id="tarih"></td>
+            <td><input type="text" name="aciklama"></td>
+            <td><input type="number" value="0" step="0.01" name="borc"></td>
+            <td><input type="number" value="0" step="0.01" name="alacak"></td>
+          </tr>
+          <tr class="yeniform">
+            <td><b>Seçim Yaptınız</b></td>
+            <td><input type="date" name="tarih" id="tarih"></td>
+            <td><input type="text" name="aciklama"></td>
+            <td><input type="number" value="0" step="0.01" name="borc"></td>
+            <td><input type="number" value="0" step="0.01" name="alacak"></td>
+          </tr>
+          <tr class="yeniform">
+            <td><b>Seçim Yaptınız</b></td>
+            <td><input type="date" name="tarih" id="tarih"></td>
+            <td><input type="text" name="aciklama"></td>
+            <td><input type="number" value="0" step="0.01" name="borc"></td>
+            <td><input type="number" value="0" step="0.01" name="alacak"></td>
+          </tr>
+          <tr class="yeniform">
+            <td><b>Seçim Yaptınız</b></td>
+            <td><input type="date" name="tarih" id="tarih"></td>
+            <td><input type="text" name="aciklama"></td>
+            <td><input type="number" value="0" step="0.01" name="borc"></td>
+            <td><input type="number" value="0" step="0.01" name="alacak"></td>
+          </tr>
+          <tr class="yeniform">
+            <td><b>Seçim Yaptınız</b></td>
+            <td><input type="date" name="tarih" id="tarih"></td>
+            <td><input type="text" name="aciklama"></td>
+            <td><input type="number" value="0" step="0.01" name="borc"></td>
+            <td><input type="number" value="0" step="0.01" name="alacak"></td>
+          </tr>
+          <tr class="yeniform">
+            <td><b>Seçim Yaptınız</b></td>
+            <td><input type="date" name="tarih" id="tarih"></td>
+            <td><input type="text" name="aciklama"></td>
+            <td><input type="number" value="0" step="0.01" name="borc"></td>
+            <td><input type="number" value="0" step="0.01" name="alacak"></td>
+          </tr>
+        
+      </tbody>
+    </table>
+  </div>
+</div>
+
+</form>
+<script>
+
+  function showConfirmationPopup() {
+    const radioButtons = document.getElementsByName('kasakartlari');
+    let selectedLink = null;
+
+    for (const radioButton of radioButtons) {
+      if (radioButton.checked) {
+        selectedLink = radioButton.value;
+        break;
+      }
+    }
+
+    // Pop-up penceresini aç
+    const confirmation = confirm("Silmek İstediğinizden Emin misiniz?");
+
+    // Kullanıcının seçimine göre işlem yap
+    if (confirmation) {
+      // Kullanıcı "Evet" dedi, yönlendirme yap
+      window.location.href = "/{{firma.firma_ozel_anahtar}}/mustericarisil/" + selectedLink;
+    } else {
+      // Kullanıcı "Hayır" dedi, isteğe bağlı olarak başka bir işlem yapabilirsiniz
+    }
+  }
+  function irsaliyeaktar() {
+    const radioButtons = document.getElementsByName('kasakartlari');
+    let selectedLink = null;
+
+    for (const radioButton of radioButtons) {
+      if (radioButton.checked) {
+        selectedLink = radioButton.value;
+        break;
+      }
+    }
+
+    // Pop-up penceresini aç
+    const confirmation = confirm("Siparişi İrsaliyeye Aktarılsın mı ?");
+
+    // Kullanıcının seçimine göre işlem yap
+    if (confirmation) {
+      // Kullanıcı "Evet" dedi, yönlendirme yap
+      window.location.href = "/{{firma.firma_ozel_anahtar}}/siparisaktarma/" + selectedLink;
+    } else {
+      // Kullanıcı "Hayır" dedi, isteğe bağlı olarak başka bir işlem yapabilirsiniz
+    }
+  }
+  function siparisiaktifpasifyapma() {
+    const radioButtons = document.getElementsByName('kasakartlari');
+    let selectedLink = null;
+
+    for (const radioButton of radioButtons) {
+      if (radioButton.checked) {
+        selectedLink = radioButton.value;
+        break;
+      }
+    }
+
+    // Pop-up penceresini aç
+    const confirmation = confirm("Siparişi Aktiflik Pasiflik Durumunu değiştirmek istiyor musun?");
+
+    // Kullanıcının seçimine göre işlem yap
+    if (confirmation) {
+      // Kullanıcı "Evet" dedi, yönlendirme yap
+      window.location.href = "/{{firma.firma_ozel_anahtar}}/siparisaktifpasif/" + selectedLink;
+    } else {
+      // Kullanıcı "Hayır" dedi, isteğe bağlı olarak başka bir işlem yapabilirsiniz
+    }
+  }
+  function siparisonaylama() {
+    const radioButtons = document.getElementsByName('kasakartlari');
+    let selectedLink = null;
+
+    for (const radioButton of radioButtons) {
+      if (radioButton.checked) {
+        selectedLink = radioButton.value;
+        break;
+      }
+    }
+
+    // Pop-up penceresini aç
+    const confirmation = confirm("Siparişi Onaylamak İstiyor musun?");
+
+    // Kullanıcının seçimine göre işlem yap
+    if (confirmation) {
+      // Kullanıcı "Evet" dedi, yönlendirme yap
+      window.location.href = "/{{firma.firma_ozel_anahtar}}/siparisonaylama/" + selectedLink;
+    } else {
+      // Kullanıcı "Hayır" dedi, isteğe bağlı olarak başka bir işlem yapabilirsiniz
+    }
+  }
+  //
+</script>
+<script>
+let z = 0;
+  function ekleYeniSatir() {
+    
+    var elements = document.getElementsByClassName('yeniform');
+
+    if (elements[z]) {
+        elements[z].classList.remove('yeniform');
+    } else {
+        console.error("Ürün Sınırına Ulaştınız");
+    }
+
+    yeniselect();
+  }
+</script>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+  
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          
+          <h4 class="modal-title">Cari Kart Oluştur</h4>
+        </div>
+        <form action="/{{firma.firma_ozel_anahtar}}/mustericariekle/" method="post">
+            {% csrf_token %}
+           <input type="text" hidden value="{{firma.firma_ozel_anahtar}}" name="slug">
+        
+        <div class="modal-body">
+            <label for="isim"> Cari Adı <input id="isim" name="isim" type="text"></label>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">İptal</button>
+          <button type="submit" class="btn btn-success" >Kaydet</button>
+        </div>
+    </form>
+      </div>
+  
+    </div>
+  </div>
+
+  <!-- Modal -->
+  {% for i in cari_bilgileri %}
+<div id="duzelt{{i.id}}" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+  
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          
+          <h4 class="modal-title">Cari Kart Oluştur</h4>
+        </div>
+        <form action="/{{firma.firma_ozel_anahtar}}/mustericariduzelt/" method="post">
+            {% csrf_token %}
+           <input type="text" hidden value="{{i.id}}" name="slug">
+        
+        <div class="modal-body">
+            <label for="isim"> Cari Adı <input id="isim" name="isim" value="{{i.cari_adi}}" type="text"></label>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">İptal</button>
+          <button type="submit" class="btn btn-success" >Kaydet</button>
+        </div>
+    </form>
+      </div>
+  
+    </div>
+  </div>
+  {% endfor %}
+  
+{% endblock content %}
