@@ -789,3 +789,4 @@ def firma_sil(request,slug):
     firma.objects.filter(firma_ozel_anahtar = slug).update(silinme_bilgisi = True)
     a = "/company/companysettings/"
     return redirect(a)
+
