@@ -124,5 +124,8 @@ urlpatterns = [
     path("<str:slug>/mustericarisil/<int:id>/", views.musteri_cari_kart_sil, name="musteri_cari_kart_sil"),
     path("<str:slug>/mustericariduzelt/", views.musteri_cari_kart_duzelt, name="musteri_cari_kart_duzelt"),
     #musavir_cari
+    #musavir_stok
+
+    #musavir_stok
 ]
 #

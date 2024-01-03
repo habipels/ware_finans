@@ -1678,3 +1678,13 @@ class musteri_cari_fis(models.Model):
     aciklama = models.TextField(verbose_name="Açıklama",blank = True,null = True)
     alacak = models.FloatField(verbose_name="Alacak ",default = 0)
     borc = models.FloatField(verbose_name="Borc ",default = 0)
+
+
+class musavir_stok(models.Model):
+    bagli_oldugu_firma = models.ForeignKey(firma,blank=True,null=True,on_delete=models.SET_NULL)
+    stok_adi = models.CharField(max_length = 200 ,verbose_name = "Stok Adı",blank = True,null = True)
+    birim = models.CharField(max_length = 200 ,verbose_name = "Birim",blank = True,null = True)
+    envanter_yonetimi = models.CharField(max_length = 200 ,verbose_name = "Envanter yönetimi",blank = True,null = True)
+    ort_kar = models.FloatField(default = 0,verbose_name = "Ort Kar")
+    kayit_tarihi = models.DateTimeField(default=datetime.now,null=True)
+    sininme_bilgisi = models.BooleanField(default = False)
