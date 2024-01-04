@@ -13,7 +13,7 @@
 <div class="icon-bar">
   <form  method="post">
     {% csrf_token %}
-    <button type="submit" class="btn btn-primary">Kaydet / Yeni Fiş </button>
+    <button type="submit" class="btn btn-primary">Kaydet Yeni Fiş</button>
     <a href="javascript:void(0);" onclick="ekleYeniSatir()">Bir Satır Daha Ekle</a>
     <a href="" style="color:red;">Çıkış Yap (ESC)</a>
 
@@ -89,6 +89,7 @@
     <table class="table table-bordered-second">
       <thead style="position: sticky;top: 0">
         <tr>
+            <th class="text-center">Stok Seç</th>
         <th class="text-center">Evrak Tarihi</th>
           <th class="text-center">Dönem İçi / Başı</th>
           <th class="text-center">İade mi ?</th>
@@ -115,111 +116,7 @@
           <td><input type="number" value="0" step="0.01" name="alacak"></td>
         </tr>
         <!--yeniform-->
-        <tr class="yeniform">
-            <td><b>Seçim Yaptınız</b></td>
-            <td><input type="date" name="tarih" id="tarih"></td>
-            <td><input type="text" name="aciklama"></td>
-            <td><input type="number" value="0" step="0.01" name="borc"></td>
-            <td><input type="number" value="0" step="0.01" name="alacak"></td>
-          </tr>
-          <tr class="yeniform">
-            <td><b>Seçim Yaptınız</b></td>
-            <td><input type="date" name="tarih" id="tarih"></td>
-            <td><input type="text" name="aciklama"></td>
-            <td><input type="number" value="0" step="0.01" name="borc"></td>
-            <td><input type="number" value="0" step="0.01" name="alacak"></td>
-          </tr>
-          <tr class="yeniform">
-            <td><b>Seçim Yaptınız</b></td>
-            <td><input type="date" name="tarih" id="tarih"></td>
-            <td><input type="text" name="aciklama"></td>
-            <td><input type="number" value="0" step="0.01" name="borc"></td>
-            <td><input type="number" value="0" step="0.01" name="alacak"></td>
-          </tr>
-          <tr class="yeniform">
-            <td><b>Seçim Yaptınız</b></td>
-            <td><input type="date" name="tarih" id="tarih"></td>
-            <td><input type="text" name="aciklama"></td>
-            <td><input type="number" value="0" step="0.01" name="borc"></td>
-            <td><input type="number" value="0" step="0.01" name="alacak"></td>
-          </tr>
-          <tr class="yeniform">
-            <td><b>Seçim Yaptınız</b></td>
-            <td><input type="date" name="tarih" id="tarih"></td>
-            <td><input type="text" name="aciklama"></td>
-            <td><input type="number" value="0" step="0.01" name="borc"></td>
-            <td><input type="number" value="0" step="0.01" name="alacak"></td>
-          </tr>
-          <tr class="yeniform">
-            <td><b>Seçim Yaptınız</b></td>
-            <td><input type="date" name="tarih" id="tarih"></td>
-            <td><input type="text" name="aciklama"></td>
-            <td><input type="number" value="0" step="0.01" name="borc"></td>
-            <td><input type="number" value="0" step="0.01" name="alacak"></td>
-          </tr>
-          <tr class="yeniform">
-            <td><b>Seçim Yaptınız</b></td>
-            <td><input type="date" name="tarih" id="tarih"></td>
-            <td><input type="text" name="aciklama"></td>
-            <td><input type="number" value="0" step="0.01" name="borc"></td>
-            <td><input type="number" value="0" step="0.01" name="alacak"></td>
-          </tr>
-          <tr class="yeniform">
-            <td><b>Seçim Yaptınız</b></td>
-            <td><input type="date" name="tarih" id="tarih"></td>
-            <td><input type="text" name="aciklama"></td>
-            <td><input type="number" value="0" step="0.01" name="borc"></td>
-            <td><input type="number" value="0" step="0.01" name="alacak"></td>
-          </tr>
-          <tr class="yeniform">
-            <td><b>Seçim Yaptınız</b></td>
-            <td><input type="date" name="tarih" id="tarih"></td>
-            <td><input type="text" name="aciklama"></td>
-            <td><input type="number" value="0" step="0.01" name="borc"></td>
-            <td><input type="number" value="0" step="0.01" name="alacak"></td>
-          </tr>
-          <tr class="yeniform">
-            <td><b>Seçim Yaptınız</b></td>
-            <td><input type="date" name="tarih" id="tarih"></td>
-            <td><input type="text" name="aciklama"></td>
-            <td><input type="number" value="0" step="0.01" name="borc"></td>
-            <td><input type="number" value="0" step="0.01" name="alacak"></td>
-          </tr>
-          <tr class="yeniform">
-            <td><b>Seçim Yaptınız</b></td>
-            <td><input type="date" name="tarih" id="tarih"></td>
-            <td><input type="text" name="aciklama"></td>
-            <td><input type="number" value="0" step="0.01" name="borc"></td>
-            <td><input type="number" value="0" step="0.01" name="alacak"></td>
-          </tr>
-          <tr class="yeniform">
-            <td><b>Seçim Yaptınız</b></td>
-            <td><input type="date" name="tarih" id="tarih"></td>
-            <td><input type="text" name="aciklama"></td>
-            <td><input type="number" value="0" step="0.01" name="borc"></td>
-            <td><input type="number" value="0" step="0.01" name="alacak"></td>
-          </tr>
-          <tr class="yeniform">
-            <td><b>Seçim Yaptınız</b></td>
-            <td><input type="date" name="tarih" id="tarih"></td>
-            <td><input type="text" name="aciklama"></td>
-            <td><input type="number" value="0" step="0.01" name="borc"></td>
-            <td><input type="number" value="0" step="0.01" name="alacak"></td>
-          </tr>
-          <tr class="yeniform">
-            <td><b>Seçim Yaptınız</b></td>
-            <td><input type="date" name="tarih" id="tarih"></td>
-            <td><input type="text" name="aciklama"></td>
-            <td><input type="number" value="0" step="0.01" name="borc"></td>
-            <td><input type="number" value="0" step="0.01" name="alacak"></td>
-          </tr>
-          <tr class="yeniform">
-            <td><b>Seçim Yaptınız</b></td>
-            <td><input type="date" name="tarih" id="tarih"></td>
-            <td><input type="text" name="aciklama"></td>
-            <td><input type="number" value="0" step="0.01" name="borc"></td>
-            <td><input type="number" value="0" step="0.01" name="alacak"></td>
-          </tr>
+         
         
       </tbody>
     </table>
@@ -246,7 +143,7 @@
     // Kullanıcının seçimine göre işlem yap
     if (confirmation) {
       // Kullanıcı "Evet" dedi, yönlendirme yap
-      window.location.href = "/{{firma.firma_ozel_anahtar}}/mustericarisil/" + selectedLink;
+      window.location.href = "/{{firma.firma_ozel_anahtar}}/musavirstoksil/" + selectedLink;
     } else {
       // Kullanıcı "Hayır" dedi, isteğe bağlı olarak başka bir işlem yapabilirsiniz
     }
@@ -398,12 +295,43 @@ let z = 0;
           
           <h4 class="modal-title">Cari Kart Oluştur</h4>
         </div>
-        <form action="/{{firma.firma_ozel_anahtar}}/mustericariduzelt/" method="post">
+        <form action="/{{firma.firma_ozel_anahtar}}/musavirstokduzelt/" method="post">
             {% csrf_token %}
            <input type="text" hidden value="{{i.id}}" name="slug">
         
         <div class="modal-body">
-            <label for="isim"> Cari Adı <input id="isim" name="isim" value="{{i.cari_adi}}" type="text"></label>
+            <label for="stokkodu"> Stok Kodu <input value="{{i.stok_kodu}}" id="stokkodu" name="stokkodu" type="text"></label>
+
+            <label for="stokadi"> Stok Adı <input value="{{i.stok_adi}}" id="stokadi" name="stokadi" type="text"></label>
+            <label for="birim"> Brim <input id="birim" value="{{i.birim}}" name="birim" type="text"></label>
+            <label for="ticari"> Ticari / Diğer 
+                <select name="ticari" id="ticari">
+                {% if i.ticari %}
+                    <option value="{{i.ticari}}">{{i.ticari}}</option>
+                {% endif %}
+                    <option value=""></option>
+                    <option value="150">150</option>
+                    <option value="151">151</option>
+                    <option value="152">152</option>
+                    <option value="153">153</option>
+
+                </select>
+            </label>
+            <label for="envanyo"> Envanter Yönetimi
+                <select name="envanyo" id="envanyo">
+                {% if i.ticari %}
+                    <option value="{{i.envanter_yonetimi}}">{{i.envanter_yonetimi}}</option>
+                {% endif %}
+                    <option value=""></option>
+                    <option value="FIFO">FIFO</option>
+                    <option value="LIFO">LIFO</option>
+                    <option value="Ağırlıklı Ortalama">Ağırlıklı Ortalama</option>
+                    <option value="Ortalama Kar">Ortalama Kar Haddi</option>
+                    <option value="Basit Ortalama">Basit Ortalama </option>
+                    <option value="Hareketli Ortalama">Hareketli Ortalama </option>
+                </select>
+            </label>
+            <label for="ortk"> Ortalama Kar <input value="{{i.ort_kar |stringformat:'.2f' }}" id="ortk" value="0" name="ortk" step="0.01" type="number"></label>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-dismiss="modal">İptal</button>

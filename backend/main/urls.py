@@ -127,6 +127,8 @@ urlpatterns = [
     #musavir_stok
     path("<str:slug>/musavirstok/", views.musavir_stok_sayfasi, name="musavir_stok_sayfasi"),
     path("<str:slug>/musavirstokekle/", views.musavir_stok_kart_olustur, name="musavir_stok_kart_olustur"),
+    path("<str:slug>/musavirstoksil/<int:id>/", views.musavir_stok_kart_sil, name="musavir_stok_kart_sil"),
+    path("<str:slug>/musavirstokduzelt/", views.musavir_stok_kart_duzenle, name="musavir_stok_kart_duzenle"),
     #musavir_stok
 ]
 #

@@ -4963,3 +4963,25 @@ def musavir_stok_kart_olustur(request,slug):
             birim = birim,envanter_yonetimi = envanyo,ort_kar = float(ortk),ticari = ticari)
     z = "/"+slug+"/musavirstok/"
     return redirect(z)
+
+def musavir_stok_kart_sil(request,slug,id):
+    
+    musavir_stok.objects.filter(id = id,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
+                            ).update(sininme_bilgisi = True)
+    z = "/"+slug+"/musavirstok/"
+    return redirect(z)
+
+def musavir_stok_kart_duzenle(request,slug):
+    if request.POST:
+        slug = request.POST.get("slug")
+        stokadi = request.POST.get("stokadi")
+        stokkodu = request.POST.get("stokkodu")
+        birim= request.POST.get("birim")
+        ticari = request.POST.get("ticari")
+        envanyo = request.POST.get("envanyo")
+        ortk = request.POST.get("ortk")
+        musavir_stok.objects.create(bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),
+            stok_kodu =  stokkodu,stok_adi = stokadi,
+            birim = birim,envanter_yonetimi = envanyo,ort_kar = float(ortk),ticari = ticari)
+    z = "/"+slug+"/musavirstok/"
+    return redirect(z)
