@@ -50,7 +50,7 @@ admin.site.register(genel_muhasebe_fis)
 admin.site.register(musteri_cari)
 admin.site.register(musteri_cari_fis)
 admin.site.register(musavir_stok)
-#admin.site.register()
+admin.site.register(musavir_stok_fisi)
 #admin.site.register()
 
 

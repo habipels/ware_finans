@@ -1682,9 +1682,25 @@ class musteri_cari_fis(models.Model):
 
 class musavir_stok(models.Model):
     bagli_oldugu_firma = models.ForeignKey(firma,blank=True,null=True,on_delete=models.SET_NULL)
+    stok_kodu = models.CharField(max_length = 200 ,verbose_name = "Stok Kodu",blank = True,null = True)
     stok_adi = models.CharField(max_length = 200 ,verbose_name = "Stok Adı",blank = True,null = True)
     birim = models.CharField(max_length = 200 ,verbose_name = "Birim",blank = True,null = True)
     envanter_yonetimi = models.CharField(max_length = 200 ,verbose_name = "Envanter yönetimi",blank = True,null = True)
     ort_kar = models.FloatField(default = 0,verbose_name = "Ort Kar")
     kayit_tarihi = models.DateTimeField(default=datetime.now,null=True)
     sininme_bilgisi = models.BooleanField(default = False)
+
+class musavir_stok_fisi(models.Model):
+    bagli_oldugu_firma = models.ForeignKey(firma,blank=True,null=True,on_delete=models.SET_NULL)
+    bagli_oldugu_stok = models.ForeignKey(musavir_stok,blank=True,null=True,on_delete=models.SET_NULL)
+    evrak_tarihi = models.DateField(verbose_name = "Evrak Tarihi",blank = True,null = True)
+    donem = models.CharField(max_length = 200 ,verbose_name = "Dönem Başı Veya Dönem İçi",blank = True,null = True)
+    iademi = models.CharField(max_length = 200 ,verbose_name = "İademi ? ",blank = True,null = True)
+    evrak_no = models.CharField(max_length = 200 ,verbose_name = "evrak No",blank = True,null = True)
+    evrak_aciklama = models.CharField(max_length = 200 ,verbose_name = "Evrak Açıklama",blank = True,null = True)
+    giris_miktari = models.FloatField(default = 0,verbose_name = "Giriş Miktari")
+    cikis_miktari = models.FloatField(default = 0,verbose_name = "Çıkış Miktari")
+    giris_birim_fiyati = models.FloatField(default = 0,verbose_name = "Giriş Brm Fiyatı")
+    giris_fiyati = models.FloatField(default = 0,verbose_name = "Giriş Fiyatı")
+    cikis_birim_fiyati = models.FloatField(default = 0,verbose_name = "Çıkış Brm Fiyatı")
+    cikis_fiyati = models.FloatField(default = 0,verbose_name = "Çıkış Fiyatı")
