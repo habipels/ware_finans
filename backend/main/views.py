@@ -4926,3 +4926,40 @@ def musteri_cari_kart_duzelt(request,slug):
                                     cari_adi = isim)
     z = "/"+slug+"/mustericari/"
     return redirect(z)
+
+
+def musavir_stok_sayfasi(request,slug):
+    content ={}
+    content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
+    content["subeleri"] =  sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    content["cari_bilgileri"] = musavir_stok.objects.filter(sininme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) )
+    if request.POST:
+        cari = request.POST.get("cari")
+        tarih = request.POST.getlist("tarih")
+        aciklama = request.POST.getlist("aciklama")
+        borc = request.POST.getlist("borc")
+        alacak = request.POST.getlist("alacak")
+        for i in range(0,len(tarih)) :
+            if tarih[i]:
+                musteri_cari_fis.objects.create(
+                    bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),
+                    bagli_oldugu_cari = get_object_or_404(musteri_cari,id =cari ),
+                    evrak_tarihi = tarih[i],aciklama=aciklama[i],
+                    alacak = float(alacak[i]),borc = float(borc[i])
+                )
+    return render(request,"musavir_stok/musavir_stok.html",content)
+
+def musavir_stok_kart_olustur(request,slug):
+    if request.POST:
+        slug = request.POST.get("slug")
+        stokadi = request.POST.get("stokadi")
+        stokkodu = request.POST.get("stokkodu")
+        birim= request.POST.get("birim")
+        ticari = request.POST.get("ticari")
+        envanyo = request.POST.get("envanyo")
+        ortk = request.POST.get("ortk")
+        musavir_stok.objects.create(bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),
+            stok_kodu =  stokkodu,stok_adi = stokadi,
+            birim = birim,envanter_yonetimi = envanyo,ort_kar = float(ortk),ticari = ticari)
+    z = "/"+slug+"/musavirstok/"
+    return redirect(z)

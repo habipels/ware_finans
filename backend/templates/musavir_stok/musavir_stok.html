@@ -13,7 +13,7 @@
 <div class="icon-bar">
   <form  method="post">
     {% csrf_token %}
-    <button type="submit" class="btn btn-primary">Kaydet </button>
+    <button type="submit" class="btn btn-primary">Kaydet / Yeni Fiş </button>
     <a href="javascript:void(0);" onclick="ekleYeniSatir()">Bir Satır Daha Ekle</a>
     <a href="" style="color:red;">Çıkış Yap (ESC)</a>
 
@@ -23,11 +23,11 @@
     <li>
       <ul>
       </ul>
-      <a type="button" style="color: white;" data-toggle="modal" data-target="#myModal">Yeni Cari Oluştur</a>
+      <a type="button" style="color: white;" data-toggle="modal" data-target="#myModal">Yeni Stok Oluştur</a>
     </li>
     <li>
       <ul>
-      </ul><a href="javascript:void(0);" onclick="showConfirmationPopup()">Cari Kartını Sil</a>
+      </ul><a href="javascript:void(0);" onclick="showConfirmationPopup()">Stok Kartını Sil</a>
     </li>
     <li>
       <ul>
@@ -43,11 +43,17 @@
     <table class="table table-bordered ">
       <thead style="position: sticky;top: 0">
         <tr>
-          <th class="text-center" style="min-width: 100px ;">Cari Adı</th>
-          <th class="text-center" style="min-width: 50px ;">Borç Toplam</th>
-          <th class="text-center" style="min-width: 150px ;">Alacak Toplam</th>
-          <th class="text-center" style="min-width: 150px ;">Bakiye</th>
-          <th class="text-center" style="min-width: 100px ;">Borçlu Alacaklı</th>
+          <th class="text-center" style="min-width: 100px ;">Stok Kodu</th>
+          <th class="text-center" style="min-width: 50px ;">Stok Adı</th>
+          <th class="text-center" style="min-width: 150px ;">Brim</th>
+          <th class="text-center" style="min-width: 150px ;">Ticari/Diğer</th>
+          <th class="text-center" style="min-width: 100px ;">Envanter Yönetimi </th>
+          <th class="text-center" style="min-width: 100px ;">Ortalama Kar</th>
+          <th class="text-center" style="min-width: 100px ;">Giriş Miktarı</th>
+          <th class="text-center" style="min-width: 100px ;">Giriş Tutarı </th>
+          <th class="text-center" style="min-width: 100px ;">Çıkış Miktarı </th>
+          <th class="text-center" style="min-width: 100px ;">Çıkış Tutarı </th>
+          <th class="text-center" style="min-width: 100px ;">Bakiye </th>
         </tr>
       </thead>
       <tbody>
@@ -55,13 +61,19 @@
         <tr>
           <td>
             <label for="kasakartisecim{{i.id}}"><input class="kasalar" name="kasakartlari" id="kasakartisecim{{i.id}}"
-                value="{{i.id}}/" type="radio">{{i.cari_adi}}</label>
+                value="{{i.id}}/" type="radio">{{i.stok_kodu}}</label>
                 <a type="button" class="btn btn-primary" style="color: white;" data-toggle="modal" data-target="#duzelt{{i.id}}">Düzelt</a>
           </td>
-          <td>{% borc_topam i.id %}</td>
-          <td>{% alacak_topam i.id %}</td>
-          <td>{% bakiye_topam i.id %}</td>
-          <td>{% alacak_vericek_topam i.id %}</td>
+          <td>{{i.stok_adi}}</td>
+          <td>{{i.birim}}</td>
+          <td>{{i.envanter_yonetimi}}</td>
+          <td>{{i.ticari}}</td>
+          <td>{{i.ort_kar}}</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
         </tr>
         {% endfor %}
       </tbody>
@@ -77,11 +89,17 @@
     <table class="table table-bordered-second">
       <thead style="position: sticky;top: 0">
         <tr>
-        <th class="text-center">Cari Seç</th>
-          <th class="text-center">Evrak Tarihi</th>
-          <th class="text-center">Açıklama</th>
-          <th class="text-center">Borç Tutar</th>
-          <th class="text-center" style="min-width: 200px;">Alacak Tutar</th>
+        <th class="text-center">Evrak Tarihi</th>
+          <th class="text-center">Dönem İçi / Başı</th>
+          <th class="text-center">İade mi ?</th>
+          <th class="text-center">Evrak No</th>
+          <th class="text-center" style="min-width: 200px;">Evrak Açıklama</th>
+          <th class="text-center">Giriş Miktarı</th>
+          <th class="text-center">Giriş Birim Fiyatı</th>
+          <th class="text-center">Giriş Tutarı</th>
+          <th class="text-center">Çıkış Miktarı </th>
+          <th class="text-center">Çıkış Birim Fiyatı </th>
+          <th class="text-center">Çıkış Tutarı </th>
         </tr>
       </thead>
       <tbody>
@@ -325,14 +343,39 @@ let z = 0;
       <div class="modal-content">
         <div class="modal-header">
           
-          <h4 class="modal-title">Cari Kart Oluştur</h4>
+          <h4 class="modal-title">Stok Kart Oluştur</h4>
         </div>
-        <form action="/{{firma.firma_ozel_anahtar}}/mustericariekle/" method="post">
+        <form action="/{{firma.firma_ozel_anahtar}}/musavirstokekle/" method="post">
             {% csrf_token %}
            <input type="text" hidden value="{{firma.firma_ozel_anahtar}}" name="slug">
         
         <div class="modal-body">
-            <label for="isim"> Cari Adı <input id="isim" name="isim" type="text"></label>
+            <label for="stokkodu"> Stok Kodu <input id="stokkodu" name="stokkodu" type="text"></label>
+
+            <label for="stokadi"> Stok Adı <input id="stokadi" name="stokadi" type="text"></label>
+            <label for="birim"> Brim <input id="birim" value="Adet" name="birim" type="text"></label>
+            <label for="ticari"> Ticari / Diğer 
+                <select name="ticari" id="ticari">
+                    <option value=""></option>
+                    <option value="150">150</option>
+                    <option value="151">151</option>
+                    <option value="152">152</option>
+                    <option value="153">153</option>
+
+                </select>
+            </label>
+            <label for="envanyo"> Envanter Yönetimi
+                <select name="envanyo" id="envanyo">
+                    <option value=""></option>
+                    <option value="FIFO">FIFO</option>
+                    <option value="LIFO">LIFO</option>
+                    <option value="Ağırlıklı Ortalama">Ağırlıklı Ortalama</option>
+                    <option value="Ortalama Kar">Ortalama Kar Haddi</option>
+                    <option value="Basit Ortalama">Basit Ortalama </option>
+                    <option value="Hareketli Ortalama">Hareketli Ortalama </option>
+                </select>
+            </label>
+            <label for="ortk"> Ortalama Kar <input id="ortk" value="0" name="ortk" step="0.01" type="number"></label>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-dismiss="modal">İptal</button>

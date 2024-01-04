@@ -1687,6 +1687,7 @@ class musavir_stok(models.Model):
     birim = models.CharField(max_length = 200 ,verbose_name = "Birim",blank = True,null = True)
     envanter_yonetimi = models.CharField(max_length = 200 ,verbose_name = "Envanter yönetimi",blank = True,null = True)
     ort_kar = models.FloatField(default = 0,verbose_name = "Ort Kar")
+    ticari = models.CharField(max_length = 200 ,verbose_name = "Envanter yönetimi",blank = True,null = True)
     kayit_tarihi = models.DateTimeField(default=datetime.now,null=True)
     sininme_bilgisi = models.BooleanField(default = False)
 
