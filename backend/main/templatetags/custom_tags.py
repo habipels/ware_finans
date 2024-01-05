@@ -1,6 +1,7 @@
 from django import template
 from bilgideposu.models import *
 from django.shortcuts import render,HttpResponse,get_object_or_404,redirect
+from django.utils.safestring import mark_safe
 register = template.Library()
 
 @register.filter
@@ -378,3 +379,21 @@ def alacak_vericek_topam(id):
         return "B"
     else:
         return "A"
+    
+@register.simple_tag
+def tum_toplam_olayi(id):
+    a = musavir_stok_fisi.objects.filter(bagli_oldugu_stok = get_object_or_404(musavir_stok,id = id))
+    giris = 0
+    giris_tutar = 0
+    cikis = 0
+    cikis_tutar = 0
+    for i in a:
+        giris = giris+i.giris_miktari
+        giris_tutar = giris_tutar+i.giris_fiyati
+        cikis = cikis + i.cikis_miktari
+        cikis_tutar = cikis_tutar + i.cikis_fiyati
+    sonuc = giris - cikis
+    veri= '<td>{}</td><td>{}</td><td>{}</td><td>{}</td><td>{}</td>'.format(
+        giris,giris_tutar,cikis,cikis_tutar,sonuc
+    )
+    return mark_safe ( veri)

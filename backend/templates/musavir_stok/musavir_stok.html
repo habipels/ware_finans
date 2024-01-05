@@ -11,7 +11,7 @@
 
 </style>
 <div class="icon-bar">
-  <form  method="post">
+  <form action="/{{firma.firma_ozel_anahtar}}/musavirstokfis/"  method="post">
     {% csrf_token %}
     <button type="submit" class="btn btn-primary">Kaydet Yeni Fiş</button>
     <a href="javascript:void(0);" onclick="ekleYeniSatir()">Bir Satır Daha Ekle</a>
@@ -69,11 +69,7 @@
           <td>{{i.envanter_yonetimi}}</td>
           <td>{{i.ticari}}</td>
           <td>{{i.ort_kar}}</td>
-          <td>0</td>
-          <td>0</td>
-          <td>0</td>
-          <td>0</td>
-          <td>0</td>
+          {% tum_toplam_olayi i.id %}
         </tr>
         {% endfor %}
       </tbody>
@@ -89,7 +85,7 @@
     <table class="table table-bordered-second">
       <thead style="position: sticky;top: 0">
         <tr>
-            <th class="text-center">Stok Seç</th>
+          <th class="text-center">Stok Seç</th>
         <th class="text-center">Evrak Tarihi</th>
           <th class="text-center">Dönem İçi / Başı</th>
           <th class="text-center">İade mi ?</th>
@@ -107,23 +103,379 @@
         <tr>
           <td><select name="cari" id="">
             {% for i in cari_bilgileri %}
-              <option value="{{i.id}}">{{i.cari_adi}}</option>
+              <option value="{{i.id}}"> <b>{{i.stok_kodu}}</b>  : {{i.stok_adi}}</option>
               {% endfor %}
             </select></td>
           <td><input type="date" name="tarih" id="tarih"></td>
-          <td><input type="text" name="aciklama"></td>
-          <td><input type="number" value="0" step="0.01" name="borc"></td>
-          <td><input type="number" value="0" step="0.01" name="alacak"></td>
+          <td><select name="didb" id="">
+            <option value="Dönem Başı Mal Mevcudu">Dönem Başı Mal Mevcudu </option>
+            <option value="Dönem Başı Mal Mevcudu">Dönem İçi Mal Alış Satış </option>
+          </select></td>
+          <td><select name="iademi" id="">
+            <option value="Evet">Evet </option>
+            <option value="Hayır">Hayır</option>
+          </select></td>
+          <td><input type="text"  name="evrakno"></td>
+          <td><input type="text"  name="evrakaciklama"></td>
+          <td><input type="number" value="0" step="0.01" id="gm" oninput="duzenlemeolayiborclu(0)" name="girismiktari"></td>
+          <td><input type="number" value="0" step="0.01" id="gbf" disabled name="girisbirimfiyati"></td>
+          <td><input type="number" value="0" step="0.01" id="gt" oninput="duzenlemeolayiborclu(0)" name="giristutari"></td>
+          <td><input type="number" value="0" step="0.01"  id="cm" oninput="duzenlemeolayialacakli(0)" name="cikismiktari"></td>
+          <td><input type="number" value="0" step="0.01" id="cbf" disabled  name="cikisbirimfiyati"></td>
+          <td><input type="number" value="0" step="0.01" id="ct" oninput="duzenlemeolayialacakli(0)" name="cikistutari"></td>
         </tr>
         <!--yeniform-->
-         
-        
+        <tr class="yeniform">
+          <td><b>Seçimi Yaptınız</b></td>
+          <td><input type="date" name="tarih" id="tarih"></td>
+          <td><select name="didb" id="">
+            <option value="Dönem Başı Mal Mevcudu">Dönem Başı Mal Mevcudu </option>
+            <option value="Dönem Başı Mal Mevcudu">Dönem İçi Mal Alış Satış </option>
+          </select></td>
+          <td><select name="iademi" id="">
+            <option value="Evet">Evet </option>
+            <option value="Hayır">Hayır</option>
+          </select></td>
+          <td><input type="text"  name="evrakno"></td>
+          <td><input type="text"  name="evrakaciklama"></td>
+          <td><input type="number" value="0" step="0.01" id="gm" oninput="duzenlemeolayiborclu(1)" name="girismiktari"></td>
+          <td><input type="number" value="0" step="0.01" id="gbf" disabled name="girisbirimfiyati"></td>
+          <td><input type="number" value="0" step="0.01" id="gt" oninput="duzenlemeolayiborclu(1)" name="giristutari"></td>
+          <td><input type="number" value="0" step="0.01"  id="cm" oninput="duzenlemeolayialacakli(1)" name="cikismiktari"></td>
+          <td><input type="number" value="0" step="0.01" id="cbf" disabled  name="cikisbirimfiyati"></td>
+          <td><input type="number" value="0" step="0.01" id="ct" oninput="duzenlemeolayialacakli(1)" name="cikistutari"></td>
+        </tr>
+        <tr class="yeniform">
+          <td><b>Seçimi Yaptınız</b></td>
+          <td><input type="date" name="tarih" id="tarih"></td>
+          <td><select name="didb" id="">
+            <option value="Dönem Başı Mal Mevcudu">Dönem Başı Mal Mevcudu </option>
+            <option value="Dönem Başı Mal Mevcudu">Dönem İçi Mal Alış Satış </option>
+          </select></td>
+          <td><select name="iademi" id="">
+            <option value="Evet">Evet </option>
+            <option value="Hayır">Hayır</option>
+          </select></td>
+          <td><input type="text"  name="evrakno"></td>
+          <td><input type="text"  name="evrakaciklama"></td>
+          <td><input type="number" value="0" step="0.01" id="gm" oninput="duzenlemeolayiborclu(2)" name="girismiktari"></td>
+          <td><input type="number" value="0" step="0.01" id="gbf" disabled name="girisbirimfiyati"></td>
+          <td><input type="number" value="0" step="0.01" id="gt" oninput="duzenlemeolayiborclu(2)" name="giristutari"></td>
+          <td><input type="number" value="0" step="0.01"  id="cm" oninput="duzenlemeolayialacakli(2)" name="cikismiktari"></td>
+          <td><input type="number" value="0" step="0.01" id="cbf" disabled  name="cikisbirimfiyati"></td>
+          <td><input type="number" value="0" step="0.01" id="ct" oninput="duzenlemeolayialacakli(2)" name="cikistutari"></td>
+        </tr>
+        <tr class="yeniform">
+          <td><b>Seçimi Yaptınız</b></td>
+          <td><input type="date" name="tarih" id="tarih"></td>
+          <td><select name="didb" id="">
+            <option value="Dönem Başı Mal Mevcudu">Dönem Başı Mal Mevcudu </option>
+            <option value="Dönem Başı Mal Mevcudu">Dönem İçi Mal Alış Satış </option>
+          </select></td>
+          <td><select name="iademi" id="">
+            <option value="Evet">Evet </option>
+            <option value="Hayır">Hayır</option>
+          </select></td>
+          <td><input type="text"  name="evrakno"></td>
+          <td><input type="text"  name="evrakaciklama"></td>
+          <td><input type="number" value="0" step="0.01" id="gm" oninput="duzenlemeolayiborclu(3)" name="girismiktari"></td>
+          <td><input type="number" value="0" step="0.01" id="gbf" disabled name="girisbirimfiyati"></td>
+          <td><input type="number" value="0" step="0.01" id="gt" oninput="duzenlemeolayiborclu(3)" name="giristutari"></td>
+          <td><input type="number" value="0" step="0.01"  id="cm" oninput="duzenlemeolayialacakli(3)" name="cikismiktari"></td>
+          <td><input type="number" value="0" step="0.01" id="cbf" disabled  name="cikisbirimfiyati"></td>
+          <td><input type="number" value="0" step="0.01" id="ct" oninput="duzenlemeolayialacakli(3)" name="cikistutari"></td>
+        </tr>
+        <tr class="yeniform">
+          <td><b>Seçimi Yaptınız</b></td>
+          <td><input type="date" name="tarih" id="tarih"></td>
+          <td><select name="didb" id="">
+            <option value="Dönem Başı Mal Mevcudu">Dönem Başı Mal Mevcudu </option>
+            <option value="Dönem Başı Mal Mevcudu">Dönem İçi Mal Alış Satış </option>
+          </select></td>
+          <td><select name="iademi" id="">
+            <option value="Evet">Evet </option>
+            <option value="Hayır">Hayır</option>
+          </select></td>
+          <td><input type="text"  name="evrakno"></td>
+          <td><input type="text"  name="evrakaciklama"></td>
+          <td><input type="number" value="0" step="0.01" id="gm" oninput="duzenlemeolayiborclu(4)" name="girismiktari"></td>
+          <td><input type="number" value="0" step="0.01" id="gbf" disabled name="girisbirimfiyati"></td>
+          <td><input type="number" value="0" step="0.01" id="gt" oninput="duzenlemeolayiborclu(4)" name="giristutari"></td>
+          <td><input type="number" value="0" step="0.01"  id="cm" oninput="duzenlemeolayialacakli(4)" name="cikismiktari"></td>
+          <td><input type="number" value="0" step="0.01" id="cbf" disabled  name="cikisbirimfiyati"></td>
+          <td><input type="number" value="0" step="0.01" id="ct" oninput="duzenlemeolayialacakli(4)" name="cikistutari"></td>
+        </tr>
+        <tr class="yeniform">
+          <td><b>Seçimi Yaptınız</b></td>
+          <td><input type="date" name="tarih" id="tarih"></td>
+          <td><select name="didb" id="">
+            <option value="Dönem Başı Mal Mevcudu">Dönem Başı Mal Mevcudu </option>
+            <option value="Dönem Başı Mal Mevcudu">Dönem İçi Mal Alış Satış </option>
+          </select></td>
+          <td><select name="iademi" id="">
+            <option value="Evet">Evet </option>
+            <option value="Hayır">Hayır</option>
+          </select></td>
+          <td><input type="text"  name="evrakno"></td>
+          <td><input type="text"  name="evrakaciklama"></td>
+          <td><input type="number" value="0" step="0.01" id="gm" oninput="duzenlemeolayiborclu(5)" name="girismiktari"></td>
+          <td><input type="number" value="0" step="0.01" id="gbf" disabled name="girisbirimfiyati"></td>
+          <td><input type="number" value="0" step="0.01" id="gt" oninput="duzenlemeolayiborclu(5)" name="giristutari"></td>
+          <td><input type="number" value="0" step="0.01"  id="cm" oninput="duzenlemeolayialacakli(5)" name="cikismiktari"></td>
+          <td><input type="number" value="0" step="0.01" id="cbf" disabled  name="cikisbirimfiyati"></td>
+          <td><input type="number" value="0" step="0.01" id="ct" oninput="duzenlemeolayialacakli(5)" name="cikistutari"></td>
+        </tr>
+        <tr class="yeniform">
+          <td><b>Seçimi Yaptınız</b></td>
+          <td><input type="date" name="tarih" id="tarih"></td>
+          <td><select name="didb" id="">
+            <option value="Dönem Başı Mal Mevcudu">Dönem Başı Mal Mevcudu </option>
+            <option value="Dönem Başı Mal Mevcudu">Dönem İçi Mal Alış Satış </option>
+          </select></td>
+          <td><select name="iademi" id="">
+            <option value="Evet">Evet </option>
+            <option value="Hayır">Hayır</option>
+          </select></td>
+          <td><input type="text"  name="evrakno"></td>
+          <td><input type="text"  name="evrakaciklama"></td>
+          <td><input type="number" value="0" step="0.01" id="gm" oninput="duzenlemeolayiborclu(6)" name="girismiktari"></td>
+          <td><input type="number" value="0" step="0.01" id="gbf" disabled name="girisbirimfiyati"></td>
+          <td><input type="number" value="0" step="0.01" id="gt" oninput="duzenlemeolayiborclu(6)" name="giristutari"></td>
+          <td><input type="number" value="0" step="0.01"  id="cm" oninput="duzenlemeolayialacakli(6)" name="cikismiktari"></td>
+          <td><input type="number" value="0" step="0.01" id="cbf" disabled  name="cikisbirimfiyati"></td>
+          <td><input type="number" value="0" step="0.01" id="ct" oninput="duzenlemeolayialacakli(6)" name="cikistutari"></td>
+        </tr>
+        <tr class="yeniform">
+          <td><b>Seçimi Yaptınız</b></td>
+          <td><input type="date" name="tarih" id="tarih"></td>
+          <td><select name="didb" id="">
+            <option value="Dönem Başı Mal Mevcudu">Dönem Başı Mal Mevcudu </option>
+            <option value="Dönem Başı Mal Mevcudu">Dönem İçi Mal Alış Satış </option>
+          </select></td>
+          <td><select name="iademi" id="">
+            <option value="Evet">Evet </option>
+            <option value="Hayır">Hayır</option>
+          </select></td>
+          <td><input type="text"  name="evrakno"></td>
+          <td><input type="text"  name="evrakaciklama"></td>
+          <td><input type="number" value="0" step="0.01" id="gm" oninput="duzenlemeolayiborclu(7)" name="girismiktari"></td>
+          <td><input type="number" value="0" step="0.01" id="gbf" disabled name="girisbirimfiyati"></td>
+          <td><input type="number" value="0" step="0.01" id="gt" oninput="duzenlemeolayiborclu(7)" name="giristutari"></td>
+          <td><input type="number" value="0" step="0.01"  id="cm" oninput="duzenlemeolayialacakli(7)" name="cikismiktari"></td>
+          <td><input type="number" value="0" step="0.01" id="cbf" disabled  name="cikisbirimfiyati"></td>
+          <td><input type="number" value="0" step="0.01" id="ct" oninput="duzenlemeolayialacakli(7)" name="cikistutari"></td>
+        </tr>
+        <tr class="yeniform">
+          <td><b>Seçimi Yaptınız</b></td>
+          <td><input type="date" name="tarih" id="tarih"></td>
+          <td><select name="didb" id="">
+            <option value="Dönem Başı Mal Mevcudu">Dönem Başı Mal Mevcudu </option>
+            <option value="Dönem Başı Mal Mevcudu">Dönem İçi Mal Alış Satış </option>
+          </select></td>
+          <td><select name="iademi" id="">
+            <option value="Evet">Evet </option>
+            <option value="Hayır">Hayır</option>
+          </select></td>
+          <td><input type="text"  name="evrakno"></td>
+          <td><input type="text"  name="evrakaciklama"></td>
+          <td><input type="number" value="0" step="0.01" id="gm" oninput="duzenlemeolayiborclu(8)" name="girismiktari"></td>
+          <td><input type="number" value="0" step="0.01" id="gbf" disabled name="girisbirimfiyati"></td>
+          <td><input type="number" value="0" step="0.01" id="gt" oninput="duzenlemeolayiborclu(8)" name="giristutari"></td>
+          <td><input type="number" value="0" step="0.01"  id="cm" oninput="duzenlemeolayialacakli(8)" name="cikismiktari"></td>
+          <td><input type="number" value="0" step="0.01" id="cbf" disabled  name="cikisbirimfiyati"></td>
+          <td><input type="number" value="0" step="0.01" id="ct" oninput="duzenlemeolayialacakli(8)" name="cikistutari"></td>
+        </tr>
+        <tr class="yeniform">
+          <td><b>Seçimi Yaptınız</b></td>
+          <td><input type="date" name="tarih" id="tarih"></td>
+          <td><select name="didb" id="">
+            <option value="Dönem Başı Mal Mevcudu">Dönem Başı Mal Mevcudu </option>
+            <option value="Dönem Başı Mal Mevcudu">Dönem İçi Mal Alış Satış </option>
+          </select></td>
+          <td><select name="iademi" id="">
+            <option value="Evet">Evet </option>
+            <option value="Hayır">Hayır</option>
+          </select></td>
+          <td><input type="text"  name="evrakno"></td>
+          <td><input type="text"  name="evrakaciklama"></td>
+          <td><input type="number" value="0" step="0.01" id="gm" oninput="duzenlemeolayiborclu(9)" name="girismiktari"></td>
+          <td><input type="number" value="0" step="0.01" id="gbf" disabled name="girisbirimfiyati"></td>
+          <td><input type="number" value="0" step="0.01" id="gt" oninput="duzenlemeolayiborclu(9)" name="giristutari"></td>
+          <td><input type="number" value="0" step="0.01"  id="cm" oninput="duzenlemeolayialacakli(9)" name="cikismiktari"></td>
+          <td><input type="number" value="0" step="0.01" id="cbf" disabled  name="cikisbirimfiyati"></td>
+          <td><input type="number" value="0" step="0.01" id="ct" oninput="duzenlemeolayialacakli(9)" name="cikistutari"></td>
+        </tr>
+        <tr class="yeniform">
+          <td><b>Seçimi Yaptınız</b></td>
+          <td><input type="date" name="tarih" id="tarih"></td>
+          <td><select name="didb" id="">
+            <option value="Dönem Başı Mal Mevcudu">Dönem Başı Mal Mevcudu </option>
+            <option value="Dönem Başı Mal Mevcudu">Dönem İçi Mal Alış Satış </option>
+          </select></td>
+          <td><select name="iademi" id="">
+            <option value="Evet">Evet </option>
+            <option value="Hayır">Hayır</option>
+          </select></td>
+          <td><input type="text"  name="evrakno"></td>
+          <td><input type="text"  name="evrakaciklama"></td>
+          <td><input type="number" value="0" step="0.01" id="gm" oninput="duzenlemeolayiborclu(10)" name="girismiktari"></td>
+          <td><input type="number" value="0" step="0.01" id="gbf" disabled name="girisbirimfiyati"></td>
+          <td><input type="number" value="0" step="0.01" id="gt" oninput="duzenlemeolayiborclu(10)" name="giristutari"></td>
+          <td><input type="number" value="0" step="0.01"  id="cm" oninput="duzenlemeolayialacakli(10)" name="cikismiktari"></td>
+          <td><input type="number" value="0" step="0.01" id="cbf" disabled  name="cikisbirimfiyati"></td>
+          <td><input type="number" value="0" step="0.01" id="ct" oninput="duzenlemeolayialacakli(10)" name="cikistutari"></td>
+        </tr>
+        <tr class="yeniform">
+          <td><b>Seçimi Yaptınız</b></td>
+          <td><input type="date" name="tarih" id="tarih"></td>
+          <td><select name="didb" id="">
+            <option value="Dönem Başı Mal Mevcudu">Dönem Başı Mal Mevcudu </option>
+            <option value="Dönem Başı Mal Mevcudu">Dönem İçi Mal Alış Satış </option>
+          </select></td>
+          <td><select name="iademi" id="">
+            <option value="Evet">Evet </option>
+            <option value="Hayır">Hayır</option>
+          </select></td>
+          <td><input type="text"  name="evrakno"></td>
+          <td><input type="text"  name="evrakaciklama"></td>
+          <td><input type="number" value="0" step="0.01" id="gm" oninput="duzenlemeolayiborclu(11)" name="girismiktari"></td>
+          <td><input type="number" value="0" step="0.01" id="gbf" disabled name="girisbirimfiyati"></td>
+          <td><input type="number" value="0" step="0.01" id="gt" oninput="duzenlemeolayiborclu(11)" name="giristutari"></td>
+          <td><input type="number" value="0" step="0.01"  id="cm" oninput="duzenlemeolayialacakli(11)" name="cikismiktari"></td>
+          <td><input type="number" value="0" step="0.01" id="cbf" disabled  name="cikisbirimfiyati"></td>
+          <td><input type="number" value="0" step="0.01" id="ct" oninput="duzenlemeolayialacakli(11)" name="cikistutari"></td>
+        </tr>
+        <tr class="yeniform">
+          <td><b>Seçimi Yaptınız</b></td>
+          <td><input type="date" name="tarih" id="tarih"></td>
+          <td><select name="didb" id="">
+            <option value="Dönem Başı Mal Mevcudu">Dönem Başı Mal Mevcudu </option>
+            <option value="Dönem Başı Mal Mevcudu">Dönem İçi Mal Alış Satış </option>
+          </select></td>
+          <td><select name="iademi" id="">
+            <option value="Evet">Evet </option>
+            <option value="Hayır">Hayır</option>
+          </select></td>
+          <td><input type="text"  name="evrakno"></td>
+          <td><input type="text"  name="evrakaciklama"></td>
+          <td><input type="number" value="0" step="0.01" id="gm" oninput="duzenlemeolayiborclu(12)" name="girismiktari"></td>
+          <td><input type="number" value="0" step="0.01" id="gbf" disabled name="girisbirimfiyati"></td>
+          <td><input type="number" value="0" step="0.01" id="gt" oninput="duzenlemeolayiborclu(12)" name="giristutari"></td>
+          <td><input type="number" value="0" step="0.01"  id="cm" oninput="duzenlemeolayialacakli(12)" name="cikismiktari"></td>
+          <td><input type="number" value="0" step="0.01" id="cbf" disabled  name="cikisbirimfiyati"></td>
+          <td><input type="number" value="0" step="0.01" id="ct" oninput="duzenlemeolayialacakli(12)" name="cikistutari"></td>
+        </tr>
+        <tr class="yeniform">
+          <td><b>Seçimi Yaptınız</b></td>
+          <td><input type="date" name="tarih" id="tarih"></td>
+          <td><select name="didb" id="">
+            <option value="Dönem Başı Mal Mevcudu">Dönem Başı Mal Mevcudu </option>
+            <option value="Dönem Başı Mal Mevcudu">Dönem İçi Mal Alış Satış </option>
+          </select></td>
+          <td><select name="iademi" id="">
+            <option value="Evet">Evet </option>
+            <option value="Hayır">Hayır</option>
+          </select></td>
+          <td><input type="text"  name="evrakno"></td>
+          <td><input type="text"  name="evrakaciklama"></td>
+          <td><input type="number" value="0" step="0.01" id="gm" oninput="duzenlemeolayiborclu(13)" name="girismiktari"></td>
+          <td><input type="number" value="0" step="0.01" id="gbf" disabled name="girisbirimfiyati"></td>
+          <td><input type="number" value="0" step="0.01" id="gt" oninput="duzenlemeolayiborclu(13)" name="giristutari"></td>
+          <td><input type="number" value="0" step="0.01"  id="cm" oninput="duzenlemeolayialacakli(13)" name="cikismiktari"></td>
+          <td><input type="number" value="0" step="0.01" id="cbf" disabled  name="cikisbirimfiyati"></td>
+          <td><input type="number" value="0" step="0.01" id="ct" oninput="duzenlemeolayialacakli(13)" name="cikistutari"></td>
+        </tr>
+        <tr class="yeniform">
+          <td><b>Seçimi Yaptınız</b></td>
+          <td><input type="date" name="tarih" id="tarih"></td>
+          <td><select name="didb" id="">
+            <option value="Dönem Başı Mal Mevcudu">Dönem Başı Mal Mevcudu </option>
+            <option value="Dönem Başı Mal Mevcudu">Dönem İçi Mal Alış Satış </option>
+          </select></td>
+          <td><select name="iademi" id="">
+            <option value="Evet">Evet </option>
+            <option value="Hayır">Hayır</option>
+          </select></td>
+          <td><input type="text"  name="evrakno"></td>
+          <td><input type="text"  name="evrakaciklama"></td>
+          <td><input type="number" value="0" step="0.01" id="gm" oninput="duzenlemeolayiborclu(14)" name="girismiktari"></td>
+          <td><input type="number" value="0" step="0.01" id="gbf" disabled name="girisbirimfiyati"></td>
+          <td><input type="number" value="0" step="0.01" id="gt" oninput="duzenlemeolayiborclu(14)" name="giristutari"></td>
+          <td><input type="number" value="0" step="0.01"  id="cm" oninput="duzenlemeolayialacakli(14)" name="cikismiktari"></td>
+          <td><input type="number" value="0" step="0.01" id="cbf" disabled  name="cikisbirimfiyati"></td>
+          <td><input type="number" value="0" step="0.01" id="ct" oninput="duzenlemeolayialacakli(14)" name="cikistutari"></td>
+        </tr>
+        <tr class="yeniform">
+          <td><b>Seçimi Yaptınız</b></td>
+          <td><input type="date" name="tarih" id="tarih"></td>
+          <td><select name="didb" id="">
+            <option value="Dönem Başı Mal Mevcudu">Dönem Başı Mal Mevcudu </option>
+            <option value="Dönem Başı Mal Mevcudu">Dönem İçi Mal Alış Satış </option>
+          </select></td>
+          <td><select name="iademi" id="">
+            <option value="Evet">Evet </option>
+            <option value="Hayır">Hayır</option>
+          </select></td>
+          <td><input type="text"  name="evrakno"></td>
+          <td><input type="text"  name="evrakaciklama"></td>
+          <td><input type="number" value="0" step="0.01" id="gm" oninput="duzenlemeolayiborclu(15)" name="girismiktari"></td>
+          <td><input type="number" value="0" step="0.01" id="gbf" disabled name="girisbirimfiyati"></td>
+          <td><input type="number" value="0" step="0.01" id="gt" oninput="duzenlemeolayiborclu(15)" name="giristutari"></td>
+          <td><input type="number" value="0" step="0.01"  id="cm" oninput="duzenlemeolayialacakli(15)" name="cikismiktari"></td>
+          <td><input type="number" value="0" step="0.01" id="cbf" disabled  name="cikisbirimfiyati"></td>
+          <td><input type="number" value="0" step="0.01" id="ct" oninput="duzenlemeolayialacakli(15)" name="cikistutari"></td>
+        </tr>
+        <tr class="yeniform">
+          <td><b>Seçimi Yaptınız</b></td>
+          <td><input type="date" name="tarih" id="tarih"></td>
+          <td><select name="didb" id="">
+            <option value="Dönem Başı Mal Mevcudu">Dönem Başı Mal Mevcudu </option>
+            <option value="Dönem Başı Mal Mevcudu">Dönem İçi Mal Alış Satış </option>
+          </select></td>
+          <td><select name="iademi" id="">
+            <option value="Evet">Evet </option>
+            <option value="Hayır">Hayır</option>
+          </select></td>
+          <td><input type="text"  name="evrakno"></td>
+          <td><input type="text"  name="evrakaciklama"></td>
+          <td><input type="number" value="0" step="0.01" id="gm" oninput="duzenlemeolayiborclu(16)" name="girismiktari"></td>
+          <td><input type="number" value="0" step="0.01" id="gbf" disabled name="girisbirimfiyati"></td>
+          <td><input type="number" value="0" step="0.01" id="gt" oninput="duzenlemeolayiborclu(16)" name="giristutari"></td>
+          <td><input type="number" value="0" step="0.01"  id="cm" oninput="duzenlemeolayialacakli(16)" name="cikismiktari"></td>
+          <td><input type="number" value="0" step="0.01" id="cbf" disabled  name="cikisbirimfiyati"></td>
+          <td><input type="number" value="0" step="0.01" id="ct" oninput="duzenlemeolayialacakli(16)" name="cikistutari"></td>
+        </tr>
       </tbody>
     </table>
   </div>
 </div>
 
 </form>
+<script>
+  function duzenlemeolayiborclu(index) {
+      const alacakliInput = document.querySelectorAll("#cm")[index];
+      alacakliInput.value = 0;
+      const alacakliInpukt = document.querySelectorAll("#ct")[index];
+      alacakliInpukt.value = 0;
+      const a = parseFloat(document.querySelectorAll("#gm")[index].value);
+      const b = parseFloat(document.querySelectorAll("#gt")[index].value);
+      document.querySelectorAll("#gbf")[index].value = parseFloat(b/a);
+      document.querySelectorAll("#cbf")[index].value = 0
+
+  }
+  
+  function duzenlemeolayialacakli(index) {
+      const borcluInput = document.querySelectorAll("#gm")[index];
+      borcluInput.value = 0;
+      const borcluInputs = document.querySelectorAll("#gt")[index];
+      borcluInputs.value = 0;
+      const a =  parseFloat(document.querySelectorAll("#cm")[index].value);
+      const b = parseFloat(document.querySelectorAll("#ct")[index].value);
+
+      document.querySelectorAll("#cbf")[index].value = parseFloat(b/a);
+      document.querySelectorAll("#gbf")[index].value =0
+  }
+  </script>
 <script>
 
   function showConfirmationPopup() {

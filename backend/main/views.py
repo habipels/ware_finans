@@ -4985,3 +4985,32 @@ def musavir_stok_kart_duzenle(request,slug):
             birim = birim,envanter_yonetimi = envanyo,ort_kar = float(ortk),ticari = ticari)
     z = "/"+slug+"/musavirstok/"
     return redirect(z)
+
+def musavir_stok_fisi_olusturma(request,slug):
+    if request.POST:
+        stok = request.POST.get("cari")
+        evrakk_tarih =request.POST.getlist("tarih")
+        didb =request.POST.getlist("didb")
+        iademi =request.POST.getlist("iademi")
+        evrakno =request.POST.getlist("evrakno")
+        evrakaciklama =request.POST.getlist("evrakaciklama")
+        girismiktari =request.POST.getlist("girismiktari")
+        girisbirimfiyati =request.POST.getlist("girisbirimfiyati")
+        giristutari =request.POST.getlist("giristutari")
+        cikismiktari =request.POST.getlist("cikismiktari")
+        cikisbirimfiyati =request.POST.getlist("cikisbirimfiyati")
+        cikistutari =request.POST.getlist("cikistutari")
+        for i in range(len(evrakk_tarih)):
+            if evrakk_tarih[i] != "":
+                musavir_stok_fisi.objects.create(
+                    bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),
+                    bagli_oldugu_stok = get_object_or_404(musavir_stok,id = stok),
+                    evrak_tarihi = evrakk_tarih[i],donem = didb[i],
+                    iademi = iademi[i],evrak_no = evrakno[i],
+                    evrak_aciklama = evrakaciklama[i],giris_miktari = girismiktari[i],
+                    cikis_miktari = cikismiktari[i],
+                    giris_fiyati = giristutari[i],
+                    cikis_fiyati = cikistutari[i]
+                )
+    z = "/"+slug+"/musavirstok/"
+    return redirect(z)
