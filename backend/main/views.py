@@ -6,9 +6,8 @@ from django.db.models import Q
 # Create your views here.
 def homepage(request):
     content = {}
-    content["firmalarim"] = firma.objects.filter(silinme_bilgisi = False,firma_muhasabecisi = request.user)
     if request.user.is_authenticated:
-        pass
+        content["firmalarim"] = firma.objects.filter(silinme_bilgisi = False,firma_muhasabecisi = request.user)
     else:
         return redirect("/users/loginandregister/")
     return render(request,"index.html",content)
@@ -5014,3 +5013,33 @@ def musavir_stok_fisi_olusturma(request,slug):
                 )
     z = "/"+slug+"/musavirstok/"
     return redirect(z)
+
+#Demirbaşlar
+def demirbaslar(request,slug):
+    content ={}
+    content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
+    content["subeleri"] =  sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    return render (request,"demirbas/demirbaslar.html",content)
+
+def demirbas_ekle(request,slug):
+    content ={}
+    if request.POST:
+        demirbaskodu = request.POST.get("demirbaskodu")
+        aciklama = request.POST.get("aciklama")
+        alistarihi = request.POST.get("alistarihi")
+        faturano = request.POST.get("faturano")
+        tutar = request.POST.get("tutar")
+        yeni_demirbas_degeri = request.POST.get("yeni_demirbas_degeri")
+        kdvorani = request.POST.get("kdvorani")
+        aliskdvtutari= request.POSt.get("aliskdvtutari")
+    return render (request,"demirbas/demirbasl_ekleme.html",content)
+
+#DemirBaşlar
+
+
+
+
+
+
+
+

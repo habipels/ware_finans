@@ -1,0 +1,452 @@
+{% extends "homebase.html" %}
+{% load custom_tags %}
+{% block content %}
+<style>
+  #kur {
+    display: none;
+  }
+  .yeniform {
+    display: none;
+  }
+
+</style>
+<div class="icon-bar">
+
+    <a href="/{{firma.firma_ozel_anahtar}}/demirbaslarekle/" >  Yeni Demirbaş </a>
+    <a style="color: white;" onclick="redirectToSelectedLink()">Demirbaşı İncele-Düzelt</a>
+    <a style="color: white;" onclick="showConfirmationPopup()">Kart Sil</a>
+    <a href="/" style="color:red;">Çıkış Yap (ESC)</a>
+
+</div>
+<div class="d-menu">
+  <ul>
+    <li>
+      <ul>
+      </ul><a style="color: white;" onclick="irsaliyeaktar()">Demirbaş Alış Muhasebe Fişi</a>
+    </li>
+    <li>
+      <ul>
+      </ul><a href="" title="">Demirbaş Satış Muhasebe Fişi</a>
+
+    </li>
+    <li>
+      <ul>
+      </ul><a style="color: white;">7326 Sayılı Kanun Yeniden Değerlendirme</a>
+    </li>
+    <li>
+      <ul>
+      </ul><a href="" title="">Raporlar</a>
+    </li>
+  </ul>
+</div>
+
+<div class="container mt-3 tablo">
+    <div class="row">
+  <div class="table-responsive col-6" style="
+  border-right: 1px solid black;
+  height: 400px;
+  overflow: auto;">
+    <table class="table table-bordered ">
+        <h5>Demirbaş Listesi</h5>
+        <hr>
+      <thead style="position: sticky;top: 0">
+        <tr>
+        <th class="text-center">Değerlemeyi Göster</th>
+          <th class="text-center" style="min-width: 100px ;">Demirbaş Kodu</th>
+          <th class="text-center" style="min-width: 50px ;">Açıklama</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for i in siparisler %}
+        <tr>
+          <td>{% if i.irsaliyeye_aktar %}
+            {{i.kayit_tarihi}}
+            {% else %}
+            <label for="kasakartisecim{{i.id}}"><input class="kasalar" name="kasakartlari" id="kasakartisecim{{i.id}}"
+                value="{{i.id}}/" type="radio">{{i.kayit_tarihi}}</label>
+            {% endif %}
+          </td>
+          <td>{{i.siparis_no}}</td>
+          
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="table-responsive col-6" style="
+    height: 400px;
+    overflow: auto;">
+    <table class="table table-bordered-second">
+        <h5>Değerleme</h5>
+        <hr>
+      <thead style="position: sticky;top: 0">
+        <tr>
+          <th class="text-center">Hesap Yılı</th>
+          <th class="text-center">Yeniden Değerlendirme</th>
+          <th class="text-center">Amortisman Oranı (%)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><select name="siparisturu" id="">
+              <option value="Normal">Normal</option>
+              <option value="İndirimli">İndirimli</option>
+            </select></td>
+          <td><select name="grupturu" id="grupturu">
+              <option value="Alınan Sipariş">Alınan Sipariş</option>
+              <option value="Verilen Sipariş">Verilen Sipariş</option>
+              <option value="Alınan Teklif">Alınan Teklif</option>
+              <option value="Verilen Teklif">Verilen Teklif</option>
+            </select></td>
+          <td><input type="text" name="siparisno"></td>
+          
+        </tr>     
+      </tbody>
+    </table>
+  </div>
+</div>
+</div>
+
+
+<script>
+  function redirectToSelectedLink() {
+    const radioButtons = document.getElementsByName('kasakartlari');
+    let selectedLink = null;
+
+    for (const radioButton of radioButtons) {
+      if (radioButton.checked) {
+        selectedLink = radioButton.value;
+        break;
+      }
+    }
+
+    if (selectedLink) {
+      window.location.href = "/{{firma.firma_ozel_anahtar}}/siparisduzelt/" + selectedLink;
+    } else {
+      alert('Lütfen Stok Kartı Seçin');
+    }
+  }
+  function showConfirmationPopup() {
+    const radioButtons = document.getElementsByName('kasakartlari');
+    let selectedLink = null;
+
+    for (const radioButton of radioButtons) {
+      if (radioButton.checked) {
+        selectedLink = radioButton.value;
+        break;
+      }
+    }
+
+    // Pop-up penceresini aç
+    const confirmation = confirm("Emin misiniz?");
+
+    // Kullanıcının seçimine göre işlem yap
+    if (confirmation) {
+      // Kullanıcı "Evet" dedi, yönlendirme yap
+      window.location.href = "/{{firma.firma_ozel_anahtar}}/siparissil/" + selectedLink;
+    } else {
+      // Kullanıcı "Hayır" dedi, isteğe bağlı olarak başka bir işlem yapabilirsiniz
+    }
+  }
+  function irsaliyeaktar() {
+    const radioButtons = document.getElementsByName('kasakartlari');
+    let selectedLink = null;
+
+    for (const radioButton of radioButtons) {
+      if (radioButton.checked) {
+        selectedLink = radioButton.value;
+        break;
+      }
+    }
+
+    // Pop-up penceresini aç
+    const confirmation = confirm("Siparişi İrsaliyeye Aktarılsın mı ?");
+
+    // Kullanıcının seçimine göre işlem yap
+    if (confirmation) {
+      // Kullanıcı "Evet" dedi, yönlendirme yap
+      window.location.href = "/{{firma.firma_ozel_anahtar}}/siparisaktarma/" + selectedLink;
+    } else {
+      // Kullanıcı "Hayır" dedi, isteğe bağlı olarak başka bir işlem yapabilirsiniz
+    }
+  }
+  function siparisiaktifpasifyapma() {
+    const radioButtons = document.getElementsByName('kasakartlari');
+    let selectedLink = null;
+
+    for (const radioButton of radioButtons) {
+      if (radioButton.checked) {
+        selectedLink = radioButton.value;
+        break;
+      }
+    }
+
+    // Pop-up penceresini aç
+    const confirmation = confirm("Siparişi Aktiflik Pasiflik Durumunu değiştirmek istiyor musun?");
+
+    // Kullanıcının seçimine göre işlem yap
+    if (confirmation) {
+      // Kullanıcı "Evet" dedi, yönlendirme yap
+      window.location.href = "/{{firma.firma_ozel_anahtar}}/siparisaktifpasif/" + selectedLink;
+    } else {
+      // Kullanıcı "Hayır" dedi, isteğe bağlı olarak başka bir işlem yapabilirsiniz
+    }
+  }
+  function siparisonaylama() {
+    const radioButtons = document.getElementsByName('kasakartlari');
+    let selectedLink = null;
+
+    for (const radioButton of radioButtons) {
+      if (radioButton.checked) {
+        selectedLink = radioButton.value;
+        break;
+      }
+    }
+
+    // Pop-up penceresini aç
+    const confirmation = confirm("Siparişi Onaylamak İstiyor musun?");
+
+    // Kullanıcının seçimine göre işlem yap
+    if (confirmation) {
+      // Kullanıcı "Evet" dedi, yönlendirme yap
+      window.location.href = "/{{firma.firma_ozel_anahtar}}/siparisonaylama/" + selectedLink;
+    } else {
+      // Kullanıcı "Hayır" dedi, isteğe bağlı olarak başka bir işlem yapabilirsiniz
+    }
+  }
+  //
+</script>
+<script>
+let z = 0;
+  function ekleYeniSatir() {
+    
+    var elements = document.getElementsByClassName('yeniform');
+
+    if (elements[z]) {
+        elements[z].classList.remove('yeniform');
+    } else {
+        console.error("Ürün Sınırına Ulaştınız");
+    }
+
+    yeniselect();
+  }
+</script>
+<script>
+
+  document.addEventListener('DOMContentLoaded', function () {
+    // Sayfa yüklendiğinde çalışacak kodlar
+    const selectedStock = document.getElementById('stoksecim'); // selectedStock elemanını buraya ekleyin
+
+    function yeniselect(selectedStock) {
+      const allCustomSelects = document.querySelectorAll('#stoksecim');
+      allCustomSelects.forEach((select, index) => {
+        select.addEventListener('change', function (event) {
+          // Etkinlik dinleyicisinin içeriği burada
+          // ... (diğer kodlar)
+        });
+      });
+    }
+
+    yeniselect(selectedStock); // Fonksiyonu sayfa yüklendiğinde çağır
+  });
+  yeniselect();
+  function yeniselect(selectedStock) {
+
+    const allCustomSelects = document.querySelectorAll('#stoksecim');
+    // Her bir <select> için olay dinleyici ekle
+    allCustomSelects.forEach((select, index) => {
+      hesaplaFiyat()
+
+      const selectedOption = select.value;
+      const selectIndex = index; // Seçeneğin sırasını almak için index'i kullanabilirsiniz.
+      // Tıklanan seçeneğin ve sırasının konsola yazdırılması.
+      // İstediğiniz işlemi bu noktada gerçekleştirebilirsiniz.
+
+      var stockName = selectedStock.options[selectedStock.selectedIndex].text; // Seçilen stok adı
+      var stockPrice = "100" + selectIndex; // Örnek olarak sabit bir stok fiyatı
+      var selectedStockValue = selectedStock.value;
+      var grupturu = document.getElementById("grupturu");
+      const grupturusecilen = grupturu.options[grupturu.selectedIndex].text;
+      // Örnek olarak fiyat bilgisini stok fiyatı alanına yerleştirme
+      document.getElementsByName('birimbilgisi')[selectIndex].value = document.getElementById(selectedOption).cells[0].innerText;
+      if (grupturusecilen == "Alınan Sipariş") {
+        document.getElementsByName('stokbirimfiyati')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[1].innerText.replace(",", "."));
+      }
+      else if (grupturusecilen == "Verilen Sipariş") {
+        document.getElementsByName('stokbirimfiyati')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[24].innerText.replace(",", "."));
+      }
+      document.getElementsByName('stokindirimyuzdesi')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[2].innerText.replace(",", "."));
+      document.getElementsByName('stokkdvyuzdesi')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[3].innerText.replace(",", "."));
+      document.getElementsByName('stokotvyuzdesi')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[4].innerText.replace(",", "."));
+      document.getElementsByName('stokindirim1')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[5].innerText.replace(",", "."));
+      document.getElementsByName('stokindirim2')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[6].innerText.replace(",", "."));
+      document.getElementsByName('stokindirim3')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[7].innerText.replace(",", "."));
+      document.getElementsByName('stokozelkod1')[selectIndex].value = document.getElementById(selectedOption).cells[8].innerText;
+      document.getElementsByName('stokozelkod2')[selectIndex].value = document.getElementById(selectedOption).cells[9].innerText;
+      document.getElementsByName('stokdepartman')[selectIndex].value = document.getElementById(selectedOption).cells[10].innerText;
+      document.getElementsByName('stokbirimi')[selectIndex].value = document.getElementById(selectedOption).cells[11].innerText;
+      document.getElementsByName('stokmiktaribilgisi')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[12].innerText.replace(",", "."));
+      document.getElementsByName('stokozellik1')[selectIndex].value = document.getElementById(selectedOption).cells[13].innerText;
+      document.getElementsByName('stokozellik2')[selectIndex].value = document.getElementById(selectedOption).cells[14].innerText;
+      document.getElementsByName('stokozellik3')[selectIndex].value = document.getElementById(selectedOption).cells[15].innerText;
+      document.getElementsByName('stokozellik4')[selectIndex].value = document.getElementById(selectedOption).cells[16].innerText;
+      document.getElementsByName('stokozellik5')[selectIndex].value = document.getElementById(selectedOption).cells[17].innerText;
+      document.getElementsByName('stokalternatifstokkodu')[selectIndex].value = document.getElementById(selectedOption).cells[18].innerText;
+      document.getElementsByName('stokalternatifstokadi')[selectIndex].value = document.getElementById(selectedOption).cells[19].innerText;
+      document.getElementsByName('stokkalitekodu')[selectIndex].value = document.getElementById(selectedOption).cells[20].innerText;
+      document.getElementsByName('stokanamiktari')[selectIndex].value = parseFloat(document.getElementById(selectedOption).cells[21].innerText.replace(",", "."));
+      document.getElementsByName('stokanamiktaribirimfiyattl')[selectIndex].value = document.getElementById(selectedOption).cells[22].innerText;
+      document.getElementsByName('stokanamiktaribirimfiyatdvz')[selectIndex].value = document.getElementById(selectedOption).cells[23].innerText;
+      hesaplaFiyat()
+    });
+  };
+  function dovizac() {
+    var selectElementtt = document.getElementById("dovizcinsi");
+    var selectedValueesss = selectElementtt.options[selectElementtt.selectedIndex].value;
+    if (selectedValueesss == "TL") {
+      var doviz = document.querySelectorAll('[id="kur"]');
+      doviz.forEach(function (element) {
+        element.style.display = 'none';
+      });
+    }
+    else {
+      var doviz = document.querySelectorAll('[id="kur"]');
+      doviz.forEach(function (element) {
+        element.style.display = 'block';
+      });
+    }
+
+
+  }
+
+</script>
+<script>
+  function hesaplaFiyat() {
+    const stokBirimFiyati = document.querySelectorAll("#stokbirimfiyati");
+    stokBirimFiyati.forEach((element, index) => {
+      var selectElementt = document.getElementById("kdvdurumu");
+      var selectedValueess = selectElementt.options[selectElementt.selectedIndex].value;
+      var selectElementtt = document.getElementById("dovizcinsi");
+      var selectedValueesss = selectElementtt.options[selectElementtt.selectedIndex].value;
+      var stokBirimFiyatiValue = element.value;
+      var stokIndirimYuzdesiValue = document.querySelectorAll("#stokindirimyuzdesi")[index].value;
+      var stokIndirimTlValue = document.querySelectorAll("#stokindirimtl")[index].value;
+      var stokTutariValue = document.querySelectorAll("#stoktutari")[index].value;
+      var stokKdvYuzdesiValue = document.querySelectorAll("#stokkdvyuzdesi")[index].value;
+      var stokKdvTValue = document.querySelectorAll("#stokkdvtl")[index].value;
+      var stokOtvYuzdesiValue = document.querySelectorAll("#stokotvyuzdesi")[index].value;
+      var stokOtvTlValue = document.querySelectorAll("#stokotvtl")[index].value;
+      var stokMiktariValue = document.querySelectorAll("#stokmiktari")[index].value;
+      var doviz = document.querySelectorAll("#birimfiyatdovz")[index].value;
+      var uygunkur = document.querySelectorAll("#uygunkur")[0].value;
+      var fiyat;
+      var kdv;
+      var otv;
+      var vergisizTutar;
+      var den;
+      var indirim_tutari;
+      if (selectedValueess == "Dahil") {
+        if (selectedValueesss == "TL") {
+          var toplam_tutar = parseFloat(stokBirimFiyatiValue) * parseFloat(stokMiktariValue);
+        }
+        else {
+          var toplam_tutar = parseFloat(doviz) * parseFloat(stokMiktariValue) * parseFloat(uygunkur);
+          document.querySelectorAll("#stokbirimfiyati")[index].value = (parseFloat(doviz) * parseFloat(uygunkur)).toFixed(2);
+        }
+
+
+        fiyat = toplam_tutar;
+
+        vergisizTutar = (fiyat * 100) / (parseFloat(stokKdvYuzdesiValue) + 100);
+        kdv = fiyat - vergisizTutar;
+        otv = vergisizTutar - (vergisizTutar * 100 / (parseFloat(stokOtvYuzdesiValue) + 100));
+        vergisizTutar = vergisizTutar - otv;
+        indirim_tutari = vergisizTutar * parseFloat(stokIndirimYuzdesiValue) / 100
+        document.querySelectorAll("#stokkdvtl")[index].value = kdv.toFixed(2);
+        document.querySelectorAll("#stokotvtl")[index].value = otv.toFixed(2);
+        document.querySelectorAll("#stokindirimtl")[index].value = indirim_tutari.toFixed(2);
+        document.querySelectorAll("#vergisiztutar")[index].value = vergisizTutar.toFixed(2);
+        document.querySelectorAll("#stoktutari")[index].value = toplam_tutar.toFixed(2);
+      }
+      else {
+        if (selectedValueesss == "TL") {
+          var toplam_tutar = parseFloat(stokBirimFiyatiValue) * parseFloat(stokMiktariValue);
+        }
+        else {
+          var toplam_tutar = parseFloat(doviz) * parseFloat(stokMiktariValue) * parseFloat(uygunkur);
+          document.querySelectorAll("#stokbirimfiyati")[index].value = (parseFloat(doviz) * parseFloat(uygunkur)).toFixed(2);
+        }
+        vergisizTutar = toplam_tutar;
+        indirim_tutari = vergisizTutar * parseFloat(stokIndirimYuzdesiValue) / 100
+        vergisizTutar = vergisizTutar - indirim_tutari
+        otv = (vergisizTutar * parseFloat(stokOtvYuzdesiValue) / 100);
+        fiyat = otv + vergisizTutar;
+        kdv = (fiyat * parseFloat(stokKdvYuzdesiValue) / 100);
+        fiyat = fiyat + kdv;
+        document.querySelectorAll("#stokkdvtl")[index].value = kdv.toFixed(2);
+        document.querySelectorAll("#stokotvtl")[index].value = otv.toFixed(2);
+        document.querySelectorAll("#vergisiztutar")[index].value = vergisizTutar.toFixed(2);
+        document.querySelectorAll("#stoktutari")[index].value = toplam_tutar.toFixed(2);
+        document.querySelectorAll("#stokindirimtl")[index].value = indirim_tutari.toFixed(2);
+      }
+      topla()
+    });
+  }
+  function topla() {
+    // Aynı ID'ye sahip inputları seçmek için bir sorgu kullanarak bir NodeList oluşturun
+    var selectElementtt = document.getElementById("dovizcinsi");
+    var selectedValueesss = selectElementtt.options[selectElementtt.selectedIndex].value;
+    var inputs = document.querySelectorAll('[id="stokotvtl"]');
+    var kdvs = document.querySelectorAll('[id="stokkdvtl"]');
+    var stokindirimtls = document.querySelectorAll('[id="stokindirimtl"]');
+    var vergisiz = document.querySelectorAll('[id="vergisiztutar"]');
+    var doviz = document.querySelectorAll('[id="birimfiyatdovz"]');
+    var uygunkur = document.querySelectorAll("#uygunkur")[0].value;
+    var vergisiz_turar_bilgisi = 0;
+    var otvtoplam = 0;
+    var kdvtoplam = 0;
+    var stokindirimtll = 0;
+    var genel_toplam = 0;
+    // NodeList üzerinde döngü ile değerleri toplayın
+    inputs.forEach(function (input) {
+      otvtoplam += parseFloat(input.value); // Değerlerin sayısal toplamı (eğer sayıysa)
+    });
+    kdvs.forEach(function (input) {
+      kdvtoplam += parseFloat(input.value); // Değerlerin sayısal toplamı (eğer sayıysa)
+    });
+    stokindirimtls.forEach(function (input) {
+      stokindirimtll += parseFloat(input.value); // Değerlerin sayısal toplamı (eğer sayıysa)
+    });
+    vergisiz.forEach(function (input) {
+      vergisiz_turar_bilgisi += parseFloat(input.value); // Değerlerin sayısal toplamı (eğer sayıysa)
+    });
+    genel_toplam = kdvtoplam + otvtoplam + vergisiz_turar_bilgisi - stokindirimtll;
+    document.getElementById("indirimtutari").innerHTML = stokindirimtll.toFixed(2);
+    document.getElementById("kdvtutari").innerHTML = kdvtoplam.toFixed(2);
+    document.getElementById("otvtutari").innerHTML = otvtoplam.toFixed(2);
+    document.getElementById("geneltutar").innerHTML = vergisiz_turar_bilgisi.toFixed(2);
+    document.getElementById("geneltoplam").innerHTML = genel_toplam.toFixed(2);
+    document.getElementById("iindirimtutari").value = stokindirimtll.toFixed(2);
+    document.getElementById("ikdvtutari").value = kdvtoplam.toFixed(2);
+    document.getElementById("iotvtutari").value = otvtoplam.toFixed(2);
+    document.getElementById("igeneltutar").value = vergisiz_turar_bilgisi.toFixed(2);
+    document.getElementById("igeneltoplam").value = genel_toplam.toFixed(2);
+    if (selectedValueesss == "TL") {
+
+    }
+    else {
+      document.getElementById("indirimtutaridvz").innerHTML = (stokindirimtll / parseFloat(uygunkur)).toFixed(2);
+      document.getElementById("kdvtutaridvz").innerHTML = (kdvtoplam / parseFloat(uygunkur)).toFixed(2);
+      document.getElementById("otvtutaridvz").innerHTML = (otvtoplam / parseFloat(uygunkur)).toFixed(2);
+      document.getElementById("geneltutardvz").innerHTML = (vergisiz_turar_bilgisi / parseFloat(uygunkur)).toFixed(2);
+      document.getElementById("geneltoplamdvz").innerHTML = (genel_toplam / parseFloat(uygunkur)).toFixed(2);
+      document.getElementById("iindirimtutaridvz").value = (stokindirimtll / parseFloat(uygunkur)).toFixed(2);
+      document.getElementById("ikdvtutaridvz").value = (kdvtoplam / parseFloat(uygunkur)).toFixed(2);
+      document.getElementById("iotvtutaridvz").value = (otvtoplam / parseFloat(uygunkur)).toFixed(2);
+      document.getElementById("igeneltutardvz").value = (vergisiz_turar_bilgisi / parseFloat(uygunkur)).toFixed(2);
+      document.getElementById("igeneltoplamdvz").value = (genel_toplam / parseFloat(uygunkur)).toFixed(2);
+    }
+  }
+</script>
+{% endblock content %}

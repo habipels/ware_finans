@@ -1705,3 +1705,50 @@ class musavir_stok_fisi(models.Model):
     giris_fiyati = models.FloatField(default = 0,verbose_name = "Giriş Fiyatı")
     cikis_birim_fiyati = models.FloatField(default = 0,verbose_name = "Çıkış Brm Fiyatı")
     cikis_fiyati = models.FloatField(default = 0,verbose_name = "Çıkış Fiyatı")
+
+
+class amortisman_bilgileri(models.Model):
+    N3 = models.CharField(max_length = 200,verbose_name="N3",blank = True,null = True)
+    N4 = models.CharField(max_length = 200,verbose_name="N4",blank = True,null = True)
+    amortismana_tabi_olan_ikstisidai_kiymet = models.CharField(max_length = 400,verbose_name="N4",blank = True,null = True)
+    faydali_omur = models.BigIntegerField(default = 0,verbose_name="Faydalı Ömür")
+    amortisman_orani = models.FloatField(default = 0,verbose_name = "Amortisman Oranı")
+    defter_beyan_kodu = models.CharField(max_length = 200,verbose_name="Defter Beyan Kodu",blank = True,null = True)
+
+
+class sabit_kiyem(models.Model):
+    sabit_kiyemet_kodu = models.CharField(max_length = 200,verbose_name="sabit kıymet kodu",blank = True,null = True)
+    sabit_kiymet_adi = models.CharField(max_length = 400,verbose_name="sabit kıymet kodu",blank = True,null = True)
+
+#genel_muhasebe Cari Bilgileri
+
+class Genel_Muhasebe_cari_bilgileri(models.Model):
+    cari_adi = models.CharField(max_length = 400,verbose_name = "Cari Adı",blank = True,null = True)
+    vergi_tc_kimlikno = models.CharField(max_length = 100,verbose_name = "Vergi Tc Kimlik No",blank = True,null = True)
+    vergi_dairesi_bilgisi = models.CharField(max_length = 200,verbose_name = "Vergi Dairesi Bilgisi",blank = True,null = True)
+    ulke_kodu = models.CharField(max_length = 20,verbose_name = "Ülke Kodu",blank = True,null = True)
+    firma_unvani = models.CharField(max_length = 600,verbose_name = "Firma unvanı Adı",blank = True,null = True)
+    telefon_1 = models.CharField(verbose_name = "Telefon 1 ",max_length = 20,blank = True,null = True)
+    telefon_2 = models.CharField(verbose_name = "Telefon 1 ",max_length = 20,blank = True,null = True)
+    telefon_3 = models.CharField(verbose_name = "Telefon 1 ",max_length = 20,blank = True,null = True)
+    telefon_4 = models.CharField(verbose_name = "Telefon 1 ",max_length = 20,blank = True,null = True)
+    adres_1 = models.CharField(verbose_name = "Adres ",max_length = 200,blank = True,null = True)
+    adres_2 = models.CharField(verbose_name = "Adres 1 ",max_length = 200,blank = True,null = True)
+    adres_3 = models.CharField(verbose_name = "Adres 1 ",max_length = 200,blank = True,null = True)
+    adres_4 = models.CharField(verbose_name = "Adres 1 ",max_length = 200,blank = True,null = True)
+    fax_1 = models.CharField(verbose_name = "Fax 1 ",max_length = 20,blank = True,null = True)
+    fax_2 = models.CharField(verbose_name = "Fax 2 ",max_length = 20,blank = True,null = True)
+    cep_1 = models.CharField(verbose_name = "Cep 1 ",max_length = 20,blank = True,null = True)
+    cep_2 = models.CharField(verbose_name = "Cep 2 ",max_length = 20,blank = True,null = True)
+    email_1 = models.EmailField(verbose_name = "Email ",max_length = 200,blank = True,null = True)
+    email_2 = models.EmailField(verbose_name = "Email 1 ",max_length = 200,blank = True,null = True)
+    web_adresi = models.CharField(verbose_name = "web 1 ",max_length = 400,blank = True,null = True)
+    yetkili = models.CharField(verbose_name = "Yetkili ",max_length = 400,blank = True,null = True)
+    gorevi = models.CharField(verbose_name = "Görevi ",max_length = 400,blank = True,null = True)
+    bilgi_notu = models.CharField(verbose_name = "Bilgi Notu ",max_length = 400,blank = True,null = True)
+    il = models.CharField(verbose_name = "il ",max_length = 400,blank = True,null = True)
+    ilce = models.CharField(verbose_name = "İlçe ",max_length = 400,blank = True,null = True)
+    posta_kodu = models.CharField(verbose_name = "Posta Kodu ",max_length = 400,blank = True,null = True)
+    ulke = models.CharField(verbose_name = "Ülke ",max_length = 400,blank = True,null = True)
+    satis_muh_kodu = models.ForeignKey(HesapPlanlari,blank = True,null = True,on_delete = models.SET_NULL,related_name ="satis_muhtasar_kodu")
+    alis_muh_kodu = models.ForeignKey(HesapPlanlari,blank = True,null = True,on_delete = models.SET_NULL,related_name ="alis_muhtasar_kodu")
