@@ -16,7 +16,7 @@ dataframe1 = dataframe.active
 # Iterate the loop to read the cell values
 for row in range(0, dataframe1.max_row):
     a= []
-    a.append(row+6)
+    a.append(row+356)
     for col in dataframe1.iter_cols(1, dataframe1.max_column):
         a.append(col[row].value,)
     print(a)
