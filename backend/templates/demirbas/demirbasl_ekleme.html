@@ -11,6 +11,8 @@
                 {% csrf_token %}
                 <div class="row genel">
                     <div class="col-6">
+                        <h5>Demirbaş Bilgileri</h5>
+                        <hr>
                         <div class="row">
                             <div class="col-6">
                                 <label for="">Demirbaş Kodu
@@ -52,9 +54,223 @@
                                     <input type="number" value="0" step="0.01" name="aliskdvtutari">
                                 </label>
                             </div>
+                            <div class="col-6">
+                                <label for="">Alınan Firma <br>
+                                    <select name="alinan_firma" id="">
+                                        <option value="id">FirmaAdı (000000)</option>
+                                    </select>
+                                </label>
+                            </div>
+                            <div class="col-6">
+                                <label for="">Amortisman Oranı (%)
+                                    <input type="number" value="0" max="100" step="0.01" name="amortisman_orani">
+                                </label>
+                            </div>
+                            <div class="col-6">
+                                <label for="">Faydalı Ömür
+                                    <input type="number" value="0" max="100" step="0.01" name="faydaliomur">
+                                </label>
+                            </div>
+                            <div class="col-6">
+                                <label for="">Sabit Kıymet Kodu
+                                    <input type="text" name="sabit_kiymet_kodu">
+                                </label>
+                            </div>
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-3">Seç</div>
+                                    <div class="col-9">
+                                        <label for="">Sabit Kıymet Adı
+                                        <input type="text" name="sabit_kiymet_adi">
+                                    </label></div>
+                                    
+                                </div>
+                                
+                            </div>
+                            <div class="col-6">
+                                <label for="">Kıst Amortisman ? <br>
+
+                                    <select name="kistamortisman" id="">
+                                        <option value="Evet">Evet</option>
+                                        <option value="Hayır">Hayır</option>
+                                    </select>
+                                </label>
+                            </div>
+                            <div class="col-6">
+                                <label for="">Amortisman Tipi <br>
+
+                                    <select name="amortismantipi" id="">
+                                        <option value="Normal">Normal</option>
+                                        <option value="Azalan">Azalan</option>
+                                    </select>
+                                </label>
+                            </div>
+                            <div class="col-6">
+                                <label for="">Şube <br>
+
+                                    <select name="sube" id="">
+                                        <option value="id">Normal</option>
+                                        <option value="Azalan">Azalan</option>
+                                    </select>
+                                </label>
+                            </div>
+                            <div class="col-6">
+                                <label for="">Masraf Merkezi
+                                    <input type="text" name="masrafmerkezi">
+                                </label>
+                            </div>
+                            <div class="col-6">
+                                <label for="">Demirbas Özel Kodu
+                                    <input type="text" name="demirbasozelkodu">
+                                </label>
+                            </div>
+                            <div class="col-6">
+                                <label for="">Demirbaş Hesap Kodu
+                                    <input type="text" name="demirbashesapkodu">
+                                    <input type="text" hidden name="demirbashesapkoduid">
+                                </label>
+                            </div>
+                            <div class="col-6">
+                                <label for="">Birikmiş Amortismaman Değer Artışı Hesap Kodu
+                                    <input type="text" name="birikmisanmortismandeger">
+                                    <input type="text" hidden name="birikmisanmortismandegerid">
+                                </label>
+                            </div>
+                            <div class="col-6">
+                                <label for="">Döneme Ait Amortisman Hesap Kodu
+                                    <input type="text" name="donemeaitamortismanhesap">
+                                    <input type="text" hidden name="donemeaitamortismanhesapid">
+                                </label>
+                            </div>
+                            <div class="col-6">
+                                
+                            </div>
+                            <hr>
+                            <div class="col-6">
+                                <label for="">Satış Tarihi
+                                    <input type="date"  name="satistarihi">
+                                </label>
+                            </div>
+                            <div class="col-6">
+                                <label for="">Satış Fatura No
+                                    <input type="text" name="satisfaturano">
+                                </label>
+                            </div>
+                            <div class="col-6">
+                                <label for="">Satış Tutar
+                                    <input type="number" value="0" step="0.01" name="satistutar">
+                                </label>
+                            </div>
+                            <div class="col-6">
+                                <label for="">Satış KDV Oranı (%)
+                                    <input type="number" value="0" step="0.01" name="satiskdvorani">
+                                </label>
+                            </div>
+                            <div class="col-6">
+                                <label for="">Satış KDV Tutarı
+                                    <input type="number" value="0" step="0.01" name="satiskdvtutari">
+                                </label>
+                            </div>
+                            <div class="col-6">
+                                <label for="">Satılan Firma <br>
+                                    <select name="satilan_firma" id="">
+                                        <option value="id">FirmaAdı (000000)</option>
+                                    </select>
+                                </label>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-6"></div>
+                    <div class="col-6" style="border-left: 1px solid black;">
+                    <h5>Enfilasyon Düzeltmasi Bilgileri</h5>
+                    <hr>
+                    
+                    <div class="row">
+                        <div class="col-6">
+                            <label for="">Demirbaş Enfilasyon Düzeltmasi Kodu
+                                <input type="text" name="demirbasenfilasyonduzeltmesihesapkodu">
+                            </label>
+                        </div>
+                        <div class="col-6">
+                            <label for="">Enfilasyon Düzeltmasi Kodu
+                                <input type="text" name="enfilasyonduzeltmesihesapkodu">
+                            </label>
+                        </div>
+                        <div class="col-6">
+                            <label for="">Birikmiş Amortisman Enfilasyon Düzeltmasi Kodu
+                                <input type="text" name="birikmisamortismanenfilasyonduzeltmesihesapkodu">
+                            </label>
+                        </div>
+                        <div class="col-6">
+                            <label for="">Aktif Değer Artisi  Kodu
+                                <input type="text" name="aktifdegerartisikodu">
+                            </label>
+                        </div>
+                        <div class="col-6">
+                            <label for="">Değer Artış Fonu  Kodu
+                                <input type="text" name="degerartisfonukodu">
+                            </label>
+                        </div>
+                        <div class="col-6">
+                            <label for="">Kredi Tutari
+                                <input type="number" step="0.01" value="0" name="kreditutari">
+                            </label>
+                        </div>
+                        <div class="col-6">
+                            <label for="">Kredi Faiz Tutarı
+                                <input type="text" name="kredifaiztutari">
+                            </label>
+                        </div>
+                        <div class="col-6">
+                            <label for="">Teşvik Edildimi
+                                <select name="tesvikedildimi" id="">
+                                    <option value="Evet">Evet</option>
+                                    <option value="Hayır">Hayır</option>
+                                </select>
+                            </label>
+                        </div>
+                        <div class="col-6">
+                            <label for="">Borcun Kullanıldığı Yıl
+                                <input type="number" step="0.01" value="0" name="Borcunkullanildigiyil">
+                            </label>
+                        </div>
+                        <div class="col-6">
+                            <label for="">Borcun Kullanıldığı Ay
+                                <input type="number" step="0.01" max="12" value="0" name="Borcunkullanildigiay">
+                            </label>
+                        </div>
+                        <div class="col-6">
+                            <label for="">Borcun Kapatıldığı Yıl
+                                <input type="number" step="0.01" value="0" name="Borcunkapatidigiyil">
+                            </label>
+                        </div>
+                        <div class="col-6">
+                            <label for="">Borcun Kapatıldığı Ay
+                                <input type="number" step="0.01" max="12" value="0" name="Borcunkapatildigiiay">
+                            </label>
+                        </div>
+                        <hr>
+                        <div class="col-6">
+                            <label for="">Son Yeniden Değerlenmiş Değer
+                                <input type="number" step="0.01"  value="0" name="sonyenidendegerlenmisdeger">
+                            </label>
+                        </div>
+                        <div class="col-6">
+                            <label for="">Son Birikmiş Amortisman Değer
+                                <input type="number" step="0.01"  value="0" name="sonbirikmisamortismandeger">
+                            </label>
+                        </div>
+                        <div class="col-6">
+                            <label for="">Düzeltme Yılı
+                                <input type="number" step="0.01" value="0" name="duzeltmeyili">
+                            </label>
+                        </div>
+                        <div class="col-6">
+                            <label for="">Düzeltme Ayı
+                                <input type="number" step="0.01" max="12" value="0" name="duzeltmeayi">
+                            </label>
+                        </div>
+                    </div>
+                    </div>
                     <div class="col-4"></div>
                     <div class="col-4">
                         <button type="submit" class="btn btn-primary">Kaydet</button></div>

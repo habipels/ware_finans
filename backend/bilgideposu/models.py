@@ -1708,6 +1708,8 @@ class musavir_stok_fisi(models.Model):
 
 
 class amortisman_bilgileri(models.Model):
+    N1 = models.CharField(max_length = 200,verbose_name="N3",blank = True,null = True)
+    N2 = models.CharField(max_length = 200,verbose_name="N3",blank = True,null = True)
     N3 = models.CharField(max_length = 200,verbose_name="N3",blank = True,null = True)
     N4 = models.CharField(max_length = 200,verbose_name="N4",blank = True,null = True)
     amortismana_tabi_olan_ikstisidai_kiymet = models.CharField(max_length = 400,verbose_name="N4",blank = True,null = True)
@@ -1715,10 +1717,6 @@ class amortisman_bilgileri(models.Model):
     amortisman_orani = models.FloatField(default = 0,verbose_name = "Amortisman Oranı")
     defter_beyan_kodu = models.CharField(max_length = 200,verbose_name="Defter Beyan Kodu",blank = True,null = True)
 
-
-class sabit_kiyem(models.Model):
-    sabit_kiyemet_kodu = models.CharField(max_length = 200,verbose_name="sabit kıymet kodu",blank = True,null = True)
-    sabit_kiymet_adi = models.CharField(max_length = 400,verbose_name="sabit kıymet kodu",blank = True,null = True)
 
 #genel_muhasebe Cari Bilgileri
 
@@ -1752,3 +1750,7 @@ class Genel_Muhasebe_cari_bilgileri(models.Model):
     ulke = models.CharField(verbose_name = "Ülke ",max_length = 400,blank = True,null = True)
     satis_muh_kodu = models.ForeignKey(HesapPlanlari,blank = True,null = True,on_delete = models.SET_NULL,related_name ="satis_muhtasar_kodu")
     alis_muh_kodu = models.ForeignKey(HesapPlanlari,blank = True,null = True,on_delete = models.SET_NULL,related_name ="alis_muhtasar_kodu")
+
+#demirbaş 
+"""class demirbaslar(models.Model):
+    pass"""
