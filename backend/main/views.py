@@ -5023,6 +5023,7 @@ def demirbaslar(request,slug):
 
 def demirbas_ekle(request,slug):
     content ={}
+    content["sabit_kiymetler"] = amortisman_bilgileri.objects.filter(N1 = None,N2 = None)
     if request.POST:
         demirbaskodu = request.POST.get("demirbaskodu")
         aciklama = request.POST.get("aciklama")

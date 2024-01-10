@@ -76,15 +76,17 @@
                                     <input type="text" name="sabit_kiymet_kodu">
                                 </label>
                             </div>
-                            <div class="col-6">
-                                <div class="row">
-                                    <div class="col-3">Seç</div>
-                                    <div class="col-9">
+                            <div class="col-12">           
                                         <label for="">Sabit Kıymet Adı
-                                        <input type="text" name="sabit_kiymet_adi">
-                                    </label></div>
+                                            <br>
+                                        <select name="sabit_kiymet_adi"  id="">
+                                            {% for i in sabit_kiymetler %}
+                                                <option value="{{i.id}}">{% if i.N3 %}{{i.N3}} |{% elif i.N4 %}{{i.N4}} | {% endif %}{{i.amortismana_tabi_olan_ikstisidai_kiymet|slice:":50"}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </label>
                                     
-                                </div>
+                              
                                 
                             </div>
                             <div class="col-6">
