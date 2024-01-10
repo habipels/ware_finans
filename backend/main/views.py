@@ -5071,7 +5071,17 @@ def demirbas_ekle(request,slug):
     return render (request,"demirbas/demirbasl_ekleme.html",content)
 
 #DemirBaşlar
+def ayarlar_firma_ayarlari(request,slug):
+    content = {}
+    content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
+    content["subeleri"] =  sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    return render(request,"ayarlar/firma_ayarlari.html",content)
 
+def ayarlar_smm_ayarlari(request,slug):
+    content = {}
+    content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
+    content["subeleri"] =  sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    return render(request,"ayarlar/firma_smm_ayarlama.html",content)
 
 
 

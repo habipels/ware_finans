@@ -135,5 +135,9 @@ urlpatterns = [
     path("<str:slug>/demirbaslar/", views.demirbaslar, name="demirbaslar"),
     path("<str:slug>/demirbaslarekle/", views.demirbas_ekle, name="demirbas_ekle"),
     #demirbaş
+    #ayarlar
+    path("<str:slug>/ayarlar/", views.ayarlar_firma_ayarlari, name="ayarlar_firma_ayarlari"),
+    path("<str:slug>/smmayarlar/", views.ayarlar_smm_ayarlari, name="ayarlar_smm_ayarlari"),
+    #ayarlar
 ]
 #
