@@ -28,54 +28,63 @@
             <form method="post">
                 {% csrf_token %}
                 <div class="row genel">
-                    <div class="col-6">
-                        <label for="">Kasa Kodu</label>
-                        <br>
-                        <input name="kasakodu" type="text" >
-                    </div>
-                    <div class="col-6">
-                        <label for="">Kasa Adı</label>
-                        <br>
-                        <input name="kasaadi" type="text">
-                    </div>
-                    <div class="col-6">
-                        <label for="">Kasa Açıklaması</label>
-                        <br>
-                        <input name="kasaaciklamasi"  type="text">
-                    </div>
-                    <div class="col-6">
-                        <label for="">Muh. Kodu</label>
+                    <div style="border-right: 1px solid black;"  class="col-6">
                         <div class="row">
-                            <div class="col-10"><input name="muhtasarkodu" id="hesapplani" type="text"></div>
-                            <div class="col-2"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
-                        seç
-                      </button></div>
+                            <div class="col-6">
+                                <label for="damga">
+                                    5033 Sk. Damga Vergisi
+                                    <input id="damga" name="damgavergisi5033" value="{% if firma_ayarlari.damga_vergisi_5033sk %}{{firma_ayarlari.damga_vergisi_5033sk}}{% endif %}" type="text">
+                                </label>
+                            </div>
+                            <div class="col-6">
+                                <label for="mudamga">
+                                    Muhasebe Ödemesine Ait Gelir Vergisi Kesintisi Oranı (%)
+                                    <input id="mudamga" step="0.01" name="mudamga" value="{% if firma_ayarlari.muhasabe_odemesi_gelir_vergisi_kesinti_orani %}{{firma_ayarlari.muhasabe_odemesi_gelir_vergisi_kesinti_orani|stringformat:'.2F'}}{% else %}0{% endif %}" type="number">
+                                </label>
+                            </div>
+                            <div class="col-6">
+                                <label for="kdamga">
+                                    Kira Ödemesine Ait Gelir Vergisi Kesintisi Oranı (%)
+                                    <input id="kdamga" step="0.01" name="kdamga" value="{% if firma_ayarlari.kira_odemesi_gelir_vergisi_kesinti_orani %}{{firma_ayarlari.kira_odemesi_gelir_vergisi_kesinti_orani|stringformat:'.2F'}}{% else %}0{% endif %}" type="number">
+                                </label>
+                            </div>
+                            <div class="col-6">
+                                
+                            </div>
                         </div>
-
                     </div>
-                    <div class="col-4"><label for="">Ent. Kodu</label>
-                        <br>
-                    <select name="entkodu" id="">
-                        <option value="0"></option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                    </select></div>
-                    <div class="col-4"><label for="">Döviz Cinsi</label>
-                        <br>
-                        <select name="dovizcinsi" id="">
-                            
-                            <option value="TL">TL</option>
-                            <option value="Euro">EURO</option>
-                            <option value="Dolar">Dolar</option>
-                        </select></div>
-                    <div class="col-4">
-                        <label for="">Özel Kod</label><br>
-                        <input name="ozelkod" type="text">
+                    <div class="col-6">
+                       <div class="row">
+                        <div class="col-6">
+                            <label for="kdvdamga">
+                                KDV Beyannamesi Damga Vergisi
+                                <input id="kdvdamga" step="0.01" name="kdvdamga" value="{% if firma_ayarlari.kdv_beyannamesi_damga_vergisi %}{{firma_ayarlari.kdv_beyannamesi_damga_vergisi|stringformat:'.2F'}}{% else %}0{% endif %}" type="number">
+                            </label>
+                        </div>
+                        <div class="col-6">
+                            <label for="gecicivergi">
+                                Geçici Vergi Beyannamesine Ait Damga Vergisi
+                                <input id="gecicivergi" step="0.01" name="gecicivergi" value="{% if firma_ayarlari.gecici_vergi_beyannamesi_damga_vergisi %}{{firma_ayarlari.gecici_vergi_beyannamesi_damga_vergisi|stringformat:'.2F'}}{% else %}0{% endif %}" type="number">
+                            </label>
+                        </div>
+                        <div class="col-6">
+                            <label for="gecicivergikurumlar">
+                                Geçici Vergi Oranı (Kurumlar)
+                                <input id="gecicivergikurumlar" step="0.01" name="gecicivergikurumlar" value="{% if firma_ayarlari.gecici_vergi_orani_kurumlar %}{{firma_ayarlari.gecici_vergi_orani_kurumlar|stringformat:'.2F'}}{% else %}0{% endif %}" type="number">
+                            </label>
+                        </div>
+                        <div class="col-6">
+                            <label for="gecicivergikisi">
+                                Geçici Vergi Oranı (Gerçek Kişiler)
+                                <input id="gecicivergikisi" step="0.01" name="gecicivergikisi" value="{% if firma_ayarlari.gecici_vergi_orani_gercek_kisiler %}{{firma_ayarlari.gecici_vergi_orani_gercek_kisiler|stringformat:'.2F'}}{% else %}0{% endif %}" type="number">
+                            </label>
+                        </div>
+                       </div>
                     </div>
                     <div class="mt-5" ></div>
                     <div class="col-4">
                         <button type="submit" class="btn btn-primary">Kaydet</button></div>
-                    <div class="col-4"><button>Kaydet Yenisini Oluştur</button></div>
+                    <div class="col-4"></div>
                     <div class="col-4"><a href="/{{firma.firma_ozel_anahtar}}/kasa/" class="btn btn-danger">İptal Et</a></div>
                 </div>
 

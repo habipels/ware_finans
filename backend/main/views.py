@@ -5075,6 +5075,35 @@ def ayarlar_firma_ayarlari(request,slug):
     content = {}
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     content["subeleri"] =  sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    content["firma_ayarlari"] = firma_ayarlari_ayar_kisimi.objects.filter(bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) ).last()
+    if request.POST:
+        damgavergisi5033 = request.POST.get("damgavergisi5033")
+        mudamga = request.POST.get("mudamga")
+        kdamga = request.POST.get("kdamga")
+        kdvdamga = request.POST.get("kdvdamga")
+        gecicivergi = request.POST.get("gecicivergi")
+        gecicivergikurumlar = request.POST.get("gecicivergikurumlar")
+        gecicivergikisi = request.POST.get("gecicivergikisi")
+        if firma_ayarlari_ayar_kisimi.objects.filter(bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) ).count()>0:
+            firma_ayarlari_ayar_kisimi.objects.filter(bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)).update(
+               bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) ,
+               damga_vergisi_5033sk = damgavergisi5033,muhasabe_odemesi_gelir_vergisi_kesinti_orani =mudamga,
+               kira_odemesi_gelir_vergisi_kesinti_orani = kdamga,
+               kdv_beyannamesi_damga_vergisi = kdvdamga,gecici_vergi_beyannamesi_damga_vergisi =gecicivergi,
+               gecici_vergi_orani_kurumlar =  float(gecicivergikurumlar),
+               gecici_vergi_orani_gercek_kisiler = float(gecicivergikisi)
+            )
+        else:
+            firma_ayarlari_ayar_kisimi.objects.create(
+               bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) ,
+               damga_vergisi_5033sk = damgavergisi5033,muhasabe_odemesi_gelir_vergisi_kesinti_orani =mudamga,
+               kira_odemesi_gelir_vergisi_kesinti_orani = kdamga,
+               kdv_beyannamesi_damga_vergisi = kdvdamga,gecici_vergi_beyannamesi_damga_vergisi =gecicivergi,
+               gecici_vergi_orani_kurumlar =  float(gecicivergikurumlar),
+               gecici_vergi_orani_gercek_kisiler = float(gecicivergikisi)
+            )
+        z = "/"+slug+"/ayarlar/"
+        return redirect(z)
     return render(request,"ayarlar/firma_ayarlari.html",content)
 
 def ayarlar_smm_ayarlari(request,slug):
