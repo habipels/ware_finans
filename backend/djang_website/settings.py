@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     "firma_durumlari",
     #gelir gider 
     "gelir_gider",
+    "site_ayarlari",
     
 
 ]
