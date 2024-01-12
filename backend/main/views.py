@@ -3,9 +3,25 @@ from django.http import HttpResponse
 from users.models import *
 from bilgideposu.models import *
 from django.db.models import Q
+from site_ayarlari.models import *
+def site_ayarlari():
+    sozluk = {}
+    sozluk["logomuz"] = sayfa_logosu.objects.all().last()
+    sozluk["iconumuz"] = sayfa_iconu.objects.all().last()
+    sozluk["ismimiz"] = site_adi.objects.all().last()
+    sozluk["numaramiz"] = numara.objects.all().last()
+    sozluk["adresimiz"] = adres.objects.all().last()
+    sozluk["emailimiz"] = email_adres.objects.all().last()
+    sozluk["instamiz"] = sosyalmedyaInsgr.objects.all().last()
+    sozluk["linkedinmiz"] = sosyalmedyalinkd.objects.all().last()
+    sozluk["facemiz"] = sosyalmedyaFace.objects.all().last()
+    sozluk["youtubemiz"] = sosyalmedyayoutube.objects.all().last()
+    sozluk["twmiz"] = sosyalmedyatw.objects.all().last()
+    sozluk["seoayarimiz"] = seo_ayarlari.objects.all().last()
+    return sozluk
 # Create your views here.
 def homepage(request):
-    content = {}
+    content = site_ayarlari()
     if request.user.is_authenticated:
         content["firmalarim"] = firma.objects.filter(silinme_bilgisi = False,firma_muhasabecisi = request.user)
     else:
@@ -13,21 +29,21 @@ def homepage(request):
     return render(request,"index.html",content)
 
 def firma_sayfasi(request,slug):
-    content = {}
+    content = site_ayarlari()
     content["firmalarim"] = firma.objects.filter(silinme_bilgisi = False,firma_muhasabecisi = request.user)
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     content["subeleri"] =  sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
     return render(request,"firma_index.html",content)
 #Kasa İşlemeleri 
 def kasa_sayfasi(request,slug):
-    content ={}
+    content = site_ayarlari()
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     content["kasakartlarim"] = Kasa.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
     content["kasafisleri"] = KasaFisIslemleri.objects.filter(bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
     return render(request,"kasa/kasa.html",content)
 
 def yeni_kasa_karti_sayfasi(request,slug):
-    content ={}
+    content = site_ayarlari()
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     hesaplar = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) )
     sistem = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =None)
@@ -53,7 +69,7 @@ def yeni_kasa_karti_sayfasi(request,slug):
         return redirect(link)
     return render(request,"kasa/yenikasa.html",content)
 def kasa_karti_duzeltme_sayfasi(request,slug,id):
-    content ={}
+    content = site_ayarlari()
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     hesaplar = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) )
     sistem = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =None)
@@ -80,7 +96,7 @@ def kasa_karti_duzeltme_sayfasi(request,slug,id):
         return redirect(link)
     return render(request,"kasa/kasakartiduzelt.html",content)
 def kasa_karti_silme_sayfasi(request,slug,id):
-    content ={}
+    content = site_ayarlari()
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     hesaplar = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) )
     sistem = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =None)
@@ -98,14 +114,14 @@ def kasa_karti_silme_sayfasi(request,slug,id):
 #Kasa İşlemeleri
 #Gider İşlemelri 
 def gider_sayfasi(request,slug):
-    content ={}
+    content = site_ayarlari()
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     content["giderler"] = Giderler.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
     return render(request,"gider_gelir/gider.html",content)
 
 
 def yeni_gider_sayfasi(request,slug):
-    content ={}
+    content = site_ayarlari()
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     gider = Giderler.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) )
     content["gider"] = gider
@@ -150,7 +166,7 @@ def yeni_gider_sayfasi(request,slug):
 
 
 def gider_duzeltme_sayfasi(request,slug,id):
-    content ={}
+    content = site_ayarlari()
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     gider = Giderler.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) )
     content["giderr"] = get_object_or_404(Giderler,silinme_bilgisi = False,id = id,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
@@ -195,7 +211,7 @@ def gider_duzeltme_sayfasi(request,slug,id):
 
 
 def gider_silme_sayfasi(request,slug,id):
-    content ={}
+    content = site_ayarlari()
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     hesaplar = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) )
     sistem = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =None)
@@ -213,14 +229,14 @@ def gider_silme_sayfasi(request,slug,id):
 #Gider İşlemleri
 #Gelir İşlemelri
 def gelir_sayfasi(request,slug):
-    content ={}
+    content = site_ayarlari()
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     content["gelirler"] = Gelirler.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
     return render(request,"gider_gelir/gelir.html",content)
 
 
 def yeni_gelir_sayfasi(request,slug):
-    content ={}
+    content = site_ayarlari()
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     gider = Gelirler.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) )
     content["gider"] = gider
@@ -264,7 +280,7 @@ def yeni_gelir_sayfasi(request,slug):
 
 
 def gelir_duzeltme_sayfasi(request,slug,id):
-    content ={}
+    content = site_ayarlari()
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     gider = Gelirler.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) )
     content["giderr"] = get_object_or_404(Gelirler,silinme_bilgisi = False,id = id,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
@@ -311,7 +327,7 @@ def gelir_duzeltme_sayfasi(request,slug,id):
 
 
 def gelir_silme_sayfasi(request,slug,id):
-    content ={}
+    content = site_ayarlari()
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     hesaplar = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) )
     sistem = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =None)
@@ -330,13 +346,13 @@ def gelir_silme_sayfasi(request,slug,id):
 #Gelir İşlemeleri
 #Cari işlemeler
 def cari_sayfasi(request,slug):
-    content ={}
+    content = site_ayarlari()
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     content["carikartlari"] = cari_kartlar.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
     content["carifisleri"] = cari_fisleri.objects.filter(bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
     return render(request,"cari/cari.html",content)
 def yeni_cari_karti(request,slug):
-    content ={}
+    content = site_ayarlari()
     v = vergi_dairesi.objects.all()
     content["firma"] =  get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     content["cariler"] = cari_kartlar.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
@@ -520,7 +536,7 @@ def yeni_cari_karti(request,slug):
         return redirect(link)
     return render(request,"cari/yenicari.html",content)
 def cari_silme_sayfasi(request,slug,id):
-    content ={}
+    content = site_ayarlari()
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     hesaplar = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) )
     sistem = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =None)
@@ -538,14 +554,14 @@ def cari_silme_sayfasi(request,slug,id):
 #Cari İşlemeler
 #Stok İşlemleri
 def stok_sayfasi(request,slug):
-    content ={}
+    content = site_ayarlari()
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     content["stokkartlarim"] =  stok_kartlar.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
     content["stokkartozelligi1"] = stok_birim_alis_satis_birimi.objects.filter(stok_karti_bilgisi__bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
     return render(request,"stok/stok.html",content)
 
 def yeni_stok_karti(request,slug):
-    content ={}
+    content = site_ayarlari()
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     content["kdv_istisna"] = kdv_istisna_kodu.objects.all()
     content["stoklar"] = stok_kartlar.objects.filter(bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
@@ -938,7 +954,7 @@ def stok_sil(request,slug,id):
 
 #Fatura İşlemleri
 def fatura_sayfasi(request,slug):
-    content ={}
+    content = site_ayarlari()
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     content["subeleri"] =  sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
     content["stokkartlarim"] =  stok_kartlar.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
@@ -1117,7 +1133,7 @@ def fatura_sayfasi(request,slug):
 
 #Sipariş Sayfası
 def siparis_sayfasi(request,slug):
-    content ={}
+    content = site_ayarlari()
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     content["subeleri"] =  sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
     content["stokkartlarim"] =  stok_kartlar.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
@@ -1250,7 +1266,7 @@ def siparis_sayfasi(request,slug):
     return render(request,"siparis/siparis.html",content)
 #siparis düzeltme
 def siparis_sayfasi_duzeltme(request,slug,id):
-    content ={}
+    content = site_ayarlari()
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     content["subeleri"] =  sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
     content["stokkartlarim"] =  stok_kartlar.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
@@ -1384,7 +1400,7 @@ def siparis_sayfasi_duzeltme(request,slug,id):
 #siparis düzeltme
 #sipariş silme
 def siparis_silme_sayfasi(request,slug,id):
-    content ={}
+    content = site_ayarlari()
     siparisislem_durumlari.objects.filter(id = id,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)).update(
             silinme_bilgisi = True
     )
@@ -1392,7 +1408,7 @@ def siparis_silme_sayfasi(request,slug,id):
     return redirect(link)
 
 def siparis_aktif_pasif_sayfasi(request,slug,id):
-    content ={}
+    content = site_ayarlari()
     obje = get_object_or_404(siparisislem_durumlari,id = id,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
     if obje.aktif_pasif:
         siparisislem_durumlari.objects.filter(id = id,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)).update(
@@ -1406,7 +1422,7 @@ def siparis_aktif_pasif_sayfasi(request,slug,id):
     link = "/"+slug+"/siparis/"
     return redirect(link)
 def siparis_onaylama_sayfasi(request,slug,id):
-    content ={}
+    content = site_ayarlari()
     obje = get_object_or_404(siparisislem_durumlari,id = id,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
     if obje.onay:
         siparisislem_durumlari.objects.filter(id = id,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)).update(
@@ -1425,7 +1441,7 @@ def siparis_onaylama_sayfasi(request,slug,id):
 
 #banka
 def banka_sayfasi(request,slug):
-    content ={}
+    content = site_ayarlari()
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     content["bankalarim"]  = banka.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
     content["banka_yetkilisi"]=banka_yetkilisi.objects.filter(banka_bilgisi__bagli_oldugu_firma =  get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
@@ -1434,7 +1450,7 @@ def banka_sayfasi(request,slug):
     content["bankada_yapilanfisler"] = bankaFisIslemleri.objects.filter(bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
     return render(request,"banka/banka.html",content)
 def yeni_banka_karti(request,slug):
-    content ={}
+    content = site_ayarlari()
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     if request.POST:
         bankakodu = request.POST.get("bankakodu")
@@ -1532,7 +1548,7 @@ def yeni_banka_karti(request,slug):
     return render(request,"banka/yenibanka.html",content)
 
 def banka_silme_sayfasi(request,slug,id):
-    content ={}
+    content = site_ayarlari()
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     hesaplar = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) )
     sistem = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =None)
@@ -1552,7 +1568,7 @@ def banka_silme_sayfasi(request,slug,id):
 #kasa Fiş İşlemeleri
 #kasa_tahsilat_düzeltildi kasa_odeme_fisi
 def kasa_tahsilat_fisi(request,slug):
-    content ={}
+    content = site_ayarlari()
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     hesaplar = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) )
     sistem = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =None)
@@ -1623,7 +1639,7 @@ def kasa_tahsilat_fisi(request,slug):
         return redirect(link)
     return render(request,"kasa/fisler/tahsilatfisi.html",content)
 def kasa_odeme_fisi(request,slug):
-    content ={}
+    content = site_ayarlari()
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     hesaplar = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) )
     sistem = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =None)
@@ -1706,7 +1722,7 @@ def kasa_odeme_fisi(request,slug):
         return redirect(link)
     return render(request,"kasa/fisler/odemefisi.html",content)
 def kasa_virman_fisi(request,slug):
-    content ={}
+    content = site_ayarlari()
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     hesaplar = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) )
     sistem = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =None)
@@ -1783,7 +1799,7 @@ def kasa_virman_fisi(request,slug):
         return redirect(link)
     return render(request,"kasa/fisler/virmanfisi.html",content)
 def kasa_doviz_fisi(request,slug):
-    content ={}
+    content = site_ayarlari()
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     hesaplar = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) )
     sistem = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =None)
@@ -1860,7 +1876,7 @@ def kasa_doviz_fisi(request,slug):
         return redirect(link)
     return render(request,"kasa/fisler/dovizfisi.html",content)
 def kasa_acilis_fisi(request,slug):
-    content ={}
+    content = site_ayarlari()
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     hesaplar = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) )
     sistem = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =None)
@@ -1951,7 +1967,7 @@ def kasa_acilis_fisi(request,slug):
     return render(request,"kasa/fisler/acilisfisi.html",content)
 #kasa_tahsil_düzeltildi kasa_tahsilat_odeme
 def kasa_tahsilat_makbuzu(request,slug):
-    content ={}
+    content = site_ayarlari()
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     hesaplar = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) )
     sistem = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =None)
@@ -2021,7 +2037,7 @@ def kasa_tahsilat_makbuzu(request,slug):
         return redirect(link)
     return render(request,"kasa/fisler/tahsilatmakbuzu.html",content)
 def kasa_tahsilat_odeme(request,slug):
-    content ={}
+    content = site_ayarlari()
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     hesaplar = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) )
     sistem = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =None)
@@ -2101,13 +2117,13 @@ def kasa_tahsilat_odeme(request,slug):
         link = "/"+slug+"/kasa/"
     return render(request,"kasa/fisler/odememakbuzu.html",content)
 def kasa_maas_odeme(request,slug):
-    content ={}
+    content = site_ayarlari()
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     return render(request,"kasa/fisler/maasodeme.html",content)
 #kasa Fiş İşlemeleri
 #kasa cari fişleri
 def kasa_cari_odeme_fisi(request,slug):
-    content ={}
+    content = site_ayarlari()
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     hesaplar = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) )
     sistem = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =None)
@@ -2171,7 +2187,7 @@ def kasa_cari_odeme_fisi(request,slug):
         return redirect(link)
     return render(request,"kasa/cari/kasacariodeme.html",content)
 def kasa_cari_tahsilat_fisi(request,slug):
-    content ={}
+    content = site_ayarlari()
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     hesaplar = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) )
     sistem = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =None)
@@ -2237,7 +2253,7 @@ def kasa_cari_tahsilat_fisi(request,slug):
 #kasa cari fişleri
 #kasa Banka fişleri
 def kasa_banka_yatirilan(request,slug):
-    content ={}
+    content = site_ayarlari()
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     hesaplar = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) )
@@ -2340,7 +2356,7 @@ def kasa_banka_yatirilan(request,slug):
         return redirect(link)
     return render(request,"kasa/banka/kasabankayatirilan.html",content)
 def kasa_banka_cekilen(request,slug):
-    content ={}
+    content = site_ayarlari()
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     hesaplar = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) )
@@ -2446,7 +2462,7 @@ def kasa_banka_cekilen(request,slug):
 
 #banka fiş işlemleri
 def kasadan_bankaya_yatirilan(request,slug):
-    content ={}
+    content = site_ayarlari()
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     hesaplar = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) )
@@ -2549,7 +2565,7 @@ def kasadan_bankaya_yatirilan(request,slug):
         return redirect(link)
     return render(request,"banka/kasa/kasabankayatirilan.html",content)
 def bankadan_kasaya_yatirilan(request,slug):
-    content ={}
+    content = site_ayarlari()
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     hesaplar = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) )
@@ -2656,7 +2672,7 @@ def bankadan_kasaya_yatirilan(request,slug):
 #banka fiş işlemleri
 #banka banka fiş işlemleri
 def banka_acilis_fisi(request,slug):
-    content ={}
+    content = site_ayarlari()
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     hesaplar = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) )
     sistem = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =None)
@@ -2747,7 +2763,7 @@ def banka_acilis_fisi(request,slug):
         return redirect(link)
     return render(request,"banka/fisler/acilisfisi.html",content)
 def banka_virman_fisi(request,slug):
-    content ={}
+    content = site_ayarlari()
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     hesaplar = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) )
     sistem = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =None)
@@ -2852,7 +2868,7 @@ def banka_virman_fisi(request,slug):
         return redirect(link)
     return render(request,"banka/fisler/virmanfisi.html",content)
 def banka_doviz_fisi(request,slug):
-    content ={}
+    content = site_ayarlari()
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     hesaplar = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) )
     sistem = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =None)
@@ -2957,7 +2973,7 @@ def banka_doviz_fisi(request,slug):
         return redirect(link)
     return render(request,"banka/fisler/doviz.html",content)
 def banka_gelir_fisi(request,slug):
-    content ={}
+    content = site_ayarlari()
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     hesaplar = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) )
     sistem = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =None)
@@ -3028,7 +3044,7 @@ def banka_gelir_fisi(request,slug):
         return redirect(link)
     return render(request,"banka/fisler/gelirfisi.html",content)
 def banka_gider_fisi(request,slug):
-    content ={}
+    content = site_ayarlari()
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     hesaplar = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) )
     sistem = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =None)
@@ -3111,7 +3127,7 @@ def banka_gider_fisi(request,slug):
         return redirect(link)
     return render(request,"banka/fisler/giderfisi.html",content)
 def banka_gelir_makbuzu(request,slug):
-    content ={}
+    content = site_ayarlari()
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     hesaplar = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) )
     sistem = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =None)
@@ -3182,7 +3198,7 @@ def banka_gelir_makbuzu(request,slug):
         return redirect(link)
     return render(request,"banka/fisler/gelirmakbuzu.html",content)
 def banka_gider_makbuzu(request,slug):
-    content ={}
+    content = site_ayarlari()
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     hesaplar = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) )
     sistem = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =None)
@@ -3267,7 +3283,7 @@ def banka_gider_makbuzu(request,slug):
 #banka fiş işlemleri
 #banka cari işlemleri
 def banka_cari_gonderilen_havale(request,slug):
-    content ={}
+    content = site_ayarlari()
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     hesaplar = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) )
     sistem = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =None)
@@ -3358,7 +3374,7 @@ def banka_cari_gonderilen_havale(request,slug):
         return redirect(link)
     return render(request,"banka/cari/kasacariodeme.html",content)
 def banka_cari_gelen_havale(request,slug):
-    content ={}
+    content = site_ayarlari()
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     hesaplar = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) )
     sistem = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =None)
@@ -3452,7 +3468,7 @@ def banka_cari_gelen_havale(request,slug):
 
 #cari fişler 
 def cari_borcdekontu(request,slug):
-    content ={}
+    content = site_ayarlari()
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     hesaplar = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) )
     sistem = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =None)
@@ -3537,7 +3553,7 @@ def cari_borcdekontu(request,slug):
     return render(request,"cari/fisler/borc_dekontu.html",content)
 
 def cari_alacakdekontu(request,slug):
-    content ={}
+    content = site_ayarlari()
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     hesaplar = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) )
     sistem = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =None)
@@ -3622,7 +3638,7 @@ def cari_alacakdekontu(request,slug):
     return render(request,"cari/fisler/alacak_dekontu.html",content)
 
 def cari_virman_fisi(request,slug):
-    content ={}
+    content = site_ayarlari()
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     hesaplar = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) )
     sistem = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =None)
@@ -3709,7 +3725,7 @@ def cari_virman_fisi(request,slug):
         return redirect(link)
     return render(request,"cari/fisler/virman.html",content)
 def cari_acilis_fisi(request,slug):
-    content ={}
+    content = site_ayarlari()
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     hesaplar = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) )
     sistem = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =None)
@@ -3807,7 +3823,7 @@ def cari_acilis_fisi(request,slug):
         return redirect(link)
     return render(request,"cari/fisler/acilis.html",content)
 def cari_borcmakbuzu(request,slug):
-    content ={}
+    content = site_ayarlari()
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     hesaplar = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) )
     sistem = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =None)
@@ -3892,7 +3908,7 @@ def cari_borcmakbuzu(request,slug):
     return render(request,"cari/fisler/borcmakbuzu.html",content)
 
 def cari_alacakmakbuzu(request,slug):
-    content ={}
+    content = site_ayarlari()
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     hesaplar = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) )
     sistem = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =None)
@@ -3976,7 +3992,7 @@ def cari_alacakmakbuzu(request,slug):
         return redirect(link)
     return render(request,"cari/fisler/alacak_makbuzu.html",content)
 def cari_odeme_fisi(request,slug):
-    content ={}
+    content = site_ayarlari()
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     hesaplar = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) )
     sistem = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =None)
@@ -4040,7 +4056,7 @@ def cari_odeme_fisi(request,slug):
         return redirect(link)
     return render(request,"cari/fisler/kasacariodeme.html",content)
 def cari_tahsilat_fisi(request,slug):
-    content ={}
+    content = site_ayarlari()
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     hesaplar = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) )
     sistem = HesapPlanlari.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma =None)
@@ -4108,7 +4124,7 @@ def cari_tahsilat_fisi(request,slug):
 
 #dilekce
 def dilekcesayfasi(request,slug):
-    content = {}
+    content = site_ayarlari()
     content["firmalarim"] = firma.objects.filter(silinme_bilgisi = False,firma_muhasabecisi = request.user)
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     content["subeleri"] =  sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
@@ -4118,7 +4134,7 @@ def dilekcesayfasi(request,slug):
 #dilekce
 #irsaliye işlemleri
 def irsaliye_sayfasi(request,slug):
-    content ={}
+    content = site_ayarlari()
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     content["subeleri"] =  sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
     content["stokkartlarim"] =  stok_kartlar.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
@@ -4243,7 +4259,7 @@ def irsaliye_sayfasi(request,slug):
 
 #sipariş silme
 def irsaliye_silme_sayfasi(request,slug,id):
-    content ={}
+    content = site_ayarlari()
     irsaliyeislem_durumlari.objects.filter(id = id,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)).update(
             silinme_bilgisi = True
     )
@@ -4252,7 +4268,7 @@ def irsaliye_silme_sayfasi(request,slug,id):
 #sipariş silme
 #siparişi irsaliyeye aktar
 def siparisi_irsaliye_aktar(request,slug,id):
-    content ={}
+    content = site_ayarlari()
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     content["subeleri"] =  sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
     content["stokkartlarim"] =  stok_kartlar.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
@@ -4383,7 +4399,7 @@ def siparisi_irsaliye_aktar(request,slug,id):
 
 #irsaliye işlemleri
 def genel_muhasebe_sayfasi(request,slug):
-    content ={}
+    content = site_ayarlari()
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     content["subeleri"] =  sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
     content["stokkartlarim"] =  stok_kartlar.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
@@ -4451,7 +4467,7 @@ def genel_muhasebe_sayfasi(request,slug):
 
 #sipariş silme
 def hesap_planlari_ayarlari(request,slug):
-    content ={}
+    content = site_ayarlari()
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     content["subeleri"] =  sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
     content["stokkartlarim"] =  stok_kartlar.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
@@ -4476,7 +4492,7 @@ def hesap_planlari_ayarlari(request,slug):
     return render(request,"hesapplanlari/hesapplanlari.html",content)
 
 def hesap_planlari_ekle(request,slug):
-    content ={}
+    content = site_ayarlari()
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     content["subeleri"] =  sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
     content["stokkartlarim"] =  stok_kartlar.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
@@ -4583,7 +4599,7 @@ def hesap_planlari_detay_degistirme(request,slug,id):
 
 
 def hesap_planlari_duzenle(request,slug,id):
-    content ={}
+    content = site_ayarlari()
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     content["subeleri"] =  sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
     content["stokkartlarim"] =  stok_kartlar.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
@@ -4665,7 +4681,7 @@ def hesap_planlari_duzenle(request,slug,id):
 #muavin
 
 def muavin(request,slug):
-    content ={}
+    content = site_ayarlari()
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     content["subeleri"] =  sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
     content["stokkartlarim"] =  stok_kartlar.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
@@ -4723,7 +4739,7 @@ def muavin(request,slug):
 
 #genel muhasebe fiş düzenleme
 def genel_muhasebe_sayfasi_fis_duzenleme(request,slug,id):
-    content ={}
+    content = site_ayarlari()
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     content["subeleri"] =  sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
     content["stokkartlarim"] =  stok_kartlar.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
@@ -4791,7 +4807,7 @@ def genel_muhasebe_sayfasi_fis_duzenleme(request,slug,id):
     return render(request,"genelmuhasebe/fis_duzenle.html",content)
 #genel muhasebe fiş gösterme
 def genel_muhasebe_sayfasi_fis_goster(request,slug,id):
-    content ={}
+    content = site_ayarlari()
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     content["subeleri"] =  sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
     content["stokkartlarim"] =  stok_kartlar.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
@@ -4823,7 +4839,7 @@ def genel_muhasebe_sayfasi_fis_goster(request,slug,id):
 
 #mizan
 def mizan(request,slug):
-    content ={}
+    content = site_ayarlari()
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     content["subeleri"] =  sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
     content["stokkartlarim"] =  stok_kartlar.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
@@ -4882,7 +4898,7 @@ def mizan(request,slug):
 #mizan
 
 def musavir_cari(request,slug):
-    content ={}
+    content = site_ayarlari()
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     content["subeleri"] =  sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
     content["cari_bilgileri"] = musteri_cari.objects.filter(sininme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) )
@@ -4928,7 +4944,7 @@ def musteri_cari_kart_duzelt(request,slug):
 
 
 def musavir_stok_sayfasi(request,slug):
-    content ={}
+    content = site_ayarlari()
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     content["subeleri"] =  sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
     content["cari_bilgileri"] = musavir_stok.objects.filter(sininme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) )
@@ -5016,13 +5032,13 @@ def musavir_stok_fisi_olusturma(request,slug):
 
 #Demirbaşlar
 def demirbaslar(request,slug):
-    content ={}
+    content = site_ayarlari()
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     content["subeleri"] =  sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
     return render (request,"demirbas/demirbaslar.html",content)
 
 def demirbas_ekle(request,slug):
-    content ={}
+    content = site_ayarlari()
     content["sabit_kiymetler"] = amortisman_bilgileri.objects.filter(N1 = None,N2 = None)
     if request.POST:
         demirbaskodu = request.POST.get("demirbaskodu")
@@ -5072,7 +5088,7 @@ def demirbas_ekle(request,slug):
 
 #DemirBaşlar
 def ayarlar_firma_ayarlari(request,slug):
-    content = {}
+    content = site_ayarlari()
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     content["subeleri"] =  sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
     content["firma_ayarlari"] = firma_ayarlari_ayar_kisimi.objects.filter(bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) ).last()
@@ -5107,7 +5123,7 @@ def ayarlar_firma_ayarlari(request,slug):
     return render(request,"ayarlar/firma_ayarlari.html",content)
 
 def ayarlar_smm_ayarlari(request,slug):
-    content = {}
+    content = site_ayarlari()
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     content["subeleri"] =  sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
     return render(request,"ayarlar/firma_smm_ayarlama.html",content)
