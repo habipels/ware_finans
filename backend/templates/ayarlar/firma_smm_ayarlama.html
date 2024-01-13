@@ -28,55 +28,225 @@
             <form method="post">
                 {% csrf_token %}
                 <div class="row genel">
-                    <div class="col-6">
-                        <label for="">Kasa Kodu</label>
-                        <br>
-                        <input name="kasakodu" type="text" >
-                    </div>
-                    <div class="col-6">
-                        <label for="">Kasa Adı</label>
-                        <br>
-                        <input name="kasaadi" type="text">
-                    </div>
-                    <div class="col-6">
-                        <label for="">Kasa Açıklaması</label>
-                        <br>
-                        <input name="kasaaciklamasi"  type="text">
-                    </div>
-                    <div class="col-6">
-                        <label for="">Muh. Kodu</label>
+                    <div class="col-6" style="border-right:1px solid black">
                         <div class="row">
-                            <div class="col-10"><input name="muhtasarkodu" id="hesapplani" type="text"></div>
-                            <div class="col-2"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
-                        seç
-                      </button></div>
-                        </div>
-
-                    </div>
-                    <div class="col-4"><label for="">Ent. Kodu</label>
-                        <br>
-                    <select name="entkodu" id="">
-                        <option value="0"></option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                    </select></div>
-                    <div class="col-4"><label for="">Döviz Cinsi</label>
-                        <br>
-                        <select name="dovizcinsi" id="">
+                            <div  class="col-6">
                             
-                            <option value="TL">TL</option>
-                            <option value="Euro">EURO</option>
-                            <option value="Dolar">Dolar</option>
-                        </select></div>
-                    <div class="col-4">
-                        <label for="">Özel Kod</label><br>
-                        <input name="ozelkod" type="text">
+                                Adı : <input name="isim" value="{% if firma_ayarlari.ad %}{{firma_ayarlari.ad}}{% endif %}" type="text">
+                            </div>
+                            <div class="col-6">
+                            
+                                Soydı : <input name="soyadi" value="{% if firma_ayarlari.soyad %}{{firma_ayarlari.soyad}}{% endif %}" type="text">
+                            </div>
+                            <div class="col-6">
+                            
+                                Serbest Muhasebeci , Mali Müşavir ,Yeminli Mali Müşavir : <select name="tip" id="">
+                                    <option value="{% if firma_ayarlari.musavir_turu %}{{firma_ayarlari.musavir_turu}}{% endif %}">{% if firma_ayarlari.musavir_turu %}{{firma_ayarlari.musavir_turu}}{% endif %}</option>
+                                    <option value="Serbest Muhasebeci">Serbest Muhasebeci</option>
+                                    <option value="Mali Müşavir">Mali Müşavir</option>
+                                    <option value="Yeminli Mali Müşavir">Yeminli Mali Müşavir</option>
+                                </select>
+                            </div>
+                            <div class="col-6">
+                            
+                                Kayıtlı Olduğu Oda : <input name="kayitlioda" value="{% if firma_ayarlari.kayitliolduguoda %}{{firma_ayarlari.kayitliolduguoda}}{% endif %}" type="text">
+                            </div>
+                            <div class="col-6">
+                            
+                                Oda Sicil No : <input name="odasicilno" value="{% if firma_ayarlari.odasicilno %}{{firma_ayarlari.odasicilno}}{% endif %}" type="text">
+                            </div>
+                            <div class="col-6">
+                            
+                                Mühür Numarası : <input name="muhur_numarasi" value="{% if firma_ayarlari.muhur_numarasi %}{{firma_ayarlari.muhur_numarasi}}{% endif %}" type="text">
+                            </div>
+                            <div class="col-6">
+                            
+                                Başlama Tarihi : <input name="baslama_tarihi" value="{% if firma_ayarlari.baslama_tarihi %}{{firma_ayarlari.baslama_tarihi}}{% endif %}" type="text">
+                            </div>
+                            <div class="col-6">
+                            
+                                Ortaklık Ünvan : <input name="ortakli_unvan" value="{% if firma_ayarlari.ortakli_unvan %}{{firma_ayarlari.ortakli_unvan}}{% endif %}" type="text">
+                            </div>
+                            <div class="col-6">
+                            
+                                Şirketteki Ünvan : <input name="sirket_unvan" value="{% if firma_ayarlari.sirket_unvan %}{{firma_ayarlari.sirket_unvan}}{% endif %}" type="text">
+                            </div>
+                            <div class="col-6">
+                            
+                                Vergi Dairesi: <input name="vergi_dairesi" value="{% if firma_ayarlari.vergi_dairesi %}{{firma_ayarlari.vergi_dairesi}}{% endif %}" type="text">
+                            </div>
+                            <div class="col-6">
+                            
+                                Vergi No: <input name="vergi_no" value="{% if firma_ayarlari.vergi_no %}{{firma_ayarlari.vergi_no}}{% endif %}" type="text">
+                            </div>
+                            <div class="col-6">
+                            
+                                Ticaret Sicil No: <input name="ticari_sicil_no" value="{% if firma_ayarlari.ticari_sicil_no %}{{firma_ayarlari.ticari_sicil_no}}{% endif %}" type="text">
+                            </div>
+                            <div class="col-6">
+                            
+                                Vergi Kimlik Numarası: <input name="vergi_kimlik_no" value="{% if firma_ayarlari.vergi_kimlik_no %}{{firma_ayarlari.vergi_kimlik_no}}{% endif %}" type="text">
+                            </div>
+                            <div class="col-6">
+                            
+                                TC. Kimlik No: <input name="tc_kimlik_no" value="{% if firma_ayarlari.tc_kimlik_no %}{{firma_ayarlari.tc_kimlik_no}}{% endif %}" type="text">
+                            </div>
+                            
+                            <div class="col-6">
+                            
+                                Göreve Başlama Tarihi: <input name="goreve_baslama_tarihi" value="{% if firma_ayarlari.goreve_baslama_tarihi %}{{firma_ayarlari.goreve_baslama_tarihi}}{% endif %}" type="text">
+                            </div>
+                            
+                            <div class="col-6">
+                            
+                                İşyeri Adresi: <input name="isyeri_adresi" value="{% if firma_ayarlari.isyeri_adresi %}{{firma_ayarlari.isyeri_adresi}}{% endif %}" type="text">
+                            </div>
+                            <div class="col-6">
+                            
+                                Fax-Telefon: <input name="fax" value="{% if firma_ayarlari.fax %}{{firma_ayarlari.fax}}{% endif %}" type="text">
+                            </div>
+                            <div class="col-6">
+                            
+                                E-Posta: <input name="eposta" value="{% if firma_ayarlari.eposta %}{{firma_ayarlari.eposta}}{% endif %}" type="text">
+                            </div>
+                            <div class="col-6">
+                            
+                                Araç Plaka No: <input name="arac_plaka_no" value="{% if firma_ayarlari.arac_plaka_no %}{{firma_ayarlari.arac_plaka_no}}{% endif %}" type="text">
+                            </div>
+
+                            <div class="col-6">
+                            
+                               
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="row">
+                            <div  class="col-6">
+                            
+                                Cinsiyet :
+                                    <select name="cinsiyet" id="">
+                                        <option value="{% if firma_ayarlari.cinsiyet %}{{firma_ayarlari.cinsiyet}}{% endif %}">{% if firma_ayarlari.cinsiyet %}{{firma_ayarlari.cinsiyet}}{% endif %}</option>
+                                        <option value="Erkek">Erkek</option>
+                                        <option value="Kadın">Kadın</option>
+                                    </select>
+                            </div>
+                            <div  class="col-6">
+                            
+                                Uyruğu :
+                                    <select name="uyrugu" id="">
+                                        <option value="{% if firma_ayarlari.uyrugu %}{{firma_ayarlari.uyrugu}}{% endif %}">{% if firma_ayarlari.uyrugu %}{{firma_ayarlari.uyrugu}}{% endif %}</option>
+                                        <option value="T.C.">T.C.</option>
+                                        <option value="Yabancı">Yabancı</option>
+                                    </select>
+                            </div>
+                            <div  class="col-6">
+                            
+                                Baba Adı :
+                                    
+                                <input name="baba_adi" value="{% if firma_ayarlari.baba_adi %}{{firma_ayarlari.baba_adi}}{% endif %}" type="text">
+                            </div>
+                            <div  class="col-6">
+                            
+                                Anne Adı :
+                                    
+                                <input name="anne_adi" value="{% if firma_ayarlari.anne_adi %}{{firma_ayarlari.anne_adi}}{% endif %}" type="text">
+                            </div>
+                            <div  class="col-6">
+                            
+                                Doğum Yeri :
+                                    
+                                <input name="dogum_yeri" value="{% if firma_ayarlari.dogum_yeri %}{{firma_ayarlari.dogum_yeri}}{% endif %}" type="text">
+                            </div>
+                            <div  class="col-6">
+                            
+                                Doğum Tarihi :
+                                    
+                                <input name="dogum_tarihi" value="{% if firma_ayarlari.dogum_tarihi %}{{firma_ayarlari.dogum_tarihi}}{% endif %}" type="text">
+                            </div>
+                            <div  class="col-6">
+                            
+                                Nüfusa Kayıtlı Olduğu Yer :
+                                    
+                                <input name="nufusa_kayitli_oldugu_yer" value="{% if firma_ayarlari.nufusa_kayitli_oldugu_yer %}{{firma_ayarlari.nufusa_kayitli_oldugu_yer}}{% endif %}" type="text">
+                            </div>
+                            <div  class="col-6">
+                            
+                                İkametgah Adresi :
+                                    
+                                <input name="ikametgah_adresi" value="{% if firma_ayarlari.ikametgah_adresi %}{{firma_ayarlari.ikametgah_adresi}}{% endif %}" type="text">
+                            </div>
+                            <div  class="col-6">
+                            
+                                İkametgah Bulvar :
+                                    
+                                <input name="ikametgah_bulvar" value="{% if firma_ayarlari.ikametgah_bulvar %}{{firma_ayarlari.ikametgah_bulvar}}{% endif %}" type="text">
+                            </div>
+                            <div  class="col-6">
+                            
+                                İkametgah Cadde :
+                                    
+                                <input name="ikametgah_cadde" value="{% if firma_ayarlari.ikametgah_cadde %}{{firma_ayarlari.ikametgah_cadde}}{% endif %}" type="text">
+                            </div>
+                            <div  class="col-6">
+                            
+                                İkametgah Sokak :
+                                    
+                                <input name="ikametgah_sokak" value="{% if firma_ayarlari.ikametgah_sokak %}{{firma_ayarlari.ikametgah_sokak}}{% endif %}" type="text">
+                            </div>
+                            <div  class="col-6">
+                            
+                                İkametgah Dış Kapı No :
+                                    
+                                <input name="ikametgah_dis_kapi" value="{% if firma_ayarlari.ikametgah_dis_kapi %}{{firma_ayarlari.ikametgah_dis_kapi}}{% endif %}" type="text">
+                            </div>
+                            <div  class="col-6">
+                            
+                                İkametgah İç Kapı No :
+                                    
+                                <input name="ikametgah_ic_kapi" value="{% if firma_ayarlari.ikametgah_ic_kapi %}{{firma_ayarlari.ikametgah_ic_kapi}}{% endif %}" type="text">
+                            </div>
+                            <div  class="col-6">
+                            
+                                İkametgah Mahhale/Köy :
+                                    
+                                <input name="ikametgah_mahalle_koy" value="{% if firma_ayarlari.ikametgah_mahalle_koy %}{{firma_ayarlari.ikametgah_mahalle_koy}}{% endif %}" type="text">
+                            </div>
+                            <div  class="col-6">
+                            
+                                İkametgah İlçe :
+                                    
+                                <input name="ikametgah_ilce" value="{% if firma_ayarlari.ikametgah_ilce %}{{firma_ayarlari.ikametgah_ilce}}{% endif %}" type="text">
+                            </div>
+
+                            <div  class="col-6">
+                            
+                                İkametgah İl :
+                                    
+                                <input name="ikametgah_il" value="{% if firma_ayarlari.ikametgah_il %}{{firma_ayarlari.ikametgah_il}}{% endif %}" type="text">
+                            </div>
+                            <div  class="col-6">
+                            
+                                İkametgah Posta Kodu:
+                                    
+                                <input name="ikametgah_posta_kodu" value="{% if firma_ayarlari.ikametgah_posta_kodu %}{{firma_ayarlari.ikametgah_posta_kodu}}{% endif %}" type="text">
+                            </div>
+                            <div  class="col-6">
+                            
+                                Cep Telefonu:
+                                    
+                                <input name="cep_telefonu" value="{% if firma_ayarlari.cep_telefonu %}{{firma_ayarlari.cep_telefonu}}{% endif %}" type="text">
+                            </div>
+                            
+                        </div>
                     </div>
                     <div class="mt-5" ></div>
-                    <div class="col-4">
+                    <div class="col-4"></div>
+                    <div class="col-2">
                         <button type="submit" class="btn btn-primary">Kaydet</button></div>
-                    <div class="col-4"><button>Kaydet Yenisini Oluştur</button></div>
-                    <div class="col-4"><a href="/{{firma.firma_ozel_anahtar}}/kasa/" class="btn btn-danger">İptal Et</a></div>
+                    
+                    <div class="col-2"><a href="/{{firma.firma_ozel_anahtar}}/kasa/" class="btn btn-danger">İptal Et</a></div>
+                    <div class="col-4"></div>
                 </div>
 
             </form>

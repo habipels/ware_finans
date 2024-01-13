@@ -5126,6 +5126,89 @@ def ayarlar_smm_ayarlari(request,slug):
     content = site_ayarlari()
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
     content["subeleri"] =  sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    content["firma_ayarlari"] = firma_ayarlari_smm_ymm_sm_bilgileri.objects.filter(bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) ).last()
+    if request.POST:
+        isim = request.POST.get("isim")
+        soyadi = request.POST.get("soyadi")
+        tip = request.POST.get("tip")
+        kayitlioda = request.POST.get("kayitlioda")
+        odasicilno = request.POST.get("odasicilno")
+        muhur_numarasi = request.POST.get("muhur_numarasi")
+        baslama_tarihi = request.POST.get("baslama_tarihi")
+        ortakli_unvan = request.POST.get("ortakli_unvan")
+        sirket_unvan = request.POST.get("sirket_unvan")
+        vergi_dairesi = request.POST.get("vergi_dairesi")
+        vergi_no = request.POST.get("vergi_no")
+        ticari_sicil_no = request.POST.get("ticari_sicil_no")
+        vergi_kimlik_no = request.POST.get("vergi_kimlik_no")
+        tc_kimlik_no = request.POST.get("tc_kimlik_no")
+        goreve_baslama_tarihi = request.POST.get("goreve_baslama_tarihi")
+        isyeri_adresi = request.POST.get("isyeri_adresi")
+        fax = request.POST.get("fax")
+        eposta = request.POST.get("eposta")
+        arac_plaka_no = request.POST.get("arac_plaka_no")
+        cinsiyet = request.POST.get("cinsiyet")
+        uyrugu = request.POST.get("uyrugu")
+        baba_adi = request.POST.get("baba_adi")
+        anne_adi = request.POST.get("anne_adi")
+        dogum_yeri = request.POST.get("dogum_yeri")
+        dogum_tarihi = request.POST.get("dogum_tarihi")
+        nufusa_kayitli_oldugu_yer = request.POST.get("nufusa_kayitli_oldugu_yer")
+        ikametgah_adresi = request.POST.get("ikametgah_adresi")
+        ikametgah_bulvar = request.POST.get("ikametgah_bulvar")
+        ikametgah_cadde = request.POST.get("ikametgah_cadde")
+        ikametgah_sokak = request.POST.get("ikametgah_sokak")
+        ikametgah_ic_kapi = request.POST.get("ikametgah_ic_kapi")
+        ikametgah_dis_kapi = request.POST.get("ikametgah_dis_kapi")
+        ikametgah_mahalle_koy = request.POST.get("ikametgah_mahalle_koy")
+        ikametgah_ilce = request.POST.get("ikametgah_ilce")
+        ikametgah_il = request.POST.get("ikametgah_il")
+        ikametgah_posta_kodu = request.POST.get("ikametgah_posta_kodu")
+        cep_telefonu = request.POST.get("cep_telefonu")
+        if firma_ayarlari_smm_ymm_sm_bilgileri.objects.filter(bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) ).count()>0:
+            firma_ayarlari_smm_ymm_sm_bilgileri.objects.filter(bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)).update(
+               bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) ,
+               ad = isim,soyad = soyadi,musavir_turu = tip,
+               kayitliolduguoda = kayitlioda,odasicilno = odasicilno,
+               muhur_numarasi = muhur_numarasi,baslama_tarihi= baslama_tarihi,
+               ortakli_unvan= ortakli_unvan,sirket_unvan = sirket_unvan,
+               vergi_dairesi = vergi_dairesi,vergi_no = vergi_no,ticari_sicil_no = ticari_sicil_no,
+               vergi_kimlik_no = vergi_kimlik_no,tc_kimlik_no = tc_kimlik_no,
+               goreve_baslama_tarihi = goreve_baslama_tarihi,
+               isyeri_adresi = isyeri_adresi,fax=fax,eposta= eposta,
+               arac_plaka_no = arac_plaka_no,cinsiyet = cinsiyet,uyrugu = uyrugu,
+               baba_adi = baba_adi,anne_adi = anne_adi,dogum_yeri = dogum_yeri,
+               dogum_tarihi = dogum_tarihi,nufusa_kayitli_oldugu_yer=nufusa_kayitli_oldugu_yer,
+               ikametgah_adresi = ikametgah_adresi,ikametgah_bulvar= ikametgah_bulvar,
+                ikametgah_cadde = ikametgah_cadde,ikametgah_sokak = ikametgah_sokak,
+                ikametgah_ic_kapi = ikametgah_ic_kapi,ikametgah_dis_kapi = ikametgah_dis_kapi,
+                ikametgah_mahalle_koy = ikametgah_mahalle_koy,ikametgah_ilce = ikametgah_ilce,
+                ikametgah_il = ikametgah_il,ikametgah_posta_kodu =ikametgah_posta_kodu,
+                cep_telefonu =cep_telefonu
+            )
+        else:
+            firma_ayarlari_smm_ymm_sm_bilgileri.objects.create(
+               bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) ,
+               ad = isim,soyad = soyadi,musavir_turu = tip,
+               kayitliolduguoda = kayitlioda,odasicilno = odasicilno,
+               muhur_numarasi = muhur_numarasi,baslama_tarihi= baslama_tarihi,
+               ortakli_unvan= ortakli_unvan,sirket_unvan = sirket_unvan,
+               vergi_dairesi = vergi_dairesi,vergi_no = vergi_no,ticari_sicil_no = ticari_sicil_no,
+               vergi_kimlik_no = vergi_kimlik_no,tc_kimlik_no = tc_kimlik_no,
+               goreve_baslama_tarihi = goreve_baslama_tarihi,
+               isyeri_adresi = isyeri_adresi,fax=fax,eposta= eposta,
+               arac_plaka_no = arac_plaka_no,cinsiyet = cinsiyet,uyrugu = uyrugu,
+               baba_adi = baba_adi,anne_adi = anne_adi,dogum_yeri = dogum_yeri,
+               dogum_tarihi = dogum_tarihi,nufusa_kayitli_oldugu_yer=nufusa_kayitli_oldugu_yer,
+               ikametgah_adresi = ikametgah_adresi,ikametgah_bulvar= ikametgah_bulvar,
+                ikametgah_cadde = ikametgah_cadde,ikametgah_sokak = ikametgah_sokak,
+                ikametgah_ic_kapi = ikametgah_ic_kapi,ikametgah_dis_kapi = ikametgah_dis_kapi,
+                ikametgah_mahalle_koy = ikametgah_mahalle_koy,ikametgah_ilce = ikametgah_ilce,
+                ikametgah_il = ikametgah_il,ikametgah_posta_kodu =ikametgah_posta_kodu,
+                cep_telefonu =cep_telefonu
+            )
+        z = "/"+slug+"/smmayarlar/"
+        return redirect(z)
     return render(request,"ayarlar/firma_smm_ayarlama.html",content)
 
 
