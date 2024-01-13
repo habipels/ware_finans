@@ -5211,7 +5211,14 @@ def ayarlar_smm_ayarlari(request,slug):
         return redirect(z)
     return render(request,"ayarlar/firma_smm_ayarlama.html",content)
 
-
+#kdv1
+def kdv1_beyannamesi(request,slug):
+    content = site_ayarlari()
+    content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
+    content["subeleri"] =  sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)).first()
+    content["firma_ayarlari"] = firma_ayarlari_ayar_kisimi.objects.filter(bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) ).last()
+    content["faliyet"] = sube_faliyet_bilgileri.objects.filter(sube_bilgisi=sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)).first()).first()
+    return render(request,"beyannameler/kdv1_beyanname.html",content)
 
 
 

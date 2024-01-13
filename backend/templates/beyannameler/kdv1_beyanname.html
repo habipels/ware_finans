@@ -1,0 +1,65 @@
+{% extends "homebase.html" %}
+{% block content %}
+  <!--Header-->
+  <div class="icon-bar">
+
+    <a href="/{{firma.firma_ozel_anahtar}}/yenikasakarti/">Kaydet</a>
+    <a style="color: white;" onclick="showConfirmationPopup()"> Sil</a>
+    <a href="/{{firma.firma_ozel_anahtar}}/muavin/" >Muavin</a>
+    <a href="/{{firma.firma_ozel_anahtar}}/mizan/" >Mizan</a>
+    <a href="" style="color:red;">Çıkış Yap (ESC)</a>
+
+  </div>
+  <div class="d-menu">
+    <ul>
+      <li>
+       <a href="" title="">Beyanname Hazırla</a>
+      </li>
+      <li>
+        <a href="" title="">KDV Kontrol</a>
+
+      </li>
+       <li>
+       <a href="" title="">XML Oluştur</a>
+      </li>
+      <li>
+       <a href="" title="">XML Sil</a>
+      </li>
+      <li>
+       <a href="" title="">Son Kontrol</a>
+      </li>
+        <li>
+       <a href="" title="">Yazdır</a>
+      </li>
+      
+    </ul>
+  </div>
+  <div class="container">
+    <div class="row">
+        <h1 class="text-center" >KATMA DEĞER VERGİSİ BEYANNAMESİ 1</h1>
+        <h3 class="text-center">(Gerçek Usüle Göre Vergilendiren Mükellefler İçin)</h3>
+        <hr style="border: 3px solid black !important;" >
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <h3 class="text-center" >Genel Bilgiler</h3>
+        <hr>
+        <div class="col-6"><p><b>Yılı : <script>document.write(new Date().getFullYear())</script></b></p>
+            <p><b>Vergi Dairesi Kodu : {{subeleri.vergi_dairesi_adi.vergi_dairesi_kodu}}</b></p>
+        </div>
+        <div class="col-6">
+            <p><b>Vergi Kimlik Numarası (T.C Kimlik No) : {% if subeleri.sahis_ise_tc %}{{subeleri.sahis_ise_tc}}{% endif %} </b></p>
+            <p><b>Vergi Kimlik Numarası  : {% if subeleri.vergi_numarasi %}{{subeleri.vergi_numarasi}}{% endif %} </b></p>
+            <p><b>Soyadi (Unvan)  : {% if subeleri.bagli_oldugu_firma.Firma_unvani2 %}{{subeleri.bagli_oldugu_firma.Firma_unvani2}}{% endif %} </b></p>
+            <p><b>Adı (Unvan Devamı)  : {% if subeleri.bagli_oldugu_firma.firma_unvani %}{{subeleri.bagli_oldugu_firma.firma_unvani}}{% endif %} </b></p>
+            <p><b>Ticaret Sicil No  : {% if faliyet.ticaret_sicil_no %}{{faliyet.ticaret_sicil_no}}{% endif %} </b></p>
+            <p><b>E-Posta Adresi  : {% if subeleri.email_adresi %}{{subeleri.email_adresi}}{% endif %} </b></p>
+            <p><b>İrtibat Telefon No  : {% if subeleri.telefon_numarasi %}{{subeleri.telefon_numarasi}}{% endif %} </b></p>
+        </div>
+        <hr style="border: 2px solid black !important;" >
+    </div>
+</div>
+
+
+{% endblock content %}
