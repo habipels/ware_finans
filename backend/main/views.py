@@ -5351,7 +5351,26 @@ def kdv1_beyannamesi(request,slug):
         aciklama8 = request.POST.get("aciklama8")
         miktar8 = request.POST.get("miktar8")
         #ÖNCEKİ DÖNEME AİT MİKTARDA DEĞİŞİKLİK VARSA BU TABLO DOLDURULACAKTIR
-
+        #SONUÇ HESAPLARI
+        sonucyazisi1 = request.POST.get("sonucyazisi1")
+        sonuc1 = request.POST.get("sonuc1")
+        sonuc2 = request.POST.get("sonuc2")
+        sonucyazisi2 = request.POST.get("sonucyazisi2")
+        sonuc3 = request.POST.get("sonuc3")
+        sonucyazisi3 = request.POST.get("sonucyazisi3")
+        sonuc4 = request.POST.get("sonuc4")
+        sonucyazisi4 = request.POST.get("sonucyazisi4")
+        #SONUÇ HESAPLARI
+        #DİĞER BİLGİLER
+        sonucyazisidiger1 = request.POST.get("sonucyazisidiger1")
+        sonucdiger1 = request.POST.get("sonucdiger1")
+        sonucdiger2 = request.POST.get("sonucdiger2")
+        sonucyazisidiger2 = request.POST.get("sonucyazisidiger2")
+        sonucdiger3 = request.POST.get("sonucdiger3")
+        sonucyazisidiger3 = request.POST.get("sonucyazisidiger3")
+        sonucdiger4 = request.POST.get("sonucdiger4")
+        sonucyazisidiger4 = request.POST.get("sonucyazisidiger4")
+        #DİĞER BİLGİLER
     return render(request,"beyannameler/kdv1_beyanname.html",content)
 
 

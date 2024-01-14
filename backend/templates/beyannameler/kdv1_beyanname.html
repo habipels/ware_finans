@@ -899,6 +899,104 @@
       <hr style="border: 2px solid black !important;" >
   </div>
 </div>
+<div class="container">
+  <div class="row">
+      <h3 class="text-center" >SONUÇ HESAPLARI</h3>
+      <hr>
+      <div class="container tablo" style="margin-top: 0px !important;">
+        <div class="table-responsive " style=" 
+        height: 210px;
+        overflow: auto;">
+          <table class="table table-bordered ">
+            <thead style="position: sticky;top: 0">
+              <tr>
+                <th class="text-center" style="min-width: 100px ;"></th>
+                <th class="text-center" style="min-width: 50px ;"></th>
+                <th class="text-center" style="min-width: 150px ;"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Tecil Edilecek Katma Değer Vergisi
+                  <input type="text" name="sonucyazisi1" hidden value="Tecil Edilecek Katma Değer Vergisi">
+                </td>
+                <td>38</td>
+                <td><input step="0.01" id="sonuc1" name="sonuc1" value="0" type="number"></td>
+              </tr>
+              <tr>
+                <td>Ödemesi Gereken Katma Değer Vergisi
+                  <input type="text" name="sonucyazisi2" hidden value="Ödemesi Gereken Katma Değer Vergisi">
+                </td>
+                <td></td>
+                <td><input step="0.01" id="sonuc2" name="sonuc2" value="0" type="number"></td>
+              </tr>
+              <tr>
+                <td>İade Edilmesi Gereken Katma Değer Vergisi
+                  <input type="text" name="sonucyazisi3" hidden value="İade Edilmesi Gereken Katma Değer Vergisi">
+                </td>
+                <td>40</td>
+                <td><input step="0.01" id="sonuc3" name="sonuc3" value="0" type="number"></td>
+              </tr>
+              <tr>
+                <td>Sonraki Döneme Devreden Katma Değer Vergisi
+                  <input type="text" name="sonucyazisi4" hidden value="Sonraki Döneme Devreden Katma Değer Vergisi">
+                </td>
+                <td></td>
+                <td><input step="0.01" id="sonuc4" name="sonuc4" value="0" type="number"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="container tablo" style="margin-top: 0px !important;">
+        <input class="col-12" disabled value="DİĞER BİLGİLER" type="text">
+        <div class="table-responsive " style=" 
+        height: 210px;
+        overflow: auto;">
+          <table class="table table-bordered ">
+            <thead style="position: sticky;top: 0">
+              <tr>
+                <th class="text-center" style="min-width: 100px ;"></th>
+                <th class="text-center" style="min-width: 50px ;"></th>
+                <th class="text-center" style="min-width: 150px ;"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Özel Matrah Şekline Tabi İşlemlerde Matraha Dahil Olmayan Bedel
+                  <input type="text" name="sonucyazisidiger1" hidden value="Özel Matrah Şekline Tabi İşlemlerde Matraha Dahil Olmayan Bedel">
+                </td>
+                <td>42</td>
+                <td><input step="0.01" id="sonucdiger1" name="sonucdiger1" value="0" type="number"></td>
+              </tr>
+              <tr>
+                <td>Teslim ve Hizmetlerin Karşılığını Teşkil Eden Bedel (aylik)
+                  <input type="text" name="sonucyazisidiger2" hidden value="Teslim ve Hizmetlerin Karşılığını Teşkil Eden Bedel (aylik)">
+                </td>
+                <td></td>
+                <td><input step="0.01" id="sonucdiger2" name="sonucdiger2" value="0" type="number"></td>
+              </tr>
+              <tr>
+                <td>Teslim ve Hizmetlerin Karşılığını Teşkil Eden Bedel (Kümülatif)
+                  <input type="text" name="sonucyazisidiger3" hidden value="Teslim ve Hizmetlerin Karşılığını Teşkil Eden Bedel (Kümülatif)">
+                </td>
+                <td>44</td>
+                <td><input step="0.01" id="sonucdiger3" name="sonucdiger3" value="0" type="number"></td>
+              </tr>
+              <tr>
+                <td>Kredi Kartı İle Tahsil Edilen Teslim ve Hizmetlerin KDV Dahil Karşılığını Teşkil Eden Bedel
+                  <input type="text" name="sonucyazisidiger4" hidden value="Kredi Kartı İle Tahsil Edilen Teslim ve Hizmetlerin KDV Dahil Karşılığını Teşkil Eden Bedel">
+                </td>
+                <td>45</td>
+                <td><input step="0.01" id="sonucdiger4" name="sonucdiger4" value="0" type="number"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <hr style="border: 2px solid black !important;" >
+  </div>
+</div>
 <script>
   let z = 0;
   function ekleYeniSatir() {
