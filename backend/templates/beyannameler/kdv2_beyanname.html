@@ -81,6 +81,10 @@
         <hr>
         <div class="col-6"><p><b>Yılı : <script>document.write(new Date().getFullYear())</script></b></p>
             <p><b>Vergi Dairesi Kodu : {{subeleri.vergi_dairesi_adi.vergi_dairesi_kodu}}</b></p>
+            <p><b>Dönem : <select name="donem" id="">
+              <option value="Aylık">Aylık</option>
+              <option value="Üç Aylık">Üç Aylık</option>
+            </select></b></p>
         </div>
         <div class="col-6">
             <p><b>Vergi Kimlik Numarası (T.C Kimlik No) : {% if subeleri.sahis_ise_tc %}{{subeleri.sahis_ise_tc}}{% endif %} </b></p>
@@ -94,6 +98,80 @@
         <hr style="border: 2px solid black !important;" >
     </div>
 </div>
-
+<div class="container">
+  <div class="row">
+      <h3 class="text-center" >Vergi Bildirimi</h3>
+      <hr>
+      <div class="container tablo" style="margin-top: 0px !important;">
+        <input class="col-12" disabled="" value="TAM TEVKİFAT UYGULANAN İŞLEMLERE AİT BİLDİRİM" type="text">
+        <div class="table-responsive " style=" 
+        height: 300px;
+        overflow: auto;">
+          <table class="table table-bordered ">
+            <thead style="position: sticky;top: 0">
+              <tr>
+                <th class="text-center" style="min-width: 100px ;"></th>
+                <th class="text-center" style="min-width: 50px ;">İŞLEM TÜRÜ</th>
+                <th class="text-center" style="min-width: 50px ;">MATRAH</th>
+                <th class="text-center" style="min-width: 150px ;">KDV ORANI (%)</th>
+                <th class="text-center" style="min-width: 100px ;"></th>
+                <th class="text-center">VERGİ</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>6</td>
+                <td><select name="islemturu6" id="">
+                  <option value=""></option>
+                </select></td>
+                <td><input step="0.01" id="matrah6" name="matrah6" value="0" type="number"></td>
+                <td><input step="0.01" id="kdv6" name="kdv6" value="1" type="number"></td>
+                <td>7</td>
+                <td><input step="0.01" id="vergi7" name="vergi7" value="0" type="number"></td>
+              </tr>
+              <tr>
+                <td>8</td>
+                <td><select name="islemturu8" id="">
+                  <option value=""></option>
+                <td><input step="0.01" id="matrah8" name="matrah8" value="0" type="number"></td>
+                <td><input step="0.01" id="kdv8" name="kdv8" value="10" type="number"></td>
+                <td>9</td>
+                <td><input step="0.01" id="vergi9" name="vergi9" value="0" type="number"></td>
+              </tr>
+              <tr>
+                <td>10</td>
+                <td><select name="islemturu10" id="">
+                  <option value=""></option>
+                <td><input step="0.01" id="matrah10" name="matrah10" value="0" type="number"></td>
+                <td><input step="0.01" id="kdv10" name="kdv10" value="20" type="number"></td>
+                <td>11</td>
+                <td><input step="0.01" id="vergi11" name="vergi11" value="0" type="number"></td>
+              </tr>
+              <tr>
+                <td>12</td>
+                <td><select name="islemturu12" id="">
+                  <option value=""></option>
+                <td><input step="0.01" id="matrah12" name="matrah10" value="0" type="number"></td>
+                <td><input step="0.01" id="kdv12" name="kdv10" value="20" type="number"></td>
+                <td>13</td>
+                <td><input step="0.01" id="vergi13" name="vergi11" value="0" type="number"></td>
+              </tr>
+              <tr>
+                <td class="text-center"  colspan="5"><b>Matrah Toplamı (6+8+10+12)</b></td>
+                
+                <td><input step="0.01" id="matrahtoplami" name="matrahtoplami" value="0" type="number"></td>
+              </tr>
+              <tr>
+                <td class="text-center"  colspan="5"><b>Vergi Toplamı (7+9+11+13)</b></td>
+                
+                <td><input step="0.01" id="vergitoplami" name="vergitoplami" value="0" type="number"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <hr style="border: 2px solid black !important;" >
+  </div>
+</div>
 
 {% endblock content %}

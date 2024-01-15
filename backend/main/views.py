@@ -5466,6 +5466,29 @@ def kdv2_beyannamesi(request,slug):
     for i in range(801,826):
         tevk_800ler.append(str(i))
     content["tevkifatlar1"] =tevkifat_tur_kodu.objects.filter(hesap_kodu__in = tevk_800ler,silinme_bilgisi = False,bagli_oldugu_firma = None)
+    if request.POST:
+        aysecimi = request.POST.get("aysecimi")
+        donem = request.POST.get("donem")
+        #TAM TEVKİFAT UYGULANAN İŞLEMLERE AİT BİLDİRİM
+        islemturu6 = request.POST.get("islemturu6")
+        matrah6 = request.POST.get("matrah6")
+        kdv6 = request.POST.get("kdv6")
+        vergi7 = request.POST.get("vergi7")
+        islemturu8 = request.POST.get("islemturu8")
+        matrah8 = request.POST.get("matrah8")
+        kdv8 = request.POST.get("kdv8")
+        vergi9 = request.POST.get("vergi9")
+        islemturu10 = request.POST.get("islemturu10")
+        matrah10 = request.POST.get("matrah10")
+        kdv10 = request.POST.get("kdv10")
+        vergi11 = request.POST.get("vergi11")
+        islemturu12 = request.POST.get("islemturu12")
+        matrah12 = request.POST.get("matrah12")
+        kdv12 = request.POST.get("kdv12")
+        vergi13 = request.POST.get("vergi13")
+        vergitoplami = request.POST.get("vergitoplami")
+        matrahtoplami = request.POST.get("matrahtoplami")
+        #TAM TEVKİFAT UYGULANAN İŞLEMLERE AİT BİLDİRİM
     return render(request,"beyannameler/kdv2_beyanname.html",content)
 def kdv4_beyannamesi(request,slug):
     content = site_ayarlari()
