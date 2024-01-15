@@ -5227,6 +5227,22 @@ def kdv1_beyannamesi(request,slug):
     for i in range(801,826):
         tevk_800ler.append(str(i))
     content["tevkifatlar1"] =tevkifat_tur_kodu.objects.filter(hesap_kodu__in = tevk_800ler,silinme_bilgisi = False,bagli_oldugu_firma = None)
+    kdv_istisna250 = []
+    for i in range(201,251):
+        kdv_istisna250.append(str(i))
+    content["kdv_istisnalari"] = kdv_istisna_kodu.objects.filter(kod__in = kdv_istisna250)
+    kdv_istisna350 = []
+    for i in range(301,351):
+        kdv_istisna350.append(str(i))
+    content["kdv_istisnalari1"] = kdv_istisna_kodu.objects.filter(kod__in = kdv_istisna350)
+    tevk_900ler = []
+    for i in range(901,926):
+        tevk_900ler.append(str(i))
+    content["tevkifatlar2"] =tevkifat_tur_kodu.objects.filter(hesap_kodu__in = tevk_900ler,silinme_bilgisi = False,bagli_oldugu_firma = None)
+    kdv_istisna400 = []
+    for i in range(406,451):
+        kdv_istisna400.append(str(i))
+    content["kdv_istisnalari2"] = kdv_istisna_kodu.objects.filter(kod__in = kdv_istisna400)
     if request.POST:
         aysecimi = request.POST.get("aysecimi")
         #TEVKİFAT UYGULANMAYAN İŞLEMLER
@@ -5371,6 +5387,67 @@ def kdv1_beyannamesi(request,slug):
         sonucdiger4 = request.POST.get("sonucdiger4")
         sonucyazisidiger4 = request.POST.get("sonucyazisidiger4")
         #DİĞER BİLGİLER
+        # KISMİ İSTİSNA KAPSAMINA GİREN İŞLEMLER
+        istisnakismikdvistisnasecimi1 = request.POST.get("istisnakismikdvistisnasecimi1")
+        istisnakismikdvistisnasecimihizmetveteslimtutari1 = request.POST.get("istisnakismikdvistisnasecimihizmetveteslimtutari1")
+        istisnakismikdvistisnasecimiyuklenilenkdv1 = request.POST.get("istisnakismikdvistisnasecimiyuklenilenkdv1")
+        istisnakismikdvistisnasecimi2 = request.POST.get("istisnakismikdvistisnasecimi2")
+        istisnakismikdvistisnasecimihizmetveteslimtutari2 = request.POST.get("istisnakismikdvistisnasecimihizmetveteslimtutari2")
+        istisnakismikdvistisnasecimiyuklenilenkdv2 = request.POST.get("istisnakismikdvistisnasecimiyuklenilenkdv2")
+        istisnakismikdvistisnasecimi3 = request.POST.get("istisnakismikdvistisnasecimi3")
+        istisnakismikdvistisnasecimihizmetveteslimtutari3 = request.POST.get("istisnakismikdvistisnasecimihizmetveteslimtutari3")
+        istisnakismikdvistisnasecimiyuklenilenkdv3 = request.POST.get("istisnakismikdvistisnasecimiyuklenilenkdv3")
+        istisnakismikdvistisnasecimi4 = request.POST.get("istisnakismikdvistisnasecimi4")
+        istisnakismikdvistisnasecimihizmetveteslimtutari4 = request.POST.get("istisnakismikdvistisnasecimihizmetveteslimtutari4")
+        istisnakismikdvistisnasecimiyuklenilenkdv4 = request.POST.get("istisnakismikdvistisnasecimiyuklenilenkdv4")
+        istisnakismikdvistisnasecimi5 = request.POST.get("istisnakismikdvistisnasecimi5")
+        istisnakismikdvistisnasecimihizmetveteslimtutari5 = request.POST.get("istisnakismikdvistisnasecimihizmetveteslimtutari5")
+        istisnakismikdvistisnasecimiyuklenilenkdv5 = request.POST.get("istisnakismikdvistisnasecimiyuklenilenkdv5")
+        # KISMİ İSTİSNA KAPSAMINA GİREN İŞLEMLER
+        # TAM İSTİSNA KAPSAMINA GİREN İŞLEMLER
+        tamistisnakodsecimi1 = request.POST.get("tamistisnakodsecimi1")
+        tamistisnamalhizmeti1 = request.POST.get("tamistisnamalhizmeti1")
+        tamistisnamalbedeli1 = request.POST.get("tamistisnamalbedeli1")
+        tamistisnayuklenilenkdv1 = request.POST.get("tamistisnayuklenilenkdv1")
+        tamistisnakodsecimi2 = request.POST.get("tamistisnakodsecimi2")
+        tamistisnamalhizmeti2 = request.POST.get("tamistisnamalhizmeti2")
+        tamistisnamalbedeli2 = request.POST.get("tamistisnamalbedeli2")
+        tamistisnayuklenilenkdv2 = request.POST.get("tamistisnayuklenilenkdv2")
+        tamistisnakodsecimi3 = request.POST.get("tamistisnakodsecimi3")
+        tamistisnamalhizmeti3 = request.POST.get("tamistisnamalhizmeti3")
+        tamistisnamalbedeli3 = request.POST.get("tamistisnamalbedeli3")
+        tamistisnayuklenilenkdv3 = request.POST.get("tamistisnayuklenilenkdv3")
+        tamistisnakodsecimi4 = request.POST.get("tamistisnakodsecimi4")
+        tamistisnamalhizmeti4 = request.POST.get("tamistisnamalhizmeti4")
+        tamistisnamalbedeli4 = request.POST.get("tamistisnamalbedeli4")
+        tamistisnayuklenilenkdv4 = request.POST.get("tamistisnayuklenilenkdv4")
+        tamistisnakodsecimi5 = request.POST.get("tamistisnakodsecimi5")
+        tamistisnamalhizmeti5 = request.POST.get("tamistisnamalhizmeti5")
+        tamistisnamalbedeli5= request.POST.get("tamistisnamalbedeli5")
+        tamistisnayuklenilenkdv5 = request.POST.get("tamistisnayuklenilenkdv5")
+        # TAM İSTİSNA KAPSAMINA GİREN İŞLEMLER
+        #İSTEĞE BAĞLI TAM TEVKİFAT KAPSAMINA GİREN İŞLEMLER
+        istege_baglitevkatgirenislemler = request.POST.getlist("istege_baglitevkatgirenislemler")
+        teslimvehizmettutari = request.POST.getlist("teslimvehizmettutari")
+        iadeyekonuolankdv = request.POST.getlist("iadeyekonuolankdv")
+        #İSTEĞE BAĞLI TAM TEVKİFAT KAPSAMINA GİREN İŞLEMLER
+        # DİĞER İADE HAKKI DOĞURAN İŞLEMLER
+        digeriadersecim1 = request.POST.get("digeriadersecim1")
+        digeriadetamistisnamalhizmeti1 = request.POST.get("digeriadetamistisnamalhizmeti1")
+        digeriadekonuolankdv1 = request.POST.get("digeriadekonuolankdv1")
+        digeriadersecim2 = request.POST.get("digeriadersecim2")
+        digeriadetamistisnamalhizmeti2 = request.POST.get("digeriadetamistisnamalhizmeti2")
+        digeriadekonuolankdv2 = request.POST.get("digeriadekonuolankdv2")
+        digeriadersecim3 = request.POST.get("digeriadersecim3")
+        digeriadetamistisnamalhizmeti3 = request.POST.get("digeriadetamistisnamalhizmeti3")
+        digeriadekonuolankdv3 = request.POST.get("digeriadekonuolankdv3")
+        digeriadersecim4 = request.POST.get("digeriadersecim4")
+        digeriadetamistisnamalhizmeti4 = request.POST.get("digeriadetamistisnamalhizmeti4")
+        digeriadekonuolankdv4 = request.POST.get("digeriadekonuolankdv4")
+        digeriadersecim5 = request.POST.get("digeriadersecim5")
+        digeriadetamistisnamalhizmeti5 = request.POST.get("digeriadetamistisnamalhizmeti5")
+        digeriadekonuolankdv5 = request.POST.get("digeriadekonuolankdv5")
+        # DİĞER İADE HAKKI DOĞURAN İŞLEMLER
     return render(request,"beyannameler/kdv1_beyanname.html",content)
 
 #kdv1

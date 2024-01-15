@@ -7,6 +7,9 @@
   .yeniform {
     display: none;
   }
+  .gosterme{
+    display: none;
+  }
 </style>
   <!--Header-->
   <div class="icon-bar">
@@ -1001,7 +1004,623 @@
   <div class="row">
       <h3 class="text-center" >İSTİSNALAR-DİĞER İADE HAKKI DOĞURAN İŞLEMLER</h3>
       <hr>
+      <div class="container tablo" style="margin-top: 0px !important;">
+        <input class="col-12" disabled value="KISMİ İSTİSNA KAPSAMINA GİREN İŞLEMLER" type="text">
+        <div class="table-responsive " style=" 
+        height: 310px;
+        overflow: auto;">
+          <table class="table table-bordered ">
+            <thead style="position: sticky;top: 0">
+              <tr>
+                <th class="text-center" style="min-width: 100px ;">İstisna TÜRÜ</th>
+                <th class="text-center" style="min-width: 50px ;"></th>
+                <th class="text-center" style="min-width: 150px ;">Teslim Ve Hizmet Tutarı</th>
+                <th class="text-center"></th>
+                <th class="text-center">Yüklenilen KDV</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><select name="istisnakismikdvistisnasecimi1" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in kdv_istisnalari %}
+                    <option value="{{i.id}}">{{i.kod}}-{{i.icerik}}</option>
+                  {% endfor %}
+                </select></td>
+                <td>46</td>
+                <td><input step="0.01" id="istisnakismikdvistisnasecimihizmetveteslimtutari1" name="istisnakismikdvistisnasecimihizmetveteslimtutari1" value="0" type="number"></td>
+                <td>47</td>
+                <td><input step="0.01" id="istisnakismikdvistisnasecimiyuklenilenkdv1" name="istisnakismikdvistisnasecimiyuklenilenkdv1" value="0" type="number"></td>
+              </tr>
+              <tr>
+                <td><select name="istisnakismikdvistisnasecimi2" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in kdv_istisnalari %}
+                    <option value="{{i.id}}">{{i.kod}}-{{i.icerik}}</option>
+                  {% endfor %}
+                </select></td>
+                <td>48</td>
+                <td><input step="0.01" id="istisnakismikdvistisnasecimihizmetveteslimtutari2" name="istisnakismikdvistisnasecimihizmetveteslimtutari2" value="0" type="number"></td>
+                <td>49</td>
+                <td><input step="0.01" id="istisnakismikdvistisnasecimiyuklenilenkdv2" name="istisnakismikdvistisnasecimiyuklenilenkdv2" value="0" type="number"></td>
+              </tr>
+              <tr>
+                <td><select name="istisnakismikdvistisnasecimi3" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in kdv_istisnalari %}
+                    <option value="{{i.id}}">{{i.kod}}-{{i.icerik}}</option>
+                  {% endfor %}
+                </select></td>
+                <td>50</td>
+                <td><input step="0.01" id="istisnakismikdvistisnasecimihizmetveteslimtutari3" name="istisnakismikdvistisnasecimihizmetveteslimtutari3" value="0" type="number"></td>
+                <td>51</td>
+                <td><input step="0.01" id="istisnakismikdvistisnasecimiyuklenilenkdv3" name="istisnakismikdvistisnasecimiyuklenilenkdv3" value="0" type="number"></td>
+              </tr>
+              <tr>
+                <td><select name="istisnakismikdvistisnasecimi4" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in kdv_istisnalari %}
+                    <option value="{{i.id}}">{{i.kod}}-{{i.icerik}}</option>
+                  {% endfor %}
+                </select></td>
+                <td>52</td>
+                <td><input step="0.01" id="istisnakismikdvistisnasecimihizmetveteslimtutari4" name="istisnakismikdvistisnasecimihizmetveteslimtutari4" value="0" type="number"></td>
+                <td>53</td>
+                <td><input step="0.01" id="istisnakismikdvistisnasecimiyuklenilenkdv4" name="istisnakismikdvistisnasecimiyuklenilenkdv4" value="0" type="number"></td>
+              </tr>
+              <tr>
+                <td><select name="istisnakismikdvistisnasecimi5" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in kdv_istisnalari %}
+                    <option value="{{i.id}}">{{i.kod}}-{{i.icerik}}</option>
+                  {% endfor %}
+                </select></td>
+                <td>54</td>
+                <td><input step="0.01" id="istisnakismikdvistisnasecimihizmetveteslimtutari5" name="istisnakismikdvistisnasecimihizmetveteslimtutari5" value="0" type="number"></td>
+                <td>56</td>
+                <td><input step="0.01" id="istisnakismikdvistisnasecimiyuklenilenkdv5" name="istisnakismikdvistisnasecimiyuklenilenkdv5" value="0" type="number"></td>
+              </tr>
+              <tr>
+                <td><b>TOPLAM</b></td>
+                <td>56</td>
+                <td><span id="istisnakismikdvistisnasecimihizmet">0.0</span></td>
+                <td>57</td>
+                <td><span id="istisnakismikdvistisnasecimikdv">0.0</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="container tablo" style="margin-top: 0px !important;">
+        <input class="col-12" disabled value="TAM İSTİSNA KAPSAMINA GİREN İŞLEMLER" type="text">
+        <div class="table-responsive " style=" 
+        height: 310px;
+        overflow: auto;">
+          <table class="table table-bordered ">
+            <thead style="position: sticky;top: 0">
+              <tr>
+                <th class="text-center" style="min-width: 100px ;">İstisna TÜRÜ</th>
+                <th class="text-center" style="min-width: 50px ;"></th>
+                <th class="text-center" style="min-width: 150px ;">Teslim Ve Hizmet Tutarı</th>
+                <th class="text-center" style="min-width: 150px ;">KDV Ödemeksizin Temin Edilen Mal Bedeli</th>
+                <th class="text-center"></th>
+                <th class="text-center">Yüklenilen KDV</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><select name="tamistisnakodsecimi1" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in kdv_istisnalari1 %}
+                    <option value="{{i.id}}">{{i.kod}}-{{i.icerik}}</option>
+                  {% endfor %}
+                </select></td>
+                <td>58</td>
+                <td><input step="0.01" id="tamistisnamalhizmeti1" name="tamistisnamalhizmeti1" value="0" type="number"></td>
+                <td><input step="0.01" id="tamistisnamalbedeli1" name="tamistisnamalbedeli1" value="0" type="number"></td>
+                <td>59</td>
+                <td><input step="0.01" id="tamistisnayuklenilenkdv1" name="tamistisnayuklenilenkdv1" value="0" type="number"></td>
+              </tr>
+              <tr>
+                <td><select name="tamistisnakodsecimi2" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in kdv_istisnalari1 %}
+                    <option value="{{i.id}}">{{i.kod}}-{{i.icerik}}</option>
+                  {% endfor %}
+                </select></td>
+                <td>60</td>
+                <td><input step="0.01" id="tamistisnamalhizmeti2" name="tamistisnamalhizmeti2" value="0" type="number"></td>
+                <td><input step="0.01" id="tamistisnamalbedeli2" name="tamistisnamalbedeli2" value="0" type="number"></td>
+                <td>61</td>
+                <td><input step="0.01" id="tamistisnayuklenilenkdv2" name="tamistisnayuklenilenkdv2" value="0" type="number"></td>
+              </tr>
+              <tr>
+                <td><select name="tamistisnakodsecimi3" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in kdv_istisnalari1 %}
+                    <option value="{{i.id}}">{{i.kod}}-{{i.icerik}}</option>
+                  {% endfor %}
+                </select></td>
+                <td>62</td>
+                <td><input step="0.01" id="tamistisnamalhizmeti3" name="tamistisnamalhizmeti3" value="0" type="number"></td>
+                <td><input step="0.01" id="tamistisnamalbedeli3" name="tamistisnamalbedeli3" value="0" type="number"></td>
+                <td>63</td>
+                <td><input step="0.01" id="tamistisnayuklenilenkdv3" name="tamistisnayuklenilenkdv3" value="0" type="number"></td>
+              </tr>
+              <tr>
+                <td><select name="tamistisnakodsecimi4" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in kdv_istisnalari1 %}
+                    <option value="{{i.id}}">{{i.kod}}-{{i.icerik}}</option>
+                  {% endfor %}
+                </select></td>
+                <td>64</td>
+                <td><input step="0.01" id="tamistisnamalhizmeti4" name="tamistisnamalhizmeti4" value="0" type="number"></td>
+                <td><input step="0.01" id="tamistisnamalbedeli4" name="tamistisnamalbedeli4" value="0" type="number"></td>
+                <td>65</td>
+                <td><input step="0.01" id="tamistisnayuklenilenkdv4" name="tamistisnayuklenilenkdv4" value="0" type="number"></td>
+              </tr>
+              <tr>
+                <td><select name="tamistisnakodsecimi5" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in kdv_istisnalari1 %}
+                    <option value="{{i.id}}">{{i.kod}}-{{i.icerik}}</option>
+                  {% endfor %}
+                </select></td>
+                <td>66</td>
+                <td><input step="0.01" id="tamistisnamalhizmeti5" name="tamistisnamalhizmeti5" value="0" type="number"></td>
+                <td><input step="0.01" id="tamistisnamalbedeli5" name="tamistisnamalbedeli5" value="0" type="number"></td>
+                <td>67</td>
+                <td><input step="0.01" id="tamistisnayuklenilenkdv5" name="tamistisnayuklenilenkdv5" value="0" type="number"></td>
+              </tr>
+              <tr>
+                <td><b>TOPLAM</b></td>
+                <td>68</td>
+                <td><span id="tamistisnamalhizmetitoplam">0</span></td>
+                <td><span id="tamistisnamalbedelitoplam">0</span></td>
+                <td>69</td>
+                <td><span id="tamistisnayuklenilenkdvtoplam">0</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
       
+      <div class="container tablo" style="margin-top: 0px !important;">
+        <input class="col-12" disabled value="İSTEĞE BAĞLI TAM TEVKİFAT KAPSAMINA GİREN İŞLEMLER" type="text">
+        <div class="table-responsive " style=" 
+        height: 300px;
+        overflow: auto;">
+          <table class="table table-bordered ">
+            <thead style="position: sticky;top: 0">
+              <tr>
+                <th class="text-center" style="min-width: 100px ;">İŞLEM TÜRÜ</th>
+                <th class="text-center" style="min-width: 50px ;">Teslim Ve Hizmet Tutarı</th>
+                <th class="text-center" style="min-width: 150px ;">İadeye Konu Olan KDV</th>
+                <th class="text-center"><a href="javascript:void(0);" onclick="ekleYeniSatiristisna()">SATIR EKLE</a></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><select name="istege_baglitevkatgirenislemler" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar2 %}
+                    <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input step="0.01" id="teslimvehizmettutari" name="teslimvehizmettutari" value="0" type="number"></td>
+                <td><input step="0.01" id="iadeyekonuolankdv" name="iadeyekonuolankdv" value="1" type="number"></td>
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><select name="istege_baglitevkatgirenislemler" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar2 %}
+                    <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input step="0.01" id="teslimvehizmettutari" name="teslimvehizmettutari" value="0" type="number"></td>
+                <td><input step="0.01" id="iadeyekonuolankdv" name="iadeyekonuolankdv" value="1" type="number"></td>
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><select name="istege_baglitevkatgirenislemler" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar2 %}
+                    <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input step="0.01" id="teslimvehizmettutari" name="teslimvehizmettutari" value="0" type="number"></td>
+                <td><input step="0.01" id="iadeyekonuolankdv" name="iadeyekonuolankdv" value="1" type="number"></td>
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><select name="istege_baglitevkatgirenislemler" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar2 %}
+                    <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input step="0.01" id="teslimvehizmettutari" name="teslimvehizmettutari" value="0" type="number"></td>
+                <td><input step="0.01" id="iadeyekonuolankdv" name="iadeyekonuolankdv" value="1" type="number"></td>
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><select name="istege_baglitevkatgirenislemler" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar2 %}
+                    <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input step="0.01" id="teslimvehizmettutari" name="teslimvehizmettutari" value="0" type="number"></td>
+                <td><input step="0.01" id="iadeyekonuolankdv" name="iadeyekonuolankdv" value="1" type="number"></td>
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><select name="istege_baglitevkatgirenislemler" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar2 %}
+                    <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input step="0.01" id="teslimvehizmettutari" name="teslimvehizmettutari" value="0" type="number"></td>
+                <td><input step="0.01" id="iadeyekonuolankdv" name="iadeyekonuolankdv" value="1" type="number"></td>
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><select name="istege_baglitevkatgirenislemler" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar2 %}
+                    <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input step="0.01" id="teslimvehizmettutari" name="teslimvehizmettutari" value="0" type="number"></td>
+                <td><input step="0.01" id="iadeyekonuolankdv" name="iadeyekonuolankdv" value="1" type="number"></td>
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><select name="istege_baglitevkatgirenislemler" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar2 %}
+                    <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input step="0.01" id="teslimvehizmettutari" name="teslimvehizmettutari" value="0" type="number"></td>
+                <td><input step="0.01" id="iadeyekonuolankdv" name="iadeyekonuolankdv" value="1" type="number"></td>
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><select name="istege_baglitevkatgirenislemler" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar2 %}
+                    <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input step="0.01" id="teslimvehizmettutari" name="teslimvehizmettutari" value="0" type="number"></td>
+                <td><input step="0.01" id="iadeyekonuolankdv" name="iadeyekonuolankdv" value="1" type="number"></td>
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><select name="istege_baglitevkatgirenislemler" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar2 %}
+                    <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input step="0.01" id="teslimvehizmettutari" name="teslimvehizmettutari" value="0" type="number"></td>
+                <td><input step="0.01" id="iadeyekonuolankdv" name="iadeyekonuolankdv" value="1" type="number"></td>
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><select name="istege_baglitevkatgirenislemler" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar2 %}
+                    <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input step="0.01" id="teslimvehizmettutari" name="teslimvehizmettutari" value="0" type="number"></td>
+                <td><input step="0.01" id="iadeyekonuolankdv" name="iadeyekonuolankdv" value="1" type="number"></td>
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><select name="istege_baglitevkatgirenislemler" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar2 %}
+                    <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input step="0.01" id="teslimvehizmettutari" name="teslimvehizmettutari" value="0" type="number"></td>
+                <td><input step="0.01" id="iadeyekonuolankdv" name="iadeyekonuolankdv" value="1" type="number"></td>
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><select name="istege_baglitevkatgirenislemler" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar2 %}
+                    <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input step="0.01" id="teslimvehizmettutari" name="teslimvehizmettutari" value="0" type="number"></td>
+                <td><input step="0.01" id="iadeyekonuolankdv" name="iadeyekonuolankdv" value="1" type="number"></td>
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><select name="istege_baglitevkatgirenislemler" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar2 %}
+                    <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input step="0.01" id="teslimvehizmettutari" name="teslimvehizmettutari" value="0" type="number"></td>
+                <td><input step="0.01" id="iadeyekonuolankdv" name="iadeyekonuolankdv" value="1" type="number"></td>
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><select name="istege_baglitevkatgirenislemler" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar2 %}
+                    <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input step="0.01" id="teslimvehizmettutari" name="teslimvehizmettutari" value="0" type="number"></td>
+                <td><input step="0.01" id="iadeyekonuolankdv" name="iadeyekonuolankdv" value="1" type="number"></td>
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><select name="istege_baglitevkatgirenislemler" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar2 %}
+                    <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input step="0.01" id="teslimvehizmettutari" name="teslimvehizmettutari" value="0" type="number"></td>
+                <td><input step="0.01" id="iadeyekonuolankdv" name="iadeyekonuolankdv" value="1" type="number"></td>
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><select name="istege_baglitevkatgirenislemler" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar2 %}
+                    <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input step="0.01" id="teslimvehizmettutari" name="teslimvehizmettutari" value="0" type="number"></td>
+                <td><input step="0.01" id="iadeyekonuolankdv" name="iadeyekonuolankdv" value="1" type="number"></td>
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><select name="istege_baglitevkatgirenislemler" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar2 %}
+                    <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input step="0.01" id="teslimvehizmettutari" name="teslimvehizmettutari" value="0" type="number"></td>
+                <td><input step="0.01" id="iadeyekonuolankdv" name="iadeyekonuolankdv" value="1" type="number"></td>
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><select name="istege_baglitevkatgirenislemler" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar2 %}
+                    <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input step="0.01" id="teslimvehizmettutari" name="teslimvehizmettutari" value="0" type="number"></td>
+                <td><input step="0.01" id="iadeyekonuolankdv" name="iadeyekonuolankdv" value="1" type="number"></td>
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><select name="istege_baglitevkatgirenislemler" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar2 %}
+                    <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input step="0.01" id="teslimvehizmettutari" name="teslimvehizmettutari" value="0" type="number"></td>
+                <td><input step="0.01" id="iadeyekonuolankdv" name="iadeyekonuolankdv" value="1" type="number"></td>
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><select name="istege_baglitevkatgirenislemler" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar2 %}
+                    <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input step="0.01" id="teslimvehizmettutari" name="teslimvehizmettutari" value="0" type="number"></td>
+                <td><input step="0.01" id="iadeyekonuolankdv" name="iadeyekonuolankdv" value="1" type="number"></td>
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><select name="istege_baglitevkatgirenislemler" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar2 %}
+                    <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input step="0.01" id="teslimvehizmettutari" name="teslimvehizmettutari" value="0" type="number"></td>
+                <td><input step="0.01" id="iadeyekonuolankdv" name="iadeyekonuolankdv" value="1" type="number"></td>
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><select name="istege_baglitevkatgirenislemler" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar2 %}
+                    <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input step="0.01" id="teslimvehizmettutari" name="teslimvehizmettutari" value="0" type="number"></td>
+                <td><input step="0.01" id="iadeyekonuolankdv" name="iadeyekonuolankdv" value="1" type="number"></td>
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><select name="istege_baglitevkatgirenislemler" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar2 %}
+                    <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input step="0.01" id="teslimvehizmettutari" name="teslimvehizmettutari" value="0" type="number"></td>
+                <td><input step="0.01" id="iadeyekonuolankdv" name="iadeyekonuolankdv" value="1" type="number"></td>
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><select name="istege_baglitevkatgirenislemler" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar2 %}
+                    <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input step="0.01" id="teslimvehizmettutari" name="teslimvehizmettutari" value="0" type="number"></td>
+                <td><input step="0.01" id="iadeyekonuolankdv" name="iadeyekonuolankdv" value="1" type="number"></td>
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><select name="istege_baglitevkatgirenislemler" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar2 %}
+                    <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input step="0.01" id="teslimvehizmettutari" name="teslimvehizmettutari" value="0" type="number"></td>
+                <td><input step="0.01" id="iadeyekonuolankdv" name="iadeyekonuolankdv" value="1" type="number"></td>
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><select name="istege_baglitevkatgirenislemler" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar2 %}
+                    <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input step="0.01" id="teslimvehizmettutari" name="teslimvehizmettutari" value="0" type="number"></td>
+                <td><input step="0.01" id="iadeyekonuolankdv" name="iadeyekonuolankdv" value="1" type="number"></td>
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><select name="istege_baglitevkatgirenislemler" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar2 %}
+                    <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input step="0.01" id="teslimvehizmettutari" name="teslimvehizmettutari" value="0" type="number"></td>
+                <td><input step="0.01" id="iadeyekonuolankdv" name="iadeyekonuolankdv" value="1" type="number"></td>
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><select name="istege_baglitevkatgirenislemler" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar2 %}
+                    <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input step="0.01" id="teslimvehizmettutari" name="teslimvehizmettutari" value="0" type="number"></td>
+                <td><input step="0.01" id="iadeyekonuolankdv" name="iadeyekonuolankdv" value="1" type="number"></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="container tablo" style="margin-top: 0px !important;">
+        <input class="col-12" disabled value="DİĞER İADE HAKKI DOĞURAN İŞLEMLER" type="text">
+        <div class="table-responsive " style=" 
+        height: 344px;
+        overflow: auto;">
+          <table class="table table-bordered ">
+            <thead style="position: sticky;top: 0">
+              <tr>
+                <th class="text-center" style="min-width: 100px ;">İşlem TÜRÜ</th>
+                <th class="text-center" style="min-width: 50px ;"></th>
+                <th class="text-center" style="min-width: 150px ;">Teslim Ve Hizmet Tutarı</th>
+                <th class="text-center"></th>
+                <th class="text-center" style="min-width: 150px ;">İadeye Konu Olan KDV</th>
+                
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><select name="digeriadersecim1" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in kdv_istisnalari2 %}
+                    <option value="{{i.id}}">{{i.kod}}-{{i.icerik}}</option>
+                  {% endfor %}
+                </select></td>
+                <td>70</td>
+                <td><input step="0.01" id="digeriadetamistisnamalhizmeti1" name="digeriadetamistisnamalhizmeti1" value="0" type="number"></td>
+                <td>71</td>
+                <td><input step="0.01" id="digeriadekonuolankdv1" name="digeriadekonuolankdv1" value="0" type="number"></td>
+              </tr>
+              <tr>
+                <td><select name="digeriadersecim2" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in kdv_istisnalari2 %}
+                    <option value="{{i.id}}">{{i.kod}}-{{i.icerik}}</option>
+                  {% endfor %}
+                </select></td>
+                <td>72</td>
+                <td><input step="0.01" id="digeriadetamistisnamalhizmeti2" name="digeriadetamistisnamalhizmeti2" value="0" type="number"></td>
+                <td>73</td>
+                <td><input step="0.01" id="digeriadekonuolankdv2" name="digeriadekonuolankdv2" value="0" type="number"></td>
+              </tr>
+              <tr>
+                <td><select name="digeriadersecim3" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in kdv_istisnalari2 %}
+                    <option value="{{i.id}}">{{i.kod}}-{{i.icerik}}</option>
+                  {% endfor %}
+                </select></td>
+                <td>74</td>
+                <td><input step="0.01" id="digeriadetamistisnamalhizmeti3" name="digeriadetamistisnamalhizmeti3" value="0" type="number"></td>
+                <td>75</td>
+                <td><input step="0.01" id="digeriadekonuolankdv3" name="digeriadekonuolankdv3" value="0" type="number"></td>
+              </tr>
+              <tr>
+                <td><select name="digeriadersecim4" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in kdv_istisnalari2 %}
+                    <option value="{{i.id}}">{{i.kod}}-{{i.icerik}}</option>
+                  {% endfor %}
+                </select></td>
+                <td>76</td>
+                <td><input step="0.01" id="digeriadetamistisnamalhizmeti4" name="digeriadetamistisnamalhizmeti4" value="0" type="number"></td>
+                <td>77</td>
+                <td><input step="0.01" id="digeriadekonuolankdv4" name="digeriadekonuolankdv4" value="0" type="number"></td>
+              </tr>
+              <tr>
+                <td><select name="digeriadersecim5" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in kdv_istisnalari2 %}
+                    <option value="{{i.id}}">{{i.kod}}-{{i.icerik}}</option>
+                  {% endfor %}
+                </select></td>
+                <td>78</td>
+                <td><input step="0.01" id="digeriadetamistisnamalhizmeti5" name="digeriadetamistisnamalhizmeti5" value="0" type="number"></td>
+                <td>79</td>
+                <td><input step="0.01" id="digeriadekonuolankdv5" name="digeriadekonuolankdv5" value="0" type="number"></td>
+              </tr>
+              <tr>
+                <td><b>TOPLAM</b></td>
+                <td>80</td>
+                <td><span id="digeriadetamistisnamalhizmetitoplam">0</span></td>
+
+                <td>81</td>
+                <td><span id="digeriadekonuolankdvtoplam">0</span></td>
+              </tr>
+              <tr>
+                <td><b>İade Edilebilir KDV (69+81)</b></td>
+                <td></td>
+                <td></td>
+
+                <td>82</td>
+                <td><span id="digeriadekonuolankdvtoplamdigeriilebirikte">0</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
       <hr style="border: 2px solid black !important;" >
   </div>
 </div>
@@ -1020,4 +1639,20 @@
     yeniselect();
   }
 </script>
+<script>
+  let k = 0;
+  function ekleYeniSatiristisna() {
+    
+    var elements = document.getElementsByClassName('gosterme');
+
+    if (elements[k]) {
+        elements[k].classList.remove('gosterme');
+    } else {
+        console.error("Ürün Sınırına Ulaştınız");
+    }
+
+    yeniselect();
+  }
+</script>
+
 {% endblock content %}
