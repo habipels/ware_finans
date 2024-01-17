@@ -7,6 +7,9 @@
   .yeniform {
     display: none;
   }
+  .gosterme{
+    display: none;
+  }
 </style>
   <!--Header-->
   <div class="icon-bar">
@@ -46,7 +49,7 @@
     <div class="row">
         <h1 class="text-center" >KATMA DEĞER VERGİSİ BEYANNAMESİ 1015B</h1>
         <h3 class="text-center">(Vergi Sorumluları İçin)</h3>
-        <div class="col-6">KDV AYI : <select name="aysecimi" id="">
+        <div class="col-6">KDV AYI : <select style="max-width: 100px;"name="aysecimi" id="">
           <option value="OCAK">OCAK</option>
           <option value="ŞUBAT">ŞUBAT</option>
           <option value="MART">MART</option>
@@ -61,7 +64,7 @@
           <option value="ARALIK">ARALIK</option>
         </select></div>
         <div class="col-6"><label for="firmalar">FİRMALARIM
-          <select  onchange="if (this.value) window.location.href=this.value" style="box-sizing: content-box;" id="firmalar">
+          <select style="max-width: 100px;" onchange="if (this.value) window.location.href=this.value" style="box-sizing: content-box;" id="firmalar">
             <option value="/{{firma.firma_ozel_anahtar}}/kdv1beyannamesi/">{{firma.firma_unvani}} {{firma.Firma_unvani2}} ({{firma.tanitici_isim}})</option>
             {% for i in firmalarim %}
              {% if firma.id == i.id %}
@@ -81,7 +84,7 @@
         <hr>
         <div class="col-6"><p><b>Yılı : <script>document.write(new Date().getFullYear())</script></b></p>
             <p><b>Vergi Dairesi Kodu : {{subeleri.vergi_dairesi_adi.vergi_dairesi_kodu}}</b></p>
-            <p><b>Dönem : <select name="donem" id="">
+            <p><b>Dönem : <select style="max-width: 100px;"name="donem" id="">
               <option value="Aylık">Aylık</option>
               <option value="Üç Aylık">Üç Aylık</option>
             </select></b></p>
@@ -121,8 +124,11 @@
             <tbody>
               <tr>
                 <td>6</td>
-                <td><select name="islemturu6" id="">
+                <td><select style="max-width: 100px;" name="islemturu6" id="">
                   <option value=""></option>
+                  {% for i in kdv_tamtefikat %}
+                    <option value="{{i}}">{{i}}</option>
+                  {% endfor %}
                 </select></td>
                 <td><input step="0.01" id="matrah6" name="matrah6" value="0" type="number"></td>
                 <td><input step="0.01" id="kdv6" name="kdv6" value="1" type="number"></td>
@@ -131,8 +137,11 @@
               </tr>
               <tr>
                 <td>8</td>
-                <td><select name="islemturu8" id="">
-                  <option value=""></option>
+                <td><select style="max-width: 100px;"name="islemturu8" id="">
+                  <option value=""></option>{% for i in kdv_tamtefikat %}
+                    <option value="{{i}}">{{i}}</option>
+                  {% endfor %}
+                  </select>
                 <td><input step="0.01" id="matrah8" name="matrah8" value="0" type="number"></td>
                 <td><input step="0.01" id="kdv8" name="kdv8" value="10" type="number"></td>
                 <td>9</td>
@@ -140,8 +149,11 @@
               </tr>
               <tr>
                 <td>10</td>
-                <td><select name="islemturu10" id="">
-                  <option value=""></option>
+                <td><select style="max-width: 100px;"name="islemturu10" id="">
+                  <option value=""></option>{% for i in kdv_tamtefikat %}
+                    <option value="{{i}}">{{i}}</option>
+                  {% endfor %}
+                  </select>
                 <td><input step="0.01" id="matrah10" name="matrah10" value="0" type="number"></td>
                 <td><input step="0.01" id="kdv10" name="kdv10" value="20" type="number"></td>
                 <td>11</td>
@@ -149,8 +161,11 @@
               </tr>
               <tr>
                 <td>12</td>
-                <td><select name="islemturu12" id="">
-                  <option value=""></option>
+                <td><select style="max-width: 100px;"name="islemturu12" id="">
+                  <option value=""></option>{% for i in kdv_tamtefikat %}
+                    <option value="{{i}}">{{i}}</option>
+                  {% endfor %}
+                  </select>
                 <td><input step="0.01" id="matrah12" name="matrah10" value="0" type="number"></td>
                 <td><input step="0.01" id="kdv12" name="kdv10" value="20" type="number"></td>
                 <td>13</td>
@@ -170,8 +185,1099 @@
           </table>
         </div>
       </div>
+      <div class="container tablo" style="margin-top: 0px !important;">
+        <input class="col-12" disabled value="İSTEĞE BAĞLI TAM TEVKİFAT UYGULANAN İŞLEMLERE AİT BİLDİRİM" type="text">
+        <div class="table-responsive " style=" 
+        height: 300px;
+        overflow: auto;">
+          <table class="table table-bordered ">
+            <thead style="position: sticky;top: 0">
+              <tr>
+                <th class="text-center" style="min-width: 100px ;">İŞLEM TÜRÜ</th>
+                <th class="text-center" style="min-width: 50px ;">MATRAH</th>
+                <th class="text-center" style="min-width: 150px ;">KDV ORANI (%)</th>
+                <th class="text-center">VERGİ</th>
+                <th class="text-center"><a href="javascript:void(0);" onclick="ekleYeniSatir()">SATIR EKLE</a></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><select name="istege_baglitevkat" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar1 %}
+                    <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input step="0.01" id="istegebaglimatrah" name="istegebaglimatrah" value="0" type="number"></td>
+                <td><input step="0.01" id="istebaglikdv" name="istebaglikdv" value="1" type="number"></td>
+                <td><input step="0.01" id="istebaglivergi" name="istebaglivergi" value="0" type="number"></td>
+              </tr>
+              <tr class="yeniform">
+                <td><select name="istege_baglitevkat" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar1 %}
+                    <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input step="0.01" id="istegebaglimatrah" name="istegebaglimatrah" value="0" type="number"></td>
+                <td><input step="0.01" id="istebaglikdv" name="istebaglikdv" value="1" type="number"></td>
+                <td><input step="0.01" id="istebaglivergi" name="istebaglivergi" value="0" type="number"></td>
+              </tr>
+              <tr class="yeniform">
+                <td><select name="istege_baglitevkat" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar1 %}
+                    <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input step="0.01" id="istegebaglimatrah" name="istegebaglimatrah" value="0" type="number"></td>
+                <td><input step="0.01" id="istebaglikdv" name="istebaglikdv" value="1" type="number"></td>
+                <td><input step="0.01" id="istebaglivergi" name="istebaglivergi" value="0" type="number"></td>
+              </tr>
+              <tr class="yeniform">
+                <td><select name="istege_baglitevkat" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar1 %}
+                    <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input step="0.01" id="istegebaglimatrah" name="istegebaglimatrah" value="0" type="number"></td>
+                <td><input step="0.01" id="istebaglikdv" name="istebaglikdv" value="1" type="number"></td>
+                <td><input step="0.01" id="istebaglivergi" name="istebaglivergi" value="0" type="number"></td>
+              </tr>
+              <tr class="yeniform">
+                <td><select name="istege_baglitevkat" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar1 %}
+                    <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input step="0.01" id="istegebaglimatrah" name="istegebaglimatrah" value="0" type="number"></td>
+                <td><input step="0.01" id="istebaglikdv" name="istebaglikdv" value="1" type="number"></td>
+                <td><input step="0.01" id="istebaglivergi" name="istebaglivergi" value="0" type="number"></td>
+              </tr>
+              <tr class="yeniform">
+                <td><select name="istege_baglitevkat" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar1 %}
+                    <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input step="0.01" id="istegebaglimatrah" name="istegebaglimatrah" value="0" type="number"></td>
+                <td><input step="0.01" id="istebaglikdv" name="istebaglikdv" value="1" type="number"></td>
+                <td><input step="0.01" id="istebaglivergi" name="istebaglivergi" value="0" type="number"></td>
+              </tr>
+              <tr class="yeniform">
+                <td><select name="istege_baglitevkat" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar1 %}
+                    <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input step="0.01" id="istegebaglimatrah" name="istegebaglimatrah" value="0" type="number"></td>
+                <td><input step="0.01" id="istebaglikdv" name="istebaglikdv" value="1" type="number"></td>
+                <td><input step="0.01" id="istebaglivergi" name="istebaglivergi" value="0" type="number"></td>
+              </tr>
+              <tr class="yeniform">
+                <td><select name="istege_baglitevkat" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar1 %}
+                    <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input step="0.01" id="istegebaglimatrah" name="istegebaglimatrah" value="0" type="number"></td>
+                <td><input step="0.01" id="istebaglikdv" name="istebaglikdv" value="1" type="number"></td>
+                <td><input step="0.01" id="istebaglivergi" name="istebaglivergi" value="0" type="number"></td>
+              </tr>
+              <tr class="yeniform">
+                <td><select name="istege_baglitevkat" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar1 %}
+                    <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input step="0.01" id="istegebaglimatrah" name="istegebaglimatrah" value="0" type="number"></td>
+                <td><input step="0.01" id="istebaglikdv" name="istebaglikdv" value="1" type="number"></td>
+                <td><input step="0.01" id="istebaglivergi" name="istebaglivergi" value="0" type="number"></td>
+              </tr>
+              <tr class="yeniform">
+                <td><select name="istege_baglitevkat" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar1 %}
+                    <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input step="0.01" id="istegebaglimatrah" name="istegebaglimatrah" value="0" type="number"></td>
+                <td><input step="0.01" id="istebaglikdv" name="istebaglikdv" value="1" type="number"></td>
+                <td><input step="0.01" id="istebaglivergi" name="istebaglivergi" value="0" type="number"></td>
+              </tr>
+              <tr class="yeniform">
+                <td><select name="istege_baglitevkat" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar1 %}
+                    <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input step="0.01" id="istegebaglimatrah" name="istegebaglimatrah" value="0" type="number"></td>
+                <td><input step="0.01" id="istebaglikdv" name="istebaglikdv" value="1" type="number"></td>
+                <td><input step="0.01" id="istebaglivergi" name="istebaglivergi" value="0" type="number"></td>
+              </tr>
+              <tr class="yeniform">
+                <td><select name="istege_baglitevkat" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar1 %}
+                    <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input step="0.01" id="istegebaglimatrah" name="istegebaglimatrah" value="0" type="number"></td>
+                <td><input step="0.01" id="istebaglikdv" name="istebaglikdv" value="1" type="number"></td>
+                <td><input step="0.01" id="istebaglivergi" name="istebaglivergi" value="0" type="number"></td>
+              </tr>
+              <tr class="yeniform">
+                <td><select name="istege_baglitevkat" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar1 %}
+                    <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input step="0.01" id="istegebaglimatrah" name="istegebaglimatrah" value="0" type="number"></td>
+                <td><input step="0.01" id="istebaglikdv" name="istebaglikdv" value="1" type="number"></td>
+                <td><input step="0.01" id="istebaglivergi" name="istebaglivergi" value="0" type="number"></td>
+              </tr>
+              <tr class="yeniform">
+                <td><select name="istege_baglitevkat" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar1 %}
+                    <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input step="0.01" id="istegebaglimatrah" name="istegebaglimatrah" value="0" type="number"></td>
+                <td><input step="0.01" id="istebaglikdv" name="istebaglikdv" value="1" type="number"></td>
+                <td><input step="0.01" id="istebaglivergi" name="istebaglivergi" value="0" type="number"></td>
+              </tr>
+              <tr class="yeniform">
+                <td><select name="istege_baglitevkat" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar1 %}
+                    <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input step="0.01" id="istegebaglimatrah" name="istegebaglimatrah" value="0" type="number"></td>
+                <td><input step="0.01" id="istebaglikdv" name="istebaglikdv" value="1" type="number"></td>
+                <td><input step="0.01" id="istebaglivergi" name="istebaglivergi" value="0" type="number"></td>
+              </tr>
+              <tr class="yeniform">
+                <td><select name="istege_baglitevkat" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar1 %}
+                    <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input step="0.01" id="istegebaglimatrah" name="istegebaglimatrah" value="0" type="number"></td>
+                <td><input step="0.01" id="istebaglikdv" name="istebaglikdv" value="1" type="number"></td>
+                <td><input step="0.01" id="istebaglivergi" name="istebaglivergi" value="0" type="number"></td>
+              </tr>
+              <tr class="yeniform">
+                <td><select name="istege_baglitevkat" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar1 %}
+                    <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input step="0.01" id="istegebaglimatrah" name="istegebaglimatrah" value="0" type="number"></td>
+                <td><input step="0.01" id="istebaglikdv" name="istebaglikdv" value="1" type="number"></td>
+                <td><input step="0.01" id="istebaglivergi" name="istebaglivergi" value="0" type="number"></td>
+              </tr>
+              <tr class="yeniform">
+                <td><select name="istege_baglitevkat" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar1 %}
+                    <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input step="0.01" id="istegebaglimatrah" name="istegebaglimatrah" value="0" type="number"></td>
+                <td><input step="0.01" id="istebaglikdv" name="istebaglikdv" value="1" type="number"></td>
+                <td><input step="0.01" id="istebaglivergi" name="istebaglivergi" value="0" type="number"></td>
+              </tr>
+              <tr class="yeniform">
+                <td><select name="istege_baglitevkat" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar1 %}
+                    <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input step="0.01" id="istegebaglimatrah" name="istegebaglimatrah" value="0" type="number"></td>
+                <td><input step="0.01" id="istebaglikdv" name="istebaglikdv" value="1" type="number"></td>
+                <td><input step="0.01" id="istebaglivergi" name="istebaglivergi" value="0" type="number"></td>
+              </tr>
+              <tr class="yeniform">
+                <td><select name="istege_baglitevkat" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar1 %}
+                    <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input step="0.01" id="istegebaglimatrah" name="istegebaglimatrah" value="0" type="number"></td>
+                <td><input step="0.01" id="istebaglikdv" name="istebaglikdv" value="1" type="number"></td>
+                <td><input step="0.01" id="istebaglivergi" name="istebaglivergi" value="0" type="number"></td>
+              </tr>
+              <tr class="yeniform">
+                <td><select name="istege_baglitevkat" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar1 %}
+                    <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input step="0.01" id="istegebaglimatrah" name="istegebaglimatrah" value="0" type="number"></td>
+                <td><input step="0.01" id="istebaglikdv" name="istebaglikdv" value="1" type="number"></td>
+                <td><input step="0.01" id="istebaglivergi" name="istebaglivergi" value="0" type="number"></td>
+              </tr>
+              <tr class="yeniform">
+                <td><select name="istege_baglitevkat" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar1 %}
+                    <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input step="0.01" id="istegebaglimatrah" name="istegebaglimatrah" value="0" type="number"></td>
+                <td><input step="0.01" id="istebaglikdv" name="istebaglikdv" value="1" type="number"></td>
+                <td><input step="0.01" id="istebaglivergi" name="istebaglivergi" value="0" type="number"></td>
+              </tr>
+              <tr class="yeniform">
+                <td><select name="istege_baglitevkat" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar1 %}
+                    <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input step="0.01" id="istegebaglimatrah" name="istegebaglimatrah" value="0" type="number"></td>
+                <td><input step="0.01" id="istebaglikdv" name="istebaglikdv" value="1" type="number"></td>
+                <td><input step="0.01" id="istebaglivergi" name="istebaglivergi" value="0" type="number"></td>
+              </tr>
+              <tr class="yeniform">
+                <td><select name="istege_baglitevkat" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar1 %}
+                    <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input step="0.01" id="istegebaglimatrah" name="istegebaglimatrah" value="0" type="number"></td>
+                <td><input step="0.01" id="istebaglikdv" name="istebaglikdv" value="1" type="number"></td>
+                <td><input step="0.01" id="istebaglivergi" name="istebaglivergi" value="0" type="number"></td>
+              </tr>
+              <tr class="yeniform">
+                <td><select name="istege_baglitevkat" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar1 %}
+                    <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input step="0.01" id="istegebaglimatrah" name="istegebaglimatrah" value="0" type="number"></td>
+                <td><input step="0.01" id="istebaglikdv" name="istebaglikdv" value="1" type="number"></td>
+                <td><input step="0.01" id="istebaglivergi" name="istebaglivergi" value="0" type="number"></td>
+              </tr>
+              <tr class="yeniform">
+                <td><select name="istege_baglitevkat" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar1 %}
+                    <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input step="0.01" id="istegebaglimatrah" name="istegebaglimatrah" value="0" type="number"></td>
+                <td><input step="0.01" id="istebaglikdv" name="istebaglikdv" value="1" type="number"></td>
+                <td><input step="0.01" id="istebaglivergi" name="istebaglivergi" value="0" type="number"></td>
+              </tr>
+              <tr class="yeniform">
+                <td><select name="istege_baglitevkat" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar1 %}
+                    <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input step="0.01" id="istegebaglimatrah" name="istegebaglimatrah" value="0" type="number"></td>
+                <td><input step="0.01" id="istebaglikdv" name="istebaglikdv" value="1" type="number"></td>
+                <td><input step="0.01" id="istebaglivergi" name="istebaglivergi" value="0" type="number"></td>
+              </tr>
+              <tr class="yeniform">
+                <td><select name="istege_baglitevkat" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar1 %}
+                    <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input step="0.01" id="istegebaglimatrah" name="istegebaglimatrah" value="0" type="number"></td>
+                <td><input step="0.01" id="istebaglikdv" name="istebaglikdv" value="1" type="number"></td>
+                <td><input step="0.01" id="istebaglivergi" name="istebaglivergi" value="0" type="number"></td>
+              </tr>
+              <tr class="yeniform">
+                <td><select name="istege_baglitevkat" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar1 %}
+                    <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input step="0.01" id="istegebaglimatrah" name="istegebaglimatrah" value="0" type="number"></td>
+                <td><input step="0.01" id="istebaglikdv" name="istebaglikdv" value="1" type="number"></td>
+                <td><input step="0.01" id="istebaglivergi" name="istebaglivergi" value="0" type="number"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="container tablo" style="margin-top: 0px !important;">
+        <input class="col-12" disabled value="KISMİ TEVKİFAT UYGULANAN İŞLEMLERE AİT BİLDİRİM" type="text">
+        <div class="table-responsive " style=" 
+        height: 550px;
+        overflow: auto;">
+          <table class="table table-bordered ">
+            <thead style="position: sticky;top: 0">
+              <tr>
+                <th class="text-center" style="min-width: 100px ;"></th>
+                <th class="text-center" style="min-width: 100px ;">İŞLEM TÜRÜ</th>
+                <th class="text-center" style="min-width: 50px ;">MATRAH</th>
+                <th class="text-center" style="min-width: 150px ;">KDV ORANI (%)</th>
+                <th class="text-center" style="min-width: 150px ;">TEVKİFAT ORANI (2/10,3/10,4/10,5/10,7/10/9/10)</th>
+                <th class="text-center" style="min-width: 100px ;"></th>
+                <th class="text-center">VERGİ</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>16</td>
+                <td><select name="secimtevkifat16" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar %}
+                    <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                </select></td>
+                
+                <td><input step="0.01" id="matrah16" name="matrah16" value="0" type="number"></td>
+                <td><input step="0.01" id="kdv16" name="kdv16" value="1" type="number"></td>
+                <td><input step="0.01" id="tevkifat16" name="tevkifat16"  type="text"></td>
+                <td>17</td>
+                <td><input step="0.01" id="vergi17" name="vergi17" value="0" type="number"></td>
+              </tr>
+              <tr>
+                <td>18</td>
+                <td><select name="secimtevkifat18" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar %}
+                    <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                </select></td>
+                
+                <td><input step="0.01" id="matrah18" name="matrah18" value="0" type="number"></td>
+                <td><input step="0.01" id="kdv18" name="kdv18" value="1" type="number"></td>
+                <td><input step="0.01" id="tevkifat18" name="tevkifat18"  type="text"></td>
+                <td>19</td>
+                <td><input step="0.01" id="vergi19" name="vergi19" value="0" type="number"></td>
+              </tr>
+              <tr>
+                <td>20</td>
+                <td><select name="secimtevkifat20" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar %}
+                    <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                </select></td>
+                
+                <td><input step="0.01" id="matrah20" name="matrah20" value="0" type="number"></td>
+                <td><input step="0.01" id="kdv20" name="kdv20" value="1" type="number"></td>
+                <td><input step="0.01" id="tevkifat20" name="tevkifat20"  type="text"></td>
+                <td>21</td>
+                <td><input step="0.01" id="vergi21" name="vergi21" value="0" type="number"></td>
+              </tr>
+              <tr>
+                <td>22</td>
+                <td><select name="secimtevkifat22" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar %}
+                    <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                </select></td>
+                
+                <td><input step="0.01" id="matrah22" name="matrah22" value="0" type="number"></td>
+                <td><input step="0.01" id="kdv22" name="kdv22" value="1" type="number"></td>
+                <td><input step="0.01" id="tevkifat22" name="tevkifat22"  type="text"></td>
+                <td>23</td>
+                <td><input step="0.01" id="vergi23" name="vergi23" value="0" type="number"></td>
+              </tr>
+              <tr>
+                <td>24</td>
+                <td><select name="secimtevkifat24" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar %}
+                    <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                </select></td>
+                
+                <td><input step="0.01" id="matrah24" name="matrah24" value="0" type="number"></td>
+                <td><input step="0.01" id="kdv24" name="kdv24" value="1" type="number"></td>
+                <td><input step="0.01" id="tevkifat24" name="tevkifat24"  type="text"></td>
+                <td>25</td>
+                <td><input step="0.01" id="vergi25" name="vergi25" value="0" type="number"></td>
+              </tr>
+              <tr>
+                <td>26</td>
+                <td><select name="secimtevkifat26" style="max-width: 100px;" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar %}
+                    <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                </select></td>
+                
+                <td><input step="0.01" id="matrah26" name="matrah26" value="0" type="number"></td>
+                <td><input step="0.01" id="kdv26" name="kdv26" value="1" type="number"></td>
+                <td><input step="0.01" id="tevkifat26" name="tevkifat26"  type="text"></td>
+                <td>27</td>
+                <td><input step="0.01" id="vergi27" name="vergi27" value="0" type="number"></td>
+              </tr>
+              <tr>
+                <td class="text-center"  colspan="6"><b>Matrah Toplamı (16+18+20+22+24+26)</b></td>
+                
+                <td><input step="0.01" id="matrahtoplamikismi" name="matrahtoplamikismi" value="0" type="number"></td>
+              </tr>
+              <tr>
+                <td class="text-center"  colspan="6"><b>Vergi Toplamı (17+19+21+23+25+27)</b></td>
+                
+                <td><input step="0.01" id="vergitoplamikimi" name="vergitoplamikimi" value="0" type="number"></td>
+              </tr>
+              <tr>
+                <td class="text-center"  colspan="6"><b>Toplam KDV Matrahı  (14+28)</b></td>
+                
+                <td><input step="0.01" id="toplamkdvmatrahi" name="toplamkdvmatrahi" value="0" type="number"></td>
+              </tr>
+              <tr>
+                <td class="text-center"  colspan="6"><b>Tevkif Edilen KDV Toplamı  (15+29)</b></td>
+                
+                <td><input step="0.01" id="tevkiedilenkdvtoplami" name="tevkiedilenkdvtoplami" value="0" type="number"></td>
+              </tr>
+              <tr>
+                <td class="text-center"  colspan="6"><b>İlave Edilecek KDV</b></td>
+                
+                <td><input step="0.01" id="İlaveedilecekkdv" name="İlaveedilecekkdv" value="0" type="number"></td>
+              </tr>
+              <tr>
+                <td class="text-center"  colspan="6"><b>Ödemesi Gereken KDV</b></td>
+                
+                <td><input step="0.01" id="odemesigerekenkdv" name="odemesigerekenkdv" value="0" type="number"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
       <hr style="border: 2px solid black !important;" >
   </div>
 </div>
+<div class="container">
+  <div class="row">
+      <h3 class="text-center" >Kesinti Yapılan Satıcılar</h3>
+      <hr>
+      <div class="container tablo" style="margin-top: 0px !important;">
+        <input class="col-12" disabled value="KATMA DEĞER VERGİSİ KESİNTİSİ YAPILAN MÜKELLEFLERE AİT BİLDİRİM" type="text">
+        <p><b>Yurtdışına Yapılan Ödemeler Toplamı :</b> <span class="birinciodeme" >0,0 </span>|<span class="ikinciodeme" >0,0</span></p>
+        <p><b>117 Seri Nolu Teb. Gereği yapılan Ödemeler Toplamı : </b><span class="birinciodeme117" >0,0</span>|<span class="ikinciodeme117" >0,0</span> </p>
+        <p><b>Toplam:</b> <span class="birincitoplam" >0,0</span>|<span class="ikincincitoplam" >0,0</span></p>
+        <div class="table-responsive " style=" 
+        height: 300px;
+        overflow: auto;">
+          <table class="table table-bordered ">
+            <thead style="position: sticky;top: 0">
+              <tr>
+                <th class="text-center" style="min-width: 100px ;">Soyadı (Unvan 1)</th>
+                <th class="text-center" style="min-width: 50px ;">Adı (Unvan 2)</th>
+                <th class="text-center" style="min-width: 150px ;">Vergi Kimlik No</th>
+                <th class="text-center" style="min-width: 150px ;">TC Kimlik No</th>
+                <th class="text-center" style="min-width: 150px ;">Vergiye Tabi Matrah</th>
+                <th class="text-center" style="min-width: 150px ;">Tevkif Edilen KDV</th>
+                <th class="text-center" style="min-width: 150px ;">Ödeme Türü</th>
+                <th class="text-center"><a href="javascript:void(0);" onclick="ekleYeniSatiristisna()">SATIR EKLE</a></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><input type="text" name="soyadiunvan"></td>
+                <td><input type="text" name="adiunvan"></td>
+                <td><input type="text" name="vergikimlikno"></td>
+                <td><input type="text" name="tckimlikno"></td>
+                <td><input step="0.01" type="number" value="0"  name="vergiyetabimatrah"></td>
+                <td><input step="0.01" type="number" value="0"  name="tevkifedilenmatrah"></td>
+                
+                <td><select name="odemeturu" id="">
+                  <option value=""></option>
+                  <option value="101 - Yurt Dışına Yapılan Ödemeler">101 - Yurt Dışına Yapılan Ödemeler</option>
+                  <option value="102 - KDV Genel Uygulama Tebliği Gereği Yapılan Öd">102 - KDV Genel Uygulama Tebliği Gereği Yapılan Öd</option>
+                </select></td>
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="soyadiunvan"></td>
+                <td><input type="text" name="adiunvan"></td>
+                <td><input type="text" name="vergikimlikno"></td>
+                <td><input type="text" name="tckimlikno"></td>
+                <td><input step="0.01" type="number" value="0"  name="vergiyetabimatrah"></td>
+                <td><input step="0.01" type="number" value="0"  name="tevkifedilenmatrah"></td>
+                
+                <td><select name="odemeturu" id="">
+                  <option value=""></option>
+                  <option value="101 - Yurt Dışına Yapılan Ödemeler">101 - Yurt Dışına Yapılan Ödemeler</option>
+                  <option value="102 - KDV Genel Uygulama Tebliği Gereği Yapılan Öd">102 - KDV Genel Uygulama Tebliği Gereği Yapılan Öd</option>
+                </select></td>
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="soyadiunvan"></td>
+                <td><input type="text" name="adiunvan"></td>
+                <td><input type="text" name="vergikimlikno"></td>
+                <td><input type="text" name="tckimlikno"></td>
+                <td><input step="0.01" type="number" value="0"  name="vergiyetabimatrah"></td>
+                <td><input step="0.01" type="number" value="0"  name="tevkifedilenmatrah"></td>
+                
+                <td><select name="odemeturu" id="">
+                  <option value=""></option>
+                  <option value="101 - Yurt Dışına Yapılan Ödemeler">101 - Yurt Dışına Yapılan Ödemeler</option>
+                  <option value="102 - KDV Genel Uygulama Tebliği Gereği Yapılan Öd">102 - KDV Genel Uygulama Tebliği Gereği Yapılan Öd</option>
+                </select></td>
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="soyadiunvan"></td>
+                <td><input type="text" name="adiunvan"></td>
+                <td><input type="text" name="vergikimlikno"></td>
+                <td><input type="text" name="tckimlikno"></td>
+                <td><input step="0.01" type="number" value="0"  name="vergiyetabimatrah"></td>
+                <td><input step="0.01" type="number" value="0"  name="tevkifedilenmatrah"></td>
+                
+                <td><select name="odemeturu" id="">
+                  <option value=""></option>
+                  <option value="101 - Yurt Dışına Yapılan Ödemeler">101 - Yurt Dışına Yapılan Ödemeler</option>
+                  <option value="102 - KDV Genel Uygulama Tebliği Gereği Yapılan Öd">102 - KDV Genel Uygulama Tebliği Gereği Yapılan Öd</option>
+                </select></td>
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="soyadiunvan"></td>
+                <td><input type="text" name="adiunvan"></td>
+                <td><input type="text" name="vergikimlikno"></td>
+                <td><input type="text" name="tckimlikno"></td>
+                <td><input step="0.01" type="number" value="0"  name="vergiyetabimatrah"></td>
+                <td><input step="0.01" type="number" value="0"  name="tevkifedilenmatrah"></td>
+                
+                <td><select name="odemeturu" id="">
+                  <option value=""></option>
+                  <option value="101 - Yurt Dışına Yapılan Ödemeler">101 - Yurt Dışına Yapılan Ödemeler</option>
+                  <option value="102 - KDV Genel Uygulama Tebliği Gereği Yapılan Öd">102 - KDV Genel Uygulama Tebliği Gereği Yapılan Öd</option>
+                </select></td>
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="soyadiunvan"></td>
+                <td><input type="text" name="adiunvan"></td>
+                <td><input type="text" name="vergikimlikno"></td>
+                <td><input type="text" name="tckimlikno"></td>
+                <td><input step="0.01" type="number" value="0"  name="vergiyetabimatrah"></td>
+                <td><input step="0.01" type="number" value="0"  name="tevkifedilenmatrah"></td>
+                
+                <td><select name="odemeturu" id="">
+                  <option value=""></option>
+                  <option value="101 - Yurt Dışına Yapılan Ödemeler">101 - Yurt Dışına Yapılan Ödemeler</option>
+                  <option value="102 - KDV Genel Uygulama Tebliği Gereği Yapılan Öd">102 - KDV Genel Uygulama Tebliği Gereği Yapılan Öd</option>
+                </select></td>
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="soyadiunvan"></td>
+                <td><input type="text" name="adiunvan"></td>
+                <td><input type="text" name="vergikimlikno"></td>
+                <td><input type="text" name="tckimlikno"></td>
+                <td><input step="0.01" type="number" value="0"  name="vergiyetabimatrah"></td>
+                <td><input step="0.01" type="number" value="0"  name="tevkifedilenmatrah"></td>
+                
+                <td><select name="odemeturu" id="">
+                  <option value=""></option>
+                  <option value="101 - Yurt Dışına Yapılan Ödemeler">101 - Yurt Dışına Yapılan Ödemeler</option>
+                  <option value="102 - KDV Genel Uygulama Tebliği Gereği Yapılan Öd">102 - KDV Genel Uygulama Tebliği Gereği Yapılan Öd</option>
+                </select></td>
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="soyadiunvan"></td>
+                <td><input type="text" name="adiunvan"></td>
+                <td><input type="text" name="vergikimlikno"></td>
+                <td><input type="text" name="tckimlikno"></td>
+                <td><input step="0.01" type="number" value="0"  name="vergiyetabimatrah"></td>
+                <td><input step="0.01" type="number" value="0"  name="tevkifedilenmatrah"></td>
+                
+                <td><select name="odemeturu" id="">
+                  <option value=""></option>
+                  <option value="101 - Yurt Dışına Yapılan Ödemeler">101 - Yurt Dışına Yapılan Ödemeler</option>
+                  <option value="102 - KDV Genel Uygulama Tebliği Gereği Yapılan Öd">102 - KDV Genel Uygulama Tebliği Gereği Yapılan Öd</option>
+                </select></td>
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="soyadiunvan"></td>
+                <td><input type="text" name="adiunvan"></td>
+                <td><input type="text" name="vergikimlikno"></td>
+                <td><input type="text" name="tckimlikno"></td>
+                <td><input step="0.01" type="number" value="0"  name="vergiyetabimatrah"></td>
+                <td><input step="0.01" type="number" value="0"  name="tevkifedilenmatrah"></td>
+                
+                <td><select name="odemeturu" id="">
+                  <option value=""></option>
+                  <option value="101 - Yurt Dışına Yapılan Ödemeler">101 - Yurt Dışına Yapılan Ödemeler</option>
+                  <option value="102 - KDV Genel Uygulama Tebliği Gereği Yapılan Öd">102 - KDV Genel Uygulama Tebliği Gereği Yapılan Öd</option>
+                </select></td>
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="soyadiunvan"></td>
+                <td><input type="text" name="adiunvan"></td>
+                <td><input type="text" name="vergikimlikno"></td>
+                <td><input type="text" name="tckimlikno"></td>
+                <td><input step="0.01" type="number" value="0"  name="vergiyetabimatrah"></td>
+                <td><input step="0.01" type="number" value="0"  name="tevkifedilenmatrah"></td>
+                
+                <td><select name="odemeturu" id="">
+                  <option value=""></option>
+                  <option value="101 - Yurt Dışına Yapılan Ödemeler">101 - Yurt Dışına Yapılan Ödemeler</option>
+                  <option value="102 - KDV Genel Uygulama Tebliği Gereği Yapılan Öd">102 - KDV Genel Uygulama Tebliği Gereği Yapılan Öd</option>
+                </select></td>
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="soyadiunvan"></td>
+                <td><input type="text" name="adiunvan"></td>
+                <td><input type="text" name="vergikimlikno"></td>
+                <td><input type="text" name="tckimlikno"></td>
+                <td><input step="0.01" type="number" value="0"  name="vergiyetabimatrah"></td>
+                <td><input step="0.01" type="number" value="0"  name="tevkifedilenmatrah"></td>
+                
+                <td><select name="odemeturu" id="">
+                  <option value=""></option>
+                  <option value="101 - Yurt Dışına Yapılan Ödemeler">101 - Yurt Dışına Yapılan Ödemeler</option>
+                  <option value="102 - KDV Genel Uygulama Tebliği Gereği Yapılan Öd">102 - KDV Genel Uygulama Tebliği Gereği Yapılan Öd</option>
+                </select></td>
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="soyadiunvan"></td>
+                <td><input type="text" name="adiunvan"></td>
+                <td><input type="text" name="vergikimlikno"></td>
+                <td><input type="text" name="tckimlikno"></td>
+                <td><input step="0.01" type="number" value="0"  name="vergiyetabimatrah"></td>
+                <td><input step="0.01" type="number" value="0"  name="tevkifedilenmatrah"></td>
+                
+                <td><select name="odemeturu" id="">
+                  <option value=""></option>
+                  <option value="101 - Yurt Dışına Yapılan Ödemeler">101 - Yurt Dışına Yapılan Ödemeler</option>
+                  <option value="102 - KDV Genel Uygulama Tebliği Gereği Yapılan Öd">102 - KDV Genel Uygulama Tebliği Gereği Yapılan Öd</option>
+                </select></td>
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="soyadiunvan"></td>
+                <td><input type="text" name="adiunvan"></td>
+                <td><input type="text" name="vergikimlikno"></td>
+                <td><input type="text" name="tckimlikno"></td>
+                <td><input step="0.01" type="number" value="0"  name="vergiyetabimatrah"></td>
+                <td><input step="0.01" type="number" value="0"  name="tevkifedilenmatrah"></td>
+                
+                <td><select name="odemeturu" id="">
+                  <option value=""></option>
+                  <option value="101 - Yurt Dışına Yapılan Ödemeler">101 - Yurt Dışına Yapılan Ödemeler</option>
+                  <option value="102 - KDV Genel Uygulama Tebliği Gereği Yapılan Öd">102 - KDV Genel Uygulama Tebliği Gereği Yapılan Öd</option>
+                </select></td>
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="soyadiunvan"></td>
+                <td><input type="text" name="adiunvan"></td>
+                <td><input type="text" name="vergikimlikno"></td>
+                <td><input type="text" name="tckimlikno"></td>
+                <td><input step="0.01" type="number" value="0"  name="vergiyetabimatrah"></td>
+                <td><input step="0.01" type="number" value="0"  name="tevkifedilenmatrah"></td>
+                
+                <td><select name="odemeturu" id="">
+                  <option value=""></option>
+                  <option value="101 - Yurt Dışına Yapılan Ödemeler">101 - Yurt Dışına Yapılan Ödemeler</option>
+                  <option value="102 - KDV Genel Uygulama Tebliği Gereği Yapılan Öd">102 - KDV Genel Uygulama Tebliği Gereği Yapılan Öd</option>
+                </select></td>
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="soyadiunvan"></td>
+                <td><input type="text" name="adiunvan"></td>
+                <td><input type="text" name="vergikimlikno"></td>
+                <td><input type="text" name="tckimlikno"></td>
+                <td><input step="0.01" type="number" value="0"  name="vergiyetabimatrah"></td>
+                <td><input step="0.01" type="number" value="0"  name="tevkifedilenmatrah"></td>
+                
+                <td><select name="odemeturu" id="">
+                  <option value=""></option>
+                  <option value="101 - Yurt Dışına Yapılan Ödemeler">101 - Yurt Dışına Yapılan Ödemeler</option>
+                  <option value="102 - KDV Genel Uygulama Tebliği Gereği Yapılan Öd">102 - KDV Genel Uygulama Tebliği Gereği Yapılan Öd</option>
+                </select></td>
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="soyadiunvan"></td>
+                <td><input type="text" name="adiunvan"></td>
+                <td><input type="text" name="vergikimlikno"></td>
+                <td><input type="text" name="tckimlikno"></td>
+                <td><input step="0.01" type="number" value="0"  name="vergiyetabimatrah"></td>
+                <td><input step="0.01" type="number" value="0"  name="tevkifedilenmatrah"></td>
+                
+                <td><select name="odemeturu" id="">
+                  <option value=""></option>
+                  <option value="101 - Yurt Dışına Yapılan Ödemeler">101 - Yurt Dışına Yapılan Ödemeler</option>
+                  <option value="102 - KDV Genel Uygulama Tebliği Gereği Yapılan Öd">102 - KDV Genel Uygulama Tebliği Gereği Yapılan Öd</option>
+                </select></td>
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="soyadiunvan"></td>
+                <td><input type="text" name="adiunvan"></td>
+                <td><input type="text" name="vergikimlikno"></td>
+                <td><input type="text" name="tckimlikno"></td>
+                <td><input step="0.01" type="number" value="0"  name="vergiyetabimatrah"></td>
+                <td><input step="0.01" type="number" value="0"  name="tevkifedilenmatrah"></td>
+                
+                <td><select name="odemeturu" id="">
+                  <option value=""></option>
+                  <option value="101 - Yurt Dışına Yapılan Ödemeler">101 - Yurt Dışına Yapılan Ödemeler</option>
+                  <option value="102 - KDV Genel Uygulama Tebliği Gereği Yapılan Öd">102 - KDV Genel Uygulama Tebliği Gereği Yapılan Öd</option>
+                </select></td>
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="soyadiunvan"></td>
+                <td><input type="text" name="adiunvan"></td>
+                <td><input type="text" name="vergikimlikno"></td>
+                <td><input type="text" name="tckimlikno"></td>
+                <td><input step="0.01" type="number" value="0"  name="vergiyetabimatrah"></td>
+                <td><input step="0.01" type="number" value="0"  name="tevkifedilenmatrah"></td>
+                
+                <td><select name="odemeturu" id="">
+                  <option value=""></option>
+                  <option value="101 - Yurt Dışına Yapılan Ödemeler">101 - Yurt Dışına Yapılan Ödemeler</option>
+                  <option value="102 - KDV Genel Uygulama Tebliği Gereği Yapılan Öd">102 - KDV Genel Uygulama Tebliği Gereği Yapılan Öd</option>
+                </select></td>
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="soyadiunvan"></td>
+                <td><input type="text" name="adiunvan"></td>
+                <td><input type="text" name="vergikimlikno"></td>
+                <td><input type="text" name="tckimlikno"></td>
+                <td><input step="0.01" type="number" value="0"  name="vergiyetabimatrah"></td>
+                <td><input step="0.01" type="number" value="0"  name="tevkifedilenmatrah"></td>
+                
+                <td><select name="odemeturu" id="">
+                  <option value=""></option>
+                  <option value="101 - Yurt Dışına Yapılan Ödemeler">101 - Yurt Dışına Yapılan Ödemeler</option>
+                  <option value="102 - KDV Genel Uygulama Tebliği Gereği Yapılan Öd">102 - KDV Genel Uygulama Tebliği Gereği Yapılan Öd</option>
+                </select></td>
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="soyadiunvan"></td>
+                <td><input type="text" name="adiunvan"></td>
+                <td><input type="text" name="vergikimlikno"></td>
+                <td><input type="text" name="tckimlikno"></td>
+                <td><input step="0.01" type="number" value="0"  name="vergiyetabimatrah"></td>
+                <td><input step="0.01" type="number" value="0"  name="tevkifedilenmatrah"></td>
+                
+                <td><select name="odemeturu" id="">
+                  <option value=""></option>
+                  <option value="101 - Yurt Dışına Yapılan Ödemeler">101 - Yurt Dışına Yapılan Ödemeler</option>
+                  <option value="102 - KDV Genel Uygulama Tebliği Gereği Yapılan Öd">102 - KDV Genel Uygulama Tebliği Gereği Yapılan Öd</option>
+                </select></td>
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="soyadiunvan"></td>
+                <td><input type="text" name="adiunvan"></td>
+                <td><input type="text" name="vergikimlikno"></td>
+                <td><input type="text" name="tckimlikno"></td>
+                <td><input step="0.01" type="number" value="0"  name="vergiyetabimatrah"></td>
+                <td><input step="0.01" type="number" value="0"  name="tevkifedilenmatrah"></td>
+                
+                <td><select name="odemeturu" id="">
+                  <option value=""></option>
+                  <option value="101 - Yurt Dışına Yapılan Ödemeler">101 - Yurt Dışına Yapılan Ödemeler</option>
+                  <option value="102 - KDV Genel Uygulama Tebliği Gereği Yapılan Öd">102 - KDV Genel Uygulama Tebliği Gereği Yapılan Öd</option>
+                </select></td>
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="soyadiunvan"></td>
+                <td><input type="text" name="adiunvan"></td>
+                <td><input type="text" name="vergikimlikno"></td>
+                <td><input type="text" name="tckimlikno"></td>
+                <td><input step="0.01" type="number" value="0"  name="vergiyetabimatrah"></td>
+                <td><input step="0.01" type="number" value="0"  name="tevkifedilenmatrah"></td>
+                
+                <td><select name="odemeturu" id="">
+                  <option value=""></option>
+                  <option value="101 - Yurt Dışına Yapılan Ödemeler">101 - Yurt Dışına Yapılan Ödemeler</option>
+                  <option value="102 - KDV Genel Uygulama Tebliği Gereği Yapılan Öd">102 - KDV Genel Uygulama Tebliği Gereği Yapılan Öd</option>
+                </select></td>
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="soyadiunvan"></td>
+                <td><input type="text" name="adiunvan"></td>
+                <td><input type="text" name="vergikimlikno"></td>
+                <td><input type="text" name="tckimlikno"></td>
+                <td><input step="0.01" type="number" value="0"  name="vergiyetabimatrah"></td>
+                <td><input step="0.01" type="number" value="0"  name="tevkifedilenmatrah"></td>
+                
+                <td><select name="odemeturu" id="">
+                  <option value=""></option>
+                  <option value="101 - Yurt Dışına Yapılan Ödemeler">101 - Yurt Dışına Yapılan Ödemeler</option>
+                  <option value="102 - KDV Genel Uygulama Tebliği Gereği Yapılan Öd">102 - KDV Genel Uygulama Tebliği Gereği Yapılan Öd</option>
+                </select></td>
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="soyadiunvan"></td>
+                <td><input type="text" name="adiunvan"></td>
+                <td><input type="text" name="vergikimlikno"></td>
+                <td><input type="text" name="tckimlikno"></td>
+                <td><input step="0.01" type="number" value="0"  name="vergiyetabimatrah"></td>
+                <td><input step="0.01" type="number" value="0"  name="tevkifedilenmatrah"></td>
+                
+                <td><select name="odemeturu" id="">
+                  <option value=""></option>
+                  <option value="101 - Yurt Dışına Yapılan Ödemeler">101 - Yurt Dışına Yapılan Ödemeler</option>
+                  <option value="102 - KDV Genel Uygulama Tebliği Gereği Yapılan Öd">102 - KDV Genel Uygulama Tebliği Gereği Yapılan Öd</option>
+                </select></td>
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="soyadiunvan"></td>
+                <td><input type="text" name="adiunvan"></td>
+                <td><input type="text" name="vergikimlikno"></td>
+                <td><input type="text" name="tckimlikno"></td>
+                <td><input step="0.01" type="number" value="0"  name="vergiyetabimatrah"></td>
+                <td><input step="0.01" type="number" value="0"  name="tevkifedilenmatrah"></td>
+                
+                <td><select name="odemeturu" id="">
+                  <option value=""></option>
+                  <option value="101 - Yurt Dışına Yapılan Ödemeler">101 - Yurt Dışına Yapılan Ödemeler</option>
+                  <option value="102 - KDV Genel Uygulama Tebliği Gereği Yapılan Öd">102 - KDV Genel Uygulama Tebliği Gereği Yapılan Öd</option>
+                </select></td>
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="soyadiunvan"></td>
+                <td><input type="text" name="adiunvan"></td>
+                <td><input type="text" name="vergikimlikno"></td>
+                <td><input type="text" name="tckimlikno"></td>
+                <td><input step="0.01" type="number" value="0"  name="vergiyetabimatrah"></td>
+                <td><input step="0.01" type="number" value="0"  name="tevkifedilenmatrah"></td>
+                
+                <td><select name="odemeturu" id="">
+                  <option value=""></option>
+                  <option value="101 - Yurt Dışına Yapılan Ödemeler">101 - Yurt Dışına Yapılan Ödemeler</option>
+                  <option value="102 - KDV Genel Uygulama Tebliği Gereği Yapılan Öd">102 - KDV Genel Uygulama Tebliği Gereği Yapılan Öd</option>
+                </select></td>
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="soyadiunvan"></td>
+                <td><input type="text" name="adiunvan"></td>
+                <td><input type="text" name="vergikimlikno"></td>
+                <td><input type="text" name="tckimlikno"></td>
+                <td><input step="0.01" type="number" value="0"  name="vergiyetabimatrah"></td>
+                <td><input step="0.01" type="number" value="0"  name="tevkifedilenmatrah"></td>
+                
+                <td><select name="odemeturu" id="">
+                  <option value=""></option>
+                  <option value="101 - Yurt Dışına Yapılan Ödemeler">101 - Yurt Dışına Yapılan Ödemeler</option>
+                  <option value="102 - KDV Genel Uygulama Tebliği Gereği Yapılan Öd">102 - KDV Genel Uygulama Tebliği Gereği Yapılan Öd</option>
+                </select></td>
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="soyadiunvan"></td>
+                <td><input type="text" name="adiunvan"></td>
+                <td><input type="text" name="vergikimlikno"></td>
+                <td><input type="text" name="tckimlikno"></td>
+                <td><input step="0.01" type="number" value="0"  name="vergiyetabimatrah"></td>
+                <td><input step="0.01" type="number" value="0"  name="tevkifedilenmatrah"></td>
+                
+                <td><select name="odemeturu" id="">
+                  <option value=""></option>
+                  <option value="101 - Yurt Dışına Yapılan Ödemeler">101 - Yurt Dışına Yapılan Ödemeler</option>
+                  <option value="102 - KDV Genel Uygulama Tebliği Gereği Yapılan Öd">102 - KDV Genel Uygulama Tebliği Gereği Yapılan Öd</option>
+                </select></td>
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="soyadiunvan"></td>
+                <td><input type="text" name="adiunvan"></td>
+                <td><input type="text" name="vergikimlikno"></td>
+                <td><input type="text" name="tckimlikno"></td>
+                <td><input step="0.01" type="number" value="0"  name="vergiyetabimatrah"></td>
+                <td><input step="0.01" type="number" value="0"  name="tevkifedilenmatrah"></td>
+                
+                <td><select name="odemeturu" id="">
+                  <option value=""></option>
+                  <option value="101 - Yurt Dışına Yapılan Ödemeler">101 - Yurt Dışına Yapılan Ödemeler</option>
+                  <option value="102 - KDV Genel Uygulama Tebliği Gereği Yapılan Öd">102 - KDV Genel Uygulama Tebliği Gereği Yapılan Öd</option>
+                </select></td>
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="soyadiunvan"></td>
+                <td><input type="text" name="adiunvan"></td>
+                <td><input type="text" name="vergikimlikno"></td>
+                <td><input type="text" name="tckimlikno"></td>
+                <td><input step="0.01" type="number" value="0"  name="vergiyetabimatrah"></td>
+                <td><input step="0.01" type="number" value="0"  name="tevkifedilenmatrah"></td>
+                
+                <td><select name="odemeturu" id="">
+                  <option value=""></option>
+                  <option value="101 - Yurt Dışına Yapılan Ödemeler">101 - Yurt Dışına Yapılan Ödemeler</option>
+                  <option value="102 - KDV Genel Uygulama Tebliği Gereği Yapılan Öd">102 - KDV Genel Uygulama Tebliği Gereği Yapılan Öd</option>
+                </select></td>
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="soyadiunvan"></td>
+                <td><input type="text" name="adiunvan"></td>
+                <td><input type="text" name="vergikimlikno"></td>
+                <td><input type="text" name="tckimlikno"></td>
+                <td><input step="0.01" type="number" value="0"  name="vergiyetabimatrah"></td>
+                <td><input step="0.01" type="number" value="0"  name="tevkifedilenmatrah"></td>
+                
+                <td><select name="odemeturu" id="">
+                  <option value=""></option>
+                  <option value="101 - Yurt Dışına Yapılan Ödemeler">101 - Yurt Dışına Yapılan Ödemeler</option>
+                  <option value="102 - KDV Genel Uygulama Tebliği Gereği Yapılan Öd">102 - KDV Genel Uygulama Tebliği Gereği Yapılan Öd</option>
+                </select></td>
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="soyadiunvan"></td>
+                <td><input type="text" name="adiunvan"></td>
+                <td><input type="text" name="vergikimlikno"></td>
+                <td><input type="text" name="tckimlikno"></td>
+                <td><input step="0.01" type="number" value="0"  name="vergiyetabimatrah"></td>
+                <td><input step="0.01" type="number" value="0"  name="tevkifedilenmatrah"></td>
+                
+                <td><select name="odemeturu" id="">
+                  <option value=""></option>
+                  <option value="101 - Yurt Dışına Yapılan Ödemeler">101 - Yurt Dışına Yapılan Ödemeler</option>
+                  <option value="102 - KDV Genel Uygulama Tebliği Gereği Yapılan Öd">102 - KDV Genel Uygulama Tebliği Gereği Yapılan Öd</option>
+                </select></td>
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="soyadiunvan"></td>
+                <td><input type="text" name="adiunvan"></td>
+                <td><input type="text" name="vergikimlikno"></td>
+                <td><input type="text" name="tckimlikno"></td>
+                <td><input step="0.01" type="number" value="0"  name="vergiyetabimatrah"></td>
+                <td><input step="0.01" type="number" value="0"  name="tevkifedilenmatrah"></td>
+                
+                <td><select name="odemeturu" id="">
+                  <option value=""></option>
+                  <option value="101 - Yurt Dışına Yapılan Ödemeler">101 - Yurt Dışına Yapılan Ödemeler</option>
+                  <option value="102 - KDV Genel Uygulama Tebliği Gereği Yapılan Öd">102 - KDV Genel Uygulama Tebliği Gereği Yapılan Öd</option>
+                </select></td>
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="soyadiunvan"></td>
+                <td><input type="text" name="adiunvan"></td>
+                <td><input type="text" name="vergikimlikno"></td>
+                <td><input type="text" name="tckimlikno"></td>
+                <td><input step="0.01" type="number" value="0"  name="vergiyetabimatrah"></td>
+                <td><input step="0.01" type="number" value="0"  name="tevkifedilenmatrah"></td>
+                
+                <td><select name="odemeturu" id="">
+                  <option value=""></option>
+                  <option value="101 - Yurt Dışına Yapılan Ödemeler">101 - Yurt Dışına Yapılan Ödemeler</option>
+                  <option value="102 - KDV Genel Uygulama Tebliği Gereği Yapılan Öd">102 - KDV Genel Uygulama Tebliği Gereği Yapılan Öd</option>
+                </select></td>
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="soyadiunvan"></td>
+                <td><input type="text" name="adiunvan"></td>
+                <td><input type="text" name="vergikimlikno"></td>
+                <td><input type="text" name="tckimlikno"></td>
+                <td><input step="0.01" type="number" value="0"  name="vergiyetabimatrah"></td>
+                <td><input step="0.01" type="number" value="0"  name="tevkifedilenmatrah"></td>
+                
+                <td><select name="odemeturu" id="">
+                  <option value=""></option>
+                  <option value="101 - Yurt Dışına Yapılan Ödemeler">101 - Yurt Dışına Yapılan Ödemeler</option>
+                  <option value="102 - KDV Genel Uygulama Tebliği Gereği Yapılan Öd">102 - KDV Genel Uygulama Tebliği Gereği Yapılan Öd</option>
+                </select></td>
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="soyadiunvan"></td>
+                <td><input type="text" name="adiunvan"></td>
+                <td><input type="text" name="vergikimlikno"></td>
+                <td><input type="text" name="tckimlikno"></td>
+                <td><input step="0.01" type="number" value="0"  name="vergiyetabimatrah"></td>
+                <td><input step="0.01" type="number" value="0"  name="tevkifedilenmatrah"></td>
+                
+                <td><select name="odemeturu" id="">
+                  <option value=""></option>
+                  <option value="101 - Yurt Dışına Yapılan Ödemeler">101 - Yurt Dışına Yapılan Ödemeler</option>
+                  <option value="102 - KDV Genel Uygulama Tebliği Gereği Yapılan Öd">102 - KDV Genel Uygulama Tebliği Gereği Yapılan Öd</option>
+                </select></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <hr style="border: 2px solid black !important;" >
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+      <h3 class="text-center" >EKLER</h3>
+      <hr>
+      
+      <hr style="border: 2px solid black !important;" >
+  </div>
+</div>
+<script>
+  let z = 0;
+  function ekleYeniSatir() {
+    
+    var elements = document.getElementsByClassName('yeniform');
 
+    if (elements[z]) {
+        elements[z].classList.remove('yeniform');
+    } else {
+        console.error("Ürün Sınırına Ulaştınız");
+    }
+
+    yeniselect();
+  }
+</script>
+<script>
+  let k = 0;
+  function ekleYeniSatiristisna() {
+    
+    var elements = document.getElementsByClassName('gosterme');
+
+    if (elements[k]) {
+        elements[k].classList.remove('gosterme');
+    } else {
+        console.error("Ürün Sınırına Ulaştınız");
+    }
+
+    yeniselect();
+  }
+</script>
 {% endblock content %}

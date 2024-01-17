@@ -5459,13 +5459,20 @@ def kdv2_beyannamesi(request,slug):
     content["faliyet"] = sube_faliyet_bilgileri.objects.filter(sube_bilgisi=sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)).first()).first()
     content["firmalarim"] = firma.objects.filter(silinme_bilgisi = False,firma_muhasabecisi = request.user)
     tevk_600ler = []
-    for i in range(601,628):
+    for i in range(301,326):
         tevk_600ler.append(str(i))
     content["tevkifatlar"] =tevkifat_tur_kodu.objects.filter(hesap_kodu__in = tevk_600ler,silinme_bilgisi = False,bagli_oldugu_firma = None)
-    tevk_800ler = []
-    for i in range(801,826):
-        tevk_800ler.append(str(i))
-    content["tevkifatlar1"] =tevkifat_tur_kodu.objects.filter(hesap_kodu__in = tevk_800ler,silinme_bilgisi = False,bagli_oldugu_firma = None)
+    tevk_300ler = []
+    for i in range(301,326):
+        tevk_300ler.append(str(i))
+    content["tevkifatlar1"] =tevkifat_tur_kodu.objects.filter(hesap_kodu__in = tevk_300ler,silinme_bilgisi = False,bagli_oldugu_firma = None)
+    content["kdv_tamtefikat"]=["101 - İKAMETGÂHI, İŞYERİ, KANUNİ MERKEZİ VE İŞ MERKEZİ TÜRKİYEDE BULUNMAYANLAR TARAFINDAN YAPILAN İŞLEMLER [GT 117-Bölüm (2.1)]",
+                               "102 - SERBEST MESLEK FAALİYETİ ÇERÇEVESİNDE YAPILAN TESLİM VE HİZMETLER [GT 117-Bölüm (2.2)]",
+                               "103 - KİRALAMA İŞLEMLERİ [GT 117-Bölüm (2.3)]",
+                               "104 - REKLÂM VERME İŞLEMLERİ [GT 117-Bölüm (2.4)]",
+                               "105 - 5300 SAYILI KANUN KAPSAMINDA DÜZENLENEN ÜRÜN SENETLERİNİN TEMSİL ETTİĞİ ÜRÜNÜ DEPODAN ÇEKECEK OLANLARA YAPILACAK TESLİMLER [KDV GUT -(II/F-4.18.4)]",
+                               "106 - İTHAL EDİLEN MALIN BEDELİNDE SONRADAN ORTAYA ÇIKAN ÖDEMELER",
+                               "150 - DİĞERLERİ"]
     if request.POST:
         aysecimi = request.POST.get("aysecimi")
         donem = request.POST.get("donem")
@@ -5489,6 +5496,59 @@ def kdv2_beyannamesi(request,slug):
         vergitoplami = request.POST.get("vergitoplami")
         matrahtoplami = request.POST.get("matrahtoplami")
         #TAM TEVKİFAT UYGULANAN İŞLEMLERE AİT BİLDİRİM
+        #İSTEĞE BAĞLI TAM TEVKİFAT UYGULANAN İŞLEMLERE AİT BİLDİRİM
+        istege_baglitevkat = request.POST.getlist("istege_baglitevkat")
+        istegebaglimatrah = request.POST.getlist("istegebaglimatrah")
+        istebaglikdv = request.POST.getlist("istebaglikdv")
+        istebaglivergi = request.POST.getlist("istebaglivergi")
+        #İSTEĞE BAĞLI TAM TEVKİFAT UYGULANAN İŞLEMLERE AİT BİLDİRİM
+        #KISMİ TEVKİFAT UYGULANAN İŞLEMLERE AİT BİLDİRİM
+        secimtevkifat16 = request.POST.get("secimtevkifat16")
+        matrah16 = request.POST.get("matrah16")
+        kdv16 = request.POST.get("kdv16")
+        tevkifat16 = request.POST.get("tevkifat16")
+        vergi17 = request.POST.get("vergi17")
+        secimtevkifat18 = request.POST.get("secimtevkifat18")
+        matrah18 = request.POST.get("matrah18")
+        kdv18 = request.POST.get("kdv18")
+        tevkifat18 = request.POST.get("tevkifat18")
+        vergi19 = request.POST.get("vergi19")
+        secimtevkifat20 = request.POST.get("secimtevkifat20")
+        matrah20 = request.POST.get("matrah20")
+        kdv20 = request.POST.get("kdv20")
+        tevkifat20 = request.POST.get("tevkifat20")
+        vergi21 = request.POST.get("vergi21")
+        secimtevkifat22 = request.POST.get("secimtevkifat22")
+        matrah22 = request.POST.get("matrah22")
+        kdv22 = request.POST.get("kdv22")
+        tevkifat22 = request.POST.get("tevkifat22")
+        vergi23 = request.POST.get("vergi23")
+        secimtevkifat24 = request.POST.get("secimtevkifat24")
+        matrah24 = request.POST.get("matrah24")
+        kdv24 = request.POST.get("kdv24")
+        tevkifat24 = request.POST.get("tevkifat24")
+        vergi25 = request.POST.get("vergi25")
+        secimtevkifat26 = request.POST.get("secimtevkifat26")
+        matrah26 = request.POST.get("matrah26")
+        kdv26 = request.POST.get("kdv26")
+        tevkifat26 = request.POST.get("tevkifat26")
+        vergi27 = request.POST.get("vergi27")
+        matrahtoplamikismi = request.POST.get("matrahtoplamikismi")
+        vergitoplamikimi = request.POST.get("vergitoplamikimi")
+        toplamkdvmatrahi = request.POST.get("toplamkdvmatrahi")
+        tevkiedilenkdvtoplami = request.POST.get("tevkiedilenkdvtoplami")
+        İlaveedilecekkdv = request.POST.get("İlaveedilecekkdv")
+        odemesigerekenkdv = request.POST.get("odemesigerekenkdv")
+        #KISMİ TEVKİFAT UYGULANAN İŞLEMLERE AİT BİLDİRİM
+        #KATMA DEĞER VERGİSİ KESİNTİSİ YAPILAN MÜKELLEFLERE AİT BİLDİRİM
+        soyadiunvan = request.POST.getlist("soyadiunvan")
+        adiunvan = request.POST.getlist("adiunvan")
+        vergikimlikno = request.POST.getlist("vergikimlikno")
+        tckimlikno = request.POST.getlist("tckimlikno")
+        vergiyetabimatrah = request.POST.getlist("vergiyetabimatrah")
+        tevkifedilenmatrah = request.POST.getlist("tevkifedilenmatrah")
+        odemeturu = request.POST.getlist("odemeturu")
+        #KATMA DEĞER VERGİSİ KESİNTİSİ YAPILAN MÜKELLEFLERE AİT BİLDİRİM 
     return render(request,"beyannameler/kdv2_beyanname.html",content)
 def kdv4_beyannamesi(request,slug):
     content = site_ayarlari()
