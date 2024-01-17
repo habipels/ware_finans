@@ -10,15 +10,21 @@
       <div class="collapse navbar-collapse" id="mynavbar">
         <ul class="navbar-nav me-auto">
           <li class="nav-item">
-            <a class="nav-link" style="color:rgb(255, 255, 255);" href="index.html">Anasayfa</a>
+            <a class="nav-link" style="color:rgb(255, 255, 255);" href="/">Anasayfa</a>
           </li>
-
+          {% if request.user.is_authenticated %}
           <li class="nav-item">
-            <a class="nav-link" style="color:rgb(8, 179, 8);" href="login.html">Giriş Yap</a>
+            <a class="nav-link"  href="{% url 'users:logoutUser' %}" style="color:rgb(8, 179, 8);" >Çıkış Yap</a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link" style="color:rgb(8, 179, 8);" href="{% url 'users:LoginAndRegister' %}">Giriş Yap</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" style="color:rgb(28, 127, 227);" href="javascript:void(0)">Kayıt Ol</a>
+            <a class="nav-link" style="color:rgb(28, 127, 227);"  href="{% url 'users:LoginAndRegister' %}">Kayıt Ol</a>
           </li>
+          {% endif %}
+          
           <li class="nav-item">
             <div class="dropdown" style="margin-right: 10px;">
               <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1"

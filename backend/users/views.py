@@ -55,3 +55,10 @@ def registers(request):
 
     else:
         return render("/users/loginandregister/")
+    
+
+
+def logoutUser(request):
+    logout(request)
+    messages.success(request,"Başarıyla Çıkış Yaptınız")
+    return redirect("/")

@@ -5458,6 +5458,9 @@ def kdv2_beyannamesi(request,slug):
     content["firma_ayarlari"] = firma_ayarlari_ayar_kisimi.objects.filter(bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) ).last()
     content["faliyet"] = sube_faliyet_bilgileri.objects.filter(sube_bilgisi=sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)).first()).first()
     content["firmalarim"] = firma.objects.filter(silinme_bilgisi = False,firma_muhasabecisi = request.user)
+    content["beyannameduzenleyen"]=beyanname_duzenleyene_ait_bilgiler.objects.filter(beyanname_bilgisi__sube_bilgisi = sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)).first()).last()
+    content["mirasci"] =beyanname_bilgileri.objects.filter(sube_bilgisi = sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)).first()).last()
+    content["kanuni_temsilci"] = beyanname_kanuni_temsilcisi.objects.filter(beyanname_bilgisi__sube_bilgisi = sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)).first()).last()
     tevk_600ler = []
     for i in range(301,326):
         tevk_600ler.append(str(i))
@@ -5549,6 +5552,23 @@ def kdv2_beyannamesi(request,slug):
         tevkifedilenmatrah = request.POST.getlist("tevkifedilenmatrah")
         odemeturu = request.POST.getlist("odemeturu")
         #KATMA DEĞER VERGİSİ KESİNTİSİ YAPILAN MÜKELLEFLERE AİT BİLDİRİM 
+        #TAM TEVKİFAT KAPSAMINDA İTHALAT İŞLEMLERİNE İLİŞKİN BİLGİLER
+        islemturutamtevkifat = request.POST.getlist("islemturutamtevkifat")
+        tamtevkifattarihi = request.POST.getlist("tamtevkifattarihi")
+        dolasimagirenbeyannamesayisi = request.POST.getlsit("dolasimagirenbeyannamesayisi")
+        odememememuhafiyeti = request.POST.getlist("odememememuhafiyeti")
+        #TAM TEVKİFAT KAPSAMINDA İTHALAT İŞLEMLERİNE İLİŞKİN BİLGİLER
+        #İSTEĞE BAĞLI TAM TEVKİFAT UYGULAMASI KAPSAMINDAKİ İŞLEMLERE AİT BİLDİRİM
+        alicinintcsi = request.POST.getlist("alicinintcsi")
+        alicininvergisi = request.POST.getlist("alicininvergisi")
+        aliciadisoyadiunvan = request.POST.getlist("aliciadisoyadiunvan")
+        faturabenzeritarih = request.POST.getlist("faturabenzeritarih")
+        faturabenzerisira = request.POST.getlist("faturabenzerisira")
+        alicikismiislemturu = request.POST.getlist("alicikismiislemturu")
+        islemtutarikdvszi = request.POST.getlist("islemtutarikdvszi")
+        kdvoranialicinin = request.POST.getlist("kdvoranialicinin")
+        vergisiialicinin = request.POST.getlist("vergisiialicinin")
+        #İSTEĞE BAĞLI TAM TEVKİFAT UYGULAMASI KAPSAMINDAKİ İŞLEMLERE AİT BİLDİRİM
     return render(request,"beyannameler/kdv2_beyanname.html",content)
 def kdv4_beyannamesi(request,slug):
     content = site_ayarlari()
