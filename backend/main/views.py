@@ -5714,7 +5714,7 @@ def bsformu(request,slug):
         muhasebecininsoyadiunvan = request.POST.get("muhasebecininsoyadiunvan")
         muhasebecininadi =request.POST.get("muhasebecininadi")
 
-    return render(request,"beyannameler/baformu.html",content)
+    return render(request,"beyannameler/bsformu.html",content)
 
 
 
