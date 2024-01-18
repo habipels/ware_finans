@@ -1,0 +1,858 @@
+{% extends "homebase.html" %}
+{% block content %}
+<style>
+  #kur {
+    display: none;
+  }
+  .yeniform {
+    display: none;
+  }
+</style>
+  <!--Header-->
+  <div class="icon-bar">
+
+    <a href="/{{firma.firma_ozel_anahtar}}/yenikasakarti/">Kaydet</a>
+    <a style="color: white;" onclick="showConfirmationPopup()"> Sil</a>
+    <a href="/{{firma.firma_ozel_anahtar}}/muavin/" >Muavin</a>
+    <a href="/{{firma.firma_ozel_anahtar}}/mizan/" >Mizan</a>
+    <a href="" style="color:red;">Çıkış Yap (ESC)</a>
+
+  </div>
+  <div class="d-menu">
+    <ul>
+      <li>
+       <a href="" title="">Beyanname Hazırla</a>
+      </li>
+      <li>
+        <a href="" title="">BS Formuna Git</a>
+
+      </li>
+       <li>
+       <a href="" title="">XML Oluştur</a>
+      </li>
+      <li>
+       <a href="" title="">XML Sil</a>
+      </li>
+      <li>
+       <a href="" title="">Son Kontrol</a>
+      </li>
+        <li>
+       <a href="" title="">Yazdır</a>
+      </li>
+      
+    </ul>
+  </div>
+  <div class="container">
+    <div class="row">
+        <h1 class="text-center" >BA FORMU </h1>
+        <h3 class="text-center">BİLANÇO ESASLARINA GÖRE DEFTER TUTAN MÜKELLEFLERİN MAL VE HİZMET ALIMLARINA İLİŞKİN BİLDİRİM</h3>
+        <div class="col-6">AY : <select name="aysecimi" id="">
+          <option value="00">TÜM AYLAR</option>
+          <option value="01">OCAK</option>
+          <option value="02">ŞUBAT</option>
+          <option value="03">MART</option>
+          <option value="04">NİSAN</option>
+          <option value="05">MAYIS</option>
+          <option value="06">HAZİRAN</option>
+          <option value="07">TEMMUZ</option>
+          <option value="08">AĞUSTOS</option>
+          <option value="09">EYLÜL</option>
+          <option value="10">EKİM</option>
+          <option value="11">KASIM</option>
+          <option value="12">ARALIK</option>
+        </select></div>
+        <div class="col-6"><label for="firmalar">FİRMALARIM
+          <select  onchange="if (this.value) window.location.href=this.value" style="box-sizing: content-box;" id="firmalar">
+            <option value="/{{firma.firma_ozel_anahtar}}/kdv1beyannamesi/">{{firma.firma_unvani}} {{firma.Firma_unvani2}} ({{firma.tanitici_isim}})</option>
+            {% for i in firmalarim %}
+             {% if firma.id == i.id %}
+             
+             {% else %}
+             <option value="/{{i.firma_ozel_anahtar}}/kdv1beyannamesi/">{{i.firma_unvani}} {{i.Firma_unvani2}} ({{i.tanitici_isim}})</option>
+             {% endif %}
+              
+            {% endfor %}
+          </select> </label></div>
+        <hr style="border: 3px solid black !important;" >
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <h4 class="text-center" ><b>MÜKELLEFLERİN KİMLİK BİLGİLERİ VE BİLDİRİM DÖNEMİLERİ</b> </h4>
+        <hr>
+        <div class="col-6">
+          
+            <p><b>Vergi Kimlik Numarası  : <input disabled value="1" style="max-width: 50px;" type="text"> <input name="verginumarasi" value="{% if subeleri.vergi_numarasi %}{{subeleri.vergi_numarasi}}{% endif %}"  type="text" >  </b></p>
+            <p><b>Vergi Kimlik Numarası (T.C Kimlik No) : <input disabled value="3" style="max-width: 50px;" type="text"> <input  name="verginumarasitc" value="{% if subeleri.sahis_ise_tc %}{{subeleri.sahis_ise_tc}}{% endif %}" type="text">  </b></p>
+            <p><b>Vergi Dairesi : <input disabled value="5" style="max-width: 50px;" type="text"> <input  name="vergidairesi" value="{% if subeleri.vergi_dairesi_adi.vergi_dairesi_adi %}{{subeleri.vergi_dairesi_adi.vergi_dairesi_adi}}{% endif %}" type="text">  </b></p>
+            <p><b>Ticaret Sicil No  : <input type="text" name="ticaretsicilno" value="{% if faliyet.ticaret_sicil_no %}{{faliyet.ticaret_sicil_no}}{% endif %}" id="">  </b></p>
+          </div>
+        <div class="col-6">
+            <p><b>Soyadi (Unvan)  : <input disabled value="2" style="max-width: 50px;" type="text"> <input name="soyadiunvan" value="{% if subeleri.bagli_oldugu_firma.Firma_unvani2 %}{{subeleri.bagli_oldugu_firma.Firma_unvani2}}{% endif %}" type="text">  </b></p>
+            <p><b>Adı (Unvan Devamı)  : <input disabled value="4" style="max-width: 50px;" type="text"> <input name="adiunvan" value="{% if subeleri.bagli_oldugu_firma.firma_unvani %}{{subeleri.bagli_oldugu_firma.firma_unvani}}{% endif %}" type="text">  </b></p>
+            <p><b>Dönemi : <input disabled value="6" style="max-width: 50px;" type="text"><input disabled value="AY" style="max-width: 50px;" type="text">  <input id="ay" type="text" style="max-width: 50px;"><input disabled value="YIL" style="max-width: 50px;" type="text"><input id="ay" style="max-width: 50px;" type="text"> </b></p>
+            <p><b>E-Posta Adresi  : <input name="eposta" value="{% if subeleri.email_adresi %}{{subeleri.email_adresi}}{% endif %}" type="text">   </b></p>
+            <p><b>İrtibat Telefon No  : <input type="text" name="telefon" value="{% if subeleri.telefon_numarasi %}{{subeleri.telefon_numarasi}}{% endif %}" ></b></p>
+        </div>
+        <hr style="border: 2px solid black !important;" >
+    </div>
+</div>
+<div class="container">
+  <div class="row">
+      <h4 class="text-center" ><b>DÖNEM İÇİNDE KENDİSİNDEN MAL VE HİZMET ALINAN MÜKELLİFLER İLİŞKİN BİLDİRİMLER</b> </h4>
+      <hr>
+      <div class="container tablo" style="margin-top: 0px !important;">
+        <p><b> Toplam</b> <span class="toplam" >0,0</span></p>
+        <p><b>Genel Toplam</b><span class="geneltoplam">0,0</span></p>
+        <div class="table-responsive " style=" 
+        height: 300px;
+        overflow: auto;">
+          <table class="table table-bordered ">
+            <thead style="position: sticky;top: 0">
+              <tr>
+                <th class="text-center" style="min-width: 100px ;">Sıra No</th>
+                <th class="text-center" style="min-width: 50px ;">8 - Soyadı / Adı veya Unvan</th>
+                <th class="text-center" style="min-width: 150px ;">9 - Ülke Kodu</th>
+                <th class="text-center">10 - Vergi Kimlik / TC Kimlik Numarası </th>
+                <th class="text-center">11 - Belge Saysı</th>
+                <th class="text-center">12 - Mal Ve Hizmetlerin Toplam Bedeli (KDV Hariç) TL</th>
+                <th class="text-center"><a href="javascript:void(0);" onclick="ekleYeniSatir()">SATIR EKLE</a></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><input type="text" name="siranumarasi"></td>
+                <td><input type="text" name="adisoyadiunvanbilgsi"></td>
+                <td><select name="ulkekodu" id="">
+                  <option value="052">052 -Türkiye</option>
+                  {% for i in ulkeler %}
+                    <option value="{{i.ulke_kodu}}"{{i.ulke_kodu}}{{i.ulke_adi}}></option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="vergikimliknumarali"></td>
+                <td><input type="number" step="0.01" value="0" name="belgesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="malvehizmetbedeli"></td>
+                <td></td>
+              </tr>
+              <tr class="yeniform">
+                <td><input type="text" name="siranumarasi"></td>
+                <td><input type="text" name="adisoyadiunvanbilgsi"></td>
+                <td><select name="ulkekodu" id="">
+                  <option value="052">052 -Türkiye</option>
+                  {% for i in ulkeler %}
+                    <option value="{{i.ulke_kodu}}"{{i.ulke_kodu}}{{i.ulke_adi}}></option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="vergikimliknumarali"></td>
+                <td><input type="number" step="0.01" value="0" name="belgesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="malvehizmetbedeli"></td>
+                <td></td>
+              </tr>
+              <tr class="yeniform">
+                <td><input type="text" name="siranumarasi"></td>
+                <td><input type="text" name="adisoyadiunvanbilgsi"></td>
+                <td><select name="ulkekodu" id="">
+                  <option value="052">052 -Türkiye</option>
+                  {% for i in ulkeler %}
+                    <option value="{{i.ulke_kodu}}"{{i.ulke_kodu}}{{i.ulke_adi}}></option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="vergikimliknumarali"></td>
+                <td><input type="number" step="0.01" value="0" name="belgesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="malvehizmetbedeli"></td>
+                <td></td>
+              </tr>
+              <tr class="yeniform">
+                <td><input type="text" name="siranumarasi"></td>
+                <td><input type="text" name="adisoyadiunvanbilgsi"></td>
+                <td><select name="ulkekodu" id="">
+                  <option value="052">052 -Türkiye</option>
+                  {% for i in ulkeler %}
+                    <option value="{{i.ulke_kodu}}"{{i.ulke_kodu}}{{i.ulke_adi}}></option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="vergikimliknumarali"></td>
+                <td><input type="number" step="0.01" value="0" name="belgesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="malvehizmetbedeli"></td>
+                <td></td>
+              </tr>
+              <tr class="yeniform">
+                <td><input type="text" name="siranumarasi"></td>
+                <td><input type="text" name="adisoyadiunvanbilgsi"></td>
+                <td><select name="ulkekodu" id="">
+                  <option value="052">052 -Türkiye</option>
+                  {% for i in ulkeler %}
+                    <option value="{{i.ulke_kodu}}"{{i.ulke_kodu}}{{i.ulke_adi}}></option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="vergikimliknumarali"></td>
+                <td><input type="number" step="0.01" value="0" name="belgesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="malvehizmetbedeli"></td>
+                <td></td>
+              </tr>
+              <tr class="yeniform">
+                <td><input type="text" name="siranumarasi"></td>
+                <td><input type="text" name="adisoyadiunvanbilgsi"></td>
+                <td><select name="ulkekodu" id="">
+                  <option value="052">052 -Türkiye</option>
+                  {% for i in ulkeler %}
+                    <option value="{{i.ulke_kodu}}"{{i.ulke_kodu}}{{i.ulke_adi}}></option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="vergikimliknumarali"></td>
+                <td><input type="number" step="0.01" value="0" name="belgesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="malvehizmetbedeli"></td>
+                <td></td>
+              </tr>
+              <tr class="yeniform">
+                <td><input type="text" name="siranumarasi"></td>
+                <td><input type="text" name="adisoyadiunvanbilgsi"></td>
+                <td><select name="ulkekodu" id="">
+                  <option value="052">052 -Türkiye</option>
+                  {% for i in ulkeler %}
+                    <option value="{{i.ulke_kodu}}"{{i.ulke_kodu}}{{i.ulke_adi}}></option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="vergikimliknumarali"></td>
+                <td><input type="number" step="0.01" value="0" name="belgesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="malvehizmetbedeli"></td>
+                <td></td>
+              </tr>
+              <tr class="yeniform">
+                <td><input type="text" name="siranumarasi"></td>
+                <td><input type="text" name="adisoyadiunvanbilgsi"></td>
+                <td><select name="ulkekodu" id="">
+                  <option value="052">052 -Türkiye</option>
+                  {% for i in ulkeler %}
+                    <option value="{{i.ulke_kodu}}"{{i.ulke_kodu}}{{i.ulke_adi}}></option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="vergikimliknumarali"></td>
+                <td><input type="number" step="0.01" value="0" name="belgesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="malvehizmetbedeli"></td>
+                <td></td>
+              </tr>
+              <tr class="yeniform">
+                <td><input type="text" name="siranumarasi"></td>
+                <td><input type="text" name="adisoyadiunvanbilgsi"></td>
+                <td><select name="ulkekodu" id="">
+                  <option value="052">052 -Türkiye</option>
+                  {% for i in ulkeler %}
+                    <option value="{{i.ulke_kodu}}"{{i.ulke_kodu}}{{i.ulke_adi}}></option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="vergikimliknumarali"></td>
+                <td><input type="number" step="0.01" value="0" name="belgesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="malvehizmetbedeli"></td>
+                <td></td>
+              </tr>
+              <tr class="yeniform">
+                <td><input type="text" name="siranumarasi"></td>
+                <td><input type="text" name="adisoyadiunvanbilgsi"></td>
+                <td><select name="ulkekodu" id="">
+                  <option value="052">052 -Türkiye</option>
+                  {% for i in ulkeler %}
+                    <option value="{{i.ulke_kodu}}"{{i.ulke_kodu}}{{i.ulke_adi}}></option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="vergikimliknumarali"></td>
+                <td><input type="number" step="0.01" value="0" name="belgesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="malvehizmetbedeli"></td>
+                <td></td>
+              </tr>
+              <tr class="yeniform">
+                <td><input type="text" name="siranumarasi"></td>
+                <td><input type="text" name="adisoyadiunvanbilgsi"></td>
+                <td><select name="ulkekodu" id="">
+                  <option value="052">052 -Türkiye</option>
+                  {% for i in ulkeler %}
+                    <option value="{{i.ulke_kodu}}"{{i.ulke_kodu}}{{i.ulke_adi}}></option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="vergikimliknumarali"></td>
+                <td><input type="number" step="0.01" value="0" name="belgesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="malvehizmetbedeli"></td>
+                <td></td>
+              </tr>
+              <tr class="yeniform">
+                <td><input type="text" name="siranumarasi"></td>
+                <td><input type="text" name="adisoyadiunvanbilgsi"></td>
+                <td><select name="ulkekodu" id="">
+                  <option value="052">052 -Türkiye</option>
+                  {% for i in ulkeler %}
+                    <option value="{{i.ulke_kodu}}"{{i.ulke_kodu}}{{i.ulke_adi}}></option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="vergikimliknumarali"></td>
+                <td><input type="number" step="0.01" value="0" name="belgesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="malvehizmetbedeli"></td>
+                <td></td>
+              </tr>
+              <tr class="yeniform">
+                <td><input type="text" name="siranumarasi"></td>
+                <td><input type="text" name="adisoyadiunvanbilgsi"></td>
+                <td><select name="ulkekodu" id="">
+                  <option value="052">052 -Türkiye</option>
+                  {% for i in ulkeler %}
+                    <option value="{{i.ulke_kodu}}"{{i.ulke_kodu}}{{i.ulke_adi}}></option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="vergikimliknumarali"></td>
+                <td><input type="number" step="0.01" value="0" name="belgesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="malvehizmetbedeli"></td>
+                <td></td>
+              </tr>
+              <tr class="yeniform">
+                <td><input type="text" name="siranumarasi"></td>
+                <td><input type="text" name="adisoyadiunvanbilgsi"></td>
+                <td><select name="ulkekodu" id="">
+                  <option value="052">052 -Türkiye</option>
+                  {% for i in ulkeler %}
+                    <option value="{{i.ulke_kodu}}"{{i.ulke_kodu}}{{i.ulke_adi}}></option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="vergikimliknumarali"></td>
+                <td><input type="number" step="0.01" value="0" name="belgesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="malvehizmetbedeli"></td>
+                <td></td>
+              </tr>
+              <tr class="yeniform">
+                <td><input type="text" name="siranumarasi"></td>
+                <td><input type="text" name="adisoyadiunvanbilgsi"></td>
+                <td><select name="ulkekodu" id="">
+                  <option value="052">052 -Türkiye</option>
+                  {% for i in ulkeler %}
+                    <option value="{{i.ulke_kodu}}"{{i.ulke_kodu}}{{i.ulke_adi}}></option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="vergikimliknumarali"></td>
+                <td><input type="number" step="0.01" value="0" name="belgesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="malvehizmetbedeli"></td>
+                <td></td>
+              </tr>
+              <tr class="yeniform">
+                <td><input type="text" name="siranumarasi"></td>
+                <td><input type="text" name="adisoyadiunvanbilgsi"></td>
+                <td><select name="ulkekodu" id="">
+                  <option value="052">052 -Türkiye</option>
+                  {% for i in ulkeler %}
+                    <option value="{{i.ulke_kodu}}"{{i.ulke_kodu}}{{i.ulke_adi}}></option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="vergikimliknumarali"></td>
+                <td><input type="number" step="0.01" value="0" name="belgesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="malvehizmetbedeli"></td>
+                <td></td>
+              </tr>
+              <tr class="yeniform">
+                <td><input type="text" name="siranumarasi"></td>
+                <td><input type="text" name="adisoyadiunvanbilgsi"></td>
+                <td><select name="ulkekodu" id="">
+                  <option value="052">052 -Türkiye</option>
+                  {% for i in ulkeler %}
+                    <option value="{{i.ulke_kodu}}"{{i.ulke_kodu}}{{i.ulke_adi}}></option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="vergikimliknumarali"></td>
+                <td><input type="number" step="0.01" value="0" name="belgesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="malvehizmetbedeli"></td>
+                <td></td>
+              </tr>
+              <tr class="yeniform">
+                <td><input type="text" name="siranumarasi"></td>
+                <td><input type="text" name="adisoyadiunvanbilgsi"></td>
+                <td><select name="ulkekodu" id="">
+                  <option value="052">052 -Türkiye</option>
+                  {% for i in ulkeler %}
+                    <option value="{{i.ulke_kodu}}"{{i.ulke_kodu}}{{i.ulke_adi}}></option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="vergikimliknumarali"></td>
+                <td><input type="number" step="0.01" value="0" name="belgesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="malvehizmetbedeli"></td>
+                <td></td>
+              </tr>
+              <tr class="yeniform">
+                <td><input type="text" name="siranumarasi"></td>
+                <td><input type="text" name="adisoyadiunvanbilgsi"></td>
+                <td><select name="ulkekodu" id="">
+                  <option value="052">052 -Türkiye</option>
+                  {% for i in ulkeler %}
+                    <option value="{{i.ulke_kodu}}"{{i.ulke_kodu}}{{i.ulke_adi}}></option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="vergikimliknumarali"></td>
+                <td><input type="number" step="0.01" value="0" name="belgesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="malvehizmetbedeli"></td>
+                <td></td>
+              </tr>
+              <tr class="yeniform">
+                <td><input type="text" name="siranumarasi"></td>
+                <td><input type="text" name="adisoyadiunvanbilgsi"></td>
+                <td><select name="ulkekodu" id="">
+                  <option value="052">052 -Türkiye</option>
+                  {% for i in ulkeler %}
+                    <option value="{{i.ulke_kodu}}"{{i.ulke_kodu}}{{i.ulke_adi}}></option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="vergikimliknumarali"></td>
+                <td><input type="number" step="0.01" value="0" name="belgesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="malvehizmetbedeli"></td>
+                <td></td>
+              </tr>
+              <tr class="yeniform">
+                <td><input type="text" name="siranumarasi"></td>
+                <td><input type="text" name="adisoyadiunvanbilgsi"></td>
+                <td><select name="ulkekodu" id="">
+                  <option value="052">052 -Türkiye</option>
+                  {% for i in ulkeler %}
+                    <option value="{{i.ulke_kodu}}"{{i.ulke_kodu}}{{i.ulke_adi}}></option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="vergikimliknumarali"></td>
+                <td><input type="number" step="0.01" value="0" name="belgesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="malvehizmetbedeli"></td>
+                <td></td>
+              </tr>
+              <tr class="yeniform">
+                <td><input type="text" name="siranumarasi"></td>
+                <td><input type="text" name="adisoyadiunvanbilgsi"></td>
+                <td><select name="ulkekodu" id="">
+                  <option value="052">052 -Türkiye</option>
+                  {% for i in ulkeler %}
+                    <option value="{{i.ulke_kodu}}"{{i.ulke_kodu}}{{i.ulke_adi}}></option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="vergikimliknumarali"></td>
+                <td><input type="number" step="0.01" value="0" name="belgesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="malvehizmetbedeli"></td>
+                <td></td>
+              </tr>
+              <tr class="yeniform">
+                <td><input type="text" name="siranumarasi"></td>
+                <td><input type="text" name="adisoyadiunvanbilgsi"></td>
+                <td><select name="ulkekodu" id="">
+                  <option value="052">052 -Türkiye</option>
+                  {% for i in ulkeler %}
+                    <option value="{{i.ulke_kodu}}"{{i.ulke_kodu}}{{i.ulke_adi}}></option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="vergikimliknumarali"></td>
+                <td><input type="number" step="0.01" value="0" name="belgesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="malvehizmetbedeli"></td>
+                <td></td>
+              </tr>
+              <tr class="yeniform">
+                <td><input type="text" name="siranumarasi"></td>
+                <td><input type="text" name="adisoyadiunvanbilgsi"></td>
+                <td><select name="ulkekodu" id="">
+                  <option value="052">052 -Türkiye</option>
+                  {% for i in ulkeler %}
+                    <option value="{{i.ulke_kodu}}"{{i.ulke_kodu}}{{i.ulke_adi}}></option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="vergikimliknumarali"></td>
+                <td><input type="number" step="0.01" value="0" name="belgesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="malvehizmetbedeli"></td>
+                <td></td>
+              </tr>
+              <tr class="yeniform">
+                <td><input type="text" name="siranumarasi"></td>
+                <td><input type="text" name="adisoyadiunvanbilgsi"></td>
+                <td><select name="ulkekodu" id="">
+                  <option value="052">052 -Türkiye</option>
+                  {% for i in ulkeler %}
+                    <option value="{{i.ulke_kodu}}"{{i.ulke_kodu}}{{i.ulke_adi}}></option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="vergikimliknumarali"></td>
+                <td><input type="number" step="0.01" value="0" name="belgesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="malvehizmetbedeli"></td>
+                <td></td>
+              </tr>
+              <tr class="yeniform">
+                <td><input type="text" name="siranumarasi"></td>
+                <td><input type="text" name="adisoyadiunvanbilgsi"></td>
+                <td><select name="ulkekodu" id="">
+                  <option value="052">052 -Türkiye</option>
+                  {% for i in ulkeler %}
+                    <option value="{{i.ulke_kodu}}"{{i.ulke_kodu}}{{i.ulke_adi}}></option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="vergikimliknumarali"></td>
+                <td><input type="number" step="0.01" value="0" name="belgesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="malvehizmetbedeli"></td>
+                <td></td>
+              </tr>
+              <tr class="yeniform">
+                <td><input type="text" name="siranumarasi"></td>
+                <td><input type="text" name="adisoyadiunvanbilgsi"></td>
+                <td><select name="ulkekodu" id="">
+                  <option value="052">052 -Türkiye</option>
+                  {% for i in ulkeler %}
+                    <option value="{{i.ulke_kodu}}"{{i.ulke_kodu}}{{i.ulke_adi}}></option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="vergikimliknumarali"></td>
+                <td><input type="number" step="0.01" value="0" name="belgesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="malvehizmetbedeli"></td>
+                <td></td>
+              </tr>
+              <tr class="yeniform">
+                <td><input type="text" name="siranumarasi"></td>
+                <td><input type="text" name="adisoyadiunvanbilgsi"></td>
+                <td><select name="ulkekodu" id="">
+                  <option value="052">052 -Türkiye</option>
+                  {% for i in ulkeler %}
+                    <option value="{{i.ulke_kodu}}"{{i.ulke_kodu}}{{i.ulke_adi}}></option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="vergikimliknumarali"></td>
+                <td><input type="number" step="0.01" value="0" name="belgesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="malvehizmetbedeli"></td>
+                <td></td>
+              </tr>
+              <tr class="yeniform">
+                <td><input type="text" name="siranumarasi"></td>
+                <td><input type="text" name="adisoyadiunvanbilgsi"></td>
+                <td><select name="ulkekodu" id="">
+                  <option value="052">052 -Türkiye</option>
+                  {% for i in ulkeler %}
+                    <option value="{{i.ulke_kodu}}"{{i.ulke_kodu}}{{i.ulke_adi}}></option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="vergikimliknumarali"></td>
+                <td><input type="number" step="0.01" value="0" name="belgesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="malvehizmetbedeli"></td>
+                <td></td>
+              </tr>
+              <tr class="yeniform">
+                <td><input type="text" name="siranumarasi"></td>
+                <td><input type="text" name="adisoyadiunvanbilgsi"></td>
+                <td><select name="ulkekodu" id="">
+                  <option value="052">052 -Türkiye</option>
+                  {% for i in ulkeler %}
+                    <option value="{{i.ulke_kodu}}"{{i.ulke_kodu}}{{i.ulke_adi}}></option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="vergikimliknumarali"></td>
+                <td><input type="number" step="0.01" value="0" name="belgesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="malvehizmetbedeli"></td>
+                <td></td>
+              </tr>
+              <tr class="yeniform">
+                <td><input type="text" name="siranumarasi"></td>
+                <td><input type="text" name="adisoyadiunvanbilgsi"></td>
+                <td><select name="ulkekodu" id="">
+                  <option value="052">052 -Türkiye</option>
+                  {% for i in ulkeler %}
+                    <option value="{{i.ulke_kodu}}"{{i.ulke_kodu}}{{i.ulke_adi}}></option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="vergikimliknumarali"></td>
+                <td><input type="number" step="0.01" value="0" name="belgesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="malvehizmetbedeli"></td>
+                <td></td>
+              </tr>
+              <tr class="yeniform">
+                <td><input type="text" name="siranumarasi"></td>
+                <td><input type="text" name="adisoyadiunvanbilgsi"></td>
+                <td><select name="ulkekodu" id="">
+                  <option value="052">052 -Türkiye</option>
+                  {% for i in ulkeler %}
+                    <option value="{{i.ulke_kodu}}"{{i.ulke_kodu}}{{i.ulke_adi}}></option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="vergikimliknumarali"></td>
+                <td><input type="number" step="0.01" value="0" name="belgesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="malvehizmetbedeli"></td>
+                <td></td>
+              </tr>
+              <tr class="yeniform">
+                <td><input type="text" name="siranumarasi"></td>
+                <td><input type="text" name="adisoyadiunvanbilgsi"></td>
+                <td><select name="ulkekodu" id="">
+                  <option value="052">052 -Türkiye</option>
+                  {% for i in ulkeler %}
+                    <option value="{{i.ulke_kodu}}"{{i.ulke_kodu}}{{i.ulke_adi}}></option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="vergikimliknumarali"></td>
+                <td><input type="number" step="0.01" value="0" name="belgesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="malvehizmetbedeli"></td>
+                <td></td>
+              </tr>
+              <tr class="yeniform">
+                <td><input type="text" name="siranumarasi"></td>
+                <td><input type="text" name="adisoyadiunvanbilgsi"></td>
+                <td><select name="ulkekodu" id="">
+                  <option value="052">052 -Türkiye</option>
+                  {% for i in ulkeler %}
+                    <option value="{{i.ulke_kodu}}"{{i.ulke_kodu}}{{i.ulke_adi}}></option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="vergikimliknumarali"></td>
+                <td><input type="number" step="0.01" value="0" name="belgesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="malvehizmetbedeli"></td>
+                <td></td>
+              </tr>
+              <tr class="yeniform">
+                <td><input type="text" name="siranumarasi"></td>
+                <td><input type="text" name="adisoyadiunvanbilgsi"></td>
+                <td><select name="ulkekodu" id="">
+                  <option value="052">052 -Türkiye</option>
+                  {% for i in ulkeler %}
+                    <option value="{{i.ulke_kodu}}"{{i.ulke_kodu}}{{i.ulke_adi}}></option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="vergikimliknumarali"></td>
+                <td><input type="number" step="0.01" value="0" name="belgesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="malvehizmetbedeli"></td>
+                <td></td>
+              </tr>
+              <tr class="yeniform">
+                <td><input type="text" name="siranumarasi"></td>
+                <td><input type="text" name="adisoyadiunvanbilgsi"></td>
+                <td><select name="ulkekodu" id="">
+                  <option value="052">052 -Türkiye</option>
+                  {% for i in ulkeler %}
+                    <option value="{{i.ulke_kodu}}"{{i.ulke_kodu}}{{i.ulke_adi}}></option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="vergikimliknumarali"></td>
+                <td><input type="number" step="0.01" value="0" name="belgesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="malvehizmetbedeli"></td>
+                <td></td>
+              </tr>
+              <tr class="yeniform">
+                <td><input type="text" name="siranumarasi"></td>
+                <td><input type="text" name="adisoyadiunvanbilgsi"></td>
+                <td><select name="ulkekodu" id="">
+                  <option value="052">052 -Türkiye</option>
+                  {% for i in ulkeler %}
+                    <option value="{{i.ulke_kodu}}"{{i.ulke_kodu}}{{i.ulke_adi}}></option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="vergikimliknumarali"></td>
+                <td><input type="number" step="0.01" value="0" name="belgesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="malvehizmetbedeli"></td>
+                <td></td>
+              </tr>
+              <tr class="yeniform">
+                <td><input type="text" name="siranumarasi"></td>
+                <td><input type="text" name="adisoyadiunvanbilgsi"></td>
+                <td><select name="ulkekodu" id="">
+                  <option value="052">052 -Türkiye</option>
+                  {% for i in ulkeler %}
+                    <option value="{{i.ulke_kodu}}"{{i.ulke_kodu}}{{i.ulke_adi}}></option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="vergikimliknumarali"></td>
+                <td><input type="number" step="0.01" value="0" name="belgesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="malvehizmetbedeli"></td>
+                <td></td>
+              </tr>
+              <tr class="yeniform">
+                <td><input type="text" name="siranumarasi"></td>
+                <td><input type="text" name="adisoyadiunvanbilgsi"></td>
+                <td><select name="ulkekodu" id="">
+                  <option value="052">052 -Türkiye</option>
+                  {% for i in ulkeler %}
+                    <option value="{{i.ulke_kodu}}"{{i.ulke_kodu}}{{i.ulke_adi}}></option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="vergikimliknumarali"></td>
+                <td><input type="number" step="0.01" value="0" name="belgesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="malvehizmetbedeli"></td>
+                <td></td>
+              </tr>
+              <tr class="yeniform">
+                <td><input type="text" name="siranumarasi"></td>
+                <td><input type="text" name="adisoyadiunvanbilgsi"></td>
+                <td><select name="ulkekodu" id="">
+                  <option value="052">052 -Türkiye</option>
+                  {% for i in ulkeler %}
+                    <option value="{{i.ulke_kodu}}"{{i.ulke_kodu}}{{i.ulke_adi}}></option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="vergikimliknumarali"></td>
+                <td><input type="number" step="0.01" value="0" name="belgesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="malvehizmetbedeli"></td>
+                <td></td>
+              </tr>
+              <tr class="yeniform">
+                <td><input type="text" name="siranumarasi"></td>
+                <td><input type="text" name="adisoyadiunvanbilgsi"></td>
+                <td><select name="ulkekodu" id="">
+                  <option value="052">052 -Türkiye</option>
+                  {% for i in ulkeler %}
+                    <option value="{{i.ulke_kodu}}"{{i.ulke_kodu}}{{i.ulke_adi}}></option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="vergikimliknumarali"></td>
+                <td><input type="number" step="0.01" value="0" name="belgesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="malvehizmetbedeli"></td>
+                <td></td>
+              </tr>
+              <tr class="yeniform">
+                <td><input type="text" name="siranumarasi"></td>
+                <td><input type="text" name="adisoyadiunvanbilgsi"></td>
+                <td><select name="ulkekodu" id="">
+                  <option value="052">052 -Türkiye</option>
+                  {% for i in ulkeler %}
+                    <option value="{{i.ulke_kodu}}"{{i.ulke_kodu}}{{i.ulke_adi}}></option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="vergikimliknumarali"></td>
+                <td><input type="number" step="0.01" value="0" name="belgesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="malvehizmetbedeli"></td>
+                <td></td>
+              </tr>
+              <tr class="yeniform">
+                <td><input type="text" name="siranumarasi"></td>
+                <td><input type="text" name="adisoyadiunvanbilgsi"></td>
+                <td><select name="ulkekodu" id="">
+                  <option value="052">052 -Türkiye</option>
+                  {% for i in ulkeler %}
+                    <option value="{{i.ulke_kodu}}"{{i.ulke_kodu}}{{i.ulke_adi}}></option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="vergikimliknumarali"></td>
+                <td><input type="number" step="0.01" value="0" name="belgesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="malvehizmetbedeli"></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <hr style="border: 2px solid black !important;" >
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+      <h3 class="text-center" >E-Beyanname Düzenlemek İçin Gerekli Bilgiler</h3>
+      <hr>
+    
+      <div style="border-right: 1px solid black;" class="col-6">
+        <h4><b>Beyanname Hangi Sıfatla Verildiği</b></h4>
+        {% if mirasci.beyannamehangisifatlaverildi == "mukellef" %}
+        <hr>
+          <div class="row">
+
+            <div class="col-4"><label style="margin-left: 5px;" for="mukellef">Mükellef</label><input type="checkbox" disabled checked name="mukellef" id="mukellef"></div>
+            <div class="col-4"><label style="margin-left: 5px;"  for="mirascı">Mirascı</label><input type="checkbox" disabled name="mirascı" id="mirascı"></div>
+            <div class="col-4"><label style="margin-left: 5px;" for="kanunitemsilci">Kanuni Temsilci</label><input disabled type="checkbox" name="kanunitemsilci" id="kanunitemsilci"></div>
+          </div>
+          <p><b>Vergi Kimlik Numarası (T.C Kimlik No) : {% if subeleri.sahis_ise_tc %}{{subeleri.sahis_ise_tc}}{% endif %} </b></p>
+          <p><b>Vergi Kimlik Numarası  : {% if subeleri.vergi_numarasi %}{{subeleri.vergi_numarasi}}{% endif %} </b></p>
+          <p><b>Soyadi (Unvan)  : {% if subeleri.bagli_oldugu_firma.Firma_unvani2 %}{{subeleri.bagli_oldugu_firma.Firma_unvani2}}{% endif %} </b></p>
+          <p><b>Adı (Unvan Devamı)  : {% if subeleri.bagli_oldugu_firma.firma_unvani %}{{subeleri.bagli_oldugu_firma.firma_unvani}}{% endif %} </b></p>
+          <p><b>Ticaret Sicil No  : {% if faliyet.ticaret_sicil_no %}{{faliyet.ticaret_sicil_no}}{% endif %} </b></p>
+          <p><b>E-Posta Adresi  : {% if subeleri.email_adresi %}{{subeleri.email_adresi}}{% endif %} </b></p>
+          <p><b>İrtibat Telefon No  : {% if subeleri.telefon_numarasi %}{{subeleri.telefon_numarasi}}{% endif %} </b></p>
+        {% elif mirasci.beyannamehangisifatlaverildi == "mirascı" %}
+        <hr>
+          <div class="row">
+
+            <div class="col-4"><label style="margin-left: 5px;" for="mukellef">Mükellef</label><input type="checkbox" disabled  name="mukellef" id="mukellef"></div>
+            <div class="col-4"><label style="margin-left: 5px;"  for="mirascı">Mirascı</label><input type="checkbox" disabled checked name="mirascı" id="mirascı"></div>
+            <div class="col-4"><label style="margin-left: 5px;" for="kanunitemsilci">Kanuni Temsilci</label><input disabled type="checkbox" name="kanunitemsilci" id="kanunitemsilci"></div>
+          </div>
+          <p><b>Vergi Kimlik Numarası (T.C Kimlik No) : {% if mirasci.mirascibilgisitc %}{{mirasci.mirascibilgisitc}}{% endif %} </b></p>
+          <p><b>Vergi Kimlik Numarası  : {% if mirasci.mirascivergino %}{{mirasci.mirascivergino}}{% endif %} </b></p>
+          <p><b>Soyadi (Unvan)  : {% if mirasci.beyannamesoyadiunvan %}{{mirasci.beyannamesoyadiunvan}}{% endif %} </b></p>
+          <p><b>Adı (Unvan Devamı)  : {% if mirasci.beyannameadiunvandevami %}{{mirasci.beyannameadiunvandevami}}{% endif %} </b></p>
+          <p><b>Ticaret Sicil No  : {% if mirasci.beyannameyeaitticaretsicilno %}{{mirasci.beyannameyeaitticaretsicilno}}{% endif %} </b></p>
+          <p><b>E-Posta Adresi  : {% if mirasci.beyannameemailadresi %}{{mirasci.beyannameemailadresi}}{% endif %} </b></p>
+          <p><b>İrtibat Telefon No  : {% if mirasci.beyannametelefonumarasi %}{{mirasci.beyannametelefonumarasi}}{% endif %} </b></p>
+        {% elif mirasci.beyannamehangisifatlaverildi == "kanunitemsilci" %}
+        <hr>
+        <div class="row">
+
+          <div class="col-4"><label style="margin-left: 5px;" for="mukellef">Mükellef</label><input type="checkbox" disabled  name="mukellef" id="mukellef"></div>
+          <div class="col-4"><label style="margin-left: 5px;"  for="mirascı">Mirascı</label><input type="checkbox" disabled  name="mirascı" id="mirascı"></div>
+          <div class="col-4"><label style="margin-left: 5px;" for="kanunitemsilci">Kanuni Temsilci</label><input disabled checked type="checkbox" name="kanunitemsilci" id="kanunitemsilci"></div>
+        </div>
+        <p><b>Vergi Kimlik Numarası (T.C Kimlik No) : {% if kanuni_temsilci.beyannamekanunitemsicitc %}{{kanuni_temsilci.beyannamekanunitemsicitc}}{% endif %} </b></p>
+        <p><b>Vergi Kimlik Numarası  : {% if kanuni_temsilci.beyannamekanunitemsicivergino %}{{kanuni_temsilci.beyannamekanunitemsicivergino}}{% endif %} </b></p>
+        <p><b>Soyadi (Unvan)  : {% if kanuni_temsilci.beyannamekanunitemsicisoyadi %}{{kanuni_temsilci.beyannamekanunitemsicisoyadi}}{% endif %} </b></p>
+        <p><b>Adı (Unvan Devamı)  : {% if kanuni_temsilci.beyannamekanunitemsiciadiunvandevami %}{{kanuni_temsilci.beyannamekanunitemsiciadiunvandevami}}{% endif %} </b></p>
+        <p><b>Ticaret Sicil No  : {% if kanuni_temsilci.beyannamekanunitemsiciticaretsicilno %}{{kanuni_temsilci.beyannamekanunitemsiciticaretsicilno}}{% endif %} </b></p>
+        <p><b>E-Posta Adresi  : {% if kanuni_temsilci.beyannamekanunitemsicieposta %}{{kanuni_temsilci.beyannamekanunitemsicieposta}}{% endif %} </b></p>
+        <p><b>İrtibat Telefon No  : {% if kanuni_temsilci.beyannamekanunitemsicitelefon %}{{kanuni_temsilci.beyannamekanunitemsicitelefon}}{% endif %} </b></p>
+        {% endif %}
+      </div>
+      <div class="col-6">
+        <h4><b>Beyannameyi Düzenleyen</b></h4>
+        <hr>
+          <p><b>Vergi Kimlik Numarası (T.C Kimlik No) : {% if beyannameduzenleyen.beyannameduzenleyeneaittc %}{{beyannameduzenleyen.beyannameduzenleyeneaittc}}{% endif %} </b></p>
+          <p><b>Vergi Kimlik Numarası  : {% if beyannameduzenleyen.beyannameduzenleyeneaitvergino %}{{beyannameduzenleyen.beyannameduzenleyeneaitvergino}}{% endif %} </b></p>
+          <p><b>Soyadi (Unvan)  : {% if beyannameduzenleyen.beyannameduzenleyeneaitsoyadiunvan %}{{beyannameduzenleyen.beyannameduzenleyeneaitsoyadiunvan}}{% endif %} </b></p>
+          <p><b>Adı (Unvan Devamı)  : {% if beyannameduzenleyen.beyannameduzenleyeneaitadiunvandevami %}{{beyannameduzenleyen.beyannameduzenleyeneaitadiunvandevami}}{% endif %} </b></p>
+          <p><b>Ticaret Sicil No  : {% if beyannameduzenleyen.beyannameduzenleyeneaitticaretsicilno %}{{ beyannameduzenleyen.beyannameduzenleyeneaitticaretsicilno}}{% endif %} </b></p>
+          <p><b>E-Posta Adresi  : {% if beyannameduzenleyen.beyannameduzenleyeneaiteposta %}{{beyannameduzenleyen.beyannameduzenleyeneaiteposta}}{% endif %} </b></p>
+          <p><b>İrtibat Telefon No  : {% if beyannameduzenleyen.beyannameduzenleyeneaittelefon %}{{beyannameduzenleyen.beyannameduzenleyeneaittelefon}}{% endif %} </b></p>
+      </div>
+      <hr style="border: 1px solid black; margin-top: 15px;" >
+      <div style="border-right: 1px solid black;"  class="col-6">
+        <h4><b>Beyannameyi Gönderen</b></h4>
+        <hr>
+        <p><b>Vergi Kimlik Numarası (T.C Kimlik No) : {% if beyannamegonderen.beyannamegonderentc %}{{beyannamegonderen.beyannamegonderentc}}{% endif %} </b></p>
+        <p><b>Vergi Kimlik Numarası  : {% if beyannamegonderen.beyannamegonderenvergino %}{{beyannamegonderen.beyannamegonderenvergino}}{% endif %} </b></p>
+        <p><b>Soyadi (Unvan)  : {% if beyannamegonderen.beyannamegonderensoyadiunvan %}{{beyannamegonderen.beyannamegonderensoyadiunvan}}{% endif %} </b></p>
+        <p><b>Adı (Unvan Devamı)  : {% if beyannamegonderen.beyannamegonderenadiunvandevami %}{{beyannamegonderen.beyannamegonderenadiunvandevami}}{% endif %} </b></p>
+        <p><b>Ticaret Sicil No  : {% if beyannamegonderen.beyannamegonderentivaretsicilno %}{{ beyannamegonderen.beyannamegonderentivaretsicilno}}{% endif %} </b></p>
+        <p><b>E-Posta Adresi  : {% if beyannamegonderen.beyannamegondereneposta %}{{beyannamegonderen.beyannamegondereneposta}}{% endif %} </b></p>
+        <p><b>İrtibat Telefon No  : {% if beyannamegonderen.beyannamegonderentelefon %}{{beyannamegonderen.beyannamegonderentelefon}}{% endif %} </b></p>
+      </div>
+      <div class="col-6">
+        <h4><b>YMM Bilgileri</b></h4>
+        <hr>
+        <p><b>Vergi Kimlik Numarası (T.C Kimlik No) : {% if ymmbilgileri.ymmaitbilgilertc %}{{ymmbilgileri.ymmaitbilgilertc}}{% endif %} </b></p>
+        <p><b>Vergi Kimlik Numarası  : {% if ymmbilgileri.ymmaitbilgilervergino %}{{ymmbilgileri.ymmaitbilgilervergino}}{% endif %} </b></p>
+        <p><b>Soyadi (Unvan)  : {% if ymmbilgileri.ymmaitbilgilersoyadiunvan %}{{ymmbilgileri.ymmaitbilgilersoyadiunvan}}{% endif %} </b></p>
+        <p><b>Adı (Unvan Devamı)  : {% if ymmbilgileri.ymmaitbilgileradiunvanbilgisi %}{{ymmbilgileri.ymmaitbilgileradiunvanbilgisi}}{% endif %} </b></p>
+        <p><b>Ticaret Sicil No  : {% if ymmbilgileri.ymmaitbilgileraditicaretsicilno %}{{ ymmbilgileri.ymmaitbilgileraditicaretsicilno}}{% endif %} </b></p>
+        <p><b>E-Posta Adresi  : {% if ymmbilgileri.ymmaitbilgilereposta %}{{ymmbilgileri.ymmaitbilgilereposta}}{% endif %} </b></p>
+        <p><b>İrtibat Telefon No  : {% if ymmbilgileri.ymmaitbilgilertelefonbilgisi %}{{ymmbilgileri.ymmaitbilgilertelefonbilgisi}}{% endif %} </b></p>
+      </div>
+      <hr style="border: 2px solid black !important;" >
+  </div>
+</div>
+<div class="container mt-5">
+  <div class="row">
+      <h3 class="text-center" >Beyanname Yazdırmak İçin Gerekli Bilgiler</h3>
+      <h4 class="text-center">Mükellef Ve Varsa Mali Müşavir Onayı</h4>
+      <div class="col-4"><label style="margin-left: 5px;" for="muhasebeci1">Serbest Muhasebeci</label><input type="radio" checked value="Serbest Muhasebeci"   name="muhasebeci" id="muhasebeci1"></div>
+      <div class="col-4"><label style="margin-left: 5px;"  for="muhasebeci2">Serbest Muhasebeci Mali Müşavir</label><input type="radio"  value="Serbest Muhasebeci Mali Müşavir" name="muhasebeci" id="muhasebeci2"></div>
+      <div class="col-4"><label style="margin-left: 5px;" for="muhasebeci3">Yeminli Mali Müşavir</label><input  type="radio" name="muhasebeci" value="Yeminli Mali Müşavir" id="muhasebeci3"></div>
+      <div class="col-6">
+        <label for="">Vergi Kimlik No: <input type="text" name="muhasebecininvergikimliknosu"></label>
+        <label for="">Soyadı / Unvan: <input type="text" name="muhasebecininsoyadiunvan"></label>
+      </div>
+      <div class="col-6">
+        <label for="">TC Kimlik No: <input type="text" name="muhasebecinintckimliknosu"></label>
+        <br>
+        <label for="">Adı: <input type="text" name="muhasebecininadi"></label>
+      </div>
+      <hr style="border: 2px solid black !important;" >
+  </div>
+</div>
+<script>
+  let z = 0;
+  function ekleYeniSatir() {
+    
+    var elements = document.getElementsByClassName('yeniform');
+
+    if (elements[z]) {
+        elements[z].classList.remove('yeniform');
+    } else {
+        console.error("Ürün Sınırına Ulaştınız");
+    }
+
+    yeniselect();
+  }
+</script>
+{% endblock content %}

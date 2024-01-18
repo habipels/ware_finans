@@ -147,7 +147,10 @@ urlpatterns = [
     #KDV4
     path("<str:slug>/kdv4beyannamesi/", views.kdv4_beyannamesi, name="kdv4_beyannamesi"),
     path("<str:slug>/gelirgecicivergibeyannamesi/", views.gecici_beyanname, name="gecici_beyanname"),
-     path("<str:slug>/kurumlarvergibeyannamesi/", views.kurumlar_vergisi_beyanname, name="kurumlar_vergisi_beyanname"),
-
+    path("<str:slug>/kurumlarvergibeyannamesi/", views.kurumlar_vergisi_beyanname, name="kurumlar_vergisi_beyanname"),
+    #babs formu
+    path("<str:slug>/baformu/", views.baformu, name="baformu"),
+    path("<str:slug>/bsformu/", views.bsformu, name="bsformu"),
+    #
 ]
 #
