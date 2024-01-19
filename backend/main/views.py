@@ -5776,6 +5776,51 @@ def damgavergisi(request,slug):
         toplam2 = request.POST.get("toplam2")
     return render(request,"beyannameler/damgavergisi.html",content)
 
+#Kurumlar Geri KAzanım PAyı vergisi
+def kurumlargerikazanimpayi(request,slug):
+    content = site_ayarlari()
+    content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
+    content["subeleri"] =  sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)).first()
+    content["firma_ayarlari"] = firma_ayarlari_ayar_kisimi.objects.filter(bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) ).last()
+    content["faliyet"] = sube_faliyet_bilgileri.objects.filter(sube_bilgisi=sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)).first()).first()
+    content["firmalarim"] = firma.objects.filter(silinme_bilgisi = False,firma_muhasabecisi = request.user)
+    tevk_600ler = []
+    for i in range(601,628):
+        tevk_600ler.append(str(i))
+    content["tevkifatlar"] =tevkifat_tur_kodu.objects.filter(hesap_kodu__in = tevk_600ler,silinme_bilgisi = False,bagli_oldugu_firma = None)
+    tevk_800ler = []
+    for i in range(801,826):
+        tevk_800ler.append(str(i))
+    content["tevkifatlar1"] =tevkifat_tur_kodu.objects.filter(hesap_kodu__in = tevk_800ler,silinme_bilgisi = False,bagli_oldugu_firma = None)
+    content["beyannameduzenleyen"]=beyanname_duzenleyene_ait_bilgiler.objects.filter(beyanname_bilgisi__sube_bilgisi = sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)).first()).last()
+    content["mirasci"] =beyanname_bilgileri.objects.filter(sube_bilgisi = sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)).first()).last()
+    content["kanuni_temsilci"] = beyanname_kanuni_temsilcisi.objects.filter(beyanname_bilgisi__sube_bilgisi = sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)).first()).last()
+    turkey_cities = ["000 - Yurtdışı",
+    "001 - Adana", "002 - Adıyaman", "003 - Afyonkarahisar", "004 - Ağrı", "005 - Amasya", "006 - Ankara", "007 - Antalya", "008 - Artvin", "009 - Aydın", "010 - Balıkesir",
+    "011 - Bilecik", "012 - Bingöl", "013 - Bitlis", "014 - Bolu", "015 - Burdur", "016 - Bursa", "017 - Çanakkale", "018 - Çankırı", "019 - Çorum", "020 - Denizli", "021 - Diyarbakır",
+    "022 - Edirne", "023 - Elazığ", "024 - Erzincan", "025 - Erzurum", "026 - Eskişehir", "027 - Gaziantep", "028 - Giresun", "029 - Gümüşhane", "030 - Hakkari", "031 - Hatay",
+    "032 - Isparta", "033 - Mersin", "034 - İstanbul", "035 - İzmir", "036 - Kars", "037 - Kastamonu", "038 - Kayseri", "039 - Kırklareli", "040 - Kırşehir", "041 - Kocaeli",
+    "042 - Konya", "043 - Kütahya", "044 - Malatya", "045 - Manisa", "046 - Kahramanmaraş", "047 - Mardin", "048 - Muğla", "049 - Muş", "050 - Nevşehir", "051 - Niğde", "052 - Ordu",
+    "053 - Rize", "054 - Sakarya", "055 - Samsun", "056 - Siirt", "057 - Sinop", "058 - Sivas", "059 - Tekirdağ", "060 - Tokat", "061 - Trabzon", "062 - Tunceli", "063 - Şanlıurfa",
+    "064 - Uşak", "065 - Van", "066 - Yozgat", "067 - Zonguldak", "068 - Aksaray", "069 - Bayburt", "070 - Karaman", "071 - Kırıkkale", "072 - Batman", "073 - Şırnak", "074 - Bartın",
+    "075 - Ardahan", "076 - Iğdır", "077 - Yalova", "078 - Karabük", "079 - Kilis", "080 - Osmaniye", "081 - Düzce"
+    ]
+    content["sehirler"]  = turkey_cities
+    if request.POST:
+        aysecimi = request.POST.get("aysecimi")
+        yurticidisi = request.POST.getlist("yurticidisi")
+        ilbilgisi = request.POST.getlist("ilbilgisi")
+        tcveyavergikimlikno = request.POST.getlist("tcveyavergikimlikno")
+        adsoyadunvan = request.POST.getlist("adsoyadunvan")
+        aybilgisi = request.POST.getlist("aybilgisi")
+        sattigiadet = request.POSt.getlist("sattigiadet")
+        gerikazandigitutar = request.POSt.getlist("gerikazandigitutar")
+        
+    return render(request,"beyannameler/kurumlargerikazanimpayi.html",content)
+
+
+
+
 
 
 

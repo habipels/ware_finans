@@ -63,12 +63,12 @@
         </select></div>
         <div class="col-6"><label for="firmalar">FİRMALARIM
           <select  onchange="if (this.value) window.location.href=this.value" style="box-sizing: content-box;" id="firmalar">
-            <option value="/{{firma.firma_ozel_anahtar}}/kdv1beyannamesi/">{{firma.firma_unvani}} {{firma.Firma_unvani2}} ({{firma.tanitici_isim}})</option>
+            <option value="/{{firma.firma_ozel_anahtar}}/bsformu/">{{firma.firma_unvani}} {{firma.Firma_unvani2}} ({{firma.tanitici_isim}})</option>
             {% for i in firmalarim %}
              {% if firma.id == i.id %}
              
              {% else %}
-             <option value="/{{i.firma_ozel_anahtar}}/kdv1beyannamesi/">{{i.firma_unvani}} {{i.Firma_unvani2}} ({{i.tanitici_isim}})</option>
+             <option value="/{{i.firma_ozel_anahtar}}/bsformu/">{{i.firma_unvani}} {{i.Firma_unvani2}} ({{i.tanitici_isim}})</option>
              {% endif %}
               
             {% endfor %}

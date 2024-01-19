@@ -154,5 +154,8 @@ urlpatterns = [
     #damgavergisi
     path("<str:slug>/damgavergisi/", views.damgavergisi, name="damgavergisi"),
     #damgavergisi
+    #kurumlargerikazanimpayi
+    path("<str:slug>/kurumlargerikazanimpayi/", views.kurumlargerikazanimpayi, name="kurumlargerikazanimpayi"),
+    #kurumlargerikazanimpayi
 ]
 #
