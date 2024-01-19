@@ -151,6 +151,8 @@ urlpatterns = [
     #babs formu
     path("<str:slug>/baformu/", views.baformu, name="baformu"),
     path("<str:slug>/bsformu/", views.bsformu, name="bsformu"),
-    #
+    #damgavergisi
+    path("<str:slug>/damgavergisi/", views.damgavergisi, name="damgavergisi"),
+    #damgavergisi
 ]
 #

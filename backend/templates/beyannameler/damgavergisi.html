@@ -1,0 +1,583 @@
+{% extends "homebase.html" %}
+{% block content %}
+<style>
+  #kur {
+    display: none;
+  }
+  .yeniform {
+    display: none;
+  }
+</style>
+  <!--Header-->
+  <div class="icon-bar">
+
+    <a href="/{{firma.firma_ozel_anahtar}}/yenikasakarti/">Kaydet</a>
+    <a style="color: white;" onclick="showConfirmationPopup()"> Sil</a>
+    <a href="/{{firma.firma_ozel_anahtar}}/muavin/" >Muavin</a>
+    <a href="/{{firma.firma_ozel_anahtar}}/mizan/" >Mizan</a>
+    <a href="" style="color:red;">Çıkış Yap (ESC)</a>
+
+  </div>
+  <div class="d-menu">
+    <ul>
+      <li>
+       <a href="" title="">Beyanname Hazırla</a>
+      </li>
+      <li>
+        <a href="" title="">KDV Kontrol</a>
+
+      </li>
+       <li>
+       <a href="" title="">XML Oluştur</a>
+      </li>
+      <li>
+       <a href="" title="">XML Sil</a>
+      </li>
+      <li>
+       <a href="" title="">Son Kontrol</a>
+      </li>
+        <li>
+       <a href="" title="">Yazdır</a>
+      </li>
+      
+    </ul>
+  </div>
+  <div class="container">
+    <div class="row">
+        <h1 class="text-center" >DAMGA VERGİSİ BEYANNAMESİ </h1>
+        <h3 class="text-center">(Damga Vergisi Kanun Gereğince Makbuz Karşılığı Ödenecek Damga Vergisine İlişkin)</h3>
+        <div class="col-6">ÇALIŞMA AYI : <select name="aysecimi" id="">
+          <option value="OCAK">OCAK</option>
+          <option value="ŞUBAT">ŞUBAT</option>
+          <option value="MART">MART</option>
+          <option value="NİSAN">NİSAN</option>
+          <option value="MAYIS">MAYIS</option>
+          <option value="HAZİRAN">HAZİRAN</option>
+          <option value="TEMMUZ">TEMMUZ</option>
+          <option value="AĞUSTOS">AĞUSTOS</option>
+          <option value="EYLÜL">EYLÜL</option>
+          <option value="EKİM">EKİM</option>
+          <option value="KASIM">KASIM</option>
+          <option value="ARALIK">ARALIK</option>
+        </select></div>
+        <div class="col-6"><label for="firmalar">FİRMALARIM
+          <select  onchange="if (this.value) window.location.href=this.value" style="box-sizing: content-box;" id="firmalar">
+            <option value="/{{firma.firma_ozel_anahtar}}/kdv1beyannamesi/">{{firma.firma_unvani}} {{firma.Firma_unvani2}} ({{firma.tanitici_isim}})</option>
+            {% for i in firmalarim %}
+             {% if firma.id == i.id %}
+             
+             {% else %}
+             <option value="/{{i.firma_ozel_anahtar}}/kdv1beyannamesi/">{{i.firma_unvani}} {{i.Firma_unvani2}} ({{i.tanitici_isim}})</option>
+             {% endif %}
+              
+            {% endfor %}
+          </select> </label></div>
+        <hr style="border: 3px solid black !important;" >
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <h3 class="text-center" >Genel Bilgiler</h3>
+        <hr>
+        <div class="col-6"><p><b>Yılı : <script>document.write(new Date().getFullYear())</script></b></p>
+            <p><b>Vergi Dairesi Kodu : {{subeleri.vergi_dairesi_adi.vergi_dairesi_kodu}}</b></p>
+            <p><b>Vergi Dairesi  : {{subeleri.vergi_dairesi_adi.vergi_dairesi_adi}}</b></p>
+        </div>
+        <div class="col-6">
+            <p><b>Vergi Kimlik Numarası (T.C Kimlik No) : {% if subeleri.sahis_ise_tc %}{{subeleri.sahis_ise_tc}}{% endif %} </b></p>
+            <p><b>Vergi Kimlik Numarası  : {% if subeleri.vergi_numarasi %}{{subeleri.vergi_numarasi}}{% endif %} </b></p>
+            <p><b>Soyadi (Unvan)  : {% if subeleri.bagli_oldugu_firma.Firma_unvani2 %}{{subeleri.bagli_oldugu_firma.Firma_unvani2}}{% endif %} </b></p>
+            <p><b>Adı (Unvan Devamı)  : {% if subeleri.bagli_oldugu_firma.firma_unvani %}{{subeleri.bagli_oldugu_firma.firma_unvani}}{% endif %} </b></p>
+            <p><b>Ticaret Sicil No  : {% if faliyet.ticaret_sicil_no %}{{faliyet.ticaret_sicil_no}}{% endif %} </b></p>
+            <p><b>E-Posta Adresi  : {% if subeleri.email_adresi %}{{subeleri.email_adresi}}{% endif %} </b></p>
+            <p><b>İrtibat Telefon No  : {% if subeleri.telefon_numarasi %}{{subeleri.telefon_numarasi}}{% endif %} </b></p>
+        </div>
+        <hr style="border: 2px solid black !important;" >
+    </div>
+</div>
+<div class="container">
+  <div class="row">
+      <h3 class="text-center" >VERGİ BİLDİRİMİ</h3>
+      <hr>
+      <div class="container tablo" style="margin-top: 0px !important;">
+        <input class="col-12" disabled value="BİR AY İÇİNDE DÜZENLENEN KAĞITLARIN " type="text">
+        <div class="table-responsive " style=" 
+        height: 300px;
+        overflow: auto;">
+          <table class="table table-bordered ">
+            <thead style="position: sticky;top: 0">
+              <tr>
+                <th class="text-center" style="min-width: 100px ;">SIRA NO</th>
+                <th class="text-center" style="min-width: 50px ;">DÜZENLEME TARİHİ</th>
+                <th class="text-center" style="min-width: 150px ;">NO</th>
+                <th class="text-center">TÜRÜ</th>
+                <th class="text-center">AÇIKLAMA</th>
+                <th class="text-center">İÇERDİĞİ BELLİ PARA</th>
+                <th class="text-center">DAMGA VERGİSİ</th>
+                <th class="text-center"><a href="javascript:void(0);" onclick="ekleYeniSatir()">SATIR EKLE</a></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><input type="text" name="siranosu" id=""></td>
+                <td><input type="date" name="duzenlemetarihi" id=""></td>
+                <td><input type="text" name="no" id=""></td>
+                <td><select style="max-width: 50px;" name="turu" id="">
+                  <option value=""></option>
+                  <option value=""></option>
+                </select></td>
+                <td><input type="text" name="aciklama"></td>
+                <td><input type="number" step="0.01" value="0" name="iecerdigibedel"></td>
+                <td><input type="number" step="0.01" value="0" name="damgavergisi"></td>
+              </tr>
+              <tr class="yeniform">
+                <td><input type="text" name="siranosu" id=""></td>
+                <td><input type="date" name="duzenlemetarihi" id=""></td>
+                <td><input type="text" name="no" id=""></td>
+                <td><select style="max-width: 50px;" name="turu" id="">
+                  <option value=""></option>
+                  <option value=""></option>
+                </select></td>
+                <td><input type="text" name="aciklama"></td>
+                <td><input type="number" step="0.01" value="0" name="iecerdigibedel"></td>
+                <td><input type="number" step="0.01" value="0" name="damgavergisi"></td>
+              </tr>
+              <tr class="yeniform">
+                <td><input type="text" name="siranosu" id=""></td>
+                <td><input type="date" name="duzenlemetarihi" id=""></td>
+                <td><input type="text" name="no" id=""></td>
+                <td><select style="max-width: 50px;" name="turu" id="">
+                  <option value=""></option>
+                  <option value=""></option>
+                </select></td>
+                <td><input type="text" name="aciklama"></td>
+                <td><input type="number" step="0.01" value="0" name="iecerdigibedel"></td>
+                <td><input type="number" step="0.01" value="0" name="damgavergisi"></td>
+              </tr>
+
+              <tr class="yeniform">
+                <td><input type="text" name="siranosu" id=""></td>
+                <td><input type="date" name="duzenlemetarihi" id=""></td>
+                <td><input type="text" name="no" id=""></td>
+                <td><select style="max-width: 50px;" name="turu" id="">
+                  <option value=""></option>
+                  <option value=""></option>
+                </select></td>
+                <td><input type="text" name="aciklama"></td>
+                <td><input type="number" step="0.01" value="0" name="iecerdigibedel"></td>
+                <td><input type="number" step="0.01" value="0" name="damgavergisi"></td>
+              </tr>
+              <tr class="yeniform">
+                <td><input type="text" name="siranosu" id=""></td>
+                <td><input type="date" name="duzenlemetarihi" id=""></td>
+                <td><input type="text" name="no" id=""></td>
+                <td><select style="max-width: 50px;" name="turu" id="">
+                  <option value=""></option>
+                  <option value=""></option>
+                </select></td>
+                <td><input type="text" name="aciklama"></td>
+                <td><input type="number" step="0.01" value="0" name="iecerdigibedel"></td>
+                <td><input type="number" step="0.01" value="0" name="damgavergisi"></td>
+              </tr>
+              <tr class="yeniform">
+                <td><input type="text" name="siranosu" id=""></td>
+                <td><input type="date" name="duzenlemetarihi" id=""></td>
+                <td><input type="text" name="no" id=""></td>
+                <td><select style="max-width: 50px;" name="turu" id="">
+                  <option value=""></option>
+                  <option value=""></option>
+                </select></td>
+                <td><input type="text" name="aciklama"></td>
+                <td><input type="number" step="0.01" value="0" name="iecerdigibedel"></td>
+                <td><input type="number" step="0.01" value="0" name="damgavergisi"></td>
+              </tr>
+              <tr class="yeniform">
+                <td><input type="text" name="siranosu" id=""></td>
+                <td><input type="date" name="duzenlemetarihi" id=""></td>
+                <td><input type="text" name="no" id=""></td>
+                <td><select style="max-width: 50px;" name="turu" id="">
+                  <option value=""></option>
+                  <option value=""></option>
+                </select></td>
+                <td><input type="text" name="aciklama"></td>
+                <td><input type="number" step="0.01" value="0" name="iecerdigibedel"></td>
+                <td><input type="number" step="0.01" value="0" name="damgavergisi"></td>
+              </tr>
+              <tr class="yeniform">
+                <td><input type="text" name="siranosu" id=""></td>
+                <td><input type="date" name="duzenlemetarihi" id=""></td>
+                <td><input type="text" name="no" id=""></td>
+                <td><select style="max-width: 50px;" name="turu" id="">
+                  <option value=""></option>
+                  <option value=""></option>
+                </select></td>
+                <td><input type="text" name="aciklama"></td>
+                <td><input type="number" step="0.01" value="0" name="iecerdigibedel"></td>
+                <td><input type="number" step="0.01" value="0" name="damgavergisi"></td>
+              </tr>
+              <tr class="yeniform">
+                <td><input type="text" name="siranosu" id=""></td>
+                <td><input type="date" name="duzenlemetarihi" id=""></td>
+                <td><input type="text" name="no" id=""></td>
+                <td><select style="max-width: 50px;" name="turu" id="">
+                  <option value=""></option>
+                  <option value=""></option>
+                </select></td>
+                <td><input type="text" name="aciklama"></td>
+                <td><input type="number" step="0.01" value="0" name="iecerdigibedel"></td>
+                <td><input type="number" step="0.01" value="0" name="damgavergisi"></td>
+              </tr>
+              <tr class="yeniform">
+                <td><input type="text" name="siranosu" id=""></td>
+                <td><input type="date" name="duzenlemetarihi" id=""></td>
+                <td><input type="text" name="no" id=""></td>
+                <td><select style="max-width: 50px;" name="turu" id="">
+                  <option value=""></option>
+                  <option value=""></option>
+                </select></td>
+                <td><input type="text" name="aciklama"></td>
+                <td><input type="number" step="0.01" value="0" name="iecerdigibedel"></td>
+                <td><input type="number" step="0.01" value="0" name="damgavergisi"></td>
+              </tr>
+              <tr class="yeniform">
+                <td><input type="text" name="siranosu" id=""></td>
+                <td><input type="date" name="duzenlemetarihi" id=""></td>
+                <td><input type="text" name="no" id=""></td>
+                <td><select style="max-width: 50px;" name="turu" id="">
+                  <option value=""></option>
+                  <option value=""></option>
+                </select></td>
+                <td><input type="text" name="aciklama"></td>
+                <td><input type="number" step="0.01" value="0" name="iecerdigibedel"></td>
+                <td><input type="number" step="0.01" value="0" name="damgavergisi"></td>
+              </tr>
+              <tr class="yeniform">
+                <td><input type="text" name="siranosu" id=""></td>
+                <td><input type="date" name="duzenlemetarihi" id=""></td>
+                <td><input type="text" name="no" id=""></td>
+                <td><select style="max-width: 50px;" name="turu" id="">
+                  <option value=""></option>
+                  <option value=""></option>
+                </select></td>
+                <td><input type="text" name="aciklama"></td>
+                <td><input type="number" step="0.01" value="0" name="iecerdigibedel"></td>
+                <td><input type="number" step="0.01" value="0" name="damgavergisi"></td>
+              </tr>
+              <tr class="yeniform">
+                <td><input type="text" name="siranosu" id=""></td>
+                <td><input type="date" name="duzenlemetarihi" id=""></td>
+                <td><input type="text" name="no" id=""></td>
+                <td><select style="max-width: 50px;" name="turu" id="">
+                  <option value=""></option>
+                  <option value=""></option>
+                </select></td>
+                <td><input type="text" name="aciklama"></td>
+                <td><input type="number" step="0.01" value="0" name="iecerdigibedel"></td>
+                <td><input type="number" step="0.01" value="0" name="damgavergisi"></td>
+              </tr>
+              <tr class="yeniform">
+                <td><input type="text" name="siranosu" id=""></td>
+                <td><input type="date" name="duzenlemetarihi" id=""></td>
+                <td><input type="text" name="no" id=""></td>
+                <td><select style="max-width: 50px;" name="turu" id="">
+                  <option value=""></option>
+                  <option value=""></option>
+                </select></td>
+                <td><input type="text" name="aciklama"></td>
+                <td><input type="number" step="0.01" value="0" name="iecerdigibedel"></td>
+                <td><input type="number" step="0.01" value="0" name="damgavergisi"></td>
+              </tr>
+              <tr class="yeniform">
+                <td><input type="text" name="siranosu" id=""></td>
+                <td><input type="date" name="duzenlemetarihi" id=""></td>
+                <td><input type="text" name="no" id=""></td>
+                <td><select style="max-width: 50px;" name="turu" id="">
+                  <option value=""></option>
+                  <option value=""></option>
+                </select></td>
+                <td><input type="text" name="aciklama"></td>
+                <td><input type="number" step="0.01" value="0" name="iecerdigibedel"></td>
+                <td><input type="number" step="0.01" value="0" name="damgavergisi"></td>
+              </tr>
+              <tr class="yeniform">
+                <td><input type="text" name="siranosu" id=""></td>
+                <td><input type="date" name="duzenlemetarihi" id=""></td>
+                <td><input type="text" name="no" id=""></td>
+                <td><select style="max-width: 50px;" name="turu" id="">
+                  <option value=""></option>
+                  <option value=""></option>
+                </select></td>
+                <td><input type="text" name="aciklama"></td>
+                <td><input type="number" step="0.01" value="0" name="iecerdigibedel"></td>
+                <td><input type="number" step="0.01" value="0" name="damgavergisi"></td>
+              </tr>
+              <tr class="yeniform">
+                <td><input type="text" name="siranosu" id=""></td>
+                <td><input type="date" name="duzenlemetarihi" id=""></td>
+                <td><input type="text" name="no" id=""></td>
+                <td><select style="max-width: 50px;" name="turu" id="">
+                  <option value=""></option>
+                  <option value=""></option>
+                </select></td>
+                <td><input type="text" name="aciklama"></td>
+                <td><input type="number" step="0.01" value="0" name="iecerdigibedel"></td>
+                <td><input type="number" step="0.01" value="0" name="damgavergisi"></td>
+              </tr>
+              <tr class="yeniform">
+                <td><input type="text" name="siranosu" id=""></td>
+                <td><input type="date" name="duzenlemetarihi" id=""></td>
+                <td><input type="text" name="no" id=""></td>
+                <td><select style="max-width: 50px;" name="turu" id="">
+                  <option value=""></option>
+                  <option value=""></option>
+                </select></td>
+                <td><input type="text" name="aciklama"></td>
+                <td><input type="number" step="0.01" value="0" name="iecerdigibedel"></td>
+                <td><input type="number" step="0.01" value="0" name="damgavergisi"></td>
+              </tr>
+              <tr class="yeniform">
+                <td><input type="text" name="siranosu" id=""></td>
+                <td><input type="date" name="duzenlemetarihi" id=""></td>
+                <td><input type="text" name="no" id=""></td>
+                <td><select style="max-width: 50px;" name="turu" id="">
+                  <option value=""></option>
+                  <option value=""></option>
+                </select></td>
+                <td><input type="text" name="aciklama"></td>
+                <td><input type="number" step="0.01" value="0" name="iecerdigibedel"></td>
+                <td><input type="number" step="0.01" value="0" name="damgavergisi"></td>
+              </tr>
+              <tr class="yeniform">
+                <td><input type="text" name="siranosu" id=""></td>
+                <td><input type="date" name="duzenlemetarihi" id=""></td>
+                <td><input type="text" name="no" id=""></td>
+                <td><select style="max-width: 50px;" name="turu" id="">
+                  <option value=""></option>
+                  <option value=""></option>
+                </select></td>
+                <td><input type="text" name="aciklama"></td>
+                <td><input type="number" step="0.01" value="0" name="iecerdigibedel"></td>
+                <td><input type="number" step="0.01" value="0" name="damgavergisi"></td>
+              </tr>
+              <tr class="yeniform">
+                <td><input type="text" name="siranosu" id=""></td>
+                <td><input type="date" name="duzenlemetarihi" id=""></td>
+                <td><input type="text" name="no" id=""></td>
+                <td><select style="max-width: 50px;" name="turu" id="">
+                  <option value=""></option>
+                  <option value=""></option>
+                </select></td>
+                <td><input type="text" name="aciklama"></td>
+                <td><input type="number" step="0.01" value="0" name="iecerdigibedel"></td>
+                <td><input type="number" step="0.01" value="0" name="damgavergisi"></td>
+              </tr>
+              <tr class="yeniform">
+                <td><input type="text" name="siranosu" id=""></td>
+                <td><input type="date" name="duzenlemetarihi" id=""></td>
+                <td><input type="text" name="no" id=""></td>
+                <td><select style="max-width: 50px;" name="turu" id="">
+                  <option value=""></option>
+                  <option value=""></option>
+                </select></td>
+                <td><input type="text" name="aciklama"></td>
+                <td><input type="number" step="0.01" value="0" name="iecerdigibedel"></td>
+                <td><input type="number" step="0.01" value="0" name="damgavergisi"></td>
+              </tr>
+              <tr class="yeniform">
+                <td><input type="text" name="siranosu" id=""></td>
+                <td><input type="date" name="duzenlemetarihi" id=""></td>
+                <td><input type="text" name="no" id=""></td>
+                <td><select style="max-width: 50px;" name="turu" id="">
+                  <option value=""></option>
+                  <option value=""></option>
+                </select></td>
+                <td><input type="text" name="aciklama"></td>
+                <td><input type="number" step="0.01" value="0" name="iecerdigibedel"></td>
+                <td><input type="number" step="0.01" value="0" name="damgavergisi"></td>
+              </tr>
+              <tr class="yeniform">
+                <td><input type="text" name="siranosu" id=""></td>
+                <td><input type="date" name="duzenlemetarihi" id=""></td>
+                <td><input type="text" name="no" id=""></td>
+                <td><select style="max-width: 50px;" name="turu" id="">
+                  <option value=""></option>
+                  <option value=""></option>
+                </select></td>
+                <td><input type="text" name="aciklama"></td>
+                <td><input type="number" step="0.01" value="0" name="iecerdigibedel"></td>
+                <td><input type="number" step="0.01" value="0" name="damgavergisi"></td>
+              </tr>
+              <tr class="yeniform">
+                <td><input type="text" name="siranosu" id=""></td>
+                <td><input type="date" name="duzenlemetarihi" id=""></td>
+                <td><input type="text" name="no" id=""></td>
+                <td><select style="max-width: 50px;" name="turu" id="">
+                  <option value=""></option>
+                  <option value=""></option>
+                </select></td>
+                <td><input type="text" name="aciklama"></td>
+                <td><input type="number" step="0.01" value="0" name="iecerdigibedel"></td>
+                <td><input type="number" step="0.01" value="0" name="damgavergisi"></td>
+              </tr>
+              <tr class="yeniform">
+                <td><input type="text" name="siranosu" id=""></td>
+                <td><input type="date" name="duzenlemetarihi" id=""></td>
+                <td><input type="text" name="no" id=""></td>
+                <td><select style="max-width: 50px;" name="turu" id="">
+                  <option value=""></option>
+                  <option value=""></option>
+                </select></td>
+                <td><input type="text" name="aciklama"></td>
+                <td><input type="number" step="0.01" value="0" name="iecerdigibedel"></td>
+                <td><input type="number" step="0.01" value="0" name="damgavergisi"></td>
+              </tr>
+              <tr class="yeniform">
+                <td><input type="text" name="siranosu" id=""></td>
+                <td><input type="date" name="duzenlemetarihi" id=""></td>
+                <td><input type="text" name="no" id=""></td>
+                <td><select style="max-width: 50px;" name="turu" id="">
+                  <option value=""></option>
+                  <option value=""></option>
+                </select></td>
+                <td><input type="text" name="aciklama"></td>
+                <td><input type="number" step="0.01" value="0" name="iecerdigibedel"></td>
+                <td><input type="number" step="0.01" value="0" name="damgavergisi"></td>
+              </tr>
+              <tr class="yeniform">
+                <td><input type="text" name="siranosu" id=""></td>
+                <td><input type="date" name="duzenlemetarihi" id=""></td>
+                <td><input type="text" name="no" id=""></td>
+                <td><select style="max-width: 50px;" name="turu" id="">
+                  <option value=""></option>
+                  <option value=""></option>
+                </select></td>
+                <td><input type="text" name="aciklama"></td>
+                <td><input type="number" step="0.01" value="0" name="iecerdigibedel"></td>
+                <td><input type="number" step="0.01" value="0" name="damgavergisi"></td>
+              </tr>
+              <tr class="yeniform">
+                <td><input type="text" name="siranosu" id=""></td>
+                <td><input type="date" name="duzenlemetarihi" id=""></td>
+                <td><input type="text" name="no" id=""></td>
+                <td><select style="max-width: 50px;" name="turu" id="">
+                  <option value=""></option>
+                  <option value=""></option>
+                </select></td>
+                <td><input type="text" name="aciklama"></td>
+                <td><input type="number" step="0.01" value="0" name="iecerdigibedel"></td>
+                <td><input type="number" step="0.01" value="0" name="damgavergisi"></td>
+              </tr>
+              <tr class="yeniform">
+                <td><input type="text" name="siranosu" id=""></td>
+                <td><input type="date" name="duzenlemetarihi" id=""></td>
+                <td><input type="text" name="no" id=""></td>
+                <td><select style="max-width: 50px;" name="turu" id="">
+                  <option value=""></option>
+                  <option value=""></option>
+                </select></td>
+                <td><input type="text" name="aciklama"></td>
+                <td><input type="number" step="0.01" value="0" name="iecerdigibedel"></td>
+                <td><input type="number" step="0.01" value="0" name="damgavergisi"></td>
+              </tr>
+              <tr class="yeniform">
+                <td><input type="text" name="siranosu" id=""></td>
+                <td><input type="date" name="duzenlemetarihi" id=""></td>
+                <td><input type="text" name="no" id=""></td>
+                <td><select style="max-width: 50px;" name="turu" id="">
+                  <option value=""></option>
+                  <option value=""></option>
+                </select></td>
+                <td><input type="text" name="aciklama"></td>
+                <td><input type="number" step="0.01" value="0" name="iecerdigibedel"></td>
+                <td><input type="number" step="0.01" value="0" name="damgavergisi"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div style="min-height: 5px;" class="col-12"></div>
+      <div class="col-12">
+        <div class="row">
+          <div class="col-4"><b>Toplam </b></div>
+          <div class="col-4"><input type="number" value="0" step="0.01" name="toplam" id=""></div>
+          <div class="col-4"><input type="number" value="0" step="0.01" name="toplam2" id=""></div>
+        </div>
+      </div>
+      <hr style="border: 2px solid black !important;" >
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+      <h3 class="text-center" >DÜZENLEME BİLGİLERİ</h3>
+      <hr>
+      <div class="col-6">
+        
+      </div>
+      <div style="border-left: 1px solid black;" class="col-6">
+        <h4><b>Vergi Sorumlusunun</b></h4>
+        {% if mirasci.beyannamehangisifatlaverildi == "mukellef" %}
+        <hr>
+          <div class="row">
+
+            <div class="col-4"><label style="margin-left: 5px;" for="mukellef">Mükellef</label><input type="checkbox" disabled checked name="mukellef" id="mukellef"></div>
+            <div class="col-4"><label style="margin-left: 5px;"  for="mirascı">Mirascı</label><input type="checkbox" disabled name="mirascı" id="mirascı"></div>
+            <div class="col-4"><label style="margin-left: 5px;" for="kanunitemsilci">Kanuni Temsilci</label><input disabled type="checkbox" name="kanunitemsilci" id="kanunitemsilci"></div>
+          </div>
+          <p><b>Vergi Kimlik Numarası (T.C Kimlik No) : {% if subeleri.sahis_ise_tc %}{{subeleri.sahis_ise_tc}}{% endif %} </b></p>
+          <p><b>Vergi Kimlik Numarası  : {% if subeleri.vergi_numarasi %}{{subeleri.vergi_numarasi}}{% endif %} </b></p>
+          <p><b>Soyadi (Unvan)  : {% if subeleri.bagli_oldugu_firma.Firma_unvani2 %}{{subeleri.bagli_oldugu_firma.Firma_unvani2}}{% endif %} </b></p>
+          <p><b>Adı (Unvan Devamı)  : {% if subeleri.bagli_oldugu_firma.firma_unvani %}{{subeleri.bagli_oldugu_firma.firma_unvani}}{% endif %} </b></p>
+          <p><b>Ticaret Sicil No  : {% if faliyet.ticaret_sicil_no %}{{faliyet.ticaret_sicil_no}}{% endif %} </b></p>
+          <p><b>E-Posta Adresi  : {% if subeleri.email_adresi %}{{subeleri.email_adresi}}{% endif %} </b></p>
+          <p><b>İrtibat Telefon No  : {% if subeleri.telefon_numarasi %}{{subeleri.telefon_numarasi}}{% endif %} </b></p>
+        {% elif mirasci.beyannamehangisifatlaverildi == "mirascı" %}
+        <hr>
+          <div class="row">
+
+            <div class="col-4"><label style="margin-left: 5px;" for="mukellef">Mükellef</label><input type="checkbox" disabled  name="mukellef" id="mukellef"></div>
+            <div class="col-4"><label style="margin-left: 5px;"  for="mirascı">Mirascı</label><input type="checkbox" disabled checked name="mirascı" id="mirascı"></div>
+            <div class="col-4"><label style="margin-left: 5px;" for="kanunitemsilci">Kanuni Temsilci</label><input disabled type="checkbox" name="kanunitemsilci" id="kanunitemsilci"></div>
+          </div>
+          <p><b>Vergi Kimlik Numarası (T.C Kimlik No) : {% if mirasci.mirascibilgisitc %}{{mirasci.mirascibilgisitc}}{% endif %} </b></p>
+          <p><b>Vergi Kimlik Numarası  : {% if mirasci.mirascivergino %}{{mirasci.mirascivergino}}{% endif %} </b></p>
+          <p><b>Soyadi (Unvan)  : {% if mirasci.beyannamesoyadiunvan %}{{mirasci.beyannamesoyadiunvan}}{% endif %} </b></p>
+          <p><b>Adı (Unvan Devamı)  : {% if mirasci.beyannameadiunvandevami %}{{mirasci.beyannameadiunvandevami}}{% endif %} </b></p>
+          <p><b>Ticaret Sicil No  : {% if mirasci.beyannameyeaitticaretsicilno %}{{mirasci.beyannameyeaitticaretsicilno}}{% endif %} </b></p>
+          <p><b>E-Posta Adresi  : {% if mirasci.beyannameemailadresi %}{{mirasci.beyannameemailadresi}}{% endif %} </b></p>
+          <p><b>İrtibat Telefon No  : {% if mirasci.beyannametelefonumarasi %}{{mirasci.beyannametelefonumarasi}}{% endif %} </b></p>
+        {% elif mirasci.beyannamehangisifatlaverildi == "kanunitemsilci" %}
+        <hr>
+        <div class="row">
+
+          <div class="col-4"><label style="margin-left: 5px;" for="mukellef">Mükellef</label><input type="checkbox" disabled  name="mukellef" id="mukellef"></div>
+          <div class="col-4"><label style="margin-left: 5px;"  for="mirascı">Mirascı</label><input type="checkbox" disabled  name="mirascı" id="mirascı"></div>
+          <div class="col-4"><label style="margin-left: 5px;" for="kanunitemsilci">Kanuni Temsilci</label><input disabled checked type="checkbox" name="kanunitemsilci" id="kanunitemsilci"></div>
+        </div>
+        <p><b>Vergi Kimlik Numarası (T.C Kimlik No) : {% if kanuni_temsilci.beyannamekanunitemsicitc %}{{kanuni_temsilci.beyannamekanunitemsicitc}}{% endif %} </b></p>
+        <p><b>Vergi Kimlik Numarası  : {% if kanuni_temsilci.beyannamekanunitemsicivergino %}{{kanuni_temsilci.beyannamekanunitemsicivergino}}{% endif %} </b></p>
+        <p><b>Soyadi (Unvan)  : {% if kanuni_temsilci.beyannamekanunitemsicisoyadi %}{{kanuni_temsilci.beyannamekanunitemsicisoyadi}}{% endif %} </b></p>
+        <p><b>Adı (Unvan Devamı)  : {% if kanuni_temsilci.beyannamekanunitemsiciadiunvandevami %}{{kanuni_temsilci.beyannamekanunitemsiciadiunvandevami}}{% endif %} </b></p>
+        <p><b>Ticaret Sicil No  : {% if kanuni_temsilci.beyannamekanunitemsiciticaretsicilno %}{{kanuni_temsilci.beyannamekanunitemsiciticaretsicilno}}{% endif %} </b></p>
+        <p><b>E-Posta Adresi  : {% if kanuni_temsilci.beyannamekanunitemsicieposta %}{{kanuni_temsilci.beyannamekanunitemsicieposta}}{% endif %} </b></p>
+        <p><b>İrtibat Telefon No  : {% if kanuni_temsilci.beyannamekanunitemsicitelefon %}{{kanuni_temsilci.beyannamekanunitemsicitelefon}}{% endif %} </b></p>
+        {% endif %}
+      </div>
+      <hr style="border: 2px solid black !important;" >
+  </div>
+</div>
+<script>
+  let z = 0;
+  function ekleYeniSatir() {
+    
+    var elements = document.getElementsByClassName('yeniform');
+
+    if (elements[z]) {
+        elements[z].classList.remove('yeniform');
+    } else {
+        console.error("Ürün Sınırına Ulaştınız");
+    }
+
+    yeniselect();
+  }
+</script>
+{% endblock content %}
