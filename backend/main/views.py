@@ -5585,6 +5585,34 @@ def kdv4_beyannamesi(request,slug):
     for i in range(801,826):
         tevk_800ler.append(str(i))
     content["tevkifatlar1"] =tevkifat_tur_kodu.objects.filter(hesap_kodu__in = tevk_800ler,silinme_bilgisi = False,bagli_oldugu_firma = None)
+    content["beyannameduzenleyen"]=beyanname_duzenleyene_ait_bilgiler.objects.filter(beyanname_bilgisi__sube_bilgisi = sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)).first()).last()
+    content["mirasci"] =beyanname_bilgileri.objects.filter(sube_bilgisi = sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)).first()).last()
+    content["kanuni_temsilci"] = beyanname_kanuni_temsilcisi.objects.filter(beyanname_bilgisi__sube_bilgisi = sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)).first()).last()
+    if request.POST:
+        #hasılat Bilgdirimi
+        matrah1 = request.POST.get("matrah1")
+        kdvorani1 = request.POST.get("kdvorani1")
+        hesaplanankdv1 = request.POST.get("hesaplanankdv1")
+        hasilat1 = request.POST.get("hasilat1")
+        matrah2 = request.POST.get("matrah2")
+        kdvorani2 = request.POST.get("kdvorani2")
+        hesaplanankdv2 = request.POST.get("hesaplanankdv2")
+        hasilat2 = request.POST.get("hasilat2")
+        matrah3 = request.POST.get("matrah3")
+        kdvorani3 = request.POST.get("kdvorani3")
+        hesaplanankdv3 = request.POST.get("hesaplanankdv3")
+        hasilat3 = request.POST.get("hasilat3")
+        toplam = request.POST.get("toplam")
+        nethasilat = request.POST.get("nethasilat")
+        gerceklesmeyenislsem = request.POST.get("gerceklesmeyenislsem")
+        #hasılat Bilgdirimi
+        #Vergi Bildirimi
+        nethasilat2 = request.POST.get("nethasilat2")
+        nethasilatuygulanacakvergiorani = request.POST.get("nethasilatuygulanacakvergiorani")
+        hasitatkapasamindaodemesigerekenvergi =request.POST.get("hasitatkapasamindaodemesigerekenvergi")
+        toplamhasilatkumeletif =request.POST.get("toplamhasilatkumeletif")
+
+        #Vergi Bildirimi
     return render(request,"beyannameler/kdv4_beyanname.html",content)
 
 def gecici_beyanname(request,slug):
@@ -5715,6 +5743,8 @@ def bsformu(request,slug):
         muhasebecininadi =request.POST.get("muhasebecininadi")
 
     return render(request,"beyannameler/bsformu.html",content)
+
+
 
 
 

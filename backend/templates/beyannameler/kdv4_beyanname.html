@@ -81,6 +81,7 @@
         <hr>
         <div class="col-6"><p><b>Yılı : <script>document.write(new Date().getFullYear())</script></b></p>
             <p><b>Vergi Dairesi Kodu : {{subeleri.vergi_dairesi_adi.vergi_dairesi_kodu}}</b></p>
+            <p><b>Vergi Dairesi  : {{subeleri.vergi_dairesi_adi.vergi_dairesi_adi}}</b></p>
         </div>
         <div class="col-6">
             <p><b>Vergi Kimlik Numarası (T.C Kimlik No) : {% if subeleri.sahis_ise_tc %}{{subeleri.sahis_ise_tc}}{% endif %} </b></p>
@@ -94,6 +95,208 @@
         <hr style="border: 2px solid black !important;" >
     </div>
 </div>
+<div class="container">
+    <div class="row">
+        <h3 class="text-center" >HASILAT BİLDİRİMİ</h3>
+        <hr>
+        <div class="col-3">
+          <div class="row">
+            <div class="col-6">MATRAH</div>
+            <div class="col-6"><input style="max-width: 100px;" type="number" value="0" step="0.01" name="matrah1" ></div>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="row">
+            <div class="col-6">KDV Oranı</div>
+            <div class="col-6"><input style="max-width: 100px;" type="number" value="10" step="0.01" name="kdvorani1" ></div>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="row">
+            <div class="col-6">Hesaplanan KDV </div>
+            <div class="col-6"><input style="max-width: 100px;" type="number" value="0" step="0.01" name="hesaplanankdv1" ></div>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="row">
+            <div class="col-6">Hasılat</div>
+            <div class="col-6"><input style="max-width: 100px;" type="number" value="0" step="0.01" name="hasilat1" ></div>
+          </div>
+        </div>
+        <div style="min-height: 5px;" class="col-12"></div>
+        <div class="col-3">
+          <div class="row">
+            <div class="col-6">MATRAH</div>
+            <div class="col-6"><input style="max-width: 100px;" type="number" value="0" step="0.01" name="matrah2" ></div>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="row">
+            <div class="col-6">KDV Oranı</div>
+            <div class="col-6"><input style="max-width: 100px;" type="number" value="20" step="0.01" name="kdvorani2" ></div>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="row">
+            <div class="col-6">Hesaplanan KDV </div>
+            <div class="col-6"><input style="max-width: 100px;" type="number" value="0" step="0.01" name="hesaplanankdv2" ></div>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="row">
+            <div class="col-6">Hasılat</div>
+            <div class="col-6"><input style="max-width: 100px;" type="number" value="0" step="0.01" name="hasilat2" ></div>
+          </div>
+        </div>
+        <div style="min-height: 5px;" class="col-12"></div>
+        <div class="col-3">
+          <div class="row">
+            <div class="col-6">MATRAH</div>
+            <div class="col-6"><input style="max-width: 100px;" type="number" value="0" step="0.01" name="matrah3" ></div>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="row">
+            <div class="col-6">KDV Oranı (istisna)</div>
+            <div class="col-6"><input style="max-width: 100px;" type="number" value="0" step="0.01" name="kdvorani3" ></div>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="row">
+            <div class="col-6">Hesaplanan KDV </div>
+            <div class="col-6"><input style="max-width: 100px;" type="number" value="0" step="0.01" name="hesaplanankdv3" ></div>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="row">
+            <div class="col-6">Hasılat</div>
+            <div class="col-6"><input style="max-width: 100px;" type="number" value="0" step="0.01" name="hasilat3" ></div>
+          </div>
+        </div>
+        <div style="min-height: 5px;" class="col-12"></div>
+        <div class="col-12">
+          <div class="row">
+            <div class="col-8"><b>Toplam : </b></div>
+            <div class="col-4"><input type="number" value="0" step="0.01" name="toplam" id=""></div>
+          </div>
+        </div>
+        <div style="min-height: 5px;" class="col-12"></div>
+        <div class="col-12">
+          <div class="row">
+            <div class="col-8"><b>Satıştan İade Edilen , İşlemi Gerçekleşmeyen veya İşlemden Vazgeçilen Mal Ve Hizmetlerin KDV Dahil Bedeli: </b></div>
+            <div class="col-4"><input type="number" value="0" step="0.01" name="gerceklesmeyenislsem" id=""></div>
+          </div>
+        </div>
+        <div style="min-height: 5px;" class="col-12"></div>
+        <div class="col-12">
+          <div class="row">
+            <div class="col-8"><b>Net Hasılat : </b></div>
+            <div class="col-4"><input type="number" value="0" step="0.01" name="nethasilat" id=""></div>
+          </div>
+        </div>
+        <hr style="border: 2px solid black !important;" >
+    </div>
+</div>
+<div class="container">
+  <div class="row">
+      <h3 class="text-center" >VERGİ BİLDİRİMİ</h3>
+      <hr>
+      <div style="min-height: 5px;" class="col-12"></div>
+      <div class="col-12">
+        <div class="row">
+          <div class="col-8"><b>Net Hasılat : </b></div>
+          <div class="col-4"><input type="number" value="0" step="0.01" name="nethasilat2" id=""></div>
+        </div>
+      </div>
+      <div style="min-height: 5px;" class="col-12"></div>
+      <div class="col-12">
+        <div class="row">
+          <div class="col-8"><b>Net Hasılata Uygulanacak Vergi Oranı : </b></div>
+          <div class="col-4"><input type="number" value="0" step="0.01" name="nethasilatuygulanacakvergiorani" id=""></div>
+        </div>
+      </div>
+      <div style="min-height: 5px;" class="col-12"></div>
+      <div class="col-12">
+        <div class="row">
+          <div class="col-8"><b>Hasılat Esaslı Vergilendirme Kapsamında Uygulaması Gereken Vergi: </b></div>
+          <div class="col-4"><input type="number" value="0" step="0.01" name="hasitatkapasamindaodemesigerekenvergi" id=""></div>
+        </div>
+      </div>
+      <div style="min-height: 5px;" class="col-12"></div>
+      <div class="col-12">
+        <div class="row">
+          <div class="col-8"><b>Toplam Hasılat (Kümelatif) </b></div>
+          <div class="col-4"><input type="number" value="0" step="0.01" name="toplamhasilatkumeletif" id=""></div>
+        </div>
+      </div>
+      <hr style="border: 2px solid black !important;" >
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+      <h3 class="text-center" >DÜZENLEME BİLGİLERİ</h3>
+      <hr>
+      <div class="col-6">
+        <h4><b>Beyannameyi Düzenleyen</b></h4>
+        <hr>
+          <p><b>Vergi Kimlik Numarası (T.C Kimlik No) : {% if beyannameduzenleyen.beyannameduzenleyeneaittc %}{{beyannameduzenleyen.beyannameduzenleyeneaittc}}{% endif %} </b></p>
+          <p><b>Vergi Kimlik Numarası  : {% if beyannameduzenleyen.beyannameduzenleyeneaitvergino %}{{beyannameduzenleyen.beyannameduzenleyeneaitvergino}}{% endif %} </b></p>
+          <p><b>Soyadi (Unvan)  : {% if beyannameduzenleyen.beyannameduzenleyeneaitsoyadiunvan %}{{beyannameduzenleyen.beyannameduzenleyeneaitsoyadiunvan}}{% endif %} </b></p>
+          <p><b>Adı (Unvan Devamı)  : {% if beyannameduzenleyen.beyannameduzenleyeneaitadiunvandevami %}{{beyannameduzenleyen.beyannameduzenleyeneaitadiunvandevami}}{% endif %} </b></p>
+          <p><b>Ticaret Sicil No  : {% if beyannameduzenleyen.beyannameduzenleyeneaitticaretsicilno %}{{ beyannameduzenleyen.beyannameduzenleyeneaitticaretsicilno}}{% endif %} </b></p>
+          <p><b>E-Posta Adresi  : {% if beyannameduzenleyen.beyannameduzenleyeneaiteposta %}{{beyannameduzenleyen.beyannameduzenleyeneaiteposta}}{% endif %} </b></p>
+          <p><b>İrtibat Telefon No  : {% if beyannameduzenleyen.beyannameduzenleyeneaittelefon %}{{beyannameduzenleyen.beyannameduzenleyeneaittelefon}}{% endif %} </b></p>
+      </div>
+      <div style="border-left: 1px solid black;" class="col-6">
+        <h4><b>Vergi Sorumlusunun</b></h4>
+        {% if mirasci.beyannamehangisifatlaverildi == "mukellef" %}
+        <hr>
+          <div class="row">
 
+            <div class="col-4"><label style="margin-left: 5px;" for="mukellef">Mükellef</label><input type="checkbox" disabled checked name="mukellef" id="mukellef"></div>
+            <div class="col-4"><label style="margin-left: 5px;"  for="mirascı">Mirascı</label><input type="checkbox" disabled name="mirascı" id="mirascı"></div>
+            <div class="col-4"><label style="margin-left: 5px;" for="kanunitemsilci">Kanuni Temsilci</label><input disabled type="checkbox" name="kanunitemsilci" id="kanunitemsilci"></div>
+          </div>
+          <p><b>Vergi Kimlik Numarası (T.C Kimlik No) : {% if subeleri.sahis_ise_tc %}{{subeleri.sahis_ise_tc}}{% endif %} </b></p>
+          <p><b>Vergi Kimlik Numarası  : {% if subeleri.vergi_numarasi %}{{subeleri.vergi_numarasi}}{% endif %} </b></p>
+          <p><b>Soyadi (Unvan)  : {% if subeleri.bagli_oldugu_firma.Firma_unvani2 %}{{subeleri.bagli_oldugu_firma.Firma_unvani2}}{% endif %} </b></p>
+          <p><b>Adı (Unvan Devamı)  : {% if subeleri.bagli_oldugu_firma.firma_unvani %}{{subeleri.bagli_oldugu_firma.firma_unvani}}{% endif %} </b></p>
+          <p><b>Ticaret Sicil No  : {% if faliyet.ticaret_sicil_no %}{{faliyet.ticaret_sicil_no}}{% endif %} </b></p>
+          <p><b>E-Posta Adresi  : {% if subeleri.email_adresi %}{{subeleri.email_adresi}}{% endif %} </b></p>
+          <p><b>İrtibat Telefon No  : {% if subeleri.telefon_numarasi %}{{subeleri.telefon_numarasi}}{% endif %} </b></p>
+        {% elif mirasci.beyannamehangisifatlaverildi == "mirascı" %}
+        <hr>
+          <div class="row">
 
+            <div class="col-4"><label style="margin-left: 5px;" for="mukellef">Mükellef</label><input type="checkbox" disabled  name="mukellef" id="mukellef"></div>
+            <div class="col-4"><label style="margin-left: 5px;"  for="mirascı">Mirascı</label><input type="checkbox" disabled checked name="mirascı" id="mirascı"></div>
+            <div class="col-4"><label style="margin-left: 5px;" for="kanunitemsilci">Kanuni Temsilci</label><input disabled type="checkbox" name="kanunitemsilci" id="kanunitemsilci"></div>
+          </div>
+          <p><b>Vergi Kimlik Numarası (T.C Kimlik No) : {% if mirasci.mirascibilgisitc %}{{mirasci.mirascibilgisitc}}{% endif %} </b></p>
+          <p><b>Vergi Kimlik Numarası  : {% if mirasci.mirascivergino %}{{mirasci.mirascivergino}}{% endif %} </b></p>
+          <p><b>Soyadi (Unvan)  : {% if mirasci.beyannamesoyadiunvan %}{{mirasci.beyannamesoyadiunvan}}{% endif %} </b></p>
+          <p><b>Adı (Unvan Devamı)  : {% if mirasci.beyannameadiunvandevami %}{{mirasci.beyannameadiunvandevami}}{% endif %} </b></p>
+          <p><b>Ticaret Sicil No  : {% if mirasci.beyannameyeaitticaretsicilno %}{{mirasci.beyannameyeaitticaretsicilno}}{% endif %} </b></p>
+          <p><b>E-Posta Adresi  : {% if mirasci.beyannameemailadresi %}{{mirasci.beyannameemailadresi}}{% endif %} </b></p>
+          <p><b>İrtibat Telefon No  : {% if mirasci.beyannametelefonumarasi %}{{mirasci.beyannametelefonumarasi}}{% endif %} </b></p>
+        {% elif mirasci.beyannamehangisifatlaverildi == "kanunitemsilci" %}
+        <hr>
+        <div class="row">
+
+          <div class="col-4"><label style="margin-left: 5px;" for="mukellef">Mükellef</label><input type="checkbox" disabled  name="mukellef" id="mukellef"></div>
+          <div class="col-4"><label style="margin-left: 5px;"  for="mirascı">Mirascı</label><input type="checkbox" disabled  name="mirascı" id="mirascı"></div>
+          <div class="col-4"><label style="margin-left: 5px;" for="kanunitemsilci">Kanuni Temsilci</label><input disabled checked type="checkbox" name="kanunitemsilci" id="kanunitemsilci"></div>
+        </div>
+        <p><b>Vergi Kimlik Numarası (T.C Kimlik No) : {% if kanuni_temsilci.beyannamekanunitemsicitc %}{{kanuni_temsilci.beyannamekanunitemsicitc}}{% endif %} </b></p>
+        <p><b>Vergi Kimlik Numarası  : {% if kanuni_temsilci.beyannamekanunitemsicivergino %}{{kanuni_temsilci.beyannamekanunitemsicivergino}}{% endif %} </b></p>
+        <p><b>Soyadi (Unvan)  : {% if kanuni_temsilci.beyannamekanunitemsicisoyadi %}{{kanuni_temsilci.beyannamekanunitemsicisoyadi}}{% endif %} </b></p>
+        <p><b>Adı (Unvan Devamı)  : {% if kanuni_temsilci.beyannamekanunitemsiciadiunvandevami %}{{kanuni_temsilci.beyannamekanunitemsiciadiunvandevami}}{% endif %} </b></p>
+        <p><b>Ticaret Sicil No  : {% if kanuni_temsilci.beyannamekanunitemsiciticaretsicilno %}{{kanuni_temsilci.beyannamekanunitemsiciticaretsicilno}}{% endif %} </b></p>
+        <p><b>E-Posta Adresi  : {% if kanuni_temsilci.beyannamekanunitemsicieposta %}{{kanuni_temsilci.beyannamekanunitemsicieposta}}{% endif %} </b></p>
+        <p><b>İrtibat Telefon No  : {% if kanuni_temsilci.beyannamekanunitemsicitelefon %}{{kanuni_temsilci.beyannamekanunitemsicitelefon}}{% endif %} </b></p>
+        {% endif %}
+      </div>
+      <hr style="border: 2px solid black !important;" >
+  </div>
+</div>
 {% endblock content %}
