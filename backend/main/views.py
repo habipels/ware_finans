@@ -5815,7 +5815,9 @@ def kurumlargerikazanimpayi(request,slug):
         aybilgisi = request.POST.getlist("aybilgisi")
         sattigiadet = request.POSt.getlist("sattigiadet")
         gerikazandigitutar = request.POSt.getlist("gerikazandigitutar")
+        #YURT İÇİNDE ÜRETİLEREK PİYASAYA ARZ EDİLEN ÜRÜNLERE İLİŞKİN GEKAP BİLDİRİM SATIRLARI
         
+        #YURT İÇİNDE ÜRETİLEREK PİYASAYA ARZ EDİLEN ÜRÜNLERE İLİŞKİN GEKAP BİLDİRİM SATIRLARI
     return render(request,"beyannameler/kurumlargerikazanimpayi.html",content)
 
 

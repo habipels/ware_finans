@@ -1806,3 +1806,12 @@ class firma_ayarlari_smm_ymm_sm_bilgileri(models.Model):
 #demirbaş 
 """class demirbaslar(models.Model):
     pass"""
+
+
+#ürünler
+class urunler(models.Model):
+    urun_kodu = models.CharField(max_length = 20,verbose_name= "Ürün Kodu",blank = True,null = True)
+    grup = models.CharField(max_length = 100,verbose_name = "Grup Kodu",blank = True,null = True)
+    urun_adi = models.CharField(max_length = 200,verbose_name = "ürün Adları",blank = True,null  = True)
+    tutar = models.FloatField(default = 0,verbose_name = "Tutarı")
+    birimi = models.CharField(max_length  = 200 ,verbose_name = "Birimi",blank = True,null = True)
