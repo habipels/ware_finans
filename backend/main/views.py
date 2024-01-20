@@ -5807,6 +5807,7 @@ def kurumlargerikazanimpayi(request,slug):
     ]
     content["sehirler"]  = turkey_cities
     content["urunler"] = urunler.objects.all()
+    content["dayanak"] = dayanak.objects.all()
     if request.POST:
         aysecimi = request.POST.get("aysecimi")
         yurticidisi = request.POST.getlist("yurticidisi")
@@ -5842,6 +5843,11 @@ def kurumlargerikazanimpayi(request,slug):
         budoenemaitmahsup = request.POST.get("budoenemaitmahsup")
         #MAHSUP EDİLECEK GEKAP (PLASTİK POŞET HARİÇ)
         #GEKAP TAHSİL EDİLMEYECEK ÜRÜNLER
+        dayanak1 =  request.POST.getlist("dayanak")
+        urunlerlistesi3 = request.POST.getlist("urunlerlistesi3")
+        birimtutari3 = request.POST.getlist("birimtutari3")
+        miktar3 = request.POST.getlist("miktar3")
+        tutarislemi3 = request.POST.getlist("tutarislemi3")
         #GEKAP TAHSİL EDİLMEYECEK ÜRÜNLER
     return render(request,"beyannameler/kurumlargerikazanimpayi.html",content)
 
