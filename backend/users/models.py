@@ -4,7 +4,7 @@ import random
 import json
 import datetime
 from django.utils import timezone
-
+from ckeditor.fields import RichTextField
 # Create your models here.
 class CustomUser(AbstractUser):
 
@@ -47,7 +47,10 @@ class CustomUser(AbstractUser):
             self.Referans_kodu = self.yeni
             super(CustomUser, self).save(*args, **kwargs)
 
-
+class paketler(models.Model):
+    paket_adi = models.CharField(max_length = 200,verbose_name = "PAket Adı")
+    paket_fiyati = models.FloatField(default = 0 ,verbose_name = "Fiyat Bilgisi")
+    icerigi = RichTextField(verbose_name="İçeriği Metni",blank=True,null=True)
 class firma(models.Model):
     firma_muhasabecisi = models.ForeignKey(CustomUser, blank=True, null=True, on_delete=models.SET_NULL)
     tanitici_isim = models.CharField(max_length=100, verbose_name="Tanıtıcı Adı", blank=True, null=True)
