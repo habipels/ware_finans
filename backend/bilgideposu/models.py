@@ -1815,3 +1815,7 @@ class urunler(models.Model):
     urun_adi = models.CharField(max_length = 200,verbose_name = "ürün Adları",blank = True,null  = True)
     tutar = models.FloatField(default = 0,verbose_name = "Tutarı")
     birimi = models.CharField(max_length  = 200 ,verbose_name = "Birimi",blank = True,null = True)
+
+#GEKAP TAHSİL EDİLMEYECEK ÜRÜNLER
+class dayanak(models.Model):
+    aciklama = models.CharField(max_length = 200 ,verbose_name = "Açıklama")

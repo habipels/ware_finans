@@ -5837,6 +5837,12 @@ def kurumlargerikazanimpayi(request,slug):
         miktar2 = request.POST.getlist("miktar2")
         tutarislemi2 = request.POST.getlist("tutarislemi2")
         #ÖNCEKİ DÖNEM DEPOZİTO KAYNAKLI OLUŞAN GEKAP BİLDİRİM SATIRLARI
+        #MAHSUP EDİLECEK GEKAP (PLASTİK POŞET HARİÇ)
+        oncekidonemmahsupdevreden = request.POST.get("oncekidonemmahsupdevreden")
+        budoenemaitmahsup = request.POST.get("budoenemaitmahsup")
+        #MAHSUP EDİLECEK GEKAP (PLASTİK POŞET HARİÇ)
+        #GEKAP TAHSİL EDİLMEYECEK ÜRÜNLER
+        #GEKAP TAHSİL EDİLMEYECEK ÜRÜNLER
     return render(request,"beyannameler/kurumlargerikazanimpayi.html",content)
 
 
