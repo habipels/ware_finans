@@ -7,6 +7,15 @@
   .yeniform {
     display: none;
   }
+  .urunlerkismi{
+    display: none;
+  }
+  .istisnalar{
+    display: none;
+  }
+  .oncekidonembilgisi{
+    display: none;
+  }
 </style>
   <!--Header-->
   <div class="icon-bar">
@@ -1048,43 +1057,1101 @@
             </thead>
             <tbody>
               <tr>
-                <td><select name="yurticidisi" id="">
-                  <option value="1-yurtiçi">1-yurtiçi</option>
-                  <option value="2-yurtdışı">2-yurtdışı</option>
-                </select></td>
-                <td><select name="ilbilgisi" id="">
-                  {% for i in sehirler %}
-                  <option value="{{i}}">{{i}}</option>
+                <td><select name="urunlerlistesi" id="">
+                  <option value=""></option>
+                  {% for i in urunler %}
+                  <option value="{{i.id}}">{{i.urun_adi}}</option>
                   {% endfor %}
-                 
+                  
+               
                 </select></td>
-                <td><input type="text" name="tcveyavergikimlikno" id=""></td>
-                <td><input type="text" name="adsoyadunvan" id=""></td>
-                <td>
-                  <select name="aybilgisi" id="">
-                    <option value="01-OCAK">01-OCAK</option>
-                    <option value="02-ŞUBAT">02-ŞUBAT</option>
-                    <option value="03-MART">03-MART</option>
-                    <option value="04-NİSAN">04-NİSAN</option>
-                    <option value="05-MAYIS">05-MAYIS</option>
-                    <option value="06-HAZİRAN">06-HAZİRAN</option>
-                    <option value="07-TEMMUZ">07-TEMMUZ</option>
-                    <option value="08-AĞUSTOS">08-AĞUSTOS</option>
-                    <option value="09-EYLÜL">09-EYLÜL</option>
-                    <option value="10-EKİM">10-EKİM</option>
-                    <option value="11-KASIM">11-KASIM</option>
-                    <option value="12-ARALIK">12-ARALIK</option>
-                  </select>
-                </td>
-                <td><input type="number" step="0.01" value="0" name="sattigiadet"></td>
-                <td><input type="number" step="0.01" value="0" name="gerikazandigitutar"></td>
+                <td><input type="text" name="depozitoonaykodu"></td>
+                <td><input type="number" step="0.01" value="0" name="birimtutari"></td>
+                <td><input type="number" step="0.01" value="0" name="miktar"></td>
+                <td><input type="number" step="0.01" value="0" name="tutarislemi"></td>
               </tr>
-              
+              <tr class="urunlerkismi">
+                <td><select name="urunlerlistesi" id="">
+                  <option value=""></option>
+                  {% for i in urunler %}
+                  <option value="{{i.id}}">{{i.urun_adi}}</option>
+                  {% endfor %}
+                  
+               
+                </select></td>
+                <td><input type="text" name="depozitoonaykodu"></td>
+                <td><input type="number" step="0.01" value="0" name="birimtutari"></td>
+                <td><input type="number" step="0.01" value="0" name="miktar"></td>
+                <td><input type="number" step="0.01" value="0" name="tutarislemi"></td>
+              </tr>
+              <tr class="urunlerkismi">
+                <td><select name="urunlerlistesi" id="">
+                  <option value=""></option>
+                  {% for i in urunler %}
+                  <option value="{{i.id}}">{{i.urun_adi}}</option>
+                  {% endfor %}
+                  
+               
+                </select></td>
+                <td><input type="text" name="depozitoonaykodu"></td>
+                <td><input type="number" step="0.01" value="0" name="birimtutari"></td>
+                <td><input type="number" step="0.01" value="0" name="miktar"></td>
+                <td><input type="number" step="0.01" value="0" name="tutarislemi"></td>
+              </tr>
+              <tr class="urunlerkismi">
+                <td><select name="urunlerlistesi" id="">
+                  <option value=""></option>
+                  {% for i in urunler %}
+                  <option value="{{i.id}}">{{i.urun_adi}}</option>
+                  {% endfor %}
+                  
+               
+                </select></td>
+                <td><input type="text" name="depozitoonaykodu"></td>
+                <td><input type="number" step="0.01" value="0" name="birimtutari"></td>
+                <td><input type="number" step="0.01" value="0" name="miktar"></td>
+                <td><input type="number" step="0.01" value="0" name="tutarislemi"></td>
+              </tr>
+              <tr class="urunlerkismi">
+                <td><select name="urunlerlistesi" id="">
+                  <option value=""></option>
+                  {% for i in urunler %}
+                  <option value="{{i.id}}">{{i.urun_adi}}</option>
+                  {% endfor %}
+                  
+               
+                </select></td>
+                <td><input type="text" name="depozitoonaykodu"></td>
+                <td><input type="number" step="0.01" value="0" name="birimtutari"></td>
+                <td><input type="number" step="0.01" value="0" name="miktar"></td>
+                <td><input type="number" step="0.01" value="0" name="tutarislemi"></td>
+              </tr>
+              <tr class="urunlerkismi">
+                <td><select name="urunlerlistesi" id="">
+                  <option value=""></option>
+                  {% for i in urunler %}
+                  <option value="{{i.id}}">{{i.urun_adi}}</option>
+                  {% endfor %}
+                  
+               
+                </select></td>
+                <td><input type="text" name="depozitoonaykodu"></td>
+                <td><input type="number" step="0.01" value="0" name="birimtutari"></td>
+                <td><input type="number" step="0.01" value="0" name="miktar"></td>
+                <td><input type="number" step="0.01" value="0" name="tutarislemi"></td>
+              </tr>
+              <tr class="urunlerkismi">
+                <td><select name="urunlerlistesi" id="">
+                  <option value=""></option>
+                  {% for i in urunler %}
+                  <option value="{{i.id}}">{{i.urun_adi}}</option>
+                  {% endfor %}
+                  
+               
+                </select></td>
+                <td><input type="text" name="depozitoonaykodu"></td>
+                <td><input type="number" step="0.01" value="0" name="birimtutari"></td>
+                <td><input type="number" step="0.01" value="0" name="miktar"></td>
+                <td><input type="number" step="0.01" value="0" name="tutarislemi"></td>
+              </tr>
+              <tr class="urunlerkismi">
+                <td><select name="urunlerlistesi" id="">
+                  <option value=""></option>
+                  {% for i in urunler %}
+                  <option value="{{i.id}}">{{i.urun_adi}}</option>
+                  {% endfor %}
+                  
+               
+                </select></td>
+                <td><input type="text" name="depozitoonaykodu"></td>
+                <td><input type="number" step="0.01" value="0" name="birimtutari"></td>
+                <td><input type="number" step="0.01" value="0" name="miktar"></td>
+                <td><input type="number" step="0.01" value="0" name="tutarislemi"></td>
+              </tr>
+              <tr class="urunlerkismi">
+                <td><select name="urunlerlistesi" id="">
+                  <option value=""></option>
+                  {% for i in urunler %}
+                  <option value="{{i.id}}">{{i.urun_adi}}</option>
+                  {% endfor %}
+                  
+               
+                </select></td>
+                <td><input type="text" name="depozitoonaykodu"></td>
+                <td><input type="number" step="0.01" value="0" name="birimtutari"></td>
+                <td><input type="number" step="0.01" value="0" name="miktar"></td>
+                <td><input type="number" step="0.01" value="0" name="tutarislemi"></td>
+              </tr>
+              <tr class="urunlerkismi">
+                <td><select name="urunlerlistesi" id="">
+                  <option value=""></option>
+                  {% for i in urunler %}
+                  <option value="{{i.id}}">{{i.urun_adi}}</option>
+                  {% endfor %}
+                  
+               
+                </select></td>
+                <td><input type="text" name="depozitoonaykodu"></td>
+                <td><input type="number" step="0.01" value="0" name="birimtutari"></td>
+                <td><input type="number" step="0.01" value="0" name="miktar"></td>
+                <td><input type="number" step="0.01" value="0" name="tutarislemi"></td>
+              </tr>
+              <tr class="urunlerkismi">
+                <td><select name="urunlerlistesi" id="">
+                  <option value=""></option>
+                  {% for i in urunler %}
+                  <option value="{{i.id}}">{{i.urun_adi}}</option>
+                  {% endfor %}
+                  
+               
+                </select></td>
+                <td><input type="text" name="depozitoonaykodu"></td>
+                <td><input type="number" step="0.01" value="0" name="birimtutari"></td>
+                <td><input type="number" step="0.01" value="0" name="miktar"></td>
+                <td><input type="number" step="0.01" value="0" name="tutarislemi"></td>
+              </tr>
+              <tr class="urunlerkismi">
+                <td><select name="urunlerlistesi" id="">
+                  <option value=""></option>
+                  {% for i in urunler %}
+                  <option value="{{i.id}}">{{i.urun_adi}}</option>
+                  {% endfor %}
+                  
+               
+                </select></td>
+                <td><input type="text" name="depozitoonaykodu"></td>
+                <td><input type="number" step="0.01" value="0" name="birimtutari"></td>
+                <td><input type="number" step="0.01" value="0" name="miktar"></td>
+                <td><input type="number" step="0.01" value="0" name="tutarislemi"></td>
+              </tr>
+              <tr class="urunlerkismi">
+                <td><select name="urunlerlistesi" id="">
+                  <option value=""></option>
+                  {% for i in urunler %}
+                  <option value="{{i.id}}">{{i.urun_adi}}</option>
+                  {% endfor %}
+                  
+               
+                </select></td>
+                <td><input type="text" name="depozitoonaykodu"></td>
+                <td><input type="number" step="0.01" value="0" name="birimtutari"></td>
+                <td><input type="number" step="0.01" value="0" name="miktar"></td>
+                <td><input type="number" step="0.01" value="0" name="tutarislemi"></td>
+              </tr>
+              <tr class="urunlerkismi">
+                <td><select name="urunlerlistesi" id="">
+                  <option value=""></option>
+                  {% for i in urunler %}
+                  <option value="{{i.id}}">{{i.urun_adi}}</option>
+                  {% endfor %}
+                  
+               
+                </select></td>
+                <td><input type="text" name="depozitoonaykodu"></td>
+                <td><input type="number" step="0.01" value="0" name="birimtutari"></td>
+                <td><input type="number" step="0.01" value="0" name="miktar"></td>
+                <td><input type="number" step="0.01" value="0" name="tutarislemi"></td>
+              </tr>
+              <tr class="urunlerkismi">
+                <td><select name="urunlerlistesi" id="">
+                  <option value=""></option>
+                  {% for i in urunler %}
+                  <option value="{{i.id}}">{{i.urun_adi}}</option>
+                  {% endfor %}
+                  
+               
+                </select></td>
+                <td><input type="text" name="depozitoonaykodu"></td>
+                <td><input type="number" step="0.01" value="0" name="birimtutari"></td>
+                <td><input type="number" step="0.01" value="0" name="miktar"></td>
+                <td><input type="number" step="0.01" value="0" name="tutarislemi"></td>
+              </tr>
+              <tr class="urunlerkismi">
+                <td><select name="urunlerlistesi" id="">
+                  <option value=""></option>
+                  {% for i in urunler %}
+                  <option value="{{i.id}}">{{i.urun_adi}}</option>
+                  {% endfor %}
+                  
+               
+                </select></td>
+                <td><input type="text" name="depozitoonaykodu"></td>
+                <td><input type="number" step="0.01" value="0" name="birimtutari"></td>
+                <td><input type="number" step="0.01" value="0" name="miktar"></td>
+                <td><input type="number" step="0.01" value="0" name="tutarislemi"></td>
+              </tr>
+              <tr class="urunlerkismi">
+                <td><select name="urunlerlistesi" id="">
+                  <option value=""></option>
+                  {% for i in urunler %}
+                  <option value="{{i.id}}">{{i.urun_adi}}</option>
+                  {% endfor %}
+                  
+               
+                </select></td>
+                <td><input type="text" name="depozitoonaykodu"></td>
+                <td><input type="number" step="0.01" value="0" name="birimtutari"></td>
+                <td><input type="number" step="0.01" value="0" name="miktar"></td>
+                <td><input type="number" step="0.01" value="0" name="tutarislemi"></td>
+              </tr>
+              <tr class="urunlerkismi">
+                <td><select name="urunlerlistesi" id="">
+                  <option value=""></option>
+                  {% for i in urunler %}
+                  <option value="{{i.id}}">{{i.urun_adi}}</option>
+                  {% endfor %}
+                  
+               
+                </select></td>
+                <td><input type="text" name="depozitoonaykodu"></td>
+                <td><input type="number" step="0.01" value="0" name="birimtutari"></td>
+                <td><input type="number" step="0.01" value="0" name="miktar"></td>
+                <td><input type="number" step="0.01" value="0" name="tutarislemi"></td>
+              </tr>
+              <tr class="urunlerkismi">
+                <td><select name="urunlerlistesi" id="">
+                  <option value=""></option>
+                  {% for i in urunler %}
+                  <option value="{{i.id}}">{{i.urun_adi}}</option>
+                  {% endfor %}
+                  
+               
+                </select></td>
+                <td><input type="text" name="depozitoonaykodu"></td>
+                <td><input type="number" step="0.01" value="0" name="birimtutari"></td>
+                <td><input type="number" step="0.01" value="0" name="miktar"></td>
+                <td><input type="number" step="0.01" value="0" name="tutarislemi"></td>
+              </tr>
+              <tr class="urunlerkismi">
+                <td><select name="urunlerlistesi" id="">
+                  <option value=""></option>
+                  {% for i in urunler %}
+                  <option value="{{i.id}}">{{i.urun_adi}}</option>
+                  {% endfor %}
+                  
+               
+                </select></td>
+                <td><input type="text" name="depozitoonaykodu"></td>
+                <td><input type="number" step="0.01" value="0" name="birimtutari"></td>
+                <td><input type="number" step="0.01" value="0" name="miktar"></td>
+                <td><input type="number" step="0.01" value="0" name="tutarislemi"></td>
+              </tr>
+              <tr class="urunlerkismi">
+                <td><select name="urunlerlistesi" id="">
+                  <option value=""></option>
+                  {% for i in urunler %}
+                  <option value="{{i.id}}">{{i.urun_adi}}</option>
+                  {% endfor %}
+                  
+               
+                </select></td>
+                <td><input type="text" name="depozitoonaykodu"></td>
+                <td><input type="number" step="0.01" value="0" name="birimtutari"></td>
+                <td><input type="number" step="0.01" value="0" name="miktar"></td>
+                <td><input type="number" step="0.01" value="0" name="tutarislemi"></td>
+              </tr>
+              <tr class="urunlerkismi">
+                <td><select name="urunlerlistesi" id="">
+                  <option value=""></option>
+                  {% for i in urunler %}
+                  <option value="{{i.id}}">{{i.urun_adi}}</option>
+                  {% endfor %}
+                  
+               
+                </select></td>
+                <td><input type="text" name="depozitoonaykodu"></td>
+                <td><input type="number" step="0.01" value="0" name="birimtutari"></td>
+                <td><input type="number" step="0.01" value="0" name="miktar"></td>
+                <td><input type="number" step="0.01" value="0" name="tutarislemi"></td>
+              </tr>
+              <tr class="urunlerkismi">
+                <td><select name="urunlerlistesi" id="">
+                  <option value=""></option>
+                  {% for i in urunler %}
+                  <option value="{{i.id}}">{{i.urun_adi}}</option>
+                  {% endfor %}
+                  
+               
+                </select></td>
+                <td><input type="text" name="depozitoonaykodu"></td>
+                <td><input type="number" step="0.01" value="0" name="birimtutari"></td>
+                <td><input type="number" step="0.01" value="0" name="miktar"></td>
+                <td><input type="number" step="0.01" value="0" name="tutarislemi"></td>
+              </tr>
+              <tr class="urunlerkismi">
+                <td><select name="urunlerlistesi" id="">
+                  <option value=""></option>
+                  {% for i in urunler %}
+                  <option value="{{i.id}}">{{i.urun_adi}}</option>
+                  {% endfor %}
+                  
+               
+                </select></td>
+                <td><input type="text" name="depozitoonaykodu"></td>
+                <td><input type="number" step="0.01" value="0" name="birimtutari"></td>
+                <td><input type="number" step="0.01" value="0" name="miktar"></td>
+                <td><input type="number" step="0.01" value="0" name="tutarislemi"></td>
+              </tr>
+              <tr class="urunlerkismi">
+                <td><select name="urunlerlistesi" id="">
+                  <option value=""></option>
+                  {% for i in urunler %}
+                  <option value="{{i.id}}">{{i.urun_adi}}</option>
+                  {% endfor %}
+                  
+               
+                </select></td>
+                <td><input type="text" name="depozitoonaykodu"></td>
+                <td><input type="number" step="0.01" value="0" name="birimtutari"></td>
+                <td><input type="number" step="0.01" value="0" name="miktar"></td>
+                <td><input type="number" step="0.01" value="0" name="tutarislemi"></td>
+              </tr>
             </tbody>
           </table>
         </div>
       </div>
-
+      <div class="container tablo" style="margin-top: 0px !important;">
+        <input class="col-12" disabled value="İTHAL EDİLEREK YURT İÇİNDE PİYASAYA ARZ EDİLEN ÜRÜNLERE İLİŞKİN GEKAP BİLDİRİM SATIRLARI" type="text">
+        <div class="table-responsive " style=" 
+        height: 300px;
+        overflow: auto;">
+          <table class="table table-bordered ">
+            <thead style="position: sticky;top: 0">
+              <tr>
+                <th class="text-center" style="min-width: 100px ;">Ürün</th>
+                <th class="text-center" style="min-width: 50px ;">Depozito Onay Kodu</th>
+                <th class="text-center" style="min-width: 150px ;">Birim Tutar</th>
+                <th class="text-center" style="min-width: 150px ;">Miktar</th>
+                <th class="text-center">Tutar (TL)</th>
+                <th class="text-center"><a href="javascript:void(0);" onclick="ekleYeniSatirdigerurunlerithaledilen()">SATIR EKLE</a></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><select name="urunlerlistesi1" id="">
+                  <option value=""></option>
+                  {% for i in urunler %}
+                  <option value="{{i.id}}">{{i.urun_adi}}</option>
+                  {% endfor %}
+                  
+               
+                </select></td>
+                <td><input type="text" name="depozitoonaykodu1"></td>
+                <td><input type="number" step="0.01" value="0" name="birimtutari1"></td>
+                <td><input type="number" step="0.01" value="0" name="miktar1"></td>
+                <td><input type="number" step="0.01" value="0" name="tutarislemi1"></td>
+              </tr>
+              <tr class="istisnalar">
+                <td><select name="urunlerlistesi1" id="">
+                  <option value=""></option>
+                  {% for i in urunler %}
+                  <option value="{{i.id}}">{{i.urun_adi}}</option>
+                  {% endfor %}
+                  
+               
+                </select></td>
+                <td><input type="text" name="depozitoonaykodu1"></td>
+                <td><input type="number" step="0.01" value="0" name="birimtutari1"></td>
+                <td><input type="number" step="0.01" value="0" name="miktar1"></td>
+                <td><input type="number" step="0.01" value="0" name="tutarislemi1"></td>
+              </tr>
+              <tr class="istisnalar">
+                <td><select name="urunlerlistesi1" id="">
+                  <option value=""></option>
+                  {% for i in urunler %}
+                  <option value="{{i.id}}">{{i.urun_adi}}</option>
+                  {% endfor %}
+                  
+               
+                </select></td>
+                <td><input type="text" name="depozitoonaykodu1"></td>
+                <td><input type="number" step="0.01" value="0" name="birimtutari1"></td>
+                <td><input type="number" step="0.01" value="0" name="miktar1"></td>
+                <td><input type="number" step="0.01" value="0" name="tutarislemi1"></td>
+              </tr>
+              <tr class="istisnalar">
+                <td><select name="urunlerlistesi1" id="">
+                  <option value=""></option>
+                  {% for i in urunler %}
+                  <option value="{{i.id}}">{{i.urun_adi}}</option>
+                  {% endfor %}
+                  
+               
+                </select></td>
+                <td><input type="text" name="depozitoonaykodu1"></td>
+                <td><input type="number" step="0.01" value="0" name="birimtutari1"></td>
+                <td><input type="number" step="0.01" value="0" name="miktar1"></td>
+                <td><input type="number" step="0.01" value="0" name="tutarislemi1"></td>
+              </tr>
+              <tr class="istisnalar">
+                <td><select name="urunlerlistesi1" id="">
+                  <option value=""></option>
+                  {% for i in urunler %}
+                  <option value="{{i.id}}">{{i.urun_adi}}</option>
+                  {% endfor %}
+                  
+               
+                </select></td>
+                <td><input type="text" name="depozitoonaykodu1"></td>
+                <td><input type="number" step="0.01" value="0" name="birimtutari1"></td>
+                <td><input type="number" step="0.01" value="0" name="miktar1"></td>
+                <td><input type="number" step="0.01" value="0" name="tutarislemi1"></td>
+              </tr>
+              <tr class="istisnalar">
+                <td><select name="urunlerlistesi1" id="">
+                  <option value=""></option>
+                  {% for i in urunler %}
+                  <option value="{{i.id}}">{{i.urun_adi}}</option>
+                  {% endfor %}
+                  
+               
+                </select></td>
+                <td><input type="text" name="depozitoonaykodu1"></td>
+                <td><input type="number" step="0.01" value="0" name="birimtutari1"></td>
+                <td><input type="number" step="0.01" value="0" name="miktar1"></td>
+                <td><input type="number" step="0.01" value="0" name="tutarislemi1"></td>
+              </tr>
+              <tr class="istisnalar">
+                <td><select name="urunlerlistesi1" id="">
+                  <option value=""></option>
+                  {% for i in urunler %}
+                  <option value="{{i.id}}">{{i.urun_adi}}</option>
+                  {% endfor %}
+                  
+               
+                </select></td>
+                <td><input type="text" name="depozitoonaykodu1"></td>
+                <td><input type="number" step="0.01" value="0" name="birimtutari1"></td>
+                <td><input type="number" step="0.01" value="0" name="miktar1"></td>
+                <td><input type="number" step="0.01" value="0" name="tutarislemi1"></td>
+              </tr>
+              <tr class="istisnalar">
+                <td><select name="urunlerlistesi1" id="">
+                  <option value=""></option>
+                  {% for i in urunler %}
+                  <option value="{{i.id}}">{{i.urun_adi}}</option>
+                  {% endfor %}
+                  
+               
+                </select></td>
+                <td><input type="text" name="depozitoonaykodu1"></td>
+                <td><input type="number" step="0.01" value="0" name="birimtutari1"></td>
+                <td><input type="number" step="0.01" value="0" name="miktar1"></td>
+                <td><input type="number" step="0.01" value="0" name="tutarislemi1"></td>
+              </tr>
+              <tr class="istisnalar">
+                <td><select name="urunlerlistesi1" id="">
+                  <option value=""></option>
+                  {% for i in urunler %}
+                  <option value="{{i.id}}">{{i.urun_adi}}</option>
+                  {% endfor %}
+                  
+               
+                </select></td>
+                <td><input type="text" name="depozitoonaykodu1"></td>
+                <td><input type="number" step="0.01" value="0" name="birimtutari1"></td>
+                <td><input type="number" step="0.01" value="0" name="miktar1"></td>
+                <td><input type="number" step="0.01" value="0" name="tutarislemi1"></td>
+              </tr>
+              <tr class="istisnalar">
+                <td><select name="urunlerlistesi1" id="">
+                  <option value=""></option>
+                  {% for i in urunler %}
+                  <option value="{{i.id}}">{{i.urun_adi}}</option>
+                  {% endfor %}
+                  
+               
+                </select></td>
+                <td><input type="text" name="depozitoonaykodu1"></td>
+                <td><input type="number" step="0.01" value="0" name="birimtutari1"></td>
+                <td><input type="number" step="0.01" value="0" name="miktar1"></td>
+                <td><input type="number" step="0.01" value="0" name="tutarislemi1"></td>
+              </tr>
+              <tr class="istisnalar">
+                <td><select name="urunlerlistesi1" id="">
+                  <option value=""></option>
+                  {% for i in urunler %}
+                  <option value="{{i.id}}">{{i.urun_adi}}</option>
+                  {% endfor %}
+                  
+               
+                </select></td>
+                <td><input type="text" name="depozitoonaykodu1"></td>
+                <td><input type="number" step="0.01" value="0" name="birimtutari1"></td>
+                <td><input type="number" step="0.01" value="0" name="miktar1"></td>
+                <td><input type="number" step="0.01" value="0" name="tutarislemi1"></td>
+              </tr>
+              <tr class="istisnalar">
+                <td><select name="urunlerlistesi1" id="">
+                  <option value=""></option>
+                  {% for i in urunler %}
+                  <option value="{{i.id}}">{{i.urun_adi}}</option>
+                  {% endfor %}
+                  
+               
+                </select></td>
+                <td><input type="text" name="depozitoonaykodu1"></td>
+                <td><input type="number" step="0.01" value="0" name="birimtutari1"></td>
+                <td><input type="number" step="0.01" value="0" name="miktar1"></td>
+                <td><input type="number" step="0.01" value="0" name="tutarislemi1"></td>
+              </tr>
+              <tr class="istisnalar">
+                <td><select name="urunlerlistesi1" id="">
+                  <option value=""></option>
+                  {% for i in urunler %}
+                  <option value="{{i.id}}">{{i.urun_adi}}</option>
+                  {% endfor %}
+                  
+               
+                </select></td>
+                <td><input type="text" name="depozitoonaykodu1"></td>
+                <td><input type="number" step="0.01" value="0" name="birimtutari1"></td>
+                <td><input type="number" step="0.01" value="0" name="miktar1"></td>
+                <td><input type="number" step="0.01" value="0" name="tutarislemi1"></td>
+              </tr>
+              <tr class="istisnalar">
+                <td><select name="urunlerlistesi1" id="">
+                  <option value=""></option>
+                  {% for i in urunler %}
+                  <option value="{{i.id}}">{{i.urun_adi}}</option>
+                  {% endfor %}
+                  
+               
+                </select></td>
+                <td><input type="text" name="depozitoonaykodu1"></td>
+                <td><input type="number" step="0.01" value="0" name="birimtutari1"></td>
+                <td><input type="number" step="0.01" value="0" name="miktar1"></td>
+                <td><input type="number" step="0.01" value="0" name="tutarislemi1"></td>
+              </tr>
+              <tr class="istisnalar">
+                <td><select name="urunlerlistesi1" id="">
+                  <option value=""></option>
+                  {% for i in urunler %}
+                  <option value="{{i.id}}">{{i.urun_adi}}</option>
+                  {% endfor %}
+                  
+               
+                </select></td>
+                <td><input type="text" name="depozitoonaykodu1"></td>
+                <td><input type="number" step="0.01" value="0" name="birimtutari1"></td>
+                <td><input type="number" step="0.01" value="0" name="miktar1"></td>
+                <td><input type="number" step="0.01" value="0" name="tutarislemi1"></td>
+              </tr>
+              <tr class="istisnalar">
+                <td><select name="urunlerlistesi1" id="">
+                  <option value=""></option>
+                  {% for i in urunler %}
+                  <option value="{{i.id}}">{{i.urun_adi}}</option>
+                  {% endfor %}
+                  
+               
+                </select></td>
+                <td><input type="text" name="depozitoonaykodu1"></td>
+                <td><input type="number" step="0.01" value="0" name="birimtutari1"></td>
+                <td><input type="number" step="0.01" value="0" name="miktar1"></td>
+                <td><input type="number" step="0.01" value="0" name="tutarislemi1"></td>
+              </tr>
+              <tr class="istisnalar">
+                <td><select name="urunlerlistesi1" id="">
+                  <option value=""></option>
+                  {% for i in urunler %}
+                  <option value="{{i.id}}">{{i.urun_adi}}</option>
+                  {% endfor %}
+                  
+               
+                </select></td>
+                <td><input type="text" name="depozitoonaykodu1"></td>
+                <td><input type="number" step="0.01" value="0" name="birimtutari1"></td>
+                <td><input type="number" step="0.01" value="0" name="miktar1"></td>
+                <td><input type="number" step="0.01" value="0" name="tutarislemi1"></td>
+              </tr>
+              <tr class="istisnalar">
+                <td><select name="urunlerlistesi1" id="">
+                  <option value=""></option>
+                  {% for i in urunler %}
+                  <option value="{{i.id}}">{{i.urun_adi}}</option>
+                  {% endfor %}
+                  
+               
+                </select></td>
+                <td><input type="text" name="depozitoonaykodu1"></td>
+                <td><input type="number" step="0.01" value="0" name="birimtutari1"></td>
+                <td><input type="number" step="0.01" value="0" name="miktar1"></td>
+                <td><input type="number" step="0.01" value="0" name="tutarislemi1"></td>
+              </tr>
+              <tr class="istisnalar">
+                <td><select name="urunlerlistesi1" id="">
+                  <option value=""></option>
+                  {% for i in urunler %}
+                  <option value="{{i.id}}">{{i.urun_adi}}</option>
+                  {% endfor %}
+                  
+               
+                </select></td>
+                <td><input type="text" name="depozitoonaykodu1"></td>
+                <td><input type="number" step="0.01" value="0" name="birimtutari1"></td>
+                <td><input type="number" step="0.01" value="0" name="miktar1"></td>
+                <td><input type="number" step="0.01" value="0" name="tutarislemi1"></td>
+              </tr>
+              <tr class="istisnalar">
+                <td><select name="urunlerlistesi1" id="">
+                  <option value=""></option>
+                  {% for i in urunler %}
+                  <option value="{{i.id}}">{{i.urun_adi}}</option>
+                  {% endfor %}
+                  
+               
+                </select></td>
+                <td><input type="text" name="depozitoonaykodu1"></td>
+                <td><input type="number" step="0.01" value="0" name="birimtutari1"></td>
+                <td><input type="number" step="0.01" value="0" name="miktar1"></td>
+                <td><input type="number" step="0.01" value="0" name="tutarislemi1"></td>
+              </tr>
+              <tr class="istisnalar">
+                <td><select name="urunlerlistesi1" id="">
+                  <option value=""></option>
+                  {% for i in urunler %}
+                  <option value="{{i.id}}">{{i.urun_adi}}</option>
+                  {% endfor %}
+                  
+               
+                </select></td>
+                <td><input type="text" name="depozitoonaykodu1"></td>
+                <td><input type="number" step="0.01" value="0" name="birimtutari1"></td>
+                <td><input type="number" step="0.01" value="0" name="miktar1"></td>
+                <td><input type="number" step="0.01" value="0" name="tutarislemi1"></td>
+              </tr>
+              <tr class="istisnalar">
+                <td><select name="urunlerlistesi1" id="">
+                  <option value=""></option>
+                  {% for i in urunler %}
+                  <option value="{{i.id}}">{{i.urun_adi}}</option>
+                  {% endfor %}
+                  
+               
+                </select></td>
+                <td><input type="text" name="depozitoonaykodu1"></td>
+                <td><input type="number" step="0.01" value="0" name="birimtutari1"></td>
+                <td><input type="number" step="0.01" value="0" name="miktar1"></td>
+                <td><input type="number" step="0.01" value="0" name="tutarislemi1"></td>
+              </tr>
+              <tr class="istisnalar">
+                <td><select name="urunlerlistesi1" id="">
+                  <option value=""></option>
+                  {% for i in urunler %}
+                  <option value="{{i.id}}">{{i.urun_adi}}</option>
+                  {% endfor %}
+                  
+               
+                </select></td>
+                <td><input type="text" name="depozitoonaykodu1"></td>
+                <td><input type="number" step="0.01" value="0" name="birimtutari1"></td>
+                <td><input type="number" step="0.01" value="0" name="miktar1"></td>
+                <td><input type="number" step="0.01" value="0" name="tutarislemi1"></td>
+              </tr>
+              <tr class="istisnalar">
+                <td><select name="urunlerlistesi1" id="">
+                  <option value=""></option>
+                  {% for i in urunler %}
+                  <option value="{{i.id}}">{{i.urun_adi}}</option>
+                  {% endfor %}
+                  
+               
+                </select></td>
+                <td><input type="text" name="depozitoonaykodu1"></td>
+                <td><input type="number" step="0.01" value="0" name="birimtutari1"></td>
+                <td><input type="number" step="0.01" value="0" name="miktar1"></td>
+                <td><input type="number" step="0.01" value="0" name="tutarislemi1"></td>
+              </tr>
+              <tr class="istisnalar">
+                <td><select name="urunlerlistesi1" id="">
+                  <option value=""></option>
+                  {% for i in urunler %}
+                  <option value="{{i.id}}">{{i.urun_adi}}</option>
+                  {% endfor %}
+                  
+               
+                </select></td>
+                <td><input type="text" name="depozitoonaykodu1"></td>
+                <td><input type="number" step="0.01" value="0" name="birimtutari1"></td>
+                <td><input type="number" step="0.01" value="0" name="miktar1"></td>
+                <td><input type="number" step="0.01" value="0" name="tutarislemi1"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="container tablo" style="margin-top: 0px !important;">
+        <input class="col-12" disabled value="ÖNCEKİ DÖNEM DEPOZİTO KAYNAKLI OLUŞAN GEKAP BİLDİRİM SATIRLARI" type="text">
+        <div class="table-responsive " style=" 
+        height: 300px;
+        overflow: auto;">
+          <table class="table table-bordered ">
+            <thead style="position: sticky;top: 0">
+              <tr>
+                <th class="text-center" style="min-width: 100px ;">Ürün</th>
+                <th class="text-center" style="min-width: 50px ;">Depozito Onay Kodu</th>
+                <th class="text-center" style="min-width: 150px ;">Birim Tutar</th>
+                <th class="text-center" style="min-width: 150px ;">Miktar</th>
+                <th class="text-center">Tutar (TL)</th>
+                <th class="text-center"><a href="javascript:void(0);" onclick="ekleYeniSatirdigeroncekidoneme()">SATIR EKLE</a></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><select name="urunlerlistesi1" id="">
+                  <option value=""></option>
+                  {% for i in urunler %}
+                  <option value="{{i.id}}">{{i.urun_adi}}</option>
+                  {% endfor %}
+                  
+               
+                </select></td>
+                <td><input type="text" name="depozitoonaykodu2"></td>
+                <td><input type="number" step="0.01" value="0" name="birimtutari2"></td>
+                <td><input type="number" step="0.01" value="0" name="miktar2"></td>
+                <td><input type="number" step="0.01" value="0" name="tutarislemi2"></td>
+              </tr>
+              <tr class="oncekidonembilgisi">
+                <td><select name="urunlerlistesi1" id="">
+                  <option value=""></option>
+                  {% for i in urunler %}
+                  <option value="{{i.id}}">{{i.urun_adi}}</option>
+                  {% endfor %}
+                  
+               
+                </select></td>
+                <td><input type="text" name="depozitoonaykodu2"></td>
+                <td><input type="number" step="0.01" value="0" name="birimtutari2"></td>
+                <td><input type="number" step="0.01" value="0" name="miktar2"></td>
+                <td><input type="number" step="0.01" value="0" name="tutarislemi2"></td>
+              </tr>
+              <tr class="oncekidonembilgisi">
+                <td><select name="urunlerlistesi1" id="">
+                  <option value=""></option>
+                  {% for i in urunler %}
+                  <option value="{{i.id}}">{{i.urun_adi}}</option>
+                  {% endfor %}
+                  
+               
+                </select></td>
+                <td><input type="text" name="depozitoonaykodu2"></td>
+                <td><input type="number" step="0.01" value="0" name="birimtutari2"></td>
+                <td><input type="number" step="0.01" value="0" name="miktar2"></td>
+                <td><input type="number" step="0.01" value="0" name="tutarislemi2"></td>
+              </tr>
+              <tr class="oncekidonembilgisi">
+                <td><select name="urunlerlistesi1" id="">
+                  <option value=""></option>
+                  {% for i in urunler %}
+                  <option value="{{i.id}}">{{i.urun_adi}}</option>
+                  {% endfor %}
+                  
+               
+                </select></td>
+                <td><input type="text" name="depozitoonaykodu2"></td>
+                <td><input type="number" step="0.01" value="0" name="birimtutari2"></td>
+                <td><input type="number" step="0.01" value="0" name="miktar2"></td>
+                <td><input type="number" step="0.01" value="0" name="tutarislemi2"></td>
+              </tr>
+              <tr class="oncekidonembilgisi">
+                <td><select name="urunlerlistesi1" id="">
+                  <option value=""></option>
+                  {% for i in urunler %}
+                  <option value="{{i.id}}">{{i.urun_adi}}</option>
+                  {% endfor %}
+                  
+               
+                </select></td>
+                <td><input type="text" name="depozitoonaykodu2"></td>
+                <td><input type="number" step="0.01" value="0" name="birimtutari2"></td>
+                <td><input type="number" step="0.01" value="0" name="miktar2"></td>
+                <td><input type="number" step="0.01" value="0" name="tutarislemi2"></td>
+              </tr>
+              <tr class="oncekidonembilgisi">
+                <td><select name="urunlerlistesi1" id="">
+                  <option value=""></option>
+                  {% for i in urunler %}
+                  <option value="{{i.id}}">{{i.urun_adi}}</option>
+                  {% endfor %}
+                  
+               
+                </select></td>
+                <td><input type="text" name="depozitoonaykodu2"></td>
+                <td><input type="number" step="0.01" value="0" name="birimtutari2"></td>
+                <td><input type="number" step="0.01" value="0" name="miktar2"></td>
+                <td><input type="number" step="0.01" value="0" name="tutarislemi2"></td>
+              </tr>
+              <tr class="oncekidonembilgisi">
+                <td><select name="urunlerlistesi1" id="">
+                  <option value=""></option>
+                  {% for i in urunler %}
+                  <option value="{{i.id}}">{{i.urun_adi}}</option>
+                  {% endfor %}
+                  
+               
+                </select></td>
+                <td><input type="text" name="depozitoonaykodu2"></td>
+                <td><input type="number" step="0.01" value="0" name="birimtutari2"></td>
+                <td><input type="number" step="0.01" value="0" name="miktar2"></td>
+                <td><input type="number" step="0.01" value="0" name="tutarislemi2"></td>
+              </tr>
+              <tr class="oncekidonembilgisi">
+                <td><select name="urunlerlistesi1" id="">
+                  <option value=""></option>
+                  {% for i in urunler %}
+                  <option value="{{i.id}}">{{i.urun_adi}}</option>
+                  {% endfor %}
+                  
+               
+                </select></td>
+                <td><input type="text" name="depozitoonaykodu2"></td>
+                <td><input type="number" step="0.01" value="0" name="birimtutari2"></td>
+                <td><input type="number" step="0.01" value="0" name="miktar2"></td>
+                <td><input type="number" step="0.01" value="0" name="tutarislemi2"></td>
+              </tr>
+              <tr class="oncekidonembilgisi">
+                <td><select name="urunlerlistesi1" id="">
+                  <option value=""></option>
+                  {% for i in urunler %}
+                  <option value="{{i.id}}">{{i.urun_adi}}</option>
+                  {% endfor %}
+                  
+               
+                </select></td>
+                <td><input type="text" name="depozitoonaykodu2"></td>
+                <td><input type="number" step="0.01" value="0" name="birimtutari2"></td>
+                <td><input type="number" step="0.01" value="0" name="miktar2"></td>
+                <td><input type="number" step="0.01" value="0" name="tutarislemi2"></td>
+              </tr>
+              <tr class="oncekidonembilgisi">
+                <td><select name="urunlerlistesi1" id="">
+                  <option value=""></option>
+                  {% for i in urunler %}
+                  <option value="{{i.id}}">{{i.urun_adi}}</option>
+                  {% endfor %}
+                  
+               
+                </select></td>
+                <td><input type="text" name="depozitoonaykodu2"></td>
+                <td><input type="number" step="0.01" value="0" name="birimtutari2"></td>
+                <td><input type="number" step="0.01" value="0" name="miktar2"></td>
+                <td><input type="number" step="0.01" value="0" name="tutarislemi2"></td>
+              </tr>
+              <tr class="oncekidonembilgisi">
+                <td><select name="urunlerlistesi1" id="">
+                  <option value=""></option>
+                  {% for i in urunler %}
+                  <option value="{{i.id}}">{{i.urun_adi}}</option>
+                  {% endfor %}
+                  
+               
+                </select></td>
+                <td><input type="text" name="depozitoonaykodu2"></td>
+                <td><input type="number" step="0.01" value="0" name="birimtutari2"></td>
+                <td><input type="number" step="0.01" value="0" name="miktar2"></td>
+                <td><input type="number" step="0.01" value="0" name="tutarislemi2"></td>
+              </tr>
+              <tr class="oncekidonembilgisi">
+                <td><select name="urunlerlistesi1" id="">
+                  <option value=""></option>
+                  {% for i in urunler %}
+                  <option value="{{i.id}}">{{i.urun_adi}}</option>
+                  {% endfor %}
+                  
+               
+                </select></td>
+                <td><input type="text" name="depozitoonaykodu2"></td>
+                <td><input type="number" step="0.01" value="0" name="birimtutari2"></td>
+                <td><input type="number" step="0.01" value="0" name="miktar2"></td>
+                <td><input type="number" step="0.01" value="0" name="tutarislemi2"></td>
+              </tr>
+              <tr class="oncekidonembilgisi">
+                <td><select name="urunlerlistesi1" id="">
+                  <option value=""></option>
+                  {% for i in urunler %}
+                  <option value="{{i.id}}">{{i.urun_adi}}</option>
+                  {% endfor %}
+                  
+               
+                </select></td>
+                <td><input type="text" name="depozitoonaykodu2"></td>
+                <td><input type="number" step="0.01" value="0" name="birimtutari2"></td>
+                <td><input type="number" step="0.01" value="0" name="miktar2"></td>
+                <td><input type="number" step="0.01" value="0" name="tutarislemi2"></td>
+              </tr>
+              <tr class="oncekidonembilgisi">
+                <td><select name="urunlerlistesi1" id="">
+                  <option value=""></option>
+                  {% for i in urunler %}
+                  <option value="{{i.id}}">{{i.urun_adi}}</option>
+                  {% endfor %}
+                  
+               
+                </select></td>
+                <td><input type="text" name="depozitoonaykodu2"></td>
+                <td><input type="number" step="0.01" value="0" name="birimtutari2"></td>
+                <td><input type="number" step="0.01" value="0" name="miktar2"></td>
+                <td><input type="number" step="0.01" value="0" name="tutarislemi2"></td>
+              </tr>
+              <tr class="oncekidonembilgisi">
+                <td><select name="urunlerlistesi1" id="">
+                  <option value=""></option>
+                  {% for i in urunler %}
+                  <option value="{{i.id}}">{{i.urun_adi}}</option>
+                  {% endfor %}
+                  
+               
+                </select></td>
+                <td><input type="text" name="depozitoonaykodu2"></td>
+                <td><input type="number" step="0.01" value="0" name="birimtutari2"></td>
+                <td><input type="number" step="0.01" value="0" name="miktar2"></td>
+                <td><input type="number" step="0.01" value="0" name="tutarislemi2"></td>
+              </tr>
+              <tr class="oncekidonembilgisi">
+                <td><select name="urunlerlistesi1" id="">
+                  <option value=""></option>
+                  {% for i in urunler %}
+                  <option value="{{i.id}}">{{i.urun_adi}}</option>
+                  {% endfor %}
+                  
+               
+                </select></td>
+                <td><input type="text" name="depozitoonaykodu2"></td>
+                <td><input type="number" step="0.01" value="0" name="birimtutari2"></td>
+                <td><input type="number" step="0.01" value="0" name="miktar2"></td>
+                <td><input type="number" step="0.01" value="0" name="tutarislemi2"></td>
+              </tr>
+              <tr class="oncekidonembilgisi">
+                <td><select name="urunlerlistesi1" id="">
+                  <option value=""></option>
+                  {% for i in urunler %}
+                  <option value="{{i.id}}">{{i.urun_adi}}</option>
+                  {% endfor %}
+                  
+               
+                </select></td>
+                <td><input type="text" name="depozitoonaykodu2"></td>
+                <td><input type="number" step="0.01" value="0" name="birimtutari2"></td>
+                <td><input type="number" step="0.01" value="0" name="miktar2"></td>
+                <td><input type="number" step="0.01" value="0" name="tutarislemi2"></td>
+              </tr>
+              <tr class="oncekidonembilgisi">
+                <td><select name="urunlerlistesi1" id="">
+                  <option value=""></option>
+                  {% for i in urunler %}
+                  <option value="{{i.id}}">{{i.urun_adi}}</option>
+                  {% endfor %}
+                  
+               
+                </select></td>
+                <td><input type="text" name="depozitoonaykodu2"></td>
+                <td><input type="number" step="0.01" value="0" name="birimtutari2"></td>
+                <td><input type="number" step="0.01" value="0" name="miktar2"></td>
+                <td><input type="number" step="0.01" value="0" name="tutarislemi2"></td>
+              </tr>
+              <tr class="oncekidonembilgisi">
+                <td><select name="urunlerlistesi1" id="">
+                  <option value=""></option>
+                  {% for i in urunler %}
+                  <option value="{{i.id}}">{{i.urun_adi}}</option>
+                  {% endfor %}
+                  
+               
+                </select></td>
+                <td><input type="text" name="depozitoonaykodu2"></td>
+                <td><input type="number" step="0.01" value="0" name="birimtutari2"></td>
+                <td><input type="number" step="0.01" value="0" name="miktar2"></td>
+                <td><input type="number" step="0.01" value="0" name="tutarislemi2"></td>
+              </tr>
+              <tr class="oncekidonembilgisi">
+                <td><select name="urunlerlistesi1" id="">
+                  <option value=""></option>
+                  {% for i in urunler %}
+                  <option value="{{i.id}}">{{i.urun_adi}}</option>
+                  {% endfor %}
+                  
+               
+                </select></td>
+                <td><input type="text" name="depozitoonaykodu2"></td>
+                <td><input type="number" step="0.01" value="0" name="birimtutari2"></td>
+                <td><input type="number" step="0.01" value="0" name="miktar2"></td>
+                <td><input type="number" step="0.01" value="0" name="tutarislemi2"></td>
+              </tr>
+              <tr class="oncekidonembilgisi">
+                <td><select name="urunlerlistesi1" id="">
+                  <option value=""></option>
+                  {% for i in urunler %}
+                  <option value="{{i.id}}">{{i.urun_adi}}</option>
+                  {% endfor %}
+                  
+               
+                </select></td>
+                <td><input type="text" name="depozitoonaykodu2"></td>
+                <td><input type="number" step="0.01" value="0" name="birimtutari2"></td>
+                <td><input type="number" step="0.01" value="0" name="miktar2"></td>
+                <td><input type="number" step="0.01" value="0" name="tutarislemi2"></td>
+              </tr>
+              <tr class="oncekidonembilgisi">
+                <td><select name="urunlerlistesi1" id="">
+                  <option value=""></option>
+                  {% for i in urunler %}
+                  <option value="{{i.id}}">{{i.urun_adi}}</option>
+                  {% endfor %}
+                  
+               
+                </select></td>
+                <td><input type="text" name="depozitoonaykodu2"></td>
+                <td><input type="number" step="0.01" value="0" name="birimtutari2"></td>
+                <td><input type="number" step="0.01" value="0" name="miktar2"></td>
+                <td><input type="number" step="0.01" value="0" name="tutarislemi2"></td>
+              </tr>
+              <tr class="oncekidonembilgisi">
+                <td><select name="urunlerlistesi1" id="">
+                  <option value=""></option>
+                  {% for i in urunler %}
+                  <option value="{{i.id}}">{{i.urun_adi}}</option>
+                  {% endfor %}
+                  
+               
+                </select></td>
+                <td><input type="text" name="depozitoonaykodu2"></td>
+                <td><input type="number" step="0.01" value="0" name="birimtutari2"></td>
+                <td><input type="number" step="0.01" value="0" name="miktar2"></td>
+                <td><input type="number" step="0.01" value="0" name="tutarislemi2"></td>
+              </tr>
+              <tr class="oncekidonembilgisi">
+                <td><select name="urunlerlistesi1" id="">
+                  <option value=""></option>
+                  {% for i in urunler %}
+                  <option value="{{i.id}}">{{i.urun_adi}}</option>
+                  {% endfor %}
+                  
+               
+                </select></td>
+                <td><input type="text" name="depozitoonaykodu2"></td>
+                <td><input type="number" step="0.01" value="0" name="birimtutari2"></td>
+                <td><input type="number" step="0.01" value="0" name="miktar2"></td>
+                <td><input type="number" step="0.01" value="0" name="tutarislemi2"></td>
+              </tr>
+              <tr class="oncekidonembilgisi">
+                <td><select name="urunlerlistesi1" id="">
+                  <option value=""></option>
+                  {% for i in urunler %}
+                  <option value="{{i.id}}">{{i.urun_adi}}</option>
+                  {% endfor %}
+                  
+               
+                </select></td>
+                <td><input type="text" name="depozitoonaykodu2"></td>
+                <td><input type="number" step="0.01" value="0" name="birimtutari2"></td>
+                <td><input type="number" step="0.01" value="0" name="miktar2"></td>
+                <td><input type="number" step="0.01" value="0" name="tutarislemi2"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
       <hr style="border: 2px solid black !important;" >
   </div>
 </div>
@@ -1161,5 +2228,51 @@
 
     yeniselect();
   }
+</script>
+<script>
+  
+  let x = 0;
+  function ekleYeniSatirdigerurunler() {
+    
+    var elements = document.getElementsByClassName('urunlerkismi');
+
+    if (elements[x]) {
+        elements[x].classList.remove('urunlerkismi');
+    } else {
+        console.error("Ürün Sınırına Ulaştınız");
+    }
+
+    yeniselect();
+  }
+</script>
+<script>
+  
+  let l = 0;
+  function ekleYeniSatirdigerurunlerithaledilen() {
+    
+    var elements = document.getElementsByClassName('istisnalar');
+
+    if (elements[l]) {
+        elements[l].classList.remove('istisnalar');
+    } else {
+        console.error("Ürün Sınırına Ulaştınız");
+    }
+
+    yeniselect();
+  }
+  let k = 0;
+  function ekleYeniSatirdigeroncekidoneme() {
+    
+    var elements = document.getElementsByClassName('oncekidonembilgisi');
+
+    if (elements[k]) {
+        elements[k].classList.remove('oncekidonembilgisi');
+    } else {
+        console.error("Ürün Sınırına Ulaştınız");
+    }
+
+    yeniselect();
+  }
+  
 </script>
 {% endblock content %}

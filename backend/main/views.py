@@ -5806,6 +5806,7 @@ def kurumlargerikazanimpayi(request,slug):
     "075 - Ardahan", "076 - Iğdır", "077 - Yalova", "078 - Karabük", "079 - Kilis", "080 - Osmaniye", "081 - Düzce"
     ]
     content["sehirler"]  = turkey_cities
+    content["urunler"] = urunler.objects.all()
     if request.POST:
         aysecimi = request.POST.get("aysecimi")
         yurticidisi = request.POST.getlist("yurticidisi")
@@ -5816,8 +5817,26 @@ def kurumlargerikazanimpayi(request,slug):
         sattigiadet = request.POSt.getlist("sattigiadet")
         gerikazandigitutar = request.POSt.getlist("gerikazandigitutar")
         #YURT İÇİNDE ÜRETİLEREK PİYASAYA ARZ EDİLEN ÜRÜNLERE İLİŞKİN GEKAP BİLDİRİM SATIRLARI
-        
+        urunlerlistesi = request.POST.getlist("urunlerlistesi")
+        depozitoonaykodu = request.POST.getlist("depozitoonaykodu")
+        birimtutari = request.POST.getlist("birimtutari")
+        miktar = request.POST.getlist("miktar")
+        tutarislemi = request.POST.getlist("tutarislemi")
         #YURT İÇİNDE ÜRETİLEREK PİYASAYA ARZ EDİLEN ÜRÜNLERE İLİŞKİN GEKAP BİLDİRİM SATIRLARI
+        #İTHAL EDİLEREK YURT İÇİNDE PİYASAYA ARZ EDİLEN ÜRÜNLERE İLİŞKİN GEKAP BİLDİRİM SATIRLARI
+        urunlerlistesi1 = request.POST.getlist("urunlerlistesi1")
+        depozitoonaykodu1 = request.POST.getlist("depozitoonaykodu1")
+        birimtutari1 = request.POST.getlist("birimtutari1")
+        miktar1 = request.POST.getlist("miktar1")
+        tutarislemi1 = request.POST.getlist("tutarislemi1")
+        #İTHAL EDİLEREK YURT İÇİNDE PİYASAYA ARZ EDİLEN ÜRÜNLERE İLİŞKİN GEKAP BİLDİRİM SATIRLARI
+        #ÖNCEKİ DÖNEM DEPOZİTO KAYNAKLI OLUŞAN GEKAP BİLDİRİM SATIRLARI
+        urunlerlistesi2 = request.POST.getlist("urunlerlistesi2")
+        depozitoonaykodu2 = request.POST.getlist("depozitoonaykodu2")
+        birimtutari2 = request.POST.getlist("birimtutari2")
+        miktar2 = request.POST.getlist("miktar2")
+        tutarislemi2 = request.POST.getlist("tutarislemi2")
+        #ÖNCEKİ DÖNEM DEPOZİTO KAYNAKLI OLUŞAN GEKAP BİLDİRİM SATIRLARI
     return render(request,"beyannameler/kurumlargerikazanimpayi.html",content)
 
 
