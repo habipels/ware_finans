@@ -5243,6 +5243,9 @@ def kdv1_beyannamesi(request,slug):
     for i in range(406,451):
         kdv_istisna400.append(str(i))
     content["kdv_istisnalari2"] = kdv_istisna_kodu.objects.filter(kod__in = kdv_istisna400)
+    content["ihrac_kayitlari"] =["701 -İHRACATI YAPILACAK NİHAİ ÜRÜNLERİN KANUNUN 11/1-c MADDESİ KAPSAMINDA TESLİMİ",
+                                 "702  -DAHİLDE İŞLEME VEYA GEÇİCİ KABUL REJİMLERİ KAPSAMINDA İHRACATIYAPILACAK ÜRÜNÜN İMALİNDE KULLANILACAK MALLARIN DİİB VEYA GKİB SAHİPLERİNE KANUNUN GEÇİCİ 17 NCİ MADDESİ KAPSAMINDA TESLİMİ",
+                                 "703  -İHRAÇ KAYITLI ÖTV'Lİ SATIŞ"]
     if request.POST:
         aysecimi = request.POST.get("aysecimi")
         #TEVKİFAT UYGULANMAYAN İŞLEMLER
@@ -5448,6 +5451,36 @@ def kdv1_beyannamesi(request,slug):
         digeriadetamistisnamalhizmeti5 = request.POST.get("digeriadetamistisnamalhizmeti5")
         digeriadekonuolankdv5 = request.POST.get("digeriadekonuolankdv5")
         # DİĞER İADE HAKKI DOĞURAN İŞLEMLER
+        #İHRAÇ KAYDIYLA TESLİMLER
+        ihrackayditurusecimi = request.POST.getlist("ihrackayditurusecimi")
+        ihrackayditutar = request.POST.getlist("ihrackayditutar")
+        ihrackaydikdvorani = request.POST.getlist("ihrackaydikdvorani")
+        hesaplanantutar = request.POST.getlist("hesaplanantutar")
+        #İHRAÇ KAYDIYLA TESLİMLER
+        #
+        ihrackayditeslimbedeltoplami = request.POST.get("ihrackayditeslimbedeltoplami")
+        teciledilebilirkdv = request.POST.get("teciledilebilirkdv")
+        ihracatingerceklestigiiadeedilecekteciledilmeyenkdv = request.POST.get("ihracatingerceklestigiiadeedilecekteciledilmeyenkdv")
+        yurticivedisikdvodemeksizinteminedilenmalbedeli = request.POST.get("yurticivedisikdvodemeksizinteminedilenmalbedeli")
+        ihracatingerceklestigidonemiadekdv = request.POST.get("ihracatingerceklestigidonemiadekdv")
+        yuklenilenkdv = request.POST.get("yuklenilenkdv")
+        indirimlioranatabimallarinihrackaydi = request.POST.get("indirimlioranatabimallarinihrackaydi")
+
+        #KDV Kanunun 13/F Maddesi Kapsamında Yüklenici Firmalara Yapılan Teslim Ve Hizmetlere Ait Liste
+        istisnabelgesiniduzenleeynkurulus = request.POST.getlist("istisnabelgesiniduzenleeynkurulus")
+        istisnabelgesinintarihi = request.POST.getlist("istisnabelgesinintarihi")
+        istisnabelgesisayisi = request.POST.getlist("istisnabelgesisayisi")
+        istisnabelgesinintarihionaylanan = request.POST.getlist("istisnabelgesinintarihionaylanan")
+        istisnabelgesisayisionaylanan = request.POST.getlist("istisnabelgesisayisionaylanan")
+        alicifirmaadisoyadibilgdsi = request.POST.getlist("alicifirmaadisoyadibilgdsi")
+        tcvergikimlikno = request.POST.getlist("tcvergikimlikno")
+        malinhizmetnumarasisirasi = request.POST.getlist("malinhizmetnumarasisirasi")
+        malinolcubirimi = request.POST.get("malinolcubirimi")
+        malinhizmetintutari = request.POST.getlist("malinhizmetintutari")
+        faturatarihi = request.POST.getlist("faturatarihi")
+        faturano = request.POST.getlist("faturano")
+        faturabedeli = request.POST.getlist("faturabedeli")
+        #KDV Kanunun 13/F Maddesi Kapsamında Yüklenici Firmalara Yapılan Teslim Ve Hizmetlere Ait Liste
     return render(request,"beyannameler/kdv1_beyanname.html",content)
 
 #kdv1
