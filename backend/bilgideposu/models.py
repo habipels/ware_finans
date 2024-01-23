@@ -1870,5 +1870,30 @@ class matrah_bildirimi_kismi_tevkifatuygulanmayanislemler(models.Model):
     kdv3 = models.FloatField(verbose_name="KDV", default=0)
     vergi3 = models.FloatField(verbose_name="Vergi", default=0)
     tevkifatorani3 = models.CharField(max_length=20, verbose_name="tevkifatorani", blank=True, null=True)
-
+#DİĞER İŞLEMLER
+    
+class matrah_bildirimi_digerislemleri(models.Model):
+    bagli_oldugu_firma = models.ForeignKey(firma,blank=True,null=True,on_delete=models.SET_NULL)
+    bagli_oldugu_beyanname = models.ForeignKey(kdv1_beyannamesi_bilgileri,blank=True,null=True,on_delete=models.SET_NULL)
+    #Türkiye'de İkamet Etmeyenlere KDV Hesaplanarak Yapılan Satışlar (Yolcu Beraberi Eşya)[KDVGUT - (II/A-5)]
+    matrah1 = models.FloatField(verbose_name = "Matrah",default = 0)
+    vergi1 = models.FloatField(verbose_name = "Vergi",default = 0)
+    #Amortismana Tabi Sabt Kymet (Taşımaz, Taşıt Araçlan, Demirbaş, Makine ve Teçhizat vb.) Satışları
+    matrah2 = models.FloatField(verbose_name = "Matrah",default = 0)
+    vergi2 = models.FloatField(verbose_name = "Vergi",default = 0)
+    #Amortismana Tabi Sabt Kymet (Taşımaz, Taşıt Araçlan, Demirbaş, Makine ve Teçhizat vb.) Satışları
+    matrah3 = models.FloatField(verbose_name = "Matrah",default = 0)
+    vergi3 = models.FloatField(verbose_name = "Vergi",default = 0)  
+    #Amortismana Tabi Sabt Kymet (Taşımaz, Taşıt Araçlan, Demirbaş, Makine ve Teçhizat vb.) Satışları
+    matrah4 = models.FloatField(verbose_name = "Matrah",default = 0)
+    vergi4 = models.FloatField(verbose_name = "Vergi",default = 0)  
+    #Alınan Malları İadesi, Gerçekleşmeyen İşlemler
+    matrah5 = models.FloatField(verbose_name = "Matrah",default = 0)
+    vergi5 = models.FloatField(verbose_name = "Vergi",default = 0)  
+    #Diğerleri, maddesinden önce VUK 322 Kapsamna Gren Borçlara At KDV
+    matrah6 = models.FloatField(verbose_name = "Matrah",default = 0)
+    vergi6 = models.FloatField(verbose_name = "Vergi",default = 0)  
+    #Diğerleri
+    matrah7 = models.FloatField(verbose_name = "Matrah",default = 0)
+    vergi7 = models.FloatField(verbose_name = "Vergi",default = 0)  
 #KDV1
