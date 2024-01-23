@@ -5499,11 +5499,18 @@ def kdv1_beyannamesi(request,slug):
         kismitevkifatorani = request.POST.getlist("kismitevkifatorani")
         tevkifathhesapkdvtutari = request.POST.getlist("tevkifathhesapkdvtutari")
         alicitarafinabeyanedilecekkdvtutari = request.POST.getlist("alicitarafinabeyanedilecekkdvtutari")
-        a = request.POST.getlist("")
-        a = request.POST.getlist("")
-        a = request.POST.getlist("")
-        a = request.POST.getlist("")
         #KISMİ TEVKİFAT UYGULAMASI KAPSAMINDAKİ İŞLEMLERE AİT BİLDİRİM
+        #İSTEĞE BAĞLI TAM TEVKİFAT UYGULAMASI KAPSAMINDAKİ İŞLEMLERE AİT BİLDİRİM
+        alicinintcsi = request.POST.getlist("alicinintcsi")
+        alicininvergisi = request.POST.getlist("alicininvergisi")
+        aliciadisoyadiunvan = request.POST.getlist("aliciadisoyadiunvan")
+        faturabenzeritarih = request.POST.getlist("faturabenzeritarih")
+        faturabenzerisira = request.POST.getlist("faturabenzerisira")
+        alicikismiislemturu = request.POST.getlist("alicikismiislemturu")
+        islemtutarikdvszi = request.POST.getlist("islemtutarikdvszi")
+        kdvoranialicinin = request.POST.getlist("kdvoranialicinin")
+        vergisiialicinin = request.POST.getlist("vergisiialicinin")
+        #İSTEĞE BAĞLI TAM TEVKİFAT UYGULAMASI KAPSAMINDAKİ İŞLEMLERE AİT BİLDİRİM
     return render(request,"beyannameler/kdv1_beyanname.html",content)
 
 #kdv1

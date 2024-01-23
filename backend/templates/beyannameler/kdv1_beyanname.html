@@ -18,6 +18,7 @@
   }
   .hava{display: none;}
   .kismitev{display: none;}
+  .alicinin{display: none;}
 </style>
   <!--Header-->
   <div class="icon-bar">
@@ -2304,6 +2305,10 @@
       <hr>
       <div class="container tablo" style="margin-top: 0px !important;">
         <input class="col-12" disabled value="KISMİ TEVKİFAT UYGULAMASI KAPSAMINDAKİ İŞLEMLERE AİT BİLDİRİM" type="text">
+        <p style="color: red;">Hesaplanan ve Tevkif edilen KDV otomatik hesaplanır.</p>
+        <p>Kısmi Tevkifat Uygulanan İşlemlerin Tutarları Toplamı <span class="toplamkismitevkifat">0.0</span></p>
+        <p>Kısmi Tevkifat Uygulanan İşlemlerin Tevkifat Tutarlarının Toplamı <span class="toplamkismitevkifattutarlarintoplami">0.0</span></p>
+        <p>Kısmi Tevkifat Uygulanan İşlemlerin Hesaplanan KDV'lerinin Toplamı <span class="toplamkismitevkifatkdvtoplami">0.0</span></p>
         <div class="table-responsive " style=" 
         height: 344px;
         overflow: auto;">
@@ -3113,6 +3118,636 @@
                   
                   <input type="number"  value="0" step="0.01" name="alicitarafinabeyanedilecekkdvtutari" id="alicitarafinabeyanedilecekkdvtutari">
                 </td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="container tablo" style="margin-top: 0px !important;">
+        <input class="col-12" disabled value="İSTEĞE BAĞLI TAM TEVKİFAT UYGULAMASI KAPSAMINDAKİ İŞLEMLERE AİT BİLDİRİM" type="text">
+        <p><b>İsteğe Bağlı Tam Tevkifat Uygulanan İşlemlerin Tutarları Toplamı :</b> <span class="istegebaglitamtevkifatbirinciodeme" >0,0 </span></p>
+        <p><b>İsteğe Bağlı Tam Tevkifat Uygulanan İşlemlerin Vergi Toplamı : </b><span class="istegebaglitamtevkifatvergitoplami" >0,0</span></p>
+        <div class="table-responsive " style=" 
+        height: 300px;
+        overflow: auto;">
+          <table class="table table-bordered ">
+            <thead style="position: sticky;top: 0">
+              <tr>
+                <th class="text-center" style="min-width: 100px ;">Alıcının TC Kimlik Numarasi</th>
+                <th class="text-center" style="min-width: 50px ;">Alıcının Vergi Kimlik Numarasi</th>
+                <th class="text-center" style="min-width: 150px ;">Alıcının Adı / Soyadı Unvan</th>
+                <th class="text-center" style="min-width: 150px ;">Fatura Benzeri Belgenin Tarihi</th>
+                <th class="text-center" style="min-width: 150px ;">Fatura Benzeri Belgenin Sira No</th>
+                <th class="text-center" style="min-width: 150px ;">İşlem Türü</th>
+                <th class="text-center" style="min-width: 150px ;">İşlem Tutarı KDVsiz</th>
+                <th class="text-center" style="min-width: 150px ;">KDV Oranı</th>
+                <th class="text-center" style="min-width: 150px ;">Vergi</th>
+                <th class="text-center"><a href="javascript:void(0);" onclick="ekleYeniSatiralicinin()">SATIR EKLE</a></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><input type="text" name="alicinintcsi"></td>
+                <td><input type="text" name="alicininvergisi"></td>
+                <td><input type="text" name="aliciadisoyadiunvan"></td>
+                <td><input type="date" name="faturabenzeritarih"></td>
+                <td><input step="0.01" type="number" value="0"  name="faturabenzerisira"></td>
+                <td><select name="alicikismiislemturu" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar1 %}
+                  <option value="{{i.id}}">{{i.hesap_kodu}}{{i.hesap_adi}}</option>
+                  {% endfor %}
+                  
+                </select></td>
+                <td><input step="0.01" type="number" value="0"  name="islemtutarikdvszi"></td>
+                <td><input step="0.01" type="number" value="0"  name="kdvoranialicinin"></td>
+                <td><input step="0.01" type="number" value="0"  name="vergisiialicinin"></td>
+               
+                <td></td>
+              </tr>
+              <tr class="alicinin">
+                <td><input type="text" name="alicinintcsi"></td>
+                <td><input type="text" name="alicininvergisi"></td>
+                <td><input type="text" name="aliciadisoyadiunvan"></td>
+                <td><input type="date" name="faturabenzeritarih"></td>
+                <td><input step="0.01" type="number" value="0"  name="faturabenzerisira"></td>
+                <td><select name="alicikismiislemturu" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar1 %}
+                  <option value="{{i.id}}">{{i.hesap_kodu}}{{i.hesap_adi}}</option>
+                  {% endfor %}
+                  
+                </select></td>
+                <td><input step="0.01" type="number" value="0"  name="islemtutarikdvszi"></td>
+                <td><input step="0.01" type="number" value="0"  name="kdvoranialicinin"></td>
+                <td><input step="0.01" type="number" value="0"  name="vergisiialicinin"></td>
+               
+                <td></td>
+              </tr>
+              <tr class="alicinin">
+                <td><input type="text" name="alicinintcsi"></td>
+                <td><input type="text" name="alicininvergisi"></td>
+                <td><input type="text" name="aliciadisoyadiunvan"></td>
+                <td><input type="date" name="faturabenzeritarih"></td>
+                <td><input step="0.01" type="number" value="0"  name="faturabenzerisira"></td>
+                <td><select name="alicikismiislemturu" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar1 %}
+                  <option value="{{i.id}}">{{i.hesap_kodu}}{{i.hesap_adi}}</option>
+                  {% endfor %}
+                  
+                </select></td>
+                <td><input step="0.01" type="number" value="0"  name="islemtutarikdvszi"></td>
+                <td><input step="0.01" type="number" value="0"  name="kdvoranialicinin"></td>
+                <td><input step="0.01" type="number" value="0"  name="vergisiialicinin"></td>
+               
+                <td></td>
+              </tr>
+              <tr class="alicinin">
+                <td><input type="text" name="alicinintcsi"></td>
+                <td><input type="text" name="alicininvergisi"></td>
+                <td><input type="text" name="aliciadisoyadiunvan"></td>
+                <td><input type="date" name="faturabenzeritarih"></td>
+                <td><input step="0.01" type="number" value="0"  name="faturabenzerisira"></td>
+                <td><select name="alicikismiislemturu" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar1 %}
+                  <option value="{{i.id}}">{{i.hesap_kodu}}{{i.hesap_adi}}</option>
+                  {% endfor %}
+                  
+                </select></td>
+                <td><input step="0.01" type="number" value="0"  name="islemtutarikdvszi"></td>
+                <td><input step="0.01" type="number" value="0"  name="kdvoranialicinin"></td>
+                <td><input step="0.01" type="number" value="0"  name="vergisiialicinin"></td>
+               
+                <td></td>
+              </tr><tr class="alicinin">
+                <td><input type="text" name="alicinintcsi"></td>
+                <td><input type="text" name="alicininvergisi"></td>
+                <td><input type="text" name="aliciadisoyadiunvan"></td>
+                <td><input type="date" name="faturabenzeritarih"></td>
+                <td><input step="0.01" type="number" value="0"  name="faturabenzerisira"></td>
+                <td><select name="alicikismiislemturu" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar1 %}
+                  <option value="{{i.id}}">{{i.hesap_kodu}}{{i.hesap_adi}}</option>
+                  {% endfor %}
+                  
+                </select></td>
+                <td><input step="0.01" type="number" value="0"  name="islemtutarikdvszi"></td>
+                <td><input step="0.01" type="number" value="0"  name="kdvoranialicinin"></td>
+                <td><input step="0.01" type="number" value="0"  name="vergisiialicinin"></td>
+               
+                <td></td>
+              </tr>
+              <tr class="alicinin">
+                <td><input type="text" name="alicinintcsi"></td>
+                <td><input type="text" name="alicininvergisi"></td>
+                <td><input type="text" name="aliciadisoyadiunvan"></td>
+                <td><input type="date" name="faturabenzeritarih"></td>
+                <td><input step="0.01" type="number" value="0"  name="faturabenzerisira"></td>
+                <td><select name="alicikismiislemturu" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar1 %}
+                  <option value="{{i.id}}">{{i.hesap_kodu}}{{i.hesap_adi}}</option>
+                  {% endfor %}
+                  
+                </select></td>
+                <td><input step="0.01" type="number" value="0"  name="islemtutarikdvszi"></td>
+                <td><input step="0.01" type="number" value="0"  name="kdvoranialicinin"></td>
+                <td><input step="0.01" type="number" value="0"  name="vergisiialicinin"></td>
+               
+                <td></td>
+              </tr>
+              <tr class="alicinin">
+                <td><input type="text" name="alicinintcsi"></td>
+                <td><input type="text" name="alicininvergisi"></td>
+                <td><input type="text" name="aliciadisoyadiunvan"></td>
+                <td><input type="date" name="faturabenzeritarih"></td>
+                <td><input step="0.01" type="number" value="0"  name="faturabenzerisira"></td>
+                <td><select name="alicikismiislemturu" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar1 %}
+                  <option value="{{i.id}}">{{i.hesap_kodu}}{{i.hesap_adi}}</option>
+                  {% endfor %}
+                  
+                </select></td>
+                <td><input step="0.01" type="number" value="0"  name="islemtutarikdvszi"></td>
+                <td><input step="0.01" type="number" value="0"  name="kdvoranialicinin"></td>
+                <td><input step="0.01" type="number" value="0"  name="vergisiialicinin"></td>
+               
+                <td></td>
+              </tr>
+              <tr class="alicinin">
+                <td><input type="text" name="alicinintcsi"></td>
+                <td><input type="text" name="alicininvergisi"></td>
+                <td><input type="text" name="aliciadisoyadiunvan"></td>
+                <td><input type="date" name="faturabenzeritarih"></td>
+                <td><input step="0.01" type="number" value="0"  name="faturabenzerisira"></td>
+                <td><select name="alicikismiislemturu" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar1 %}
+                  <option value="{{i.id}}">{{i.hesap_kodu}}{{i.hesap_adi}}</option>
+                  {% endfor %}
+                  
+                </select></td>
+                <td><input step="0.01" type="number" value="0"  name="islemtutarikdvszi"></td>
+                <td><input step="0.01" type="number" value="0"  name="kdvoranialicinin"></td>
+                <td><input step="0.01" type="number" value="0"  name="vergisiialicinin"></td>
+               
+                <td></td>
+              </tr>
+              <tr class="alicinin">
+                <td><input type="text" name="alicinintcsi"></td>
+                <td><input type="text" name="alicininvergisi"></td>
+                <td><input type="text" name="aliciadisoyadiunvan"></td>
+                <td><input type="date" name="faturabenzeritarih"></td>
+                <td><input step="0.01" type="number" value="0"  name="faturabenzerisira"></td>
+                <td><select name="alicikismiislemturu" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar1 %}
+                  <option value="{{i.id}}">{{i.hesap_kodu}}{{i.hesap_adi}}</option>
+                  {% endfor %}
+                  
+                </select></td>
+                <td><input step="0.01" type="number" value="0"  name="islemtutarikdvszi"></td>
+                <td><input step="0.01" type="number" value="0"  name="kdvoranialicinin"></td>
+                <td><input step="0.01" type="number" value="0"  name="vergisiialicinin"></td>
+               
+                <td></td>
+              </tr>
+              <tr class="alicinin">
+                <td><input type="text" name="alicinintcsi"></td>
+                <td><input type="text" name="alicininvergisi"></td>
+                <td><input type="text" name="aliciadisoyadiunvan"></td>
+                <td><input type="date" name="faturabenzeritarih"></td>
+                <td><input step="0.01" type="number" value="0"  name="faturabenzerisira"></td>
+                <td><select name="alicikismiislemturu" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar1 %}
+                  <option value="{{i.id}}">{{i.hesap_kodu}}{{i.hesap_adi}}</option>
+                  {% endfor %}
+                  
+                </select></td>
+                <td><input step="0.01" type="number" value="0"  name="islemtutarikdvszi"></td>
+                <td><input step="0.01" type="number" value="0"  name="kdvoranialicinin"></td>
+                <td><input step="0.01" type="number" value="0"  name="vergisiialicinin"></td>
+               
+                <td></td>
+              </tr>
+              <tr class="alicinin">
+                <td><input type="text" name="alicinintcsi"></td>
+                <td><input type="text" name="alicininvergisi"></td>
+                <td><input type="text" name="aliciadisoyadiunvan"></td>
+                <td><input type="date" name="faturabenzeritarih"></td>
+                <td><input step="0.01" type="number" value="0"  name="faturabenzerisira"></td>
+                <td><select name="alicikismiislemturu" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar1 %}
+                  <option value="{{i.id}}">{{i.hesap_kodu}}{{i.hesap_adi}}</option>
+                  {% endfor %}
+                  
+                </select></td>
+                <td><input step="0.01" type="number" value="0"  name="islemtutarikdvszi"></td>
+                <td><input step="0.01" type="number" value="0"  name="kdvoranialicinin"></td>
+                <td><input step="0.01" type="number" value="0"  name="vergisiialicinin"></td>
+               
+                <td></td>
+              </tr>
+              <tr class="alicinin">
+                <td><input type="text" name="alicinintcsi"></td>
+                <td><input type="text" name="alicininvergisi"></td>
+                <td><input type="text" name="aliciadisoyadiunvan"></td>
+                <td><input type="date" name="faturabenzeritarih"></td>
+                <td><input step="0.01" type="number" value="0"  name="faturabenzerisira"></td>
+                <td><select name="alicikismiislemturu" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar1 %}
+                  <option value="{{i.id}}">{{i.hesap_kodu}}{{i.hesap_adi}}</option>
+                  {% endfor %}
+                  
+                </select></td>
+                <td><input step="0.01" type="number" value="0"  name="islemtutarikdvszi"></td>
+                <td><input step="0.01" type="number" value="0"  name="kdvoranialicinin"></td>
+                <td><input step="0.01" type="number" value="0"  name="vergisiialicinin"></td>
+               
+                <td></td>
+              </tr>
+              <tr class="alicinin">
+                <td><input type="text" name="alicinintcsi"></td>
+                <td><input type="text" name="alicininvergisi"></td>
+                <td><input type="text" name="aliciadisoyadiunvan"></td>
+                <td><input type="date" name="faturabenzeritarih"></td>
+                <td><input step="0.01" type="number" value="0"  name="faturabenzerisira"></td>
+                <td><select name="alicikismiislemturu" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar1 %}
+                  <option value="{{i.id}}">{{i.hesap_kodu}}{{i.hesap_adi}}</option>
+                  {% endfor %}
+                  
+                </select></td>
+                <td><input step="0.01" type="number" value="0"  name="islemtutarikdvszi"></td>
+                <td><input step="0.01" type="number" value="0"  name="kdvoranialicinin"></td>
+                <td><input step="0.01" type="number" value="0"  name="vergisiialicinin"></td>
+               
+                <td></td>
+              </tr>
+              <tr class="alicinin">
+                <td><input type="text" name="alicinintcsi"></td>
+                <td><input type="text" name="alicininvergisi"></td>
+                <td><input type="text" name="aliciadisoyadiunvan"></td>
+                <td><input type="date" name="faturabenzeritarih"></td>
+                <td><input step="0.01" type="number" value="0"  name="faturabenzerisira"></td>
+                <td><select name="alicikismiislemturu" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar1 %}
+                  <option value="{{i.id}}">{{i.hesap_kodu}}{{i.hesap_adi}}</option>
+                  {% endfor %}
+                  
+                </select></td>
+                <td><input step="0.01" type="number" value="0"  name="islemtutarikdvszi"></td>
+                <td><input step="0.01" type="number" value="0"  name="kdvoranialicinin"></td>
+                <td><input step="0.01" type="number" value="0"  name="vergisiialicinin"></td>
+               
+                <td></td>
+              </tr><tr class="alicinin">
+                <td><input type="text" name="alicinintcsi"></td>
+                <td><input type="text" name="alicininvergisi"></td>
+                <td><input type="text" name="aliciadisoyadiunvan"></td>
+                <td><input type="date" name="faturabenzeritarih"></td>
+                <td><input step="0.01" type="number" value="0"  name="faturabenzerisira"></td>
+                <td><select name="alicikismiislemturu" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar1 %}
+                  <option value="{{i.id}}">{{i.hesap_kodu}}{{i.hesap_adi}}</option>
+                  {% endfor %}
+                  
+                </select></td>
+                <td><input step="0.01" type="number" value="0"  name="islemtutarikdvszi"></td>
+                <td><input step="0.01" type="number" value="0"  name="kdvoranialicinin"></td>
+                <td><input step="0.01" type="number" value="0"  name="vergisiialicinin"></td>
+               
+                <td></td>
+              </tr>
+              <tr class="alicinin">
+                <td><input type="text" name="alicinintcsi"></td>
+                <td><input type="text" name="alicininvergisi"></td>
+                <td><input type="text" name="aliciadisoyadiunvan"></td>
+                <td><input type="date" name="faturabenzeritarih"></td>
+                <td><input step="0.01" type="number" value="0"  name="faturabenzerisira"></td>
+                <td><select name="alicikismiislemturu" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar1 %}
+                  <option value="{{i.id}}">{{i.hesap_kodu}}{{i.hesap_adi}}</option>
+                  {% endfor %}
+                  
+                </select></td>
+                <td><input step="0.01" type="number" value="0"  name="islemtutarikdvszi"></td>
+                <td><input step="0.01" type="number" value="0"  name="kdvoranialicinin"></td>
+                <td><input step="0.01" type="number" value="0"  name="vergisiialicinin"></td>
+               
+                <td></td>
+              </tr>
+              <tr class="alicinin">
+                <td><input type="text" name="alicinintcsi"></td>
+                <td><input type="text" name="alicininvergisi"></td>
+                <td><input type="text" name="aliciadisoyadiunvan"></td>
+                <td><input type="date" name="faturabenzeritarih"></td>
+                <td><input step="0.01" type="number" value="0"  name="faturabenzerisira"></td>
+                <td><select name="alicikismiislemturu" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar1 %}
+                  <option value="{{i.id}}">{{i.hesap_kodu}}{{i.hesap_adi}}</option>
+                  {% endfor %}
+                  
+                </select></td>
+                <td><input step="0.01" type="number" value="0"  name="islemtutarikdvszi"></td>
+                <td><input step="0.01" type="number" value="0"  name="kdvoranialicinin"></td>
+                <td><input step="0.01" type="number" value="0"  name="vergisiialicinin"></td>
+               
+                <td></td>
+              </tr>
+              <tr class="alicinin">
+                <td><input type="text" name="alicinintcsi"></td>
+                <td><input type="text" name="alicininvergisi"></td>
+                <td><input type="text" name="aliciadisoyadiunvan"></td>
+                <td><input type="date" name="faturabenzeritarih"></td>
+                <td><input step="0.01" type="number" value="0"  name="faturabenzerisira"></td>
+                <td><select name="alicikismiislemturu" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar1 %}
+                  <option value="{{i.id}}">{{i.hesap_kodu}}{{i.hesap_adi}}</option>
+                  {% endfor %}
+                  
+                </select></td>
+                <td><input step="0.01" type="number" value="0"  name="islemtutarikdvszi"></td>
+                <td><input step="0.01" type="number" value="0"  name="kdvoranialicinin"></td>
+                <td><input step="0.01" type="number" value="0"  name="vergisiialicinin"></td>
+               
+                <td></td>
+              </tr>
+              <tr class="alicinin">
+                <td><input type="text" name="alicinintcsi"></td>
+                <td><input type="text" name="alicininvergisi"></td>
+                <td><input type="text" name="aliciadisoyadiunvan"></td>
+                <td><input type="date" name="faturabenzeritarih"></td>
+                <td><input step="0.01" type="number" value="0"  name="faturabenzerisira"></td>
+                <td><select name="alicikismiislemturu" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar1 %}
+                  <option value="{{i.id}}">{{i.hesap_kodu}}{{i.hesap_adi}}</option>
+                  {% endfor %}
+                  
+                </select></td>
+                <td><input step="0.01" type="number" value="0"  name="islemtutarikdvszi"></td>
+                <td><input step="0.01" type="number" value="0"  name="kdvoranialicinin"></td>
+                <td><input step="0.01" type="number" value="0"  name="vergisiialicinin"></td>
+               
+                <td></td>
+              </tr><tr class="alicinin">
+                <td><input type="text" name="alicinintcsi"></td>
+                <td><input type="text" name="alicininvergisi"></td>
+                <td><input type="text" name="aliciadisoyadiunvan"></td>
+                <td><input type="date" name="faturabenzeritarih"></td>
+                <td><input step="0.01" type="number" value="0"  name="faturabenzerisira"></td>
+                <td><select name="alicikismiislemturu" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar1 %}
+                  <option value="{{i.id}}">{{i.hesap_kodu}}{{i.hesap_adi}}</option>
+                  {% endfor %}
+                  
+                </select></td>
+                <td><input step="0.01" type="number" value="0"  name="islemtutarikdvszi"></td>
+                <td><input step="0.01" type="number" value="0"  name="kdvoranialicinin"></td>
+                <td><input step="0.01" type="number" value="0"  name="vergisiialicinin"></td>
+               
+                <td></td>
+              </tr>
+              <tr class="alicinin">
+                <td><input type="text" name="alicinintcsi"></td>
+                <td><input type="text" name="alicininvergisi"></td>
+                <td><input type="text" name="aliciadisoyadiunvan"></td>
+                <td><input type="date" name="faturabenzeritarih"></td>
+                <td><input step="0.01" type="number" value="0"  name="faturabenzerisira"></td>
+                <td><select name="alicikismiislemturu" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar1 %}
+                  <option value="{{i.id}}">{{i.hesap_kodu}}{{i.hesap_adi}}</option>
+                  {% endfor %}
+                  
+                </select></td>
+                <td><input step="0.01" type="number" value="0"  name="islemtutarikdvszi"></td>
+                <td><input step="0.01" type="number" value="0"  name="kdvoranialicinin"></td>
+                <td><input step="0.01" type="number" value="0"  name="vergisiialicinin"></td>
+               
+                <td></td>
+              </tr>
+              <tr class="alicinin">
+                <td><input type="text" name="alicinintcsi"></td>
+                <td><input type="text" name="alicininvergisi"></td>
+                <td><input type="text" name="aliciadisoyadiunvan"></td>
+                <td><input type="date" name="faturabenzeritarih"></td>
+                <td><input step="0.01" type="number" value="0"  name="faturabenzerisira"></td>
+                <td><select name="alicikismiislemturu" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar1 %}
+                  <option value="{{i.id}}">{{i.hesap_kodu}}{{i.hesap_adi}}</option>
+                  {% endfor %}
+                  
+                </select></td>
+                <td><input step="0.01" type="number" value="0"  name="islemtutarikdvszi"></td>
+                <td><input step="0.01" type="number" value="0"  name="kdvoranialicinin"></td>
+                <td><input step="0.01" type="number" value="0"  name="vergisiialicinin"></td>
+               
+                <td></td>
+              </tr>
+              <tr class="alicinin">
+                <td><input type="text" name="alicinintcsi"></td>
+                <td><input type="text" name="alicininvergisi"></td>
+                <td><input type="text" name="aliciadisoyadiunvan"></td>
+                <td><input type="date" name="faturabenzeritarih"></td>
+                <td><input step="0.01" type="number" value="0"  name="faturabenzerisira"></td>
+                <td><select name="alicikismiislemturu" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar1 %}
+                  <option value="{{i.id}}">{{i.hesap_kodu}}{{i.hesap_adi}}</option>
+                  {% endfor %}
+                  
+                </select></td>
+                <td><input step="0.01" type="number" value="0"  name="islemtutarikdvszi"></td>
+                <td><input step="0.01" type="number" value="0"  name="kdvoranialicinin"></td>
+                <td><input step="0.01" type="number" value="0"  name="vergisiialicinin"></td>
+               
+                <td></td>
+              </tr>
+              <tr class="alicinin">
+                <td><input type="text" name="alicinintcsi"></td>
+                <td><input type="text" name="alicininvergisi"></td>
+                <td><input type="text" name="aliciadisoyadiunvan"></td>
+                <td><input type="date" name="faturabenzeritarih"></td>
+                <td><input step="0.01" type="number" value="0"  name="faturabenzerisira"></td>
+                <td><select name="alicikismiislemturu" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar1 %}
+                  <option value="{{i.id}}">{{i.hesap_kodu}}{{i.hesap_adi}}</option>
+                  {% endfor %}
+                  
+                </select></td>
+                <td><input step="0.01" type="number" value="0"  name="islemtutarikdvszi"></td>
+                <td><input step="0.01" type="number" value="0"  name="kdvoranialicinin"></td>
+                <td><input step="0.01" type="number" value="0"  name="vergisiialicinin"></td>
+               
+                <td></td>
+              </tr><tr class="alicinin">
+                <td><input type="text" name="alicinintcsi"></td>
+                <td><input type="text" name="alicininvergisi"></td>
+                <td><input type="text" name="aliciadisoyadiunvan"></td>
+                <td><input type="date" name="faturabenzeritarih"></td>
+                <td><input step="0.01" type="number" value="0"  name="faturabenzerisira"></td>
+                <td><select name="alicikismiislemturu" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar1 %}
+                  <option value="{{i.id}}">{{i.hesap_kodu}}{{i.hesap_adi}}</option>
+                  {% endfor %}
+                  
+                </select></td>
+                <td><input step="0.01" type="number" value="0"  name="islemtutarikdvszi"></td>
+                <td><input step="0.01" type="number" value="0"  name="kdvoranialicinin"></td>
+                <td><input step="0.01" type="number" value="0"  name="vergisiialicinin"></td>
+               
+                <td></td>
+              </tr>
+              <tr class="alicinin">
+                <td><input type="text" name="alicinintcsi"></td>
+                <td><input type="text" name="alicininvergisi"></td>
+                <td><input type="text" name="aliciadisoyadiunvan"></td>
+                <td><input type="date" name="faturabenzeritarih"></td>
+                <td><input step="0.01" type="number" value="0"  name="faturabenzerisira"></td>
+                <td><select name="alicikismiislemturu" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar1 %}
+                  <option value="{{i.id}}">{{i.hesap_kodu}}{{i.hesap_adi}}</option>
+                  {% endfor %}
+                  
+                </select></td>
+                <td><input step="0.01" type="number" value="0"  name="islemtutarikdvszi"></td>
+                <td><input step="0.01" type="number" value="0"  name="kdvoranialicinin"></td>
+                <td><input step="0.01" type="number" value="0"  name="vergisiialicinin"></td>
+               
+                <td></td>
+              </tr>
+              <tr class="alicinin">
+                <td><input type="text" name="alicinintcsi"></td>
+                <td><input type="text" name="alicininvergisi"></td>
+                <td><input type="text" name="aliciadisoyadiunvan"></td>
+                <td><input type="date" name="faturabenzeritarih"></td>
+                <td><input step="0.01" type="number" value="0"  name="faturabenzerisira"></td>
+                <td><select name="alicikismiislemturu" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar1 %}
+                  <option value="{{i.id}}">{{i.hesap_kodu}}{{i.hesap_adi}}</option>
+                  {% endfor %}
+                  
+                </select></td>
+                <td><input step="0.01" type="number" value="0"  name="islemtutarikdvszi"></td>
+                <td><input step="0.01" type="number" value="0"  name="kdvoranialicinin"></td>
+                <td><input step="0.01" type="number" value="0"  name="vergisiialicinin"></td>
+               
+                <td></td>
+              </tr>
+              <tr class="alicinin">
+                <td><input type="text" name="alicinintcsi"></td>
+                <td><input type="text" name="alicininvergisi"></td>
+                <td><input type="text" name="aliciadisoyadiunvan"></td>
+                <td><input type="date" name="faturabenzeritarih"></td>
+                <td><input step="0.01" type="number" value="0"  name="faturabenzerisira"></td>
+                <td><select name="alicikismiislemturu" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar1 %}
+                  <option value="{{i.id}}">{{i.hesap_kodu}}{{i.hesap_adi}}</option>
+                  {% endfor %}
+                  
+                </select></td>
+                <td><input step="0.01" type="number" value="0"  name="islemtutarikdvszi"></td>
+                <td><input step="0.01" type="number" value="0"  name="kdvoranialicinin"></td>
+                <td><input step="0.01" type="number" value="0"  name="vergisiialicinin"></td>
+               
+                <td></td>
+              </tr>
+              <tr class="alicinin">
+                <td><input type="text" name="alicinintcsi"></td>
+                <td><input type="text" name="alicininvergisi"></td>
+                <td><input type="text" name="aliciadisoyadiunvan"></td>
+                <td><input type="date" name="faturabenzeritarih"></td>
+                <td><input step="0.01" type="number" value="0"  name="faturabenzerisira"></td>
+                <td><select name="alicikismiislemturu" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar1 %}
+                  <option value="{{i.id}}">{{i.hesap_kodu}}{{i.hesap_adi}}</option>
+                  {% endfor %}
+                  
+                </select></td>
+                <td><input step="0.01" type="number" value="0"  name="islemtutarikdvszi"></td>
+                <td><input step="0.01" type="number" value="0"  name="kdvoranialicinin"></td>
+                <td><input step="0.01" type="number" value="0"  name="vergisiialicinin"></td>
+               
+                <td></td>
+              </tr><tr class="alicinin">
+                <td><input type="text" name="alicinintcsi"></td>
+                <td><input type="text" name="alicininvergisi"></td>
+                <td><input type="text" name="aliciadisoyadiunvan"></td>
+                <td><input type="date" name="faturabenzeritarih"></td>
+                <td><input step="0.01" type="number" value="0"  name="faturabenzerisira"></td>
+                <td><select name="alicikismiislemturu" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar1 %}
+                  <option value="{{i.id}}">{{i.hesap_kodu}}{{i.hesap_adi}}</option>
+                  {% endfor %}
+                  
+                </select></td>
+                <td><input step="0.01" type="number" value="0"  name="islemtutarikdvszi"></td>
+                <td><input step="0.01" type="number" value="0"  name="kdvoranialicinin"></td>
+                <td><input step="0.01" type="number" value="0"  name="vergisiialicinin"></td>
+               
+                <td></td>
+              </tr>
+              <tr class="alicinin">
+                <td><input type="text" name="alicinintcsi"></td>
+                <td><input type="text" name="alicininvergisi"></td>
+                <td><input type="text" name="aliciadisoyadiunvan"></td>
+                <td><input type="date" name="faturabenzeritarih"></td>
+                <td><input step="0.01" type="number" value="0"  name="faturabenzerisira"></td>
+                <td><select name="alicikismiislemturu" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar1 %}
+                  <option value="{{i.id}}">{{i.hesap_kodu}}{{i.hesap_adi}}</option>
+                  {% endfor %}
+                  
+                </select></td>
+                <td><input step="0.01" type="number" value="0"  name="islemtutarikdvszi"></td>
+                <td><input step="0.01" type="number" value="0"  name="kdvoranialicinin"></td>
+                <td><input step="0.01" type="number" value="0"  name="vergisiialicinin"></td>
+               
+                <td></td>
+              </tr>
+              <tr class="alicinin">
+                <td><input type="text" name="alicinintcsi"></td>
+                <td><input type="text" name="alicininvergisi"></td>
+                <td><input type="text" name="aliciadisoyadiunvan"></td>
+                <td><input type="date" name="faturabenzeritarih"></td>
+                <td><input step="0.01" type="number" value="0"  name="faturabenzerisira"></td>
+                <td><select name="alicikismiislemturu" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar1 %}
+                  <option value="{{i.id}}">{{i.hesap_kodu}}{{i.hesap_adi}}</option>
+                  {% endfor %}
+                  
+                </select></td>
+                <td><input step="0.01" type="number" value="0"  name="islemtutarikdvszi"></td>
+                <td><input step="0.01" type="number" value="0"  name="kdvoranialicinin"></td>
+                <td><input step="0.01" type="number" value="0"  name="vergisiialicinin"></td>
+               
                 <td></td>
               </tr>
             </tbody>
@@ -4571,6 +5206,19 @@
 
     if (elements[y]) {
         elements[y].classList.remove('kismitev');
+    } else {
+        console.error("Ürün Sınırına Ulaştınız");
+    }
+
+    yeniselect();
+  }
+  let i = 0;
+  function ekleYeniSatiralicinin() {
+    
+    var elements = document.getElementsByClassName('alicinin');
+
+    if (elements[i]) {
+        elements[i].classList.remove('alicinin');
     } else {
         console.error("Ürün Sınırına Ulaştınız");
     }
