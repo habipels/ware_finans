@@ -5484,7 +5484,26 @@ def kdv1_beyannamesi(request,slug):
         #Türk Hava Kuvetlerinin Güçlenmesine Katılım Payı
         satilanbiletadeti = request.POSt.getlist("satilanbiletadeti")
         satilanbiletpaytutari = request.POSt.getlist("satilanbiletpaytutari")
+        satilanbilettopamtutar = request.POST.getlist("satilanbilettopamtutar")
         #Türk Hava Kuvetlerinin Güçlenmesine Katılım Payı
+        #KISMİ TEVKİFAT UYGULAMASI KAPSAMINDAKİ İŞLEMLERE AİT BİLDİRİM
+        kismitevkifatalicitcvergikimlikl = request.POST.getlist("kismitevkifatalicitcvergikimlikl")
+        kismitevkifatalicivergikimlikl = request.POST.getlist("kismitevkifatalicivergikimlikl")
+        kismitevkifataliciadisoyadi = request.POST.getlist("kismitevkifataliciadisoyadi")
+        kismitevkifatbelgetarihi = request.POST.getlist("kismitevkifatbelgetarihi")
+        kismitevkifatbelgeserisi = request.POST.getlist("kismitevkifatbelgeserisi")
+        kismitevkifatbelgesiranosu = request.POST.getlist("kismitevkifatbelgesiranosu")
+        kismitevkifatislemcinsi = request.POST.getlist("kismitevkifatislemcinsi")
+        kismitevkifatistutari = request.POST.getlist("kismitevkifatistutari")
+        kismitevkifatkdvorani = request.POST.getlist("kismitevkifatkdvorani")
+        kismitevkifatorani = request.POST.getlist("kismitevkifatorani")
+        tevkifathhesapkdvtutari = request.POST.getlist("tevkifathhesapkdvtutari")
+        alicitarafinabeyanedilecekkdvtutari = request.POST.getlist("alicitarafinabeyanedilecekkdvtutari")
+        a = request.POST.getlist("")
+        a = request.POST.getlist("")
+        a = request.POST.getlist("")
+        a = request.POST.getlist("")
+        #KISMİ TEVKİFAT UYGULAMASI KAPSAMINDAKİ İŞLEMLERE AİT BİLDİRİM
     return render(request,"beyannameler/kdv1_beyanname.html",content)
 
 #kdv1

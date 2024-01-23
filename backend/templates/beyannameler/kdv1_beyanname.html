@@ -17,6 +17,7 @@
     display: none;
   }
   .hava{display: none;}
+  .kismitev{display: none;}
 </style>
   <!--Header-->
   <div class="icon-bar">
@@ -2302,6 +2303,823 @@
       <h3 class="text-center" >EKLER</h3>
       <hr>
       <div class="container tablo" style="margin-top: 0px !important;">
+        <input class="col-12" disabled value="KISMİ TEVKİFAT UYGULAMASI KAPSAMINDAKİ İŞLEMLERE AİT BİLDİRİM" type="text">
+        <div class="table-responsive " style=" 
+        height: 344px;
+        overflow: auto;">
+          <table class="table table-bordered ">
+            <thead style="position: sticky;top: 0">
+              <tr>
+                <th class="text-center" style="min-width: 100px ;">Alıcının T.C. Kimlik No.su</th>
+                <th class="text-center" style="min-width: 50px ;">Alıcının Vergi Kimlik No.su</th>
+                <th class="text-center" style="min-width: 150px ;">Alıcının Adı Soyadı (Unvanı)</th>
+                <th class="text-center" style="min-width: 150px ;">Belge Tarihi</th>
+                <th class="text-center" style="min-width: 150px ;">Belge Serisi</th>
+                <th class="text-center" style="min-width: 150px ;">Belge Sıra Nosu</th>
+                <th class="text-center" style="min-width: 150px ;">Tev.Uyg.İşl.Cinsi</th>
+                <th class="text-center" style="min-width: 150px ;">Tev.Uyg.İşl.Tutarı</th>
+                <th class="text-center" style="min-width: 150px ;">KDV %</th>
+                <th class="text-center" style="min-width: 150px ;">Tev.Oranı</th>
+                <th class="text-center" style="min-width: 150px ;">Tev.Uyg.İşl.Hes.KDV</th>
+                <th class="text-center" style="min-width: 150px ;">Alıcı Tar.Bey.Ed.KDV</th>
+                <th class="text-center" style="min-width: 150px ;"><a href="javascript:void(0);" onclick="ekleYeniSatirikismitevkifat()">SATIR EKLE</a></th>
+                
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><input type="text" name="kismitevkifatalicitcvergikimlikl" id=""></td>
+                <td><input type="text" name="kismitevkifatalicivergikimlikl" id=""></td>
+                <td><input type="text" name="kismitevkifataliciadisoyadi" id=""></td>
+                <td><input type="date" name="kismitevkifatbelgetarihi"></td>
+                <td><input type="text" name="kismitevkifatbelgeserisi" id=""></td>
+                <td><input type="text" name="kismitevkifatbelgesiranosu" id=""></td>
+                <td><select style="max-width: 100px;" name="kismitevkifatislemcinsi" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar %}
+                  <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                  
+                </select></td>
+                <td>
+                  <input type="number" step="0.01"  value="0" name="kismitevkifatistutari" id="kismitevkifatistutari">
+                </td>
+                <td>
+                  <input type="number" step="0.01"  value="0" name="kismitevkifatkdvorani" id="kismitevkifatkdvorani">
+                </td>
+                <td><select name="kismitevkifatorani" id="kismitevkifatorani">
+                  <option value=""></option><option value="2/10">2/10</option>
+                  <option value="3/10">3/10</option>
+                  <option value="4/10">4/10</option>
+                  <option value="5/10">5/10</option>
+                  <option value="7/10">7/10</option>
+                  <option value="9/10">9/10</option>
+                </select></td>
+                <td>
+                  <span class="tevkifathhesapkdvtutari" >0.0</span>
+                  <input type="number" hidden value="0" step="0.01" name="tevkifathhesapkdvtutari" id="tevkifathhesapkdvtutari">
+                </td>
+                <td>
+                  
+                  <input type="number"  value="0" step="0.01" name="alicitarafinabeyanedilecekkdvtutari" id="alicitarafinabeyanedilecekkdvtutari">
+                </td>
+                <td></td>
+              </tr>
+     
+              <tr class="kismitev">
+                <td><input type="text" name="kismitevkifatalicitcvergikimlikl" id=""></td>
+                <td><input type="text" name="kismitevkifatalicivergikimlikl" id=""></td>
+                <td><input type="text" name="kismitevkifataliciadisoyadi" id=""></td>
+                <td><input type="date" name="kismitevkifatbelgetarihi"></td>
+                <td><input type="text" name="kismitevkifatbelgeserisi" id=""></td>
+                <td><input type="text" name="kismitevkifatbelgesiranosu" id=""></td>
+                <td><select style="max-width: 100px;" name="kismitevkifatislemcinsi" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar %}
+                  <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                  
+                </select></td>
+                <td>
+                  <input type="number" step="0.01"  value="0" name="kismitevkifatistutari" id="kismitevkifatistutari">
+                </td>
+                <td>
+                  <input type="number" step="0.01"  value="0" name="kismitevkifatkdvorani" id="kismitevkifatkdvorani">
+                </td>
+                <td><select name="kismitevkifatorani" id="kismitevkifatorani">
+                  <option value=""></option><option value="2/10">2/10</option>
+                  <option value="3/10">3/10</option>
+                  <option value="4/10">4/10</option>
+                  <option value="5/10">5/10</option>
+                  <option value="7/10">7/10</option>
+                  <option value="9/10">9/10</option>
+                </select></td>
+                <td>
+                  <span class="tevkifathhesapkdvtutari" >0.0</span>
+                  <input type="number" hidden value="0" step="0.01" name="tevkifathhesapkdvtutari" id="tevkifathhesapkdvtutari">
+                </td>
+                <td>
+                  
+                  <input type="number"  value="0" step="0.01" name="alicitarafinabeyanedilecekkdvtutari" id="alicitarafinabeyanedilecekkdvtutari">
+                </td>
+                <td></td>
+              </tr>
+              <tr class="kismitev">
+                <td><input type="text" name="kismitevkifatalicitcvergikimlikl" id=""></td>
+                <td><input type="text" name="kismitevkifatalicivergikimlikl" id=""></td>
+                <td><input type="text" name="kismitevkifataliciadisoyadi" id=""></td>
+                <td><input type="date" name="kismitevkifatbelgetarihi"></td>
+                <td><input type="text" name="kismitevkifatbelgeserisi" id=""></td>
+                <td><input type="text" name="kismitevkifatbelgesiranosu" id=""></td>
+                <td><select style="max-width: 100px;" name="kismitevkifatislemcinsi" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar %}
+                  <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                  
+                </select></td>
+                <td>
+                  <input type="number" step="0.01"  value="0" name="kismitevkifatistutari" id="kismitevkifatistutari">
+                </td>
+                <td>
+                  <input type="number" step="0.01"  value="0" name="kismitevkifatkdvorani" id="kismitevkifatkdvorani">
+                </td>
+                <td><select name="kismitevkifatorani" id="kismitevkifatorani">
+                  <option value=""></option><option value="2/10">2/10</option>
+                  <option value="3/10">3/10</option>
+                  <option value="4/10">4/10</option>
+                  <option value="5/10">5/10</option>
+                  <option value="7/10">7/10</option>
+                  <option value="9/10">9/10</option>
+                </select></td>
+                <td>
+                  <span class="tevkifathhesapkdvtutari" >0.0</span>
+                  <input type="number" hidden value="0" step="0.01" name="tevkifathhesapkdvtutari" id="tevkifathhesapkdvtutari">
+                </td>
+                <td>
+                  
+                  <input type="number"  value="0" step="0.01" name="alicitarafinabeyanedilecekkdvtutari" id="alicitarafinabeyanedilecekkdvtutari">
+                </td>
+                <td></td>
+              </tr>
+              <tr class="kismitev">
+                <td><input type="text" name="kismitevkifatalicitcvergikimlikl" id=""></td>
+                <td><input type="text" name="kismitevkifatalicivergikimlikl" id=""></td>
+                <td><input type="text" name="kismitevkifataliciadisoyadi" id=""></td>
+                <td><input type="date" name="kismitevkifatbelgetarihi"></td>
+                <td><input type="text" name="kismitevkifatbelgeserisi" id=""></td>
+                <td><input type="text" name="kismitevkifatbelgesiranosu" id=""></td>
+                <td><select style="max-width: 100px;" name="kismitevkifatislemcinsi" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar %}
+                  <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                  
+                </select></td>
+                <td>
+                  <input type="number" step="0.01"  value="0" name="kismitevkifatistutari" id="kismitevkifatistutari">
+                </td>
+                <td>
+                  <input type="number" step="0.01"  value="0" name="kismitevkifatkdvorani" id="kismitevkifatkdvorani">
+                </td>
+                <td><select name="kismitevkifatorani" id="kismitevkifatorani">
+                  
+                  <option value=""></option><option value="2/10">2/10</option>
+                  <option value="3/10">3/10</option>
+                  <option value="4/10">4/10</option>
+                  <option value="5/10">5/10</option>
+                  <option value="7/10">7/10</option>
+                  <option value="9/10">9/10</option>
+                </select></td>
+                <td>
+                  <span class="tevkifathhesapkdvtutari" >0.0</span>
+                  <input type="number" hidden value="0" step="0.01" name="tevkifathhesapkdvtutari" id="tevkifathhesapkdvtutari">
+                </td>
+                <td>
+                  
+                  <input type="number"  value="0" step="0.01" name="alicitarafinabeyanedilecekkdvtutari" id="alicitarafinabeyanedilecekkdvtutari">
+                </td>
+                <td></td>
+              </tr>
+              <tr class="kismitev">
+                <td><input type="text" name="kismitevkifatalicitcvergikimlikl" id=""></td>
+                <td><input type="text" name="kismitevkifatalicivergikimlikl" id=""></td>
+                <td><input type="text" name="kismitevkifataliciadisoyadi" id=""></td>
+                <td><input type="date" name="kismitevkifatbelgetarihi"></td>
+                <td><input type="text" name="kismitevkifatbelgeserisi" id=""></td>
+                <td><input type="text" name="kismitevkifatbelgesiranosu" id=""></td>
+                <td><select style="max-width: 100px;" name="kismitevkifatislemcinsi" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar %}
+                  <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                  
+                </select></td>
+                <td>
+                  <input type="number" step="0.01"  value="0" name="kismitevkifatistutari" id="kismitevkifatistutari">
+                </td>
+                <td>
+                  <input type="number" step="0.01"  value="0" name="kismitevkifatkdvorani" id="kismitevkifatkdvorani">
+                </td>
+                <td><select name="kismitevkifatorani" id="kismitevkifatorani">
+                  <option value=""></option><option value="2/10">2/10</option>
+                  <option value="3/10">3/10</option>
+                  <option value="4/10">4/10</option>
+                  <option value="5/10">5/10</option>
+                  <option value="7/10">7/10</option>
+                  <option value="9/10">9/10</option>
+                </select></td>
+                <td>
+                  <span class="tevkifathhesapkdvtutari" >0.0</span>
+                  <input type="number" hidden value="0" step="0.01" name="tevkifathhesapkdvtutari" id="tevkifathhesapkdvtutari">
+                </td>
+                <td>
+                  
+                  <input type="number"  value="0" step="0.01" name="alicitarafinabeyanedilecekkdvtutari" id="alicitarafinabeyanedilecekkdvtutari">
+                </td>
+                <td></td>
+              </tr>
+              <tr class="kismitev">
+                <td><input type="text" name="kismitevkifatalicitcvergikimlikl" id=""></td>
+                <td><input type="text" name="kismitevkifatalicivergikimlikl" id=""></td>
+                <td><input type="text" name="kismitevkifataliciadisoyadi" id=""></td>
+                <td><input type="date" name="kismitevkifatbelgetarihi"></td>
+                <td><input type="text" name="kismitevkifatbelgeserisi" id=""></td>
+                <td><input type="text" name="kismitevkifatbelgesiranosu" id=""></td>
+                <td><select style="max-width: 100px;" name="kismitevkifatislemcinsi" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar %}
+                  <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                  
+                </select></td>
+                <td>
+                  <input type="number" step="0.01"  value="0" name="kismitevkifatistutari" id="kismitevkifatistutari">
+                </td>
+                <td>
+                  <input type="number" step="0.01"  value="0" name="kismitevkifatkdvorani" id="kismitevkifatkdvorani">
+                </td>
+                <td><select name="kismitevkifatorani" id="kismitevkifatorani">
+                  <option value=""></option><option value="2/10">2/10</option>
+                  <option value="3/10">3/10</option>
+                  <option value="4/10">4/10</option>
+                  <option value="5/10">5/10</option>
+                  <option value="7/10">7/10</option>
+                  <option value="9/10">9/10</option>
+                </select></td>
+                <td>
+                  <span class="tevkifathhesapkdvtutari" >0.0</span>
+                  <input type="number" hidden value="0" step="0.01" name="tevkifathhesapkdvtutari" id="tevkifathhesapkdvtutari">
+                </td>
+                <td>
+                  
+                  <input type="number"  value="0" step="0.01" name="alicitarafinabeyanedilecekkdvtutari" id="alicitarafinabeyanedilecekkdvtutari">
+                </td>
+                <td></td>
+              </tr>
+              <tr class="kismitev">
+                <td><input type="text" name="kismitevkifatalicitcvergikimlikl" id=""></td>
+                <td><input type="text" name="kismitevkifatalicivergikimlikl" id=""></td>
+                <td><input type="text" name="kismitevkifataliciadisoyadi" id=""></td>
+                <td><input type="date" name="kismitevkifatbelgetarihi"></td>
+                <td><input type="text" name="kismitevkifatbelgeserisi" id=""></td>
+                <td><input type="text" name="kismitevkifatbelgesiranosu" id=""></td>
+                <td><select style="max-width: 100px;" name="kismitevkifatislemcinsi" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar %}
+                  <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                  
+                </select></td>
+                <td>
+                  <input type="number" step="0.01"  value="0" name="kismitevkifatistutari" id="kismitevkifatistutari">
+                </td>
+                <td>
+                  <input type="number" step="0.01"  value="0" name="kismitevkifatkdvorani" id="kismitevkifatkdvorani">
+                </td>
+                <td><select name="kismitevkifatorani" id="kismitevkifatorani">
+                  <option value=""></option><option value="2/10">2/10</option>
+                  <option value="3/10">3/10</option>
+                  <option value="4/10">4/10</option>
+                  <option value="5/10">5/10</option>
+                  <option value="7/10">7/10</option>
+                  <option value="9/10">9/10</option>
+                </select></td>
+                <td>
+                  <span class="tevkifathhesapkdvtutari" >0.0</span>
+                  <input type="number" hidden value="0" step="0.01" name="tevkifathhesapkdvtutari" id="tevkifathhesapkdvtutari">
+                </td>
+                <td>
+                  
+                  <input type="number"  value="0" step="0.01" name="alicitarafinabeyanedilecekkdvtutari" id="alicitarafinabeyanedilecekkdvtutari">
+                </td>
+                <td></td>
+              </tr>
+              <tr class="kismitev">
+                <td><input type="text" name="kismitevkifatalicitcvergikimlikl" id=""></td>
+                <td><input type="text" name="kismitevkifatalicivergikimlikl" id=""></td>
+                <td><input type="text" name="kismitevkifataliciadisoyadi" id=""></td>
+                <td><input type="date" name="kismitevkifatbelgetarihi"></td>
+                <td><input type="text" name="kismitevkifatbelgeserisi" id=""></td>
+                <td><input type="text" name="kismitevkifatbelgesiranosu" id=""></td>
+                <td><select style="max-width: 100px;" name="kismitevkifatislemcinsi" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar %}
+                  <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                  
+                </select></td>
+                <td>
+                  <input type="number" step="0.01"  value="0" name="kismitevkifatistutari" id="kismitevkifatistutari">
+                </td>
+                <td>
+                  <input type="number" step="0.01"  value="0" name="kismitevkifatkdvorani" id="kismitevkifatkdvorani">
+                </td>
+                <td><select name="kismitevkifatorani" id="kismitevkifatorani">
+                  <option value=""></option><option value="2/10">2/10</option>
+                  <option value="3/10">3/10</option>
+                  <option value="4/10">4/10</option>
+                  <option value="5/10">5/10</option>
+                  <option value="7/10">7/10</option>
+                  <option value="9/10">9/10</option>
+                </select></td>
+                <td>
+                  <span class="tevkifathhesapkdvtutari" >0.0</span>
+                  <input type="number" hidden value="0" step="0.01" name="tevkifathhesapkdvtutari" id="tevkifathhesapkdvtutari">
+                </td>
+                <td>
+                  
+                  <input type="number"  value="0" step="0.01" name="alicitarafinabeyanedilecekkdvtutari" id="alicitarafinabeyanedilecekkdvtutari">
+                </td>
+                <td></td>
+              </tr>
+              <tr class="kismitev">
+                <td><input type="text" name="kismitevkifatalicitcvergikimlikl" id=""></td>
+                <td><input type="text" name="kismitevkifatalicivergikimlikl" id=""></td>
+                <td><input type="text" name="kismitevkifataliciadisoyadi" id=""></td>
+                <td><input type="date" name="kismitevkifatbelgetarihi"></td>
+                <td><input type="text" name="kismitevkifatbelgeserisi" id=""></td>
+                <td><input type="text" name="kismitevkifatbelgesiranosu" id=""></td>
+                <td><select style="max-width: 100px;" name="kismitevkifatislemcinsi" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar %}
+                  <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                  
+                </select></td>
+                <td>
+                  <input type="number" step="0.01"  value="0" name="kismitevkifatistutari" id="kismitevkifatistutari">
+                </td>
+                <td>
+                  <input type="number" step="0.01"  value="0" name="kismitevkifatkdvorani" id="kismitevkifatkdvorani">
+                </td>
+                <td><select name="kismitevkifatorani" id="kismitevkifatorani">
+                  <option value=""></option><option value="2/10">2/10</option>
+                  <option value="3/10">3/10</option>
+                  <option value="4/10">4/10</option>
+                  <option value="5/10">5/10</option>
+                  <option value="7/10">7/10</option>
+                  <option value="9/10">9/10</option>
+                </select></td>
+                <td>
+                  <span class="tevkifathhesapkdvtutari" >0.0</span>
+                  <input type="number" hidden value="0" step="0.01" name="tevkifathhesapkdvtutari" id="tevkifathhesapkdvtutari">
+                </td>
+                <td>
+                  
+                  <input type="number"  value="0" step="0.01" name="alicitarafinabeyanedilecekkdvtutari" id="alicitarafinabeyanedilecekkdvtutari">
+                </td>
+                <td></td>
+              </tr><tr class="kismitev">
+                <td><input type="text" name="kismitevkifatalicitcvergikimlikl" id=""></td>
+                <td><input type="text" name="kismitevkifatalicivergikimlikl" id=""></td>
+                <td><input type="text" name="kismitevkifataliciadisoyadi" id=""></td>
+                <td><input type="date" name="kismitevkifatbelgetarihi"></td>
+                <td><input type="text" name="kismitevkifatbelgeserisi" id=""></td>
+                <td><input type="text" name="kismitevkifatbelgesiranosu" id=""></td>
+                <td><select style="max-width: 100px;" name="kismitevkifatislemcinsi" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar %}
+                  <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                  
+                </select></td>
+                <td>
+                  <input type="number" step="0.01"  value="0" name="kismitevkifatistutari" id="kismitevkifatistutari">
+                </td>
+                <td>
+                  <input type="number" step="0.01"  value="0" name="kismitevkifatkdvorani" id="kismitevkifatkdvorani">
+                </td>
+                <td><select name="kismitevkifatorani" id="kismitevkifatorani">
+                  <option value=""></option><option value="2/10">2/10</option>
+                  <option value="3/10">3/10</option>
+                  <option value="4/10">4/10</option>
+                  <option value="5/10">5/10</option>
+                  <option value="7/10">7/10</option>
+                  <option value="9/10">9/10</option>
+                </select></td>
+                <td>
+                  <span class="tevkifathhesapkdvtutari" >0.0</span>
+                  <input type="number" hidden value="0" step="0.01" name="tevkifathhesapkdvtutari" id="tevkifathhesapkdvtutari">
+                </td>
+                <td>
+                  
+                  <input type="number"  value="0" step="0.01" name="alicitarafinabeyanedilecekkdvtutari" id="alicitarafinabeyanedilecekkdvtutari">
+                </td>
+                <td></td>
+              </tr><tr class="kismitev">
+                <td><input type="text" name="kismitevkifatalicitcvergikimlikl" id=""></td>
+                <td><input type="text" name="kismitevkifatalicivergikimlikl" id=""></td>
+                <td><input type="text" name="kismitevkifataliciadisoyadi" id=""></td>
+                <td><input type="date" name="kismitevkifatbelgetarihi"></td>
+                <td><input type="text" name="kismitevkifatbelgeserisi" id=""></td>
+                <td><input type="text" name="kismitevkifatbelgesiranosu" id=""></td>
+                <td><select style="max-width: 100px;" name="kismitevkifatislemcinsi" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar %}
+                  <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                  
+                </select></td>
+                <td>
+                  <input type="number" step="0.01"  value="0" name="kismitevkifatistutari" id="kismitevkifatistutari">
+                </td>
+                <td>
+                  <input type="number" step="0.01"  value="0" name="kismitevkifatkdvorani" id="kismitevkifatkdvorani">
+                </td>
+                <td><select name="kismitevkifatorani" id="kismitevkifatorani">
+                  <option value=""></option><option value="2/10">2/10</option>
+                  <option value="3/10">3/10</option>
+                  <option value="4/10">4/10</option>
+                  <option value="5/10">5/10</option>
+                  <option value="7/10">7/10</option>
+                  <option value="9/10">9/10</option>
+                </select></td>
+                <td>
+                  <span class="tevkifathhesapkdvtutari" >0.0</span>
+                  <input type="number" hidden value="0" step="0.01" name="tevkifathhesapkdvtutari" id="tevkifathhesapkdvtutari">
+                </td>
+                <td>
+                  
+                  <input type="number"  value="0" step="0.01" name="alicitarafinabeyanedilecekkdvtutari" id="alicitarafinabeyanedilecekkdvtutari">
+                </td>
+                <td></td>
+              </tr><tr class="kismitev">
+                <td><input type="text" name="kismitevkifatalicitcvergikimlikl" id=""></td>
+                <td><input type="text" name="kismitevkifatalicivergikimlikl" id=""></td>
+                <td><input type="text" name="kismitevkifataliciadisoyadi" id=""></td>
+                <td><input type="date" name="kismitevkifatbelgetarihi"></td>
+                <td><input type="text" name="kismitevkifatbelgeserisi" id=""></td>
+                <td><input type="text" name="kismitevkifatbelgesiranosu" id=""></td>
+                <td><select style="max-width: 100px;" name="kismitevkifatislemcinsi" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar %}
+                  <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                  
+                </select></td>
+                <td>
+                  <input type="number" step="0.01"  value="0" name="kismitevkifatistutari" id="kismitevkifatistutari">
+                </td>
+                <td>
+                  <input type="number" step="0.01"  value="0" name="kismitevkifatkdvorani" id="kismitevkifatkdvorani">
+                </td>
+                <td><select name="kismitevkifatorani" id="kismitevkifatorani">
+                  <option value=""></option><option value="2/10">2/10</option>
+                  <option value="3/10">3/10</option>
+                  <option value="4/10">4/10</option>
+                  <option value="5/10">5/10</option>
+                  <option value="7/10">7/10</option>
+                  <option value="9/10">9/10</option>
+                </select></td>
+                <td>
+                  <span class="tevkifathhesapkdvtutari" >0.0</span>
+                  <input type="number" hidden value="0" step="0.01" name="tevkifathhesapkdvtutari" id="tevkifathhesapkdvtutari">
+                </td>
+                <td>
+                  
+                  <input type="number"  value="0" step="0.01" name="alicitarafinabeyanedilecekkdvtutari" id="alicitarafinabeyanedilecekkdvtutari">
+                </td>
+                <td></td>
+              </tr><tr class="kismitev">
+                <td><input type="text" name="kismitevkifatalicitcvergikimlikl" id=""></td>
+                <td><input type="text" name="kismitevkifatalicivergikimlikl" id=""></td>
+                <td><input type="text" name="kismitevkifataliciadisoyadi" id=""></td>
+                <td><input type="date" name="kismitevkifatbelgetarihi"></td>
+                <td><input type="text" name="kismitevkifatbelgeserisi" id=""></td>
+                <td><input type="text" name="kismitevkifatbelgesiranosu" id=""></td>
+                <td><select style="max-width: 100px;" name="kismitevkifatislemcinsi" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar %}
+                  <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                  
+                </select></td>
+                <td>
+                  <input type="number" step="0.01"  value="0" name="kismitevkifatistutari" id="kismitevkifatistutari">
+                </td>
+                <td>
+                  <input type="number" step="0.01"  value="0" name="kismitevkifatkdvorani" id="kismitevkifatkdvorani">
+                </td>
+                <td><select name="kismitevkifatorani" id="kismitevkifatorani">
+                  <option value=""></option><option value="2/10">2/10</option>
+                  <option value="3/10">3/10</option>
+                  <option value="4/10">4/10</option>
+                  <option value="5/10">5/10</option>
+                  <option value="7/10">7/10</option>
+                  <option value="9/10">9/10</option>
+                </select></td>
+                <td>
+                  <span class="tevkifathhesapkdvtutari" >0.0</span>
+                  <input type="number" hidden value="0" step="0.01" name="tevkifathhesapkdvtutari" id="tevkifathhesapkdvtutari">
+                </td>
+                <td>
+                  
+                  <input type="number"  value="0" step="0.01" name="alicitarafinabeyanedilecekkdvtutari" id="alicitarafinabeyanedilecekkdvtutari">
+                </td>
+                <td></td>
+              </tr><tr class="kismitev">
+                <td><input type="text" name="kismitevkifatalicitcvergikimlikl" id=""></td>
+                <td><input type="text" name="kismitevkifatalicivergikimlikl" id=""></td>
+                <td><input type="text" name="kismitevkifataliciadisoyadi" id=""></td>
+                <td><input type="date" name="kismitevkifatbelgetarihi"></td>
+                <td><input type="text" name="kismitevkifatbelgeserisi" id=""></td>
+                <td><input type="text" name="kismitevkifatbelgesiranosu" id=""></td>
+                <td><select style="max-width: 100px;" name="kismitevkifatislemcinsi" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar %}
+                  <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                  
+                </select></td>
+                <td>
+                  <input type="number" step="0.01"  value="0" name="kismitevkifatistutari" id="kismitevkifatistutari">
+                </td>
+                <td>
+                  <input type="number" step="0.01"  value="0" name="kismitevkifatkdvorani" id="kismitevkifatkdvorani">
+                </td>
+                <td><select name="kismitevkifatorani" id="kismitevkifatorani">
+                  <option value=""></option><option value="2/10">2/10</option>
+                  <option value="3/10">3/10</option>
+                  <option value="4/10">4/10</option>
+                  <option value="5/10">5/10</option>
+                  <option value="7/10">7/10</option>
+                  <option value="9/10">9/10</option>
+                </select></td>
+                <td>
+                  <span class="tevkifathhesapkdvtutari" >0.0</span>
+                  <input type="number" hidden value="0" step="0.01" name="tevkifathhesapkdvtutari" id="tevkifathhesapkdvtutari">
+                </td>
+                <td>
+                  
+                  <input type="number"  value="0" step="0.01" name="alicitarafinabeyanedilecekkdvtutari" id="alicitarafinabeyanedilecekkdvtutari">
+                </td>
+                <td></td>
+              </tr><tr class="kismitev">
+                <td><input type="text" name="kismitevkifatalicitcvergikimlikl" id=""></td>
+                <td><input type="text" name="kismitevkifatalicivergikimlikl" id=""></td>
+                <td><input type="text" name="kismitevkifataliciadisoyadi" id=""></td>
+                <td><input type="date" name="kismitevkifatbelgetarihi"></td>
+                <td><input type="text" name="kismitevkifatbelgeserisi" id=""></td>
+                <td><input type="text" name="kismitevkifatbelgesiranosu" id=""></td>
+                <td><select style="max-width: 100px;" name="kismitevkifatislemcinsi" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar %}
+                  <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                  
+                </select></td>
+                <td>
+                  <input type="number" step="0.01"  value="0" name="kismitevkifatistutari" id="kismitevkifatistutari">
+                </td>
+                <td>
+                  <input type="number" step="0.01"  value="0" name="kismitevkifatkdvorani" id="kismitevkifatkdvorani">
+                </td>
+                <td><select name="kismitevkifatorani" id="kismitevkifatorani">
+                  <option value=""></option><option value="2/10">2/10</option>
+                  <option value="3/10">3/10</option>
+                  <option value="4/10">4/10</option>
+                  <option value="5/10">5/10</option>
+                  <option value="7/10">7/10</option>
+                  <option value="9/10">9/10</option>
+                </select></td>
+                <td>
+                  <span class="tevkifathhesapkdvtutari" >0.0</span>
+                  <input type="number" hidden value="0" step="0.01" name="tevkifathhesapkdvtutari" id="tevkifathhesapkdvtutari">
+                </td>
+                <td>
+                  
+                  <input type="number"  value="0" step="0.01" name="alicitarafinabeyanedilecekkdvtutari" id="alicitarafinabeyanedilecekkdvtutari">
+                </td>
+                <td></td>
+              </tr><tr class="kismitev">
+                <td><input type="text" name="kismitevkifatalicitcvergikimlikl" id=""></td>
+                <td><input type="text" name="kismitevkifatalicivergikimlikl" id=""></td>
+                <td><input type="text" name="kismitevkifataliciadisoyadi" id=""></td>
+                <td><input type="date" name="kismitevkifatbelgetarihi"></td>
+                <td><input type="text" name="kismitevkifatbelgeserisi" id=""></td>
+                <td><input type="text" name="kismitevkifatbelgesiranosu" id=""></td>
+                <td><select style="max-width: 100px;" name="kismitevkifatislemcinsi" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar %}
+                  <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                  
+                </select></td>
+                <td>
+                  <input type="number" step="0.01"  value="0" name="kismitevkifatistutari" id="kismitevkifatistutari">
+                </td>
+                <td>
+                  <input type="number" step="0.01"  value="0" name="kismitevkifatkdvorani" id="kismitevkifatkdvorani">
+                </td>
+                <td><select name="kismitevkifatorani" id="kismitevkifatorani">
+                  <option value=""></option><option value="2/10">2/10</option>
+                  <option value="3/10">3/10</option>
+                  <option value="4/10">4/10</option>
+                  <option value="5/10">5/10</option>
+                  <option value="7/10">7/10</option>
+                  <option value="9/10">9/10</option>
+                </select></td>
+                <td>
+                  <span class="tevkifathhesapkdvtutari" >0.0</span>
+                  <input type="number" hidden value="0" step="0.01" name="tevkifathhesapkdvtutari" id="tevkifathhesapkdvtutari">
+                </td>
+                <td>
+                  
+                  <input type="number"  value="0" step="0.01" name="alicitarafinabeyanedilecekkdvtutari" id="alicitarafinabeyanedilecekkdvtutari">
+                </td>
+                <td></td>
+              </tr><tr class="kismitev">
+                <td><input type="text" name="kismitevkifatalicitcvergikimlikl" id=""></td>
+                <td><input type="text" name="kismitevkifatalicivergikimlikl" id=""></td>
+                <td><input type="text" name="kismitevkifataliciadisoyadi" id=""></td>
+                <td><input type="date" name="kismitevkifatbelgetarihi"></td>
+                <td><input type="text" name="kismitevkifatbelgeserisi" id=""></td>
+                <td><input type="text" name="kismitevkifatbelgesiranosu" id=""></td>
+                <td><select style="max-width: 100px;" name="kismitevkifatislemcinsi" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar %}
+                  <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                  
+                </select></td>
+                <td>
+                  <input type="number" step="0.01"  value="0" name="kismitevkifatistutari" id="kismitevkifatistutari">
+                </td>
+                <td>
+                  <input type="number" step="0.01"  value="0" name="kismitevkifatkdvorani" id="kismitevkifatkdvorani">
+                </td>
+                <td><select name="kismitevkifatorani" id="kismitevkifatorani">
+                  <option value=""></option><option value="2/10">2/10</option>
+                  <option value="3/10">3/10</option>
+                  <option value="4/10">4/10</option>
+                  <option value="5/10">5/10</option>
+                  <option value="7/10">7/10</option>
+                  <option value="9/10">9/10</option>
+                </select></td>
+                <td>
+                  <span class="tevkifathhesapkdvtutari" >0.0</span>
+                  <input type="number" hidden value="0" step="0.01" name="tevkifathhesapkdvtutari" id="tevkifathhesapkdvtutari">
+                </td>
+                <td>
+                  
+                  <input type="number"  value="0" step="0.01" name="alicitarafinabeyanedilecekkdvtutari" id="alicitarafinabeyanedilecekkdvtutari">
+                </td>
+                <td></td>
+              </tr><tr class="kismitev">
+                <td><input type="text" name="kismitevkifatalicitcvergikimlikl" id=""></td>
+                <td><input type="text" name="kismitevkifatalicivergikimlikl" id=""></td>
+                <td><input type="text" name="kismitevkifataliciadisoyadi" id=""></td>
+                <td><input type="date" name="kismitevkifatbelgetarihi"></td>
+                <td><input type="text" name="kismitevkifatbelgeserisi" id=""></td>
+                <td><input type="text" name="kismitevkifatbelgesiranosu" id=""></td>
+                <td><select style="max-width: 100px;" name="kismitevkifatislemcinsi" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar %}
+                  <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                  
+                </select></td>
+                <td>
+                  <input type="number" step="0.01"  value="0" name="kismitevkifatistutari" id="kismitevkifatistutari">
+                </td>
+                <td>
+                  <input type="number" step="0.01"  value="0" name="kismitevkifatkdvorani" id="kismitevkifatkdvorani">
+                </td>
+                <td><select name="kismitevkifatorani" id="kismitevkifatorani">
+                  <option value=""></option><option value="2/10">2/10</option>
+                  <option value="3/10">3/10</option>
+                  <option value="4/10">4/10</option>
+                  <option value="5/10">5/10</option>
+                  <option value="7/10">7/10</option>
+                  <option value="9/10">9/10</option>
+                </select></td>
+                <td>
+                  <span class="tevkifathhesapkdvtutari" >0.0</span>
+                  <input type="number" hidden value="0" step="0.01" name="tevkifathhesapkdvtutari" id="tevkifathhesapkdvtutari">
+                </td>
+                <td>
+                  
+                  <input type="number"  value="0" step="0.01" name="alicitarafinabeyanedilecekkdvtutari" id="alicitarafinabeyanedilecekkdvtutari">
+                </td>
+                <td></td>
+              </tr><tr class="kismitev">
+                <td><input type="text" name="kismitevkifatalicitcvergikimlikl" id=""></td>
+                <td><input type="text" name="kismitevkifatalicivergikimlikl" id=""></td>
+                <td><input type="text" name="kismitevkifataliciadisoyadi" id=""></td>
+                <td><input type="date" name="kismitevkifatbelgetarihi"></td>
+                <td><input type="text" name="kismitevkifatbelgeserisi" id=""></td>
+                <td><input type="text" name="kismitevkifatbelgesiranosu" id=""></td>
+                <td><select style="max-width: 100px;" name="kismitevkifatislemcinsi" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar %}
+                  <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                  
+                </select></td>
+                <td>
+                  <input type="number" step="0.01"  value="0" name="kismitevkifatistutari" id="kismitevkifatistutari">
+                </td>
+                <td>
+                  <input type="number" step="0.01"  value="0" name="kismitevkifatkdvorani" id="kismitevkifatkdvorani">
+                </td>
+                <td><select name="kismitevkifatorani" id="kismitevkifatorani">
+                  <option value=""></option><option value="2/10">2/10</option>
+                  <option value="3/10">3/10</option>
+                  <option value="4/10">4/10</option>
+                  <option value="5/10">5/10</option>
+                  <option value="7/10">7/10</option>
+                  <option value="9/10">9/10</option>
+                </select></td>
+                <td>
+                  <span class="tevkifathhesapkdvtutari" >0.0</span>
+                  <input type="number" hidden value="0" step="0.01" name="tevkifathhesapkdvtutari" id="tevkifathhesapkdvtutari">
+                </td>
+                <td>
+                  
+                  <input type="number"  value="0" step="0.01" name="alicitarafinabeyanedilecekkdvtutari" id="alicitarafinabeyanedilecekkdvtutari">
+                </td>
+                <td></td>
+              </tr><tr class="kismitev">
+                <td><input type="text" name="kismitevkifatalicitcvergikimlikl" id=""></td>
+                <td><input type="text" name="kismitevkifatalicivergikimlikl" id=""></td>
+                <td><input type="text" name="kismitevkifataliciadisoyadi" id=""></td>
+                <td><input type="date" name="kismitevkifatbelgetarihi"></td>
+                <td><input type="text" name="kismitevkifatbelgeserisi" id=""></td>
+                <td><input type="text" name="kismitevkifatbelgesiranosu" id=""></td>
+                <td><select style="max-width: 100px;" name="kismitevkifatislemcinsi" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar %}
+                  <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                  
+                </select></td>
+                <td>
+                  <input type="number" step="0.01"  value="0" name="kismitevkifatistutari" id="kismitevkifatistutari">
+                </td>
+                <td>
+                  <input type="number" step="0.01"  value="0" name="kismitevkifatkdvorani" id="kismitevkifatkdvorani">
+                </td>
+                <td><select name="kismitevkifatorani" id="kismitevkifatorani">
+                  <option value=""></option><option value="2/10">2/10</option>
+                  <option value="3/10">3/10</option>
+                  <option value="4/10">4/10</option>
+                  <option value="5/10">5/10</option>
+                  <option value="7/10">7/10</option>
+                  <option value="9/10">9/10</option>
+                </select></td>
+                <td>
+                  <span class="tevkifathhesapkdvtutari" >0.0</span>
+                  <input type="number" hidden value="0" step="0.01" name="tevkifathhesapkdvtutari" id="tevkifathhesapkdvtutari">
+                </td>
+                <td>
+                  
+                  <input type="number"  value="0" step="0.01" name="alicitarafinabeyanedilecekkdvtutari" id="alicitarafinabeyanedilecekkdvtutari">
+                </td>
+                <td></td>
+              </tr><tr class="kismitev">
+                <td><input type="text" name="kismitevkifatalicitcvergikimlikl" id=""></td>
+                <td><input type="text" name="kismitevkifatalicivergikimlikl" id=""></td>
+                <td><input type="text" name="kismitevkifataliciadisoyadi" id=""></td>
+                <td><input type="date" name="kismitevkifatbelgetarihi"></td>
+                <td><input type="text" name="kismitevkifatbelgeserisi" id=""></td>
+                <td><input type="text" name="kismitevkifatbelgesiranosu" id=""></td>
+                <td><select style="max-width: 100px;" name="kismitevkifatislemcinsi" id="">
+                  <option value=""></option>
+                  {% for i in tevkifatlar %}
+                  <option value="{{i.id}}">{{i.hesap_kodu}}-{{i.hesap_adi}}</option>
+                  {% endfor %}
+                  
+                </select></td>
+                <td>
+                  <input type="number" step="0.01"  value="0" name="kismitevkifatistutari" id="kismitevkifatistutari">
+                </td>
+                <td>
+                  <input type="number" step="0.01"  value="0" name="kismitevkifatkdvorani" id="kismitevkifatkdvorani">
+                </td>
+                <td><select name="kismitevkifatorani" id="kismitevkifatorani">
+                  <option value=""></option><option value="2/10">2/10</option>
+                  <option value="3/10">3/10</option>
+                  <option value="4/10">4/10</option>
+                  <option value="5/10">5/10</option>
+                  <option value="7/10">7/10</option>
+                  <option value="9/10">9/10</option>
+                </select></td>
+                <td>
+                  <span class="tevkifathhesapkdvtutari" >0.0</span>
+                  <input type="number" hidden value="0" step="0.01" name="tevkifathhesapkdvtutari" id="tevkifathhesapkdvtutari">
+                </td>
+                <td>
+                  
+                  <input type="number"  value="0" step="0.01" name="alicitarafinabeyanedilecekkdvtutari" id="alicitarafinabeyanedilecekkdvtutari">
+                </td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="container tablo" style="margin-top: 0px !important;">
         <input class="col-12" disabled value="KDV Kanunun 13/F Maddesi Kapsamında Yüklenici Firmalara Yapılan Teslim Ve Hizmetlere Ait Liste" type="text">
         <div class="table-responsive " style=" 
         height: 344px;
@@ -3740,6 +4558,19 @@
 
     if (elements[t]) {
         elements[t].classList.remove('hava');
+    } else {
+        console.error("Ürün Sınırına Ulaştınız");
+    }
+
+    yeniselect();
+  }
+  let y = 0;
+  function ekleYeniSatirikismitevkifat() {
+    
+    var elements = document.getElementsByClassName('kismitev');
+
+    if (elements[y]) {
+        elements[y].classList.remove('kismitev');
     } else {
         console.error("Ürün Sınırına Ulaştınız");
     }
