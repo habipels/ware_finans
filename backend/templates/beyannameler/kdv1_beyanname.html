@@ -20,6 +20,7 @@
   .kismitev{display: none;}
   .alicinin{display: none;}
   .teknoloji{display: none;}
+  .yatirim{display: none;}
 </style>
   <!--Header-->
   <div class="icon-bar">
@@ -5451,6 +5452,397 @@
           </table>
         </div>
       </div>
+      <div class="container tablo" style="margin-top: 0px !important;">
+        <input class="col-12" disabled value="Yatırım Teşvik Belgesi Kapsamında Makina Techizat Alımlarına İlişkin Bildirim" type="text">
+        <div class="table-responsive " style=" 
+        height: 344px;
+        overflow: auto;">
+          <table class="table table-bordered ">
+            <thead style="position: sticky;top: 0">
+              <tr>
+                <th class="text-center" style="min-width: 100px ;">Satıcının Vergi Nosu</th>
+                <th class="text-center" style="min-width: 50px ;">Satıcının Vergi Dairesi Kodu</th>
+                <th class="text-center" style="min-width: 150px ;">Satıcının Adı Soyadı (Unvanı)</th>
+                <th class="text-center" style="min-width: 150px ;">Alınan Mal Tutarı</th>
+                <th class="text-center" style="min-width: 150px ;">Teşvik Belgesinin Tarihi</th>
+                <th class="text-center" style="min-width: 150px ;">Teşvik Belgesinin Numarası</th>
+                <th class="text-center" style="min-width: 150px ;">Alınan Malın Cinsi</th>
+                <th class="text-center" style="min-width: 150px ;">Alınan Malın Miktarı</th>
+                <th class="text-center" style="min-width: 150px ;">Alış Faturasının Tarihi</th>
+                <th class="text-center" style="min-width: 150px ;">Alış Faturasının Sayısı</th>
+                <th class="text-center" style="min-width: 150px ;"><a href="javascript:void(0);" onclick="ekleYeniSatiryatirim()">SATIR EKLE</a></th>
+                
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><input type="text" name="saticininverginosu"></td>
+                <td><input type="text" name="saticininvergidairesikodu"></td>
+                <td><input type="text" name="saticininadisoyadi"></td>
+                <td><input type="number" step="0.01" value="0" name="alinanmalintutari"></td>
+                <td><input type="date" name="tesvikbelgesinintarihi"></td>
+                <td><input type="text" name="tesvikbelgesininnosu"></td>
+                <td><input type="text" name="alinanmalincinsi"></td>
+                <td><input type="number" step="0.01" value="0" name="alinanmalinmiktari"></td>
+                <td><input type="date" name="alisfaturasintarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="alisfaturasisayisi"></td>
+                <td></td>
+              </tr>
+              <tr class="yatirim">
+                <td><input type="text" name="saticininverginosu"></td>
+                <td><input type="text" name="saticininvergidairesikodu"></td>
+                <td><input type="text" name="saticininadisoyadi"></td>
+                <td><input type="number" step="0.01" value="0" name="alinanmalintutari"></td>
+                <td><input type="date" name="tesvikbelgesinintarihi"></td>
+                <td><input type="text" name="tesvikbelgesininnosu"></td>
+                <td><input type="text" name="alinanmalincinsi"></td>
+                <td><input type="number" step="0.01" value="0" name="alinanmalinmiktari"></td>
+                <td><input type="date" name="alisfaturasintarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="alisfaturasisayisi"></td>
+                <td></td>
+              </tr>
+              <tr class="yatirim">
+                <td><input type="text" name="saticininverginosu"></td>
+                <td><input type="text" name="saticininvergidairesikodu"></td>
+                <td><input type="text" name="saticininadisoyadi"></td>
+                <td><input type="number" step="0.01" value="0" name="alinanmalintutari"></td>
+                <td><input type="date" name="tesvikbelgesinintarihi"></td>
+                <td><input type="text" name="tesvikbelgesininnosu"></td>
+                <td><input type="text" name="alinanmalincinsi"></td>
+                <td><input type="number" step="0.01" value="0" name="alinanmalinmiktari"></td>
+                <td><input type="date" name="alisfaturasintarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="alisfaturasisayisi"></td>
+                <td></td>
+              </tr>
+              <tr class="yatirim">
+                <td><input type="text" name="saticininverginosu"></td>
+                <td><input type="text" name="saticininvergidairesikodu"></td>
+                <td><input type="text" name="saticininadisoyadi"></td>
+                <td><input type="number" step="0.01" value="0" name="alinanmalintutari"></td>
+                <td><input type="date" name="tesvikbelgesinintarihi"></td>
+                <td><input type="text" name="tesvikbelgesininnosu"></td>
+                <td><input type="text" name="alinanmalincinsi"></td>
+                <td><input type="number" step="0.01" value="0" name="alinanmalinmiktari"></td>
+                <td><input type="date" name="alisfaturasintarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="alisfaturasisayisi"></td>
+                <td></td>
+              </tr>
+              <tr class="yatirim">
+                <td><input type="text" name="saticininverginosu"></td>
+                <td><input type="text" name="saticininvergidairesikodu"></td>
+                <td><input type="text" name="saticininadisoyadi"></td>
+                <td><input type="number" step="0.01" value="0" name="alinanmalintutari"></td>
+                <td><input type="date" name="tesvikbelgesinintarihi"></td>
+                <td><input type="text" name="tesvikbelgesininnosu"></td>
+                <td><input type="text" name="alinanmalincinsi"></td>
+                <td><input type="number" step="0.01" value="0" name="alinanmalinmiktari"></td>
+                <td><input type="date" name="alisfaturasintarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="alisfaturasisayisi"></td>
+                <td></td>
+              </tr>
+              <tr class="yatirim">
+                <td><input type="text" name="saticininverginosu"></td>
+                <td><input type="text" name="saticininvergidairesikodu"></td>
+                <td><input type="text" name="saticininadisoyadi"></td>
+                <td><input type="number" step="0.01" value="0" name="alinanmalintutari"></td>
+                <td><input type="date" name="tesvikbelgesinintarihi"></td>
+                <td><input type="text" name="tesvikbelgesininnosu"></td>
+                <td><input type="text" name="alinanmalincinsi"></td>
+                <td><input type="number" step="0.01" value="0" name="alinanmalinmiktari"></td>
+                <td><input type="date" name="alisfaturasintarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="alisfaturasisayisi"></td>
+                <td></td>
+              </tr>
+              <tr class="yatirim">
+                <td><input type="text" name="saticininverginosu"></td>
+                <td><input type="text" name="saticininvergidairesikodu"></td>
+                <td><input type="text" name="saticininadisoyadi"></td>
+                <td><input type="number" step="0.01" value="0" name="alinanmalintutari"></td>
+                <td><input type="date" name="tesvikbelgesinintarihi"></td>
+                <td><input type="text" name="tesvikbelgesininnosu"></td>
+                <td><input type="text" name="alinanmalincinsi"></td>
+                <td><input type="number" step="0.01" value="0" name="alinanmalinmiktari"></td>
+                <td><input type="date" name="alisfaturasintarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="alisfaturasisayisi"></td>
+                <td></td>
+              </tr>
+              <tr class="yatirim">
+                <td><input type="text" name="saticininverginosu"></td>
+                <td><input type="text" name="saticininvergidairesikodu"></td>
+                <td><input type="text" name="saticininadisoyadi"></td>
+                <td><input type="number" step="0.01" value="0" name="alinanmalintutari"></td>
+                <td><input type="date" name="tesvikbelgesinintarihi"></td>
+                <td><input type="text" name="tesvikbelgesininnosu"></td>
+                <td><input type="text" name="alinanmalincinsi"></td>
+                <td><input type="number" step="0.01" value="0" name="alinanmalinmiktari"></td>
+                <td><input type="date" name="alisfaturasintarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="alisfaturasisayisi"></td>
+                <td></td>
+              </tr>
+              <tr class="yatirim">
+                <td><input type="text" name="saticininverginosu"></td>
+                <td><input type="text" name="saticininvergidairesikodu"></td>
+                <td><input type="text" name="saticininadisoyadi"></td>
+                <td><input type="number" step="0.01" value="0" name="alinanmalintutari"></td>
+                <td><input type="date" name="tesvikbelgesinintarihi"></td>
+                <td><input type="text" name="tesvikbelgesininnosu"></td>
+                <td><input type="text" name="alinanmalincinsi"></td>
+                <td><input type="number" step="0.01" value="0" name="alinanmalinmiktari"></td>
+                <td><input type="date" name="alisfaturasintarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="alisfaturasisayisi"></td>
+                <td></td>
+              </tr>
+              <tr class="yatirim">
+                <td><input type="text" name="saticininverginosu"></td>
+                <td><input type="text" name="saticininvergidairesikodu"></td>
+                <td><input type="text" name="saticininadisoyadi"></td>
+                <td><input type="number" step="0.01" value="0" name="alinanmalintutari"></td>
+                <td><input type="date" name="tesvikbelgesinintarihi"></td>
+                <td><input type="text" name="tesvikbelgesininnosu"></td>
+                <td><input type="text" name="alinanmalincinsi"></td>
+                <td><input type="number" step="0.01" value="0" name="alinanmalinmiktari"></td>
+                <td><input type="date" name="alisfaturasintarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="alisfaturasisayisi"></td>
+                <td></td>
+              </tr>
+              <tr class="yatirim">
+                <td><input type="text" name="saticininverginosu"></td>
+                <td><input type="text" name="saticininvergidairesikodu"></td>
+                <td><input type="text" name="saticininadisoyadi"></td>
+                <td><input type="number" step="0.01" value="0" name="alinanmalintutari"></td>
+                <td><input type="date" name="tesvikbelgesinintarihi"></td>
+                <td><input type="text" name="tesvikbelgesininnosu"></td>
+                <td><input type="text" name="alinanmalincinsi"></td>
+                <td><input type="number" step="0.01" value="0" name="alinanmalinmiktari"></td>
+                <td><input type="date" name="alisfaturasintarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="alisfaturasisayisi"></td>
+                <td></td>
+              </tr>
+              <tr class="yatirim">
+                <td><input type="text" name="saticininverginosu"></td>
+                <td><input type="text" name="saticininvergidairesikodu"></td>
+                <td><input type="text" name="saticininadisoyadi"></td>
+                <td><input type="number" step="0.01" value="0" name="alinanmalintutari"></td>
+                <td><input type="date" name="tesvikbelgesinintarihi"></td>
+                <td><input type="text" name="tesvikbelgesininnosu"></td>
+                <td><input type="text" name="alinanmalincinsi"></td>
+                <td><input type="number" step="0.01" value="0" name="alinanmalinmiktari"></td>
+                <td><input type="date" name="alisfaturasintarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="alisfaturasisayisi"></td>
+                <td></td>
+              </tr>
+              <tr class="yatirim">
+                <td><input type="text" name="saticininverginosu"></td>
+                <td><input type="text" name="saticininvergidairesikodu"></td>
+                <td><input type="text" name="saticininadisoyadi"></td>
+                <td><input type="number" step="0.01" value="0" name="alinanmalintutari"></td>
+                <td><input type="date" name="tesvikbelgesinintarihi"></td>
+                <td><input type="text" name="tesvikbelgesininnosu"></td>
+                <td><input type="text" name="alinanmalincinsi"></td>
+                <td><input type="number" step="0.01" value="0" name="alinanmalinmiktari"></td>
+                <td><input type="date" name="alisfaturasintarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="alisfaturasisayisi"></td>
+                <td></td>
+              </tr>
+              <tr class="yatirim">
+                <td><input type="text" name="saticininverginosu"></td>
+                <td><input type="text" name="saticininvergidairesikodu"></td>
+                <td><input type="text" name="saticininadisoyadi"></td>
+                <td><input type="number" step="0.01" value="0" name="alinanmalintutari"></td>
+                <td><input type="date" name="tesvikbelgesinintarihi"></td>
+                <td><input type="text" name="tesvikbelgesininnosu"></td>
+                <td><input type="text" name="alinanmalincinsi"></td>
+                <td><input type="number" step="0.01" value="0" name="alinanmalinmiktari"></td>
+                <td><input type="date" name="alisfaturasintarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="alisfaturasisayisi"></td>
+                <td></td>
+              </tr>
+              <tr class="yatirim">
+                <td><input type="text" name="saticininverginosu"></td>
+                <td><input type="text" name="saticininvergidairesikodu"></td>
+                <td><input type="text" name="saticininadisoyadi"></td>
+                <td><input type="number" step="0.01" value="0" name="alinanmalintutari"></td>
+                <td><input type="date" name="tesvikbelgesinintarihi"></td>
+                <td><input type="text" name="tesvikbelgesininnosu"></td>
+                <td><input type="text" name="alinanmalincinsi"></td>
+                <td><input type="number" step="0.01" value="0" name="alinanmalinmiktari"></td>
+                <td><input type="date" name="alisfaturasintarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="alisfaturasisayisi"></td>
+                <td></td>
+              </tr>
+              <tr class="yatirim">
+                <td><input type="text" name="saticininverginosu"></td>
+                <td><input type="text" name="saticininvergidairesikodu"></td>
+                <td><input type="text" name="saticininadisoyadi"></td>
+                <td><input type="number" step="0.01" value="0" name="alinanmalintutari"></td>
+                <td><input type="date" name="tesvikbelgesinintarihi"></td>
+                <td><input type="text" name="tesvikbelgesininnosu"></td>
+                <td><input type="text" name="alinanmalincinsi"></td>
+                <td><input type="number" step="0.01" value="0" name="alinanmalinmiktari"></td>
+                <td><input type="date" name="alisfaturasintarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="alisfaturasisayisi"></td>
+                <td></td>
+              </tr>
+              <tr class="yatirim">
+                <td><input type="text" name="saticininverginosu"></td>
+                <td><input type="text" name="saticininvergidairesikodu"></td>
+                <td><input type="text" name="saticininadisoyadi"></td>
+                <td><input type="number" step="0.01" value="0" name="alinanmalintutari"></td>
+                <td><input type="date" name="tesvikbelgesinintarihi"></td>
+                <td><input type="text" name="tesvikbelgesininnosu"></td>
+                <td><input type="text" name="alinanmalincinsi"></td>
+                <td><input type="number" step="0.01" value="0" name="alinanmalinmiktari"></td>
+                <td><input type="date" name="alisfaturasintarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="alisfaturasisayisi"></td>
+                <td></td>
+              </tr>
+              <tr class="yatirim">
+                <td><input type="text" name="saticininverginosu"></td>
+                <td><input type="text" name="saticininvergidairesikodu"></td>
+                <td><input type="text" name="saticininadisoyadi"></td>
+                <td><input type="number" step="0.01" value="0" name="alinanmalintutari"></td>
+                <td><input type="date" name="tesvikbelgesinintarihi"></td>
+                <td><input type="text" name="tesvikbelgesininnosu"></td>
+                <td><input type="text" name="alinanmalincinsi"></td>
+                <td><input type="number" step="0.01" value="0" name="alinanmalinmiktari"></td>
+                <td><input type="date" name="alisfaturasintarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="alisfaturasisayisi"></td>
+                <td></td>
+              </tr>
+              <tr class="yatirim">
+                <td><input type="text" name="saticininverginosu"></td>
+                <td><input type="text" name="saticininvergidairesikodu"></td>
+                <td><input type="text" name="saticininadisoyadi"></td>
+                <td><input type="number" step="0.01" value="0" name="alinanmalintutari"></td>
+                <td><input type="date" name="tesvikbelgesinintarihi"></td>
+                <td><input type="text" name="tesvikbelgesininnosu"></td>
+                <td><input type="text" name="alinanmalincinsi"></td>
+                <td><input type="number" step="0.01" value="0" name="alinanmalinmiktari"></td>
+                <td><input type="date" name="alisfaturasintarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="alisfaturasisayisi"></td>
+                <td></td>
+              </tr>
+              <tr class="yatirim">
+                <td><input type="text" name="saticininverginosu"></td>
+                <td><input type="text" name="saticininvergidairesikodu"></td>
+                <td><input type="text" name="saticininadisoyadi"></td>
+                <td><input type="number" step="0.01" value="0" name="alinanmalintutari"></td>
+                <td><input type="date" name="tesvikbelgesinintarihi"></td>
+                <td><input type="text" name="tesvikbelgesininnosu"></td>
+                <td><input type="text" name="alinanmalincinsi"></td>
+                <td><input type="number" step="0.01" value="0" name="alinanmalinmiktari"></td>
+                <td><input type="date" name="alisfaturasintarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="alisfaturasisayisi"></td>
+                <td></td>
+              </tr>
+              <tr class="yatirim">
+                <td><input type="text" name="saticininverginosu"></td>
+                <td><input type="text" name="saticininvergidairesikodu"></td>
+                <td><input type="text" name="saticininadisoyadi"></td>
+                <td><input type="number" step="0.01" value="0" name="alinanmalintutari"></td>
+                <td><input type="date" name="tesvikbelgesinintarihi"></td>
+                <td><input type="text" name="tesvikbelgesininnosu"></td>
+                <td><input type="text" name="alinanmalincinsi"></td>
+                <td><input type="number" step="0.01" value="0" name="alinanmalinmiktari"></td>
+                <td><input type="date" name="alisfaturasintarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="alisfaturasisayisi"></td>
+                <td></td>
+              </tr>
+              <tr class="yatirim">
+                <td><input type="text" name="saticininverginosu"></td>
+                <td><input type="text" name="saticininvergidairesikodu"></td>
+                <td><input type="text" name="saticininadisoyadi"></td>
+                <td><input type="number" step="0.01" value="0" name="alinanmalintutari"></td>
+                <td><input type="date" name="tesvikbelgesinintarihi"></td>
+                <td><input type="text" name="tesvikbelgesininnosu"></td>
+                <td><input type="text" name="alinanmalincinsi"></td>
+                <td><input type="number" step="0.01" value="0" name="alinanmalinmiktari"></td>
+                <td><input type="date" name="alisfaturasintarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="alisfaturasisayisi"></td>
+                <td></td>
+              </tr>
+              <tr class="yatirim">
+                <td><input type="text" name="saticininverginosu"></td>
+                <td><input type="text" name="saticininvergidairesikodu"></td>
+                <td><input type="text" name="saticininadisoyadi"></td>
+                <td><input type="number" step="0.01" value="0" name="alinanmalintutari"></td>
+                <td><input type="date" name="tesvikbelgesinintarihi"></td>
+                <td><input type="text" name="tesvikbelgesininnosu"></td>
+                <td><input type="text" name="alinanmalincinsi"></td>
+                <td><input type="number" step="0.01" value="0" name="alinanmalinmiktari"></td>
+                <td><input type="date" name="alisfaturasintarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="alisfaturasisayisi"></td>
+                <td></td>
+              </tr>
+              <tr class="yatirim">
+                <td><input type="text" name="saticininverginosu"></td>
+                <td><input type="text" name="saticininvergidairesikodu"></td>
+                <td><input type="text" name="saticininadisoyadi"></td>
+                <td><input type="number" step="0.01" value="0" name="alinanmalintutari"></td>
+                <td><input type="date" name="tesvikbelgesinintarihi"></td>
+                <td><input type="text" name="tesvikbelgesininnosu"></td>
+                <td><input type="text" name="alinanmalincinsi"></td>
+                <td><input type="number" step="0.01" value="0" name="alinanmalinmiktari"></td>
+                <td><input type="date" name="alisfaturasintarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="alisfaturasisayisi"></td>
+                <td></td>
+              </tr>
+              <tr class="yatirim">
+                <td><input type="text" name="saticininverginosu"></td>
+                <td><input type="text" name="saticininvergidairesikodu"></td>
+                <td><input type="text" name="saticininadisoyadi"></td>
+                <td><input type="number" step="0.01" value="0" name="alinanmalintutari"></td>
+                <td><input type="date" name="tesvikbelgesinintarihi"></td>
+                <td><input type="text" name="tesvikbelgesininnosu"></td>
+                <td><input type="text" name="alinanmalincinsi"></td>
+                <td><input type="number" step="0.01" value="0" name="alinanmalinmiktari"></td>
+                <td><input type="date" name="alisfaturasintarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="alisfaturasisayisi"></td>
+                <td></td>
+              </tr>
+              <tr class="yatirim">
+                <td><input type="text" name="saticininverginosu"></td>
+                <td><input type="text" name="saticininvergidairesikodu"></td>
+                <td><input type="text" name="saticininadisoyadi"></td>
+                <td><input type="number" step="0.01" value="0" name="alinanmalintutari"></td>
+                <td><input type="date" name="tesvikbelgesinintarihi"></td>
+                <td><input type="text" name="tesvikbelgesininnosu"></td>
+                <td><input type="text" name="alinanmalincinsi"></td>
+                <td><input type="number" step="0.01" value="0" name="alinanmalinmiktari"></td>
+                <td><input type="date" name="alisfaturasintarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="alisfaturasisayisi"></td>
+                <td></td>
+              </tr>
+              <tr class="yatirim">
+                <td><input type="text" name="saticininverginosu"></td>
+                <td><input type="text" name="saticininvergidairesikodu"></td>
+                <td><input type="text" name="saticininadisoyadi"></td>
+                <td><input type="number" step="0.01" value="0" name="alinanmalintutari"></td>
+                <td><input type="date" name="tesvikbelgesinintarihi"></td>
+                <td><input type="text" name="tesvikbelgesininnosu"></td>
+                <td><input type="text" name="alinanmalincinsi"></td>
+                <td><input type="number" step="0.01" value="0" name="alinanmalinmiktari"></td>
+                <td><input type="date" name="alisfaturasintarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="alisfaturasisayisi"></td>
+                <td></td>
+              </tr>
+              <tr class="yatirim">
+                <td><input type="text" name="saticininverginosu"></td>
+                <td><input type="text" name="saticininvergidairesikodu"></td>
+                <td><input type="text" name="saticininadisoyadi"></td>
+                <td><input type="number" step="0.01" value="0" name="alinanmalintutari"></td>
+                <td><input type="date" name="tesvikbelgesinintarihi"></td>
+                <td><input type="text" name="tesvikbelgesininnosu"></td>
+                <td><input type="text" name="alinanmalincinsi"></td>
+                <td><input type="number" step="0.01" value="0" name="alinanmalinmiktari"></td>
+                <td><input type="date" name="alisfaturasintarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="alisfaturasisayisi"></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
       <hr style="border: 2px solid black !important;" >
   </div>
 </div>
@@ -5561,6 +5953,20 @@
 
     yeniselect();
   }
+  let q = 0;
+  function ekleYeniSatiryatirim() {
+    
+    var elements = document.getElementsByClassName('yatirim');
+
+    if (elements[q]) {
+        elements[q].classList.remove('yatirim');
+    } else {
+        console.error("Ürün Sınırına Ulaştınız");
+    }
+
+    yeniselect();
+  }
+  
 </script>
 
 {% endblock content %}

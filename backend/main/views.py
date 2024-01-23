@@ -5519,6 +5519,18 @@ def kdv1_beyannamesi(request,slug):
         projeninihizmetbedeli = request.POST.getlist("projeninihizmetbedeli")
         projeninyuklenilenkdv = request.POST.getlist("projeninyuklenilenkdv")
         #Teknoloji Geliştirme Bölgeleri
+        #Yatırım Teşvik Belgesi Kapsamında Makina Techizat Alımlarına İlişkin Bildirim
+        saticininverginosu = request.POST.getlist("saticininverginosu")
+        saticininvergidairesikodu = request.POST.getlist("saticininvergidairesikodu")
+        saticininadisoyadi = request.POST.getlist("saticininadisoyadi")
+        alinanmalintutari = request.POST.getlist("alinanmalintutari")
+        tesvikbelgesinintarihi = request.POST.getlist("tesvikbelgesinintarihi")
+        tesvikbelgesininnosu = request.POST.getlist("tesvikbelgesininnosu")
+        alinanmalincinsi = request.POST.getlist("alinanmalincinsi")
+        alinanmalinmiktari = request.POST.getlist("alinanmalinmiktari")
+        alisfaturasintarihi = request.POST.getlist("alisfaturasintarihi")
+        alisfaturasisayisi = request.POST.getlist("alisfaturasisayisi")
+        #Yatırım Teşvik Belgesi Kapsamında Makina Techizat Alımlarına İlişkin Bildirim
     return render(request,"beyannameler/kdv1_beyanname.html",content)
 
 #kdv1
