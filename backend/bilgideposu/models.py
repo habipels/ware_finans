@@ -1823,7 +1823,52 @@ class dayanak(models.Model):
 
 
 #beyannameler
-
+#KDV1
 class kdv1_beyannamesi_bilgileri(models.Model):
     bagli_oldugu_firma = models.ForeignKey(firma,blank=True,null=True,on_delete=models.SET_NULL)
     ay = models.DateField(verbose_name = "Tarihi",blank = True,null=True)
+#TEVKİFAT UYGULANMAYAN İŞLEMLER
+class matrah_bildirimi_tevkifatuygulanmayanislemler(models.Model):
+    bagli_oldugu_firma = models.ForeignKey(firma,blank=True,null=True,on_delete=models.SET_NULL)
+    bagli_oldugu_beyanname = models.ForeignKey(kdv1_beyannamesi_bilgileri,blank=True,null=True,on_delete=models.SET_NULL)
+    matrah = models.FloatField(verbose_name = "Matrah",default = 0)
+    kdv = models.FloatField(verbose_name = "KDV",default = 0)
+    vergi = models.FloatField(verbose_name = "Vergi",default = 0)
+    matrah1 = models.FloatField(verbose_name = "Matrah",default = 0)
+    kdv1 = models.FloatField(verbose_name = "KDV",default = 0)
+    vergi1 = models.FloatField(verbose_name = "Vergi",default = 0)
+    matrah2 = models.FloatField(verbose_name = "Matrah",default = 0)
+    kdv2 = models.FloatField(verbose_name = "KDV",default = 0)
+    vergi2 = models.FloatField(verbose_name = "Vergi",default = 0)
+#KISMİ TEVKİFAT UYGULANAN İŞLEMLER
+class matrah_bildirimi_kismi_tevkifatuygulanmayanislemler(models.Model):
+    bagli_oldugu_firma = models.ForeignKey(firma,blank=True,null=True,on_delete=models.SET_NULL)
+    bagli_oldugu_beyanname = models.ForeignKey(kdv1_beyannamesi_bilgileri,blank=True,null=True,on_delete=models.SET_NULL)
+    # İlk İşlem
+    islem_turu = models.ForeignKey(tevkifat_tur_kodu, blank=True, null=True, on_delete=models.SET_NULL,related_name='islem_turu')
+    matrah = models.FloatField(verbose_name="Matrah", default=0)
+    kdv = models.FloatField(verbose_name="KDV", default=0)
+    vergi = models.FloatField(verbose_name="Vergi", default=0)
+    tevkifatorani = models.CharField(max_length=20, verbose_name="tevkifatorani", blank=True, null=True)
+    
+    # İkinci İşlem
+    islem_turu1 = models.ForeignKey(tevkifat_tur_kodu, blank=True, null=True, on_delete=models.SET_NULL,related_name='islem_turu1')
+    matrah1 = models.FloatField(verbose_name="Matrah", default=0)
+    kdv1 = models.FloatField(verbose_name="KDV", default=0)
+    vergi1 = models.FloatField(verbose_name="Vergi", default=0)
+    tevkifatorani1 = models.CharField(max_length=20, verbose_name="tevkifatorani", blank=True, null=True)
+    
+    # Üçüncü İşlem
+    islem_turu2 = models.ForeignKey(tevkifat_tur_kodu, blank=True, null=True, on_delete=models.SET_NULL,related_name='islem_turu2')
+    matrah2 = models.FloatField(verbose_name="Matrah", default=0)
+    kdv2 = models.FloatField(verbose_name="KDV", default=0)
+    vergi2 = models.FloatField(verbose_name="Vergi", default=0)
+    tevkifatorani2 = models.CharField(max_length=20, verbose_name="tevkifatorani", blank=True, null=True)
+    # Dördüncü İşlem
+    islem_turu3 = models.ForeignKey(tevkifat_tur_kodu, blank=True, null=True, on_delete=models.SET_NULL,related_name='islem_turu3')
+    matrah3 = models.FloatField(verbose_name="Matrah", default=0)
+    kdv3 = models.FloatField(verbose_name="KDV", default=0)
+    vergi3 = models.FloatField(verbose_name="Vergi", default=0)
+    tevkifatorani3 = models.CharField(max_length=20, verbose_name="tevkifatorani", blank=True, null=True)
+
+#KDV1
