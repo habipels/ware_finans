@@ -5481,6 +5481,10 @@ def kdv1_beyannamesi(request,slug):
         faturano = request.POST.getlist("faturano")
         faturabedeli = request.POST.getlist("faturabedeli")
         #KDV Kanunun 13/F Maddesi Kapsamında Yüklenici Firmalara Yapılan Teslim Ve Hizmetlere Ait Liste
+        #Türk Hava Kuvetlerinin Güçlenmesine Katılım Payı
+        satilanbiletadeti = request.POSt.getlist("satilanbiletadeti")
+        satilanbiletpaytutari = request.POSt.getlist("satilanbiletpaytutari")
+        #Türk Hava Kuvetlerinin Güçlenmesine Katılım Payı
     return render(request,"beyannameler/kdv1_beyanname.html",content)
 
 #kdv1
