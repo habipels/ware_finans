@@ -1827,6 +1827,7 @@ class dayanak(models.Model):
 class kdv1_beyannamesi_bilgileri(models.Model):
     bagli_oldugu_firma = models.ForeignKey(firma,blank=True,null=True,on_delete=models.SET_NULL)
     ay = models.DateField(verbose_name = "Tarihi",blank = True,null=True)
+#Matrah
 #TEVKİFAT UYGULANMAYAN İŞLEMLER
 class matrah_bildirimi_tevkifatuygulanmayanislemler(models.Model):
     bagli_oldugu_firma = models.ForeignKey(firma,blank=True,null=True,on_delete=models.SET_NULL)
@@ -1896,4 +1897,40 @@ class matrah_bildirimi_digerislemleri(models.Model):
     #Diğerleri
     matrah7 = models.FloatField(verbose_name = "Matrah",default = 0)
     vergi7 = models.FloatField(verbose_name = "Vergi",default = 0)  
+
+#İSTEĞE BAĞLI TAM TEVKİFAT UYGULANAN İŞLEMLER
+class matrah_bildirimi_istegebaglitamtevkifat(models.Model):
+    bagli_oldugu_firma = models.ForeignKey(firma,blank=True,null=True,on_delete=models.SET_NULL)
+    bagli_oldugu_beyanname = models.ForeignKey(kdv1_beyannamesi_bilgileri,blank=True,null=True,on_delete=models.SET_NULL)
+    islem_turu = models.ForeignKey(tevkifat_tur_kodu, blank=True, null=True, on_delete=models.SET_NULL)
+    matrah = models.FloatField(verbose_name = "Matrah",default = 0)
+    kdv = models.FloatField(verbose_name = "KDV",default = 0)
+    vergi = models.FloatField(verbose_name = "Vergi",default = 0)
+#Matrah
+
+#indirimler
+
+class indirimler(models.Model):
+    bagli_oldugu_firma = models.ForeignKey(firma,blank=True,null=True,on_delete=models.SET_NULL)
+    bagli_oldugu_beyanname = models.ForeignKey(kdv1_beyannamesi_bilgileri,blank=True,null=True,on_delete=models.SET_NULL)
+    #Önceki Dönemden Devreden Indrilecek KDV
+    tutar = models.FloatField(verbose_name = "Tutar",default = 0)
+    #Satış İade Edlen, İşlemi Gerçekleşmeyen veya Işleminden Vazgeçlen Mal ve Hizmetler Nedeniyle İndrimesi Gereken KDV
+    tutar1 = models.FloatField(verbose_name = "Tutar",default = 0)
+    #Türkiye'de İkamet Etmeyen Yolculara Bu Dönemde Ödenen KDV (43 No.lu G.T.)
+    tutar2 = models.FloatField(verbose_name = "Tutar",default = 0)
+    #İndirimli Orana Tabi İşlemlerle İlgili Yıl İçerisinde Mahsuben İadesi Gerçekleşmeyen KDV
+    tutar3 = models.FloatField(verbose_name = "Tutar",default = 0)
+    #Kanunun (11/1-c) ve Geçici 17. Maddelerinden Doğan İadelerin İndiirm Yoluyla Telafisi Nedeniyle Indrilecek KDV
+    tutar4 = models.FloatField(verbose_name = "Tutar",default = 0)
+    #Yurtiçi Alımlara İlişkin KDV
+    tutar5 = models.FloatField(verbose_name = "Tutar",default = 0)
+    #Sorumlu Sifatıyla Beyan Edien KDV
+    tutar6 = models.FloatField(verbose_name = "Tutar",default = 0)
+    #İthalde Ödenen KDV
+    tutar7 = models.FloatField(verbose_name = "Tutar",default = 0)
+    #Değersiz Hale Gelen Alacaklara İlişkin İndrilecek KDV
+    tutar8 = models.FloatField(verbose_name = "Tutar",default = 0)
+
+
 #KDV1
