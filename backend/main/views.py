@@ -5246,6 +5246,7 @@ def kdv1_beyannamesi(request,slug):
     content["ihrac_kayitlari"] =["701 -İHRACATI YAPILACAK NİHAİ ÜRÜNLERİN KANUNUN 11/1-c MADDESİ KAPSAMINDA TESLİMİ",
                                  "702  -DAHİLDE İŞLEME VEYA GEÇİCİ KABUL REJİMLERİ KAPSAMINDA İHRACATIYAPILACAK ÜRÜNÜN İMALİNDE KULLANILACAK MALLARIN DİİB VEYA GKİB SAHİPLERİNE KANUNUN GEÇİCİ 17 NCİ MADDESİ KAPSAMINDA TESLİMİ",
                                  "703  -İHRAÇ KAYITLI ÖTV'Lİ SATIŞ"]
+    content["teknolojibolgeleri"] = ""
     if request.POST:
         aysecimi = request.POST.get("aysecimi")
         #TEVKİFAT UYGULANMAYAN İŞLEMLER
@@ -5511,6 +5512,13 @@ def kdv1_beyannamesi(request,slug):
         kdvoranialicinin = request.POST.getlist("kdvoranialicinin")
         vergisiialicinin = request.POST.getlist("vergisiialicinin")
         #İSTEĞE BAĞLI TAM TEVKİFAT UYGULAMASI KAPSAMINDAKİ İŞLEMLERE AİT BİLDİRİM
+        #Teknoloji Geliştirme Bölgeleri
+        teknolojigelistirme = request.POST.getlist("teknolojigelistirme")
+        projeninbaslangictarihi = request.POST.getlist("projeninbaslangictarihi")
+        projebelgesininnumarasi = request.POST.getlist("projebelgesininnumarasi")
+        projeninihizmetbedeli = request.POST.getlist("projeninihizmetbedeli")
+        projeninyuklenilenkdv = request.POST.getlist("projeninyuklenilenkdv")
+        #Teknoloji Geliştirme Bölgeleri
     return render(request,"beyannameler/kdv1_beyanname.html",content)
 
 #kdv1

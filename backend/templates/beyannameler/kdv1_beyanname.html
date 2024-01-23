@@ -19,6 +19,7 @@
   .hava{display: none;}
   .kismitev{display: none;}
   .alicinin{display: none;}
+  .teknoloji{display: none;}
 </style>
   <!--Header-->
   <div class="icon-bar">
@@ -5128,6 +5129,328 @@
           </table>
         </div>
       </div>
+      <div class="container tablo" style="margin-top: 0px !important;">
+        <input class="col-12" disabled value="Teknoloji Geliştirme Bölgeleri" type="text">
+        <div class="table-responsive " style=" 
+        height: 344px;
+        overflow: auto;">
+          <table class="table table-bordered ">
+            <thead style="position: sticky;top: 0">
+              <tr>
+                <th class="text-center" style="min-width: 100px ;">Teknoloji Kapsamındaki İl ve İlçe</th>
+                <th class="text-center" style="min-width: 50px ;">Projenin Başlangıç Tarihi</th>
+                <th class="text-center" style="min-width: 150px ;">Proje Belgesinin Numarası</th>
+                <th class="text-center" style="min-width: 150px ;">Teslim Hizmet Bedeli</th>
+                <th class="text-center" style="min-width: 150px ;">Yüklenilen K.D.V</th>
+                <th class="text-center" style="min-width: 150px ;"><a href="javascript:void(0);" onclick="ekleYeniSatirteknolojigelistirme()">SATIR EKLE</a></th>
+                
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><select style="max-width: 100px;" name="teknolojigelistirme" id="">
+                  {% for i in teknolojibolgeleri %}
+                  <option value="{{i}}">{{i}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="date" name="projeninbaslangictarihi"></td>
+                <td><input type="text" name="projebelgesininnumarasi" ></td>
+                <td><input type="number" step="0.01" value="0" name="projeninihizmetbedeli"></td>
+                <td><input type="number" step="0.01" value="0" name="projeninyuklenilenkdv"></td>
+                <td></td>
+              </tr>
+              <tr class="teknoloji">
+                <td><select  style="max-width: 100px;" name="teknolojigelistirme" id="">
+                  {% for i in teknolojibolgeleri %}
+                  <option value="{{i}}">{{i}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="date" name="projeninbaslangictarihi"></td>
+                <td><input type="text" name="projebelgesininnumarasi" ></td>
+                <td><input type="number" step="0.01" value="0" name="projeninihizmetbedeli"></td>
+                <td><input type="number" step="0.01" value="0" name="projeninyuklenilenkdv"></td>
+                <td></td>
+              </tr>
+              <tr class="teknoloji">
+                <td><select  style="max-width: 100px;" name="teknolojigelistirme" id="">
+                  {% for i in teknolojibolgeleri %}
+                  <option value="{{i}}">{{i}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="date" name="projeninbaslangictarihi"></td>
+                <td><input type="text" name="projebelgesininnumarasi" ></td>
+                <td><input type="number" step="0.01" value="0" name="projeninihizmetbedeli"></td>
+                <td><input type="number" step="0.01" value="0" name="projeninyuklenilenkdv"></td>
+                <td></td>
+              </tr>
+              <tr class="teknoloji">
+                <td><select  style="max-width: 100px;" name="teknolojigelistirme" id="">
+                  {% for i in teknolojibolgeleri %}
+                  <option value="{{i}}">{{i}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="date" name="projeninbaslangictarihi"></td>
+                <td><input type="text" name="projebelgesininnumarasi" ></td>
+                <td><input type="number" step="0.01" value="0" name="projeninihizmetbedeli"></td>
+                <td><input type="number" step="0.01" value="0" name="projeninyuklenilenkdv"></td>
+                <td></td>
+              </tr>
+              <tr class="teknoloji">
+                <td><select  style="max-width: 100px;" name="teknolojigelistirme" id="">
+                  {% for i in teknolojibolgeleri %}
+                  <option value="{{i}}">{{i}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="date" name="projeninbaslangictarihi"></td>
+                <td><input type="text" name="projebelgesininnumarasi" ></td>
+                <td><input type="number" step="0.01" value="0" name="projeninihizmetbedeli"></td>
+                <td><input type="number" step="0.01" value="0" name="projeninyuklenilenkdv"></td>
+                <td></td>
+              </tr>
+              <tr class="teknoloji">
+                <td><select  style="max-width: 100px;" name="teknolojigelistirme" id="">
+                  {% for i in teknolojibolgeleri %}
+                  <option value="{{i}}">{{i}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="date" name="projeninbaslangictarihi"></td>
+                <td><input type="text" name="projebelgesininnumarasi" ></td>
+                <td><input type="number" step="0.01" value="0" name="projeninihizmetbedeli"></td>
+                <td><input type="number" step="0.01" value="0" name="projeninyuklenilenkdv"></td>
+                <td></td>
+              </tr>
+              <tr class="teknoloji">
+                <td><select  style="max-width: 100px;" name="teknolojigelistirme" id="">
+                  {% for i in teknolojibolgeleri %}
+                  <option value="{{i}}">{{i}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="date" name="projeninbaslangictarihi"></td>
+                <td><input type="text" name="projebelgesininnumarasi" ></td>
+                <td><input type="number" step="0.01" value="0" name="projeninihizmetbedeli"></td>
+                <td><input type="number" step="0.01" value="0" name="projeninyuklenilenkdv"></td>
+                <td></td>
+              </tr>
+              <tr class="teknoloji">
+                <td><select  style="max-width: 100px;" name="teknolojigelistirme" id="">
+                  {% for i in teknolojibolgeleri %}
+                  <option value="{{i}}">{{i}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="date" name="projeninbaslangictarihi"></td>
+                <td><input type="text" name="projebelgesininnumarasi" ></td>
+                <td><input type="number" step="0.01" value="0" name="projeninihizmetbedeli"></td>
+                <td><input type="number" step="0.01" value="0" name="projeninyuklenilenkdv"></td>
+                <td></td>
+              </tr>
+              <tr class="teknoloji">
+                <td><select  style="max-width: 100px;" name="teknolojigelistirme" id="">
+                  {% for i in teknolojibolgeleri %}
+                  <option value="{{i}}">{{i}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="date" name="projeninbaslangictarihi"></td>
+                <td><input type="text" name="projebelgesininnumarasi" ></td>
+                <td><input type="number" step="0.01" value="0" name="projeninihizmetbedeli"></td>
+                <td><input type="number" step="0.01" value="0" name="projeninyuklenilenkdv"></td>
+                <td></td>
+              </tr>
+              <tr class="teknoloji">
+                <td><select  style="max-width: 100px;" name="teknolojigelistirme" id="">
+                  {% for i in teknolojibolgeleri %}
+                  <option value="{{i}}">{{i}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="date" name="projeninbaslangictarihi"></td>
+                <td><input type="text" name="projebelgesininnumarasi" ></td>
+                <td><input type="number" step="0.01" value="0" name="projeninihizmetbedeli"></td>
+                <td><input type="number" step="0.01" value="0" name="projeninyuklenilenkdv"></td>
+                <td></td>
+              </tr>
+              <tr class="teknoloji">
+                <td><select  style="max-width: 100px;" name="teknolojigelistirme" id="">
+                  {% for i in teknolojibolgeleri %}
+                  <option value="{{i}}">{{i}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="date" name="projeninbaslangictarihi"></td>
+                <td><input type="text" name="projebelgesininnumarasi" ></td>
+                <td><input type="number" step="0.01" value="0" name="projeninihizmetbedeli"></td>
+                <td><input type="number" step="0.01" value="0" name="projeninyuklenilenkdv"></td>
+                <td></td>
+              </tr>
+              <tr class="teknoloji">
+                <td><select  style="max-width: 100px;" name="teknolojigelistirme" id="">
+                  {% for i in teknolojibolgeleri %}
+                  <option value="{{i}}">{{i}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="date" name="projeninbaslangictarihi"></td>
+                <td><input type="text" name="projebelgesininnumarasi" ></td>
+                <td><input type="number" step="0.01" value="0" name="projeninihizmetbedeli"></td>
+                <td><input type="number" step="0.01" value="0" name="projeninyuklenilenkdv"></td>
+                <td></td>
+              </tr>
+              <tr class="teknoloji">
+                <td><select  style="max-width: 100px;" name="teknolojigelistirme" id="">
+                  {% for i in teknolojibolgeleri %}
+                  <option value="{{i}}">{{i}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="date" name="projeninbaslangictarihi"></td>
+                <td><input type="text" name="projebelgesininnumarasi" ></td>
+                <td><input type="number" step="0.01" value="0" name="projeninihizmetbedeli"></td>
+                <td><input type="number" step="0.01" value="0" name="projeninyuklenilenkdv"></td>
+                <td></td>
+              </tr>
+              <tr class="teknoloji">
+                <td><select  style="max-width: 100px;" name="teknolojigelistirme" id="">
+                  {% for i in teknolojibolgeleri %}
+                  <option value="{{i}}">{{i}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="date" name="projeninbaslangictarihi"></td>
+                <td><input type="text" name="projebelgesininnumarasi" ></td>
+                <td><input type="number" step="0.01" value="0" name="projeninihizmetbedeli"></td>
+                <td><input type="number" step="0.01" value="0" name="projeninyuklenilenkdv"></td>
+                <td></td>
+              </tr>
+              <tr class="teknoloji">
+                <td><select  style="max-width: 100px;" name="teknolojigelistirme" id="">
+                  {% for i in teknolojibolgeleri %}
+                  <option value="{{i}}">{{i}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="date" name="projeninbaslangictarihi"></td>
+                <td><input type="text" name="projebelgesininnumarasi" ></td>
+                <td><input type="number" step="0.01" value="0" name="projeninihizmetbedeli"></td>
+                <td><input type="number" step="0.01" value="0" name="projeninyuklenilenkdv"></td>
+                <td></td>
+              </tr>
+              <tr class="teknoloji">
+                <td><select  style="max-width: 100px;" name="teknolojigelistirme" id="">
+                  {% for i in teknolojibolgeleri %}
+                  <option value="{{i}}">{{i}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="date" name="projeninbaslangictarihi"></td>
+                <td><input type="text" name="projebelgesininnumarasi" ></td>
+                <td><input type="number" step="0.01" value="0" name="projeninihizmetbedeli"></td>
+                <td><input type="number" step="0.01" value="0" name="projeninyuklenilenkdv"></td>
+                <td></td>
+              </tr>
+              <tr class="teknoloji">
+                <td><select  style="max-width: 100px;" name="teknolojigelistirme" id="">
+                  {% for i in teknolojibolgeleri %}
+                  <option value="{{i}}">{{i}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="date" name="projeninbaslangictarihi"></td>
+                <td><input type="text" name="projebelgesininnumarasi" ></td>
+                <td><input type="number" step="0.01" value="0" name="projeninihizmetbedeli"></td>
+                <td><input type="number" step="0.01" value="0" name="projeninyuklenilenkdv"></td>
+                <td></td>
+              </tr>
+              <tr class="teknoloji">
+                <td><select  style="max-width: 100px;" name="teknolojigelistirme" id="">
+                  {% for i in teknolojibolgeleri %}
+                  <option value="{{i}}">{{i}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="date" name="projeninbaslangictarihi"></td>
+                <td><input type="text" name="projebelgesininnumarasi" ></td>
+                <td><input type="number" step="0.01" value="0" name="projeninihizmetbedeli"></td>
+                <td><input type="number" step="0.01" value="0" name="projeninyuklenilenkdv"></td>
+                <td></td>
+              </tr>
+              <tr class="teknoloji">
+                <td><select  style="max-width: 100px;" name="teknolojigelistirme" id="">
+                  {% for i in teknolojibolgeleri %}
+                  <option value="{{i}}">{{i}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="date" name="projeninbaslangictarihi"></td>
+                <td><input type="text" name="projebelgesininnumarasi" ></td>
+                <td><input type="number" step="0.01" value="0" name="projeninihizmetbedeli"></td>
+                <td><input type="number" step="0.01" value="0" name="projeninyuklenilenkdv"></td>
+                <td></td>
+              </tr>
+              <tr class="teknoloji">
+                <td><select  style="max-width: 100px;" name="teknolojigelistirme" id="">
+                  {% for i in teknolojibolgeleri %}
+                  <option value="{{i}}">{{i}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="date" name="projeninbaslangictarihi"></td>
+                <td><input type="text" name="projebelgesininnumarasi" ></td>
+                <td><input type="number" step="0.01" value="0" name="projeninihizmetbedeli"></td>
+                <td><input type="number" step="0.01" value="0" name="projeninyuklenilenkdv"></td>
+                <td></td>
+              </tr>
+              <tr class="teknoloji">
+                <td><select  style="max-width: 100px;" name="teknolojigelistirme" id="">
+                  {% for i in teknolojibolgeleri %}
+                  <option value="{{i}}">{{i}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="date" name="projeninbaslangictarihi"></td>
+                <td><input type="text" name="projebelgesininnumarasi" ></td>
+                <td><input type="number" step="0.01" value="0" name="projeninihizmetbedeli"></td>
+                <td><input type="number" step="0.01" value="0" name="projeninyuklenilenkdv"></td>
+                <td></td>
+              </tr>
+              <tr class="teknoloji">
+                <td><select  style="max-width: 100px;" name="teknolojigelistirme" id="">
+                  {% for i in teknolojibolgeleri %}
+                  <option value="{{i}}">{{i}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="date" name="projeninbaslangictarihi"></td>
+                <td><input type="text" name="projebelgesininnumarasi" ></td>
+                <td><input type="number" step="0.01" value="0" name="projeninihizmetbedeli"></td>
+                <td><input type="number" step="0.01" value="0" name="projeninyuklenilenkdv"></td>
+                <td></td>
+              </tr>
+              <tr class="teknoloji">
+                <td><select  style="max-width: 100px;" name="teknolojigelistirme" id="">
+                  {% for i in teknolojibolgeleri %}
+                  <option value="{{i}}">{{i}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="date" name="projeninbaslangictarihi"></td>
+                <td><input type="text" name="projebelgesininnumarasi" ></td>
+                <td><input type="number" step="0.01" value="0" name="projeninihizmetbedeli"></td>
+                <td><input type="number" step="0.01" value="0" name="projeninyuklenilenkdv"></td>
+                <td></td>
+              </tr>
+              <tr class="teknoloji">
+                <td><select  style="max-width: 100px;" name="teknolojigelistirme" id="">
+                  {% for i in teknolojibolgeleri %}
+                  <option value="{{i}}">{{i}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="date" name="projeninbaslangictarihi"></td>
+                <td><input type="text" name="projebelgesininnumarasi" ></td>
+                <td><input type="number" step="0.01" value="0" name="projeninihizmetbedeli"></td>
+                <td><input type="number" step="0.01" value="0" name="projeninyuklenilenkdv"></td>
+                <td></td>
+              </tr>
+              <tr class="teknoloji">
+                <td><select  style="max-width: 100px;" name="teknolojigelistirme" id="">
+                  {% for i in teknolojibolgeleri %}
+                  <option value="{{i}}">{{i}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="date" name="projeninbaslangictarihi"></td>
+                <td><input type="text" name="projebelgesininnumarasi" ></td>
+                <td><input type="number" step="0.01" value="0" name="projeninihizmetbedeli"></td>
+                <td><input type="number" step="0.01" value="0" name="projeninyuklenilenkdv"></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
       <hr style="border: 2px solid black !important;" >
   </div>
 </div>
@@ -5219,6 +5542,19 @@
 
     if (elements[i]) {
         elements[i].classList.remove('alicinin');
+    } else {
+        console.error("Ürün Sınırına Ulaştınız");
+    }
+
+    yeniselect();
+  }
+  let j = 0;
+  function ekleYeniSatirteknolojigelistirme() {
+    
+    var elements = document.getElementsByClassName('teknoloji');
+
+    if (elements[j]) {
+        elements[j].classList.remove('teknoloji');
     } else {
         console.error("Ürün Sınırına Ulaştınız");
     }
