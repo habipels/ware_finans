@@ -5247,6 +5247,8 @@ def kdv1_beyannamesi(request,slug):
                                  "702  -DAHİLDE İŞLEME VEYA GEÇİCİ KABUL REJİMLERİ KAPSAMINDA İHRACATIYAPILACAK ÜRÜNÜN İMALİNDE KULLANILACAK MALLARIN DİİB VEYA GKİB SAHİPLERİNE KANUNUN GEÇİCİ 17 NCİ MADDESİ KAPSAMINDA TESLİMİ",
                                  "703  -İHRAÇ KAYITLI ÖTV'Lİ SATIŞ"]
     content["teknolojibolgeleri"] = ""
+    content["ulkeler"] = ulke_ulke_kodlari.objects.all()
+    content["tasinmazililce"] = ""
     if request.POST:
         aysecimi = request.POST.get("aysecimi")
         #TEVKİFAT UYGULANMAYAN İŞLEMLER
@@ -5531,6 +5533,22 @@ def kdv1_beyannamesi(request,slug):
         alisfaturasintarihi = request.POST.getlist("alisfaturasintarihi")
         alisfaturasisayisi = request.POST.getlist("alisfaturasisayisi")
         #Yatırım Teşvik Belgesi Kapsamında Makina Techizat Alımlarına İlişkin Bildirim
+        #3065 Sayılı Kanun 13/i Maddesindeki İstisna Kapsamında Yapılan Teslimlere İlişkin Bildirim
+        aliciadisoyadiunvantasinmaz = request.POST.getlist("aliciadisoyadiunvantasinmaz")
+        alicivergikimliknosutasinmaz = request.POST.getlist("alicivergikimliknosutasinmaz")
+        alicininuyrugu = request.POST.getlist("alicininuyrugu")
+        alicinincalismaveoturmaizni = request.POST.getlist("alicinincalismaveoturmaizni")
+        tasinmazinilveilce = request.POST.getlist("tasinmazinilveilce")
+        tasinmazinniteligi = request.POST.getlist("tasinmazinniteligi")
+        tasinmazinada = request.POST.getlist("tasinmazinada")
+        tasinmazinparsel = request.POST.getlist("tasinmazinparsel")
+        tasinmazinulusaladresnumarasi = request.POST.getlist("tasinmazinulusaladresnumarasi")
+        alicininismerkezininbulunduguulke = request.POST.getlist("alicininismerkezininbulunduguulke")
+        tasinmazinusistemnumarasi = request.POST.getlist("tasinmazinusistemnumarasi")
+        satisfaturasinintarihi = request.POST.getlist("satisfaturasinintarihi")
+        satisfaturasisayisi = request.POST.getlist("satisfaturasisayisi")
+        satisfaturasitarihi = request.POST.getlist("satisfaturasitarihi")
+        #3065 Sayılı Kanun 13/i Maddesindeki İstisna Kapsamında Yapılan Teslimlere İlişkin Bildirim
     return render(request,"beyannameler/kdv1_beyanname.html",content)
 
 #kdv1
