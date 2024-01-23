@@ -1819,3 +1819,11 @@ class urunler(models.Model):
 #GEKAP TAHSİL EDİLMEYECEK ÜRÜNLER
 class dayanak(models.Model):
     aciklama = models.CharField(max_length = 200 ,verbose_name = "Açıklama")
+
+
+
+#beyannameler
+
+class kdv1_beyannamesi_bilgileri(models.Model):
+    bagli_oldugu_firma = models.ForeignKey(firma,blank=True,null=True,on_delete=models.SET_NULL)
+    ay = models.DateField(verbose_name = "Tarihi",blank = True,null=True)

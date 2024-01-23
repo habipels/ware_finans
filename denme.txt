@@ -1,0 +1,40 @@
+<div class="container tablo" style="margin-top: 0px !important;">
+        <input class="col-12" disabled value="3065 Sayılı Kanun 13/i Maddesindeki İstisna Kapsamında Yapılan Teslimlere İlişkin Bildirim" type="text">
+        <div class="table-responsive " style=" 
+        height: 344px;
+        overflow: auto;">
+          <table class="table table-bordered ">
+            <thead style="position: sticky;top: 0">
+              <tr>
+                <th class="text-center" style="min-width: 100px ;">Alıcının Adı Soyadı / Unvanı</th>
+                <th class="text-center" style="min-width: 50px ;">Alıcının TC / Vergi Kimlik Nosu</th>
+                <th class="text-center" style="min-width: 150px ;">Alıcının Uyruğu</th>
+                <th class="text-center" style="min-width: 150px ;">Alıcının Çalışma Ve Oturma İzninin Bulunduğu Ülke </th>
+                <th class="text-center" style="min-width: 150px ;">Alıcının Kanun Merkezi / İş Merkezinin Bulunduğu Ülke</th>
+                <th class="text-center" style="min-width: 150px ;">Taşınmazın İl İlçesi</th>
+                <th class="text-center" style="min-width: 150px ;">Taşınmazın Niteliği</th>
+                <th class="text-center" style="min-width: 150px ;">Taşınmazın Ada</th>
+                <th class="text-center" style="min-width: 150px ;">Taşınmazın Parsel</th>
+                <th class="text-center" style="min-width: 150px ;">Taşınmazın Ulusal Adres Veritabanı Numarası</th>
+                 <th class="text-center" style="min-width: 150px ;">Taşınmazın Zemin Numarası</th>
+                <th class="text-center" style="min-width: 150px ;">Satış Faturasının Tarihi</th>
+                <th class="text-center" style="min-width: 150px ;">Satış Faturasının Sayısı</th>
+                <th class="text-center" style="min-width: 150px ;">Satış Faturasının Tutarı</th>
+                <th class="text-center" style="min-width: 150px ;"><a href="javascript:void(0);" onclick="ekleYeniSatirtasinmazlar()">SATIR EKLE</a></th>
+                
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><input type="number" step="0.01" value="0" name="satilanbiletadeti"></td>
+                <td><input type="number" step="0.01" value="0" name="satilanbiletpaytutari"></td>
+                <td> <span class="satilanbilettopamtutar">0.0</span> <input type="number" step="0.01" value="0" id="satilanbilettopamtutar" hidden name="satilanbilettopamtutar"></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+
+
