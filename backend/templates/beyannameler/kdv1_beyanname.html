@@ -22,6 +22,8 @@
   .teknoloji{display: none;}
   .yatirim{display: none;}
   .tasinmaz{display: none;}
+  .degersiz{display: none;}
+  .indiirmkonusu{display: none;}
 </style>
 <form  method="post">
   {% csrf_token %}
@@ -7135,6 +7137,888 @@
           </table>
         </div>
       </div>
+      
+      <hr style="border: 2px solid gray !important;" >
+      <h4 class="text-center">107 ve 111 Kodlu İndirim  Türleri İçin</h4>
+      <div class="container tablo" style="margin-top: 0px !important;">
+        <input class="col-12" disabled value="DEĞERSİZ HALE GELEN ALACAKLARA İLİŞKİN BİLDİRİM" type="text">
+        <div class="table-responsive " style=" 
+        height: 344px;
+        overflow: auto;">
+          <table class="table table-bordered ">
+            <thead style="position: sticky;top: 0">
+              <tr>
+                <th class="text-center" style="min-width: 100px ;">Borçlunun TC Kimlik Vergi Kimlik Numarası</th>
+                <th class="text-center" style="min-width: 50px ;">Borçlunun Adı Soyadı Unvanı</th>
+                <th class="text-center" style="min-width: 150px ;">Fatura Benzeri Belgenin Tarihi</th>
+                <th class="text-center" style="min-width: 150px ;">Fatura Benzeri Belgenin Serisi</th>
+                <th class="text-center" style="min-width: 150px ;">Fatura Benzeri Belgenin Sıra No. su</th>
+                <th class="text-center" style="min-width: 150px ;">Değersiz Hale Gelen Alacak Tutarı</th>
+                <th class="text-center" style="min-width: 150px ;">Değersiz Hale Geldiği Tarih</th>
+                <th class="text-center" style="min-width: 150px ;">Değersiz Hale Gelen Alacağın KDV'si</th>
+                <th class="text-center" style="min-width: 150px ;"><a href="javascript:void(0);" onclick="ekleYeniSatirdegersiz()">SATIR EKLE</a></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="degersiz">
+                <td><input type="text" name="borclununverginosu"></td>
+                <td><input type="text" name="borclununadisoyadi"></td>
+                <td><input type="date" name="borclununfaturabenzeritarihi"></td>
+                <td><input type="text" name="borclununfaturabenzeribelgeninserisi"></td>
+                <td><input type="text" name="borclununfaturabenzeribelgeninsiranosu"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="degersizhalegelenalacaktutari"></td>
+                <td><input type="date" name="degersizhalegelenalacaktutartarih"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="degersizhalegelenalacakkdvsi"></td>
+              
+                <td></td>
+              </tr>
+              <tr class="degersiz">
+                <td><input type="text" name="borclununverginosu"></td>
+                <td><input type="text" name="borclununadisoyadi"></td>
+                <td><input type="date" name="borclununfaturabenzeritarihi"></td>
+                <td><input type="text" name="borclununfaturabenzeribelgeninserisi"></td>
+                <td><input type="text" name="borclununfaturabenzeribelgeninsiranosu"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="degersizhalegelenalacaktutari"></td>
+                <td><input type="date" name="degersizhalegelenalacaktutartarih"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="degersizhalegelenalacakkdvsi"></td>
+              
+                <td></td>
+              </tr>
+              <tr class="degersiz">
+                <td><input type="text" name="borclununverginosu"></td>
+                <td><input type="text" name="borclununadisoyadi"></td>
+                <td><input type="date" name="borclununfaturabenzeritarihi"></td>
+                <td><input type="text" name="borclununfaturabenzeribelgeninserisi"></td>
+                <td><input type="text" name="borclununfaturabenzeribelgeninsiranosu"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="degersizhalegelenalacaktutari"></td>
+                <td><input type="date" name="degersizhalegelenalacaktutartarih"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="degersizhalegelenalacakkdvsi"></td>
+              
+                <td></td>
+              </tr>
+              <tr class="degersiz">
+                <td><input type="text" name="borclununverginosu"></td>
+                <td><input type="text" name="borclununadisoyadi"></td>
+                <td><input type="date" name="borclununfaturabenzeritarihi"></td>
+                <td><input type="text" name="borclununfaturabenzeribelgeninserisi"></td>
+                <td><input type="text" name="borclununfaturabenzeribelgeninsiranosu"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="degersizhalegelenalacaktutari"></td>
+                <td><input type="date" name="degersizhalegelenalacaktutartarih"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="degersizhalegelenalacakkdvsi"></td>
+              
+                <td></td>
+              </tr>
+              <tr class="degersiz">
+                <td><input type="text" name="borclununverginosu"></td>
+                <td><input type="text" name="borclununadisoyadi"></td>
+                <td><input type="date" name="borclununfaturabenzeritarihi"></td>
+                <td><input type="text" name="borclununfaturabenzeribelgeninserisi"></td>
+                <td><input type="text" name="borclununfaturabenzeribelgeninsiranosu"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="degersizhalegelenalacaktutari"></td>
+                <td><input type="date" name="degersizhalegelenalacaktutartarih"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="degersizhalegelenalacakkdvsi"></td>
+              
+                <td></td>
+              </tr>
+              <tr class="degersiz">
+                <td><input type="text" name="borclununverginosu"></td>
+                <td><input type="text" name="borclununadisoyadi"></td>
+                <td><input type="date" name="borclununfaturabenzeritarihi"></td>
+                <td><input type="text" name="borclununfaturabenzeribelgeninserisi"></td>
+                <td><input type="text" name="borclununfaturabenzeribelgeninsiranosu"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="degersizhalegelenalacaktutari"></td>
+                <td><input type="date" name="degersizhalegelenalacaktutartarih"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="degersizhalegelenalacakkdvsi"></td>
+              
+                <td></td>
+              </tr>
+              <tr class="degersiz">
+                <td><input type="text" name="borclununverginosu"></td>
+                <td><input type="text" name="borclununadisoyadi"></td>
+                <td><input type="date" name="borclununfaturabenzeritarihi"></td>
+                <td><input type="text" name="borclununfaturabenzeribelgeninserisi"></td>
+                <td><input type="text" name="borclununfaturabenzeribelgeninsiranosu"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="degersizhalegelenalacaktutari"></td>
+                <td><input type="date" name="degersizhalegelenalacaktutartarih"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="degersizhalegelenalacakkdvsi"></td>
+              
+                <td></td>
+              </tr>
+              <tr class="degersiz">
+                <td><input type="text" name="borclununverginosu"></td>
+                <td><input type="text" name="borclununadisoyadi"></td>
+                <td><input type="date" name="borclununfaturabenzeritarihi"></td>
+                <td><input type="text" name="borclununfaturabenzeribelgeninserisi"></td>
+                <td><input type="text" name="borclununfaturabenzeribelgeninsiranosu"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="degersizhalegelenalacaktutari"></td>
+                <td><input type="date" name="degersizhalegelenalacaktutartarih"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="degersizhalegelenalacakkdvsi"></td>
+              
+                <td></td>
+              </tr>
+              <tr class="degersiz">
+                <td><input type="text" name="borclununverginosu"></td>
+                <td><input type="text" name="borclununadisoyadi"></td>
+                <td><input type="date" name="borclununfaturabenzeritarihi"></td>
+                <td><input type="text" name="borclununfaturabenzeribelgeninserisi"></td>
+                <td><input type="text" name="borclununfaturabenzeribelgeninsiranosu"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="degersizhalegelenalacaktutari"></td>
+                <td><input type="date" name="degersizhalegelenalacaktutartarih"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="degersizhalegelenalacakkdvsi"></td>
+              
+                <td></td>
+              </tr>
+              <tr class="degersiz">
+                <td><input type="text" name="borclununverginosu"></td>
+                <td><input type="text" name="borclununadisoyadi"></td>
+                <td><input type="date" name="borclununfaturabenzeritarihi"></td>
+                <td><input type="text" name="borclununfaturabenzeribelgeninserisi"></td>
+                <td><input type="text" name="borclununfaturabenzeribelgeninsiranosu"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="degersizhalegelenalacaktutari"></td>
+                <td><input type="date" name="degersizhalegelenalacaktutartarih"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="degersizhalegelenalacakkdvsi"></td>
+              
+                <td></td>
+              </tr>
+              <tr class="degersiz">
+                <td><input type="text" name="borclununverginosu"></td>
+                <td><input type="text" name="borclununadisoyadi"></td>
+                <td><input type="date" name="borclununfaturabenzeritarihi"></td>
+                <td><input type="text" name="borclununfaturabenzeribelgeninserisi"></td>
+                <td><input type="text" name="borclununfaturabenzeribelgeninsiranosu"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="degersizhalegelenalacaktutari"></td>
+                <td><input type="date" name="degersizhalegelenalacaktutartarih"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="degersizhalegelenalacakkdvsi"></td>
+              
+                <td></td>
+              </tr>
+              <tr class="degersiz">
+                <td><input type="text" name="borclununverginosu"></td>
+                <td><input type="text" name="borclununadisoyadi"></td>
+                <td><input type="date" name="borclununfaturabenzeritarihi"></td>
+                <td><input type="text" name="borclununfaturabenzeribelgeninserisi"></td>
+                <td><input type="text" name="borclununfaturabenzeribelgeninsiranosu"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="degersizhalegelenalacaktutari"></td>
+                <td><input type="date" name="degersizhalegelenalacaktutartarih"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="degersizhalegelenalacakkdvsi"></td>
+              
+                <td></td>
+              </tr>
+              <tr class="degersiz">
+                <td><input type="text" name="borclununverginosu"></td>
+                <td><input type="text" name="borclununadisoyadi"></td>
+                <td><input type="date" name="borclununfaturabenzeritarihi"></td>
+                <td><input type="text" name="borclununfaturabenzeribelgeninserisi"></td>
+                <td><input type="text" name="borclununfaturabenzeribelgeninsiranosu"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="degersizhalegelenalacaktutari"></td>
+                <td><input type="date" name="degersizhalegelenalacaktutartarih"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="degersizhalegelenalacakkdvsi"></td>
+              
+                <td></td>
+              </tr>
+              <tr class="degersiz">
+                <td><input type="text" name="borclununverginosu"></td>
+                <td><input type="text" name="borclununadisoyadi"></td>
+                <td><input type="date" name="borclununfaturabenzeritarihi"></td>
+                <td><input type="text" name="borclununfaturabenzeribelgeninserisi"></td>
+                <td><input type="text" name="borclununfaturabenzeribelgeninsiranosu"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="degersizhalegelenalacaktutari"></td>
+                <td><input type="date" name="degersizhalegelenalacaktutartarih"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="degersizhalegelenalacakkdvsi"></td>
+              
+                <td></td>
+              </tr>
+              <tr class="degersiz">
+                <td><input type="text" name="borclununverginosu"></td>
+                <td><input type="text" name="borclununadisoyadi"></td>
+                <td><input type="date" name="borclununfaturabenzeritarihi"></td>
+                <td><input type="text" name="borclununfaturabenzeribelgeninserisi"></td>
+                <td><input type="text" name="borclununfaturabenzeribelgeninsiranosu"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="degersizhalegelenalacaktutari"></td>
+                <td><input type="date" name="degersizhalegelenalacaktutartarih"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="degersizhalegelenalacakkdvsi"></td>
+              
+                <td></td>
+              </tr>
+              <tr class="degersiz">
+                <td><input type="text" name="borclununverginosu"></td>
+                <td><input type="text" name="borclununadisoyadi"></td>
+                <td><input type="date" name="borclununfaturabenzeritarihi"></td>
+                <td><input type="text" name="borclununfaturabenzeribelgeninserisi"></td>
+                <td><input type="text" name="borclununfaturabenzeribelgeninsiranosu"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="degersizhalegelenalacaktutari"></td>
+                <td><input type="date" name="degersizhalegelenalacaktutartarih"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="degersizhalegelenalacakkdvsi"></td>
+              
+                <td></td>
+              </tr>
+              <tr class="degersiz">
+                <td><input type="text" name="borclununverginosu"></td>
+                <td><input type="text" name="borclununadisoyadi"></td>
+                <td><input type="date" name="borclununfaturabenzeritarihi"></td>
+                <td><input type="text" name="borclununfaturabenzeribelgeninserisi"></td>
+                <td><input type="text" name="borclununfaturabenzeribelgeninsiranosu"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="degersizhalegelenalacaktutari"></td>
+                <td><input type="date" name="degersizhalegelenalacaktutartarih"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="degersizhalegelenalacakkdvsi"></td>
+              
+                <td></td>
+              </tr>
+              <tr class="degersiz">
+                <td><input type="text" name="borclununverginosu"></td>
+                <td><input type="text" name="borclununadisoyadi"></td>
+                <td><input type="date" name="borclununfaturabenzeritarihi"></td>
+                <td><input type="text" name="borclununfaturabenzeribelgeninserisi"></td>
+                <td><input type="text" name="borclununfaturabenzeribelgeninsiranosu"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="degersizhalegelenalacaktutari"></td>
+                <td><input type="date" name="degersizhalegelenalacaktutartarih"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="degersizhalegelenalacakkdvsi"></td>
+              
+                <td></td>
+              </tr>
+              <tr class="degersiz">
+                <td><input type="text" name="borclununverginosu"></td>
+                <td><input type="text" name="borclununadisoyadi"></td>
+                <td><input type="date" name="borclununfaturabenzeritarihi"></td>
+                <td><input type="text" name="borclununfaturabenzeribelgeninserisi"></td>
+                <td><input type="text" name="borclununfaturabenzeribelgeninsiranosu"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="degersizhalegelenalacaktutari"></td>
+                <td><input type="date" name="degersizhalegelenalacaktutartarih"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="degersizhalegelenalacakkdvsi"></td>
+              
+                <td></td>
+              </tr>
+              <tr class="degersiz">
+                <td><input type="text" name="borclununverginosu"></td>
+                <td><input type="text" name="borclununadisoyadi"></td>
+                <td><input type="date" name="borclununfaturabenzeritarihi"></td>
+                <td><input type="text" name="borclununfaturabenzeribelgeninserisi"></td>
+                <td><input type="text" name="borclununfaturabenzeribelgeninsiranosu"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="degersizhalegelenalacaktutari"></td>
+                <td><input type="date" name="degersizhalegelenalacaktutartarih"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="degersizhalegelenalacakkdvsi"></td>
+              
+                <td></td>
+              </tr>
+              <tr class="degersiz">
+                <td><input type="text" name="borclununverginosu"></td>
+                <td><input type="text" name="borclununadisoyadi"></td>
+                <td><input type="date" name="borclununfaturabenzeritarihi"></td>
+                <td><input type="text" name="borclununfaturabenzeribelgeninserisi"></td>
+                <td><input type="text" name="borclununfaturabenzeribelgeninsiranosu"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="degersizhalegelenalacaktutari"></td>
+                <td><input type="date" name="degersizhalegelenalacaktutartarih"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="degersizhalegelenalacakkdvsi"></td>
+              
+                <td></td>
+              </tr>
+              <tr class="degersiz">
+                <td><input type="text" name="borclununverginosu"></td>
+                <td><input type="text" name="borclununadisoyadi"></td>
+                <td><input type="date" name="borclununfaturabenzeritarihi"></td>
+                <td><input type="text" name="borclununfaturabenzeribelgeninserisi"></td>
+                <td><input type="text" name="borclununfaturabenzeribelgeninsiranosu"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="degersizhalegelenalacaktutari"></td>
+                <td><input type="date" name="degersizhalegelenalacaktutartarih"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="degersizhalegelenalacakkdvsi"></td>
+              
+                <td></td>
+              </tr>
+              <tr class="degersiz">
+                <td><input type="text" name="borclununverginosu"></td>
+                <td><input type="text" name="borclununadisoyadi"></td>
+                <td><input type="date" name="borclununfaturabenzeritarihi"></td>
+                <td><input type="text" name="borclununfaturabenzeribelgeninserisi"></td>
+                <td><input type="text" name="borclununfaturabenzeribelgeninsiranosu"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="degersizhalegelenalacaktutari"></td>
+                <td><input type="date" name="degersizhalegelenalacaktutartarih"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="degersizhalegelenalacakkdvsi"></td>
+              
+                <td></td>
+              </tr>
+
+              <tr class="degersiz">
+                <td><input type="text" name="borclununverginosu"></td>
+                <td><input type="text" name="borclununadisoyadi"></td>
+                <td><input type="date" name="borclununfaturabenzeritarihi"></td>
+                <td><input type="text" name="borclununfaturabenzeribelgeninserisi"></td>
+                <td><input type="text" name="borclununfaturabenzeribelgeninsiranosu"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="degersizhalegelenalacaktutari"></td>
+                <td><input type="date" name="degersizhalegelenalacaktutartarih"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="degersizhalegelenalacakkdvsi"></td>
+              
+                <td></td>
+              </tr>
+              <tr class="degersiz">
+                <td><input type="text" name="borclununverginosu"></td>
+                <td><input type="text" name="borclununadisoyadi"></td>
+                <td><input type="date" name="borclununfaturabenzeritarihi"></td>
+                <td><input type="text" name="borclununfaturabenzeribelgeninserisi"></td>
+                <td><input type="text" name="borclununfaturabenzeribelgeninsiranosu"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="degersizhalegelenalacaktutari"></td>
+                <td><input type="date" name="degersizhalegelenalacaktutartarih"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="degersizhalegelenalacakkdvsi"></td>
+              
+                <td></td>
+              </tr>
+              <tr class="degersiz">
+                <td><input type="text" name="borclununverginosu"></td>
+                <td><input type="text" name="borclununadisoyadi"></td>
+                <td><input type="date" name="borclununfaturabenzeritarihi"></td>
+                <td><input type="text" name="borclununfaturabenzeribelgeninserisi"></td>
+                <td><input type="text" name="borclununfaturabenzeribelgeninsiranosu"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="degersizhalegelenalacaktutari"></td>
+                <td><input type="date" name="degersizhalegelenalacaktutartarih"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="degersizhalegelenalacakkdvsi"></td>
+              
+                <td></td>
+              </tr>
+              <tr class="degersiz">
+                <td><input type="text" name="borclununverginosu"></td>
+                <td><input type="text" name="borclununadisoyadi"></td>
+                <td><input type="date" name="borclununfaturabenzeritarihi"></td>
+                <td><input type="text" name="borclununfaturabenzeribelgeninserisi"></td>
+                <td><input type="text" name="borclununfaturabenzeribelgeninsiranosu"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="degersizhalegelenalacaktutari"></td>
+                <td><input type="date" name="degersizhalegelenalacaktutartarih"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="degersizhalegelenalacakkdvsi"></td>
+              
+                <td></td>
+              </tr>
+              <tr class="degersiz">
+                <td><input type="text" name="borclununverginosu"></td>
+                <td><input type="text" name="borclununadisoyadi"></td>
+                <td><input type="date" name="borclununfaturabenzeritarihi"></td>
+                <td><input type="text" name="borclununfaturabenzeribelgeninserisi"></td>
+                <td><input type="text" name="borclununfaturabenzeribelgeninsiranosu"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="degersizhalegelenalacaktutari"></td>
+                <td><input type="date" name="degersizhalegelenalacaktutartarih"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="degersizhalegelenalacakkdvsi"></td>
+              
+                <td></td>
+              </tr>
+              <tr class="degersiz">
+                <td><input type="text" name="borclununverginosu"></td>
+                <td><input type="text" name="borclununadisoyadi"></td>
+                <td><input type="date" name="borclununfaturabenzeritarihi"></td>
+                <td><input type="text" name="borclununfaturabenzeribelgeninserisi"></td>
+                <td><input type="text" name="borclununfaturabenzeribelgeninsiranosu"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="degersizhalegelenalacaktutari"></td>
+                <td><input type="date" name="degersizhalegelenalacaktutartarih"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="degersizhalegelenalacakkdvsi"></td>
+              
+                <td></td>
+              </tr>
+              <tr class="degersiz">
+                <td><input type="text" name="borclununverginosu"></td>
+                <td><input type="text" name="borclununadisoyadi"></td>
+                <td><input type="date" name="borclununfaturabenzeritarihi"></td>
+                <td><input type="text" name="borclununfaturabenzeribelgeninserisi"></td>
+                <td><input type="text" name="borclununfaturabenzeribelgeninsiranosu"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="degersizhalegelenalacaktutari"></td>
+                <td><input type="date" name="degersizhalegelenalacaktutartarih"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="degersizhalegelenalacakkdvsi"></td>
+              
+                <td></td>
+              </tr>
+              <tr class="degersiz">
+                <td><input type="text" name="borclununverginosu"></td>
+                <td><input type="text" name="borclununadisoyadi"></td>
+                <td><input type="date" name="borclununfaturabenzeritarihi"></td>
+                <td><input type="text" name="borclununfaturabenzeribelgeninserisi"></td>
+                <td><input type="text" name="borclununfaturabenzeribelgeninsiranosu"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="degersizhalegelenalacaktutari"></td>
+                <td><input type="date" name="degersizhalegelenalacaktutartarih"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="degersizhalegelenalacakkdvsi"></td>
+              
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="container tablo" style="margin-top: 0px !important;">
+        <input class="col-12" disabled value="107 KOD NUMARALI SATIR ARACILIĞIYLA İNDİRİM KONUSU YAPILAN KDV ALACAĞININ DÖNEMİ" type="text">
+        <div class="table-responsive " style=" 
+        height: 344px;
+        overflow: auto;">
+          <table class="table table-bordered ">
+            <thead style="position: sticky;top: 0">
+              <tr>
+                <th class="text-center" style="min-width: 100px ;">Faturanın Düzenlendiği Ay</th>
+                <th class="text-center" style="min-width: 50px ;">Faturanın Düzenlendiği Yıl</th>
+                <th class="text-center" style="min-width: 150px ;">Yıl İlgili Ayda Düzenlenen Faturaların Toplam KDV Tutarı</th>
+                <th class="text-center" style="min-width: 150px ;">Indirim Konusu Yapılan KDV Tutarı</th>
+                <th class="text-center" style="min-width: 150px ;"><a href="javascript:void(0);" onclick="ekleYeniSatirindiirmkonusukdv()">SATIR EKLE</a></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="indiirmkonusu">
+                <td><select name="faturaaysecimi" id="">
+                  <option value="OCAK">OCAK</option>
+                  <option value="ŞUBAT">ŞUBAT</option>
+                  <option value="MART">MART</option>
+                  <option value="NİSAN">NİSAN</option>
+                  <option value="MAYIS">MAYIS</option>
+                  <option value="HAZİRAN">HAZİRAN</option>
+                  <option value="TEMMUZ">TEMMUZ</option>
+                  <option value="AĞUSTOS">AĞUSTOS</option>
+                  <option value="EYLÜL">EYLÜL</option>
+                  <option value="EKİM">EKİM</option>
+                  <option value="KASIM">KASIM</option>
+                  <option value="ARALIK">ARALIK</option>
+                </select></td>
+                <td><input type="number" name="faturayili" value="2023"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="faturatoplamkdvtutari"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="indirimkonusuyapilankdvtutari"></td>
+              
+                <td></td>
+              </tr>
+              <tr class="indiirmkonusu">
+                <td><select name="faturaaysecimi" id="">
+                  <option value="OCAK">OCAK</option>
+                  <option value="ŞUBAT">ŞUBAT</option>
+                  <option value="MART">MART</option>
+                  <option value="NİSAN">NİSAN</option>
+                  <option value="MAYIS">MAYIS</option>
+                  <option value="HAZİRAN">HAZİRAN</option>
+                  <option value="TEMMUZ">TEMMUZ</option>
+                  <option value="AĞUSTOS">AĞUSTOS</option>
+                  <option value="EYLÜL">EYLÜL</option>
+                  <option value="EKİM">EKİM</option>
+                  <option value="KASIM">KASIM</option>
+                  <option value="ARALIK">ARALIK</option>
+                </select></td>
+                <td><input type="number" name="faturayili" value="2023"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="faturatoplamkdvtutari"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="indirimkonusuyapilankdvtutari"></td>
+              
+                <td></td>
+              </tr>
+              <tr class="indiirmkonusu">
+                <td><select name="faturaaysecimi" id="">
+                  <option value="OCAK">OCAK</option>
+                  <option value="ŞUBAT">ŞUBAT</option>
+                  <option value="MART">MART</option>
+                  <option value="NİSAN">NİSAN</option>
+                  <option value="MAYIS">MAYIS</option>
+                  <option value="HAZİRAN">HAZİRAN</option>
+                  <option value="TEMMUZ">TEMMUZ</option>
+                  <option value="AĞUSTOS">AĞUSTOS</option>
+                  <option value="EYLÜL">EYLÜL</option>
+                  <option value="EKİM">EKİM</option>
+                  <option value="KASIM">KASIM</option>
+                  <option value="ARALIK">ARALIK</option>
+                </select></td>
+                <td><input type="number" name="faturayili" value="2023"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="faturatoplamkdvtutari"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="indirimkonusuyapilankdvtutari"></td>
+              
+                <td></td>
+              </tr>
+              <tr class="indiirmkonusu">
+                <td><select name="faturaaysecimi" id="">
+                  <option value="OCAK">OCAK</option>
+                  <option value="ŞUBAT">ŞUBAT</option>
+                  <option value="MART">MART</option>
+                  <option value="NİSAN">NİSAN</option>
+                  <option value="MAYIS">MAYIS</option>
+                  <option value="HAZİRAN">HAZİRAN</option>
+                  <option value="TEMMUZ">TEMMUZ</option>
+                  <option value="AĞUSTOS">AĞUSTOS</option>
+                  <option value="EYLÜL">EYLÜL</option>
+                  <option value="EKİM">EKİM</option>
+                  <option value="KASIM">KASIM</option>
+                  <option value="ARALIK">ARALIK</option>
+                </select></td>
+                <td><input type="number" name="faturayili" value="2023"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="faturatoplamkdvtutari"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="indirimkonusuyapilankdvtutari"></td>
+              
+                <td></td>
+              </tr>
+              <tr class="indiirmkonusu">
+                <td><select name="faturaaysecimi" id="">
+                  <option value="OCAK">OCAK</option>
+                  <option value="ŞUBAT">ŞUBAT</option>
+                  <option value="MART">MART</option>
+                  <option value="NİSAN">NİSAN</option>
+                  <option value="MAYIS">MAYIS</option>
+                  <option value="HAZİRAN">HAZİRAN</option>
+                  <option value="TEMMUZ">TEMMUZ</option>
+                  <option value="AĞUSTOS">AĞUSTOS</option>
+                  <option value="EYLÜL">EYLÜL</option>
+                  <option value="EKİM">EKİM</option>
+                  <option value="KASIM">KASIM</option>
+                  <option value="ARALIK">ARALIK</option>
+                </select></td>
+                <td><input type="number" name="faturayili" value="2023"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="faturatoplamkdvtutari"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="indirimkonusuyapilankdvtutari"></td>
+              
+                <td></td>
+              </tr>
+              <tr class="indiirmkonusu">
+                <td><select name="faturaaysecimi" id="">
+                  <option value="OCAK">OCAK</option>
+                  <option value="ŞUBAT">ŞUBAT</option>
+                  <option value="MART">MART</option>
+                  <option value="NİSAN">NİSAN</option>
+                  <option value="MAYIS">MAYIS</option>
+                  <option value="HAZİRAN">HAZİRAN</option>
+                  <option value="TEMMUZ">TEMMUZ</option>
+                  <option value="AĞUSTOS">AĞUSTOS</option>
+                  <option value="EYLÜL">EYLÜL</option>
+                  <option value="EKİM">EKİM</option>
+                  <option value="KASIM">KASIM</option>
+                  <option value="ARALIK">ARALIK</option>
+                </select></td>
+                <td><input type="number" name="faturayili" value="2023"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="faturatoplamkdvtutari"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="indirimkonusuyapilankdvtutari"></td>
+              
+                <td></td>
+              </tr>
+              <tr class="indiirmkonusu">
+                <td><select name="faturaaysecimi" id="">
+                  <option value="OCAK">OCAK</option>
+                  <option value="ŞUBAT">ŞUBAT</option>
+                  <option value="MART">MART</option>
+                  <option value="NİSAN">NİSAN</option>
+                  <option value="MAYIS">MAYIS</option>
+                  <option value="HAZİRAN">HAZİRAN</option>
+                  <option value="TEMMUZ">TEMMUZ</option>
+                  <option value="AĞUSTOS">AĞUSTOS</option>
+                  <option value="EYLÜL">EYLÜL</option>
+                  <option value="EKİM">EKİM</option>
+                  <option value="KASIM">KASIM</option>
+                  <option value="ARALIK">ARALIK</option>
+                </select></td>
+                <td><input type="number" name="faturayili" value="2023"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="faturatoplamkdvtutari"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="indirimkonusuyapilankdvtutari"></td>
+              
+                <td></td>
+              </tr>
+              <tr class="indiirmkonusu">
+                <td><select name="faturaaysecimi" id="">
+                  <option value="OCAK">OCAK</option>
+                  <option value="ŞUBAT">ŞUBAT</option>
+                  <option value="MART">MART</option>
+                  <option value="NİSAN">NİSAN</option>
+                  <option value="MAYIS">MAYIS</option>
+                  <option value="HAZİRAN">HAZİRAN</option>
+                  <option value="TEMMUZ">TEMMUZ</option>
+                  <option value="AĞUSTOS">AĞUSTOS</option>
+                  <option value="EYLÜL">EYLÜL</option>
+                  <option value="EKİM">EKİM</option>
+                  <option value="KASIM">KASIM</option>
+                  <option value="ARALIK">ARALIK</option>
+                </select></td>
+                <td><input type="number" name="faturayili" value="2023"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="faturatoplamkdvtutari"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="indirimkonusuyapilankdvtutari"></td>
+              
+                <td></td>
+              </tr>
+              <tr class="indiirmkonusu">
+                <td><select name="faturaaysecimi" id="">
+                  <option value="OCAK">OCAK</option>
+                  <option value="ŞUBAT">ŞUBAT</option>
+                  <option value="MART">MART</option>
+                  <option value="NİSAN">NİSAN</option>
+                  <option value="MAYIS">MAYIS</option>
+                  <option value="HAZİRAN">HAZİRAN</option>
+                  <option value="TEMMUZ">TEMMUZ</option>
+                  <option value="AĞUSTOS">AĞUSTOS</option>
+                  <option value="EYLÜL">EYLÜL</option>
+                  <option value="EKİM">EKİM</option>
+                  <option value="KASIM">KASIM</option>
+                  <option value="ARALIK">ARALIK</option>
+                </select></td>
+                <td><input type="number" name="faturayili" value="2023"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="faturatoplamkdvtutari"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="indirimkonusuyapilankdvtutari"></td>
+              
+                <td></td>
+              </tr>
+              <tr class="indiirmkonusu">
+                <td><select name="faturaaysecimi" id="">
+                  <option value="OCAK">OCAK</option>
+                  <option value="ŞUBAT">ŞUBAT</option>
+                  <option value="MART">MART</option>
+                  <option value="NİSAN">NİSAN</option>
+                  <option value="MAYIS">MAYIS</option>
+                  <option value="HAZİRAN">HAZİRAN</option>
+                  <option value="TEMMUZ">TEMMUZ</option>
+                  <option value="AĞUSTOS">AĞUSTOS</option>
+                  <option value="EYLÜL">EYLÜL</option>
+                  <option value="EKİM">EKİM</option>
+                  <option value="KASIM">KASIM</option>
+                  <option value="ARALIK">ARALIK</option>
+                </select></td>
+                <td><input type="number" name="faturayili" value="2023"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="faturatoplamkdvtutari"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="indirimkonusuyapilankdvtutari"></td>
+              
+                <td></td>
+              </tr>
+              <tr class="indiirmkonusu">
+                <td><select name="faturaaysecimi" id="">
+                  <option value="OCAK">OCAK</option>
+                  <option value="ŞUBAT">ŞUBAT</option>
+                  <option value="MART">MART</option>
+                  <option value="NİSAN">NİSAN</option>
+                  <option value="MAYIS">MAYIS</option>
+                  <option value="HAZİRAN">HAZİRAN</option>
+                  <option value="TEMMUZ">TEMMUZ</option>
+                  <option value="AĞUSTOS">AĞUSTOS</option>
+                  <option value="EYLÜL">EYLÜL</option>
+                  <option value="EKİM">EKİM</option>
+                  <option value="KASIM">KASIM</option>
+                  <option value="ARALIK">ARALIK</option>
+                </select></td>
+                <td><input type="number" name="faturayili" value="2023"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="faturatoplamkdvtutari"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="indirimkonusuyapilankdvtutari"></td>
+              
+                <td></td>
+              </tr>
+              <tr class="indiirmkonusu">
+                <td><select name="faturaaysecimi" id="">
+                  <option value="OCAK">OCAK</option>
+                  <option value="ŞUBAT">ŞUBAT</option>
+                  <option value="MART">MART</option>
+                  <option value="NİSAN">NİSAN</option>
+                  <option value="MAYIS">MAYIS</option>
+                  <option value="HAZİRAN">HAZİRAN</option>
+                  <option value="TEMMUZ">TEMMUZ</option>
+                  <option value="AĞUSTOS">AĞUSTOS</option>
+                  <option value="EYLÜL">EYLÜL</option>
+                  <option value="EKİM">EKİM</option>
+                  <option value="KASIM">KASIM</option>
+                  <option value="ARALIK">ARALIK</option>
+                </select></td>
+                <td><input type="number" name="faturayili" value="2023"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="faturatoplamkdvtutari"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="indirimkonusuyapilankdvtutari"></td>
+              
+                <td></td>
+              </tr>
+              <tr class="indiirmkonusu">
+                <td><select name="faturaaysecimi" id="">
+                  <option value="OCAK">OCAK</option>
+                  <option value="ŞUBAT">ŞUBAT</option>
+                  <option value="MART">MART</option>
+                  <option value="NİSAN">NİSAN</option>
+                  <option value="MAYIS">MAYIS</option>
+                  <option value="HAZİRAN">HAZİRAN</option>
+                  <option value="TEMMUZ">TEMMUZ</option>
+                  <option value="AĞUSTOS">AĞUSTOS</option>
+                  <option value="EYLÜL">EYLÜL</option>
+                  <option value="EKİM">EKİM</option>
+                  <option value="KASIM">KASIM</option>
+                  <option value="ARALIK">ARALIK</option>
+                </select></td>
+                <td><input type="number" name="faturayili" value="2023"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="faturatoplamkdvtutari"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="indirimkonusuyapilankdvtutari"></td>
+              
+                <td></td>
+              </tr>
+              <tr class="indiirmkonusu">
+                <td><select name="faturaaysecimi" id="">
+                  <option value="OCAK">OCAK</option>
+                  <option value="ŞUBAT">ŞUBAT</option>
+                  <option value="MART">MART</option>
+                  <option value="NİSAN">NİSAN</option>
+                  <option value="MAYIS">MAYIS</option>
+                  <option value="HAZİRAN">HAZİRAN</option>
+                  <option value="TEMMUZ">TEMMUZ</option>
+                  <option value="AĞUSTOS">AĞUSTOS</option>
+                  <option value="EYLÜL">EYLÜL</option>
+                  <option value="EKİM">EKİM</option>
+                  <option value="KASIM">KASIM</option>
+                  <option value="ARALIK">ARALIK</option>
+                </select></td>
+                <td><input type="number" name="faturayili" value="2023"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="faturatoplamkdvtutari"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="indirimkonusuyapilankdvtutari"></td>
+              
+                <td></td>
+              </tr>
+              <tr class="indiirmkonusu">
+                <td><select name="faturaaysecimi" id="">
+                  <option value="OCAK">OCAK</option>
+                  <option value="ŞUBAT">ŞUBAT</option>
+                  <option value="MART">MART</option>
+                  <option value="NİSAN">NİSAN</option>
+                  <option value="MAYIS">MAYIS</option>
+                  <option value="HAZİRAN">HAZİRAN</option>
+                  <option value="TEMMUZ">TEMMUZ</option>
+                  <option value="AĞUSTOS">AĞUSTOS</option>
+                  <option value="EYLÜL">EYLÜL</option>
+                  <option value="EKİM">EKİM</option>
+                  <option value="KASIM">KASIM</option>
+                  <option value="ARALIK">ARALIK</option>
+                </select></td>
+                <td><input type="number" name="faturayili" value="2023"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="faturatoplamkdvtutari"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="indirimkonusuyapilankdvtutari"></td>
+              
+                <td></td>
+              </tr>
+              <tr class="indiirmkonusu">
+                <td><select name="faturaaysecimi" id="">
+                  <option value="OCAK">OCAK</option>
+                  <option value="ŞUBAT">ŞUBAT</option>
+                  <option value="MART">MART</option>
+                  <option value="NİSAN">NİSAN</option>
+                  <option value="MAYIS">MAYIS</option>
+                  <option value="HAZİRAN">HAZİRAN</option>
+                  <option value="TEMMUZ">TEMMUZ</option>
+                  <option value="AĞUSTOS">AĞUSTOS</option>
+                  <option value="EYLÜL">EYLÜL</option>
+                  <option value="EKİM">EKİM</option>
+                  <option value="KASIM">KASIM</option>
+                  <option value="ARALIK">ARALIK</option>
+                </select></td>
+                <td><input type="number" name="faturayili" value="2023"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="faturatoplamkdvtutari"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="indirimkonusuyapilankdvtutari"></td>
+              
+                <td></td>
+              </tr>
+              <tr class="indiirmkonusu">
+                <td><select name="faturaaysecimi" id="">
+                  <option value="OCAK">OCAK</option>
+                  <option value="ŞUBAT">ŞUBAT</option>
+                  <option value="MART">MART</option>
+                  <option value="NİSAN">NİSAN</option>
+                  <option value="MAYIS">MAYIS</option>
+                  <option value="HAZİRAN">HAZİRAN</option>
+                  <option value="TEMMUZ">TEMMUZ</option>
+                  <option value="AĞUSTOS">AĞUSTOS</option>
+                  <option value="EYLÜL">EYLÜL</option>
+                  <option value="EKİM">EKİM</option>
+                  <option value="KASIM">KASIM</option>
+                  <option value="ARALIK">ARALIK</option>
+                </select></td>
+                <td><input type="number" name="faturayili" value="2023"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="faturatoplamkdvtutari"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="indirimkonusuyapilankdvtutari"></td>
+              
+                <td></td>
+              </tr>
+              <tr class="indiirmkonusu">
+                <td><select name="faturaaysecimi" id="">
+                  <option value="OCAK">OCAK</option>
+                  <option value="ŞUBAT">ŞUBAT</option>
+                  <option value="MART">MART</option>
+                  <option value="NİSAN">NİSAN</option>
+                  <option value="MAYIS">MAYIS</option>
+                  <option value="HAZİRAN">HAZİRAN</option>
+                  <option value="TEMMUZ">TEMMUZ</option>
+                  <option value="AĞUSTOS">AĞUSTOS</option>
+                  <option value="EYLÜL">EYLÜL</option>
+                  <option value="EKİM">EKİM</option>
+                  <option value="KASIM">KASIM</option>
+                  <option value="ARALIK">ARALIK</option>
+                </select></td>
+                <td><input type="number" name="faturayili" value="2023"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="faturatoplamkdvtutari"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="indirimkonusuyapilankdvtutari"></td>
+              
+                <td></td>
+              </tr>
+              <tr class="indiirmkonusu">
+                <td><select name="faturaaysecimi" id="">
+                  <option value="OCAK">OCAK</option>
+                  <option value="ŞUBAT">ŞUBAT</option>
+                  <option value="MART">MART</option>
+                  <option value="NİSAN">NİSAN</option>
+                  <option value="MAYIS">MAYIS</option>
+                  <option value="HAZİRAN">HAZİRAN</option>
+                  <option value="TEMMUZ">TEMMUZ</option>
+                  <option value="AĞUSTOS">AĞUSTOS</option>
+                  <option value="EYLÜL">EYLÜL</option>
+                  <option value="EKİM">EKİM</option>
+                  <option value="KASIM">KASIM</option>
+                  <option value="ARALIK">ARALIK</option>
+                </select></td>
+                <td><input type="number" name="faturayili" value="2023"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="faturatoplamkdvtutari"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="indirimkonusuyapilankdvtutari"></td>
+              
+                <td></td>
+              </tr>
+              <tr class="indiirmkonusu">
+                <td><select name="faturaaysecimi" id="">
+                  <option value="OCAK">OCAK</option>
+                  <option value="ŞUBAT">ŞUBAT</option>
+                  <option value="MART">MART</option>
+                  <option value="NİSAN">NİSAN</option>
+                  <option value="MAYIS">MAYIS</option>
+                  <option value="HAZİRAN">HAZİRAN</option>
+                  <option value="TEMMUZ">TEMMUZ</option>
+                  <option value="AĞUSTOS">AĞUSTOS</option>
+                  <option value="EYLÜL">EYLÜL</option>
+                  <option value="EKİM">EKİM</option>
+                  <option value="KASIM">KASIM</option>
+                  <option value="ARALIK">ARALIK</option>
+                </select></td>
+                <td><input type="number" name="faturayili" value="2023"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="faturatoplamkdvtutari"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="indirimkonusuyapilankdvtutari"></td>
+              
+                <td></td>
+              </tr>
+              <tr class="indiirmkonusu">
+                <td><select name="faturaaysecimi" id="">
+                  <option value="OCAK">OCAK</option>
+                  <option value="ŞUBAT">ŞUBAT</option>
+                  <option value="MART">MART</option>
+                  <option value="NİSAN">NİSAN</option>
+                  <option value="MAYIS">MAYIS</option>
+                  <option value="HAZİRAN">HAZİRAN</option>
+                  <option value="TEMMUZ">TEMMUZ</option>
+                  <option value="AĞUSTOS">AĞUSTOS</option>
+                  <option value="EYLÜL">EYLÜL</option>
+                  <option value="EKİM">EKİM</option>
+                  <option value="KASIM">KASIM</option>
+                  <option value="ARALIK">ARALIK</option>
+                </select></td>
+                <td><input type="number" name="faturayili" value="2023"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="faturatoplamkdvtutari"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="indirimkonusuyapilankdvtutari"></td>
+              
+                <td></td>
+              </tr>
+              <tr class="indiirmkonusu">
+                <td><select name="faturaaysecimi" id="">
+                  <option value="OCAK">OCAK</option>
+                  <option value="ŞUBAT">ŞUBAT</option>
+                  <option value="MART">MART</option>
+                  <option value="NİSAN">NİSAN</option>
+                  <option value="MAYIS">MAYIS</option>
+                  <option value="HAZİRAN">HAZİRAN</option>
+                  <option value="TEMMUZ">TEMMUZ</option>
+                  <option value="AĞUSTOS">AĞUSTOS</option>
+                  <option value="EYLÜL">EYLÜL</option>
+                  <option value="EKİM">EKİM</option>
+                  <option value="KASIM">KASIM</option>
+                  <option value="ARALIK">ARALIK</option>
+                </select></td>
+                <td><input type="number" name="faturayili" value="2023"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="faturatoplamkdvtutari"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="indirimkonusuyapilankdvtutari"></td>
+              
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
       <hr style="border: 2px solid black !important;" >
   </div>
 </div>
@@ -7265,6 +8149,32 @@
 
     if (elements[c]) {
         elements[c].classList.remove('tasinmaz');
+    } else {
+        console.error("Ürün Sınırına Ulaştınız");
+    }
+
+    yeniselect();
+  }
+  let v = 0;
+  function ekleYeniSatirdegersiz() {
+    
+    var elements = document.getElementsByClassName('degersiz');
+
+    if (elements[v]) {
+        elements[v].classList.remove('degersiz');
+    } else {
+        console.error("Ürün Sınırına Ulaştınız");
+    }
+
+    yeniselect();
+  }
+  let b = 0;
+  function ekleYeniSatirindiirmkonusukdv() {
+    
+    var elements = document.getElementsByClassName('indiirmkonusu');
+
+    if (elements[b]) {
+        elements[b].classList.remove('indiirmkonusu');
     } else {
         console.error("Ürün Sınırına Ulaştınız");
     }

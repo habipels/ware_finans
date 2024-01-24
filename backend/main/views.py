@@ -5584,6 +5584,22 @@ def kdv1_beyannamesi(request,slug):
         satisfaturasisayisi = request.POST.getlist("satisfaturasisayisi")
         satisfaturasitarihi = request.POST.getlist("satisfaturasitarihi")
         #3065 Sayılı Kanun 13/i Maddesindeki İstisna Kapsamında Yapılan Teslimlere İlişkin Bildirim
+        #DEĞERSİZ HALE GELEN ALACAKLARA İLİŞKİN BİLDİRİM
+        borclununverginosu = request.POST.getlist("borclununverginosu")
+        borclununadisoyadi = request.POST.getlist("borclununadisoyadi")
+        borclununfaturabenzeritarihi = request.POST.getlist("borclununfaturabenzeritarihi")
+        borclununfaturabenzeribelgeninserisi = request.POST.getlist("borclununfaturabenzeribelgeninserisi")
+        borclununfaturabenzeribelgeninsiranosu = request.POST.getlist("borclununfaturabenzeribelgeninsiranosu")
+        degersizhalegelenalacaktutari = request.POST.getlist("degersizhalegelenalacaktutari")
+        degersizhalegelenalacakkdvsi = request.POST.getlist("degersizhalegelenalacakkdvsi")
+        degersizhalegelenalacaktutartarih = request.POST.getlist("degersizhalegelenalacaktutartarih")
+        #DEĞERSİZ HALE GELEN ALACAKLARA İLİŞKİN BİLDİRİM
+        #107 KOD NUMARALI SATIR ARACILIĞIYLA İNDİRİM KONUSU YAPILAN KDV ALACAĞININ DÖNEMİ
+        faturaaysecimi = request.POST.getlist("faturaaysecimi")
+        faturayili = request.POST.getlist("faturayili")
+        faturatoplamkdvtutari = request.POST.getlist("faturatoplamkdvtutari")
+        indirimkonusuyapilankdvtutari = request.POST.getlist("indirimkonusuyapilankdvtutari")
+        #107 KOD NUMARALI SATIR ARACILIĞIYLA İNDİRİM KONUSU YAPILAN KDV ALACAĞININ DÖNEMİ
     return render(request,"beyannameler/kdv1_beyanname.html",content)
 
 #kdv1
