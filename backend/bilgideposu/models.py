@@ -1877,24 +1877,31 @@ class matrah_bildirimi_digerislemleri(models.Model):
     bagli_oldugu_firma = models.ForeignKey(firma,blank=True,null=True,on_delete=models.SET_NULL)
     bagli_oldugu_beyanname = models.ForeignKey(kdv1_beyannamesi_bilgileri,blank=True,null=True,on_delete=models.SET_NULL)
     #Türkiye'de İkamet Etmeyenlere KDV Hesaplanarak Yapılan Satışlar (Yolcu Beraberi Eşya)[KDVGUT - (II/A-5)]
+    bilgi = models.CharField(max_length = 200 ,verbose_name = "Açıklama" ,blank = True,null = True)
     matrah1 = models.FloatField(verbose_name = "Matrah",default = 0)
     vergi1 = models.FloatField(verbose_name = "Vergi",default = 0)
     #Amortismana Tabi Sabt Kymet (Taşımaz, Taşıt Araçlan, Demirbaş, Makine ve Teçhizat vb.) Satışları
+    bilgi2 = models.CharField(max_length = 200 ,verbose_name = "Açıklama" ,blank = True,null = True)
     matrah2 = models.FloatField(verbose_name = "Matrah",default = 0)
     vergi2 = models.FloatField(verbose_name = "Vergi",default = 0)
     #Amortismana Tabi Sabt Kymet (Taşımaz, Taşıt Araçlan, Demirbaş, Makine ve Teçhizat vb.) Satışları
+    bilgi3 = models.CharField(max_length = 200 ,verbose_name = "Açıklama" ,blank = True,null = True)
     matrah3 = models.FloatField(verbose_name = "Matrah",default = 0)
     vergi3 = models.FloatField(verbose_name = "Vergi",default = 0)  
     #Amortismana Tabi Sabt Kymet (Taşımaz, Taşıt Araçlan, Demirbaş, Makine ve Teçhizat vb.) Satışları
+    bilgi4 = models.CharField(max_length = 200 ,verbose_name = "Açıklama" ,blank = True,null = True)
     matrah4 = models.FloatField(verbose_name = "Matrah",default = 0)
     vergi4 = models.FloatField(verbose_name = "Vergi",default = 0)  
     #Alınan Malları İadesi, Gerçekleşmeyen İşlemler
+    bilgi5 = models.CharField(max_length = 200 ,verbose_name = "Açıklama" ,blank = True,null = True)
     matrah5 = models.FloatField(verbose_name = "Matrah",default = 0)
     vergi5 = models.FloatField(verbose_name = "Vergi",default = 0)  
     #Diğerleri, maddesinden önce VUK 322 Kapsamna Gren Borçlara At KDV
+    bilgi6 = models.CharField(max_length = 200 ,verbose_name = "Açıklama" ,blank = True,null = True)
     matrah6 = models.FloatField(verbose_name = "Matrah",default = 0)
     vergi6 = models.FloatField(verbose_name = "Vergi",default = 0)  
     #Diğerleri
+    bilgi7 = models.CharField(max_length = 200 ,verbose_name = "Açıklama" ,blank = True,null = True)
     matrah7 = models.FloatField(verbose_name = "Matrah",default = 0)
     vergi7 = models.FloatField(verbose_name = "Vergi",default = 0)  
 

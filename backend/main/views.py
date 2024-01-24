@@ -5288,71 +5288,91 @@ def kdv1_beyannamesi(request,slug):
                 kdv2 = kdv10,vergi2 = vergi11
             )
             #TEVKİFAT UYGULANMAYAN İŞLEMLER
-            #KISMİ TEVKİFAT UYGULANAN İŞLEMLER
-            secimtevkifat14 = request.POST.get("secimtevkifat14")
-            matrah14 = request.POST.get("matrah14")
-            kdv14 = request.POST.get("kdv14")
-            tevkifat14 = request.POST.get("tevkifat14")
-            vergi15 = request.POST.get("vergi15")
-            secimtevkifat16 = request.POST.get("secimtevkifat16")
-            matrah16 = request.POST.get("matrah16")
-            kdv16 = request.POST.get("kdv16")
-            tevkifat16 = request.POST.get("tevkifat16")
-            vergi17 = request.POST.get("vergi17")
-            secimtevkifat18 = request.POST.get("secimtevkifat18")
-            matrah18 = request.POST.get("matrah18")
-            kdv18 = request.POST.get("kdv18")
-            tevkifat18 = request.POST.get("tevkifat18")
-            vergi19 = request.POST.get("vergi19")
-            secimtevkifat20 = request.POST.get("secimtevkifat20")
-            matrah20 = request.POST.get("matrah20")
-            kdv20 = request.POST.get("kdv20")
-            tevkifat20 = request.POST.get("tevkifat20")
-            vergi21 = request.POST.get("vergi21")
-            matrah_bildirimi_kismi_tevkifatuygulanmayanislemler.objects.create(
-                bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),
-                bagli_oldugu_beyanname = get_object_or_404(kdv1_beyannamesi_bilgileri,id = beyanname_bilgisi.id),
-                islem_turu = get_object_or_none(tevkifat_tur_kodu, id=secimtevkifat14),
-                matrah = matrah14,kdv = kdv14,vergi = vergi15,tevkifatorani = tevkifat14,
-                islem_turu1 = get_object_or_none(tevkifat_tur_kodu, id=secimtevkifat16),
-                matrah1 = matrah16,kdv1 = kdv16,vergi1 = vergi17,tevkifatorani1 = tevkifat16,
-                islem_turu2 = get_object_or_none(tevkifat_tur_kodu, id=secimtevkifat18),
-                matrah2 = matrah18,kdv2 = kdv18,vergi2 = vergi19,tevkifatorani2 = tevkifat18,
-                islem_turu3 = get_object_or_none(tevkifat_tur_kodu, id=secimtevkifat20),
-                matrah3 = matrah20,kdv3 = kdv20,vergi3 = vergi21,tevkifatorani3 = tevkifat20
-            )
-        #KISMİ TEVKİFAT UYGULANAN İŞLEMLER
-        # DİĞER İŞLEMLER
-        bigi1 = request.POST.get("bigi1")
-        matrah22 = request.POST.get("matrah22")
-        vergi23 = request.POST.get("vergi23")
-        bigi2 = request.POST.get("bigi2")
-        matrah24 = request.POST.get("matrah24")
-        vergi25 = request.POST.get("vergi25")
-        bigi3 = request.POST.get("bigi3")
-        matrahbenzer1 = request.POST.get("matrahbenzer1")
-        vergibenzer1 = request.POST.get("vergibenzer1")
-        bigi4 = request.POST.get("bigi4")
-        matrahbenzer2 = request.POST.get("matrahbenzer2")
-        vergibenzer2 = request.POST.get("vergibenzer2")
-        bigi5 = request.POST.get("bigi5")
-        matrah94 = request.POST.get("matrah94")
-        vergi95 = request.POST.get("vergi95")
-        bigi6 = request.POST.get("bigi6")
-        matrahnumarasiz = request.POST.get("matrahnumarasiz")
-        verginumarasiz = request.POST.get("verginumarasiz")
-        bigi7 = request.POST.get("bigi7")
-        matrah26 = request.POST.get("matrah26")
-        vergi27 = request.POST.get("vergi27")
-        # DİĞER İŞLEMLER
-        #İSTEĞE BAĞLI TAM TEVKİFAT UYGULANAN İŞLEMLER
-        istege_baglitevkat = request.POST.getlist("istege_baglitevkat")
-        istegebaglimatrah = request.POST.getlist("istegebaglimatrah")
-        istebaglikdv = request.POST.getlist("istebaglikdv")
-        istebaglivergi = request.POST.getlist("istebaglivergi")
-        #toplam 
-        indirimkdvsi = request.POST.get("indirimkdvsi")
-        #İSTEĞE BAĞLI TAM TEVKİFAT UYGULANAN İŞLEMLER
+            if True:
+                #KISMİ TEVKİFAT UYGULANAN İŞLEMLER
+                secimtevkifat14 = request.POST.get("secimtevkifat14")
+                matrah14 = request.POST.get("matrah14")
+                kdv14 = request.POST.get("kdv14")
+                tevkifat14 = request.POST.get("tevkifat14")
+                vergi15 = request.POST.get("vergi15")
+                secimtevkifat16 = request.POST.get("secimtevkifat16")
+                matrah16 = request.POST.get("matrah16")
+                kdv16 = request.POST.get("kdv16")
+                tevkifat16 = request.POST.get("tevkifat16")
+                vergi17 = request.POST.get("vergi17")
+                secimtevkifat18 = request.POST.get("secimtevkifat18")
+                matrah18 = request.POST.get("matrah18")
+                kdv18 = request.POST.get("kdv18")
+                tevkifat18 = request.POST.get("tevkifat18")
+                vergi19 = request.POST.get("vergi19")
+                secimtevkifat20 = request.POST.get("secimtevkifat20")
+                matrah20 = request.POST.get("matrah20")
+                kdv20 = request.POST.get("kdv20")
+                tevkifat20 = request.POST.get("tevkifat20")
+                vergi21 = request.POST.get("vergi21")
+                matrah_bildirimi_kismi_tevkifatuygulanmayanislemler.objects.create(
+                    bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),
+                    bagli_oldugu_beyanname = get_object_or_404(kdv1_beyannamesi_bilgileri,id = beyanname_bilgisi.id),
+                    islem_turu = get_object_or_none(tevkifat_tur_kodu, id=secimtevkifat14),
+                    matrah = matrah14,kdv = kdv14,vergi = vergi15,tevkifatorani = tevkifat14,
+                    islem_turu1 = get_object_or_none(tevkifat_tur_kodu, id=secimtevkifat16),
+                    matrah1 = matrah16,kdv1 = kdv16,vergi1 = vergi17,tevkifatorani1 = tevkifat16,
+                    islem_turu2 = get_object_or_none(tevkifat_tur_kodu, id=secimtevkifat18),
+                    matrah2 = matrah18,kdv2 = kdv18,vergi2 = vergi19,tevkifatorani2 = tevkifat18,
+                    islem_turu3 = get_object_or_none(tevkifat_tur_kodu, id=secimtevkifat20),
+                    matrah3 = matrah20,kdv3 = kdv20,vergi3 = vergi21,tevkifatorani3 = tevkifat20
+                )
+                #KISMİ TEVKİFAT UYGULANAN İŞLEMLER
+            if True:
+                # DİĞER İŞLEMLER
+                bigi1 = request.POST.get("bigi1")
+                matrah22 = request.POST.get("matrah22")
+                vergi23 = request.POST.get("vergi23")
+                bigi2 = request.POST.get("bigi2")
+                matrah24 = request.POST.get("matrah24")
+                vergi25 = request.POST.get("vergi25")
+                bigi3 = request.POST.get("bigi3")
+                matrahbenzer1 = request.POST.get("matrahbenzer1")
+                vergibenzer1 = request.POST.get("vergibenzer1")
+                bigi4 = request.POST.get("bigi4")
+                matrahbenzer2 = request.POST.get("matrahbenzer2")
+                vergibenzer2 = request.POST.get("vergibenzer2")
+                bigi5 = request.POST.get("bigi5")
+                matrah94 = request.POST.get("matrah94")
+                vergi95 = request.POST.get("vergi95")
+                bigi6 = request.POST.get("bigi6")
+                matrahnumarasiz = request.POST.get("matrahnumarasiz")
+                verginumarasiz = request.POST.get("verginumarasiz")
+                bigi7 = request.POST.get("bigi7")
+                matrah26 = request.POST.get("matrah26")
+                vergi27 = request.POST.get("vergi27")
+                matrah_bildirimi_digerislemleri.objects.create(
+                    bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),
+                    bagli_oldugu_beyanname = get_object_or_404(kdv1_beyannamesi_bilgileri,id = beyanname_bilgisi.id),
+                    bilgi = bigi1,matrah1 = matrah22,vergi1 = vergi23,bilgi2 = bigi2,matrah2 =matrah24,vergi2 = vergi25,
+                    bilgi3 = bigi3,matrah3 = matrahbenzer1,vergi3 = vergibenzer1,bilgi4 = bigi4,matrah4 = matrahbenzer2,
+                    vergi4 = vergibenzer2,bilgi5 = bigi5,matrah5 = matrah94,vergi5 = vergi95,
+                    bilgi6 = bigi6,matrah6 = matrahnumarasiz,vergi6 = verginumarasiz,
+                    bilgi7 = bigi7,matrah7 = matrah26,vergi7 = vergi27
+                )
+            # DİĞER İŞLEMLER
+            if True:
+                #İSTEĞE BAĞLI TAM TEVKİFAT UYGULANAN İŞLEMLER
+                istege_baglitevkat = request.POST.getlist("istege_baglitevkat")
+                istegebaglimatrah = request.POST.getlist("istegebaglimatrah")
+                istebaglikdv = request.POST.getlist("istebaglikdv")
+                istebaglivergi = request.POST.getlist("istebaglivergi")
+                #toplam 
+                for i in range(0,len(istege_baglitevkat)):
+                    if get_object_or_none(tevkifat_tur_kodu,id = istege_baglitevkat[i] ):
+                        matrah_bildirimi_istegebaglitamtevkifat.objects.create(
+                            bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),
+                            bagli_oldugu_beyanname = get_object_or_404(kdv1_beyannamesi_bilgileri,id = beyanname_bilgisi.id),
+                            islem_turu = get_object_or_none(tevkifat_tur_kodu,id = istege_baglitevkat[i] ),
+                            matrah = istegebaglimatrah[i],kdv = istebaglikdv[i],vergi = istebaglivergi[i]
+                        )
+                indirimkdvsi = request.POST.get("indirimkdvsi")
+                #İSTEĞE BAĞLI TAM TEVKİFAT UYGULANAN İŞLEMLER
         # İNDİRİMLER
         indirimler1 = request.POST.get("indirimler1")
         indirimlerdeger1 = request.POST.get("indirimlerdeger1")
