@@ -5609,7 +5609,25 @@ def kdv1_beyannamesi(request,slug):
         belgesahibivergikimlik = request.POST.getlist("belgesahibivergikimlik")
         # TAM VE KISMİ İSTİSNALARA İLİŞKİN BİLDİRİM
         #YENİLENMİŞ CEP TELEFONU SATIŞLARINA İLİŞKİN BİLDİRİM
-        
+        telefonalisbelgesituru = request.POST.getlist("telefonalisbelgesituru")
+        telefonalistarihi = request.POST.getlist("telefonalistarihi")
+        telefonalisbelgeno = request.POST.getlist("telefonalisbelgeno")
+        telefonsqaticikimlikturu = request.POST.getlist("telefonsqaticikimlikturu")
+        telefonsaticininkimlikno = request.POST.getlist("telefonsaticininkimlikno")
+        telefonsaticininadisoyadi = request.POST.getlist("telefonsaticininadisoyadi")
+        telefonalisbedeli = request.POST.getlist("telefonalisbedeli")
+        telefonvarsaodenenkdv = request.POST.getlist("telefonvarsaodenenkdv")
+        telefonmarka = request.POST.getlist("telefonmarka")
+        telefonmodel = request.POST.getlist("telefonmodel")
+        telefonimei = request.POST.getlist("telefonimei")
+        telefonsatisbelgesituru = request.POST.getlist("telefonsatisbelgesituru")
+        telefonsatistarihi = request.POST.getlist("telefonsatistarihi")
+        telefonsatisbelgeno = request.POST.getlist("telefonsatisbelgeno")
+        telefonalicininkimlikturu = request.POST.getlist("telefonalicininkimlikturu")
+        telefonalicininninkimlikno = request.POST.getlist("telefonalicininninkimlikno")
+        telefonalicininninadisoyadi = request.POST.getlist("telefonalicininninadisoyadi")
+        telefonsatisbedeli = request.POST.getlist("telefonsatisbedeli")
+        telefonsatisvarsaodenenkdv = request.POST.getlist("telefonsatisvarsaodenenkdv")
         #YENİLENMİŞ CEP TELEFONU SATIŞLARINA İLİŞKİN BİLDİRİM
     return render(request,"beyannameler/kdv1_beyanname.html",content)
 
