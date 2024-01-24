@@ -1932,5 +1932,15 @@ class indirimler(models.Model):
     #Değersiz Hale Gelen Alacaklara İlişkin İndrilecek KDV
     tutar8 = models.FloatField(verbose_name = "Tutar",default = 0)
 
+#BU DÖNEME AİT İNDİRİLECEK KDV TUTARININ ORANLARA GÖRE DAĞILIMI
+class indirim_bildirimi(models.Model):
+    bagli_oldugu_firma = models.ForeignKey(firma,blank=True,null=True,on_delete=models.SET_NULL)
+    bagli_oldugu_beyanname = models.ForeignKey(kdv1_beyannamesi_bilgileri,blank=True,null=True,on_delete=models.SET_NULL)
+    kdvorani1 = models.FloatField(verbose_name = "Matrah",default = 0)
+    kdvtutari1 = models.FloatField(verbose_name = "Vergi",default = 0)
+    kdvorani2 = models.FloatField(verbose_name = "Matrah",default = 0)
+    kdvtutari2 = models.FloatField(verbose_name = "Vergi",default = 0)
+    kdvorani3 = models.FloatField(verbose_name = "Matrah",default = 0)
+    kdvtutari3 = models.FloatField(verbose_name = "Vergi",default = 0)  
 
 #KDV1
