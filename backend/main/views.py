@@ -5600,6 +5600,17 @@ def kdv1_beyannamesi(request,slug):
         faturatoplamkdvtutari = request.POST.getlist("faturatoplamkdvtutari")
         indirimkonusuyapilankdvtutari = request.POST.getlist("indirimkonusuyapilankdvtutari")
         #107 KOD NUMARALI SATIR ARACILIĞIYLA İNDİRİM KONUSU YAPILAN KDV ALACAĞININ DÖNEMİ
+        # TAM VE KISMİ İSTİSNALARA İLİŞKİN BİLDİRİM
+        istisnabelgeturu = request.POST.getlist("istisnabelgeturu")
+        bolge = request.POST.getlist("bolge")
+        belgeno = request.POST.getlist("belgeno")
+        teslimbedeli = request.POST.getlist("teslimbedeli")
+        tabiolduguoran = request.POST.getlist("tabiolduguoran")
+        belgesahibivergikimlik = request.POST.getlist("belgesahibivergikimlik")
+        # TAM VE KISMİ İSTİSNALARA İLİŞKİN BİLDİRİM
+        #YENİLENMİŞ CEP TELEFONU SATIŞLARINA İLİŞKİN BİLDİRİM
+        
+        #YENİLENMİŞ CEP TELEFONU SATIŞLARINA İLİŞKİN BİLDİRİM
     return render(request,"beyannameler/kdv1_beyanname.html",content)
 
 #kdv1

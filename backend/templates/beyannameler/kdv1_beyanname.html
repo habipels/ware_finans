@@ -24,6 +24,7 @@
   .tasinmaz{display: none;}
   .degersiz{display: none;}
   .indiirmkonusu{display: none;}
+  .tamkismiistisna{display: none;}
 </style>
 <form  method="post">
   {% csrf_token %}
@@ -8019,6 +8020,689 @@
           </table>
         </div>
       </div>
+      <div class="container tablo" style="margin-top: 0px !important;">
+        <input class="col-12" disabled value=" TAM VE KISMİ İSTİSNALARA İLİŞKİN BİLDİRİM" type="text">
+        <div class="table-responsive " style=" 
+        height: 344px;
+        overflow: auto;">
+          <table class="table table-bordered ">
+            <thead style="position: sticky;top: 0">
+              <tr >
+                <th class="text-center" style="min-width: 100px ;">İstisna Türü</th>
+                <th class="text-center" style="min-width: 50px ;">Bölge</th>
+                <th class="text-center" style="min-width: 150px ;">Belge No</th>
+                <th class="text-center" style="min-width: 150px ;">Teslim Bedeli</th>
+                <th class="text-center" style="min-width: 150px ;">Tabi Olduğu Oran* (%)</th>
+                <th class="text-center" style="min-width: 150px ;">Belge Sahibinin Vergi Kimlik Numarası</th>
+                <th class="text-center" style="min-width: 150px ;"><a href="javascript:void(0);" onclick="ekleYeniSatirtamkismiistisna()">SATIR EKLE</a></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="tamkismiistisna">
+                <td><select name="istisnabelgeturu" id="">
+                  <option value=""></option>
+                  <option value="212 - Serbest Bölgelerde Verilen Hizmetler">212 - Serbest Bölgelerde Verilen Hizmetler</option>
+                  <option value="316 - Serbest Bölgelerdeki Müşteriler İçin Yapılan Fason Hizmetler">316 - Serbest Bölgelerdeki Müşteriler İçin Yapılan Fason Hizmetler</option>
+                </select></td>
+                <td><select name="bolge" id="">
+                  <option value=""></option>
+                  <option value=""></option>
+                </select></td>
+                <td><input type="text" name="belgeno"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="teslimbedeli"></td>
+                <td><select name="tabiolduguoran" id="">
+                  <option value="1">1</option>
+                  <option value="10">10</option>
+                  <option value="20">20</option>
+                </select></td>
+                <td><input type="text" name="belgesahibivergikimlik"></td>
+                <td></td>
+              </tr>
+              <tr class="tamkismiistisna">
+                <td><select name="istisnabelgeturu" id="">
+                  <option value=""></option>
+                  <option value="212 - Serbest Bölgelerde Verilen Hizmetler">212 - Serbest Bölgelerde Verilen Hizmetler</option>
+                  <option value="316 - Serbest Bölgelerdeki Müşteriler İçin Yapılan Fason Hizmetler">316 - Serbest Bölgelerdeki Müşteriler İçin Yapılan Fason Hizmetler</option>
+                </select></td>
+                <td><select name="bolge" id="">
+                  <option value=""></option>
+                  <option value=""></option>
+                </select></td>
+                <td><input type="text" name="belgeno"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="teslimbedeli"></td>
+                <td><select name="tabiolduguoran" id="">
+                  <option value="1">1</option>
+                  <option value="10">10</option>
+                  <option value="20">20</option>
+                </select></td>
+                <td><input type="text" name="belgesahibivergikimlik"></td>
+                <td></td>
+              </tr>
+              <tr class="tamkismiistisna">
+                <td><select name="istisnabelgeturu" id="">
+                  <option value=""></option>
+                  <option value="212 - Serbest Bölgelerde Verilen Hizmetler">212 - Serbest Bölgelerde Verilen Hizmetler</option>
+                  <option value="316 - Serbest Bölgelerdeki Müşteriler İçin Yapılan Fason Hizmetler">316 - Serbest Bölgelerdeki Müşteriler İçin Yapılan Fason Hizmetler</option>
+                </select></td>
+                <td><select name="bolge" id="">
+                  <option value=""></option>
+                  <option value=""></option>
+                </select></td>
+                <td><input type="text" name="belgeno"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="teslimbedeli"></td>
+                <td><select name="tabiolduguoran" id="">
+                  <option value="1">1</option>
+                  <option value="10">10</option>
+                  <option value="20">20</option>
+                </select></td>
+                <td><input type="text" name="belgesahibivergikimlik"></td>
+                <td></td>
+              </tr>
+              <tr class="tamkismiistisna">
+                <td><select name="istisnabelgeturu" id="">
+                  <option value=""></option>
+                  <option value="212 - Serbest Bölgelerde Verilen Hizmetler">212 - Serbest Bölgelerde Verilen Hizmetler</option>
+                  <option value="316 - Serbest Bölgelerdeki Müşteriler İçin Yapılan Fason Hizmetler">316 - Serbest Bölgelerdeki Müşteriler İçin Yapılan Fason Hizmetler</option>
+                </select></td>
+                <td><select name="bolge" id="">
+                  <option value=""></option>
+                  <option value=""></option>
+                </select></td>
+                <td><input type="text" name="belgeno"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="teslimbedeli"></td>
+                <td><select name="tabiolduguoran" id="">
+                  <option value="1">1</option>
+                  <option value="10">10</option>
+                  <option value="20">20</option>
+                </select></td>
+                <td><input type="text" name="belgesahibivergikimlik"></td>
+                <td></td>
+              </tr>
+              <tr class="tamkismiistisna">
+                <td><select name="istisnabelgeturu" id="">
+                  <option value=""></option>
+                  <option value="212 - Serbest Bölgelerde Verilen Hizmetler">212 - Serbest Bölgelerde Verilen Hizmetler</option>
+                  <option value="316 - Serbest Bölgelerdeki Müşteriler İçin Yapılan Fason Hizmetler">316 - Serbest Bölgelerdeki Müşteriler İçin Yapılan Fason Hizmetler</option>
+                </select></td>
+                <td><select name="bolge" id="">
+                  <option value=""></option>
+                  <option value=""></option>
+                </select></td>
+                <td><input type="text" name="belgeno"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="teslimbedeli"></td>
+                <td><select name="tabiolduguoran" id="">
+                  <option value="1">1</option>
+                  <option value="10">10</option>
+                  <option value="20">20</option>
+                </select></td>
+                <td><input type="text" name="belgesahibivergikimlik"></td>
+                <td></td>
+              </tr>
+              <tr class="tamkismiistisna">
+                <td><select name="istisnabelgeturu" id="">
+                  <option value=""></option>
+                  <option value="212 - Serbest Bölgelerde Verilen Hizmetler">212 - Serbest Bölgelerde Verilen Hizmetler</option>
+                  <option value="316 - Serbest Bölgelerdeki Müşteriler İçin Yapılan Fason Hizmetler">316 - Serbest Bölgelerdeki Müşteriler İçin Yapılan Fason Hizmetler</option>
+                </select></td>
+                <td><select name="bolge" id="">
+                  <option value=""></option>
+                  <option value=""></option>
+                </select></td>
+                <td><input type="text" name="belgeno"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="teslimbedeli"></td>
+                <td><select name="tabiolduguoran" id="">
+                  <option value="1">1</option>
+                  <option value="10">10</option>
+                  <option value="20">20</option>
+                </select></td>
+                <td><input type="text" name="belgesahibivergikimlik"></td>
+                <td></td>
+              </tr>
+              <tr class="tamkismiistisna">
+                <td><select name="istisnabelgeturu" id="">
+                  <option value=""></option>
+                  <option value="212 - Serbest Bölgelerde Verilen Hizmetler">212 - Serbest Bölgelerde Verilen Hizmetler</option>
+                  <option value="316 - Serbest Bölgelerdeki Müşteriler İçin Yapılan Fason Hizmetler">316 - Serbest Bölgelerdeki Müşteriler İçin Yapılan Fason Hizmetler</option>
+                </select></td>
+                <td><select name="bolge" id="">
+                  <option value=""></option>
+                  <option value=""></option>
+                </select></td>
+                <td><input type="text" name="belgeno"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="teslimbedeli"></td>
+                <td><select name="tabiolduguoran" id="">
+                  <option value="1">1</option>
+                  <option value="10">10</option>
+                  <option value="20">20</option>
+                </select></td>
+                <td><input type="text" name="belgesahibivergikimlik"></td>
+                <td></td>
+              </tr>
+              <tr class="tamkismiistisna">
+                <td><select name="istisnabelgeturu" id="">
+                  <option value=""></option>
+                  <option value="212 - Serbest Bölgelerde Verilen Hizmetler">212 - Serbest Bölgelerde Verilen Hizmetler</option>
+                  <option value="316 - Serbest Bölgelerdeki Müşteriler İçin Yapılan Fason Hizmetler">316 - Serbest Bölgelerdeki Müşteriler İçin Yapılan Fason Hizmetler</option>
+                </select></td>
+                <td><select name="bolge" id="">
+                  <option value=""></option>
+                  <option value=""></option>
+                </select></td>
+                <td><input type="text" name="belgeno"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="teslimbedeli"></td>
+                <td><select name="tabiolduguoran" id="">
+                  <option value="1">1</option>
+                  <option value="10">10</option>
+                  <option value="20">20</option>
+                </select></td>
+                <td><input type="text" name="belgesahibivergikimlik"></td>
+                <td></td>
+              </tr>
+              <tr class="tamkismiistisna">
+                <td><select name="istisnabelgeturu" id="">
+                  <option value=""></option>
+                  <option value="212 - Serbest Bölgelerde Verilen Hizmetler">212 - Serbest Bölgelerde Verilen Hizmetler</option>
+                  <option value="316 - Serbest Bölgelerdeki Müşteriler İçin Yapılan Fason Hizmetler">316 - Serbest Bölgelerdeki Müşteriler İçin Yapılan Fason Hizmetler</option>
+                </select></td>
+                <td><select name="bolge" id="">
+                  <option value=""></option>
+                  <option value=""></option>
+                </select></td>
+                <td><input type="text" name="belgeno"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="teslimbedeli"></td>
+                <td><select name="tabiolduguoran" id="">
+                  <option value="1">1</option>
+                  <option value="10">10</option>
+                  <option value="20">20</option>
+                </select></td>
+                <td><input type="text" name="belgesahibivergikimlik"></td>
+                <td></td>
+              </tr>
+              <tr class="tamkismiistisna">
+                <td><select name="istisnabelgeturu" id="">
+                  <option value=""></option>
+                  <option value="212 - Serbest Bölgelerde Verilen Hizmetler">212 - Serbest Bölgelerde Verilen Hizmetler</option>
+                  <option value="316 - Serbest Bölgelerdeki Müşteriler İçin Yapılan Fason Hizmetler">316 - Serbest Bölgelerdeki Müşteriler İçin Yapılan Fason Hizmetler</option>
+                </select></td>
+                <td><select name="bolge" id="">
+                  <option value=""></option>
+                  <option value=""></option>
+                </select></td>
+                <td><input type="text" name="belgeno"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="teslimbedeli"></td>
+                <td><select name="tabiolduguoran" id="">
+                  <option value="1">1</option>
+                  <option value="10">10</option>
+                  <option value="20">20</option>
+                </select></td>
+                <td><input type="text" name="belgesahibivergikimlik"></td>
+                <td></td>
+              </tr>
+              <tr class="tamkismiistisna">
+                <td><select name="istisnabelgeturu" id="">
+                  <option value=""></option>
+                  <option value="212 - Serbest Bölgelerde Verilen Hizmetler">212 - Serbest Bölgelerde Verilen Hizmetler</option>
+                  <option value="316 - Serbest Bölgelerdeki Müşteriler İçin Yapılan Fason Hizmetler">316 - Serbest Bölgelerdeki Müşteriler İçin Yapılan Fason Hizmetler</option>
+                </select></td>
+                <td><select name="bolge" id="">
+                  <option value=""></option>
+                  <option value=""></option>
+                </select></td>
+                <td><input type="text" name="belgeno"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="teslimbedeli"></td>
+                <td><select name="tabiolduguoran" id="">
+                  <option value="1">1</option>
+                  <option value="10">10</option>
+                  <option value="20">20</option>
+                </select></td>
+                <td><input type="text" name="belgesahibivergikimlik"></td>
+                <td></td>
+              </tr>
+              <tr class="tamkismiistisna">
+                <td><select name="istisnabelgeturu" id="">
+                  <option value=""></option>
+                  <option value="212 - Serbest Bölgelerde Verilen Hizmetler">212 - Serbest Bölgelerde Verilen Hizmetler</option>
+                  <option value="316 - Serbest Bölgelerdeki Müşteriler İçin Yapılan Fason Hizmetler">316 - Serbest Bölgelerdeki Müşteriler İçin Yapılan Fason Hizmetler</option>
+                </select></td>
+                <td><select name="bolge" id="">
+                  <option value=""></option>
+                  <option value=""></option>
+                </select></td>
+                <td><input type="text" name="belgeno"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="teslimbedeli"></td>
+                <td><select name="tabiolduguoran" id="">
+                  <option value="1">1</option>
+                  <option value="10">10</option>
+                  <option value="20">20</option>
+                </select></td>
+                <td><input type="text" name="belgesahibivergikimlik"></td>
+                <td></td>
+              </tr>
+              <tr class="tamkismiistisna">
+                <td><select name="istisnabelgeturu" id="">
+                  <option value=""></option>
+                  <option value="212 - Serbest Bölgelerde Verilen Hizmetler">212 - Serbest Bölgelerde Verilen Hizmetler</option>
+                  <option value="316 - Serbest Bölgelerdeki Müşteriler İçin Yapılan Fason Hizmetler">316 - Serbest Bölgelerdeki Müşteriler İçin Yapılan Fason Hizmetler</option>
+                </select></td>
+                <td><select name="bolge" id="">
+                  <option value=""></option>
+                  <option value=""></option>
+                </select></td>
+                <td><input type="text" name="belgeno"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="teslimbedeli"></td>
+                <td><select name="tabiolduguoran" id="">
+                  <option value="1">1</option>
+                  <option value="10">10</option>
+                  <option value="20">20</option>
+                </select></td>
+                <td><input type="text" name="belgesahibivergikimlik"></td>
+                <td></td>
+              </tr>
+              <tr class="tamkismiistisna">
+                <td><select name="istisnabelgeturu" id="">
+                  <option value=""></option>
+                  <option value="212 - Serbest Bölgelerde Verilen Hizmetler">212 - Serbest Bölgelerde Verilen Hizmetler</option>
+                  <option value="316 - Serbest Bölgelerdeki Müşteriler İçin Yapılan Fason Hizmetler">316 - Serbest Bölgelerdeki Müşteriler İçin Yapılan Fason Hizmetler</option>
+                </select></td>
+                <td><select name="bolge" id="">
+                  <option value=""></option>
+                  <option value=""></option>
+                </select></td>
+                <td><input type="text" name="belgeno"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="teslimbedeli"></td>
+                <td><select name="tabiolduguoran" id="">
+                  <option value="1">1</option>
+                  <option value="10">10</option>
+                  <option value="20">20</option>
+                </select></td>
+                <td><input type="text" name="belgesahibivergikimlik"></td>
+                <td></td>
+              </tr>
+              <tr class="tamkismiistisna">
+                <td><select name="istisnabelgeturu" id="">
+                  <option value=""></option>
+                  <option value="212 - Serbest Bölgelerde Verilen Hizmetler">212 - Serbest Bölgelerde Verilen Hizmetler</option>
+                  <option value="316 - Serbest Bölgelerdeki Müşteriler İçin Yapılan Fason Hizmetler">316 - Serbest Bölgelerdeki Müşteriler İçin Yapılan Fason Hizmetler</option>
+                </select></td>
+                <td><select name="bolge" id="">
+                  <option value=""></option>
+                  <option value=""></option>
+                </select></td>
+                <td><input type="text" name="belgeno"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="teslimbedeli"></td>
+                <td><select name="tabiolduguoran" id="">
+                  <option value="1">1</option>
+                  <option value="10">10</option>
+                  <option value="20">20</option>
+                </select></td>
+                <td><input type="text" name="belgesahibivergikimlik"></td>
+                <td></td>
+              </tr>
+              <tr class="tamkismiistisna">
+                <td><select name="istisnabelgeturu" id="">
+                  <option value=""></option>
+                  <option value="212 - Serbest Bölgelerde Verilen Hizmetler">212 - Serbest Bölgelerde Verilen Hizmetler</option>
+                  <option value="316 - Serbest Bölgelerdeki Müşteriler İçin Yapılan Fason Hizmetler">316 - Serbest Bölgelerdeki Müşteriler İçin Yapılan Fason Hizmetler</option>
+                </select></td>
+                <td><select name="bolge" id="">
+                  <option value=""></option>
+                  <option value=""></option>
+                </select></td>
+                <td><input type="text" name="belgeno"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="teslimbedeli"></td>
+                <td><select name="tabiolduguoran" id="">
+                  <option value="1">1</option>
+                  <option value="10">10</option>
+                  <option value="20">20</option>
+                </select></td>
+                <td><input type="text" name="belgesahibivergikimlik"></td>
+                <td></td>
+              </tr>
+              <tr class="tamkismiistisna">
+                <td><select name="istisnabelgeturu" id="">
+                  <option value=""></option>
+                  <option value="212 - Serbest Bölgelerde Verilen Hizmetler">212 - Serbest Bölgelerde Verilen Hizmetler</option>
+                  <option value="316 - Serbest Bölgelerdeki Müşteriler İçin Yapılan Fason Hizmetler">316 - Serbest Bölgelerdeki Müşteriler İçin Yapılan Fason Hizmetler</option>
+                </select></td>
+                <td><select name="bolge" id="">
+                  <option value=""></option>
+                  <option value=""></option>
+                </select></td>
+                <td><input type="text" name="belgeno"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="teslimbedeli"></td>
+                <td><select name="tabiolduguoran" id="">
+                  <option value="1">1</option>
+                  <option value="10">10</option>
+                  <option value="20">20</option>
+                </select></td>
+                <td><input type="text" name="belgesahibivergikimlik"></td>
+                <td></td>
+              </tr>
+              <tr class="tamkismiistisna">
+                <td><select name="istisnabelgeturu" id="">
+                  <option value=""></option>
+                  <option value="212 - Serbest Bölgelerde Verilen Hizmetler">212 - Serbest Bölgelerde Verilen Hizmetler</option>
+                  <option value="316 - Serbest Bölgelerdeki Müşteriler İçin Yapılan Fason Hizmetler">316 - Serbest Bölgelerdeki Müşteriler İçin Yapılan Fason Hizmetler</option>
+                </select></td>
+                <td><select name="bolge" id="">
+                  <option value=""></option>
+                  <option value=""></option>
+                </select></td>
+                <td><input type="text" name="belgeno"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="teslimbedeli"></td>
+                <td><select name="tabiolduguoran" id="">
+                  <option value="1">1</option>
+                  <option value="10">10</option>
+                  <option value="20">20</option>
+                </select></td>
+                <td><input type="text" name="belgesahibivergikimlik"></td>
+                <td></td>
+              </tr>
+              <tr class="tamkismiistisna">
+                <td><select name="istisnabelgeturu" id="">
+                  <option value=""></option>
+                  <option value="212 - Serbest Bölgelerde Verilen Hizmetler">212 - Serbest Bölgelerde Verilen Hizmetler</option>
+                  <option value="316 - Serbest Bölgelerdeki Müşteriler İçin Yapılan Fason Hizmetler">316 - Serbest Bölgelerdeki Müşteriler İçin Yapılan Fason Hizmetler</option>
+                </select></td>
+                <td><select name="bolge" id="">
+                  <option value=""></option>
+                  <option value=""></option>
+                </select></td>
+                <td><input type="text" name="belgeno"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="teslimbedeli"></td>
+                <td><select name="tabiolduguoran" id="">
+                  <option value="1">1</option>
+                  <option value="10">10</option>
+                  <option value="20">20</option>
+                </select></td>
+                <td><input type="text" name="belgesahibivergikimlik"></td>
+                <td></td>
+              </tr>
+              <tr class="tamkismiistisna">
+                <td><select name="istisnabelgeturu" id="">
+                  <option value=""></option>
+                  <option value="212 - Serbest Bölgelerde Verilen Hizmetler">212 - Serbest Bölgelerde Verilen Hizmetler</option>
+                  <option value="316 - Serbest Bölgelerdeki Müşteriler İçin Yapılan Fason Hizmetler">316 - Serbest Bölgelerdeki Müşteriler İçin Yapılan Fason Hizmetler</option>
+                </select></td>
+                <td><select name="bolge" id="">
+                  <option value=""></option>
+                  <option value=""></option>
+                </select></td>
+                <td><input type="text" name="belgeno"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="teslimbedeli"></td>
+                <td><select name="tabiolduguoran" id="">
+                  <option value="1">1</option>
+                  <option value="10">10</option>
+                  <option value="20">20</option>
+                </select></td>
+                <td><input type="text" name="belgesahibivergikimlik"></td>
+                <td></td>
+              </tr>
+              <tr class="tamkismiistisna">
+                <td><select name="istisnabelgeturu" id="">
+                  <option value=""></option>
+                  <option value="212 - Serbest Bölgelerde Verilen Hizmetler">212 - Serbest Bölgelerde Verilen Hizmetler</option>
+                  <option value="316 - Serbest Bölgelerdeki Müşteriler İçin Yapılan Fason Hizmetler">316 - Serbest Bölgelerdeki Müşteriler İçin Yapılan Fason Hizmetler</option>
+                </select></td>
+                <td><select name="bolge" id="">
+                  <option value=""></option>
+                  <option value=""></option>
+                </select></td>
+                <td><input type="text" name="belgeno"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="teslimbedeli"></td>
+                <td><select name="tabiolduguoran" id="">
+                  <option value="1">1</option>
+                  <option value="10">10</option>
+                  <option value="20">20</option>
+                </select></td>
+                <td><input type="text" name="belgesahibivergikimlik"></td>
+                <td></td>
+              </tr>
+              <tr class="tamkismiistisna">
+                <td><select name="istisnabelgeturu" id="">
+                  <option value=""></option>
+                  <option value="212 - Serbest Bölgelerde Verilen Hizmetler">212 - Serbest Bölgelerde Verilen Hizmetler</option>
+                  <option value="316 - Serbest Bölgelerdeki Müşteriler İçin Yapılan Fason Hizmetler">316 - Serbest Bölgelerdeki Müşteriler İçin Yapılan Fason Hizmetler</option>
+                </select></td>
+                <td><select name="bolge" id="">
+                  <option value=""></option>
+                  <option value=""></option>
+                </select></td>
+                <td><input type="text" name="belgeno"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="teslimbedeli"></td>
+                <td><select name="tabiolduguoran" id="">
+                  <option value="1">1</option>
+                  <option value="10">10</option>
+                  <option value="20">20</option>
+                </select></td>
+                <td><input type="text" name="belgesahibivergikimlik"></td>
+                <td></td>
+              </tr>
+              <tr class="tamkismiistisna">
+                <td><select name="istisnabelgeturu" id="">
+                  <option value=""></option>
+                  <option value="212 - Serbest Bölgelerde Verilen Hizmetler">212 - Serbest Bölgelerde Verilen Hizmetler</option>
+                  <option value="316 - Serbest Bölgelerdeki Müşteriler İçin Yapılan Fason Hizmetler">316 - Serbest Bölgelerdeki Müşteriler İçin Yapılan Fason Hizmetler</option>
+                </select></td>
+                <td><select name="bolge" id="">
+                  <option value=""></option>
+                  <option value=""></option>
+                </select></td>
+                <td><input type="text" name="belgeno"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="teslimbedeli"></td>
+                <td><select name="tabiolduguoran" id="">
+                  <option value="1">1</option>
+                  <option value="10">10</option>
+                  <option value="20">20</option>
+                </select></td>
+                <td><input type="text" name="belgesahibivergikimlik"></td>
+                <td></td>
+              </tr>
+              <tr class="tamkismiistisna">
+                <td><select name="istisnabelgeturu" id="">
+                  <option value=""></option>
+                  <option value="212 - Serbest Bölgelerde Verilen Hizmetler">212 - Serbest Bölgelerde Verilen Hizmetler</option>
+                  <option value="316 - Serbest Bölgelerdeki Müşteriler İçin Yapılan Fason Hizmetler">316 - Serbest Bölgelerdeki Müşteriler İçin Yapılan Fason Hizmetler</option>
+                </select></td>
+                <td><select name="bolge" id="">
+                  <option value=""></option>
+                  <option value=""></option>
+                </select></td>
+                <td><input type="text" name="belgeno"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="teslimbedeli"></td>
+                <td><select name="tabiolduguoran" id="">
+                  <option value="1">1</option>
+                  <option value="10">10</option>
+                  <option value="20">20</option>
+                </select></td>
+                <td><input type="text" name="belgesahibivergikimlik"></td>
+                <td></td>
+              </tr>
+              <tr class="tamkismiistisna">
+                <td><select name="istisnabelgeturu" id="">
+                  <option value=""></option>
+                  <option value="212 - Serbest Bölgelerde Verilen Hizmetler">212 - Serbest Bölgelerde Verilen Hizmetler</option>
+                  <option value="316 - Serbest Bölgelerdeki Müşteriler İçin Yapılan Fason Hizmetler">316 - Serbest Bölgelerdeki Müşteriler İçin Yapılan Fason Hizmetler</option>
+                </select></td>
+                <td><select name="bolge" id="">
+                  <option value=""></option>
+                  <option value=""></option>
+                </select></td>
+                <td><input type="text" name="belgeno"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="teslimbedeli"></td>
+                <td><select name="tabiolduguoran" id="">
+                  <option value="1">1</option>
+                  <option value="10">10</option>
+                  <option value="20">20</option>
+                </select></td>
+                <td><input type="text" name="belgesahibivergikimlik"></td>
+                <td></td>
+              </tr>
+              <tr class="tamkismiistisna">
+                <td><select name="istisnabelgeturu" id="">
+                  <option value=""></option>
+                  <option value="212 - Serbest Bölgelerde Verilen Hizmetler">212 - Serbest Bölgelerde Verilen Hizmetler</option>
+                  <option value="316 - Serbest Bölgelerdeki Müşteriler İçin Yapılan Fason Hizmetler">316 - Serbest Bölgelerdeki Müşteriler İçin Yapılan Fason Hizmetler</option>
+                </select></td>
+                <td><select name="bolge" id="">
+                  <option value=""></option>
+                  <option value=""></option>
+                </select></td>
+                <td><input type="text" name="belgeno"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="teslimbedeli"></td>
+                <td><select name="tabiolduguoran" id="">
+                  <option value="1">1</option>
+                  <option value="10">10</option>
+                  <option value="20">20</option>
+                </select></td>
+                <td><input type="text" name="belgesahibivergikimlik"></td>
+                <td></td>
+              </tr>
+              <tr class="tamkismiistisna">
+                <td><select name="istisnabelgeturu" id="">
+                  <option value=""></option>
+                  <option value="212 - Serbest Bölgelerde Verilen Hizmetler">212 - Serbest Bölgelerde Verilen Hizmetler</option>
+                  <option value="316 - Serbest Bölgelerdeki Müşteriler İçin Yapılan Fason Hizmetler">316 - Serbest Bölgelerdeki Müşteriler İçin Yapılan Fason Hizmetler</option>
+                </select></td>
+                <td><select name="bolge" id="">
+                  <option value=""></option>
+                  <option value=""></option>
+                </select></td>
+                <td><input type="text" name="belgeno"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="teslimbedeli"></td>
+                <td><select name="tabiolduguoran" id="">
+                  <option value="1">1</option>
+                  <option value="10">10</option>
+                  <option value="20">20</option>
+                </select></td>
+                <td><input type="text" name="belgesahibivergikimlik"></td>
+                <td></td>
+              </tr>
+              <tr class="tamkismiistisna">
+                <td><select name="istisnabelgeturu" id="">
+                  <option value=""></option>
+                  <option value="212 - Serbest Bölgelerde Verilen Hizmetler">212 - Serbest Bölgelerde Verilen Hizmetler</option>
+                  <option value="316 - Serbest Bölgelerdeki Müşteriler İçin Yapılan Fason Hizmetler">316 - Serbest Bölgelerdeki Müşteriler İçin Yapılan Fason Hizmetler</option>
+                </select></td>
+                <td><select name="bolge" id="">
+                  <option value=""></option>
+                  <option value=""></option>
+                </select></td>
+                <td><input type="text" name="belgeno"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="teslimbedeli"></td>
+                <td><select name="tabiolduguoran" id="">
+                  <option value="1">1</option>
+                  <option value="10">10</option>
+                  <option value="20">20</option>
+                </select></td>
+                <td><input type="text" name="belgesahibivergikimlik"></td>
+                <td></td>
+              </tr>
+              <tr class="tamkismiistisna">
+                <td><select name="istisnabelgeturu" id="">
+                  <option value=""></option>
+                  <option value="212 - Serbest Bölgelerde Verilen Hizmetler">212 - Serbest Bölgelerde Verilen Hizmetler</option>
+                  <option value="316 - Serbest Bölgelerdeki Müşteriler İçin Yapılan Fason Hizmetler">316 - Serbest Bölgelerdeki Müşteriler İçin Yapılan Fason Hizmetler</option>
+                </select></td>
+                <td><select name="bolge" id="">
+                  <option value=""></option>
+                  <option value=""></option>
+                </select></td>
+                <td><input type="text" name="belgeno"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="teslimbedeli"></td>
+                <td><select name="tabiolduguoran" id="">
+                  <option value="1">1</option>
+                  <option value="10">10</option>
+                  <option value="20">20</option>
+                </select></td>
+                <td><input type="text" name="belgesahibivergikimlik"></td>
+                <td></td>
+              </tr>
+              <tr class="tamkismiistisna">
+                <td><select name="istisnabelgeturu" id="">
+                  <option value=""></option>
+                  <option value="212 - Serbest Bölgelerde Verilen Hizmetler">212 - Serbest Bölgelerde Verilen Hizmetler</option>
+                  <option value="316 - Serbest Bölgelerdeki Müşteriler İçin Yapılan Fason Hizmetler">316 - Serbest Bölgelerdeki Müşteriler İçin Yapılan Fason Hizmetler</option>
+                </select></td>
+                <td><select name="bolge" id="">
+                  <option value=""></option>
+                  <option value=""></option>
+                </select></td>
+                <td><input type="text" name="belgeno"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="teslimbedeli"></td>
+                <td><select name="tabiolduguoran" id="">
+                  <option value="1">1</option>
+                  <option value="10">10</option>
+                  <option value="20">20</option>
+                </select></td>
+                <td><input type="text" name="belgesahibivergikimlik"></td>
+                <td></td>
+              </tr>
+              <tr class="tamkismiistisna">
+                <td><select name="istisnabelgeturu" id="">
+                  <option value=""></option>
+                  <option value="212 - Serbest Bölgelerde Verilen Hizmetler">212 - Serbest Bölgelerde Verilen Hizmetler</option>
+                  <option value="316 - Serbest Bölgelerdeki Müşteriler İçin Yapılan Fason Hizmetler">316 - Serbest Bölgelerdeki Müşteriler İçin Yapılan Fason Hizmetler</option>
+                </select></td>
+                <td><select name="bolge" id="">
+                  <option value=""></option>
+                  <option value=""></option>
+                </select></td>
+                <td><input type="text" name="belgeno"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="teslimbedeli"></td>
+                <td><select name="tabiolduguoran" id="">
+                  <option value="1">1</option>
+                  <option value="10">10</option>
+                  <option value="20">20</option>
+                </select></td>
+                <td><input type="text" name="belgesahibivergikimlik"></td>
+                <td></td>
+              </tr>
+              <tr class="tamkismiistisna">
+                <td><select name="istisnabelgeturu" id="">
+                  <option value=""></option>
+                  <option value="212 - Serbest Bölgelerde Verilen Hizmetler">212 - Serbest Bölgelerde Verilen Hizmetler</option>
+                  <option value="316 - Serbest Bölgelerdeki Müşteriler İçin Yapılan Fason Hizmetler">316 - Serbest Bölgelerdeki Müşteriler İçin Yapılan Fason Hizmetler</option>
+                </select></td>
+                <td><select name="bolge" id="">
+                  <option value=""></option>
+                  <option value=""></option>
+                </select></td>
+                <td><input type="text" name="belgeno"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="teslimbedeli"></td>
+                <td><select name="tabiolduguoran" id="">
+                  <option value="1">1</option>
+                  <option value="10">10</option>
+                  <option value="20">20</option>
+                </select></td>
+                <td><input type="text" name="belgesahibivergikimlik"></td>
+                <td></td>
+              </tr>
+              <tr class="tamkismiistisna">
+                <td><select name="istisnabelgeturu" id="">
+                  <option value=""></option>
+                  <option value="212 - Serbest Bölgelerde Verilen Hizmetler">212 - Serbest Bölgelerde Verilen Hizmetler</option>
+                  <option value="316 - Serbest Bölgelerdeki Müşteriler İçin Yapılan Fason Hizmetler">316 - Serbest Bölgelerdeki Müşteriler İçin Yapılan Fason Hizmetler</option>
+                </select></td>
+                <td><select name="bolge" id="">
+                  <option value=""></option>
+                  <option value=""></option>
+                </select></td>
+                <td><input type="text" name="belgeno"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" name="teslimbedeli"></td>
+                <td><select name="tabiolduguoran" id="">
+                  <option value="1">1</option>
+                  <option value="10">10</option>
+                  <option value="20">20</option>
+                </select></td>
+                <td><input type="text" name="belgesahibivergikimlik"></td>
+                <td></td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
+      </div>
       <hr style="border: 2px solid black !important;" >
   </div>
 </div>
@@ -8175,6 +8859,19 @@
 
     if (elements[b]) {
         elements[b].classList.remove('indiirmkonusu');
+    } else {
+        console.error("Ürün Sınırına Ulaştınız");
+    }
+
+    yeniselect();
+  }
+  let n = 0;
+  function ekleYeniSatirtamkismiistisna() {
+    
+    var elements = document.getElementsByClassName('tamkismiistisna');
+
+    if (elements[n]) {
+        elements[n].classList.remove('tamkismiistisna');
     } else {
         console.error("Ürün Sınırına Ulaştınız");
     }
