@@ -1999,4 +1999,17 @@ class sonuc_hesaplari(models.Model):
     sonucyazisi3 =  models.CharField(max_length = 200,verbose_name = "sonuç yazısı",blank = True,null  =True)
     sonuc4 = models.FloatField(verbose_name = "sonuctutarı",default = 0)
     sonucyazisi4 =  models.CharField(max_length = 200,verbose_name = "sonuç yazısı",blank = True,null  =True)
+
+##SONUÇ HESAPLARI
+class sonuc_hesaplari_digerbilgiler(models.Model):
+    bagli_oldugu_firma = models.ForeignKey(firma,blank=True,null=True,on_delete=models.SET_NULL)
+    bagli_oldugu_beyanname = models.ForeignKey(kdv1_beyannamesi_bilgileri,blank=True,null=True,on_delete=models.SET_NULL)
+    sonucyazisidiger1 =  models.CharField(max_length = 200,verbose_name = "sonuç yazısı",blank = True,null  =True)
+    sonucdiger1 = models.FloatField(verbose_name = "sonuctutarı",default = 0)
+    sonucdiger2 = models.FloatField(verbose_name = "sonuctutarı",default = 0)
+    sonucyazisidiger2 =  models.CharField(max_length = 200,verbose_name = "sonuç yazısı",blank = True,null  =True)
+    sonucdiger3 = models.FloatField(verbose_name = "sonuctutarı",default = 0)
+    sonucyazisidiger3 =  models.CharField(max_length = 200,verbose_name = "sonuç yazısı",blank = True,null  =True)
+    sonucdiger4 = models.FloatField(verbose_name = "sonuctutarı",default = 0)
+    sonucyazisidiger4 =  models.CharField(max_length = 200,verbose_name = "sonuç yazısı",blank = True,null  =True)
 #KDV1
