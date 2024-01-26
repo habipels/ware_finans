@@ -5460,16 +5460,23 @@ def kdv1_beyannamesi(request,slug):
                     indirimoncekidonem7 = indirimoncekidonem7,aciklama7 = aciklama7,miktar7 = miktar7,
                     indirimoncekidonem8 =indirimoncekidonem8,aciklama8 = aciklama8,miktar8 = miktar8
                 )
-        #SONUÇ HESAPLARI
-        sonucyazisi1 = request.POST.get("sonucyazisi1")
-        sonuc1 = request.POST.get("sonuc1")
-        sonuc2 = request.POST.get("sonuc2")
-        sonucyazisi2 = request.POST.get("sonucyazisi2")
-        sonuc3 = request.POST.get("sonuc3")
-        sonucyazisi3 = request.POST.get("sonucyazisi3")
-        sonuc4 = request.POST.get("sonuc4")
-        sonucyazisi4 = request.POST.get("sonucyazisi4")
-        #SONUÇ HESAPLARI
+            if True:
+                #SONUÇ HESAPLARI
+                sonucyazisi1 = request.POST.get("sonucyazisi1")
+                sonuc1 = request.POST.get("sonuc1")
+                sonuc2 = request.POST.get("sonuc2")
+                sonucyazisi2 = request.POST.get("sonucyazisi2")
+                sonuc3 = request.POST.get("sonuc3")
+                sonucyazisi3 = request.POST.get("sonucyazisi3")
+                sonuc4 = request.POST.get("sonuc4")
+                sonucyazisi4 = request.POST.get("sonucyazisi4")
+                #SONUÇ HESAPLARI
+                sonuc_hesaplari.objects.create(
+                    bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),
+                    bagli_oldugu_beyanname = get_object_or_404(kdv1_beyannamesi_bilgileri,id = beyanname_bilgisi.id),
+                    sonucyazisi1 = sonucyazisi1,sonuc1 = sonuc1,sonuc2 = sonuc2,sonucyazisi2 =sonucyazisi2,
+                    sonuc3 = sonuc3,sonucyazisi3 = sonucyazisi3,sonuc4 = sonuc4,sonucyazisi4 = sonucyazisi4
+                )
         #DİĞER BİLGİLER
         sonucyazisidiger1 = request.POST.get("sonucyazisidiger1")
         sonucdiger1 = request.POST.get("sonucdiger1")
