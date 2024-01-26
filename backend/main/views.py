@@ -5258,6 +5258,7 @@ def kdv1_beyannamesi(request,slug):
     content["teknolojibolgeleri"] = ""
     content["ulkeler"] = ulke_ulke_kodlari.objects.all()
     content["tasinmazililce"] = ""
+    content["onceki_beyannameler"]  = kdv1_beyannamesi_bilgileri.objects.filter(bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
     if request.POST:
         if True:
             an = datetime.now()

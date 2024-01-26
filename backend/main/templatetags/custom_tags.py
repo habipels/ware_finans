@@ -397,3 +397,33 @@ def tum_toplam_olayi(id):
         giris,giris_tutar,cikis,cikis_tutar,sonuc
     )
     return mark_safe ( veri)
+
+@register.simple_tag
+def tarih_yazdirma(a):
+    b = str(a).split("-")
+    durum = ""
+    if b[1] == "01":
+        durum = str(b[0])+": OCAK"
+    if b[1] == "02":
+        durum = str(b[0])+": ŞUBAT"
+    if b[1] == "03":
+        durum = str(b[0])+": MART"
+    if b[1] == "04":
+        durum = str(b[0])+": NİSAN"
+    if b[1] == "05":
+        durum = str(b[0])+": MAYIS"
+    if b[1] == "06":
+        durum = str(b[0])+": HAZİRAN"
+    if b[1] == "07":
+        durum = str(b[0])+": TEMMUZ"
+    if b[1] == "08":
+        durum = str(b[0])+": AĞUSTOS"
+    if b[1] == "09":
+        durum = str(b[0])+": EYLÜL"
+    if b[1] == "10":
+        durum = str(b[0])+": EKİM"
+    if b[1] == "11":
+        durum = str(b[0])+": KASIM"
+    if b[1] == "12":
+        durum = str(b[0])+": ARALIK"
+    return durum

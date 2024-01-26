@@ -1,4 +1,5 @@
 {% extends "homebase.html" %}
+{% load custom_tags %}
 {% block content %}
 <style>
   #kur {
@@ -69,7 +70,7 @@
     <div class="row">
         <h1 class="text-center" >KATMA DEĞER VERGİSİ BEYANNAMESİ 1</h1>
         <h3 class="text-center">(Gerçek Usüle Göre Vergilendiren Mükellefler İçin)</h3>
-        <div class="col-6">KDV AYI : <select name="aysecimi" id="">
+        <div class="col-4">KDV AYI : <select name="aysecimi" id="">
           <option value="OCAK">OCAK</option>
           <option value="ŞUBAT">ŞUBAT</option>
           <option value="MART">MART</option>
@@ -83,7 +84,7 @@
           <option value="KASIM">KASIM</option>
           <option value="ARALIK">ARALIK</option>
         </select></div>
-        <div class="col-6"><label for="firmalar">FİRMALARIM
+        <div class="col-4"><label for="firmalar">FİRMALARIM
           <select  onchange="if (this.value) window.location.href=this.value" style="box-sizing: content-box;" id="firmalar">
             <option value="/{{firma.firma_ozel_anahtar}}/kdv1beyannamesi/">{{firma.firma_unvani}} {{firma.Firma_unvani2}} ({{firma.tanitici_isim}})</option>
             {% for i in firmalarim %}
@@ -95,6 +96,14 @@
               
             {% endfor %}
           </select> </label></div>
+         
+          <div style="max-height: 100px; border: 1px solid black; "  class="col-4 overflow-scroll">
+            
+            {% for i in onceki_beyannameler %}
+            <a href="{{i.id}}">{% tarih_yazdirma i.ay %}</a>
+            <br>
+            {% endfor %}
+          </div>
         <hr style="border: 3px solid black !important;" >
     </div>
 </div>
@@ -10247,7 +10256,8 @@
     var indiirmdagiliskdv3 = parseFloat(document.querySelector("#indiirmdagiliskdv3").value);
     document.querySelector("#indiirmdagilis3").textContent = parseFloat(indiirmdagiliskdvtutari3*100/indiirmdagiliskdv3).toFixed(2);
     document.querySelector("#toplam").textContent = parseFloat(parseFloat(indiirmdagiliskdvtutari3*100/indiirmdagiliskdv3)+parseFloat(indiirmdagiliskdvtutari2*100/indiirmdagiliskdv2)+parseFloat(indiirmdagiliskdvtutari1*100/indiirmdagiliskdv1)).toFixed(2);
-
+    var istisnakismikdvistisnasecimihizmetveteslimtutari1 = parseFloat(document.querySelector("#istisnakismikdvistisnasecimihizmetveteslimtutari1").value);
+    var istisnakismikdvistisnasecimiyuklenilenkdv1 = parseFloat(document.querySelector("#istisnakismikdvistisnasecimiyuklenilenkdv1").value);
   }
   
   
