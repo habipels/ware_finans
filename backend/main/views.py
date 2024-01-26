@@ -5477,16 +5477,24 @@ def kdv1_beyannamesi(request,slug):
                     sonucyazisi1 = sonucyazisi1,sonuc1 = sonuc1,sonuc2 = sonuc2,sonucyazisi2 =sonucyazisi2,
                     sonuc3 = sonuc3,sonucyazisi3 = sonucyazisi3,sonuc4 = sonuc4,sonucyazisi4 = sonucyazisi4
                 )
-        #DİĞER BİLGİLER
-        sonucyazisidiger1 = request.POST.get("sonucyazisidiger1")
-        sonucdiger1 = request.POST.get("sonucdiger1")
-        sonucdiger2 = request.POST.get("sonucdiger2")
-        sonucyazisidiger2 = request.POST.get("sonucyazisidiger2")
-        sonucdiger3 = request.POST.get("sonucdiger3")
-        sonucyazisidiger3 = request.POST.get("sonucyazisidiger3")
-        sonucdiger4 = request.POST.get("sonucdiger4")
-        sonucyazisidiger4 = request.POST.get("sonucyazisidiger4")
-        #DİĞER BİLGİLER
+            if True:
+                #DİĞER BİLGİLER
+                sonucyazisidiger1 = request.POST.get("sonucyazisidiger1")
+                sonucdiger1 = request.POST.get("sonucdiger1")
+                sonucdiger2 = request.POST.get("sonucdiger2")
+                sonucyazisidiger2 = request.POST.get("sonucyazisidiger2")
+                sonucdiger3 = request.POST.get("sonucdiger3")
+                sonucyazisidiger3 = request.POST.get("sonucyazisidiger3")
+                sonucdiger4 = request.POST.get("sonucdiger4")
+                sonucyazisidiger4 = request.POST.get("sonucyazisidiger4")
+                #DİĞER BİLGİLER
+                sonuc_hesaplari_digerbilgiler.objects.create(
+                    bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),
+                    bagli_oldugu_beyanname = get_object_or_404(kdv1_beyannamesi_bilgileri,id = beyanname_bilgisi.id),
+                    sonucyazisidiger1 = sonucyazisidiger1,sonucdiger1 = sonucdiger1,sonucdiger2 = sonucdiger2,
+                    sonucyazisidiger2 = sonucyazisidiger2,sonucdiger3 = sonucdiger3,sonucyazisidiger3 = sonucyazisidiger3,
+                    sonucdiger4 = sonucdiger4,sonucyazisidiger4 = sonucyazisidiger4
+                )
         # KISMİ İSTİSNA KAPSAMINA GİREN İŞLEMLER
         istisnakismikdvistisnasecimi1 = request.POST.get("istisnakismikdvistisnasecimi1")
         istisnakismikdvistisnasecimihizmetveteslimtutari1 = request.POST.get("istisnakismikdvistisnasecimihizmetveteslimtutari1")

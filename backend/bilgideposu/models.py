@@ -2000,7 +2000,8 @@ class sonuc_hesaplari(models.Model):
     sonuc4 = models.FloatField(verbose_name = "sonuctutarı",default = 0)
     sonucyazisi4 =  models.CharField(max_length = 200,verbose_name = "sonuç yazısı",blank = True,null  =True)
 
-##SONUÇ HESAPLARI
+#DİĞER BİLGİLER
+    
 class sonuc_hesaplari_digerbilgiler(models.Model):
     bagli_oldugu_firma = models.ForeignKey(firma,blank=True,null=True,on_delete=models.SET_NULL)
     bagli_oldugu_beyanname = models.ForeignKey(kdv1_beyannamesi_bilgileri,blank=True,null=True,on_delete=models.SET_NULL)
