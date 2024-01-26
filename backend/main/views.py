@@ -5496,23 +5496,41 @@ def kdv1_beyannamesi(request,slug):
                     sonucyazisidiger2 = sonucyazisidiger2,sonucdiger3 = sonucdiger3,sonucyazisidiger3 = sonucyazisidiger3,
                     sonucdiger4 = sonucdiger4,sonucyazisidiger4 = sonucyazisidiger4
                 )
-        # KISMİ İSTİSNA KAPSAMINA GİREN İŞLEMLER
-        istisnakismikdvistisnasecimi1 = request.POST.get("istisnakismikdvistisnasecimi1")
-        istisnakismikdvistisnasecimihizmetveteslimtutari1 = request.POST.get("istisnakismikdvistisnasecimihizmetveteslimtutari1")
-        istisnakismikdvistisnasecimiyuklenilenkdv1 = request.POST.get("istisnakismikdvistisnasecimiyuklenilenkdv1")
-        istisnakismikdvistisnasecimi2 = request.POST.get("istisnakismikdvistisnasecimi2")
-        istisnakismikdvistisnasecimihizmetveteslimtutari2 = request.POST.get("istisnakismikdvistisnasecimihizmetveteslimtutari2")
-        istisnakismikdvistisnasecimiyuklenilenkdv2 = request.POST.get("istisnakismikdvistisnasecimiyuklenilenkdv2")
-        istisnakismikdvistisnasecimi3 = request.POST.get("istisnakismikdvistisnasecimi3")
-        istisnakismikdvistisnasecimihizmetveteslimtutari3 = request.POST.get("istisnakismikdvistisnasecimihizmetveteslimtutari3")
-        istisnakismikdvistisnasecimiyuklenilenkdv3 = request.POST.get("istisnakismikdvistisnasecimiyuklenilenkdv3")
-        istisnakismikdvistisnasecimi4 = request.POST.get("istisnakismikdvistisnasecimi4")
-        istisnakismikdvistisnasecimihizmetveteslimtutari4 = request.POST.get("istisnakismikdvistisnasecimihizmetveteslimtutari4")
-        istisnakismikdvistisnasecimiyuklenilenkdv4 = request.POST.get("istisnakismikdvistisnasecimiyuklenilenkdv4")
-        istisnakismikdvistisnasecimi5 = request.POST.get("istisnakismikdvistisnasecimi5")
-        istisnakismikdvistisnasecimihizmetveteslimtutari5 = request.POST.get("istisnakismikdvistisnasecimihizmetveteslimtutari5")
-        istisnakismikdvistisnasecimiyuklenilenkdv5 = request.POST.get("istisnakismikdvistisnasecimiyuklenilenkdv5")
-        # KISMİ İSTİSNA KAPSAMINA GİREN İŞLEMLER
+            if True:
+                # KISMİ İSTİSNA KAPSAMINA GİREN İŞLEMLER
+                istisnakismikdvistisnasecimi1 = request.POST.get("istisnakismikdvistisnasecimi1")
+                istisnakismikdvistisnasecimihizmetveteslimtutari1 = request.POST.get("istisnakismikdvistisnasecimihizmetveteslimtutari1")
+                istisnakismikdvistisnasecimiyuklenilenkdv1 = request.POST.get("istisnakismikdvistisnasecimiyuklenilenkdv1")
+                istisnakismikdvistisnasecimi2 = request.POST.get("istisnakismikdvistisnasecimi2")
+                istisnakismikdvistisnasecimihizmetveteslimtutari2 = request.POST.get("istisnakismikdvistisnasecimihizmetveteslimtutari2")
+                istisnakismikdvistisnasecimiyuklenilenkdv2 = request.POST.get("istisnakismikdvistisnasecimiyuklenilenkdv2")
+                istisnakismikdvistisnasecimi3 = request.POST.get("istisnakismikdvistisnasecimi3")
+                istisnakismikdvistisnasecimihizmetveteslimtutari3 = request.POST.get("istisnakismikdvistisnasecimihizmetveteslimtutari3")
+                istisnakismikdvistisnasecimiyuklenilenkdv3 = request.POST.get("istisnakismikdvistisnasecimiyuklenilenkdv3")
+                istisnakismikdvistisnasecimi4 = request.POST.get("istisnakismikdvistisnasecimi4")
+                istisnakismikdvistisnasecimihizmetveteslimtutari4 = request.POST.get("istisnakismikdvistisnasecimihizmetveteslimtutari4")
+                istisnakismikdvistisnasecimiyuklenilenkdv4 = request.POST.get("istisnakismikdvistisnasecimiyuklenilenkdv4")
+                istisnakismikdvistisnasecimi5 = request.POST.get("istisnakismikdvistisnasecimi5")
+                istisnakismikdvistisnasecimihizmetveteslimtutari5 = request.POST.get("istisnakismikdvistisnasecimihizmetveteslimtutari5")
+                istisnakismikdvistisnasecimiyuklenilenkdv5 = request.POST.get("istisnakismikdvistisnasecimiyuklenilenkdv5")
+                # KISMİ İSTİSNA KAPSAMINA GİREN İŞLEMLER
+                kismi_istisna_durumu.objects.create(
+                    bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),
+                    bagli_oldugu_beyanname = get_object_or_404(kdv1_beyannamesi_bilgileri,id = beyanname_bilgisi.id),
+                    istisna1 = get_object_or_none(kdv_istisna_kodu,istisnakismikdvistisnasecimi1),istisnakismikdvistisnasecimihizmetveteslimtutari1 =istisnakismikdvistisnasecimihizmetveteslimtutari1,
+                    istisnakismikdvistisnasecimiyuklenilenkdv1 =istisnakismikdvistisnasecimiyuklenilenkdv1 ,istisna2 = get_object_or_none(kdv_istisna_kodu,istisnakismikdvistisnasecimi2),
+                    istisnakismikdvistisnasecimihizmetveteslimtutari2 = istisnakismikdvistisnasecimihizmetveteslimtutari2,
+                    istisnakismikdvistisnasecimiyuklenilenkdv2 = istisnakismikdvistisnasecimiyuklenilenkdv2,
+                    istisna3 = get_object_or_none(kdv_istisna_kodu,istisnakismikdvistisnasecimi3),
+                    istisnakismikdvistisnasecimihizmetveteslimtutari3 = istisnakismikdvistisnasecimihizmetveteslimtutari3,
+                    istisnakismikdvistisnasecimiyuklenilenkdv3 = istisnakismikdvistisnasecimiyuklenilenkdv3,
+                    istisna4= get_object_or_none(kdv_istisna_kodu,istisnakismikdvistisnasecimi4),
+                    istisnakismikdvistisnasecimihizmetveteslimtutari4 = istisnakismikdvistisnasecimihizmetveteslimtutari4,
+                    istisnakismikdvistisnasecimiyuklenilenkdv4 = istisnakismikdvistisnasecimiyuklenilenkdv4,
+                    istisna5 = get_object_or_none(kdv_istisna_kodu,istisnakismikdvistisnasecimi5),
+                    istisnakismikdvistisnasecimihizmetveteslimtutari5 = istisnakismikdvistisnasecimihizmetveteslimtutari5,
+                    istisnakismikdvistisnasecimiyuklenilenkdv5 = istisnakismikdvistisnasecimiyuklenilenkdv5
+                )
         # TAM İSTİSNA KAPSAMINA GİREN İŞLEMLER
         tamistisnakodsecimi1 = request.POST.get("tamistisnakodsecimi1")
         tamistisnamalhizmeti1 = request.POST.get("tamistisnamalhizmeti1")
