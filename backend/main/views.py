@@ -5531,28 +5531,42 @@ def kdv1_beyannamesi(request,slug):
                     istisnakismikdvistisnasecimihizmetveteslimtutari5 = istisnakismikdvistisnasecimihizmetveteslimtutari5,
                     istisnakismikdvistisnasecimiyuklenilenkdv5 = istisnakismikdvistisnasecimiyuklenilenkdv5
                 )
-        # TAM İSTİSNA KAPSAMINA GİREN İŞLEMLER
-        tamistisnakodsecimi1 = request.POST.get("tamistisnakodsecimi1")
-        tamistisnamalhizmeti1 = request.POST.get("tamistisnamalhizmeti1")
-        tamistisnamalbedeli1 = request.POST.get("tamistisnamalbedeli1")
-        tamistisnayuklenilenkdv1 = request.POST.get("tamistisnayuklenilenkdv1")
-        tamistisnakodsecimi2 = request.POST.get("tamistisnakodsecimi2")
-        tamistisnamalhizmeti2 = request.POST.get("tamistisnamalhizmeti2")
-        tamistisnamalbedeli2 = request.POST.get("tamistisnamalbedeli2")
-        tamistisnayuklenilenkdv2 = request.POST.get("tamistisnayuklenilenkdv2")
-        tamistisnakodsecimi3 = request.POST.get("tamistisnakodsecimi3")
-        tamistisnamalhizmeti3 = request.POST.get("tamistisnamalhizmeti3")
-        tamistisnamalbedeli3 = request.POST.get("tamistisnamalbedeli3")
-        tamistisnayuklenilenkdv3 = request.POST.get("tamistisnayuklenilenkdv3")
-        tamistisnakodsecimi4 = request.POST.get("tamistisnakodsecimi4")
-        tamistisnamalhizmeti4 = request.POST.get("tamistisnamalhizmeti4")
-        tamistisnamalbedeli4 = request.POST.get("tamistisnamalbedeli4")
-        tamistisnayuklenilenkdv4 = request.POST.get("tamistisnayuklenilenkdv4")
-        tamistisnakodsecimi5 = request.POST.get("tamistisnakodsecimi5")
-        tamistisnamalhizmeti5 = request.POST.get("tamistisnamalhizmeti5")
-        tamistisnamalbedeli5= request.POST.get("tamistisnamalbedeli5")
-        tamistisnayuklenilenkdv5 = request.POST.get("tamistisnayuklenilenkdv5")
-        # TAM İSTİSNA KAPSAMINA GİREN İŞLEMLER
+            if True:
+                # TAM İSTİSNA KAPSAMINA GİREN İŞLEMLER
+                tamistisnakodsecimi1 = request.POST.get("tamistisnakodsecimi1")
+                tamistisnamalhizmeti1 = request.POST.get("tamistisnamalhizmeti1")
+                tamistisnamalbedeli1 = request.POST.get("tamistisnamalbedeli1")
+                tamistisnayuklenilenkdv1 = request.POST.get("tamistisnayuklenilenkdv1")
+                tamistisnakodsecimi2 = request.POST.get("tamistisnakodsecimi2")
+                tamistisnamalhizmeti2 = request.POST.get("tamistisnamalhizmeti2")
+                tamistisnamalbedeli2 = request.POST.get("tamistisnamalbedeli2")
+                tamistisnayuklenilenkdv2 = request.POST.get("tamistisnayuklenilenkdv2")
+                tamistisnakodsecimi3 = request.POST.get("tamistisnakodsecimi3")
+                tamistisnamalhizmeti3 = request.POST.get("tamistisnamalhizmeti3")
+                tamistisnamalbedeli3 = request.POST.get("tamistisnamalbedeli3")
+                tamistisnayuklenilenkdv3 = request.POST.get("tamistisnayuklenilenkdv3")
+                tamistisnakodsecimi4 = request.POST.get("tamistisnakodsecimi4")
+                tamistisnamalhizmeti4 = request.POST.get("tamistisnamalhizmeti4")
+                tamistisnamalbedeli4 = request.POST.get("tamistisnamalbedeli4")
+                tamistisnayuklenilenkdv4 = request.POST.get("tamistisnayuklenilenkdv4")
+                tamistisnakodsecimi5 = request.POST.get("tamistisnakodsecimi5")
+                tamistisnamalhizmeti5 = request.POST.get("tamistisnamalhizmeti5")
+                tamistisnamalbedeli5= request.POST.get("tamistisnamalbedeli5")
+                tamistisnayuklenilenkdv5 = request.POST.get("tamistisnayuklenilenkdv5")
+                # TAM İSTİSNA KAPSAMINA GİREN İŞLEMLER
+                tam_istisnaa_durumu.objects.create(
+                bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),
+                bagli_oldugu_beyanname = get_object_or_404(kdv1_beyannamesi_bilgileri,id = beyanname_bilgisi.id),
+                istisnaa1 = get_object_or_none(kdv_istisna_kodu,tamistisnakodsecimi1),tamistisnamalhizmeti1 =tamistisnamalhizmeti1,
+                tamistisnamalbedeli1 =tamistisnamalbedeli1 ,istisnaa2 = get_object_or_none(kdv_istisna_kodu,tamistisnakodsecimi2),tamistisnamalhizmeti2 = tamistisnamalhizmeti2,
+                tamistisnamalbedeli2 = tamistisnamalbedeli2,istisnaa3 = get_object_or_none(kdv_istisna_kodu,tamistisnakodsecimi3),
+                tamistisnamalhizmeti3 = tamistisnamalhizmeti3,tamistisnamalbedeli3 = tamistisnamalbedeli3,
+                istisnaa4= get_object_or_none(kdv_istisna_kodu,tamistisnakodsecimi4),tamistisnamalhizmeti4 = tamistisnamalhizmeti4,tamistisnamalbedeli4 = tamistisnamalbedeli4,istisnaa5 = get_object_or_none(kdv_istisna_kodu,tamistisnakodsecimi5),
+                tamistisnamalhizmeti5 = tamistisnamalhizmeti5,tamistisnamalbedeli5 = tamistisnamalbedeli5,
+                tamistisnayuklenilenkdv1 = tamistisnayuklenilenkdv1,tamistisnayuklenilenkdv2 = tamistisnayuklenilenkdv2,tamistisnayuklenilenkdv3 = tamistisnayuklenilenkdv3,
+                tamistisnayuklenilenkdv4 = tamistisnayuklenilenkdv4,tamistisnayuklenilenkdv5 = tamistisnayuklenilenkdv5,
+
+            )
         #İSTEĞE BAĞLI TAM TEVKİFAT KAPSAMINA GİREN İŞLEMLER
         istege_baglitevkatgirenislemler = request.POST.getlist("istege_baglitevkatgirenislemler")
         teslimvehizmettutari = request.POST.getlist("teslimvehizmettutari")
