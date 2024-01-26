@@ -1,3 +1,0 @@
-var indiirmdagiliskdvtutari3 = parseFloat(document.querySelector("#indiirmdagiliskdvtutari3").value);
-    var indiirmdagiliskdv3 = parseFloat(document.querySelector("#indiirmdagiliskdv3").value);
-    document.querySelector("#indiirmdagilis3").textContent = parseFloat(indiirmdagiliskdvtutari3*100/indiirmdagiliskdv3);

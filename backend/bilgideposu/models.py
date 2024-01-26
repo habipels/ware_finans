@@ -2013,4 +2013,23 @@ class sonuc_hesaplari_digerbilgiler(models.Model):
     sonucyazisidiger3 =  models.CharField(max_length = 200,verbose_name = "sonuç yazısı",blank = True,null  =True)
     sonucdiger4 = models.FloatField(verbose_name = "sonuctutarı",default = 0)
     sonucyazisidiger4 =  models.CharField(max_length = 200,verbose_name = "sonuç yazısı",blank = True,null  =True)
+# KISMİ İSTİSNA KAPSAMINA GİREN İŞLEMLER
+class kismi_istisna_durumu(models.Model):
+    bagli_oldugu_firma = models.ForeignKey(firma,blank=True,null=True,on_delete=models.SET_NULL)
+    bagli_oldugu_beyanname = models.ForeignKey(kdv1_beyannamesi_bilgileri,blank=True,null=True,on_delete=models.SET_NULL)
+    istisna1 = models.ForeignKey(kdv_istisna_kodu,on_delete=models.SET_NULL,blank = True,null = True,verbose_name =  "İstisna 1",related_name = "istisna_1")
+    istisnakismikdvistisnasecimihizmetveteslimtutari1 = models.FloatField(verbose_name = "tutar",default = 0)
+    istisnakismikdvistisnasecimiyuklenilenkdv1= models.FloatField(verbose_name = "tutar",default = 0)
+    istisna2 = models.ForeignKey(kdv_istisna_kodu,on_delete=models.SET_NULL,blank = True,null = True,verbose_name =  "İstisna 2",related_name = "istisna_2")
+    istisnakismikdvistisnasecimihizmetveteslimtutari2 = models.FloatField(verbose_name = "tutar",default = 0)
+    istisnakismikdvistisnasecimiyuklenilenkdv2= models.FloatField(verbose_name = "tutar",default = 0)
+    istisna3 = models.ForeignKey(kdv_istisna_kodu,on_delete=models.SET_NULL,blank = True,null = True,verbose_name =  "İstisna 3 ",related_name = "istisna_3")
+    istisnakismikdvistisnasecimihizmetveteslimtutari3 = models.FloatField(verbose_name = "tutar",default = 0)
+    istisnakismikdvistisnasecimiyuklenilenkdv3 = models.FloatField(verbose_name = "tutar",default = 0)
+    istisna4 = models.ForeignKey(kdv_istisna_kodu,on_delete=models.SET_NULL,blank = True,null = True,verbose_name =  "İstisna 4",related_name = "istisna_4")
+    istisnakismikdvistisnasecimihizmetveteslimtutari4 = models.FloatField(verbose_name = "tutar",default = 0)
+    istisnakismikdvistisnasecimiyuklenilenkdv4= models.FloatField(verbose_name = "tutar",default = 0)
+    istisna5 = models.ForeignKey(kdv_istisna_kodu,on_delete=models.SET_NULL,blank = True,null = True,verbose_name =  "İstisna 5",related_name = "istisna_5")
+    istisnakismikdvistisnasecimihizmetveteslimtutari5 = models.FloatField(verbose_name = "tutar",default = 0)
+    istisnakismikdvistisnasecimiyuklenilenkdv5= models.FloatField(verbose_name = "tutar",default = 0)
 #KDV1
