@@ -5373,38 +5373,54 @@ def kdv1_beyannamesi(request,slug):
                         )
                 indirimkdvsi = request.POST.get("indirimkdvsi")
                 #İSTEĞE BAĞLI TAM TEVKİFAT UYGULANAN İŞLEMLER
-        # İNDİRİMLER
-        indirimler1 = request.POST.get("indirimler1")
-        indirimlerdeger1 = request.POST.get("indirimlerdeger1")
-        indirimler2 = request.POST.get("indirimler2")
-        indirimlerdeger2 = request.POST.get("indirimlerdeger2")
-        indirimler3 = request.POST.get("indirimler3")
-        indirimlerdeger3 = request.POST.get("indirimlerdeger3")
-        indirimler4 = request.POST.get("indirimler4")
-        indirimlerdeger4 = request.POST.get("indirimlerdeger4")
-        indirimler5 = request.POST.get("indirimler5")
-        indirimlerdeger5 = request.POST.get("indirimlerdeger5")
-        indirimler6 = request.POST.get("indirimler6")
-        indirimlerdeger6 = request.POST.get("indirimlerdeger6")
-        indirimler7 = request.POST.get("indirimler7")
-        indirimlerdeger7 = request.POST.get("indirimlerdeger7")
-        indirimler8 = request.POST.get("indirimler8")
-        indirimlerdeger8 = request.POST.get("indirimlerdeger8")
-        indirimler9 = request.POST.get("indirimler9")
-        indirimlerdeger9 = request.POST.get("indirimlerdeger9")
-        indirimler10 = request.POST.get("indirimler10")
-        indirimlerdeger10 = request.POST.get("indirimlerdeger10")
-        indirimler11 = request.POST.get("indirimler11")
-        indirimlerdeger11 = request.POST.get("indirimlerdeger11")
-        # İNDİRİMLER
-        #BU DÖNEME AİT İNDİRİLECEK KDV TUTARININ ORANLARA GÖRE DAĞILIMI
-        indiirmdagiliskdv1 = request.POST.get("indiirmdagiliskdv1")
-        indiirmdagiliskdvtutari1 = request.POST.get("indiirmdagiliskdvtutari1")
-        indiirmdagiliskdv2 = request.POST.get("indiirmdagiliskdv2")
-        indiirmdagiliskdvtutari2 = request.POST.get("indiirmdagiliskdvtutari2")
-        indiirmdagiliskdv3 = request.POST.get("indiirmdagiliskdv3")
-        indiirmdagiliskdvtutari3 = request.POST.get("indiirmdagiliskdvtutari3")
-        #BU DÖNEME AİT İNDİRİLECEK KDV TUTARININ ORANLARA GÖRE DAĞILIMI
+            if True:
+                # İNDİRİMLER
+                indirimler1 = request.POST.get("indirimler1")
+                indirimlerdeger1 = request.POST.get("indirimlerdeger1")
+                indirimler2 = request.POST.get("indirimler2")
+                indirimlerdeger2 = request.POST.get("indirimlerdeger2")
+                indirimler3 = request.POST.get("indirimler3")
+                indirimlerdeger3 = request.POST.get("indirimlerdeger3")
+                indirimler4 = request.POST.get("indirimler4")
+                indirimlerdeger4 = request.POST.get("indirimlerdeger4")
+                indirimler5 = request.POST.get("indirimler5")
+                indirimlerdeger5 = request.POST.get("indirimlerdeger5")
+                indirimler6 = request.POST.get("indirimler6")
+                indirimlerdeger6 = request.POST.get("indirimlerdeger6")
+                indirimler7 = request.POST.get("indirimler7")
+                indirimlerdeger7 = request.POST.get("indirimlerdeger7")
+                indirimler8 = request.POST.get("indirimler8")
+                indirimlerdeger8 = request.POST.get("indirimlerdeger8")
+                indirimler9 = request.POST.get("indirimler9")
+                indirimlerdeger9 = request.POST.get("indirimlerdeger9")
+                indirimler10 = request.POST.get("indirimler10")
+                indirimlerdeger10 = request.POST.get("indirimlerdeger10")
+                indirimler11 = request.POST.get("indirimler11")
+                indirimlerdeger11 = request.POST.get("indirimlerdeger11")
+                # İNDİRİMLER
+                indirimler.objects.create(
+                    bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),
+                    bagli_oldugu_beyanname = get_object_or_404(kdv1_beyannamesi_bilgileri,id = beyanname_bilgisi.id),
+                    tutar  =indirimlerdeger1,bilgi = indirimler1,bilgi1 = indirimler3,tutar1  =indirimlerdeger3,
+                    bilgi2 = indirimler4,tutar2  =indirimlerdeger4,bilgi3 = indirimler5,tutar3  =indirimlerdeger5,
+                    bilgi4 = indirimler6,tutar4  =indirimlerdeger6,bilgi5 = indirimler7,tutar5  =indirimlerdeger7,
+                    bilgi7 = indirimler9,tutar7  =indirimlerdeger9,bilgi8 = indirimler10,tutar8  =indirimlerdeger10
+                )
+            if True:
+                #BU DÖNEME AİT İNDİRİLECEK KDV TUTARININ ORANLARA GÖRE DAĞILIMI
+                indiirmdagiliskdv1 = request.POST.get("indiirmdagiliskdv1")
+                indiirmdagiliskdvtutari1 = request.POST.get("indiirmdagiliskdvtutari1")
+                indiirmdagiliskdv2 = request.POST.get("indiirmdagiliskdv2")
+                indiirmdagiliskdvtutari2 = request.POST.get("indiirmdagiliskdvtutari2")
+                indiirmdagiliskdv3 = request.POST.get("indiirmdagiliskdv3")
+                indiirmdagiliskdvtutari3 = request.POST.get("indiirmdagiliskdvtutari3")
+                #BU DÖNEME AİT İNDİRİLECEK KDV TUTARININ ORANLARA GÖRE DAĞILIMI
+                indirim_bildirimi.objects.create(
+                    bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),
+                    bagli_oldugu_beyanname = get_object_or_404(kdv1_beyannamesi_bilgileri,id = beyanname_bilgisi.id),
+                    kdvorani1 = indiirmdagiliskdv1,kdvtutari1 = indiirmdagiliskdvtutari1,kdvorani2 = indiirmdagiliskdv2,
+                    kdvtutari2 = indiirmdagiliskdvtutari2,kdvorani3 = indiirmdagiliskdv3,kdvtutari3 =indiirmdagiliskdvtutari3 
+                )
         #ÖNCEKİ DÖNEME AİT MİKTARDA DEĞİŞİKLİK VARSA BU TABLO DOLDURULACAKTIR
         indirimoncekidonem1 = request.POST.get("indirimoncekidonem1")
         aciklama1 = request.POST.get("aciklama1")

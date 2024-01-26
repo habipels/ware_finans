@@ -10236,6 +10236,18 @@
     document.querySelector("#toplamkatmadegervergisi").textContent = toplamkatmadegervergisi;
     document.querySelector("#indirimdahiltoplamkdv").textContent = toplamkatmadegervergisi+parseFloat(document.querySelector("#indirimkdvsi").value);
     
+
+    var indiirmdagiliskdvtutari1 = parseFloat(document.querySelector("#indiirmdagiliskdvtutari1").value);
+    var indiirmdagiliskdv1 = parseFloat(document.querySelector("#indiirmdagiliskdv1").value);
+    document.querySelector("#indiirmdagilis1").textContent = parseFloat(indiirmdagiliskdvtutari1*100/indiirmdagiliskdv1).toFixed(2);
+    var indiirmdagiliskdvtutari2 = parseFloat(document.querySelector("#indiirmdagiliskdvtutari2").value);
+    var indiirmdagiliskdv2 = parseFloat(document.querySelector("#indiirmdagiliskdv2").value);
+    document.querySelector("#indiirmdagilis2").textContent = parseFloat(indiirmdagiliskdvtutari2*100/indiirmdagiliskdv2).toFixed(2);
+    var indiirmdagiliskdvtutari3 = parseFloat(document.querySelector("#indiirmdagiliskdvtutari3").value);
+    var indiirmdagiliskdv3 = parseFloat(document.querySelector("#indiirmdagiliskdv3").value);
+    document.querySelector("#indiirmdagilis3").textContent = parseFloat(indiirmdagiliskdvtutari3*100/indiirmdagiliskdv3).toFixed(2);
+    document.querySelector("#toplam").textContent = parseFloat(parseFloat(indiirmdagiliskdvtutari3*100/indiirmdagiliskdv3)+parseFloat(indiirmdagiliskdvtutari2*100/indiirmdagiliskdv2)+parseFloat(indiirmdagiliskdvtutari1*100/indiirmdagiliskdv1)).toFixed(2);
+
   }
   
   

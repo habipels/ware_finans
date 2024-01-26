@@ -1921,22 +1921,31 @@ class indirimler(models.Model):
     bagli_oldugu_firma = models.ForeignKey(firma,blank=True,null=True,on_delete=models.SET_NULL)
     bagli_oldugu_beyanname = models.ForeignKey(kdv1_beyannamesi_bilgileri,blank=True,null=True,on_delete=models.SET_NULL)
     #Önceki Dönemden Devreden Indrilecek KDV
+    bilgi = models.CharField(max_length = 200,verbose_name = "Bilgi 1",blank = True,null = True)
     tutar = models.FloatField(verbose_name = "Tutar",default = 0)
     #Satış İade Edlen, İşlemi Gerçekleşmeyen veya Işleminden Vazgeçlen Mal ve Hizmetler Nedeniyle İndrimesi Gereken KDV
+    bilgi1 = models.CharField(max_length = 200,verbose_name = "Bilgi 1",blank = True,null = True)
     tutar1 = models.FloatField(verbose_name = "Tutar",default = 0)
     #Türkiye'de İkamet Etmeyen Yolculara Bu Dönemde Ödenen KDV (43 No.lu G.T.)
+    bilgi2 = models.CharField(max_length = 200,verbose_name = "Bilgi 1",blank = True,null = True)
     tutar2 = models.FloatField(verbose_name = "Tutar",default = 0)
     #İndirimli Orana Tabi İşlemlerle İlgili Yıl İçerisinde Mahsuben İadesi Gerçekleşmeyen KDV
+    bilgi3 = models.CharField(max_length = 200,verbose_name = "Bilgi 1",blank = True,null = True)
     tutar3 = models.FloatField(verbose_name = "Tutar",default = 0)
     #Kanunun (11/1-c) ve Geçici 17. Maddelerinden Doğan İadelerin İndiirm Yoluyla Telafisi Nedeniyle Indrilecek KDV
+    bilgi4 = models.CharField(max_length = 200,verbose_name = "Bilgi 1",blank = True,null = True)
     tutar4 = models.FloatField(verbose_name = "Tutar",default = 0)
     #Yurtiçi Alımlara İlişkin KDV
+    bilgi5 = models.CharField(max_length = 200,verbose_name = "Bilgi 1",blank = True,null = True)
     tutar5 = models.FloatField(verbose_name = "Tutar",default = 0)
     #Sorumlu Sifatıyla Beyan Edien KDV
+    bilgi6 = models.CharField(max_length = 200,verbose_name = "Bilgi 1",blank = True,null = True)
     tutar6 = models.FloatField(verbose_name = "Tutar",default = 0)
     #İthalde Ödenen KDV
+    bilgi7 = models.CharField(max_length = 200,verbose_name = "Bilgi 1",blank = True,null = True)
     tutar7 = models.FloatField(verbose_name = "Tutar",default = 0)
     #Değersiz Hale Gelen Alacaklara İlişkin İndrilecek KDV
+    bilgi8 = models.CharField(max_length = 200,verbose_name = "Bilgi 1",blank = True,null = True)
     tutar8 = models.FloatField(verbose_name = "Tutar",default = 0)
 
 #BU DÖNEME AİT İNDİRİLECEK KDV TUTARININ ORANLARA GÖRE DAĞILIMI
@@ -1950,4 +1959,31 @@ class indirim_bildirimi(models.Model):
     kdvorani3 = models.FloatField(verbose_name = "Matrah",default = 0)
     kdvtutari3 = models.FloatField(verbose_name = "Vergi",default = 0)  
 
+class indirim_oncekidonem(models.Model):
+    bagli_oldugu_firma = models.ForeignKey(firma,blank=True,null=True,on_delete=models.SET_NULL)
+    bagli_oldugu_beyanname = models.ForeignKey(kdv1_beyannamesi_bilgileri,blank=True,null=True,on_delete=models.SET_NULL)
+    indirimoncekidonem1 = models.CharField(max_length = 200,verbose_name = "Başlığı",blank = True,null  =True)
+    aciklama1 = models.CharField(max_length = 400,verbose_name = "Açıklama",blank = True,null  =True)
+    miktar1 = models.FloatField(verbose_name = "Miktar",default = 0)
+    indirimoncekidonem2 = models.CharField(max_length = 200,verbose_name = "Başlığı",blank = True,null  =True)
+    aciklama2 = models.CharField(max_length = 400,verbose_name = "Açıklama",blank = True,null  =True)
+    miktar2 = models.FloatField(verbose_name = "Miktar",default = 0)
+    indirimoncekidonem3 = models.CharField(max_length = 200,verbose_name = "Başlığı",blank = True,null  =True)
+    aciklama3 = models.CharField(max_length = 400,verbose_name = "Açıklama",blank = True,null  =True)
+    miktar3 = models.FloatField(verbose_name = "Miktar",default = 0)
+    indirimoncekidonem4 = models.CharField(max_length = 200,verbose_name = "Başlığı",blank = True,null  =True)
+    aciklama4 = models.CharField(max_length = 400,verbose_name = "Açıklama",blank = True,null  =True)
+    miktar4 = models.FloatField(verbose_name = "Miktar",default = 0)
+    indirimoncekidonem5 =models.CharField(max_length = 200,verbose_name = "Başlığı",blank = True,null  =True)
+    aciklama5 = models.CharField(max_length = 400,verbose_name = "Açıklama",blank = True,null  =True)
+    miktar5 = models.FloatField(verbose_name = "Miktar",default = 0)
+    indirimoncekidonem6 = models.CharField(max_length = 200,verbose_name = "Başlığı",blank = True,null  =True)
+    aciklama6 = models.CharField(max_length = 400,verbose_name = "Açıklama",blank = True,null  =True)
+    miktar6 = models.FloatField(verbose_name = "Miktar",default = 0)
+    indirimoncekidonem7 = models.CharField(max_length = 200,verbose_name = "Başlığı",blank = True,null  =True)
+    aciklama7 = models.CharField(max_length = 400,verbose_name = "Açıklama",blank = True,null  =True)
+    miktar7 = models.FloatField(verbose_name = "Miktar",default = 0)
+    indirimoncekidonem8 = models.CharField(max_length = 200,verbose_name = "Başlığı",blank = True,null  =True)
+    aciklama8 = models.CharField(max_length = 400,verbose_name = "Açıklama",blank = True,null  =True)
+    miktar8 = models.FloatField(verbose_name = "Miktar",default = 0)
 #KDV1
