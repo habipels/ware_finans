@@ -1958,7 +1958,7 @@ class indirim_bildirimi(models.Model):
     kdvtutari2 = models.FloatField(verbose_name = "Vergi",default = 0)
     kdvorani3 = models.FloatField(verbose_name = "Matrah",default = 0)
     kdvtutari3 = models.FloatField(verbose_name = "Vergi",default = 0)  
-
+#ÖNCEKİ DÖNEME AİT MİKTARDA DEĞİŞİKLİK VARSA BU TABLO DOLDURULACAKTIR
 class indirim_oncekidonem(models.Model):
     bagli_oldugu_firma = models.ForeignKey(firma,blank=True,null=True,on_delete=models.SET_NULL)
     bagli_oldugu_beyanname = models.ForeignKey(kdv1_beyannamesi_bilgileri,blank=True,null=True,on_delete=models.SET_NULL)
@@ -1986,4 +1986,17 @@ class indirim_oncekidonem(models.Model):
     indirimoncekidonem8 = models.CharField(max_length = 200,verbose_name = "Başlığı",blank = True,null  =True)
     aciklama8 = models.CharField(max_length = 400,verbose_name = "Açıklama",blank = True,null  =True)
     miktar8 = models.FloatField(verbose_name = "Miktar",default = 0)
+
+##SONUÇ HESAPLARI
+class sonuc_hesaplari(models.Model):
+    bagli_oldugu_firma = models.ForeignKey(firma,blank=True,null=True,on_delete=models.SET_NULL)
+    bagli_oldugu_beyanname = models.ForeignKey(kdv1_beyannamesi_bilgileri,blank=True,null=True,on_delete=models.SET_NULL)
+    sonucyazisi1 =  models.CharField(max_length = 200,verbose_name = "sonuç yazısı",blank = True,null  =True)
+    sonuc1 = models.FloatField(verbose_name = "sonuctutarı",default = 0)
+    sonuc2 = models.FloatField(verbose_name = "sonuctutarı",default = 0)
+    sonucyazisi2 =  models.CharField(max_length = 200,verbose_name = "sonuç yazısı",blank = True,null  =True)
+    sonuc3 = models.FloatField(verbose_name = "sonuctutarı",default = 0)
+    sonucyazisi3 =  models.CharField(max_length = 200,verbose_name = "sonuç yazısı",blank = True,null  =True)
+    sonuc4 = models.FloatField(verbose_name = "sonuctutarı",default = 0)
+    sonucyazisi4 =  models.CharField(max_length = 200,verbose_name = "sonuç yazısı",blank = True,null  =True)
 #KDV1

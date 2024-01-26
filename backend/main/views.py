@@ -5421,32 +5421,45 @@ def kdv1_beyannamesi(request,slug):
                     kdvorani1 = indiirmdagiliskdv1,kdvtutari1 = indiirmdagiliskdvtutari1,kdvorani2 = indiirmdagiliskdv2,
                     kdvtutari2 = indiirmdagiliskdvtutari2,kdvorani3 = indiirmdagiliskdv3,kdvtutari3 =indiirmdagiliskdvtutari3 
                 )
-        #ÖNCEKİ DÖNEME AİT MİKTARDA DEĞİŞİKLİK VARSA BU TABLO DOLDURULACAKTIR
-        indirimoncekidonem1 = request.POST.get("indirimoncekidonem1")
-        aciklama1 = request.POST.get("aciklama1")
-        miktar1 = request.POST.get("miktar1")
-        indirimoncekidonem2 = request.POST.get("indirimoncekidonem2")
-        aciklama2 = request.POST.get("aciklama2")
-        miktar2 = request.POST.get("miktar2")
-        indirimoncekidonem3 = request.POST.get("indirimoncekidonem3")
-        aciklama3 = request.POST.get("aciklama3")
-        miktar3 = request.POST.get("miktar3")
-        indirimoncekidonem4 = request.POST.get("indirimoncekidonem4")
-        aciklama4 = request.POST.get("aciklama4")
-        miktar4 = request.POST.get("miktar4")
-        indirimoncekidonem5 = request.POST.get("indirimoncekidonem5")
-        aciklama5 = request.POST.get("aciklama5")
-        miktar5 = request.POST.get("miktar5")
-        indirimoncekidonem6 = request.POST.get("indirimoncekidonem6")
-        aciklama6 = request.POST.get("aciklama6")
-        miktar6 = request.POST.get("miktar6")
-        indirimoncekidonem7 = request.POST.get("indirimoncekidonem7")
-        aciklama7 = request.POST.get("aciklama7")
-        miktar7 = request.POST.get("miktar7")
-        indirimoncekidonem8 = request.POST.get("indirimoncekidonem8")
-        aciklama8 = request.POST.get("aciklama8")
-        miktar8 = request.POST.get("miktar8")
-        #ÖNCEKİ DÖNEME AİT MİKTARDA DEĞİŞİKLİK VARSA BU TABLO DOLDURULACAKTIR
+            if True:
+                #ÖNCEKİ DÖNEME AİT MİKTARDA DEĞİŞİKLİK VARSA BU TABLO DOLDURULACAKTIR
+                indirimoncekidonem1 = request.POST.get("indirimoncekidonem1")
+                aciklama1 = request.POST.get("aciklama1")
+                miktar1 = request.POST.get("miktar1")
+                indirimoncekidonem2 = request.POST.get("indirimoncekidonem2")
+                aciklama2 = request.POST.get("aciklama2")
+                miktar2 = request.POST.get("miktar2")
+                indirimoncekidonem3 = request.POST.get("indirimoncekidonem3")
+                aciklama3 = request.POST.get("aciklama3")
+                miktar3 = request.POST.get("miktar3")
+                indirimoncekidonem4 = request.POST.get("indirimoncekidonem4")
+                aciklama4 = request.POST.get("aciklama4")
+                miktar4 = request.POST.get("miktar4")
+                indirimoncekidonem5 = request.POST.get("indirimoncekidonem5")
+                aciklama5 = request.POST.get("aciklama5")
+                miktar5 = request.POST.get("miktar5")
+                indirimoncekidonem6 = request.POST.get("indirimoncekidonem6")
+                aciklama6 = request.POST.get("aciklama6")
+                miktar6 = request.POST.get("miktar6")
+                indirimoncekidonem7 = request.POST.get("indirimoncekidonem7")
+                aciklama7 = request.POST.get("aciklama7")
+                miktar7 = request.POST.get("miktar7")
+                indirimoncekidonem8 = request.POST.get("indirimoncekidonem8")
+                aciklama8 = request.POST.get("aciklama8")
+                miktar8 = request.POST.get("miktar8")
+                #ÖNCEKİ DÖNEME AİT MİKTARDA DEĞİŞİKLİK VARSA BU TABLO DOLDURULACAKTIR
+                indirim_oncekidonem.objects.create(
+                    bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),
+                    bagli_oldugu_beyanname = get_object_or_404(kdv1_beyannamesi_bilgileri,id = beyanname_bilgisi.id),
+                    indirimoncekidonem1 = indirimoncekidonem1,aciklama1 = aciklama1,miktar1 = miktar1,
+                    indirimoncekidonem2 = indirimoncekidonem2, aciklama2 = aciklama2,miktar2 = miktar2,indirimoncekidonem3 = indirimoncekidonem3,
+                    aciklama3 = aciklama3,miktar3 = miktar3,indirimoncekidonem4 = indirimoncekidonem4,
+                    aciklama4 =aciklama4,miktar4 = miktar4,indirimoncekidonem5 = indirimoncekidonem5,
+                    aciklama5 = aciklama5,miktar5 = miktar5,
+                    indirimoncekidonem6 = indirimoncekidonem6,aciklama6 = aciklama6,miktar6 = miktar6,
+                    indirimoncekidonem7 = indirimoncekidonem7,aciklama7 = aciklama7,miktar7 = miktar7,
+                    indirimoncekidonem8 =indirimoncekidonem8,aciklama8 = aciklama8,miktar8 = miktar8
+                )
         #SONUÇ HESAPLARI
         sonucyazisi1 = request.POST.get("sonucyazisi1")
         sonuc1 = request.POST.get("sonuc1")
