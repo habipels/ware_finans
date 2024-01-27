@@ -157,5 +157,8 @@ urlpatterns = [
     #kurumlargerikazanimpayi
     path("<str:slug>/kurumlargerikazanimpayi/", views.kurumlargerikazanimpayi, name="kurumlargerikazanimpayi"),
     #kurumlargerikazanimpayi
+     #turizm
+    path("<str:slug>/turizm/", views.turizm, name="turizm"),
+    #turizm
 ]
 #

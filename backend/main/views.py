@@ -6162,7 +6162,49 @@ def kurumlargerikazanimpayi(request,slug):
         #GEKAP TAHSİL EDİLMEYECEK ÜRÜNLER
     return render(request,"beyannameler/kurumlargerikazanimpayi.html",content)
 
-
+#turizim Beyannamesi
+def turizm(request,slug):
+    content = site_ayarlari()
+    content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
+    content["subeleri"] =  sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)).first()
+    content["firma_ayarlari"] = firma_ayarlari_ayar_kisimi.objects.filter(bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) ).last()
+    content["faliyet"] = sube_faliyet_bilgileri.objects.filter(sube_bilgisi=sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)).first()).first()
+    content["firmalarim"] = firma.objects.filter(silinme_bilgisi = False,firma_muhasabecisi = request.user)
+    content["ulkeler"] = ulke_ulke_kodlari.objects.all()
+    content["beyannameduzenleyen"]=beyanname_duzenleyene_ait_bilgiler.objects.filter(beyanname_bilgisi__sube_bilgisi = sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)).first()).last()
+    content["mirasci"] =beyanname_bilgileri.objects.filter(sube_bilgisi = sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)).first()).last()
+    content["kanuni_temsilci"] = beyanname_kanuni_temsilcisi.objects.filter(beyanname_bilgisi__sube_bilgisi = sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)).first()).last()
+    content["beyannamegonderen"] = Beyannameyi_gonderen_bilgileri.objects.filter(beyanname_bilgisi__sube_bilgisi = sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)).first()).last()
+    content["ymmbilgileri"]  =ymmbilgileri.objects.filter(beyanname_bilgisi__sube_bilgisi = sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)).first()).last()
+    tevk_600ler = []
+    for i in range(601,628):
+        tevk_600ler.append(str(i))
+    content["tevkifatlar"] =tevkifat_tur_kodu.objects.filter(hesap_kodu__in = tevk_600ler,silinme_bilgisi = False,bagli_oldugu_firma = None)
+    tevk_800ler = []
+    for i in range(801,826):
+        tevk_800ler.append(str(i))
+    content["tevkifatlar1"] =tevkifat_tur_kodu.objects.filter(hesap_kodu__in = tevk_800ler,silinme_bilgisi = False,bagli_oldugu_firma = None)
+    if request.POST:
+        #Turizm Payına Tabi Faliyetler
+        istege_baglitevkat = request.POST.getlist("istege_baglitevkat")
+        istegebaglimatrah = request.POST.getlist("istegebaglimatrah")
+        istebaglikdv = request.POST.getlist("istebaglikdv")
+        istebaglivergihesaplanan = request.POST.getlist("istebaglivergihesaplanan")
+        #Turizm Payına Tabi Faliyetler
+        #İndirimli Turizm Payına Tabi Faliyetler
+        istege_baglitevkat = request.POST.getlist("istege_baglitevkat")
+        istegebaglimatrah = request.POST.getlist("istegebaglimatrah")
+        istebaglikdv = request.POST.getlist("istebaglikdv")
+        istebaglivergihesaplanan = request.POST.getlist("istebaglivergihesaplanan")
+        #İndirimli Turizm Payına Tabi Faliyetler
+        #İndirimli İşletme Bilgisi
+        islemturutamtevkifat =request.POST.getlist("islemturutamtevkifat")
+        dolasimagirenbeyannamesayisi = request.POST.getlist("dolasimagirenbeyannamesayisi")
+        tesisadi = request.POST.getlist("tesisadi")
+        tamtevkifattarihi = request.POST.getlist("tamtevkifattarihi")
+        belgesayisi = request.POST.getlist("belgesayisi")
+        #İndirimli İşletme Bilgisi
+    return render(request,"beyannameler/turizm.html",content)
 
 
 
