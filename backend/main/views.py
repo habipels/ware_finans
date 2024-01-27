@@ -5610,12 +5610,21 @@ def kdv1_beyannamesi(request,slug):
                     digeriadekonuolankdv4 = digeriadekonuolankdv4,bilgi5 = digeriadersecim5,
                     digeriadetamistisnamalhizmeti5 = digeriadetamistisnamalhizmeti5,digeriadekonuolankdv5 = digeriadekonuolankdv5
                 )
-        #İHRAÇ KAYDIYLA TESLİMLER
-        ihrackayditurusecimi = request.POST.getlist("ihrackayditurusecimi")
-        ihrackayditutar = request.POST.getlist("ihrackayditutar")
-        ihrackaydikdvorani = request.POST.getlist("ihrackaydikdvorani")
-        hesaplanantutar = request.POST.getlist("hesaplanantutar")
-        #İHRAÇ KAYDIYLA TESLİMLER
+            if True:
+                #İHRAÇ KAYDIYLA TESLİMLER
+                ihrackayditurusecimi = request.POST.getlist("ihrackayditurusecimi")
+                ihrackayditutar = request.POST.getlist("ihrackayditutar")
+                ihrackaydikdvorani = request.POST.getlist("ihrackaydikdvorani")
+                hesaplanantutar = request.POST.getlist("hesaplanantutar")
+                #İHRAÇ KAYDIYLA TESLİMLER
+                for i in range(0,len(ihrackayditurusecimi)):
+                    if ihrackayditurusecimi[i]  != "":
+                        ihrac_kaydiyla_teslimler.objects.create(
+                            bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),
+                    bagli_oldugu_beyanname = get_object_or_404(kdv1_beyannamesi_bilgileri,id = beyanname_bilgisi.id),
+                    islem_turu = ihrackayditurusecimi[i],ihrac_kaydiyla_teslimler_tutar = ihrackayditutar[i],
+                    ihrackaydikdvorani = float(ihrackaydikdvorani[i]),hesaplanantutar = hesaplanantutar[i]
+                        )
         #
         ihrackayditeslimbedeltoplami = request.POST.get("ihrackayditeslimbedeltoplami")
         teciledilebilirkdv = request.POST.get("teciledilebilirkdv")
