@@ -2055,4 +2055,12 @@ class tam_istisnaa_durumu(models.Model):
     tamistisnamalhizmeti5 = models.FloatField(verbose_name = "tutar",default = 0)
     tamistisnamalbedeli5= models.FloatField(verbose_name = "tutar",default = 0)
     tamistisnayuklenilenkdv5= models.FloatField(verbose_name = "tutar",default = 0)
+#İSTEĞE BAĞLI TAM TEVKİFAT UYGULANAN İŞLEMLER
+class istegebaglitamtevkifat_giren_islemler(models.Model):
+    bagli_oldugu_firma = models.ForeignKey(firma,blank=True,null=True,on_delete=models.SET_NULL)
+    bagli_oldugu_beyanname = models.ForeignKey(kdv1_beyannamesi_bilgileri,blank=True,null=True,on_delete=models.SET_NULL)
+    islem_turu = models.ForeignKey(tevkifat_tur_kodu, blank=True, null=True, on_delete=models.SET_NULL)
+    teslim_ve_hizmet = models.FloatField(verbose_name = "Matrah",default = 0)
+    iadeye_konu_olan_kdv = models.FloatField(verbose_name = "KDV",default = 0)
+
 #KDV1
