@@ -2063,4 +2063,28 @@ class istegebaglitamtevkifat_giren_islemler(models.Model):
     teslim_ve_hizmet = models.FloatField(verbose_name = "Matrah",default = 0)
     iadeye_konu_olan_kdv = models.FloatField(verbose_name = "KDV",default = 0)
 
+# DİĞER İADE HAKKI DOĞURAN İŞLEMLER
+class iade_hakki_digerislemleri(models.Model):
+    bagli_oldugu_firma = models.ForeignKey(firma,blank=True,null=True,on_delete=models.SET_NULL)
+    bagli_oldugu_beyanname = models.ForeignKey(kdv1_beyannamesi_bilgileri,blank=True,null=True,on_delete=models.SET_NULL)
+
+    bilgi = models.CharField(max_length = 200 ,verbose_name = "Açıklama" ,blank = True,null = True)
+    digeriadetamistisnamalhizmeti1 = models.FloatField(verbose_name = "Matrah",default = 0)
+    digeriadekonuolankdv1 = models.FloatField(verbose_name = "Vergi",default = 0)
+
+    bilgi2 = models.CharField(max_length = 200 ,verbose_name = "Açıklama" ,blank = True,null = True)
+    digeriadetamistisnamalhizmeti2 = models.FloatField(verbose_name = "Matrah",default = 0)
+    digeriadekonuolankdv2 = models.FloatField(verbose_name = "Vergi",default = 0)
+
+    bilgi3 = models.CharField(max_length = 200 ,verbose_name = "Açıklama" ,blank = True,null = True)
+    digeriadetamistisnamalhizmeti3 = models.FloatField(verbose_name = "Matrah",default = 0)
+    digeriadekonuolankdv3 = models.FloatField(verbose_name = "Vergi",default = 0)  
+
+    bilgi4 = models.CharField(max_length = 200 ,verbose_name = "Açıklama" ,blank = True,null = True)
+    digeriadetamistisnamalhizmeti4 = models.FloatField(verbose_name = "Matrah",default = 0)
+    digeriadekonuolankdv4 = models.FloatField(verbose_name = "Vergi",default = 0)  
+
+    bilgi5 = models.CharField(max_length = 200 ,verbose_name = "Açıklama" ,blank = True,null = True)
+    digeriadetamistisnamalhizmeti5 = models.FloatField(verbose_name = "Matrah",default = 0)
+    digeriadekonuolankdv5 = models.FloatField(verbose_name = "Vergi",default = 0)
 #KDV1
