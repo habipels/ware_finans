@@ -1674,7 +1674,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
+              <tr class="ihrackaydiekleme">
                 <td><select  name="ihrackayditurusecimi" style="max-width: 100px;" id="">
                   <option value=""></option>
                   {% for i in ihrac_kayitlari %}
@@ -10285,6 +10285,21 @@
     document.querySelector("#tamistisnamalhizmetitoplam").textContent = parseFloat(tamistisnamalhizmeti1+tamistisnamalhizmeti2+tamistisnamalhizmeti3+tamistisnamalhizmeti4+tamistisnamalhizmeti5).toFixed(2);
     document.querySelector("#tamistisnamalbedelitoplam").textContent =parseFloat(tamistisnamalbedeli1+tamistisnamalbedeli2+tamistisnamalbedeli3+tamistisnamalbedeli4+tamistisnamalbedeli5).toFixed(2);
     document.querySelector("#tamistisnayuklenilenkdvtoplam").textContent =parseFloat(tamistisnayuklenilenkdv1+tamistisnayuklenilenkdv2+tamistisnayuklenilenkdv3+tamistisnayuklenilenkdv4+tamistisnayuklenilenkdv5).toFixed(2);
+    var digeriadekonuolankdv1 = parseFloat(document.querySelector("#digeriadekonuolankdv1").value);
+    var digeriadetamistisnamalhizmeti1 = parseFloat(document.querySelector("#digeriadetamistisnamalhizmeti1").value);
+    var digeriadekonuolankdv2 = parseFloat(document.querySelector("#digeriadekonuolankdv2").value);
+    var digeriadetamistisnamalhizmeti2 = parseFloat(document.querySelector("#digeriadetamistisnamalhizmeti2").value);
+    var digeriadekonuolankdv3 = parseFloat(document.querySelector("#digeriadekonuolankdv3").value);
+    var digeriadetamistisnamalhizmeti3 = parseFloat(document.querySelector("#digeriadetamistisnamalhizmeti3").value);
+    var digeriadekonuolankdv4 = parseFloat(document.querySelector("#digeriadekonuolankdv4").value);
+    var digeriadetamistisnamalhizmeti4 = parseFloat(document.querySelector("#digeriadetamistisnamalhizmeti4").value);
+    var digeriadekonuolankdv5 = parseFloat(document.querySelector("#digeriadekonuolankdv5").value);
+    var digeriadetamistisnamalhizmeti5 = parseFloat(document.querySelector("#digeriadetamistisnamalhizmeti5").value);
+    document.querySelector("#digeriadetamistisnamalhizmetitoplam").textContent = parseFloat(digeriadetamistisnamalhizmeti1+digeriadetamistisnamalhizmeti2+digeriadetamistisnamalhizmeti3+digeriadetamistisnamalhizmeti4+digeriadetamistisnamalhizmeti5).toFixed(2);
+    document.querySelector("#digeriadekonuolankdvtoplam").textContent = parseFloat(digeriadekonuolankdv1+digeriadekonuolankdv2+digeriadekonuolankdv3+digeriadekonuolankdv4+digeriadekonuolankdv5).toFixed(2);
+    document.querySelector("#digeriadekonuolankdvtoplamdigeriilebirikte").textContent =parseFloat(parseFloat(digeriadekonuolankdv1+digeriadekonuolankdv2+digeriadekonuolankdv3+digeriadekonuolankdv4+digeriadekonuolankdv5)+parseFloat(tamistisnayuklenilenkdv1+tamistisnayuklenilenkdv2+tamistisnayuklenilenkdv3+tamistisnayuklenilenkdv4+tamistisnayuklenilenkdv5)).toFixed(2);
+  
+  
   
   }
   

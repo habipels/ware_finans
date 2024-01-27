@@ -5567,28 +5567,49 @@ def kdv1_beyannamesi(request,slug):
                 tamistisnayuklenilenkdv4 = tamistisnayuklenilenkdv4,tamistisnayuklenilenkdv5 = tamistisnayuklenilenkdv5,
 
             )
-        #İSTEĞE BAĞLI TAM TEVKİFAT KAPSAMINA GİREN İŞLEMLER
-        istege_baglitevkatgirenislemler = request.POST.getlist("istege_baglitevkatgirenislemler")
-        teslimvehizmettutari = request.POST.getlist("teslimvehizmettutari")
-        iadeyekonuolankdv = request.POST.getlist("iadeyekonuolankdv")
-        #İSTEĞE BAĞLI TAM TEVKİFAT KAPSAMINA GİREN İŞLEMLER
-        # DİĞER İADE HAKKI DOĞURAN İŞLEMLER
-        digeriadersecim1 = request.POST.get("digeriadersecim1")
-        digeriadetamistisnamalhizmeti1 = request.POST.get("digeriadetamistisnamalhizmeti1")
-        digeriadekonuolankdv1 = request.POST.get("digeriadekonuolankdv1")
-        digeriadersecim2 = request.POST.get("digeriadersecim2")
-        digeriadetamistisnamalhizmeti2 = request.POST.get("digeriadetamistisnamalhizmeti2")
-        digeriadekonuolankdv2 = request.POST.get("digeriadekonuolankdv2")
-        digeriadersecim3 = request.POST.get("digeriadersecim3")
-        digeriadetamistisnamalhizmeti3 = request.POST.get("digeriadetamistisnamalhizmeti3")
-        digeriadekonuolankdv3 = request.POST.get("digeriadekonuolankdv3")
-        digeriadersecim4 = request.POST.get("digeriadersecim4")
-        digeriadetamistisnamalhizmeti4 = request.POST.get("digeriadetamistisnamalhizmeti4")
-        digeriadekonuolankdv4 = request.POST.get("digeriadekonuolankdv4")
-        digeriadersecim5 = request.POST.get("digeriadersecim5")
-        digeriadetamistisnamalhizmeti5 = request.POST.get("digeriadetamistisnamalhizmeti5")
-        digeriadekonuolankdv5 = request.POST.get("digeriadekonuolankdv5")
-        # DİĞER İADE HAKKI DOĞURAN İŞLEMLER
+            if True:
+                #İSTEĞE BAĞLI TAM TEVKİFAT KAPSAMINA GİREN İŞLEMLER
+                istege_baglitevkatgirenislemler = request.POST.getlist("istege_baglitevkatgirenislemler")
+                teslimvehizmettutari = request.POST.getlist("teslimvehizmettutari")
+                iadeyekonuolankdv = request.POST.getlist("iadeyekonuolankdv")
+                #İSTEĞE BAĞLI TAM TEVKİFAT KAPSAMINA GİREN İŞLEMLER
+                for i in range(0,len(istege_baglitevkatgirenislemler)):
+                    if istege_baglitevkatgirenislemler[i] != "":
+                        istegebaglitamtevkifat_giren_islemler.objects.create(
+                            bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),
+                        bagli_oldugu_beyanname = get_object_or_404(kdv1_beyannamesi_bilgileri,id = beyanname_bilgisi.id),
+                        islem_turu = get_object_or_none(tevkifat_tur_kodu,id = istege_baglitevkatgirenislemler[i]),
+                        teslim_ve_hizmet = teslimvehizmettutari[i],iadeye_konu_olan_kdv =iadeyekonuolankdv[i] 
+                        )
+            if True:
+                # DİĞER İADE HAKKI DOĞURAN İŞLEMLER
+                digeriadersecim1 = request.POST.get("digeriadersecim1")
+                digeriadetamistisnamalhizmeti1 = request.POST.get("digeriadetamistisnamalhizmeti1")
+                digeriadekonuolankdv1 = request.POST.get("digeriadekonuolankdv1")
+                digeriadersecim2 = request.POST.get("digeriadersecim2")
+                digeriadetamistisnamalhizmeti2 = request.POST.get("digeriadetamistisnamalhizmeti2")
+                digeriadekonuolankdv2 = request.POST.get("digeriadekonuolankdv2")
+                digeriadersecim3 = request.POST.get("digeriadersecim3")
+                digeriadetamistisnamalhizmeti3 = request.POST.get("digeriadetamistisnamalhizmeti3")
+                digeriadekonuolankdv3 = request.POST.get("digeriadekonuolankdv3")
+                digeriadersecim4 = request.POST.get("digeriadersecim4")
+                digeriadetamistisnamalhizmeti4 = request.POST.get("digeriadetamistisnamalhizmeti4")
+                digeriadekonuolankdv4 = request.POST.get("digeriadekonuolankdv4")
+                digeriadersecim5 = request.POST.get("digeriadersecim5")
+                digeriadetamistisnamalhizmeti5 = request.POST.get("digeriadetamistisnamalhizmeti5")
+                digeriadekonuolankdv5 = request.POST.get("digeriadekonuolankdv5")
+                # DİĞER İADE HAKKI DOĞURAN İŞLEMLER
+                iade_hakki_digerislemleri.objects.create(
+                    bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug),
+                    bagli_oldugu_beyanname = get_object_or_404(kdv1_beyannamesi_bilgileri,id = beyanname_bilgisi.id),
+                    bilgi = digeriadersecim1,digeriadetamistisnamalhizmeti1 = digeriadetamistisnamalhizmeti1,digeriadekonuolankdv1 = digeriadekonuolankdv1,
+                    bilgi2 = digeriadersecim2,digeriadetamistisnamalhizmeti2 = digeriadetamistisnamalhizmeti2,
+                    digeriadekonuolankdv2 = digeriadekonuolankdv2,bilgi3 = digeriadersecim3,
+                    digeriadetamistisnamalhizmeti3 = digeriadetamistisnamalhizmeti3,digeriadekonuolankdv3 = digeriadekonuolankdv3,
+                    bilgi4 = digeriadersecim4,digeriadetamistisnamalhizmeti4 = digeriadetamistisnamalhizmeti4,
+                    digeriadekonuolankdv4 = digeriadekonuolankdv4,bilgi5 = digeriadersecim5,
+                    digeriadetamistisnamalhizmeti5 = digeriadetamistisnamalhizmeti5,digeriadekonuolankdv5 = digeriadekonuolankdv5
+                )
         #İHRAÇ KAYDIYLA TESLİMLER
         ihrackayditurusecimi = request.POST.getlist("ihrackayditurusecimi")
         ihrackayditutar = request.POST.getlist("ihrackayditutar")

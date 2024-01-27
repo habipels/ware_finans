@@ -2087,4 +2087,12 @@ class iade_hakki_digerislemleri(models.Model):
     bilgi5 = models.CharField(max_length = 200 ,verbose_name = "Açıklama" ,blank = True,null = True)
     digeriadetamistisnamalhizmeti5 = models.FloatField(verbose_name = "Matrah",default = 0)
     digeriadekonuolankdv5 = models.FloatField(verbose_name = "Vergi",default = 0)
+#İHRAÇ KAYDIYLA TESLİMLER
+class ihrac_kaydiyla_teslimler(models.Model):
+    bagli_oldugu_firma = models.ForeignKey(firma,blank=True,null=True,on_delete=models.SET_NULL)
+    bagli_oldugu_beyanname = models.ForeignKey(kdv1_beyannamesi_bilgileri,blank=True,null=True,on_delete=models.SET_NULL)
+    islem_turu = models.CharField(max_length = 200,verbose_name = "İşlem Türüğ",blank = True,null = True)
+    ihrac_kaydiyla_teslimler_tutar = models.FloatField(verbose_name = "ihrac_kaydiyla_teslimler",default = 0)
+    ihrackaydikdvorani = models.FloatField(verbose_name = "KDV",default = 0)
+    hesaplanantutar = models.FloatField(verbose_name = "KDV",default = 0)
 #KDV1
