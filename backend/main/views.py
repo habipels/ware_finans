@@ -5967,6 +5967,12 @@ def gecici_beyanname(request,slug):
         gecicvergiyetabimatrah = request.POST.get("gecicvergiyetabimatrah")
         gecicvergiorani = request.POST.get("gecicvergiorani")
         geneloranatabivergimatrahi = request.POST("geneloranatabivergimatrahi")
+        #
+        gecicivergimatrahi = request.POST.get("gecicivergimatrahi")
+        hesaplanangecicivergi = request.POST.get("hesaplanangecicivergi")
+        oncekideonemlerdehesaplanangecicivergi = request.POST.get("oncekideonemlerdehesaplanangecicivergi")
+        odenmesigerekenvergi = request.POST.get("odenmesigerekenvergi")
+        mahsupedilecektevkifat = request.POST.get("mahsupedilecektevkifat")
     return render(request,"beyannameler/gecici_beyanname.html",content)
 def kurumlar_vergisi_beyanname(request,slug):
     content = site_ayarlari()
