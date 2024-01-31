@@ -1820,7 +1820,8 @@ class urunler(models.Model):
 class dayanak(models.Model):
     aciklama = models.CharField(max_length = 200 ,verbose_name = "Açıklama")
 
-
+class gecicivergi_beyannamesi_inidimi(models.Model):
+    icerik = models.CharField(max_length = 200 ,verbose_name = "Açıklama")
 
 #beyannameler
 #KDV1

@@ -46,19 +46,12 @@
     <div class="row">
         <h1 class="text-center" >GEÇİCİ VERGİSİ BEYANNAMESİ </h1>
         <h3 class="text-center">(Gelir Vergisi Mükellefleri İçin)</h3>
-        <div class="col-6">KDV AYI : <select name="aysecimi" id="">
-          <option value="OCAK">OCAK</option>
-          <option value="ŞUBAT">ŞUBAT</option>
-          <option value="MART">MART</option>
-          <option value="NİSAN">NİSAN</option>
-          <option value="MAYIS">MAYIS</option>
-          <option value="HAZİRAN">HAZİRAN</option>
-          <option value="TEMMUZ">TEMMUZ</option>
-          <option value="AĞUSTOS">AĞUSTOS</option>
-          <option value="EYLÜL">EYLÜL</option>
-          <option value="EKİM">EKİM</option>
-          <option value="KASIM">KASIM</option>
-          <option value="ARALIK">ARALIK</option>
+        <div class="col-6">ÇALIŞMA AYLARI : <select name="aysecimi" id="">
+          <option value="OCAK-ŞUBAT-MART">OCAK-ŞUBAT-MART</option>
+          <option value="NİSAN-MAYIS-HAZİRAN">NİSAN-MAYIS-HAZİRAN</option>
+          <option value="TEMMUZ-AĞUSTOS-EYLÜL">TEMMUZ-AĞUSTOS-EYLÜL</option>
+          <option value="EKİM-KASIM-ARALIK">EKİM-KASIM-ARALIK</option>
+
         </select></div>
         <div class="col-6"><label for="firmalar">FİRMALARIM
           <select  onchange="if (this.value) window.location.href=this.value" style="box-sizing: content-box;" id="firmalar">
@@ -99,8 +92,198 @@
     <div class="row">
         <h3 class="text-center" >MATRAH BİLDİRİMİ</h3>
         <hr>
-        
+        <div class="container tablo" style="margin-top: 0px !important;">
+          <div class="table-responsive " style=" 
+          height: 530px;
+          overflow: auto;">
+            <table class="table table-bordered ">
+              <thead style="position: sticky;top: 0">
+                <tr>
+                  <th class="text-center" style="min-width: 150px ;">	</th>
+                  <th class="text-center" style="min-width: 150px ;"><b>ZARAR</b></th>
+                  <th class="text-center" style="min-width: 150px ;"><b>KAR</b></th>
+                  
+                </tr>
+              </thead>
+              <tbody>
+                <tr >
+                  <td>Ticari Kazanç (*)</td>
+                  <td><input  type="number" step="0.01" id="ticarikazanczarar" value="0" name="ticarikazanczarar"></td>
+                  <td><input  type="number" step="0.01" id="ticarikazanckar" value="0" name="ticarikazanckar"></td>
+                </tr>
+                <tr >
+                  <td>Yatırım İndirimi</td>
+                  <td><input  type="number" step="0.01" id="yatiriminsindirimizarar" value="0" name="yatiriminsindirimizarar"></td>
+                  <td></td>
+                </tr>
+                <tr >
+                  <td>İstisnalar</td>
+                  
+                  <td><input  type="number" step="0.01" id="istisnalarzarar" value="0" name="istisnalarzarar"></td>
+                  
+                  <td></td>
+                </tr>
+                <tr >
+                  <td>Kalan Ticari Kazanç</td>
+                  <td></td>
+                  <td><input  type="number" step="0.01" id="kalanticarikazanckar" value="0" name="kalanticarikazanckar"></td>
+                  
+                  <td></td>
+                </tr>
+                <tr >
+                  <td>Serbest Meslek Kazancı (*)</td>
+                  <td><input  type="number" step="0.01" id="serbestmeslekkazancizarar" value="0" name="serbestmeslekkazancizarar"></td>
+                  <td><input  type="number" step="0.01" id="serbestmeslekkazancikar" value="0" name="serbestmeslekkazancikar"></td>
+                  
+                  <td></td>
+                </tr>
+                <tr >
+                  <td>Kar Toplamı</td>
+                  <td></td>
+                  <td><input  type="number" step="0.01" id="kartoplami" value="0" name="kartoplami"></td>
+                  
+                  <td></td>
+                </tr>
+                <tr >
+                  <td>Zarar Toplamı</td>
+                  <td><input  type="number" step="0.01" id="zarartoplami" value="0" name="zarartoplami"></td>
+                  <td></td>
+                </tr>
+                <tr >
+                  <td>Zarar</td>
+                  <td><input  type="number" step="0.01" id="zarar" value="0" name="zarar"></td>
+                  <td></td>
+                </tr>
+                <tr >
+                  <td>Kar</td>
+                  <td></td>
+                  <td><input  type="number" step="0.01" id="kar" value="0" name="kar"></td>
+                  
+                </tr>
+                <tr >
+                  <td>Mahsup Edilecek Geçmiş Yıl Zararları</td>
+                  <td><input  type="number" step="0.01" id="kar" value="0" name="mahsupedilecekyilzararlari"></td>
+                  <td></td>
+                </tr>
+                <tr >
+                  <td>İndirime Esas Tutar</td>,
+                  <td></td>
+                  <td><input  type="number" step="0.01" id="kar" value="0" name="indirimesaslitutar"></td>
+                  
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="container tablo" style="margin-top: 0px !important;">
+          <input class="col-12 text-center" type="text" disabled value="İNDİRİMLER">
+          <div class="table-responsive " style=" 
+          height: 500px;
+          overflow: auto;">
+            <table class="table table-bordered ">
+              <thead style="position: sticky;top: 0">
+                <tr>
+                  <th class="text-center" style="min-width: 150px ;">	</th>
+                  <th class="text-center" style="min-width: 150px ;"></th>
+                  <th class="text-center" style="min-width: 150px ;"></th>
+                  
+                </tr>
+              </thead>
+              <tbody>
+                <tr >
+                  <td colspan="2"><select name="indirim1" id="">
+                    <option value=""></option>
+                    {% for i in indiirimler %}
+                    <option value="{{i.id}}">{{i.icerik}}</option>
+                    {% endfor %}
+                  </select></td>
+
+                  <td><input  type="number" step="0.01" id="tutari1" value="0" name="tutari1"></td>
+                </tr>
+                <tr >
+                  <td colspan="2"><select name="indirim2" id="">
+                    <option value=""></option>
+                    {% for i in indiirimler %}
+                    <option value="{{i.id}}">{{i.icerik}}</option>
+                    {% endfor %}
+                  </select></td>
+
+                  <td><input  type="number" step="0.01" id="tutari2" value="0" name="tutari2"></td>
+                </tr>
+                <tr >
+                  <td colspan="2"><select name="indirim3" id="">
+                    <option value=""></option>
+                    {% for i in indiirimler %}
+                    <option value="{{i.id}}">{{i.icerik}}</option>
+                    {% endfor %}
+                  </select></td>
+
+                  <td><input  type="number" step="0.01" id="tutari3" value="0" name="tutari3"></td>
+                </tr>
+                <tr >
+                  <td colspan="2"><select name="indirim4" id="">
+                    <option value=""></option>
+                    {% for i in indiirimler %}
+                    <option value="{{i.id}}">{{i.icerik}}</option>
+                    {% endfor %}
+                  </select></td>
+                  <td><input  type="number" step="0.01" id="tutari4" value="0" name="tutari4"></td>
+                </tr>
+                <tr >
+                  <td colspan="2"><select name="indirim5" id="">
+                    <option value=""></option>
+                    {% for i in indiirimler %}
+                    <option value="{{i.id}}">{{i.icerik}}</option>
+                    {% endfor %}
+                  </select></td>
+                  <td><input  type="number" step="0.01" id="tutari5" value="0" name="tutari5"></td>
+                </tr>
+                <tr >
+                  <td colspan="2"><b>TOPLAM</b></td>
+                  <td><input  type="number" step="0.01" id="toplambilgisi" value="0" name="toplambilgisi"></td>
+                </tr>
+                <tr >
+                  <td><b>DÖNEM ZARARI</b></td>
+                  <td><input  type="number" step="0.01" id="donemzarari" value="0" name="donemzarari"></td>
+                  <td></td>
+                </tr>
+                <tr >
+                  <td><b>Geçici Vergi Matrahı</b></td>
+                  <td></td>
+                  <td><input  type="number" step="0.01" id="gecicivergimatrahi" value="0" name="gecicivergimatrahi"></td>
+                  
+                </tr>
+                <tr >
+                  <td><b>KVK'nın 32/A Mad. Kapsamında İndirimli Kurumlar Vergisine (Geçici Vergiye) Tabi Matrah</b></td>
+                  <td></td>
+                  <td><input  type="number" step="0.01" id="gecicvergiyetabimatrah" value="0" name="gecicvergiyetabimatrah"></td>
+                  
+                </tr>
+                <tr >
+                  <td><b>KVK'nın 32/A Mad. Kapsamında İndirimli Kurumlar Vergisi (Geçici Vergi) Oranı</b></td>
+                  <td></td>
+                  <td><input  type="number" step="0.01" id="gecicvergiorani" value="0" name="gecicvergiorani"></td>
+                  
+                </tr>
+                <tr >
+                  <td><b>Genel Orana Tabi Geçici Vergi Matrahı</b></td>
+                  <td></td>
+                  <td><input  type="number" step="0.01" id="geneloranatabivergimatrahi" value="0" name="geneloranatabivergimatrahi"></td>
+                  
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
         <hr style="border: 2px solid black !important;" >
     </div>
+</div>
+<div class="container">
+  <div class="row">
+      <h3 class="text-center" >VERGİ BİLDİRİMİ</h3>
+      <hr>
+      
+      <hr style="border: 2px solid black !important;" >
+  </div>
 </div>
 {% endblock content %}
