@@ -290,7 +290,7 @@
             <thead style="position: sticky;top: 0">
               <tr>
                 <th class="text-center" style="min-width: 150px ;">	</th>
-                <th class="text-center" style="min-width: 150px ;">Not: Geaci Vergi Tutan, Firma Bilgilen Sayfasında Belirtmiş Okluğunuz Geçici Vergi Oranı Dikkate Alnarak Hesaplanır. (Boş se Ayar Bilgiler Sayfasından Alınır)</th>
+                <th class="text-center" style="min-width: 150px ;">Not: Geçici Vergi Tutan, Firma Bilgilen Sayfasında Belirtmiş Okluğunuz Geçici Vergi Oranı Dikkate Alnarak Hesaplanır. (Boş se Ayar Bilgiler Sayfasından Alınır)</th>
                 
               </tr>
             </thead>
@@ -323,37 +323,72 @@
                 <td></td>
               </tr>
               <tr >
-                <td>Kar Toplamı</td>
-                <td></td>
-                <td><input  type="number" step="0.01" id="kartoplami" value="0" name="kartoplami"></td>
-                
-                <td></td>
+                <td>Mahsup Edilecek Geçici Vergi ve Tevkifat Tutan Toplami</td>
+                <td><input  type="number" step="0.01" id="mahsupedilecekgecicivergivetevkifattoplami" value="0" name="mahsupedilecekgecicivergivetevkifattoplami"></td>
               </tr>
               <tr >
-                <td>Zarar Toplamı</td>
-                <td><input  type="number" step="0.01" id="zarartoplami" value="0" name="zarartoplami"></td>
-                <td></td>
+                <td><b>Ödenecek Geçici Vergi</b></td>
+                <td><input  type="number" step="0.01" id="odenecekgecicivergi" value="0" name="odenecekgecicivergi"></td>
+
               </tr>
               <tr >
-                <td>Zarar</td>
-                <td><input  type="number" step="0.01" id="zarar" value="0" name="zarar"></td>
-                <td></td>
+                <td>Sonraki Döneme Devreden Tevkifat Tutarı</td>
+                <td><input  type="number" step="0.01" id="sonrakidonemdedevredentevkifattutari" value="0" name="sonrakidonemdedevredentevkifattutari"></td>
               </tr>
               <tr >
-                <td>Kar</td>
-                <td></td>
-                <td><input  type="number" step="0.01" id="kar" value="0" name="kar"></td>
+                <td>Sonrakı Döneme Devreden Hesaplanan Geçici Vergi</td>
+                <td><input  type="number" step="0.01" id="sonrakidonemedevredengecicivergi" value="0" name="sonrakidonemedevredengecicivergi"></td>
                 
               </tr>
               <tr >
-                <td>Mahsup Edilecek Geçmiş Yıl Zararları</td>
-                <td><input  type="number" step="0.01" id="kar" value="0" name="mahsupedilecekyilzararlari"></td>
-                <td></td>
+                <td>Damga Vergisi</td>
+                <td><input  type="number" step="0.01" id="damgavergisi" value="0" name="damgavergisi"></td>
+               
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="container tablo" style="margin-top: 0px !important;">
+        <input class="col-12 text-center" type="text" disabled value="GEÇİCİ DÖNEMİ İÇERİSİNDE FAALİYET KODU İTİBARİYLE BRÜT KAZANÇ DAĞILIMI (*)">
+        <div class="table-responsive " style=" 
+        height: 300px;
+        overflow: auto;">
+          <table class="table table-bordered ">
+            <thead style="position: sticky;top: 0">
+              <tr>
+                <th class="text-center" style="min-width: 150px ;">Faliyet Kodu</th>
+                
+                <th class="text-center" style="min-width: 150px ;">Not: Cari yil Geric Vergi Dönemi içinde faalyet kodu itibamyle elde edilen brüt satış miktan en yüksek tutardan en aza doğru yazılacaktır. En fazla 3 falyet kodu yazılabilir.
+                  Kalan satışınızı DİĞER olarak grmeng gerekir. DİĞER ion de Falyet Kodu alanına 6 adet 9 (999999) yazmanız gerekir.
+                  Faliyet kodlan vergi daresinde kayıtlı falyet kodlanna uygun olmadır.</th>
+                <th class="text-center" style="min-width: 150px ;">Bürüt Satış Tutarı</th>
+                
+              </tr>
+            </thead>
+            <tbody>
+              <tr >
+                <td colspan="2"><input type="text" name="faliyetkodu1">
+                  </td>
+
+                <td><input  type="number" step="0.01" id="burtutsatistutari1" value="0" name="burtutsatistutari1"></td>
               </tr>
               <tr >
-                <td>İndirime Esas Tutar</td>,
+                <td colspan="2"><input type="text" name="faliyetkodu2">
+                  </td>
+
+                <td><input  type="number" step="0.01" id="burtutsatistutari2" value="0" name="burtutsatistutari2"></td>
+              </tr>
+              <tr >
+                <td colspan="2"><input type="text" name="faliyetkodu3">
+                  </td>
+
+                <td><input  type="number" step="0.01" id="burtutsatistutari3" value="0" name="burtutsatistutari3"></td>
+              </tr>
+              <tr >
+                <td><b>Toplam</b></td>
                 <td></td>
-                <td><input  type="number" step="0.01" id="kar" value="0" name="indirimesaslitutar"></td>
+                <td><input  type="number" step="0.01" id="gecicidonemiicindetoplam" disabled value="0" name="gecicidonemiicindetoplam"></td>
                 
               </tr>
             </tbody>
@@ -363,4 +398,96 @@
       <hr style="border: 2px solid black !important;" >
   </div>
 </div>
+<div class="container">
+  <div class="row">
+      <h3 class="text-center" >DÜZENLEME BİLGİLERİ</h3>
+      <hr>
+    
+      <div style="border-right: 1px solid black;" class="col-6">
+        <h4><b>Beyanname Hangi Sıfatla Verildiği</b></h4>
+        {% if mirasci.beyannamehangisifatlaverildi == "mukellef" %}
+        <hr>
+          <div class="row">
+
+            <div class="col-4"><label style="margin-left: 5px;" for="mukellef">Mükellef</label><input type="checkbox" disabled checked name="mukellef" id="mukellef"></div>
+            <div class="col-4"><label style="margin-left: 5px;"  for="mirascı">Mirascı</label><input type="checkbox" disabled name="mirascı" id="mirascı"></div>
+            <div class="col-4"><label style="margin-left: 5px;" for="kanunitemsilci">Kanuni Temsilci</label><input disabled type="checkbox" name="kanunitemsilci" id="kanunitemsilci"></div>
+          </div>
+          <p><b>Vergi Kimlik Numarası (T.C Kimlik No) : {% if subeleri.sahis_ise_tc %}{{subeleri.sahis_ise_tc}}{% endif %} </b></p>
+          <p><b>Vergi Kimlik Numarası  : {% if subeleri.vergi_numarasi %}{{subeleri.vergi_numarasi}}{% endif %} </b></p>
+          <p><b>Soyadi (Unvan)  : {% if subeleri.bagli_oldugu_firma.Firma_unvani2 %}{{subeleri.bagli_oldugu_firma.Firma_unvani2}}{% endif %} </b></p>
+          <p><b>Adı (Unvan Devamı)  : {% if subeleri.bagli_oldugu_firma.firma_unvani %}{{subeleri.bagli_oldugu_firma.firma_unvani}}{% endif %} </b></p>
+          <p><b>Ticaret Sicil No  : {% if faliyet.ticaret_sicil_no %}{{faliyet.ticaret_sicil_no}}{% endif %} </b></p>
+          <p><b>E-Posta Adresi  : {% if subeleri.email_adresi %}{{subeleri.email_adresi}}{% endif %} </b></p>
+          <p><b>İrtibat Telefon No  : {% if subeleri.telefon_numarasi %}{{subeleri.telefon_numarasi}}{% endif %} </b></p>
+        {% elif mirasci.beyannamehangisifatlaverildi == "mirascı" %}
+        <hr>
+          <div class="row">
+
+            <div class="col-4"><label style="margin-left: 5px;" for="mukellef">Mükellef</label><input type="checkbox" disabled  name="mukellef" id="mukellef"></div>
+            <div class="col-4"><label style="margin-left: 5px;"  for="mirascı">Mirascı</label><input type="checkbox" disabled checked name="mirascı" id="mirascı"></div>
+            <div class="col-4"><label style="margin-left: 5px;" for="kanunitemsilci">Kanuni Temsilci</label><input disabled type="checkbox" name="kanunitemsilci" id="kanunitemsilci"></div>
+          </div>
+          <p><b>Vergi Kimlik Numarası (T.C Kimlik No) : {% if mirasci.mirascibilgisitc %}{{mirasci.mirascibilgisitc}}{% endif %} </b></p>
+          <p><b>Vergi Kimlik Numarası  : {% if mirasci.mirascivergino %}{{mirasci.mirascivergino}}{% endif %} </b></p>
+          <p><b>Soyadi (Unvan)  : {% if mirasci.beyannamesoyadiunvan %}{{mirasci.beyannamesoyadiunvan}}{% endif %} </b></p>
+          <p><b>Adı (Unvan Devamı)  : {% if mirasci.beyannameadiunvandevami %}{{mirasci.beyannameadiunvandevami}}{% endif %} </b></p>
+          <p><b>Ticaret Sicil No  : {% if mirasci.beyannameyeaitticaretsicilno %}{{mirasci.beyannameyeaitticaretsicilno}}{% endif %} </b></p>
+          <p><b>E-Posta Adresi  : {% if mirasci.beyannameemailadresi %}{{mirasci.beyannameemailadresi}}{% endif %} </b></p>
+          <p><b>İrtibat Telefon No  : {% if mirasci.beyannametelefonumarasi %}{{mirasci.beyannametelefonumarasi}}{% endif %} </b></p>
+        {% elif mirasci.beyannamehangisifatlaverildi == "kanunitemsilci" %}
+        <hr>
+        <div class="row">
+
+          <div class="col-4"><label style="margin-left: 5px;" for="mukellef">Mükellef</label><input type="checkbox" disabled  name="mukellef" id="mukellef"></div>
+          <div class="col-4"><label style="margin-left: 5px;"  for="mirascı">Mirascı</label><input type="checkbox" disabled  name="mirascı" id="mirascı"></div>
+          <div class="col-4"><label style="margin-left: 5px;" for="kanunitemsilci">Kanuni Temsilci</label><input disabled checked type="checkbox" name="kanunitemsilci" id="kanunitemsilci"></div>
+        </div>
+        <p><b>Vergi Kimlik Numarası (T.C Kimlik No) : {% if kanuni_temsilci.beyannamekanunitemsicitc %}{{kanuni_temsilci.beyannamekanunitemsicitc}}{% endif %} </b></p>
+        <p><b>Vergi Kimlik Numarası  : {% if kanuni_temsilci.beyannamekanunitemsicivergino %}{{kanuni_temsilci.beyannamekanunitemsicivergino}}{% endif %} </b></p>
+        <p><b>Soyadi (Unvan)  : {% if kanuni_temsilci.beyannamekanunitemsicisoyadi %}{{kanuni_temsilci.beyannamekanunitemsicisoyadi}}{% endif %} </b></p>
+        <p><b>Adı (Unvan Devamı)  : {% if kanuni_temsilci.beyannamekanunitemsiciadiunvandevami %}{{kanuni_temsilci.beyannamekanunitemsiciadiunvandevami}}{% endif %} </b></p>
+        <p><b>Ticaret Sicil No  : {% if kanuni_temsilci.beyannamekanunitemsiciticaretsicilno %}{{kanuni_temsilci.beyannamekanunitemsiciticaretsicilno}}{% endif %} </b></p>
+        <p><b>E-Posta Adresi  : {% if kanuni_temsilci.beyannamekanunitemsicieposta %}{{kanuni_temsilci.beyannamekanunitemsicieposta}}{% endif %} </b></p>
+        <p><b>İrtibat Telefon No  : {% if kanuni_temsilci.beyannamekanunitemsicitelefon %}{{kanuni_temsilci.beyannamekanunitemsicitelefon}}{% endif %} </b></p>
+        {% endif %}
+      </div>
+      <div class="col-6">
+        <h4><b>Beyannameyi Düzenleyen</b></h4>
+        <hr>
+          <p><b>Vergi Kimlik Numarası (T.C Kimlik No) : {% if beyannameduzenleyen.beyannameduzenleyeneaittc %}{{beyannameduzenleyen.beyannameduzenleyeneaittc}}{% endif %} </b></p>
+          <p><b>Vergi Kimlik Numarası  : {% if beyannameduzenleyen.beyannameduzenleyeneaitvergino %}{{beyannameduzenleyen.beyannameduzenleyeneaitvergino}}{% endif %} </b></p>
+          <p><b>Soyadi (Unvan)  : {% if beyannameduzenleyen.beyannameduzenleyeneaitsoyadiunvan %}{{beyannameduzenleyen.beyannameduzenleyeneaitsoyadiunvan}}{% endif %} </b></p>
+          <p><b>Adı (Unvan Devamı)  : {% if beyannameduzenleyen.beyannameduzenleyeneaitadiunvandevami %}{{beyannameduzenleyen.beyannameduzenleyeneaitadiunvandevami}}{% endif %} </b></p>
+          <p><b>Ticaret Sicil No  : {% if beyannameduzenleyen.beyannameduzenleyeneaitticaretsicilno %}{{ beyannameduzenleyen.beyannameduzenleyeneaitticaretsicilno}}{% endif %} </b></p>
+          <p><b>E-Posta Adresi  : {% if beyannameduzenleyen.beyannameduzenleyeneaiteposta %}{{beyannameduzenleyen.beyannameduzenleyeneaiteposta}}{% endif %} </b></p>
+          <p><b>İrtibat Telefon No  : {% if beyannameduzenleyen.beyannameduzenleyeneaittelefon %}{{beyannameduzenleyen.beyannameduzenleyeneaittelefon}}{% endif %} </b></p>
+      </div>
+      <hr style="border: 1px solid black; margin-top: 15px;" >
+      <div style="border-right: 1px solid black;"  class="col-6">
+        <h4><b>Beyannameyi Gönderen</b></h4>
+        <hr>
+        <p><b>Vergi Kimlik Numarası (T.C Kimlik No) : {% if beyannamegonderen.beyannamegonderentc %}{{beyannamegonderen.beyannamegonderentc}}{% endif %} </b></p>
+        <p><b>Vergi Kimlik Numarası  : {% if beyannamegonderen.beyannamegonderenvergino %}{{beyannamegonderen.beyannamegonderenvergino}}{% endif %} </b></p>
+        <p><b>Soyadi (Unvan)  : {% if beyannamegonderen.beyannamegonderensoyadiunvan %}{{beyannamegonderen.beyannamegonderensoyadiunvan}}{% endif %} </b></p>
+        <p><b>Adı (Unvan Devamı)  : {% if beyannamegonderen.beyannamegonderenadiunvandevami %}{{beyannamegonderen.beyannamegonderenadiunvandevami}}{% endif %} </b></p>
+        <p><b>Ticaret Sicil No  : {% if beyannamegonderen.beyannamegonderentivaretsicilno %}{{ beyannamegonderen.beyannamegonderentivaretsicilno}}{% endif %} </b></p>
+        <p><b>E-Posta Adresi  : {% if beyannamegonderen.beyannamegondereneposta %}{{beyannamegonderen.beyannamegondereneposta}}{% endif %} </b></p>
+        <p><b>İrtibat Telefon No  : {% if beyannamegonderen.beyannamegonderentelefon %}{{beyannamegonderen.beyannamegonderentelefon}}{% endif %} </b></p>
+      </div>
+      <div class="col-6">
+        <h4><b>YMM Bilgileri</b></h4>
+        <hr>
+        <p><b>Vergi Kimlik Numarası (T.C Kimlik No) : {% if ymmbilgileri.ymmaitbilgilertc %}{{ymmbilgileri.ymmaitbilgilertc}}{% endif %} </b></p>
+        <p><b>Vergi Kimlik Numarası  : {% if ymmbilgileri.ymmaitbilgilervergino %}{{ymmbilgileri.ymmaitbilgilervergino}}{% endif %} </b></p>
+        <p><b>Soyadi (Unvan)  : {% if ymmbilgileri.ymmaitbilgilersoyadiunvan %}{{ymmbilgileri.ymmaitbilgilersoyadiunvan}}{% endif %} </b></p>
+        <p><b>Adı (Unvan Devamı)  : {% if ymmbilgileri.ymmaitbilgileradiunvanbilgisi %}{{ymmbilgileri.ymmaitbilgileradiunvanbilgisi}}{% endif %} </b></p>
+        <p><b>Ticaret Sicil No  : {% if ymmbilgileri.ymmaitbilgileraditicaretsicilno %}{{ ymmbilgileri.ymmaitbilgileraditicaretsicilno}}{% endif %} </b></p>
+        <p><b>E-Posta Adresi  : {% if ymmbilgileri.ymmaitbilgilereposta %}{{ymmbilgileri.ymmaitbilgilereposta}}{% endif %} </b></p>
+        <p><b>İrtibat Telefon No  : {% if ymmbilgileri.ymmaitbilgilertelefonbilgisi %}{{ymmbilgileri.ymmaitbilgilertelefonbilgisi}}{% endif %} </b></p>
+      </div>
+      <hr style="border: 2px solid black !important;" >
+  </div>
+</div>
+
 {% endblock content %}

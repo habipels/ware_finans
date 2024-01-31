@@ -5933,6 +5933,11 @@ def gecici_beyanname(request,slug):
     content["firma_ayarlari"] = firma_ayarlari_ayar_kisimi.objects.filter(bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) ).last()
     content["faliyet"] = sube_faliyet_bilgileri.objects.filter(sube_bilgisi=sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)).first()).first()
     content["firmalarim"] = firma.objects.filter(silinme_bilgisi = False,firma_muhasabecisi = request.user)
+    content["beyannameduzenleyen"]=beyanname_duzenleyene_ait_bilgiler.objects.filter(beyanname_bilgisi__sube_bilgisi = sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)).first()).last()
+    content["mirasci"] =beyanname_bilgileri.objects.filter(sube_bilgisi = sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)).first()).last()
+    content["kanuni_temsilci"] = beyanname_kanuni_temsilcisi.objects.filter(beyanname_bilgisi__sube_bilgisi = sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)).first()).last()
+    content["beyannamegonderen"] = Beyannameyi_gonderen_bilgileri.objects.filter(beyanname_bilgisi__sube_bilgisi = sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)).first()).last()
+    content["ymmbilgileri"]  =ymmbilgileri.objects.filter(beyanname_bilgisi__sube_bilgisi = sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)).first()).last()
     tevk_600ler = []
     for i in range(601,628):
         tevk_600ler.append(str(i))
@@ -5973,6 +5978,18 @@ def gecici_beyanname(request,slug):
         oncekideonemlerdehesaplanangecicivergi = request.POST.get("oncekideonemlerdehesaplanangecicivergi")
         odenmesigerekenvergi = request.POST.get("odenmesigerekenvergi")
         mahsupedilecektevkifat = request.POST.get("mahsupedilecektevkifat")
+        mahsupedilecekgecicivergivetevkifattoplami = request.POST.get("mahsupedilecekgecicivergivetevkifattoplami")
+        odenecekgecicivergi = request.POST.get("odenecekgecicivergi")
+        sonrakidonemdedevredentevkifattutari = request.POST.get("sonrakidonemdedevredentevkifattutari")
+        sonrakidonemedevredengecicivergi = request.POST.get("sonrakidonemedevredengecicivergi")
+        damgavergisi = request.POST.get("damgavergisi")
+        #
+        faliyetkodu1 = request.POST.get("faliyetkodu1")
+        burtutsatistutari1 = request.POST.get("burtutsatistutari1")
+        faliyetkodu2 = request.POST.get("faliyetkodu2")
+        burtutsatistutari2 = request.POST.get("burtutsatistutari2")
+        faliyetkodu3 = request.POST.get("faliyetkodu3")
+        burtutsatistutari3 = request.POST.get("burtutsatistutari3")
     return render(request,"beyannameler/gecici_beyanname.html",content)
 def kurumlar_vergisi_beyanname(request,slug):
     content = site_ayarlari()
