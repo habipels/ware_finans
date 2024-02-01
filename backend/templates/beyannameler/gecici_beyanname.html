@@ -7,6 +7,10 @@
   .yeniform {
     display: none;
   }
+  .gosterme{
+    display: none;
+  }
+  .egitim{display: none;}
 </style>
   <!--Header-->
   <div class="icon-bar">
@@ -1000,8 +1004,2263 @@
                 </select></td>
                 <td></td>
               </tr>
+
               
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="container tablo" style="margin-top: 0px !important;">
+        <input class="col-12 text-center" type="text" disabled value="Yurtdışı Mukimi Kişi ve/veya Kurumbra Verien Sağlık Hizmetlerine ilişkin Form">
+      
+        <div class="table-responsive " style=" 
+        height: 400px;
+        overflow: auto;">
+          <table class="table table-bordered ">
+            <thead style="position: sticky;top: 0">
+              <tr>
+                <th class="text-center" style="min-width: 150px ;">Sağlık Hizmetinden Faydalanan Kişinin Adı Soyadı (Unvanı)</th>
+                <th class="text-center" style="min-width: 150px ;">Sağlık Hizmetinden Faydalanan Kişinin Doğum Tarihi </th>
+                <th class="text-center" style="min-width: 150px ;">Sağlık Hizmetinden Faydalanan Kişinin Uyruğu </th>
+                <th class="text-center" style="min-width: 150px ;">Sağlık Hizmetinden Faydalanan Kişinin Pasaport No.su</th>
+                <th class="text-center" style="min-width: 150px ;">Sağlık Hizmetinin Verildiği İlin Adı </th>
+                <th class="text-center" style="min-width: 150px ;">Sağlık Hizmetinin Verildiği İşletmenin Türü </th>
+                <th class="text-center" style="min-width: 150px ;">Sağlık Hizmetinin Verildiği Kliniğin Adı </th>
+                <th class="text-center" style="min-width: 150px ;">Faturanın Düzenlendiği Kişi ve/veya Kurumun Adı (Unvanı) </th>
+                <th class="text-center" style="min-width: 150px ;">Düzenlenen Faturanın Tarihi</th>
+                <th class="text-center" style="min-width: 150px ;">Düzenlenen Faturanın Sayısı</th>
+                <th class="text-center" style="min-width: 150px ;">Sağlık Hizmetinin Bedeli KDV Hariç</th>
               
+                <th class="text-center"><a href="javascript:void(0);" onclick="ekleYeniSatirgosterme()">SATIR EKLE</a></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="gosterme">
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="saglikhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="saglikhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeturu%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeturu}}">{{i.saglikhizmetindenfaydalananisletmeturu}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeadi" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeadi%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeadi}}">{{i.saglikhizmetindenfaydalananisletmeadi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="faturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="faturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="saglikhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="saglikhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeturu%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeturu}}">{{i.saglikhizmetindenfaydalananisletmeturu}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeadi" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeadi%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeadi}}">{{i.saglikhizmetindenfaydalananisletmeadi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="faturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="faturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="saglikhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="saglikhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeturu%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeturu}}">{{i.saglikhizmetindenfaydalananisletmeturu}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeadi" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeadi%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeadi}}">{{i.saglikhizmetindenfaydalananisletmeadi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="faturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="faturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="saglikhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="saglikhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeturu%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeturu}}">{{i.saglikhizmetindenfaydalananisletmeturu}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeadi" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeadi%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeadi}}">{{i.saglikhizmetindenfaydalananisletmeadi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="faturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="faturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="saglikhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="saglikhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeturu%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeturu}}">{{i.saglikhizmetindenfaydalananisletmeturu}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeadi" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeadi%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeadi}}">{{i.saglikhizmetindenfaydalananisletmeadi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="faturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="faturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="saglikhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="saglikhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeturu%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeturu}}">{{i.saglikhizmetindenfaydalananisletmeturu}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeadi" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeadi%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeadi}}">{{i.saglikhizmetindenfaydalananisletmeadi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="faturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="faturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="saglikhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="saglikhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeturu%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeturu}}">{{i.saglikhizmetindenfaydalananisletmeturu}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeadi" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeadi%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeadi}}">{{i.saglikhizmetindenfaydalananisletmeadi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="faturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="faturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="saglikhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="saglikhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeturu%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeturu}}">{{i.saglikhizmetindenfaydalananisletmeturu}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeadi" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeadi%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeadi}}">{{i.saglikhizmetindenfaydalananisletmeadi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="faturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="faturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="saglikhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="saglikhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeturu%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeturu}}">{{i.saglikhizmetindenfaydalananisletmeturu}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeadi" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeadi%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeadi}}">{{i.saglikhizmetindenfaydalananisletmeadi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="faturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="faturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="saglikhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="saglikhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeturu%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeturu}}">{{i.saglikhizmetindenfaydalananisletmeturu}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeadi" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeadi%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeadi}}">{{i.saglikhizmetindenfaydalananisletmeadi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="faturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="faturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="saglikhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="saglikhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeturu%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeturu}}">{{i.saglikhizmetindenfaydalananisletmeturu}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeadi" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeadi%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeadi}}">{{i.saglikhizmetindenfaydalananisletmeadi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="faturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="faturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="saglikhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="saglikhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeturu%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeturu}}">{{i.saglikhizmetindenfaydalananisletmeturu}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeadi" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeadi%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeadi}}">{{i.saglikhizmetindenfaydalananisletmeadi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="faturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="faturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="saglikhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="saglikhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeturu%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeturu}}">{{i.saglikhizmetindenfaydalananisletmeturu}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeadi" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeadi%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeadi}}">{{i.saglikhizmetindenfaydalananisletmeadi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="faturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="faturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="saglikhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="saglikhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeturu%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeturu}}">{{i.saglikhizmetindenfaydalananisletmeturu}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeadi" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeadi%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeadi}}">{{i.saglikhizmetindenfaydalananisletmeadi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="faturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="faturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="saglikhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="saglikhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeturu%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeturu}}">{{i.saglikhizmetindenfaydalananisletmeturu}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeadi" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeadi%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeadi}}">{{i.saglikhizmetindenfaydalananisletmeadi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="faturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="faturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="saglikhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="saglikhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeturu%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeturu}}">{{i.saglikhizmetindenfaydalananisletmeturu}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeadi" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeadi%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeadi}}">{{i.saglikhizmetindenfaydalananisletmeadi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="faturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="faturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="saglikhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="saglikhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeturu%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeturu}}">{{i.saglikhizmetindenfaydalananisletmeturu}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeadi" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeadi%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeadi}}">{{i.saglikhizmetindenfaydalananisletmeadi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="faturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="faturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="saglikhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="saglikhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeturu%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeturu}}">{{i.saglikhizmetindenfaydalananisletmeturu}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeadi" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeadi%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeadi}}">{{i.saglikhizmetindenfaydalananisletmeadi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="faturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="faturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="saglikhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="saglikhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeturu%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeturu}}">{{i.saglikhizmetindenfaydalananisletmeturu}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeadi" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeadi%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeadi}}">{{i.saglikhizmetindenfaydalananisletmeadi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="faturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="faturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="saglikhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="saglikhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeturu%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeturu}}">{{i.saglikhizmetindenfaydalananisletmeturu}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeadi" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeadi%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeadi}}">{{i.saglikhizmetindenfaydalananisletmeadi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="faturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="faturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="saglikhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="saglikhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeturu%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeturu}}">{{i.saglikhizmetindenfaydalananisletmeturu}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeadi" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeadi%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeadi}}">{{i.saglikhizmetindenfaydalananisletmeadi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="faturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="faturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="saglikhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="saglikhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeturu%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeturu}}">{{i.saglikhizmetindenfaydalananisletmeturu}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeadi" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeadi%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeadi}}">{{i.saglikhizmetindenfaydalananisletmeadi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="faturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="faturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="saglikhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="saglikhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeturu%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeturu}}">{{i.saglikhizmetindenfaydalananisletmeturu}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeadi" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeadi%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeadi}}">{{i.saglikhizmetindenfaydalananisletmeadi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="faturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="faturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="saglikhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="saglikhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeturu%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeturu}}">{{i.saglikhizmetindenfaydalananisletmeturu}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeadi" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeadi%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeadi}}">{{i.saglikhizmetindenfaydalananisletmeadi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="faturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="faturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="saglikhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="saglikhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeturu%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeturu}}">{{i.saglikhizmetindenfaydalananisletmeturu}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeadi" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeadi%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeadi}}">{{i.saglikhizmetindenfaydalananisletmeadi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="faturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="faturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="saglikhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="saglikhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeturu%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeturu}}">{{i.saglikhizmetindenfaydalananisletmeturu}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeadi" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeadi%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeadi}}">{{i.saglikhizmetindenfaydalananisletmeadi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="faturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="faturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="saglikhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="saglikhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeturu%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeturu}}">{{i.saglikhizmetindenfaydalananisletmeturu}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeadi" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeadi%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeadi}}">{{i.saglikhizmetindenfaydalananisletmeadi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="faturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="faturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="saglikhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="saglikhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeturu%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeturu}}">{{i.saglikhizmetindenfaydalananisletmeturu}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeadi" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeadi%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeadi}}">{{i.saglikhizmetindenfaydalananisletmeadi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="faturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="faturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="saglikhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="saglikhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeturu%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeturu}}">{{i.saglikhizmetindenfaydalananisletmeturu}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeadi" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeadi%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeadi}}">{{i.saglikhizmetindenfaydalananisletmeadi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="faturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="faturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="saglikhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="saglikhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeturu%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeturu}}">{{i.saglikhizmetindenfaydalananisletmeturu}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeadi" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeadi%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeadi}}">{{i.saglikhizmetindenfaydalananisletmeadi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="faturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="faturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="saglikhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="saglikhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeturu%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeturu}}">{{i.saglikhizmetindenfaydalananisletmeturu}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeadi" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeadi%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeadi}}">{{i.saglikhizmetindenfaydalananisletmeadi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="faturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="faturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="saglikhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="saglikhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeturu%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeturu}}">{{i.saglikhizmetindenfaydalananisletmeturu}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeadi" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeadi%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeadi}}">{{i.saglikhizmetindenfaydalananisletmeadi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="faturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="faturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="saglikhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="saglikhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeturu%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeturu}}">{{i.saglikhizmetindenfaydalananisletmeturu}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeadi" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeadi%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeadi}}">{{i.saglikhizmetindenfaydalananisletmeadi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="faturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="faturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="saglikhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="saglikhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeturu%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeturu}}">{{i.saglikhizmetindenfaydalananisletmeturu}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeadi" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeadi%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeadi}}">{{i.saglikhizmetindenfaydalananisletmeadi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="faturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="faturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="saglikhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="saglikhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeturu%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeturu}}">{{i.saglikhizmetindenfaydalananisletmeturu}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeadi" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeadi%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeadi}}">{{i.saglikhizmetindenfaydalananisletmeadi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="faturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="faturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="saglikhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="saglikhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeturu%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeturu}}">{{i.saglikhizmetindenfaydalananisletmeturu}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeadi" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeadi%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeadi}}">{{i.saglikhizmetindenfaydalananisletmeadi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="faturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="faturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="saglikhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="saglikhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeturu%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeturu}}">{{i.saglikhizmetindenfaydalananisletmeturu}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeadi" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeadi%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeadi}}">{{i.saglikhizmetindenfaydalananisletmeadi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="faturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="faturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="saglikhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="saglikhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeturu%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeturu}}">{{i.saglikhizmetindenfaydalananisletmeturu}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeadi" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeadi%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeadi}}">{{i.saglikhizmetindenfaydalananisletmeadi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="faturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="faturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="saglikhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="saglikhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeturu%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeturu}}">{{i.saglikhizmetindenfaydalananisletmeturu}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeadi" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeadi%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeadi}}">{{i.saglikhizmetindenfaydalananisletmeadi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="faturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="faturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="saglikhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="saglikhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeturu%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeturu}}">{{i.saglikhizmetindenfaydalananisletmeturu}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeadi" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeadi%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeadi}}">{{i.saglikhizmetindenfaydalananisletmeadi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="faturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="faturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="saglikhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="saglikhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeturu%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeturu}}">{{i.saglikhizmetindenfaydalananisletmeturu}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeadi" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeadi%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeadi}}">{{i.saglikhizmetindenfaydalananisletmeadi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="faturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="faturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+              <tr class="gosterme">
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="saglikhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="saglikhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="saglikhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeturu%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeturu}}">{{i.saglikhizmetindenfaydalananisletmeturu}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><select name="saglikhizmetindenfaydalananisletmeadi" id="">
+                  <option value=""></option>
+                  {% for i in saglikhizmetindenfaydalananisletmeadi%}
+                  <option value="{{i.saglikhizmetindenfaydalananisletmeadi}}">{{i.saglikhizmetindenfaydalananisletmeadi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><input type="text" name="faturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="faturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="faturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="container tablo" style="margin-top: 0px !important;">
+        <input class="col-12 text-center" type="text" disabled value="Yurtdışı Mukimi Kişi ve/veya Kurumbra Verien Eğitim Hizmetlerine ilişkin Form">
+      
+        <div class="table-responsive " style=" 
+        height: 400px;
+        overflow: auto;">
+          <table class="table table-bordered ">
+            <thead style="position: sticky;top: 0">
+              <tr>
+                <th class="text-center" style="min-width: 150px ;">Eğitim Hizmetinden Faydalanan Kişinin Adı Soyadı (Unvanı)</th>
+                <th class="text-center" style="min-width: 150px ;">Eğitim Hizmetinden Faydalanan Kişinin Doğum Tarihi </th>
+                <th class="text-center" style="min-width: 150px ;">Eğitim Hizmetinden Faydalanan Kişinin Uyruğu </th>
+                <th class="text-center" style="min-width: 150px ;">Eğitim Hizmetinden Faydalanan Kişinin Pasaport No.su</th>
+                <th class="text-center" style="min-width: 150px ;">Eğitim Hizmetinin Verildiği İlin Adı </th>
+                <th class="text-center" style="min-width: 150px ;">Eğitim Hizmetinin Verildiği İşletmenin Türü </th>
+                <th class="text-center" style="min-width: 150px ;">Faturanın Düzenlendiği Kişi ve/veya Kurumun Adı (Unvanı) </th>
+                <th class="text-center" style="min-width: 150px ;">Düzenlenen Faturanın Tarihi</th>
+                <th class="text-center" style="min-width: 150px ;">Düzenlenen Faturanın Sayısı</th>
+                <th class="text-center" style="min-width: 150px ;">Eğitim Hizmetinin Bedeli KDV Hariç</th>
+              
+                <th class="text-center"><a href="javascript:void(0);" onclick="ekleYeniSatiregitim()">SATIR EKLE</a></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="egitim">
+                <td><input type="text" name="egitimhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="egitimhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="egitimhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="egitimhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="egitimhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="egitimhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+
+                  <option value="101 - Özel Okul">101 - Özel Okul</option>
+                  <option value="102 - Üniversite">102 - Üniversite</option>
+                  <option value="103 - Dershane">103 - Dershane</option>
+                  <option value="104 - Diğer">104 - Diğer</option>
+                </select></td>
+                <td><input type="text" name="egitimfaturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="egitimfaturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="egitimfaturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="egitimfaturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+              <tr class="egitim">
+                <td><input type="text" name="egitimhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="egitimhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="egitimhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="egitimhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="egitimhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="egitimhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+
+                  <option value="101 - Özel Okul">101 - Özel Okul</option>
+                  <option value="102 - Üniversite">102 - Üniversite</option>
+                  <option value="103 - Dershane">103 - Dershane</option>
+                  <option value="104 - Diğer">104 - Diğer</option>
+                </select></td>
+                <td><input type="text" name="egitimfaturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="egitimfaturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="egitimfaturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="egitimfaturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+              <tr class="egitim">
+                <td><input type="text" name="egitimhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="egitimhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="egitimhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="egitimhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="egitimhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="egitimhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+
+                  <option value="101 - Özel Okul">101 - Özel Okul</option>
+                  <option value="102 - Üniversite">102 - Üniversite</option>
+                  <option value="103 - Dershane">103 - Dershane</option>
+                  <option value="104 - Diğer">104 - Diğer</option>
+                </select></td>
+                <td><input type="text" name="egitimfaturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="egitimfaturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="egitimfaturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="egitimfaturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+              <tr class="egitim">
+                <td><input type="text" name="egitimhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="egitimhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="egitimhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="egitimhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="egitimhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="egitimhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+
+                  <option value="101 - Özel Okul">101 - Özel Okul</option>
+                  <option value="102 - Üniversite">102 - Üniversite</option>
+                  <option value="103 - Dershane">103 - Dershane</option>
+                  <option value="104 - Diğer">104 - Diğer</option>
+                </select></td>
+                <td><input type="text" name="egitimfaturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="egitimfaturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="egitimfaturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="egitimfaturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+              <tr class="egitim">
+                <td><input type="text" name="egitimhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="egitimhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="egitimhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="egitimhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="egitimhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="egitimhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+
+                  <option value="101 - Özel Okul">101 - Özel Okul</option>
+                  <option value="102 - Üniversite">102 - Üniversite</option>
+                  <option value="103 - Dershane">103 - Dershane</option>
+                  <option value="104 - Diğer">104 - Diğer</option>
+                </select></td>
+                <td><input type="text" name="egitimfaturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="egitimfaturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="egitimfaturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="egitimfaturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+              <tr class="egitim">
+                <td><input type="text" name="egitimhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="egitimhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="egitimhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="egitimhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="egitimhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="egitimhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+
+                  <option value="101 - Özel Okul">101 - Özel Okul</option>
+                  <option value="102 - Üniversite">102 - Üniversite</option>
+                  <option value="103 - Dershane">103 - Dershane</option>
+                  <option value="104 - Diğer">104 - Diğer</option>
+                </select></td>
+                <td><input type="text" name="egitimfaturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="egitimfaturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="egitimfaturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="egitimfaturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+              <tr class="egitim">
+                <td><input type="text" name="egitimhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="egitimhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="egitimhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="egitimhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="egitimhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="egitimhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+
+                  <option value="101 - Özel Okul">101 - Özel Okul</option>
+                  <option value="102 - Üniversite">102 - Üniversite</option>
+                  <option value="103 - Dershane">103 - Dershane</option>
+                  <option value="104 - Diğer">104 - Diğer</option>
+                </select></td>
+                <td><input type="text" name="egitimfaturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="egitimfaturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="egitimfaturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="egitimfaturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+              <tr class="egitim">
+                <td><input type="text" name="egitimhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="egitimhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="egitimhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="egitimhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="egitimhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="egitimhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+
+                  <option value="101 - Özel Okul">101 - Özel Okul</option>
+                  <option value="102 - Üniversite">102 - Üniversite</option>
+                  <option value="103 - Dershane">103 - Dershane</option>
+                  <option value="104 - Diğer">104 - Diğer</option>
+                </select></td>
+                <td><input type="text" name="egitimfaturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="egitimfaturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="egitimfaturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="egitimfaturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+              <tr class="egitim">
+                <td><input type="text" name="egitimhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="egitimhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="egitimhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="egitimhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="egitimhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="egitimhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+
+                  <option value="101 - Özel Okul">101 - Özel Okul</option>
+                  <option value="102 - Üniversite">102 - Üniversite</option>
+                  <option value="103 - Dershane">103 - Dershane</option>
+                  <option value="104 - Diğer">104 - Diğer</option>
+                </select></td>
+                <td><input type="text" name="egitimfaturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="egitimfaturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="egitimfaturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="egitimfaturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+              <tr class="egitim">
+                <td><input type="text" name="egitimhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="egitimhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="egitimhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="egitimhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="egitimhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="egitimhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+
+                  <option value="101 - Özel Okul">101 - Özel Okul</option>
+                  <option value="102 - Üniversite">102 - Üniversite</option>
+                  <option value="103 - Dershane">103 - Dershane</option>
+                  <option value="104 - Diğer">104 - Diğer</option>
+                </select></td>
+                <td><input type="text" name="egitimfaturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="egitimfaturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="egitimfaturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="egitimfaturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+              <tr class="egitim">
+                <td><input type="text" name="egitimhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="egitimhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="egitimhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="egitimhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="egitimhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="egitimhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+
+                  <option value="101 - Özel Okul">101 - Özel Okul</option>
+                  <option value="102 - Üniversite">102 - Üniversite</option>
+                  <option value="103 - Dershane">103 - Dershane</option>
+                  <option value="104 - Diğer">104 - Diğer</option>
+                </select></td>
+                <td><input type="text" name="egitimfaturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="egitimfaturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="egitimfaturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="egitimfaturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+              <tr class="egitim">
+                <td><input type="text" name="egitimhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="egitimhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="egitimhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="egitimhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="egitimhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="egitimhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+
+                  <option value="101 - Özel Okul">101 - Özel Okul</option>
+                  <option value="102 - Üniversite">102 - Üniversite</option>
+                  <option value="103 - Dershane">103 - Dershane</option>
+                  <option value="104 - Diğer">104 - Diğer</option>
+                </select></td>
+                <td><input type="text" name="egitimfaturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="egitimfaturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="egitimfaturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="egitimfaturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+              <tr class="egitim">
+                <td><input type="text" name="egitimhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="egitimhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="egitimhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="egitimhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="egitimhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="egitimhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+
+                  <option value="101 - Özel Okul">101 - Özel Okul</option>
+                  <option value="102 - Üniversite">102 - Üniversite</option>
+                  <option value="103 - Dershane">103 - Dershane</option>
+                  <option value="104 - Diğer">104 - Diğer</option>
+                </select></td>
+                <td><input type="text" name="egitimfaturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="egitimfaturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="egitimfaturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="egitimfaturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+              <tr class="egitim">
+                <td><input type="text" name="egitimhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="egitimhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="egitimhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="egitimhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="egitimhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="egitimhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+
+                  <option value="101 - Özel Okul">101 - Özel Okul</option>
+                  <option value="102 - Üniversite">102 - Üniversite</option>
+                  <option value="103 - Dershane">103 - Dershane</option>
+                  <option value="104 - Diğer">104 - Diğer</option>
+                </select></td>
+                <td><input type="text" name="egitimfaturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="egitimfaturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="egitimfaturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="egitimfaturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+              <tr class="egitim">
+                <td><input type="text" name="egitimhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="egitimhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="egitimhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="egitimhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="egitimhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="egitimhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+
+                  <option value="101 - Özel Okul">101 - Özel Okul</option>
+                  <option value="102 - Üniversite">102 - Üniversite</option>
+                  <option value="103 - Dershane">103 - Dershane</option>
+                  <option value="104 - Diğer">104 - Diğer</option>
+                </select></td>
+                <td><input type="text" name="egitimfaturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="egitimfaturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="egitimfaturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="egitimfaturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+              <tr class="egitim">
+                <td><input type="text" name="egitimhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="egitimhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="egitimhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="egitimhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="egitimhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="egitimhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+
+                  <option value="101 - Özel Okul">101 - Özel Okul</option>
+                  <option value="102 - Üniversite">102 - Üniversite</option>
+                  <option value="103 - Dershane">103 - Dershane</option>
+                  <option value="104 - Diğer">104 - Diğer</option>
+                </select></td>
+                <td><input type="text" name="egitimfaturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="egitimfaturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="egitimfaturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="egitimfaturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+              <tr class="egitim">
+                <td><input type="text" name="egitimhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="egitimhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="egitimhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="egitimhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="egitimhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="egitimhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+
+                  <option value="101 - Özel Okul">101 - Özel Okul</option>
+                  <option value="102 - Üniversite">102 - Üniversite</option>
+                  <option value="103 - Dershane">103 - Dershane</option>
+                  <option value="104 - Diğer">104 - Diğer</option>
+                </select></td>
+                <td><input type="text" name="egitimfaturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="egitimfaturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="egitimfaturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="egitimfaturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+              <tr class="egitim">
+                <td><input type="text" name="egitimhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="egitimhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="egitimhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="egitimhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="egitimhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="egitimhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+
+                  <option value="101 - Özel Okul">101 - Özel Okul</option>
+                  <option value="102 - Üniversite">102 - Üniversite</option>
+                  <option value="103 - Dershane">103 - Dershane</option>
+                  <option value="104 - Diğer">104 - Diğer</option>
+                </select></td>
+                <td><input type="text" name="egitimfaturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="egitimfaturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="egitimfaturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="egitimfaturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+              <tr class="egitim">
+                <td><input type="text" name="egitimhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="egitimhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="egitimhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="egitimhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="egitimhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="egitimhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+
+                  <option value="101 - Özel Okul">101 - Özel Okul</option>
+                  <option value="102 - Üniversite">102 - Üniversite</option>
+                  <option value="103 - Dershane">103 - Dershane</option>
+                  <option value="104 - Diğer">104 - Diğer</option>
+                </select></td>
+                <td><input type="text" name="egitimfaturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="egitimfaturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="egitimfaturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="egitimfaturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+              <tr class="egitim">
+                <td><input type="text" name="egitimhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="egitimhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="egitimhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="egitimhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="egitimhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="egitimhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+
+                  <option value="101 - Özel Okul">101 - Özel Okul</option>
+                  <option value="102 - Üniversite">102 - Üniversite</option>
+                  <option value="103 - Dershane">103 - Dershane</option>
+                  <option value="104 - Diğer">104 - Diğer</option>
+                </select></td>
+                <td><input type="text" name="egitimfaturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="egitimfaturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="egitimfaturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="egitimfaturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+
+              <tr class="egitim">
+                <td><input type="text" name="egitimhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="egitimhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="egitimhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="egitimhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="egitimhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="egitimhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+
+                  <option value="101 - Özel Okul">101 - Özel Okul</option>
+                  <option value="102 - Üniversite">102 - Üniversite</option>
+                  <option value="103 - Dershane">103 - Dershane</option>
+                  <option value="104 - Diğer">104 - Diğer</option>
+                </select></td>
+                <td><input type="text" name="egitimfaturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="egitimfaturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="egitimfaturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="egitimfaturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+              <tr class="egitim">
+                <td><input type="text" name="egitimhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="egitimhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="egitimhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="egitimhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="egitimhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="egitimhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+
+                  <option value="101 - Özel Okul">101 - Özel Okul</option>
+                  <option value="102 - Üniversite">102 - Üniversite</option>
+                  <option value="103 - Dershane">103 - Dershane</option>
+                  <option value="104 - Diğer">104 - Diğer</option>
+                </select></td>
+                <td><input type="text" name="egitimfaturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="egitimfaturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="egitimfaturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="egitimfaturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+              <tr class="egitim">
+                <td><input type="text" name="egitimhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="egitimhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="egitimhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="egitimhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="egitimhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="egitimhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+
+                  <option value="101 - Özel Okul">101 - Özel Okul</option>
+                  <option value="102 - Üniversite">102 - Üniversite</option>
+                  <option value="103 - Dershane">103 - Dershane</option>
+                  <option value="104 - Diğer">104 - Diğer</option>
+                </select></td>
+                <td><input type="text" name="egitimfaturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="egitimfaturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="egitimfaturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="egitimfaturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+              <tr class="egitim">
+                <td><input type="text" name="egitimhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="egitimhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="egitimhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="egitimhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="egitimhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="egitimhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+
+                  <option value="101 - Özel Okul">101 - Özel Okul</option>
+                  <option value="102 - Üniversite">102 - Üniversite</option>
+                  <option value="103 - Dershane">103 - Dershane</option>
+                  <option value="104 - Diğer">104 - Diğer</option>
+                </select></td>
+                <td><input type="text" name="egitimfaturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="egitimfaturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="egitimfaturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="egitimfaturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+              <tr class="egitim">
+                <td><input type="text" name="egitimhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="egitimhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="egitimhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="egitimhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="egitimhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="egitimhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+
+                  <option value="101 - Özel Okul">101 - Özel Okul</option>
+                  <option value="102 - Üniversite">102 - Üniversite</option>
+                  <option value="103 - Dershane">103 - Dershane</option>
+                  <option value="104 - Diğer">104 - Diğer</option>
+                </select></td>
+                <td><input type="text" name="egitimfaturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="egitimfaturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="egitimfaturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="egitimfaturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+              <tr class="egitim">
+                <td><input type="text" name="egitimhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="egitimhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="egitimhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="egitimhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="egitimhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="egitimhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+
+                  <option value="101 - Özel Okul">101 - Özel Okul</option>
+                  <option value="102 - Üniversite">102 - Üniversite</option>
+                  <option value="103 - Dershane">103 - Dershane</option>
+                  <option value="104 - Diğer">104 - Diğer</option>
+                </select></td>
+                <td><input type="text" name="egitimfaturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="egitimfaturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="egitimfaturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="egitimfaturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+              <tr class="egitim">
+                <td><input type="text" name="egitimhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="egitimhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="egitimhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="egitimhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="egitimhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="egitimhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+
+                  <option value="101 - Özel Okul">101 - Özel Okul</option>
+                  <option value="102 - Üniversite">102 - Üniversite</option>
+                  <option value="103 - Dershane">103 - Dershane</option>
+                  <option value="104 - Diğer">104 - Diğer</option>
+                </select></td>
+                <td><input type="text" name="egitimfaturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="egitimfaturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="egitimfaturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="egitimfaturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+              <tr class="egitim">
+                <td><input type="text" name="egitimhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="egitimhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="egitimhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="egitimhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="egitimhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="egitimhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+
+                  <option value="101 - Özel Okul">101 - Özel Okul</option>
+                  <option value="102 - Üniversite">102 - Üniversite</option>
+                  <option value="103 - Dershane">103 - Dershane</option>
+                  <option value="104 - Diğer">104 - Diğer</option>
+                </select></td>
+                <td><input type="text" name="egitimfaturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="egitimfaturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="egitimfaturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="egitimfaturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+              <tr class="egitim">
+                <td><input type="text" name="egitimhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="egitimhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="egitimhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="egitimhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="egitimhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="egitimhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+
+                  <option value="101 - Özel Okul">101 - Özel Okul</option>
+                  <option value="102 - Üniversite">102 - Üniversite</option>
+                  <option value="103 - Dershane">103 - Dershane</option>
+                  <option value="104 - Diğer">104 - Diğer</option>
+                </select></td>
+                <td><input type="text" name="egitimfaturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="egitimfaturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="egitimfaturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="egitimfaturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+              <tr class="egitim">
+                <td><input type="text" name="egitimhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="egitimhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="egitimhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="egitimhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="egitimhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="egitimhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+
+                  <option value="101 - Özel Okul">101 - Özel Okul</option>
+                  <option value="102 - Üniversite">102 - Üniversite</option>
+                  <option value="103 - Dershane">103 - Dershane</option>
+                  <option value="104 - Diğer">104 - Diğer</option>
+                </select></td>
+                <td><input type="text" name="egitimfaturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="egitimfaturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="egitimfaturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="egitimfaturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+              <tr class="egitim">
+                <td><input type="text" name="egitimhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="egitimhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="egitimhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="egitimhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="egitimhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="egitimhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+
+                  <option value="101 - Özel Okul">101 - Özel Okul</option>
+                  <option value="102 - Üniversite">102 - Üniversite</option>
+                  <option value="103 - Dershane">103 - Dershane</option>
+                  <option value="104 - Diğer">104 - Diğer</option>
+                </select></td>
+                <td><input type="text" name="egitimfaturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="egitimfaturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="egitimfaturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="egitimfaturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+
+              <tr class="egitim">
+                <td><input type="text" name="egitimhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="egitimhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="egitimhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="egitimhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="egitimhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="egitimhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+
+                  <option value="101 - Özel Okul">101 - Özel Okul</option>
+                  <option value="102 - Üniversite">102 - Üniversite</option>
+                  <option value="103 - Dershane">103 - Dershane</option>
+                  <option value="104 - Diğer">104 - Diğer</option>
+                </select></td>
+                <td><input type="text" name="egitimfaturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="egitimfaturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="egitimfaturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="egitimfaturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+              <tr class="egitim">
+                <td><input type="text" name="egitimhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="egitimhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="egitimhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="egitimhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="egitimhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="egitimhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+
+                  <option value="101 - Özel Okul">101 - Özel Okul</option>
+                  <option value="102 - Üniversite">102 - Üniversite</option>
+                  <option value="103 - Dershane">103 - Dershane</option>
+                  <option value="104 - Diğer">104 - Diğer</option>
+                </select></td>
+                <td><input type="text" name="egitimfaturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="egitimfaturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="egitimfaturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="egitimfaturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+              <tr class="egitim">
+                <td><input type="text" name="egitimhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="egitimhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="egitimhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="egitimhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="egitimhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="egitimhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+
+                  <option value="101 - Özel Okul">101 - Özel Okul</option>
+                  <option value="102 - Üniversite">102 - Üniversite</option>
+                  <option value="103 - Dershane">103 - Dershane</option>
+                  <option value="104 - Diğer">104 - Diğer</option>
+                </select></td>
+                <td><input type="text" name="egitimfaturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="egitimfaturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="egitimfaturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="egitimfaturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+              <tr class="egitim">
+                <td><input type="text" name="egitimhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="egitimhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="egitimhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="egitimhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="egitimhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="egitimhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+
+                  <option value="101 - Özel Okul">101 - Özel Okul</option>
+                  <option value="102 - Üniversite">102 - Üniversite</option>
+                  <option value="103 - Dershane">103 - Dershane</option>
+                  <option value="104 - Diğer">104 - Diğer</option>
+                </select></td>
+                <td><input type="text" name="egitimfaturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="egitimfaturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="egitimfaturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="egitimfaturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
+              <tr class="egitim">
+                <td><input type="text" name="egitimhizmetindenfaydalanankisiadisoyadi"></td>
+                <td><input type="date" name="egitimhizmetindenfaydalanankisidogumtarihi"></td>
+                <td><input type="text" name="egitimhizmetindenfaydalanankisiuyrugu"></td>
+                <td><input type="text" name="egitimhizmetindenfaydalanankisipasaportnosu"></td>
+                <td><select name="egitimhizmetindenfaydalananyerilkodu" id="">
+                  <option value=""></option>
+                  {% for i in iller_ilkodu %}
+                    <option value="{{i.illerilkodu}}">{{i.illerilkodu}}</option>
+                  {% endfor %}                 
+                </select></td>
+                <td><select name="egitimhizmetindenfaydalananisletmeturu" id="">
+                  <option value=""></option>
+
+                  <option value="101 - Özel Okul">101 - Özel Okul</option>
+                  <option value="102 - Üniversite">102 - Üniversite</option>
+                  <option value="103 - Dershane">103 - Dershane</option>
+                  <option value="104 - Diğer">104 - Diğer</option>
+                </select></td>
+                <td><input type="text" name="egitimfaturayiduzenleyenkurumkisi"></td>
+                <td><input type="date" name="egitimfaturaduzenlemetarihi"></td>
+                <td><input type="number" step="0.01" value="0" name="egitimfaturaduzenlemesayisi"></td>
+                <td><input type="number" step="0.01" value="0" name="egitimfaturakdvstutari"></td>
+                
+                <td></td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -1018,6 +3277,32 @@
 
     if (elements[z]) {
         elements[z].classList.remove('yeniform');
+    } else {
+        console.error("Ürün Sınırına Ulaştınız");
+    }
+
+   
+  }
+  let gosterme = 0;
+  function ekleYeniSatirgosterme() {
+    
+    var elements = document.getElementsByClassName('gosterme');
+
+    if (elements[gosterme]) {
+        elements[gosterme].classList.remove('gosterme');
+    } else {
+        console.error("Ürün Sınırına Ulaştınız");
+    }
+
+   
+  }
+  let egitim = 0;
+  function ekleYeniSatiregitim() {
+    
+    var elements = document.getElementsByClassName('egitim');
+
+    if (elements[egitim]) {
+        elements[egitim].classList.remove('egitim');
     } else {
         console.error("Ürün Sınırına Ulaştınız");
     }

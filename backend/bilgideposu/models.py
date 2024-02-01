@@ -1822,7 +1822,12 @@ class dayanak(models.Model):
 
 class gecicivergi_beyannamesi_inidimi(models.Model):
     icerik = models.CharField(max_length = 200 ,verbose_name = "Açıklama")
-
+class iller_ilkodu(models.Model):
+    illerilkodu = models.CharField(max_length = 200 ,verbose_name = "Açıklama")
+class saglikhizmetindenfaydalananisletmeturu(models.Model):
+    saglikhizmetindenfaydalananisletmeturu = models.CharField(max_length = 200 ,verbose_name = "Açıklama")
+class saglikhizmetindenfaydalananisletmeadi(models.Model):
+    saglikhizmetindenfaydalananisletmeadi = models.CharField(max_length = 200 ,verbose_name = "Açıklama")
 #beyannameler
 #KDV1
 class kdv1_beyannamesi_bilgileri(models.Model):
