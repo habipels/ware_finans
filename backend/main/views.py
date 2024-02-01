@@ -6015,6 +6015,15 @@ def gecici_beyanname(request,slug):
         istisna8 = request.POST.get("istisna8")
         kar8 = request.POST.get("kar8")
         zarar8 = request.POST.get("zarar8")
+        #
+        istisnaturu = request.POST.get("istisnaturu")
+        vergivetc = request.POST.get("vergivetc")
+        #
+        patentfaydalibelge = request.POST.getlist("patentfaydalibelge")
+        numarasi = request.POST.getlist("numarasi")
+        korumasonaeristarihi = request.POST.getlist("korumasonaeristarihi")
+        istisnayakonukacanctutari = request.POST.getlist("istisnayakonukacanctutari")
+        kazancturur = request.POST.getlist("kazancturur")
     return render(request,"beyannameler/gecici_beyanname.html",content)
 def kurumlar_vergisi_beyanname(request,slug):
     content = site_ayarlari()
