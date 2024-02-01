@@ -46,11 +46,16 @@ def custom_login(request):
 @user_not_authenticated
 def registers(request):
     
-    form = UserRegistrationForm(request.POST)
-    if form.is_valid():
 
-        user = form.save()
-        login(request, user)
+    if request.POST:
+        emailkullaniciadi = request.POST.get("emailkullaniciadi")
+        sifresi = request.POST.get("sifresi")
+        
+        newUser = CustomUser(username =emailkullaniciadi,email = emailkullaniciadi)
+        newUser.set_password(sifresi)
+
+        newUser.save()
+        login(request,newUser)
         return redirect('/')
 
     else:
