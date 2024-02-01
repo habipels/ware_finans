@@ -1,2 +1,2 @@
-indirim5 = request.POST.get("indirim5")
-        tutari5 = request.POST.get("tutari5")
+faliyetkodu3 = request.POST.get("faliyetkodu3")
+        burtutsatistutari3 = request.POST.get("burtutsatistutari3")
