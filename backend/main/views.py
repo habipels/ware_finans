@@ -6050,6 +6050,16 @@ def gecici_beyanname(request,slug):
         egitimfaturaduzenlemetarihi = request.POST.getlist("egitimfaturaduzenlemetarihi")
         egitimfaturaduzenlemesayisi = request.POST.getlist("egitimfaturaduzenlemesayisi")
         egitimfaturakdvstutari = request.POST.getlist("egitimfaturakdvstutari")
+
+        #
+        alinanhizmetturu = request.POST.getlist("alinanhizmetturu")
+        hizmettesebusvergiveyatc = request.POST.getlist("hizmettesebusvergiveyatc")
+        hizmettesebusadisoyadiunvan = request.POST.getlist("hizmettesebusadisoyadiunvan")
+        hizmetinbelgeturu = request.POST.getlist("hizmetinbelgeturu")
+        hizmetlerinbelgetarihi = request.POST.getlist("hizmetlerinbelgetarihi")
+        hizmetbelgeserino = request.POST.getlist("hizmetbelgeserino")
+        hizmettutarbilgisi = request.POST.getlist("hizmettutarbilgisi")
+
     return render(request,"beyannameler/gecici_beyanname.html",content)
 def kurumlar_vergisi_beyanname(request,slug):
     content = site_ayarlari()
