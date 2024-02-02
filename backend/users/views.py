@@ -61,7 +61,18 @@ def registers(request):
     else:
         return render("/users/loginandregister/")
     
-
+def sifre_degistir(request):
+    if request.POST:
+        logpass0 = request.POST.get("logpass0")
+        logpass = request.POST.get("logpass")
+        logpass2 = request.POST.get("logpass2")
+        if logpass == logpass2:
+            if request.user.check_password(logpass0):
+                u = CustomUser.objects.get(id = request.user.id)
+                u.set_password(logpass)
+                u.save()
+                return redirect("users:logout")
+    return render(request,"changepassword.html")
 
 def logoutUser(request):
     logout(request)
