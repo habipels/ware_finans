@@ -81,7 +81,16 @@
         <hr>
         <div class="col-6"><p><b>Yılı : <script>document.write(new Date().getFullYear())</script></b></p>
             <p><b>Vergi Dairesi Kodu : {{subeleri.vergi_dairesi_adi.vergi_dairesi_kodu}}</b></p>
-        </div>
+            <hr>
+            <h3 class="text-center" >Dar Mükellef Temsilcisinin</h3>
+        <p><b>Vergi Kimlik Numarası (T.C Kimlik No) : {% if dar_mukellef.kurumlarvergiveyatckimlikno %}{{dar_mukellef.kurumlarvergiveyatckimlikno}}{% endif %} </b></p>
+        <p><b>Vergi Kimlik Numarası  : {% if dar_mukellef.kurumlarvergikimlikno %}{{dar_mukellef.kurumlarvergikimlikno}}{% endif %} </b></p>
+        <p><b>Soyadi (Unvan)  : {% if dar_mukellef.sube_bilgisi.bagli_oldugu_firma.Firma_unvani2 %}{{dar_mukellef.sube_bilgisi.bagli_oldugu_firma.Firma_unvani2}}{% endif %} </b></p>
+        <p><b>Adı (Unvan Devamı)  : {% if dar_mukellef.sube_bilgisi.bagli_oldugu_firma.firma_unvani %}{{dar_mukellef.sube_bilgisi.bagli_oldugu_firma.firma_unvani}}{% endif %} </b></p>
+        <p><b>Ticaret Sicil No  : {% if faliyet.kurumlarticaretsicilno %}{{faliyet.kurumlarticaretsicilno}}{% endif %} </b></p>
+        <p><b>E-Posta Adresi  : {% if dar_mukellef.Kurumlarepostaadresi %}{{dar_mukellef.Kurumlarepostaadresi}}{% endif %} </b></p>
+        <p><b>İrtibat Telefon No  : {% if dar_mukellef.kurumlarirtibatnumarasi %}{{dar_mukellef.kurumlarirtibatnumarasi}}{% endif %} </b></p>
+          </div>
         <div class="col-6">
             <p><b>Vergi Kimlik Numarası (T.C Kimlik No) : {% if subeleri.sahis_ise_tc %}{{subeleri.sahis_ise_tc}}{% endif %} </b></p>
             <p><b>Vergi Kimlik Numarası  : {% if subeleri.vergi_numarasi %}{{subeleri.vergi_numarasi}}{% endif %} </b></p>
@@ -91,9 +100,38 @@
             <p><b>E-Posta Adresi  : {% if subeleri.email_adresi %}{{subeleri.email_adresi}}{% endif %} </b></p>
             <p><b>İrtibat Telefon No  : {% if subeleri.telefon_numarasi %}{{subeleri.telefon_numarasi}}{% endif %} </b></p>
         </div>
+        
         <hr style="border: 2px solid black !important;" >
     </div>
 </div>
-
+<div class="container">
+  <div class="row">
+      <h3 class="text-center" >Kuruma Bağlı İşleyiş Ve Geçmiş Yıl Zararları</h3>
+      <hr>
+      <div class="col-6">
+        <div class="row">
+          <div class="col-12"><h4 class="text-center">Kuruma Bağlı İşyerlerinin Türü ve Sayısı</h4></div>
+        <div class="col-8"><b>Türü</b> </div>
+        <div class="col-4"><b>Sayısı</b> </div>
+        <div class="col-8">Şube</div>
+        <div class="col-4"><input type="text" value="{% if dar_mukellef.kurumlarsube %}{{dar_mukellef.kurumlarsube}}{% endif %}" name="sube"></div>
+        <div class="col-8">Çıkış Yeri</div>
+        <div class="col-4"><input type="text" value="{% if dar_mukellef.cikisyeri %}{{dar_mukellef.cikisyeri}}{% endif %}" name="cikisyeri"></div>
+        <div class="col-8">Ajanlık</div>
+        <div class="col-4"><input type="text" value="{% if dar_mukellef.kurumlarajanlik %}{{dar_mukellef.kurumlarajanlik}}{% endif %}" name="ajanlik"></div>
+        <div class="col-8">İmalat Yeri</div>
+        <div class="col-4"><input type="text" value="{% if dar_mukellef.kurmlarimalatyeri %}{{dar_mukellef.kurmlarimalatyeri}}{% endif %}" name="imalatyeri"></div>
+        <div class="col-8">Satış Yeri</div>
+        <div class="col-4"><input type="text" value="{% if dar_mukellef.kurumlarsatisyeri %}{{dar_mukellef.kurumlarsatisyeri}}{% endif %}" name="satisyeri"></div>
+        <div class="col-8">Sair</div>
+        <div class="col-4"><input type="text" value="{% if dar_mukellef.kurumlarsair %}{{dar_mukellef.kurumlarsair}}{% endif %}" name="sair"></div>
+        <div class="col-8">Toplam</div>
+        <div class="col-4"><input type="text" value="" name="toplam"></div>
+        </div>
+      </div>
+      
+      <hr style="border: 2px solid black !important;" >
+  </div>
+</div>
 
 {% endblock content %}

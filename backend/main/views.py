@@ -6068,6 +6068,10 @@ def kurumlar_vergisi_beyanname(request,slug):
     content["firma_ayarlari"] = firma_ayarlari_ayar_kisimi.objects.filter(bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) ).last()
     content["faliyet"] = sube_faliyet_bilgileri.objects.filter(sube_bilgisi=sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)).first()).first()
     content["firmalarim"] = firma.objects.filter(silinme_bilgisi = False,firma_muhasabecisi = request.user)
+    content["beyannameduzenleyen"]=beyanname_duzenleyene_ait_bilgiler.objects.filter(beyanname_bilgisi__sube_bilgisi = sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)).first()).last()
+    content["mirasci"] =beyanname_bilgileri.objects.filter(sube_bilgisi = sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)).first()).last()
+    content["kanuni_temsilci"] = beyanname_kanuni_temsilcisi.objects.filter(beyanname_bilgisi__sube_bilgisi = sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)).first()).last()
+    content["dar_mukellef"] = kurumlar_dar_mukkelef_kimlik_ve_adres_bilgisi.objects.filter(sube_bilgisi =sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)).first() ).last()
     tevk_600ler = []
     for i in range(601,628):
         tevk_600ler.append(str(i))
@@ -6076,6 +6080,13 @@ def kurumlar_vergisi_beyanname(request,slug):
     for i in range(801,826):
         tevk_800ler.append(str(i))
     content["tevkifatlar1"] =tevkifat_tur_kodu.objects.filter(hesap_kodu__in = tevk_800ler,silinme_bilgisi = False,bagli_oldugu_firma = None)
+    if request.POST:
+        subeli = request.POST.get("sube")
+        cikisyeri = request.POST.get("cikisyeri")
+        ajanlik = request.POST.get("ajanlik")
+        imalatyeri = request.POST.get("imalatyeri")
+        satisyeri = request.POST.get("satisyeri")
+        sair = request.POST.get("sair")
     return render(request,"beyannameler/kurumlar_vergisi_beyanname.html",content)
 #
 #ba bs formları
