@@ -6100,7 +6100,40 @@ def kurumlar_vergisi_beyanname(request,slug):
         digerzararlar2020 = request.POST.get("digerzararlar2020")
         zararlartoplam = request.POST.get("zararlartoplam")
         #
+        ticaribilanco = request.POST.get("ticaribilanco")
+        ticaribilancozarar = request.POST.get("ticaribilancozarar")
+        ticaribilancokar = request.POST.get("ticaribilancokar")
+        addolananagelirkar = request.POST.get("addolananagelirkar")
+        addolananagelir = request.POST.get("addolananagelir")
+        #
+        ilaveler1 = request.POST.get("ilaveler1")
+        ilavelertutar1 = request.POST.get("ilavelertutar1")
+        ilaveler2 = request.POST.get("ilaveler2")
+        ilavelertutar2 = request.POST.get("ilavelertutar2")
+        ilavelertoplambilgisi = request.POST.get("ilavelertoplambilgisi")
+        ilavelertoplam = request.POST.get("ilavelertoplam")
+        #
+        istisnaindirim1 = request.POST.get("istisnaindirim1")
+        istisnaindirimtutar1 = request.POST.get("istisnaindirimtutar1")
+        istisnaindirim2 = request.POST.get("istisnaindirim2")
+        istisnaindirimtutar2 = request.POST.get("istisnaindirimtutar2")
+        istisnaindirimtutartoplambilgisi = request.POST.get("istisnaindirimtutartoplambilgisi")
+        istisnaindirimtutartoplam = request.POST.get("istisnaindirimtutartoplam")
+        #
+        karilavetoplami = request.POST.get("karilavetoplami")
+        karilavetoplamitutri = request.POST.get("karilavetoplamitutri")
+        cariyilaiatistisnaindirim = request.POST.get("cariyilaiatistisnaindirim")
+        cariyilaiatistisnaindirimtutari = request.POST.get("cariyilaiatistisnaindirimtutari")
+        zararbilgisi = request.POST.get("zararbilgisi")
+        zararbilgisitutari = request.POST.get("zararbilgisitutari")
+        karbilgisi = request.POST.get("karbilgisi")
+        karbilgisitutari =request.POST.get("karbilgisitutari")
+        digeryilzararlari = request.POST.get("digeryilzararlari")
+        digeryilzararlaritutari = request.POST.get("digeryilzararlaritutari")
+        istisnadanyilzararlaritutari = request.POST.get("istisnadanyilzararlaritutari")
 
+
+        
     return render(request,"beyannameler/kurumlar_vergisi_beyanname.html",content)
 #
 #ba bs formları
