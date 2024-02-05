@@ -6087,6 +6087,20 @@ def kurumlar_vergisi_beyanname(request,slug):
         imalatyeri = request.POST.get("imalatyeri")
         satisyeri = request.POST.get("satisyeri")
         sair = request.POST.get("sair")
+        #
+        istisnazarari2016 = request.POST.get("istisnazarari2016")
+        digerzararlar2016 = request.POST.get("digerzararlar2016")
+        istisnazarari2017 = request.POST.get("istisnazarari2017")
+        digerzararlar2017 = request.POST.get("digerzararlar2017")
+        istisnazarari2018 = request.POST.get("istisnazarari2018")
+        digerzararlar2018 = request.POST.get("digerzararlar2018")
+        istisnazarari2019 = request.POST.get("istisnazarari2019")
+        digerzararlar2019 = request.POST.get("digerzararlar2019")
+        istisnazarari2020 = request.POST.get("istisnazarari2020")
+        digerzararlar2020 = request.POST.get("digerzararlar2020")
+        zararlartoplam = request.POST.get("zararlartoplam")
+        #
+
     return render(request,"beyannameler/kurumlar_vergisi_beyanname.html",content)
 #
 #ba bs formları
