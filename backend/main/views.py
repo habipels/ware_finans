@@ -6131,9 +6131,10 @@ def kurumlar_vergisi_beyanname(request,slug):
         digeryilzararlari = request.POST.get("digeryilzararlari")
         digeryilzararlaritutari = request.POST.get("digeryilzararlaritutari")
         istisnadanyilzararlaritutari = request.POST.get("istisnadanyilzararlaritutari")
-
-
-        
+        mahsupedilecekgrcmisyilzararlari = request.POST.get("mahsupedilecekgrcmisyilzararlari")
+        mahsupedilecekgrcmisyilzararlaritutari = request.POST.get("mahsupedilecekgrcmisyilzararlaritutari")
+        indirimesas = request.POST.get("indirimesas")
+        indirimesastutari = request.POST.get("indirimesastutari")
     return render(request,"beyannameler/kurumlar_vergisi_beyanname.html",content)
 #
 #ba bs formları
