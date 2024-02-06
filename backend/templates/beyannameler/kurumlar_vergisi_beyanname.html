@@ -268,19 +268,15 @@
               </tr>
             </thead>
             <tbody>
+              {% for i in bilgi1 %}
               <tr >
-                <td><p>306-İştirak Kazanılan Istisnası (K.V.K Mad. 5/1-a) /(K.V.K. Mad. 12 den kaynaklanan)</p>
-                  <input  type="text" hidden value="306-İştirak Kazanılan Istisnası (K.V.K Mad. 5/1-a) /(K.V.K. Mad. 12 den kaynaklanan)" name="istisnaindirim1"></td>
+                <td><p>{{i.icerik}}</p>
+                  <input  type="text" hidden value="{{i.icerik}}" name="istisnaindirim1"></td>
                 <td></td>
                 <td><input  type="number" step="0.01" value="0" name="istisnaindirimtutar1"></td>
               </tr>
-              <tr >
-              <td><p>307-İştirak Kazananılan Istisnası (K.V.K Mad. 5/1-a) /(K.V.K. Mad. 13 den kaynaklanan)</p>
-                <input  type="text" hidden value="307-İştirak Kazananılan Istisnası (K.V.K Mad. 5/1-a) /(K.V.K. Mad. 13 den kaynaklanan)" name="istisnaindirim2"></td>
-              <td></td>
-              <td><input  type="number" step="0.01" value="0" name="istisnaindirimtutar2"></td>
-            </tr>
-            <tr >
+            <tr>
+              {% endfor %}
               <td><p>Toplam</p>
                 <input  type="text" hidden value="Toplam" name="istisnaindirimtutartoplambilgisi"></td>
               <td></td>
@@ -342,6 +338,253 @@
           </table>
         </div>
       </div>
+      <div class="container tablo" style="margin-top: 0px !important;">
+        <input class="col-12 text-center" disabled value="KAZANCIN BULUNMASI HALİNDE İNDİRİLECEK İSTİSNA VE İNDİRİMLER" type="text">
+        <div class="table-responsive " style=" 
+        height: 200px;
+        overflow: auto;">
+          <table class="table table-bordered ">
+            <thead style="position: sticky;top: 0">
+              <tr>
+                <th class="text-center" style="min-width: 100px ;">Türü</th>
+                <th class="text-center" style="min-width: 100px ;">Açıklama</th>
+                <th class="text-center" style="min-width: 50px ;">Tutarı</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for i in bilgi2 %}
+              <tr >
+                <td><p>{{i.icerik}}</p>
+                  <input  type="text" hidden value="{{i.icerik}}" name="kazancindirimleri"></td>
+                <td></td>
+                <td><input  type="number" step="0.01" value="0" name="kazancindirimleritutar"></td>
+              </tr>
+            <tr>
+              {% endfor %}
+              <td><p>Toplam</p>
+                <input  type="text" hidden value="Toplam" name="kazancindirimleritopam"></td>
+              <td></td>
+              <td> <span class="kazancindirimleritopamtutar">0.0</span><input  type="number" hidden step="0.01" value="0" id="kazancindirimleritopamtutar" name="kazancindirimleritopamtutar"></td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <hr style="border: 2px solid black !important;" >
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+      <h3 class="text-center" >VERGİ BİLDİRİMİ</h3>
+      <hr>
+      <div class="container tablo" style="margin-top: 0px !important;">
+        <input class="col-12" disabled value="" type="text">
+        <div class="table-responsive " style=" 
+        height: 400px;
+        overflow: auto;">
+          <table class="table table-bordered ">
+            <thead style="position: sticky;top: 0">
+              <tr>
+                <th class="text-center" style="min-width: 50px ;"></th>
+                <th class="text-center" style="min-width: 150px ;"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr >
+                <td><p>Dönem Safi Kurum Kazancı</p>
+                  <input  type="text" hidden value="Dönem Safi Kurum Kazancı" name="vergibildiirmibilgi1"></td>
+                <td><input  type="number" step="0.01" value="0" name="vergibildiirmitutar1"></td>
+              </tr>
+              <tr >
+                <td><p>KVK'nın 32/6 Mad. kapsamında en az %20 oranında ve ilk defa halka arz edilen bir şirketmisiniz?</p>
+                  <input  type="text" hidden value="KVK'nın 32/6 Mad. kapsamında en az %20 oranında ve ilk defa halka arz edilen bir şirketmisiniz?" name="vergibildiirmibilgi2"></td>
+                <td><input type="radio" id="html" name="fav_language" value="EVET">
+                <label for="html">EVET</label>
+                <input type="radio" id="css" name="fav_language" value="HAYIR">
+                <label for="css">HAYIR</label></td>
+              </tr>
+              <tr >
+                <td><p>KVK'nın 32/A Mad. Kapsamında İndirimli Kurumlar Vergisine Tabi Matrah</p>
+                  <input  type="text" hidden value="KVK'nın 32/A Mad. Kapsamında İndirimli Kurumlar Vergisine Tabi Matrah" name="vergibildiirmibilgi3"></td>
+                <td><input  type="number" step="0.01" value="0" name="vergibildiirmitutar3"></td>
+              </tr>
+              <tr >
+                <td><p>KVK'nın 32/A Mad. Kapsamında İndirimli Kurumlar Vergisi Oranı</p>
+                  <input  type="text" hidden value="KVK'nın 32/A Mad. Kapsamında İndirimli Kurumlar Vergisi Oranı" name="vergibildiirmibilgi4"></td>
+                <td><input  type="number" step="0.01" value="0" name="vergibildiirmitutar4"></td>
+              </tr>
+              <tr >
+                <td><p>Genel Orana Tabi Matrah</p>
+                  <input  type="text" hidden value="Genel Orana Tabi Matrah" name="vergibildiirmibilgi5"></td>
+                <td><input  type="number" step="0.01" value="0" name="vergibildiirmitutar5"></td>
+              </tr>
+              <tr >
+                <td><p>İşletmeden Çekilen Enflasyon Düzeltmesi Farkları</p>
+                  <input  type="text" hidden value="İşletmeden Çekilen Enflasyon Düzeltmesi Farkları" name="vergibildiirmibilgi6"></td>
+                <td><input  type="number" step="0.01" value="0" name="vergibildiirmitutar6"></td>
+              </tr>
+              <tr >
+                <td><p>Gelecek Yıla Devreden Cari Yıl Zararları</p>
+                  <input  type="text" hidden value="Gelecek Yıla Devreden Cari Yıl Zararları" name="vergibildiirmibilgi7"></td>
+                <td><input  type="number" step="0.01" value="0" name="vergibildiirmitutar7"></td>
+              </tr>
+              <tr >
+                <td><p>Safi Kurum Kazancının Türkiye Dışında Elde Edilen Kısmı</p>
+                  <input  type="text" hidden value="Safi Kurum Kazancının Türkiye Dışında Elde Edilen Kısmı" name="vergibildiirmibilgi8"></td>
+                <td><input  type="number" step="0.01" value="0" name="vergibildiirmitutar8"></td>
+              </tr>
+
+            
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="container tablo" style="margin-top: 0px !important;">
+        <input class="col-12 text-center" disabled value="VERGİ BİLDİRİMİ" type="text">
+        <div class="table-responsive " style=" 
+        height: 200px;
+        overflow: auto;">
+          <table class="table table-bordered ">
+            <thead style="position: sticky;top: 0">
+              <tr>
+                <th class="text-center" style="min-width: 50px ;"></th>
+                <th class="text-center" style="min-width: 150px ;"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr >
+                <td><p>Kurumlar Vergisi Matrahı</p>
+                  <input  type="text" hidden value="Kurumlar Vergisi Matrahı" name="vergibildirimi1"></td>
+                <td><input  type="number" step="0.01" value="0" name="vergibildirimitutar1"></td>
+              </tr>  
+              <tr >
+                <td><p>Hesaplanan Kurumlar Vergisi</p>
+                  <input  type="text" hidden value="Hesaplanan Kurumlar Vergisi" name="vergibildirimi2"></td>
+                <td><input  type="number" step="0.01" value="0" name="vergibildirimitutar2"></td>
+              </tr>          
+              <tr >
+                <td><p>Hesaplanan Vergi İndirimi Tutarı (Hesaplanan Kurumlar Vergisi %5)</p>
+                  <input  type="text" hidden value="Hesaplanan Vergi İndirimi Tutarı (Hesaplanan Kurumlar Vergisi %5)" name="vergibildirimi3"></td>
+                <td><input  type="number" step="0.01" value="0" name="vergibildirimitutar3"></td>
+              </tr>  
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="container tablo" style="margin-top: 0px !important;">
+        <input class="col-12 text-center" disabled value="MAHSUP EDİLECEK VERGİLER" type="text">
+        <div class="table-responsive " style=" 
+        height: 250px;
+        overflow: auto;">
+          <table class="table table-bordered ">
+            <thead style="position: sticky;top: 0">
+              <tr>
+                <th class="text-center" style="min-width: 50px ;"></th>
+                <th class="text-center" style="min-width: 150px ;"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr >
+                <td><p>Yabancı Ülkelerde Ödenen Vergilerden Mahsup Edilecek Kısım</p>
+                  <input  type="text" hidden value="Yabancı Ülkelerde Ödenen Vergilerden Mahsup Edilecek Kısım" name="mahsupedilecekbilgi1"></td>
+                <td><input  type="number" step="0.01" value="0" name="mahsupedilecektutar1"></td>
+              </tr>  
+              <tr >
+                <td><p>Yıl İçinde Kesinti Yoluyla Ödenen Vergler</p>
+                  <input  type="text" hidden value="Yıl İçinde Kesinti Yoluyla Ödenen Vergler" name="mahsupedilecekbilgi2"></td>
+                <td><input  type="number" step="0.01" value="0" name="mahsupedilecektutar2"></td>
+              </tr>  
+              <tr >
+                <td><p>Yabanı Ülkelerde Ödenen Vergiler (Beyanname tarihi itibariyle tevsik ediemeyenler)</p>
+                  <input  type="text" hidden value="Yabanı Ülkelerde Ödenen Vergiler (Beyanname tarihi itibariyle tevsik ediemeyenler)" name="mahsupedilecekbilgi3"></td>
+                <td><input  type="number" step="0.01" value="0" name="mahsupedilecektutar3"></td>
+              </tr>  
+              <tr >
+                <td><p>Geçici Vergi</p>
+                  <input  type="text" hidden value="Geçci Vergi" name="mahsupedilecekbilgi4"></td>
+                <td><input  type="number" step="0.01" value="0" name="mahsupedilecektutar4"></td>
+              </tr>   
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="container tablo" style="margin-top: 0px !important;">
+        <input class="col-12 text-center" disabled value="" type="text">
+        <div class="table-responsive " style=" 
+        height: 350px;
+        overflow: auto;">
+          <table class="table table-bordered ">
+            <thead style="position: sticky;top: 0">
+              <tr>
+                <th class="text-center" style="min-width: 50px ;"></th>
+                <th class="text-center" style="min-width: 150px ;"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr >
+                <td><p>Mahsup Edlecek Vergiler Toplamı</p>
+                  <input  type="text" hidden value="Mahsup Edlecek Vergiler Toplamı" name="mahsupedilecekergitoplamibilgi"></td>
+                <td><input  type="number" step="0.01" value="0" name="mahsupedilecekergitoplamitutar"></td>
+              </tr>  
+              <tr >
+                <td><p>Yabancı Ülkelerde Ödenen Verglerden Cari Yida Mahsup Edlemeyip Gelecek Yila Devreden Kısım</p>
+                  <input  type="text" hidden value="Yabancı Ülkelerde Ödenen Verglerden Cari Yida Mahsup Edlemeyip Gelecek Yila Devreden Kısım" name="mahsupedilmeyecekyabancibilgi"></td>
+                <td><input  type="number" step="0.01" value="0" name="mahsupedilmeyecekyabancitutar"></td>
+              </tr> 
+              <tr >
+                <td><p>Ödenmesi Gereken Kurumlar Vergisi</p>
+                  <input  type="text" hidden value="Ödenmesi Gereken Kurumlar Vergisi" name="odenemesigerekenkurumlarvergisi"></td>
+                <td><input  type="number" step="0.01" value="0" name="odenemesigerekenkurumlarvergisitutar"></td>
+              </tr> 
+              <tr >
+                <td><p>Yabancı Ülkelerde Ödenen Ancak Tevsik Edilememesi Nedeniyle Teci Edilen Kurumlar Vergisi</p>
+                  <input  type="text" hidden value="Yabancı Ülkelerde Ödenen Ancak Tevsik Edilememesi Nedeniyle Teci Edilen Kurumlar Vergisi" name="tesciledilmeyenkurumlarvergisi"></td>
+                <td><input  type="number" step="0.01" value="0" name="tesciledilmeyenkurumlarvergisitutar"></td>
+              </tr> 
+              <tr >
+                <td><p>Vergi İndriminin Mahsubundan Sonra Ödenmesi Gereken Kurumlar Vergisi</p>
+                  <input  type="text" hidden value="Vergi İndriminin Mahsubundan Sonra Ödenmesi Gereken Kurumlar Vergisi" name="islemlerdensonraodemesigerekenvergi"></td>
+                <td><input  type="number" step="0.01" value="0" name="islemlerdensonraodemesigerekenvergitutar"></td>
+              </tr> 
+              <tr >
+                <td><p>İadesi Gereken Kurumlar Vergisi ve/veya Geçici Vergi</p>
+                  <input  type="text" hidden value="İadesi Gereken Kurumlar Vergisi ve/veya Geçici Vergi" name="iadesigerekengecivergi"></td>
+                <td><input  type="number" step="0.01" value="0" name="iadesigerekengecivergitutar"></td>
+              </tr>
+              <tr >
+                <td><p>İadesi Gereken Kurumlar Vergisi</p>
+                  <input  type="text" hidden value="İadesi Gereken Kurumlar Vergisi" name="iadesigerekenkruumlarvergisi"></td>
+                <td><input  type="number" step="0.01" value="0" name="iadesigerekenkruumlarvergisitutar"></td>
+              </tr> 
+              <tr >
+                <td><p>İadesi Gereken Geçici Vergi</p>
+                  <input  type="text" hidden value="İadesi Gereken Geçici Vergi" name="iadesigerekengecicivergi"></td>
+                <td><input  type="number" step="0.01" value="0" name="iadesigerekengecicivergitutat"></td>
+              </tr> 
+              <tr >
+                <td><p>Kalan Vergi İndirimi</p>
+                  <input  type="text" hidden value="Kalan Vergi İndirimi" name="kalanvergiindirimi"></td>
+                <td><input  type="number" step="0.01" value="0" name="kalanvergiindirimitutar"></td>
+              </tr> 
+              <tr >
+                <td><p>Damga Vergisi</p>
+                  <input  type="text" hidden value="Damga Vergisi" name="damgavergisi"></td>
+                <td><input  type="number" step="0.01" value="0" name="damgavergisitutar"></td>
+              </tr> 
+              <tr >
+                <td><p>Kazancın Tespt Yöntemi</p>
+                  <input  type="text" hidden value="Kazancın Tespt Yöntemi" name="kazancintespityontemi"></td>
+                <td><select name="kazancintespityontemisecimi" id="">
+                  <option value="Bilanço">Bilanço</option>
+                  <option value="Dar Mükellef Ulaştırma Kurumu Hasılat Defteri">Dar Mükellef Ulaştırma Kurumu Hasılat Defteri</option>
+                </select></td>
+              </tr> 
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <hr>
       <hr style="border: 2px solid black !important;" >
   </div>
 </div>

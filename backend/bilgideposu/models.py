@@ -1828,6 +1828,12 @@ class saglikhizmetindenfaydalananisletmeturu(models.Model):
     saglikhizmetindenfaydalananisletmeturu = models.CharField(max_length = 200 ,verbose_name = "Açıklama")
 class saglikhizmetindenfaydalananisletmeadi(models.Model):
     saglikhizmetindenfaydalananisletmeadi = models.CharField(max_length = 200 ,verbose_name = "Açıklama")
+#ZARAR OLSA DAHİ İNDİRİLECEK İSTİSNA VE İNDİRİMLER
+class zarar_olsa_dahi_indilicekistisnaveindirim(models.Model):
+    icerik = models.CharField(max_length=200,verbose_name = "İçerik Bilgisi",blank = True,null = True)
+#KAZANCIN BULUNMASI HALİNDE İNDİRİLECEK İSTİSNA VE İNDİRİMLER
+class kazancin_bulunmasi_halinde_indirilecek_istisna_veindirimler(models.Model):
+    icerik = models.CharField(max_length=200,verbose_name = "İçerik Bilgisi",blank = True,null = True)
 #beyannameler
 #KDV1
 class kdv1_beyannamesi_bilgileri(models.Model):
