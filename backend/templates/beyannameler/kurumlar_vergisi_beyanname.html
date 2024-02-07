@@ -512,7 +512,7 @@
       <div class="container tablo" style="margin-top: 0px !important;">
         <input class="col-12 text-center" disabled value="" type="text">
         <div class="table-responsive " style=" 
-        height: 350px;
+        height: 560px;
         overflow: auto;">
           <table class="table table-bordered ">
             <thead style="position: sticky;top: 0">
@@ -585,6 +585,97 @@
         </div>
       </div>
       <hr>
+      <hr style="border: 2px solid black !important;" >
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+      <h3 class="text-center" >DÜZENLEME BİLGİLERİ</h3>
+      <hr>
+    
+      <div style="border-right: 1px solid black;" class="col-6">
+        <h4><b>Beyanname Hangi Sıfatla Verildiği</b></h4>
+        {% if mirasci.beyannamehangisifatlaverildi == "mukellef" %}
+        <hr>
+          <div class="row">
+
+            <div class="col-4"><label style="margin-left: 5px;" for="mukellef">Mükellef</label><input type="checkbox" disabled checked name="mukellef" id="mukellef"></div>
+            <div class="col-4"><label style="margin-left: 5px;"  for="mirascı">Mirascı</label><input type="checkbox" disabled name="mirascı" id="mirascı"></div>
+            <div class="col-4"><label style="margin-left: 5px;" for="kanunitemsilci">Kanuni Temsilci</label><input disabled type="checkbox" name="kanunitemsilci" id="kanunitemsilci"></div>
+          </div>
+          <p><b>Vergi Kimlik Numarası (T.C Kimlik No) : {% if subeleri.sahis_ise_tc %}{{subeleri.sahis_ise_tc}}{% endif %} </b></p>
+          <p><b>Vergi Kimlik Numarası  : {% if subeleri.vergi_numarasi %}{{subeleri.vergi_numarasi}}{% endif %} </b></p>
+          <p><b>Soyadi (Unvan)  : {% if subeleri.bagli_oldugu_firma.Firma_unvani2 %}{{subeleri.bagli_oldugu_firma.Firma_unvani2}}{% endif %} </b></p>
+          <p><b>Adı (Unvan Devamı)  : {% if subeleri.bagli_oldugu_firma.firma_unvani %}{{subeleri.bagli_oldugu_firma.firma_unvani}}{% endif %} </b></p>
+          <p><b>Ticaret Sicil No  : {% if faliyet.ticaret_sicil_no %}{{faliyet.ticaret_sicil_no}}{% endif %} </b></p>
+          <p><b>E-Posta Adresi  : {% if subeleri.email_adresi %}{{subeleri.email_adresi}}{% endif %} </b></p>
+          <p><b>İrtibat Telefon No  : {% if subeleri.telefon_numarasi %}{{subeleri.telefon_numarasi}}{% endif %} </b></p>
+        {% elif mirasci.beyannamehangisifatlaverildi == "mirascı" %}
+        <hr>
+          <div class="row">
+
+            <div class="col-4"><label style="margin-left: 5px;" for="mukellef">Mükellef</label><input type="checkbox" disabled  name="mukellef" id="mukellef"></div>
+            <div class="col-4"><label style="margin-left: 5px;"  for="mirascı">Mirascı</label><input type="checkbox" disabled checked name="mirascı" id="mirascı"></div>
+            <div class="col-4"><label style="margin-left: 5px;" for="kanunitemsilci">Kanuni Temsilci</label><input disabled type="checkbox" name="kanunitemsilci" id="kanunitemsilci"></div>
+          </div>
+          <p><b>Vergi Kimlik Numarası (T.C Kimlik No) : {% if mirasci.mirascibilgisitc %}{{mirasci.mirascibilgisitc}}{% endif %} </b></p>
+          <p><b>Vergi Kimlik Numarası  : {% if mirasci.mirascivergino %}{{mirasci.mirascivergino}}{% endif %} </b></p>
+          <p><b>Soyadi (Unvan)  : {% if mirasci.beyannamesoyadiunvan %}{{mirasci.beyannamesoyadiunvan}}{% endif %} </b></p>
+          <p><b>Adı (Unvan Devamı)  : {% if mirasci.beyannameadiunvandevami %}{{mirasci.beyannameadiunvandevami}}{% endif %} </b></p>
+          <p><b>Ticaret Sicil No  : {% if mirasci.beyannameyeaitticaretsicilno %}{{mirasci.beyannameyeaitticaretsicilno}}{% endif %} </b></p>
+          <p><b>E-Posta Adresi  : {% if mirasci.beyannameemailadresi %}{{mirasci.beyannameemailadresi}}{% endif %} </b></p>
+          <p><b>İrtibat Telefon No  : {% if mirasci.beyannametelefonumarasi %}{{mirasci.beyannametelefonumarasi}}{% endif %} </b></p>
+        {% elif mirasci.beyannamehangisifatlaverildi == "kanunitemsilci" %}
+        <hr>
+        <div class="row">
+
+          <div class="col-4"><label style="margin-left: 5px;" for="mukellef">Mükellef</label><input type="checkbox" disabled  name="mukellef" id="mukellef"></div>
+          <div class="col-4"><label style="margin-left: 5px;"  for="mirascı">Mirascı</label><input type="checkbox" disabled  name="mirascı" id="mirascı"></div>
+          <div class="col-4"><label style="margin-left: 5px;" for="kanunitemsilci">Kanuni Temsilci</label><input disabled checked type="checkbox" name="kanunitemsilci" id="kanunitemsilci"></div>
+        </div>
+        <p><b>Vergi Kimlik Numarası (T.C Kimlik No) : {% if kanuni_temsilci.beyannamekanunitemsicitc %}{{kanuni_temsilci.beyannamekanunitemsicitc}}{% endif %} </b></p>
+        <p><b>Vergi Kimlik Numarası  : {% if kanuni_temsilci.beyannamekanunitemsicivergino %}{{kanuni_temsilci.beyannamekanunitemsicivergino}}{% endif %} </b></p>
+        <p><b>Soyadi (Unvan)  : {% if kanuni_temsilci.beyannamekanunitemsicisoyadi %}{{kanuni_temsilci.beyannamekanunitemsicisoyadi}}{% endif %} </b></p>
+        <p><b>Adı (Unvan Devamı)  : {% if kanuni_temsilci.beyannamekanunitemsiciadiunvandevami %}{{kanuni_temsilci.beyannamekanunitemsiciadiunvandevami}}{% endif %} </b></p>
+        <p><b>Ticaret Sicil No  : {% if kanuni_temsilci.beyannamekanunitemsiciticaretsicilno %}{{kanuni_temsilci.beyannamekanunitemsiciticaretsicilno}}{% endif %} </b></p>
+        <p><b>E-Posta Adresi  : {% if kanuni_temsilci.beyannamekanunitemsicieposta %}{{kanuni_temsilci.beyannamekanunitemsicieposta}}{% endif %} </b></p>
+        <p><b>İrtibat Telefon No  : {% if kanuni_temsilci.beyannamekanunitemsicitelefon %}{{kanuni_temsilci.beyannamekanunitemsicitelefon}}{% endif %} </b></p>
+        {% endif %}
+      </div>
+      <div class="col-6">
+        <h4><b>Beyannameyi Düzenleyen</b></h4>
+        <hr>
+          <p><b>Vergi Kimlik Numarası (T.C Kimlik No) : {% if beyannameduzenleyen.beyannameduzenleyeneaittc %}{{beyannameduzenleyen.beyannameduzenleyeneaittc}}{% endif %} </b></p>
+          <p><b>Vergi Kimlik Numarası  : {% if beyannameduzenleyen.beyannameduzenleyeneaitvergino %}{{beyannameduzenleyen.beyannameduzenleyeneaitvergino}}{% endif %} </b></p>
+          <p><b>Soyadi (Unvan)  : {% if beyannameduzenleyen.beyannameduzenleyeneaitsoyadiunvan %}{{beyannameduzenleyen.beyannameduzenleyeneaitsoyadiunvan}}{% endif %} </b></p>
+          <p><b>Adı (Unvan Devamı)  : {% if beyannameduzenleyen.beyannameduzenleyeneaitadiunvandevami %}{{beyannameduzenleyen.beyannameduzenleyeneaitadiunvandevami}}{% endif %} </b></p>
+          <p><b>Ticaret Sicil No  : {% if beyannameduzenleyen.beyannameduzenleyeneaitticaretsicilno %}{{ beyannameduzenleyen.beyannameduzenleyeneaitticaretsicilno}}{% endif %} </b></p>
+          <p><b>E-Posta Adresi  : {% if beyannameduzenleyen.beyannameduzenleyeneaiteposta %}{{beyannameduzenleyen.beyannameduzenleyeneaiteposta}}{% endif %} </b></p>
+          <p><b>İrtibat Telefon No  : {% if beyannameduzenleyen.beyannameduzenleyeneaittelefon %}{{beyannameduzenleyen.beyannameduzenleyeneaittelefon}}{% endif %} </b></p>
+      </div>
+      <hr style="border: 1px solid black; margin-top: 15px;" >
+      <div style="border-right: 1px solid black;"  class="col-6">
+        <h4><b>Beyannameyi Gönderen</b></h4>
+        <hr>
+        <p><b>Vergi Kimlik Numarası (T.C Kimlik No) : {% if beyannamegonderen.beyannamegonderentc %}{{beyannamegonderen.beyannamegonderentc}}{% endif %} </b></p>
+        <p><b>Vergi Kimlik Numarası  : {% if beyannamegonderen.beyannamegonderenvergino %}{{beyannamegonderen.beyannamegonderenvergino}}{% endif %} </b></p>
+        <p><b>Soyadi (Unvan)  : {% if beyannamegonderen.beyannamegonderensoyadiunvan %}{{beyannamegonderen.beyannamegonderensoyadiunvan}}{% endif %} </b></p>
+        <p><b>Adı (Unvan Devamı)  : {% if beyannamegonderen.beyannamegonderenadiunvandevami %}{{beyannamegonderen.beyannamegonderenadiunvandevami}}{% endif %} </b></p>
+        <p><b>Ticaret Sicil No  : {% if beyannamegonderen.beyannamegonderentivaretsicilno %}{{ beyannamegonderen.beyannamegonderentivaretsicilno}}{% endif %} </b></p>
+        <p><b>E-Posta Adresi  : {% if beyannamegonderen.beyannamegondereneposta %}{{beyannamegonderen.beyannamegondereneposta}}{% endif %} </b></p>
+        <p><b>İrtibat Telefon No  : {% if beyannamegonderen.beyannamegonderentelefon %}{{beyannamegonderen.beyannamegonderentelefon}}{% endif %} </b></p>
+      </div>
+      <div class="col-6">
+        <h4><b>YMM Bilgileri</b></h4>
+        <hr>
+        <p><b>Vergi Kimlik Numarası (T.C Kimlik No) : {% if ymmbilgileri.ymmaitbilgilertc %}{{ymmbilgileri.ymmaitbilgilertc}}{% endif %} </b></p>
+        <p><b>Vergi Kimlik Numarası  : {% if ymmbilgileri.ymmaitbilgilervergino %}{{ymmbilgileri.ymmaitbilgilervergino}}{% endif %} </b></p>
+        <p><b>Soyadi (Unvan)  : {% if ymmbilgileri.ymmaitbilgilersoyadiunvan %}{{ymmbilgileri.ymmaitbilgilersoyadiunvan}}{% endif %} </b></p>
+        <p><b>Adı (Unvan Devamı)  : {% if ymmbilgileri.ymmaitbilgileradiunvanbilgisi %}{{ymmbilgileri.ymmaitbilgileradiunvanbilgisi}}{% endif %} </b></p>
+        <p><b>Ticaret Sicil No  : {% if ymmbilgileri.ymmaitbilgileraditicaretsicilno %}{{ ymmbilgileri.ymmaitbilgileraditicaretsicilno}}{% endif %} </b></p>
+        <p><b>E-Posta Adresi  : {% if ymmbilgileri.ymmaitbilgilereposta %}{{ymmbilgileri.ymmaitbilgilereposta}}{% endif %} </b></p>
+        <p><b>İrtibat Telefon No  : {% if ymmbilgileri.ymmaitbilgilertelefonbilgisi %}{{ymmbilgileri.ymmaitbilgilertelefonbilgisi}}{% endif %} </b></p>
+      </div>
       <hr style="border: 2px solid black !important;" >
   </div>
 </div>
