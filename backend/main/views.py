@@ -6204,6 +6204,13 @@ def kurumlar_vergisi_beyanname(request,slug):
         damgavergisitutar = request.POST.get("damgavergisitutar")
         kazancintespityontemi = request.POST.get("kazancintespityontemi")
         kazancintespityontemisecimi = request.POST.get("kazancintespityontemisecimi")
+        #
+        kesintiyapanadisoyadibilgdsi = request.POST.getlist("kesintiyapanadisoyadibilgdsi")
+        kesintiyaapantcvergikimlikno = request.POST.getlist("kesintiyaapantcvergikimlikno")
+        kesintiyaapantcvergino = request.POST.getlist("kesintiyaapantcvergino")
+        kesintiyaapanfonem = request.POST.getlist("kesintiyaapanfonem")
+        kesintiburuttutar = request.POST.getlist("kesintiburuttutar")
+        kesintitutar = request.POST.getlist("kesintitutar")
     return render(request,"beyannameler/kurumlar_vergisi_beyanname.html",content)
 #
 #ba bs formları
