@@ -1052,7 +1052,7 @@
         <div class="container tablo" style="margin-top: 0px !important;">
           <input class="col-12 text-center" disabled value="Kar Dağıtım Tablosu" type="text">
           <div class="table-responsive " style=" 
-          height: 344px;
+          height: 700px;
           overflow: auto;">
             <table class="table table-bordered ">
               <thead style="position: sticky;top: 0">
@@ -1060,29 +1060,411 @@
                   <th class="text-center" style="min-width: 150px ;">Açıklama</th>
                   <th class="text-center" style="min-width: 150px ;">Önceki Dönem</th>
                   <th class="text-center" style="min-width: 150px ;">Cari Dönem</th>
-                  <th class="text-center" style="min-width: 150px ;">Kod</th>
                 </tr>
               </thead>
               <tbody>
-                <tr class="" style="display: none;">
-                  <td><input type="text" name="aliciadisoyadiunvantasinmaz"></td>
-                  <td><input type="text" name="alicivergikimliknosutasinmaz"></td>
-                  
-                  <td><select name="alicininuyrugu" id="">
-                    <option value=""></option>
-                    {% for i in ulkeler %}
-                    <option value="{{i.id}}">{{i.ulke_kodu}}-{{i.ulke_adi}}</option>
-                    {% endfor %}
-                  </select></td>
-                  <td><select name="alicinincalismaveoturmaizni" id="">
-                    <option value=""></option>
-                    {% for i in ulkeler %}
-                    <option value="{{i.id}}">{{i.ulke_kodu}}-{{i.ulke_adi}}</option>
-                    {% endfor %}
-                  </select></td>
+                <tr>
+                  <td>I- DÖNEM KARININ DAĞITIMI
+                    <input type="text" value="I- DÖNEM KARININ DAĞITIMI" hidden name="kardagitimbilgi2">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem2" id="kardagitimoncekidonem2"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari2" id="kardagitimcari2"></td>
                  
                 </tr>
-                
+                <tr>
+                  <td>1.1-DÖNEM KARI<input type="text" value="1.1-DÖNEM KARI" hidden name="kardagitimbilgi3"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem3" id="kardagitimoncekidonem3"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari3" id="kardagitimcari3"></td>
+                 
+                </tr>
+                <tr>
+                  <td>1.2- ÖDENECEK VERGİ VE YASAL YÜKÜMLÜLÜKLER (-)<input type="text" value="1.2- ÖDENECEK VERGİ VE YASAL YÜKÜMLÜLÜKLER (-)" hidden name="kardagitimbilgi4"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem4" id="kardagitimoncekidonem4"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari4" id="kardagitimcari4"></td>
+                </tr>
+                <tr>
+                  <td>1.2.1-Kurumlar Vergisi (Geir Vergisi)
+                    <input type="text" value="1.2.1-Kurumlar Vergisi (Geir Vergisi)" hidden name="kardagitimbilgi5">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem5" id="kardagitimoncekidonem5"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari5" id="kardagitimcari5"></td>
+                 
+                </tr>
+                <tr>
+                  <td>1.2.2- Geir Vergisi Kesintisi
+                    <input type="text" value="1.2.2- Geir Vergisi Kesintisi" hidden name="kardagitimbilgi6">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem6" id="kardagitimoncekidonem6"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari6" id="kardagitimcari6"></td>
+                 
+                </tr>
+                <tr>
+                  <td>1.2.3- Diğer Vergi ve Yasal Yükümlülükler
+                    <input type="text" value="1.2.3- Diğer Vergi ve Yasal Yükümlülükler" hidden name="kardagitimbilgi7">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem7" id="kardagitimoncekidonem7"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari7" id="kardagitimcari7"></td>
+                 
+                </tr>
+                <tr>
+                  <td>A - NET DÖNEM KARI (1.1-1.2)
+                    <input type="text" value="A - NET DÖNEM KARI (1.1-1.2)" hidden name="kardagitimbilgi8">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem8" id="kardagitimoncekidonem8"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari8" id="kardagitimcari8"></td>
+                 
+                </tr>
+                <tr>
+                  <td>1.3- GEÇMIŞ DÖNEMLER ZARARI (-)
+                    <input type="text" value="1.3- GEÇMIŞ DÖNEMLER ZARARI (-)" hidden name="kardagitimbilgi9">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem9" id="kardagitimoncekidonem9"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari9" id="kardagitimcari9"></td>
+                 
+                </tr>
+                <tr>
+                  <td>1.4- BİRİNCİ TERTIP YASAL YEDEK AKÇE (-)
+                    <input type="text" value="1.4- BİRİNCİ TERTIP YASAL YEDEK AKÇE (-)" hidden name="kardagitimbilgi10">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem10" id="kardagitimoncekidonem10"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari10" id="kardagitimcari10"></td>
+                 
+                </tr>
+                <tr>
+                  <td>1.5- KURULUŞTA BIRAKILMASI VE TASARRUFU ZORUNLU YASAL FONLAR (-)
+                    <input type="text" value="1.5- KURULUŞTA BIRAKILMASI VE TASARRUFU ZORUNLU YASAL FONLAR (-)" hidden name="kardagitimbilgi11">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem11" id="kardagitimoncekidonem11"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari11" id="kardagitimcari11"></td>
+                 
+                </tr>
+                <tr>
+                  <td>B- DAĞITILABİLİR NET DÖNEM KARI [(A-(1.3+1.4+1.5)]
+                    <input type="text" value="B- DAĞITILABİLİR NET DÖNEM KARI [(A-(1.3+1.4+1.5)]" hidden name="kardagitimbilgi12">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem12" id="kardagitimoncekidonem12"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari12" id="kardagitimcari12"></td>
+                 
+                </tr>
+                <tr>
+                  <td>1.6- ORTAKLARA BİRİNCİ TEMETTÜ (-)
+                    <input type="text" value="1.6- ORTAKLARA BİRİNCİ TEMETTÜ (-)" hidden name="kardagitimbilgi13">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem13" id="kardagitimoncekidonem13"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari13" id="kardagitimcari13"></td>
+                 
+                </tr>
+                <tr>
+                  <td>1.6.1- Hisse Senedi Sahiplerine
+                    <input type="text" value="1.6.1- Hisse Senedi Sahiplerine" hidden name="kardagitimbilgi14">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem14" id="kardagitimoncekidonem14"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari14" id="kardagitimcari14"></td>
+                 
+                </tr>
+                <tr>
+                  <td>1.6.2 - Imtiyazı Hisse Senedi Sahiplerine
+                    <input type="text" value="1.6.2 - Imtiyazı Hisse Senedi Sahiplerine" hidden name="kardagitimbilgi15">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem15" id="kardagitimoncekidonem15"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari15" id="kardagitimcari15"></td>
+                 
+                </tr>
+                <tr>
+                  <td>1.6.3 - Katima Intifa Senetlerine
+                    <input type="text" value="1.6.3 - Katima Intifa Senetlerine" hidden name="kardagitimbilgi16">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem16" id="kardagitimoncekidonem16"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari16" id="kardagitimcari16"></td>
+                 
+                </tr>
+                <tr>
+                  <td>1.6.4 - Kara İştiraki Tahvilere
+                    <input type="text" value="1.6.4 - Kara İştiraki Tahvilere" hidden name="kardagitimbilgi17">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem17" id="kardagitimoncekidonem17"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari17" id="kardagitimcari17"></td>
+                 
+                </tr>
+                <tr>
+                  <td>1.6.5  - Kar ve Zarar Ortaklığı Belgesi Sahiplerine
+                    <input type="text" value="1.6.5  - Kar ve Zarar Ortaklığı Belgesi Sahiplerine" hidden name="kardagitimbilgi18">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem18" id="kardagitimoncekidonem18"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari18" id="kardagitimcari18"></td>
+                 
+                </tr>
+                <tr>
+                  <td>1.7- PERSONELE TEMETTÜ (-)
+                    <input type="text" value="1.7- PERSONELE TEMETTÜ (-)" hidden name="kardagitimbilgi19">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem19" id="kardagitimoncekidonem19"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari19" id="kardagitimcari19"></td>
+                 
+                </tr>
+                <tr>
+                  <td>1.8 - YÖNETİM KURULUNA TEMETTU (-)
+                    <input type="text" value="1.8 - YÖNETİM KURULUNA TEMETTU (-)" hidden name="kardagitimbilgi20">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem20" id="kardagitimoncekidonem20"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari20" id="kardagitimcari20"></td>
+                 
+                </tr>
+                <tr>
+                  <td>1.9- ORTAKLARA İKİNCİ TEMETTÜ (-)
+                    <input type="text" value="1.9- ORTAKLARA İKİNCİ TEMETTÜ (-)" hidden name="kardagitimbilgi21">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem21" id="kardagitimoncekidonem21"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari21" id="kardagitimcari21"></td>
+                </tr>
+                <tr>
+                  <td>1.9.1 - Hisse Senedi Sahiplerine
+                    <input type="text" value="1.9.1 - Hisse Senedi Sahiplerine" hidden name="kardagitimbilgi22">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem22" id="kardagitimoncekidonem22"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari22" id="kardagitimcari22"></td>
+                 
+                </tr>
+                <tr>
+                  <td>1.9.2 - İmtiyazlı Hisse Senedi Sahiplenine
+                    <input type="text" value="1.9.2 - İmtiyazlı Hisse Senedi Sahiplenine" hidden name="kardagitimbilgi23">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem23" id="kardagitimoncekidonem23"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari23" id="kardagitimcari23"></td>
+                 
+                </tr>
+                <tr>
+                  <td>1.9.3 - Katima Intifa Senetlenne
+                    <input type="text" value="1.9.3 - Katima Intifa Senetlenne" hidden name="kardagitimbilgi24">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem24" id="kardagitimoncekidonem24"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari24" id="kardagitimcari24"></td>
+                 
+                </tr>
+                <tr>
+                  <td>1.9.4 Kara Iştiraki Tahvillere
+                    <input type="text" value="1.9.4 Kara Iştiraki Tahvillere" hidden name="kardagitimbilgi25">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem25" id="kardagitimoncekidonem25"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari25" id="kardagitimcari25"></td>
+                 
+                </tr>
+                <tr>
+                  <td>1.9.5- Kâr ve Zarar Ortaklığı Belgesi Sahiplerine
+                    <input type="text" value="1.9.5- Kâr ve Zarar Ortaklığı Belgesi Sahiplerine" hidden name="kardagitimbilgi26">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem26" id="kardagitimoncekidonem26"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari26" id="kardagitimcari26"></td>
+                 
+                </tr>
+                <tr>
+                  <td>1.10- İKİNCİ TERTIP YASAL YEDEK AKÇE (-)
+                    <input type="text" value="1.10- İKİNCİ TERTIP YASAL YEDEK AKÇE (-)" hidden name="kardagitimbilgi27">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem27" id="kardagitimoncekidonem27"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari27" id="kardagitimcari27"></td>
+                 
+                </tr>
+                <tr>
+                  <td>1.11-STATÜ YEDEKLERİ (-)
+                    <input type="text" value="1.11-STATÜ YEDEKLERİ (-)" hidden name="kardagitimbilgi28">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem28" id="kardagitimoncekidonem28"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari28" id="kardagitimcari28"></td>
+                 
+                </tr>
+                <tr>
+                  <td>1.12- OLAĞANÜSTÜ YEDEKLER (-)
+                    <input type="text" value="1.12- OLAĞANÜSTÜ YEDEKLER (-)" hidden name="kardagitimbilgi29">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem29" id="kardagitimoncekidonem29"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari29" id="kardagitimcari29"></td>
+                 
+                </tr>
+                <tr>
+                  <td>1.13- DIĞER YEDEKLER
+                    <input type="text" value="1.13- DIĞER YEDEKLER" hidden name="kardagitimbilgi30">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem30" id="kardagitimoncekidonem30"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari30" id="kardagitimcari30"></td>
+                 
+                </tr>
+                <tr>
+                  <td>1.14- ÖZEL FONLAR
+                    <input type="text" value="1.14- ÖZEL FONLAR" hidden name="kardagitimbilgi31">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem31" id="kardagitimoncekidonem31"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari31" id="kardagitimcari31"></td>
+                 
+                </tr>
+                <tr>
+                  <td>II- YEDEKLERDEN DAĞITIM
+                    <input type="text" value="II- YEDEKLERDEN DAĞITIM" hidden name="kardagitimbilgi32">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem32" id="kardagitimoncekidonem32"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari32" id="kardagitimcari32"></td>
+                 
+                </tr>
+                <tr>
+                  <td>2.1- DAĞITILAN YEDEKLER
+                    <input type="text" value="2.1- DAĞITILAN YEDEKLER" hidden name="kardagitimbilgi33">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem33" id="kardagitimoncekidonem33"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari33" id="kardagitimcari33"></td>
+                 
+                </tr>
+                <tr>
+                  <td>2.2 - İKİNCİ TERTIP YASAL YEDEKLER (-)
+                    <input type="text" value="2.2 - İKİNCİ TERTIP YASAL YEDEKLER (-)" hidden name="kardagitimbilgi34">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem34" id="kardagitimoncekidonem34"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari34" id="kardagitimcari34"></td>
+                 
+                </tr>
+                <tr>
+                  <td>2.3- ORTAKLARA PAY (-)
+                    <input type="text" value="2.3- ORTAKLARA PAY (-)" hidden name="kardagitimbilgi35">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem35" id="kardagitimoncekidonem35"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari35" id="kardagitimcari35"></td>
+                 
+                </tr>
+                <tr>
+                  <td>2.3.1- Hisse Senedi Sahiplerine
+                    <input type="text" value="2.3.1- Hisse Senedi Sahiplerine" hidden name="kardagitimbilgi36">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem36" id="kardagitimoncekidonem36"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari36" id="kardagitimcari36"></td>
+                 
+                </tr>
+                <tr>
+                  <td>2.3.2 - Imtiyazlı Hisse Senedi Sahiplerine
+                    <input type="text" value="2.3.2 - Imtiyazlı Hisse Senedi Sahiplerine" hidden name="kardagitimbilgi37">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem37" id="kardagitimoncekidonem37"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari37" id="kardagitimcari37"></td>
+                 
+                </tr>
+                <tr>
+                  <td>2.3.3  - Katiima Intifa Senetlerine
+                    <input type="text" value="2.3.3  - Katiima Intifa Senetlerine" hidden name="kardagitimbilgi38">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem38" id="kardagitimoncekidonem38"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari38" id="kardagitimcari38"></td>
+                 
+                </tr>
+                <tr>
+                  <td>2.3.4- Kara İştiraki Tahvillere
+                    <input type="text" value="2.3.4- Kara İştiraki Tahvillere" hidden name="kardagitimbilgi39">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem39" id="kardagitimoncekidonem39"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari39" id="kardagitimcari39"></td>
+                 
+                </tr>
+                <tr>
+                  <td>2.3.4- Kara İştiraki Tahvillere
+                    <input type="text" value="2.3.4- Kara İştiraki Tahvillere" hidden name="kardagitimbilgi39">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem39" id="kardagitimoncekidonem39"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari39" id="kardagitimcari39"></td>
+                 
+                </tr>
+                <tr>
+                  <td>2.4 PERSONELE PAY (-)
+                    <input type="text" value="2.4 PERSONELE PAY (-)" hidden name="kardagitimbilgi41">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem41" id="kardagitimoncekidonem41"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari41" id="kardagitimcari41"></td>
+                 
+                </tr>
+                <tr>
+                  <td>2.5- YÖNETİM KURULUNA PAY (-)
+                    <input type="text" value="2.5- YÖNETİM KURULUNA PAY (-)" hidden name="kardagitimbilgi42">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem42" id="kardagitimoncekidonem42"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari42" id="kardagitimcari42"></td>
+                 
+                </tr>
+                <tr>
+                  <td>III- HISSE BASINA KAR
+                    <input type="text" value="III- HISSE BASINA KAR" hidden name="kardagitimbilgi43">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem43" id="kardagitimoncekidonem43"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari43" id="kardagitimcari43"></td>
+                 
+                </tr>
+                <tr>
+                  <td>.3.1-HİSSE SENEDİ SAHİPLERİNE
+                    <input type="text" value=".3.1-HİSSE SENEDİ SAHİPLERİNE" hidden name="kardagitimbilgi44">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem44" id="kardagitimoncekidonem44"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari44" id="kardagitimcari44"></td>
+                 
+                </tr>
+                <tr>
+                  <td>.3.2-  HİSSE SENEDİ SAHİPLERİNE (%)
+                    <input type="text" value=".3.2-  HİSSE SENEDİ SAHİPLERİNE (%)" hidden name="kardagitimbilgi45">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem45" id="kardagitimoncekidonem45"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari45" id="kardagitimcari45"></td>
+                 
+                </tr>
+                <tr>
+                  <td>.3.3 - IMTIYAZLI HISSE SENEDI SAHİPLERINE
+                    <input type="text" value=".3.3 - IMTIYAZLI HISSE SENEDI SAHİPLERINE" hidden name="kardagitimbilgi46">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem46" id="kardagitimoncekidonem46"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari46" id="kardagitimcari46"></td>
+                 
+                </tr>
+                <tr>
+                  <td>3.4 İMTİYAZLI HİSSE SENEDİ SAHİPLERİNE (%)
+                    <input type="text" value="3.4 İMTİYAZLI HİSSE SENEDİ SAHİPLERİNE (%)" hidden name="kardagitimbilgi47">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem47" id="kardagitimoncekidonem47"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari47" id="kardagitimcari47"></td>
+                 
+                </tr>
+                <tr>
+                  <td>IV- HISSE BASINA TEMETTÜ
+                    <input type="text" value="IV- HISSE BASINA TEMETTÜ" hidden name="kardagitimbilgi48">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem48" id="kardagitimoncekidonem48"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari48" id="kardagitimcari48"></td>
+                 
+                </tr>
+                <tr>
+                  <td>.4.1- HİSSE SENEDİ SAHİPLERİNE
+                    <input type="text" value=".4.1- HİSSE SENEDİ SAHİPLERİNE" hidden name="kardagitimbilgi49">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem49" id="kardagitimoncekidonem49"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari49" id="kardagitimcari49"></td>
+                 
+                </tr>
+                <tr>
+                  <td>.4.2 - HİSSE SENEDİ SAHİPLERİNE (%)
+                    <input type="text" value=".4.2 - HİSSE SENEDİ SAHİPLERİNE (%)" hidden name="kardagitimbilgi50">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem50" id="kardagitimoncekidonem50"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari50" id="kardagitimcari50"></td>
+                 
+                </tr>
+                <tr>
+                  <td>.4.3- IMTIYAZLI HISSE SENEDI SAHİPLERINE
+                    <input type="text" value=".4.3- IMTIYAZLI HISSE SENEDI SAHİPLERINE" hidden name="kardagitimbilgi51">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem51" id="kardagitimoncekidonem51"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari51" id="kardagitimcari51"></td>
+                 
+                </tr>
+                <tr>
+                  <td>.4.4- İMTİYAZLI HİSSE SENEDI SAHİPLERINE (%)
+                    <input type="text" value=".4.4- İMTİYAZLI HİSSE SENEDI SAHİPLERINE (%)" hidden name="kardagitimbilgi52">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem52" id="kardagitimoncekidonem52"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari52" id="kardagitimcari52"></td>
+                 
+                </tr>
               </tbody>
             </table>
           </div>
