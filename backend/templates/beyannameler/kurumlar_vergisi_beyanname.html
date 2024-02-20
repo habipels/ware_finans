@@ -1049,6 +1049,44 @@
           </table>
         </div>
         </div>
+        <div class="container tablo" style="margin-top: 0px !important;">
+          <input class="col-12 text-center" disabled value="Kar Dağıtım Tablosu" type="text">
+          <div class="table-responsive " style=" 
+          height: 344px;
+          overflow: auto;">
+            <table class="table table-bordered ">
+              <thead style="position: sticky;top: 0">
+                <tr>
+                  <th class="text-center" style="min-width: 150px ;">Açıklama</th>
+                  <th class="text-center" style="min-width: 150px ;">Önceki Dönem</th>
+                  <th class="text-center" style="min-width: 150px ;">Cari Dönem</th>
+                  <th class="text-center" style="min-width: 150px ;">Kod</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="" style="display: none;">
+                  <td><input type="text" name="aliciadisoyadiunvantasinmaz"></td>
+                  <td><input type="text" name="alicivergikimliknosutasinmaz"></td>
+                  
+                  <td><select name="alicininuyrugu" id="">
+                    <option value=""></option>
+                    {% for i in ulkeler %}
+                    <option value="{{i.id}}">{{i.ulke_kodu}}-{{i.ulke_adi}}</option>
+                    {% endfor %}
+                  </select></td>
+                  <td><select name="alicinincalismaveoturmaizni" id="">
+                    <option value=""></option>
+                    {% for i in ulkeler %}
+                    <option value="{{i.id}}">{{i.ulke_kodu}}-{{i.ulke_adi}}</option>
+                    {% endfor %}
+                  </select></td>
+                 
+                </tr>
+                
+              </tbody>
+            </table>
+          </div>
+        </div>
       <hr style="border: 2px solid black !important;" >
   </div>
 </div>
