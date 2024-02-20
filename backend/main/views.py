@@ -6365,7 +6365,18 @@ def kurumlar_vergisi_beyanname(request,slug):
         kardagitimbilgi52 = request.POST.get("kardagitimbilgi52")
         kardagitimoncekidonem52 = request.POST.get("kardagitimoncekidonem52")
         kardagitimcari52 = request.POST.get("kardagitimcari52")
-        
+        #
+        mudurgenelmudur = request.POST.getlist("mudurgenelmudur")
+        yonetimkuruluuyesi = request.POST.getlist("yonetimkuruluuyesi")
+        ortakbilgisi = request.POST.getlist("ortakbilgisi")
+        kanunitemsilcimi = request.POST.getlist("kanunitemsilcimi")
+        yurticiyurtdisi = request.POST.getlist("yurticiyurtdisi")
+        ortakvergikimliknosu = request.POST.getlist("ortakvergikimliknosu")
+        ortakadisoyadiunvani = request.POST.getlist("ortakadisoyadiunvani")
+        ortakikametgahadresi = request.POST.getlist("ortakikametgahadresi")
+        ortaktckimliknosu = request.POST.getlist("ortaktckimliknosu")
+        ortaktelefonnumarasi = request.POST.getlist("ortaktelefonnumarasi")
+        ortakhisseorani = request.POST.getlist("ortakhisseorani")
     return render(request,"beyannameler/kurumlar_vergisi_beyanname.html",content)
 #
 #ba bs formları

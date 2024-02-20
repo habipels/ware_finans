@@ -10,6 +10,9 @@
   .ekleYeniSatirvergiekleme{
     display: none;
   }
+  .kurumortaklariekle{
+    display: none;
+  }
 </style>
   <!--Header-->
   <div class="icon-bar">
@@ -1469,6 +1472,932 @@
             </table>
           </div>
         </div>
+        <div class="container tablo" style="margin-top: 0px !important;">
+          <input class="col-12 text-center" disabled value="Kurum Ortaklarına Ve Yönetim Kuruluna İlişkin Bildirim" type="text">
+          <div class="table-responsive " style=" 
+          height: 344px;
+          overflow: auto;">
+            <table class="table table-bordered ">
+              <thead style="position: sticky;top: 0">
+                <tr>
+                  <th class="text-center" style="min-width: 100px ;">Genel Md. / Müdür</th>
+                  <th class="text-center" style="min-width: 50px ;">Yönetim Kurulu Üyesi</th>
+                  <th class="text-center" style="min-width: 150px ;">Ortak</th>
+                  <th class="text-center" style="min-width: 150px ;">Kanuni Temsilci</th>
+                  <th class="text-center" style="min-width: 150px ;">Yurt İçi / Yurt Dışı Mukimi</th>
+                  <th class="text-center" style="min-width: 150px ;">Vergi Kimlik No</th>
+                  <th class="text-center" style="min-width: 150px ;">Adı Soyadı Unvanı</th>
+                  <th class="text-center" style="min-width: 150px ;">İkametgah Adresi</th>
+                  <th class="text-center" style="min-width: 150px ;">T.C. Kimlik Numarası</th>
+                  <th class="text-center" style="min-width: 150px ;">İrtibat Telefon Numarası</th>
+                  <th class="text-center" style="min-width: 150px ;">Hisse Oranı</th>
+                  <th class="text-center" style="min-width: 150px ;"><a href="javascript:void(0);" onclick="kurumortaklariekle()">SATIR EKLE</a></th>
+                  
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="kurumortaklariekle">
+                  <td><select name="mudurgenelmudur" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yonetimkuruluuyesi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="ortakbilgisi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="kanunitemsilcimi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yurticiyurtdisi" id="">
+                    <option value="Yurt içi mukimi">Yurt içi mukimi</option>
+                    <option value="Yurt dışı mukimi">Yurt dışı mukimi</option>
+                  </select></td>
+                  <td><input type="text" name="ortakvergikimliknosu"></td>
+                  <td><input type="text" name="ortakadisoyadiunvani"></td>
+                  <td><input type="text" name="ortakikametgahadresi"></td>
+                  <td><input type="text" name="ortaktckimliknosu"></td>
+                  <td><input type="text" name="ortaktelefonnumarasi"></td>
+                  <td><input type="text" name="ortakhisseorani"></td>
+                  <td></td>
+                </tr>
+                <tr class="kurumortaklariekle">
+                  <td><select name="mudurgenelmudur" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yonetimkuruluuyesi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="ortakbilgisi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="kanunitemsilcimi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yurticiyurtdisi" id="">
+                    <option value="Yurt içi mukimi">Yurt içi mukimi</option>
+                    <option value="Yurt dışı mukimi">Yurt dışı mukimi</option>
+                  </select></td>
+                  <td><input type="text" name="ortakvergikimliknosu"></td>
+                  <td><input type="text" name="ortakadisoyadiunvani"></td>
+                  <td><input type="text" name="ortakikametgahadresi"></td>
+                  <td><input type="text" name="ortaktckimliknosu"></td>
+                  <td><input type="text" name="ortaktelefonnumarasi"></td>
+                  <td><input type="text" name="ortakhisseorani"></td>
+                  <td></td>
+                </tr>
+                <tr class="kurumortaklariekle">
+                  <td><select name="mudurgenelmudur" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yonetimkuruluuyesi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="ortakbilgisi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="kanunitemsilcimi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yurticiyurtdisi" id="">
+                    <option value="Yurt içi mukimi">Yurt içi mukimi</option>
+                    <option value="Yurt dışı mukimi">Yurt dışı mukimi</option>
+                  </select></td>
+                  <td><input type="text" name="ortakvergikimliknosu"></td>
+                  <td><input type="text" name="ortakadisoyadiunvani"></td>
+                  <td><input type="text" name="ortakikametgahadresi"></td>
+                  <td><input type="text" name="ortaktckimliknosu"></td>
+                  <td><input type="text" name="ortaktelefonnumarasi"></td>
+                  <td><input type="text" name="ortakhisseorani"></td>
+                  <td></td>
+                </tr>
+                <tr class="kurumortaklariekle">
+                  <td><select name="mudurgenelmudur" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yonetimkuruluuyesi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="ortakbilgisi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="kanunitemsilcimi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yurticiyurtdisi" id="">
+                    <option value="Yurt içi mukimi">Yurt içi mukimi</option>
+                    <option value="Yurt dışı mukimi">Yurt dışı mukimi</option>
+                  </select></td>
+                  <td><input type="text" name="ortakvergikimliknosu"></td>
+                  <td><input type="text" name="ortakadisoyadiunvani"></td>
+                  <td><input type="text" name="ortakikametgahadresi"></td>
+                  <td><input type="text" name="ortaktckimliknosu"></td>
+                  <td><input type="text" name="ortaktelefonnumarasi"></td>
+                  <td><input type="text" name="ortakhisseorani"></td>
+                  <td></td>
+                </tr>
+                <tr class="kurumortaklariekle">
+                  <td><select name="mudurgenelmudur" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yonetimkuruluuyesi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="ortakbilgisi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="kanunitemsilcimi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yurticiyurtdisi" id="">
+                    <option value="Yurt içi mukimi">Yurt içi mukimi</option>
+                    <option value="Yurt dışı mukimi">Yurt dışı mukimi</option>
+                  </select></td>
+                  <td><input type="text" name="ortakvergikimliknosu"></td>
+                  <td><input type="text" name="ortakadisoyadiunvani"></td>
+                  <td><input type="text" name="ortakikametgahadresi"></td>
+                  <td><input type="text" name="ortaktckimliknosu"></td>
+                  <td><input type="text" name="ortaktelefonnumarasi"></td>
+                  <td><input type="text" name="ortakhisseorani"></td>
+                  <td></td>
+                </tr>
+                <tr class="kurumortaklariekle">
+                  <td><select name="mudurgenelmudur" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yonetimkuruluuyesi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="ortakbilgisi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="kanunitemsilcimi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yurticiyurtdisi" id="">
+                    <option value="Yurt içi mukimi">Yurt içi mukimi</option>
+                    <option value="Yurt dışı mukimi">Yurt dışı mukimi</option>
+                  </select></td>
+                  <td><input type="text" name="ortakvergikimliknosu"></td>
+                  <td><input type="text" name="ortakadisoyadiunvani"></td>
+                  <td><input type="text" name="ortakikametgahadresi"></td>
+                  <td><input type="text" name="ortaktckimliknosu"></td>
+                  <td><input type="text" name="ortaktelefonnumarasi"></td>
+                  <td><input type="text" name="ortakhisseorani"></td>
+                  <td></td>
+                </tr>
+                <tr class="kurumortaklariekle">
+                  <td><select name="mudurgenelmudur" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yonetimkuruluuyesi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="ortakbilgisi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="kanunitemsilcimi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yurticiyurtdisi" id="">
+                    <option value="Yurt içi mukimi">Yurt içi mukimi</option>
+                    <option value="Yurt dışı mukimi">Yurt dışı mukimi</option>
+                  </select></td>
+                  <td><input type="text" name="ortakvergikimliknosu"></td>
+                  <td><input type="text" name="ortakadisoyadiunvani"></td>
+                  <td><input type="text" name="ortakikametgahadresi"></td>
+                  <td><input type="text" name="ortaktckimliknosu"></td>
+                  <td><input type="text" name="ortaktelefonnumarasi"></td>
+                  <td><input type="text" name="ortakhisseorani"></td>
+                  <td></td>
+                </tr>
+                <tr class="kurumortaklariekle">
+                  <td><select name="mudurgenelmudur" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yonetimkuruluuyesi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="ortakbilgisi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="kanunitemsilcimi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yurticiyurtdisi" id="">
+                    <option value="Yurt içi mukimi">Yurt içi mukimi</option>
+                    <option value="Yurt dışı mukimi">Yurt dışı mukimi</option>
+                  </select></td>
+                  <td><input type="text" name="ortakvergikimliknosu"></td>
+                  <td><input type="text" name="ortakadisoyadiunvani"></td>
+                  <td><input type="text" name="ortakikametgahadresi"></td>
+                  <td><input type="text" name="ortaktckimliknosu"></td>
+                  <td><input type="text" name="ortaktelefonnumarasi"></td>
+                  <td><input type="text" name="ortakhisseorani"></td>
+                  <td></td>
+                </tr>
+                <tr class="kurumortaklariekle">
+                  <td><select name="mudurgenelmudur" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yonetimkuruluuyesi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="ortakbilgisi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="kanunitemsilcimi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yurticiyurtdisi" id="">
+                    <option value="Yurt içi mukimi">Yurt içi mukimi</option>
+                    <option value="Yurt dışı mukimi">Yurt dışı mukimi</option>
+                  </select></td>
+                  <td><input type="text" name="ortakvergikimliknosu"></td>
+                  <td><input type="text" name="ortakadisoyadiunvani"></td>
+                  <td><input type="text" name="ortakikametgahadresi"></td>
+                  <td><input type="text" name="ortaktckimliknosu"></td>
+                  <td><input type="text" name="ortaktelefonnumarasi"></td>
+                  <td><input type="text" name="ortakhisseorani"></td>
+                  <td></td>
+                </tr>
+                <tr class="kurumortaklariekle">
+                  <td><select name="mudurgenelmudur" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yonetimkuruluuyesi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="ortakbilgisi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="kanunitemsilcimi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yurticiyurtdisi" id="">
+                    <option value="Yurt içi mukimi">Yurt içi mukimi</option>
+                    <option value="Yurt dışı mukimi">Yurt dışı mukimi</option>
+                  </select></td>
+                  <td><input type="text" name="ortakvergikimliknosu"></td>
+                  <td><input type="text" name="ortakadisoyadiunvani"></td>
+                  <td><input type="text" name="ortakikametgahadresi"></td>
+                  <td><input type="text" name="ortaktckimliknosu"></td>
+                  <td><input type="text" name="ortaktelefonnumarasi"></td>
+                  <td><input type="text" name="ortakhisseorani"></td>
+                  <td></td>
+                </tr><tr class="kurumortaklariekle">
+                  <td><select name="mudurgenelmudur" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yonetimkuruluuyesi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="ortakbilgisi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="kanunitemsilcimi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yurticiyurtdisi" id="">
+                    <option value="Yurt içi mukimi">Yurt içi mukimi</option>
+                    <option value="Yurt dışı mukimi">Yurt dışı mukimi</option>
+                  </select></td>
+                  <td><input type="text" name="ortakvergikimliknosu"></td>
+                  <td><input type="text" name="ortakadisoyadiunvani"></td>
+                  <td><input type="text" name="ortakikametgahadresi"></td>
+                  <td><input type="text" name="ortaktckimliknosu"></td>
+                  <td><input type="text" name="ortaktelefonnumarasi"></td>
+                  <td><input type="text" name="ortakhisseorani"></td>
+                  <td></td>
+                </tr>
+
+                <tr class="kurumortaklariekle">
+                  <td><select name="mudurgenelmudur" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yonetimkuruluuyesi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="ortakbilgisi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="kanunitemsilcimi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yurticiyurtdisi" id="">
+                    <option value="Yurt içi mukimi">Yurt içi mukimi</option>
+                    <option value="Yurt dışı mukimi">Yurt dışı mukimi</option>
+                  </select></td>
+                  <td><input type="text" name="ortakvergikimliknosu"></td>
+                  <td><input type="text" name="ortakadisoyadiunvani"></td>
+                  <td><input type="text" name="ortakikametgahadresi"></td>
+                  <td><input type="text" name="ortaktckimliknosu"></td>
+                  <td><input type="text" name="ortaktelefonnumarasi"></td>
+                  <td><input type="text" name="ortakhisseorani"></td>
+                  <td></td>
+                </tr>
+                <tr class="kurumortaklariekle">
+                  <td><select name="mudurgenelmudur" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yonetimkuruluuyesi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="ortakbilgisi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="kanunitemsilcimi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yurticiyurtdisi" id="">
+                    <option value="Yurt içi mukimi">Yurt içi mukimi</option>
+                    <option value="Yurt dışı mukimi">Yurt dışı mukimi</option>
+                  </select></td>
+                  <td><input type="text" name="ortakvergikimliknosu"></td>
+                  <td><input type="text" name="ortakadisoyadiunvani"></td>
+                  <td><input type="text" name="ortakikametgahadresi"></td>
+                  <td><input type="text" name="ortaktckimliknosu"></td>
+                  <td><input type="text" name="ortaktelefonnumarasi"></td>
+                  <td><input type="text" name="ortakhisseorani"></td>
+                  <td></td>
+                </tr>
+                <tr class="kurumortaklariekle">
+                  <td><select name="mudurgenelmudur" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yonetimkuruluuyesi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="ortakbilgisi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="kanunitemsilcimi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yurticiyurtdisi" id="">
+                    <option value="Yurt içi mukimi">Yurt içi mukimi</option>
+                    <option value="Yurt dışı mukimi">Yurt dışı mukimi</option>
+                  </select></td>
+                  <td><input type="text" name="ortakvergikimliknosu"></td>
+                  <td><input type="text" name="ortakadisoyadiunvani"></td>
+                  <td><input type="text" name="ortakikametgahadresi"></td>
+                  <td><input type="text" name="ortaktckimliknosu"></td>
+                  <td><input type="text" name="ortaktelefonnumarasi"></td>
+                  <td><input type="text" name="ortakhisseorani"></td>
+                  <td></td>
+                </tr>
+                <tr class="kurumortaklariekle">
+                  <td><select name="mudurgenelmudur" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yonetimkuruluuyesi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="ortakbilgisi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="kanunitemsilcimi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yurticiyurtdisi" id="">
+                    <option value="Yurt içi mukimi">Yurt içi mukimi</option>
+                    <option value="Yurt dışı mukimi">Yurt dışı mukimi</option>
+                  </select></td>
+                  <td><input type="text" name="ortakvergikimliknosu"></td>
+                  <td><input type="text" name="ortakadisoyadiunvani"></td>
+                  <td><input type="text" name="ortakikametgahadresi"></td>
+                  <td><input type="text" name="ortaktckimliknosu"></td>
+                  <td><input type="text" name="ortaktelefonnumarasi"></td>
+                  <td><input type="text" name="ortakhisseorani"></td>
+                  <td></td>
+                </tr>
+                <tr class="kurumortaklariekle">
+                  <td><select name="mudurgenelmudur" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yonetimkuruluuyesi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="ortakbilgisi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="kanunitemsilcimi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yurticiyurtdisi" id="">
+                    <option value="Yurt içi mukimi">Yurt içi mukimi</option>
+                    <option value="Yurt dışı mukimi">Yurt dışı mukimi</option>
+                  </select></td>
+                  <td><input type="text" name="ortakvergikimliknosu"></td>
+                  <td><input type="text" name="ortakadisoyadiunvani"></td>
+                  <td><input type="text" name="ortakikametgahadresi"></td>
+                  <td><input type="text" name="ortaktckimliknosu"></td>
+                  <td><input type="text" name="ortaktelefonnumarasi"></td>
+                  <td><input type="text" name="ortakhisseorani"></td>
+                  <td></td>
+                </tr>
+                <tr class="kurumortaklariekle">
+                  <td><select name="mudurgenelmudur" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yonetimkuruluuyesi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="ortakbilgisi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="kanunitemsilcimi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yurticiyurtdisi" id="">
+                    <option value="Yurt içi mukimi">Yurt içi mukimi</option>
+                    <option value="Yurt dışı mukimi">Yurt dışı mukimi</option>
+                  </select></td>
+                  <td><input type="text" name="ortakvergikimliknosu"></td>
+                  <td><input type="text" name="ortakadisoyadiunvani"></td>
+                  <td><input type="text" name="ortakikametgahadresi"></td>
+                  <td><input type="text" name="ortaktckimliknosu"></td>
+                  <td><input type="text" name="ortaktelefonnumarasi"></td>
+                  <td><input type="text" name="ortakhisseorani"></td>
+                  <td></td>
+                </tr>
+                <tr class="kurumortaklariekle">
+                  <td><select name="mudurgenelmudur" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yonetimkuruluuyesi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="ortakbilgisi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="kanunitemsilcimi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yurticiyurtdisi" id="">
+                    <option value="Yurt içi mukimi">Yurt içi mukimi</option>
+                    <option value="Yurt dışı mukimi">Yurt dışı mukimi</option>
+                  </select></td>
+                  <td><input type="text" name="ortakvergikimliknosu"></td>
+                  <td><input type="text" name="ortakadisoyadiunvani"></td>
+                  <td><input type="text" name="ortakikametgahadresi"></td>
+                  <td><input type="text" name="ortaktckimliknosu"></td>
+                  <td><input type="text" name="ortaktelefonnumarasi"></td>
+                  <td><input type="text" name="ortakhisseorani"></td>
+                  <td></td>
+                </tr>
+                <tr class="kurumortaklariekle">
+                  <td><select name="mudurgenelmudur" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yonetimkuruluuyesi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="ortakbilgisi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="kanunitemsilcimi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yurticiyurtdisi" id="">
+                    <option value="Yurt içi mukimi">Yurt içi mukimi</option>
+                    <option value="Yurt dışı mukimi">Yurt dışı mukimi</option>
+                  </select></td>
+                  <td><input type="text" name="ortakvergikimliknosu"></td>
+                  <td><input type="text" name="ortakadisoyadiunvani"></td>
+                  <td><input type="text" name="ortakikametgahadresi"></td>
+                  <td><input type="text" name="ortaktckimliknosu"></td>
+                  <td><input type="text" name="ortaktelefonnumarasi"></td>
+                  <td><input type="text" name="ortakhisseorani"></td>
+                  <td></td>
+                </tr>
+                <tr class="kurumortaklariekle">
+                  <td><select name="mudurgenelmudur" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yonetimkuruluuyesi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="ortakbilgisi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="kanunitemsilcimi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yurticiyurtdisi" id="">
+                    <option value="Yurt içi mukimi">Yurt içi mukimi</option>
+                    <option value="Yurt dışı mukimi">Yurt dışı mukimi</option>
+                  </select></td>
+                  <td><input type="text" name="ortakvergikimliknosu"></td>
+                  <td><input type="text" name="ortakadisoyadiunvani"></td>
+                  <td><input type="text" name="ortakikametgahadresi"></td>
+                  <td><input type="text" name="ortaktckimliknosu"></td>
+                  <td><input type="text" name="ortaktelefonnumarasi"></td>
+                  <td><input type="text" name="ortakhisseorani"></td>
+                  <td></td>
+                </tr>
+                <tr class="kurumortaklariekle">
+                  <td><select name="mudurgenelmudur" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yonetimkuruluuyesi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="ortakbilgisi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="kanunitemsilcimi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yurticiyurtdisi" id="">
+                    <option value="Yurt içi mukimi">Yurt içi mukimi</option>
+                    <option value="Yurt dışı mukimi">Yurt dışı mukimi</option>
+                  </select></td>
+                  <td><input type="text" name="ortakvergikimliknosu"></td>
+                  <td><input type="text" name="ortakadisoyadiunvani"></td>
+                  <td><input type="text" name="ortakikametgahadresi"></td>
+                  <td><input type="text" name="ortaktckimliknosu"></td>
+                  <td><input type="text" name="ortaktelefonnumarasi"></td>
+                  <td><input type="text" name="ortakhisseorani"></td>
+                  <td></td>
+                </tr>
+                <tr class="kurumortaklariekle">
+                  <td><select name="mudurgenelmudur" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yonetimkuruluuyesi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="ortakbilgisi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="kanunitemsilcimi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yurticiyurtdisi" id="">
+                    <option value="Yurt içi mukimi">Yurt içi mukimi</option>
+                    <option value="Yurt dışı mukimi">Yurt dışı mukimi</option>
+                  </select></td>
+                  <td><input type="text" name="ortakvergikimliknosu"></td>
+                  <td><input type="text" name="ortakadisoyadiunvani"></td>
+                  <td><input type="text" name="ortakikametgahadresi"></td>
+                  <td><input type="text" name="ortaktckimliknosu"></td>
+                  <td><input type="text" name="ortaktelefonnumarasi"></td>
+                  <td><input type="text" name="ortakhisseorani"></td>
+                  <td></td>
+                </tr>
+                <tr class="kurumortaklariekle">
+                  <td><select name="mudurgenelmudur" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yonetimkuruluuyesi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="ortakbilgisi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="kanunitemsilcimi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yurticiyurtdisi" id="">
+                    <option value="Yurt içi mukimi">Yurt içi mukimi</option>
+                    <option value="Yurt dışı mukimi">Yurt dışı mukimi</option>
+                  </select></td>
+                  <td><input type="text" name="ortakvergikimliknosu"></td>
+                  <td><input type="text" name="ortakadisoyadiunvani"></td>
+                  <td><input type="text" name="ortakikametgahadresi"></td>
+                  <td><input type="text" name="ortaktckimliknosu"></td>
+                  <td><input type="text" name="ortaktelefonnumarasi"></td>
+                  <td><input type="text" name="ortakhisseorani"></td>
+                  <td></td>
+                </tr>
+                <tr class="kurumortaklariekle">
+                  <td><select name="mudurgenelmudur" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yonetimkuruluuyesi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="ortakbilgisi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="kanunitemsilcimi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yurticiyurtdisi" id="">
+                    <option value="Yurt içi mukimi">Yurt içi mukimi</option>
+                    <option value="Yurt dışı mukimi">Yurt dışı mukimi</option>
+                  </select></td>
+                  <td><input type="text" name="ortakvergikimliknosu"></td>
+                  <td><input type="text" name="ortakadisoyadiunvani"></td>
+                  <td><input type="text" name="ortakikametgahadresi"></td>
+                  <td><input type="text" name="ortaktckimliknosu"></td>
+                  <td><input type="text" name="ortaktelefonnumarasi"></td>
+                  <td><input type="text" name="ortakhisseorani"></td>
+                  <td></td>
+                </tr>
+                <tr class="kurumortaklariekle">
+                  <td><select name="mudurgenelmudur" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yonetimkuruluuyesi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="ortakbilgisi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="kanunitemsilcimi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yurticiyurtdisi" id="">
+                    <option value="Yurt içi mukimi">Yurt içi mukimi</option>
+                    <option value="Yurt dışı mukimi">Yurt dışı mukimi</option>
+                  </select></td>
+                  <td><input type="text" name="ortakvergikimliknosu"></td>
+                  <td><input type="text" name="ortakadisoyadiunvani"></td>
+                  <td><input type="text" name="ortakikametgahadresi"></td>
+                  <td><input type="text" name="ortaktckimliknosu"></td>
+                  <td><input type="text" name="ortaktelefonnumarasi"></td>
+                  <td><input type="text" name="ortakhisseorani"></td>
+                  <td></td>
+                </tr>
+                <tr class="kurumortaklariekle">
+                  <td><select name="mudurgenelmudur" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yonetimkuruluuyesi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="ortakbilgisi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="kanunitemsilcimi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yurticiyurtdisi" id="">
+                    <option value="Yurt içi mukimi">Yurt içi mukimi</option>
+                    <option value="Yurt dışı mukimi">Yurt dışı mukimi</option>
+                  </select></td>
+                  <td><input type="text" name="ortakvergikimliknosu"></td>
+                  <td><input type="text" name="ortakadisoyadiunvani"></td>
+                  <td><input type="text" name="ortakikametgahadresi"></td>
+                  <td><input type="text" name="ortaktckimliknosu"></td>
+                  <td><input type="text" name="ortaktelefonnumarasi"></td>
+                  <td><input type="text" name="ortakhisseorani"></td>
+                  <td></td>
+                </tr>
+                <tr class="kurumortaklariekle">
+                  <td><select name="mudurgenelmudur" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yonetimkuruluuyesi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="ortakbilgisi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="kanunitemsilcimi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yurticiyurtdisi" id="">
+                    <option value="Yurt içi mukimi">Yurt içi mukimi</option>
+                    <option value="Yurt dışı mukimi">Yurt dışı mukimi</option>
+                  </select></td>
+                  <td><input type="text" name="ortakvergikimliknosu"></td>
+                  <td><input type="text" name="ortakadisoyadiunvani"></td>
+                  <td><input type="text" name="ortakikametgahadresi"></td>
+                  <td><input type="text" name="ortaktckimliknosu"></td>
+                  <td><input type="text" name="ortaktelefonnumarasi"></td>
+                  <td><input type="text" name="ortakhisseorani"></td>
+                  <td></td>
+                </tr>
+                <tr class="kurumortaklariekle">
+                  <td><select name="mudurgenelmudur" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yonetimkuruluuyesi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="ortakbilgisi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="kanunitemsilcimi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yurticiyurtdisi" id="">
+                    <option value="Yurt içi mukimi">Yurt içi mukimi</option>
+                    <option value="Yurt dışı mukimi">Yurt dışı mukimi</option>
+                  </select></td>
+                  <td><input type="text" name="ortakvergikimliknosu"></td>
+                  <td><input type="text" name="ortakadisoyadiunvani"></td>
+                  <td><input type="text" name="ortakikametgahadresi"></td>
+                  <td><input type="text" name="ortaktckimliknosu"></td>
+                  <td><input type="text" name="ortaktelefonnumarasi"></td>
+                  <td><input type="text" name="ortakhisseorani"></td>
+                  <td></td>
+                </tr>
+                <tr class="kurumortaklariekle">
+                  <td><select name="mudurgenelmudur" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yonetimkuruluuyesi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="ortakbilgisi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="kanunitemsilcimi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yurticiyurtdisi" id="">
+                    <option value="Yurt içi mukimi">Yurt içi mukimi</option>
+                    <option value="Yurt dışı mukimi">Yurt dışı mukimi</option>
+                  </select></td>
+                  <td><input type="text" name="ortakvergikimliknosu"></td>
+                  <td><input type="text" name="ortakadisoyadiunvani"></td>
+                  <td><input type="text" name="ortakikametgahadresi"></td>
+                  <td><input type="text" name="ortaktckimliknosu"></td>
+                  <td><input type="text" name="ortaktelefonnumarasi"></td>
+                  <td><input type="text" name="ortakhisseorani"></td>
+                  <td></td>
+                </tr>
+                <tr class="kurumortaklariekle">
+                  <td><select name="mudurgenelmudur" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yonetimkuruluuyesi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="ortakbilgisi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="kanunitemsilcimi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yurticiyurtdisi" id="">
+                    <option value="Yurt içi mukimi">Yurt içi mukimi</option>
+                    <option value="Yurt dışı mukimi">Yurt dışı mukimi</option>
+                  </select></td>
+                  <td><input type="text" name="ortakvergikimliknosu"></td>
+                  <td><input type="text" name="ortakadisoyadiunvani"></td>
+                  <td><input type="text" name="ortakikametgahadresi"></td>
+                  <td><input type="text" name="ortaktckimliknosu"></td>
+                  <td><input type="text" name="ortaktelefonnumarasi"></td>
+                  <td><input type="text" name="ortakhisseorani"></td>
+                  <td></td>
+                </tr><tr class="kurumortaklariekle">
+                  <td><select name="mudurgenelmudur" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yonetimkuruluuyesi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="ortakbilgisi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="kanunitemsilcimi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yurticiyurtdisi" id="">
+                    <option value="Yurt içi mukimi">Yurt içi mukimi</option>
+                    <option value="Yurt dışı mukimi">Yurt dışı mukimi</option>
+                  </select></td>
+                  <td><input type="text" name="ortakvergikimliknosu"></td>
+                  <td><input type="text" name="ortakadisoyadiunvani"></td>
+                  <td><input type="text" name="ortakikametgahadresi"></td>
+                  <td><input type="text" name="ortaktckimliknosu"></td>
+                  <td><input type="text" name="ortaktelefonnumarasi"></td>
+                  <td><input type="text" name="ortakhisseorani"></td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       <hr style="border: 2px solid black !important;" >
   </div>
 </div>
@@ -1486,5 +2415,20 @@
 
    
   }
+  let k = 0;
+  function kurumortaklariekle() {
+    
+    var elements = document.getElementsByClassName('kurumortaklariekle');
+
+    if (elements[k]) {
+        elements[k].classList.remove('kurumortaklariekle');
+    } else {
+        console.error("Ürün Sınırına Ulaştınız");
+    }
+
+   
+  }
+
+
 </script>
 {% endblock content %}
