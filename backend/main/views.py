@@ -6377,6 +6377,7 @@ def kurumlar_vergisi_beyanname(request,slug):
         ortaktckimliknosu = request.POST.getlist("ortaktckimliknosu")
         ortaktelefonnumarasi = request.POST.getlist("ortaktelefonnumarasi")
         ortakhisseorani = request.POST.getlist("ortakhisseorani")
+        #
     return render(request,"beyannameler/kurumlar_vergisi_beyanname.html",content)
 #
 #ba bs formları
@@ -6626,7 +6627,47 @@ def turizm(request,slug):
         #İndirimli İşletme Bilgisi
     return render(request,"beyannameler/turizm.html",content)
 
-
+#turizim Beyannamesi
+def e_beyanname(request,slug):
+    content = site_ayarlari()
+    content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
+    content["subeleri"] =  sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)).first()
+    content["firma_ayarlari"] = firma_ayarlari_ayar_kisimi.objects.filter(bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) ).last()
+    content["faliyet"] = sube_faliyet_bilgileri.objects.filter(sube_bilgisi=sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)).first()).first()
+    content["firmalarim"] = firma.objects.filter(silinme_bilgisi = False,firma_muhasabecisi = request.user)
+    content["ulkeler"] = ulke_ulke_kodlari.objects.all()
+    content["beyannameduzenleyen"]=beyanname_duzenleyene_ait_bilgiler.objects.filter(beyanname_bilgisi__sube_bilgisi = sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)).first()).last()
+    content["mirasci"] =beyanname_bilgileri.objects.filter(sube_bilgisi = sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)).first()).last()
+    content["kanuni_temsilci"] = beyanname_kanuni_temsilcisi.objects.filter(beyanname_bilgisi__sube_bilgisi = sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)).first()).last()
+    content["beyannamegonderen"] = Beyannameyi_gonderen_bilgileri.objects.filter(beyanname_bilgisi__sube_bilgisi = sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)).first()).last()
+    content["ymmbilgileri"]  =ymmbilgileri.objects.filter(beyanname_bilgisi__sube_bilgisi = sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)).first()).last()
+    tevk_600ler = []
+    for i in range(601,628):
+        tevk_600ler.append(str(i))
+    content["tevkifatlar"] =tevkifat_tur_kodu.objects.filter(hesap_kodu__in = tevk_600ler,silinme_bilgisi = False,bagli_oldugu_firma = None)
+    tevk_800ler = []
+    for i in range(801,826):
+        tevk_800ler.append(str(i))
+    content["tevkifatlar1"] =tevkifat_tur_kodu.objects.filter(hesap_kodu__in = tevk_800ler,silinme_bilgisi = False,bagli_oldugu_firma = None)
+    if request.POST:
+        #
+        kdv1aylik = request.POST.get("kdv1aylik")
+        kdv1ucaylik = request.POST.get("kdv1ucaylik")
+        kdv2aylik = request.POST.get("kdv2aylik")
+        kdv2ucaylik = request.POST.get("kdv2ucaylik")
+        kdv4aylik = request.POST.get("kdv4aylik")
+        muhtasaraylik = request.POST.get("muhtasaraylik")
+        muhtasarucaylik = request.POST.get("muhtasarucaylik")
+        gecicivergibeyannamesi = request.POST.get("gecicivergibeyannamesi")
+        babsformu = request.POST.get("babsformu")
+        damgavergisi = request.POST.get("damgavergisi")
+        posetbeyannamesiaylik = request.POST.get("posetbeyannamesiaylik")
+        posetbeyannamesiucaylik = request.POST.get("posetbeyannamesiucaylik")
+        posetbeyannamesialtiaylik = request.POST.get("posetbeyannamesialtiaylik")
+        turzimaylik = request.POST.get("turzimaylik")
+        turzimucaylik = request.POST.get("turzimucaylik")
+        vergidonemitarihi = request.POST.get("vergidonemitarihi")
+    return render(request,"beyannameler/ebeyanname.html",content)
 
 
 

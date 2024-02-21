@@ -1,0 +1,274 @@
+{% extends "homebase.html" %}
+{% block content %}
+<style>
+  #kur {
+    display: none;
+  }
+  .yeniform {
+    display: none;
+  }
+</style>
+  <!--Header-->
+  <div class="icon-bar">
+
+    <a href="/{{firma.firma_ozel_anahtar}}/yenikasakarti/">Beyanname Gönder</a>
+    
+    <a href="/" style="color:red;">Kapat</a>
+
+  </div>
+  <div class="d-menu">
+    <ul>
+      <li>
+       <a href="" title="">Beyanname Hazırla</a>
+      </li>
+      <li>
+        <a href="/{{firma.firma_ozel_anahtar}}/bsformu/" title="">BS Formuna Git</a>
+
+      </li>
+       <li>
+       <a href="" title="">XML Oluştur</a>
+      </li>
+      <li>
+       <a href="" title="">XML Sil</a>
+      </li>
+      <li>
+       <a href="" title="">Son Kontrol</a>
+      </li>
+        <li>
+       <a href="" title="">Yazdır</a>
+      </li>  
+    </ul>
+  </div>
+  <div class="container">
+    <div class="row">
+        <h1 class="text-center" >E Beyanname</h1>
+        <h3 class="text-center"></h3>
+        <div style="border:1px solid black;" class="col-2">
+          <h4 class="text-center" >KDV - 1 Beyannamesi</h4>
+          <hr>
+          <h5>Aylık</h5>
+          <select name="kdv1aylik" id="">
+            <option value="OCAK">OCAK</option>
+          <option value="ŞUBAT">ŞUBAT</option>
+          <option value="MART">MART</option>
+          <option value="NİSAN">NİSAN</option>
+          <option value="MAYIS">MAYIS</option>
+          <option value="HAZİRAN">HAZİRAN</option>
+          <option value="TEMMUZ">TEMMUZ</option>
+          <option value="AĞUSTOS">AĞUSTOS</option>
+          <option value="EYLÜL">EYLÜL</option>
+          <option value="EKİM">EKİM</option>
+          <option value="KASIM">KASIM</option>
+          <option value="ARALIK">ARALIK</option>
+          </select>
+          <hr>
+          <h5>3 Aylık</h5>
+          <select name="kdv1ucaylik" id="">
+            <option value="Ocak - Şubat - Mart">Ocak - Şubat - Mart</option>
+            <option value="Nisan - Mayıs - Haziran">Nisan - Mayıs - Haziran</option>
+            <option value="Temmuz - Ağustos - Eylül">Temmuz - Ağustos - Eylül</option>
+            <option value="Ekim - Kasım - Aralık">Ekim - Kasım - Aralık</option>
+          </select>
+        </div>
+        <div style="border:1px solid black;" class="col-2">
+          <h4 class="text-center" >KDV - 2 Beyannamesi</h4>
+          <hr>
+          <h5>Aylık</h5>
+          <select name="kdv2aylik" id="">
+            <option value="OCAK">OCAK</option>
+          <option value="ŞUBAT">ŞUBAT</option>
+          <option value="MART">MART</option>
+          <option value="NİSAN">NİSAN</option>
+          <option value="MAYIS">MAYIS</option>
+          <option value="HAZİRAN">HAZİRAN</option>
+          <option value="TEMMUZ">TEMMUZ</option>
+          <option value="AĞUSTOS">AĞUSTOS</option>
+          <option value="EYLÜL">EYLÜL</option>
+          <option value="EKİM">EKİM</option>
+          <option value="KASIM">KASIM</option>
+          <option value="ARALIK">ARALIK</option>
+          </select>
+          <hr>
+          <h5>3 Aylık</h5>
+          <select name="kdv2ucaylik" id="">
+            <option value="Ocak - Şubat - Mart">Ocak - Şubat - Mart</option>
+            <option value="Nisan - Mayıs - Haziran">Nisan - Mayıs - Haziran</option>
+            <option value="Temmuz - Ağustos - Eylül">Temmuz - Ağustos - Eylül</option>
+            <option value="Ekim - Kasım - Aralık">Ekim - Kasım - Aralık</option>
+          </select>
+        </div>
+        <div style="border:1px solid black;" class="col-2">
+          <h4 class="text-center" >KDV - 4 Beyannamesi</h4>
+          <hr>
+          <h5>Aylık</h5>
+          <select name="kdv4aylik" id="">
+            <option value="OCAK">OCAK</option>
+          <option value="ŞUBAT">ŞUBAT</option>
+          <option value="MART">MART</option>
+          <option value="NİSAN">NİSAN</option>
+          <option value="MAYIS">MAYIS</option>
+          <option value="HAZİRAN">HAZİRAN</option>
+          <option value="TEMMUZ">TEMMUZ</option>
+          <option value="AĞUSTOS">AĞUSTOS</option>
+          <option value="EYLÜL">EYLÜL</option>
+          <option value="EKİM">EKİM</option>
+          <option value="KASIM">KASIM</option>
+          <option value="ARALIK">ARALIK</option>
+          </select>
+          <hr>
+          
+        </div>
+        <div style="border:1px solid black;" class="col-2">
+          <h4 class="text-center" >Muh.SGK Beyannamesi</h4>
+          <hr>
+          <h5>Aylık</h5>
+          <select name="muhtasaraylik" id="">
+            <option value="OCAK">OCAK</option>
+          <option value="ŞUBAT">ŞUBAT</option>
+          <option value="MART">MART</option>
+          <option value="NİSAN">NİSAN</option>
+          <option value="MAYIS">MAYIS</option>
+          <option value="HAZİRAN">HAZİRAN</option>
+          <option value="TEMMUZ">TEMMUZ</option>
+          <option value="AĞUSTOS">AĞUSTOS</option>
+          <option value="EYLÜL">EYLÜL</option>
+          <option value="EKİM">EKİM</option>
+          <option value="KASIM">KASIM</option>
+          <option value="ARALIK">ARALIK</option>
+          </select>
+          <hr>
+          <h5>3 Aylık</h5>
+          <select name="muhtasarucaylik" id="">
+            <option value="Ocak - Şubat - Mart">Ocak - Şubat - Mart</option>
+            <option value="Nisan - Mayıs - Haziran">Nisan - Mayıs - Haziran</option>
+            <option value="Temmuz - Ağustos - Eylül">Temmuz - Ağustos - Eylül</option>
+            <option value="Ekim - Kasım - Aralık">Ekim - Kasım - Aralık</option>
+          </select>
+        </div>
+        <div style="border:1px solid black;" class="col-2">
+          <h4 class="text-center" >Geçici Vergi Beyannamesi</h4>
+          <hr>
+          
+          <h5>Dönem</h5>
+          <select name="gecicivergibeyannamesi" id="">
+            <option value="Ocak - Şubat - Mart">Ocak - Şubat - Mart</option>
+            <option value="Nisan - Mayıs - Haziran">Nisan - Mayıs - Haziran</option>
+            <option value="Temmuz - Ağustos - Eylül">Temmuz - Ağustos - Eylül</option>
+            <option value="Ekim - Kasım - Aralık">Ekim - Kasım - Aralık</option>
+          </select>
+        </div>
+        <div style="border:1px solid black;" class="col-2">
+          <h4 class="text-center" >BA - BS Formu</h4>
+          <hr>
+          <h5>Dönem</h5>
+          <select name="babsformu" id="">
+            <option value="OCAK">OCAK</option>
+          <option value="ŞUBAT">ŞUBAT</option>
+          <option value="MART">MART</option>
+          <option value="NİSAN">NİSAN</option>
+          <option value="MAYIS">MAYIS</option>
+          <option value="HAZİRAN">HAZİRAN</option>
+          <option value="TEMMUZ">TEMMUZ</option>
+          <option value="AĞUSTOS">AĞUSTOS</option>
+          <option value="EYLÜL">EYLÜL</option>
+          <option value="EKİM">EKİM</option>
+          <option value="KASIM">KASIM</option>
+          <option value="ARALIK">ARALIK</option>
+          </select>
+          <hr>
+          
+        </div>
+        <hr>
+        <div style="border:1px solid black;" class="col-3">
+          <h4 class="text-center" >Damga Vergisi</h4>
+          <hr>
+          <h5>Dönem</h5>
+          <select name="damgavergisi" id="">
+            <option value="OCAK">OCAK</option>
+          <option value="ŞUBAT">ŞUBAT</option>
+          <option value="MART">MART</option>
+          <option value="NİSAN">NİSAN</option>
+          <option value="MAYIS">MAYIS</option>
+          <option value="HAZİRAN">HAZİRAN</option>
+          <option value="TEMMUZ">TEMMUZ</option>
+          <option value="AĞUSTOS">AĞUSTOS</option>
+          <option value="EYLÜL">EYLÜL</option>
+          <option value="EKİM">EKİM</option>
+          <option value="KASIM">KASIM</option>
+          <option value="ARALIK">ARALIK</option>
+          </select>
+          <hr>
+          
+        </div>
+        <div style="border:1px solid black;" class="col-3">
+          <h4 class="text-center" >Poşet Beyannamesi</h4>
+          <hr>
+          <h5>Dönem</h5>
+          <select name="posetbeyannamesiaylik" id="">
+            <option value="OCAK">OCAK</option>
+          <option value="ŞUBAT">ŞUBAT</option>
+          <option value="MART">MART</option>
+          <option value="NİSAN">NİSAN</option>
+          <option value="MAYIS">MAYIS</option>
+          <option value="HAZİRAN">HAZİRAN</option>
+          <option value="TEMMUZ">TEMMUZ</option>
+          <option value="AĞUSTOS">AĞUSTOS</option>
+          <option value="EYLÜL">EYLÜL</option>
+          <option value="EKİM">EKİM</option>
+          <option value="KASIM">KASIM</option>
+          <option value="ARALIK">ARALIK</option>
+          </select>
+          <hr>
+          <h5>3 Aylık</h5>
+          <select name="posetbeyannamesiucaylik" id="">
+            <option value="Ocak - Şubat - Mart">Ocak - Şubat - Mart</option>
+            <option value="Nisan - Mayıs - Haziran">Nisan - Mayıs - Haziran</option>
+            <option value="Temmuz - Ağustos - Eylül">Temmuz - Ağustos - Eylül</option>
+            <option value="Ekim - Kasım - Aralık">Ekim - Kasım - Aralık</option>
+          </select>
+          <hr>
+          <h5>6 Aylık</h5>
+          <select name="posetbeyannamesialtiaylik" id="">
+            <option value="Ocak ... Haziran">Ocak ... Haziran</option>
+            <option value="Temmuz ... Aralık">Temmuz ... Aralık</option>
+          </select>
+        </div>
+        <div style="border:1px solid black;" class="col-3">
+          <h4 class="text-center" >Turizm Beyannamesi</h4>
+          <hr>
+          <h5>Aylık</h5>
+          <select name="turzimaylik" id="">
+            <option value="OCAK">OCAK</option>
+          <option value="ŞUBAT">ŞUBAT</option>
+          <option value="MART">MART</option>
+          <option value="NİSAN">NİSAN</option>
+          <option value="MAYIS">MAYIS</option>
+          <option value="HAZİRAN">HAZİRAN</option>
+          <option value="TEMMUZ">TEMMUZ</option>
+          <option value="AĞUSTOS">AĞUSTOS</option>
+          <option value="EYLÜL">EYLÜL</option>
+          <option value="EKİM">EKİM</option>
+          <option value="KASIM">KASIM</option>
+          <option value="ARALIK">ARALIK</option>
+          </select>
+          <hr>
+          <h5>3 Aylık</h5>
+          <select name="turzimucaylik" id="">
+            <option value="Ocak - Şubat - Mart">Ocak - Şubat - Mart</option>
+            <option value="Nisan - Mayıs - Haziran">Nisan - Mayıs - Haziran</option>
+            <option value="Temmuz - Ağustos - Eylül">Temmuz - Ağustos - Eylül</option>
+            <option value="Ekim - Kasım - Aralık">Ekim - Kasım - Aralık</option>
+          </select>
+        </div>
+        <div style="border:1px solid black;" class="col-3">
+          <h4 class="text-center" >Basit Usul, Gelir Ve Kurumlar Vergisi Dönemi</h4>
+          <hr>
+          <input type="number" value="2024" name="vergidonemitarihi">
+         
+          
+        </div>
+        <hr style="border: 3px solid black !important;" >
+    </div>
+</div>
+
+{% endblock content %}
