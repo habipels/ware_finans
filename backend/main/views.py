@@ -6627,7 +6627,7 @@ def turizm(request,slug):
         #İndirimli İşletme Bilgisi
     return render(request,"beyannameler/turizm.html",content)
 
-#turizim Beyannamesi
+#ebeyanname
 def e_beyanname(request,slug):
     content = site_ayarlari()
     content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
@@ -6682,5 +6682,83 @@ def e_beyanname(request,slug):
         muhsgk2 = request.POST.getlist("muhsgk2")
     return render(request,"beyannameler/ebeyanname.html",content)
 
+#turizim Beyannamesi
+def muhsgksayfasi(request,slug):
+    content = site_ayarlari()
+    content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
+    content["subeleri"] =  sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)).first()
+    content["firma_ayarlari"] = firma_ayarlari_ayar_kisimi.objects.filter(bagli_oldugu_firma =get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug) ).last()
+    content["faliyet"] = sube_faliyet_bilgileri.objects.filter(sube_bilgisi=sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)).first()).first()
+    content["firmalarim"] = firma.objects.filter(silinme_bilgisi = False,firma_muhasabecisi = request.user)
+    content["ulkeler"] = ulke_ulke_kodlari.objects.all()
+    content["beyannameduzenleyen"]=beyanname_duzenleyene_ait_bilgiler.objects.filter(beyanname_bilgisi__sube_bilgisi = sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)).first()).last()
+    content["mirasci"] =beyanname_bilgileri.objects.filter(sube_bilgisi = sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)).first()).last()
+    content["kanuni_temsilci"] = beyanname_kanuni_temsilcisi.objects.filter(beyanname_bilgisi__sube_bilgisi = sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)).first()).last()
+    content["beyannamegonderen"] = Beyannameyi_gonderen_bilgileri.objects.filter(beyanname_bilgisi__sube_bilgisi = sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)).first()).last()
+    content["ymmbilgileri"]  =ymmbilgileri.objects.filter(beyanname_bilgisi__sube_bilgisi = sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)).first()).last()
+    tevk_600ler = []
+    for i in range(601,628):
+        tevk_600ler.append(str(i))
+    content["tevkifatlar"] =tevkifat_tur_kodu.objects.filter(hesap_kodu__in = tevk_600ler,silinme_bilgisi = False,bagli_oldugu_firma = None)
+    tevk_800ler = []
+    for i in range(801,826):
+        tevk_800ler.append(str(i))
+    content["tevkifatlar1"] =tevkifat_tur_kodu.objects.filter(hesap_kodu__in = tevk_800ler,silinme_bilgisi = False,bagli_oldugu_firma = None)
+    if request.POST:
+        #MATRAH VE VERGİ BİLDİRİMİ
+        odemeturu2 = request.POST.get("odemeturu2")
+        odemetutari2 = request.POST.get("odemetutari2")
+        odemetutarikesinti2 = request.POST.get("odemetutarikesinti2")
+        odemeturu3 = request.POST.get("odemeturu3")
+        odemetutari3 = request.POST.get("odemetutari3")
+        odemetutarikesinti3 = request.POST.get("odemetutarikesinti3")
+        odemeturu4 = request.POST.get("odemeturu4")
+        odemetutari4 = request.POST.get("odemetutari4")
+        odemetutarikesinti4 = request.POST.get("odemetutarikesinti4")
+        odemeturu5 = request.POST.get("odemeturu5")
+        odemetutari5 = request.POST.get("odemetutari5")
+        odemetutarikesinti5 = request.POST.get("odemetutarikesinti5")
+        odemeturu6 = request.POST.get("odemeturu6")
+        odemetutari6 = request.POST.get("odemetutari6")
+        odemetutarikesinti6 = request.POST.get("odemetutarikesinti6")
+        odemeturu7 = request.POST.get("odemeturu7")
+        odemetutari7 = request.POST.get("odemetutari7")
+        odemetutarikesinti7 = request.POST.get("odemetutarikesinti7")
+        odemeturu8 = request.POST.get("odemeturu8")
+        odemetutari8 = request.POST.get("odemetutari8")
+        odemetutarikesinti8 = request.POST.get("odemetutarikesinti8")
+        odemeturu9 = request.POST.get("odemeturu9")
+        odemetutari9 = request.POST.get("odemetutari9")
+        odemetutarikesinti9 = request.POST.get("odemetutarikesinti9")
+        odemeturu10 = request.POST.get("odemeturu10")
+        odemetutari10 = request.POST.get("odemetutari10")
+        odemetutarikesinti10 = request.POST.get("odemetutarikesinti10")
+        odemeturu11 = request.POST.get("odemeturu11")
+        odemetutari11 = request.POST.get("odemetutari11")
+        odemetutarikesinti11 = request.POST.get("odemetutarikesinti11")
+        odemeturu12 = request.POST.get("odemeturu12")
+        odemetutari12 = request.POST.get("odemetutari12")
+        odemetutarikesinti12 = request.POST.get("odemetutarikesinti12")
+        odemeturu13 = request.POST.get("odemeturu13")
+        odemetutari13 = request.POST.get("odemetutari13")
+        odemetutarikesinti13 = request.POST.get("odemetutarikesinti13")
+        odemeturu14 = request.POST.get("odemeturu14")
+        odemetutari14 = request.POST.get("odemetutari14")
+        odemetutarikesinti14 = request.POST.get("odemetutarikesinti14")
+        odemeturu15 = request.POST.get("odemeturu15")
+        odemetutari15 = request.POST.get("odemetutari15")
+        odemetutarikesinti15 = request.POST.get("odemetutarikesinti15")
+        odemeturu16 = request.POST.get("odemeturu16")
+        odemetutari16 = request.POST.get("odemetutari16")
+        odemetutarikesinti16 = request.POST.get("odemetutarikesinti16")
+        odemetutaritoplam = request.POST.get("odemetutaritoplam")
+        odemetutarikesintitoplami = request.POST.get("odemetutarikesintitoplami")
+        odemetutarikesinti5225kanunu = request.POST.get("odemetutarikesinti5225kanunu")
+        odemetutarikesinti5746kanunu = request.POST.get("odemetutarikesinti5746kanunu")
+        odemetutarikesinti4691kanunu = request.POST.get("odemetutarikesinti4691kanunu")
+        odemetutarikesinti17b18kanunu = request.POST.get("odemetutarikesinti17b18kanunu")
+        #MATRAH VE VERGİ BİLDİRİMİ
+
+    return render(request,"beyannameler/muhsgk.html",content)
 
 
