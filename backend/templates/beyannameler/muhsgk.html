@@ -187,8 +187,8 @@
             </tr>
             <tr>
               <td><input type="text" id="toplamtutar" disabled value="Toplam" name="toplamtutar"></td>
-              <td><input step="0.01" id="odemetutaritoplam"  name="odemetutaritoplam" value="0" type="number"></td>
-              <td><input step="0.01" id="odemetutarikesintitoplami"  name="odemetutarikesintitoplami" value="0" type="number"></td>
+              <td>a<input step="0.01" id="odemetutaritoplam"  name="odemetutaritoplam" value="0" type="number"></td>
+              <td>b<input step="0.01" id="odemetutarikesintitoplami"  name="odemetutarikesintitoplami" value="0" type="number"></td>
             </tr>
             <tr>
               <td colspan="2">Ücret Ödemeleri Üzerinden Yapılan Tevkifatın 5225 Sayılı Kanun Gereği Terkin Edilen Tutarı</td>
@@ -210,6 +210,110 @@
           </table>
         </div>
       </div>
+      <div class="container tablo" style="margin-top: 0px !important;">
+        <input class="col-12 text-center" disabled="" value="MAHSUP EDİLEN VERGİLER" type="text">
+        <div class="table-responsive " style=" 
+        height: 450px;
+        overflow: auto;">
+          <table class="table table-bordered ">
+            <thead style="position: sticky;top: 0">
+              <tr>
+                <th class="text-center" style="min-width: 100px ;"> </th>
+                <th class="text-center" style="min-width: 50px ;"> </th>
+               
+                
+              </tr>
+            </thead>
+            <tbody>
+              
+            <tr>
+              <td >K.V.K. 34/8. Maddesi Uyarınca K.V.K. 15/3 Maddesine Göre Yapılan Vergi Kesintisinden Mahsup Edilecek Kesinti Tutarı</td>
+              <td><input step="0.01" id="mahsupedilenvergi2"  name="mahsupedilenvergi2" value="0" type="number"></td>
+            </tr>
+            <tr>
+              <td >Menkul Kıy. Yat. Fonları (BYF ile Konut Finansman Fonları ve Varlık Finansman Fonları Dahil) ile Menkul Kry. Yat. Ortaklarınca GVK. Geç. Mad. 67/8'e Göre Hesaplanacak Vergiye Mahsup Edilecek Tevkifat Tutarı</td>
+              <td><input step="0.01" id="mahsupedilenvergi3"  name="mahsupedilenvergi3" value="0" type="number"></td>
+            </tr>
+            <tr>
+              <td >GVK'nın 33. Maddesi Kapsamında Mahsup Edilecek Kesinti Tutarı</td>
+              <td><input step="0.01" id="mahsupedilenvergi4"  name="mahsupedilenvergi4" value="0" type="number"></td>
+              </tr>
+              <tr>
+                <td >Menkul Kıy. Yat. Fonları (BYF ile Konut Finansman Fonları ve Varlık Finansman Fonları Dahil) ile Menkul Kry. Yat. Ortaklarınca GVK. Geç. Mad. 67/8'e Göre Hesaplanacak Vergiye Mahsup Edilecek Tevkifat Tutarı</td>
+                <td><input step="0.01" id="mahsupedilenvergi5"  name="mahsupedilenvergi5" value="0" type="number"></td>
+                </tr>
+                <tr>
+                  <td >Mevduat Hesabı Vade Değişikliği Nedeniyle Mahsup Edilecek Kesinti Tutarı</td>
+                  <td><input step="0.01" id="mahsupedilenvergi6"  name="mahsupedilenvergi6" value="0" type="number"></td>
+                  </tr>
+                  <tr>
+                    <td >Mahsup Edilecek Toplam Vergi</td>
+                    <td><input step="0.01" id="mahsupedilenvergi7"  name="mahsupedilenvergi7" value="0" type="number"></td>
+                    </tr>
+                    <tr>
+                      <td >Tevkifata İlişkin Damga Vergisi</td>
+                      <td><input step="0.01" id="mahsupedilenvergi8"  name="mahsupedilenvergi8" value="0" type="number"></td>
+                      </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <hr style="border: 2px solid black !important;" >
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+      <h3 class="text-center" >Vergi Bildirimi</h3>
+      <hr>
+      <div class="container tablo" style="margin-top: 0px !important;">
+        <input class="col-12 text-center" disabled="" value="ÇALIŞAN BİLGİLERİ" type="text">
+        <div class="table-responsive " style=" 
+        height: 300px;
+        overflow: auto;">
+          <table class="table table-bordered ">
+            <thead style="position: sticky;top: 0">
+              <tr>
+                <th class="text-center" style="min-width: 100px ;">ÇALIŞAN BİLGİLERİ</th>
+                <th class="text-center" style="min-width: 50px ;">TOPLAM ÇALIŞAN SAYISI</th>
+                <th class="text-center" style="min-width: 50px ;">GELİR V. MUAF / İSTİSNA SAYISI</th>
+                <th class="text-center" style="min-width: 50px ;">SGK V. MUAF / İSTİSNA SAYISI</th>
+                <th class="text-center" style="min-width: 50px ;">GELİR VERGİSİ MATRAHI TOPLAMI</th>
+                <th class="text-center" style="min-width: 50px ;">ASGARİ ÜCRET İSTİSNA GV. TUTARI TOPLAMI</th>
+                <th class="text-center" style="min-width: 50px ;">GELİR VERGİSİ KESİNTİ TOPLAMI</th>
+                <th class="text-center" style="min-width: 50px ;">ASGARİ ÜCRET İSTİSNA DV. TUTARI TOPLAMI</th>
+                <th class="text-center" style="min-width: 100px ;">DAMGA VERGİSİ KESİNTİ TOPLAMI</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Diğer Ücretli<input type="text" value="Diğer Ücretli" hidden name="bilgiver1"></td>
+                <td><input  id="digerucretilicalisansayisi" name="digerucretilicalisansayisi" value="0" type="number"></td>
+                <td><input  id="digerucretiligelivmuaf" name="digerucretiligelivmuaf" value="0" type="number"></td>
+                <td><input  id="digerucretilisgkvmuaf" name="digerucretilisgkvmuaf" value="0" type="number"></td>
+                <td><input  id="digerucretilismatrahtoplami" step="0.01" name="digerucretilismatrahtoplami" value="0" type="number"></td>
+                <td><input  id="digerucretilisasgaritoplami" step="0.01" name="digerucretilisasgaritoplami" value="0" type="number"></td>
+                <td><input  id="digerucretilisgelirvergisikesintitoplami" step="0.01" name="digerucretilisgelirvergisikesintitoplami" value="0" type="number"></td>
+                <td><input  id="digerucretilisasgariistisnatoplami" step="0.01" name="digerucretilisasgariistisnatoplami" value="0" type="number"></td>
+                <td><input  id="digerucretilisdamgavergisitoplami" step="0.01" name="digerucretilisdamgavergisitoplami" value="0" type="number"></td>
+                
+              </tr>
+              <tr>
+                <td>Asgari Ücretli<input type="text" value="Agari Ücretli" hidden name="bilgiver2"></td>
+                <td><input  id="asgariucretilicalisansayisi" name="asgariucretilicalisansayisi" value="0" type="number"></td>
+                <td><input  id="asgariucretiligelivmuaf" name="asgariucretiligelivmuaf" value="0" type="number"></td>
+                <td><input  id="asgariucretilisgkvmuaf" name="asgariucretilisgkvmuaf" value="0" type="number"></td>
+                <td><input  id="asgariucretilismatrahtoplami" step="0.01" name="asgariucretilismatrahtoplami" value="0" type="number"></td>
+                <td><input  id="asgariucretilisasgaritoplami" step="0.01" name="asgariucretilisasgaritoplami" value="0" type="number"></td>
+                <td><input  id="asgariucretilisgelirvergisikesintitoplami" step="0.01" name="asgariucretilisgelirvergisikesintitoplami" value="0" type="number"></td>
+                <td><input  id="asgariucretilisasgariistisnatoplami" step="0.01" name="asgariucretilisasgariistisnatoplami" value="0" type="number"></td>
+                <td><input  id="asgariucretilisdamgavergisitoplami" step="0.01" name="asgariucretilisdamgavergisitoplami" value="0" type="number"></td>
+                
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
       <hr style="border: 2px solid black !important;" >
   </div>
 </div>

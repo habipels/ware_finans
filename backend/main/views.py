@@ -6758,7 +6758,36 @@ def muhsgksayfasi(request,slug):
         odemetutarikesinti4691kanunu = request.POST.get("odemetutarikesinti4691kanunu")
         odemetutarikesinti17b18kanunu = request.POST.get("odemetutarikesinti17b18kanunu")
         #MATRAH VE VERGİ BİLDİRİMİ
-
+        #MAHSUP EDİLEN VERGİLER
+        mahsupedilenvergi2  =request.POST.get("mahsupedilenvergi2")
+        mahsupedilenvergi3  =request.POST.get("mahsupedilenvergi3")
+        mahsupedilenvergi4  =request.POST.get("mahsupedilenvergi4")
+        mahsupedilenvergi5  =request.POST.get("mahsupedilenvergi5")
+        mahsupedilenvergi6  =request.POST.get("mahsupedilenvergi6")
+        mahsupedilenvergi7  =request.POST.get("mahsupedilenvergi7")
+        mahsupedilenvergi8  =request.POST.get("mahsupedilenvergi8")
+        #MAHSUP EDİLEN VERGİLER
+        #ÇALIŞAN BİLGİLERİ
+        bilgiver1 = request.POST.get("bilgiver1")
+        digerucretilicalisansayisi = request.POST.get("digerucretilicalisansayisi")
+        digerucretiligelivmuaf = request.POST.get("digerucretiligelivmuaf")
+        digerucretilisgkvmuaf = request.POST.get("digerucretilisgkvmuaf")
+        digerucretilismatrahtoplami = request.POST.get("digerucretilismatrahtoplami")
+        digerucretilisasgaritoplami = request.POST.get("digerucretilisasgaritoplami")
+        digerucretilisgelirvergisikesintitoplami = request.POST.get("digerucretilisgelirvergisikesintitoplami")
+        digerucretilisasgariistisnatoplami = request.POST.get("digerucretilisasgariistisnatoplami")
+        digerucretilisdamgavergisitoplami = request.POST.get("digerucretilisdamgavergisitoplami")
+        bilgiver2 = request.POST.get("bilgiver2")
+        asgariucretilicalisansayisi = request.POST.get("asgariucretilicalisansayisi")
+        asgariucretiligelivmuaf = request.POST.get("asgariucretiligelivmuaf")
+        asgariucretilisgkvmuaf = request.POST.get("asgariucretilisgkvmuaf")
+        asgariucretilismatrahtoplami = request.POST.get("asgariucretilismatrahtoplami")
+        asgariucretilisasgaritoplami = request.POST.get("asgariucretilisasgaritoplami")
+        asgariucretilisgelirvergisikesintitoplami = request.POST.get("asgariucretilisgelirvergisikesintitoplami")
+        asgariucretilisasgariistisnatoplami = request.POST.get("asgariucretilisasgariistisnatoplami")
+        asgariucretilisdamgavergisitoplami = request.POST.get("asgariucretilisdamgavergisitoplami")
+        #ÇALIŞAN BİLGİLERİ
+        
     return render(request,"beyannameler/muhsgk.html",content)
 
 
