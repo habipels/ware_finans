@@ -6787,7 +6787,15 @@ def muhsgksayfasi(request,slug):
         asgariucretilisasgariistisnatoplami = request.POST.get("asgariucretilisasgariistisnatoplami")
         asgariucretilisdamgavergisitoplami = request.POST.get("asgariucretilisdamgavergisitoplami")
         #ÇALIŞAN BİLGİLERİ
-        
+        #TAHAKKUKA ESAS İCMAL CETVELİ
+        icmalcetveli2 = request.POST.get("icmalcetveli2")
+        icmalcetveli3 = request.POST.get("icmalcetveli3")
+        icmalcetveli4 = request.POST.get("icmalcetveli4")
+        icmalcetveli5 = request.POST.get("icmalcetveli5")
+        icmalcetveli6 = request.POST.get("icmalcetveli6")
+        icmalcetveli7 = request.POST.get("icmalcetveli7")
+        icmalcetveli8 = request.POST.get("icmalcetveli8")
+        #TAHAKKUKA ESAS İCMAL CETVELİ
     return render(request,"beyannameler/muhsgk.html",content)
 
 
