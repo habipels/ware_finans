@@ -270,5 +270,59 @@
         <hr style="border: 3px solid black !important;" >
     </div>
 </div>
-
+<div class="container">
+  <div class="row">
+      <h1 class="text-center" >Firmalar </h1>
+      <h3 class="text-center"></h3>
+      <div class="container tablo" style="margin-top: 0px !important;">
+        <input class="col-12 text-center" disabled value="Beyanname Göndeilecek Listesi" type="text">
+        <div class="table-responsive " style=" 
+        height: 400px;
+        overflow: auto;">
+          <table class="table table-bordered ">
+            <thead style="position: sticky;top: 0">
+              <tr>
+                <th class="text-center" style="min-width: 100px ;">Firma</th>
+                <th class="text-center" style="min-width: 50px ;">KDV 1</th>
+                <th class="text-center" style="min-width: 50px ;">KDV 2</th>
+                <th class="text-center" style="min-width: 50px ;">>MUH.SGK</th>
+                <th class="text-center" style="min-width: 50px ;">Geçici</th>
+                <th class="text-center" style="min-width: 50px ;">BA</th>
+                <th class="text-center" style="min-width: 50px ;">BS</th>
+                <th class="text-center" style="min-width: 50px ;">Gelir</th>
+                <th class="text-center" style="min-width: 50px ;">Kurumlar</th>
+                <th class="text-center" style="min-width: 50px ;">KDV 4</th>
+                <th class="text-center" style="min-width: 50px ;">Poşet</th>
+                <th class="text-center" style="min-width: 50px ;">Damga</th>
+                <th class="text-center" style="min-width: 50px ;">Turizm</th>
+                <th class="text-center" style="min-width: 50px ;">MUH.SGK 2</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for firmaa in firmalarim %}
+              <tr>
+                <td>{{firmaa.firma_unvani}} {{firmaa.Firma_unvani2}} ({{firmaa.tanitici_isim}})</td>
+                <td><input type="checkbox" name="kdv1" value="{{firmaa.id}}"></td>
+                <td><input type="checkbox" name="kdv2" value="{{firmaa.id}}"></td>
+                <td><input type="checkbox" name="muhtasarsgk" value="{{firmaa.id}}"></td>
+                <td><input type="checkbox" name="gecici" value="{{firmaa.id}}"></td>
+                <td><input type="checkbox" name="ba" value="{{firmaa.id}}"></td>
+                <td><input type="checkbox" name="bs" value="{{firmaa.id}}"></td>
+                <td><input type="checkbox" name="gelir" value="{{firmaa.id}}"></td>
+                <td><input type="checkbox" name="kurumlar" value="{{firmaa.id}}"></td>
+                <td><input type="checkbox" name="kdv4" value="{{firmaa.id}}"></td>
+                <td><input type="checkbox" name="poset" value="{{firmaa.id}}"></td>
+                <td><input type="checkbox" name="damga" value="{{firmaa.id}}"></td>
+                <td><input type="checkbox" name="turizm" value="{{firmaa.id}}"></td>
+                <td><input type="checkbox" name="muhsgk2" value="{{firmaa.id}}"></td>
+              </tr>
+              {% endfor %}
+              
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <hr style="border: 3px solid black !important;" >
+  </div>
+</div>
 {% endblock content %}
