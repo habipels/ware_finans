@@ -364,6 +364,89 @@
       <hr style="border: 2px solid black !important;" >
   </div>
 </div>
+
+<div class="container">
+  <div class="row">
+      <h3 class="text-center" >EKLER</h3>
+      <hr>
+      <div class="container tablo" style="margin-top: 0px !important;">
+        <input class="col-12 text-center" disabled="" value="İŞYERİ BİLGİLERİ" type="text">
+        <div class="table-responsive " style=" 
+        height: 250px;
+        overflow: auto;">
+          <table class="table table-bordered ">
+            <thead style="position: sticky;top: 0">
+              <tr>
+                <th class="text-center" style="min-width: 100px ;">İŞYERİ TÜRÜ</th>
+                <th class="text-center" style="min-width: 50px ;">İŞYERİ KODU</th>
+                <th class="text-center" style="min-width: 50px ;">İŞYERİ TİCARET SİCİL NUMARASI</th>
+                <th class="text-center" style="min-width: 50px ;">TİCARET SİCİL MÜDÜRLÜĞÜ</th>
+                <th class="text-center" style="min-width: 50px ;">FALİYET (NACE) KODU</th>
+                <th class="text-center" style="min-width: 50px ;">İŞYERİ ADI</th>
+                <th class="text-center" style="min-width: 50px ;">İŞYERİ ADRES NO</th>
+                <th class="text-center" style="min-width: 50px ;">İŞYERİ MÜKELİYET DURUMU</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td> <select name="isyerituru" id="">
+                  <option value="Merkez">Merkez</option>
+                  <option value="Mükellefiyetsiz Şube">Mükellefiyetsiz Şube</option>
+                </select></td>
+                <td><input  id="isyerikodu" name="isyerikodu"  type="text"></td>
+                <td><input  id="isyeriticaretsicilno" name="isyeriticaretsicilno"  type="text"></td>
+                <td><input  id="ticaretsicilmudurlugu" name="ticaretsicilmudurlugu"  type="text"></td>
+                <td><input  id="faliyetnacekodu"  name="faliyetnacekodu" value="0" type="number"></td>
+                <td><input  id="isyeriadi" name="isyeriadi"  type="text"></td>
+                <td><input  id="isyeriadresno" name="isyeriadresno"  type="text"></td>
+                <td><input  id="isyerimulkiyetdurumu"  name="isyerimulkiyetdurumu"  type="text"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="container tablo" style="margin-top: 0px !important;">
+        <input class="col-12 text-center" disabled="" value="Yeraltı ve Yerüstü Maden İşletmeleri Bildirimi" type="text">
+        <div class="table-responsive " style=" 
+        height: 200px;
+        overflow: auto;">
+          <table class="table table-bordered ">
+            <thead style="position: sticky;top: 0">
+              <tr>
+                <th class="text-center" style="min-width: 100px ;">ÇALIŞMA YERİ </th>
+                <th class="text-center" style="min-width: 50px ;">BULUNDUĞU İL İLÇE</th>
+                <th class="text-center" style="min-width: 50px ;">MADEN CİNSİ</th>
+                <th class="text-center" style="min-width: 50px ;">İŞCİ SAYISI</th>
+                <th class="text-center" style="min-width: 50px ;">SGK İŞYERİ SİCİL NUMARASI</th>
+                <th class="text-center" style="min-width: 50px ;">RUHSAT BAŞLAMA TARİHİ</th>
+                <th class="text-center" style="min-width: 50px ;">RUHSAT BİTİŞ TARİHİ</th>
+                <th class="text-center" style="min-width: 50px ;">İŞYERİNİN ADRESİ</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+            <tr>
+              <td ><select name="Madenbigisi" id="">
+                <option value="101 - Yeraltı">101 - Yeraltı</option>
+                <option value="102 - Yerüstü">102 - Yerüstü</option>
+              </select></td>
+              <td><select name="sehirlerilceler" id=""></select></td>
+              <td><input type="text" name="madencinsi"></td>
+              <td><input type="number" value="0" name="madeniscisaysi"></td>
+              <td><input type="text" name="madensgkisyerisicilnumarasi"></td>
+              <td><input type="date" name="madenruhsatbaslamatarihi"></td>
+              <td><input type="date" name="madenruhsatbitistarihi"></td>
+              <td><input type="text" name="madenisyeriadresi"></td>
+            </tr>
+       
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <hr style="border: 2px solid black !important;" >
+  </div>
+</div>
+
 <div class="container">
   <div class="row">
       <h3 class="text-center" >E-Beyanname Düzenlemek İçin Gerekli Bilgiler</h3>

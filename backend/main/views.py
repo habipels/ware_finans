@@ -6796,6 +6796,36 @@ def muhsgksayfasi(request,slug):
         icmalcetveli7 = request.POST.get("icmalcetveli7")
         icmalcetveli8 = request.POST.get("icmalcetveli8")
         #TAHAKKUKA ESAS İCMAL CETVELİ
+        #İŞYERİ BİLGİLERİ
+        isyerituru  = request.POST.get("isyerituru")
+        isyerikodu = request.POST.get("isyerikodu")
+        isyeriticaretsicilno = request.POST.get("isyeriticaretsicilno")
+        ticaretsicilmudurlugu = request.POST.get("ticaretsicilmudurlugu")
+        faliyetnacekodu = request.POST.get("faliyetnacekodu")
+        isyeriadi = request.POST.get("isyeriadi")
+        isyeriadresno = request.POST.get("isyeriadresno")
+        isyerimulkiyetdurumu = request.POST.get("isyerimulkiyetdurumu")
+        #İŞYERİ BİLGİLERİ
+        #Yeraltı ve Yerüstü Maden İşletmeleri Bildirimi
+        Madenbigisi = request.POST.get("Madenbigisi")
+        sehirlerilceler = request.POST.get("sehirlerilceler")
+        madencinsi = request.POST.get("madencinsi")
+        madeniscisaysi = request.POST.getU("madeniscisaysi")
+        madensgkisyerisicilnumarasi = request.POST.get("madensgkisyerisicilnumarasi")
+        madenruhsatbaslamatarihi = request.POST.get("madenruhsatbaslamatarihi")
+        madenruhsatbitistarihi = request.POST.get("madenruhsatbitistarihi")
+        madenisyeriadresi = request.POST.get("madenisyeriadresi")
+        #Yeraltı ve Yerüstü Maden İşletmeleri Bildirimi
     return render(request,"beyannameler/muhsgk.html",content)
 
 
+def firmayi_geri_getir(request,slug):
+    firma.objects.filter(firma_ozel_anahtar = slug).update(silinme_bilgisi = False)
+    a = "/company/companysettings/"
+    return redirect(a)
+
+
+def subeyi_geri_getir(request,slug):
+    sube.objects.filter(id = slug).update(silinme_bilgisi = False)
+    a = "/company/companysettings/"
+    return redirect(a)

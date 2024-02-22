@@ -164,5 +164,7 @@ urlpatterns = [
     #turizm
     #muhsgk
     path("<str:slug>/muhsgk/", views.muhsgksayfasi, name="muhsgksayfasi"),
+    path("<str:slug>/kurtar/", views.firmayi_geri_getir, name="firmayi_geri_getir"),
+    path("<int:slug>/subekurtar/", views.subeyi_geri_getir, name="subeyi_geri_getir"),
 ]
 #

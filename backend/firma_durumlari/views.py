@@ -1,17 +1,19 @@
 from django.shortcuts import render ,redirect,get_object_or_404,HttpResponse
 from .forms import *
 from users.models import *
+from main.views import site_ayarlari
 # Create your views here.
 def firma_ekleme(request):
+    content = site_ayarlari()
     form = firma_ekle(request.POST)
     v = vergi_dairesi.objects.all()
     faliyet_kace_kodu_modal = faliyet_bilgisi.objects.all()
     cvsgik = calisma_sosyal_guvenlik_is_kollari.objects.all()
     kayitli_firmalarim = firma.objects.filter(silinme_bilgisi = False,firma_muhasabecisi = request.user)
     sgkpersonelkanun = sgk_kanunlari.objects.all()
-    content = {"form":form,"vergidaireleri":v,
+    content.update({"form":form,"vergidaireleri":v,
                "faliyet_nace":faliyet_kace_kodu_modal,
-               "cvsgik":cvsgik,"firmalrim":kayitli_firmalarim,"sgkpersonelkanun":sgkpersonelkanun}
+               "cvsgik":cvsgik,"firmalrim":kayitli_firmalarim,"sgkpersonelkanun":sgkpersonelkanun})
     if request.method == "POST":
         tanitici_isim = request.POST.get("firmataniticiadi")
         firma_adi = request.POST.get("firmaunvanadi")
@@ -363,7 +365,7 @@ def firma_ekleme(request):
     
 
 def firma_gosterme(request,slug):
-    content = {}
+    content = site_ayarlari()
     kayitli_firmam = get_object_or_404(firma,silinme_bilgisi = False,firma_ozel_anahtar = slug)
     sube_bilgisi = sube.objects.filter(bagli_oldugu_firma =  kayitli_firmam).first()
     adres = adresler.objects.filter(id  = sube_bilgisi.adres_bilgisi.id ).first()
@@ -393,7 +395,7 @@ def firma_gosterme(request,slug):
 #yeni Şube
 
 def firmaya_sube_ekleme(request,slug):
-    
+    content = site_ayarlari()
     form = firma_ekle(request.POST)
     v = vergi_dairesi.objects.all()
     faliyet_kace_kodu_modal = faliyet_bilgisi.objects.all()
@@ -753,7 +755,7 @@ def firmaya_sube_ekleme(request,slug):
         return render (request,"firma_durumlari/yeni_sube_ekle.html",content)
 
 def firma_gosterme_subeli(request,slug,id):
-    content = {}
+    content = site_ayarlari()
     kayitli_firmam = get_object_or_404(firma,silinme_bilgisi = False,firma_ozel_anahtar = slug)
     sube_bilgisi = sube.objects.filter(bagli_oldugu_firma =  kayitli_firmam,id = id).first()
     adres = adresler.objects.filter(id  = sube_bilgisi.adres_bilgisi.id ).first()

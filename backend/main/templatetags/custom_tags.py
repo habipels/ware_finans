@@ -427,3 +427,12 @@ def tarih_yazdirma(a):
     if b[1] == "12":
         durum = str(b[0])+": ARALIK"
     return durum
+
+@register.simple_tag
+def silinen_firmalar(bilgi):
+    a = firma.objects.filter(firma_muhasabecisi = bilgi,silinme_bilgisi = True)
+    return a
+@register.simple_tag
+def silinen_subeler(bilgi):
+    a = sube.objects.filter(bagli_oldugu_firma__firma_muhasabecisi = bilgi,silinme_bilgisi = True)
+    return a

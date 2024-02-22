@@ -1,6 +1,6 @@
 {% extends "homebase.html" %}
 {% load static %}
-
+{% load custom_tags %}
 {% block content %}
 <form method="post">
 
@@ -40,10 +40,10 @@
         <a href="">Firma Bilgilerini Çıkar</a>
       </li>
       <li>
-         <a href="">Silinen Firmalar</a>
+         <a type="button" style="color: white;" data-bs-toggle="modal" data-bs-target="#silinenfirmalar">Silinen Firmalar</a>
       </li>
       <li>
-         <a href="">Silinen Şubeler</a>
+        <a type="button" style="color: white;" data-bs-toggle="modal" data-bs-target="#silinensubeler">Silinen Şubeler</a>
       </li>
     </ul>
   </div>
@@ -1794,4 +1794,89 @@
 </script>
 <script src="https://unpkg.com/popper.js/dist/umd/popper.min.js"></script>
 <script src="https://unpkg.com/bootstrap/dist/js/bootstrap.min.js"></script>  
+<!-- The Modal -->
+<div class="modal" id="silinenfirmalar">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Silinen Firmalar</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <table class="table">
+    <thead>
+      <tr>
+        <th>Firma Tanıtıcı Adı</th>
+        <th>Firma </th>
+        <th>Geri Getir</th>
+      </tr>
+    </thead>
+    {% silinen_firmalar request.user as silinenler %}
+    <tbody>
+    {% for bilgileri in silinenler %}
+      <tr>
+        <td>{{bilgileri.tanitici_isim}}</td>
+        <td>{{bilgileri.firma_unvani}} {{bilgileri.Firma_unvani2}} </td>
+        <td><a href="/{{bilgileri.firma_ozel_anahtar}}/kurtar/">Geri Getir</a></td>
+      </tr>
+    {% endfor %}
+      
+    </tbody>
+  </table>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">İptal</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<div class="modal" id="silinensubeler">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Silinen Şubeler</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <table class="table">
+    <thead>
+      <tr>
+        <th>Firma Tanıtıcı Adı</th>
+        <th>Şube Adı </th>
+        <th>Geri Getir</th>
+      </tr>
+    </thead>
+    {% silinen_subeler request.user as silinenler %}
+    <tbody>
+    {% for bilgileri in silinenler %}
+      <tr>
+        <td>{{bilgileri.bagli_oldugu_firma.tanitici_isim}}</td>
+        <td>{{bilgileri.sube_adi}} {{bilgileri.sube_unvani}} </td>
+        <td><a href="/{{bilgileri.id}}/subekurtar/">Geri Getir</a></td>
+      </tr>
+    {% endfor %}
+      
+    </tbody>
+  </table>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">İptal</button>
+      </div>
+
+    </div>
+  </div>
+</div>
 {% endblock content %}
