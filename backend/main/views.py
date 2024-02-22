@@ -6829,3 +6829,12 @@ def subeyi_geri_getir(request,slug):
     sube.objects.filter(id = slug).update(silinme_bilgisi = False)
     a = "/company/companysettings/"
     return redirect(a)
+
+
+
+def ticari_raporlar(request,slug):
+    content = site_ayarlari()
+    content["firmalarim"] = firma.objects.filter(silinme_bilgisi = False,firma_muhasabecisi = request.user)
+    content["firma"] = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)
+    content["subeleri"] =  sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug))
+    return render(request,"ticari_raporlar/raporlar.html",content)
