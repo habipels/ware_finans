@@ -6816,6 +6816,8 @@ def muhsgksayfasi(request,slug):
         madenruhsatbitistarihi = request.POST.get("madenruhsatbitistarihi")
         madenisyeriadresi = request.POST.get("madenisyeriadresi")
         #Yeraltı ve Yerüstü Maden İşletmeleri Bildirimi
+        #BİLDİRİM KAPSAMINDA BULUNAN İŞYERLERİNE İLİŞKİN BİLDİRİM (4691)
+        #BİLDİRİM KAPSAMINDA BULUNAN İŞYERLERİNE İLİŞKİN BİLDİRİM (4691)
     return render(request,"beyannameler/muhsgk.html",content)
 
 
