@@ -6832,6 +6832,14 @@ def muhsgksayfasi(request,slug):
         #BİLDİRİM KAPSAMINDA BULUNAN İŞYERLERİNE İLİŞKİN BİLDİRİM (4691)
         #BİLDİRİM KAPSAMINDA BULUNAN İŞYERLERİNİN ÇALIŞANLARINA İLİŞKİN BİLGİLER (4691)
         #BİLDİRİM KAPSAMINDA BULUNAN İŞYERLERİNİN ÇALIŞANLARINA İLİŞKİN BİLGİLER (4691)
+
+        #Bildirim Kapsamında  Bulunan İşyerlerine İlişkin Bilgiler (5746)
+        argeilkodu = request.POST.get("argeilkodu")
+        argevergidairesikodu = request.POST.get("argevergidairesikodu")
+        argeiscisaysi = request.POST.get("argeiscisaysi")
+        argeisyerissksicilno = request.POST.get("argeisyerissksicilno")
+        argeadresbilgisi = request.POST.get("argeadresbilgisi")
+        #Bildirim Kapsamında  Bulunan İşyerlerine İlişkin Bilgiler (5746)
     return render(request,"beyannameler/muhsgk.html",content)
 
 
