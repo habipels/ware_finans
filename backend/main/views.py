@@ -6840,6 +6840,18 @@ def muhsgksayfasi(request,slug):
         argeisyerissksicilno = request.POST.get("argeisyerissksicilno")
         argeadresbilgisi = request.POST.get("argeadresbilgisi")
         #Bildirim Kapsamında  Bulunan İşyerlerine İlişkin Bilgiler (5746)
+        #Terkin Edilecek Tutara İlişkin Bilgiler (5746)
+        terkinturu = request.POST.get("terkinturu")
+        terkinadisoyadi = request.POST.get("terkinadisoyadi")
+        terkintckimlikno = request.POST.get("terkintckimlikno")
+        terkintarihi = request.POST.get("terkintarihi")
+        terkinburtucrettoplami = request.POST.get("terkinburtucrettoplami")
+        terkinmatrahtutari = request.POST.get("terkinmatrahtutari")
+        terkinvergitutari = request.POST.get("terkinvergitutari")
+        terkinorani = request.POST.get("terkinorani")
+        #Terkin Edilecek Tutara İlişkin Bilgiler (5746)
+        #G.V.K. GEÇİCİ 72. MADDE KAPSAMINDA YAPILAN GELİR VERGİSİ TEVKİFAT TUTARLARINA İLİŞKİN BİLDİRİM
+        #G.V.K. GEÇİCİ 72. MADDE KAPSAMINDA YAPILAN GELİR VERGİSİ TEVKİFAT TUTARLARINA İLİŞKİN BİLDİRİM
     return render(request,"beyannameler/muhsgk.html",content)
 
 

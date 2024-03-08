@@ -561,6 +561,7 @@
           </table>
         </div>
       </div>
+      <hr>
       <h4 class="text-center" >AR-GE KAPSIMDA GELİR VERGİSİ STOPAJI TEŞVİKİNE İLİŞKİN BİLDİRİM</h4>
       <div class="container tablo" style="margin-top: 0px !important;">
         <input class="col-12 text-center" disabled="" value="BİLDİRİM KAPSAMINDA BULUNAN İŞYERLERİNİN ÇALIŞANLARINA İLİŞKİN BİLGİLER (4691)" type="text">
@@ -586,6 +587,86 @@
                 <td><input type="number" value="0" name="argeiscisaysi"></td>
                 <td><input type="text" name="argeisyerissksicilno"></td>
                 <td><input type="text" name="argeadresbilgisi"></td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <hr>
+      <div class="container tablo" style="margin-top: 0px !important;">
+        <input class="col-12 text-center" disabled="" value="Terkin Edilecek Tutara İlişkin Bilgiler (5746)" type="text">
+        <div class="table-responsive " style=" 
+        height: 200px;
+        overflow: auto;">
+          <table class="table table-bordered ">
+            <thead style="position: sticky;top: 0">
+              <tr>
+                <th class="text-center" style="min-width: 100px ;"></th>
+                <th class="text-center" style="min-width: 100px ;">ADI SOYADI</th>
+                <th class="text-center" style="min-width: 50px ;">ÇALIŞAN TC KİMLİK NO (a)</th>
+                <th class="text-center" style="min-width: 50px ;">İŞE BAŞLAMA TARİHİ (b)</th>
+                <th class="text-center" style="min-width: 50px ;">ÇALIŞMAYA İLİŞKİN BÜRÜT ÜCRET TOPLAMI (c)</th>
+                <th class="text-center" style="min-width: 200px ;">AR-GE VE YENİLİK FALİYETİ KAPSAMINDA ÇALIŞMAYA İLİŞKİN ÜCRET MATRAHI (**)(ç)</th>
+                <th class="text-center" style="min-width: 200px ;">AR-GE ,YENİLİK VEYA TASARIM FALİYETİ KAPSAMINDA ÇALIŞMAYA İLİŞKİN KESİLEN VERGİ TUTARI (d) (***)</th>
+                <th class="text-center" style="min-width: 50px ;">TERKİN ORANI (e)</th>
+                <th class="text-center" style="min-width: 200px ;">TERKİN EDİLECEK TUTAR (****) (f) = (d) X (e)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><select name="terkinturu" id="argeilkodu">
+                  <option value="Doktoralı Olanlar ile Desteklenecek Program Alanlarından Birinde Yüksek Lisanslı Olanlar (*****)">Doktoralı Olanlar ile Desteklenecek Program Alanlarından Birinde Yüksek Lisanslı Olanlar (*****)</option>
+                  <option value="Yüksek Lisanslı Olanlar ile Desteklenecek Program Alanlarından Birinde Lisanslı Olanlar (******)">Yüksek Lisanslı Olanlar ile Desteklenecek Program Alanlarından Birinde Lisanslı Olanlar (******)</option>
+                  <option value="Diğerleri">Diğerleri</option>
+                </select></td>
+                <td><input type="text" name="terkinadisoyadi"></td>
+                <td><input type="text" name="terkintckimlikno"></td>
+                <td><input type="date" name="terkintarihi"></td>
+                <td><input type="number" value="0" step="0.01" name="terkinburtucrettoplami"></td>
+                <td><input type="number" value="0" step="0.01" name="terkinmatrahtutari"></td>
+                <td><input type="number" value="0" step="0.01" name="terkinvergitutari"></td>
+                <td><input type="number" value="0" step="0.01"  name="terkinorani"></td>
+                <td></td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <hr>
+      <h4 class="text-center" >G.V.K. GEÇİCİ 72. MADDE KAPSAMINDA YAPILAN GELİR VERGİSİ TEVKİFAT TUTARLARINA İLİŞKİN BİLDİRİM</h4>
+      <div class="container tablo" style="margin-top: 0px !important;">
+        <input class="col-12 text-center" disabled="" value="G.V.K. GEÇİCİ 72. MADDE KAPSAMINDA YAPILAN GELİR VERGİSİ TEVKİFAT TUTARLARINA İLİŞKİN BİLDİRİM" type="text">
+        <div class="table-responsive " style=" 
+        height: 200px;
+        overflow: auto;">
+          <table class="table table-bordered ">
+            <thead style="position: sticky;top: 0">
+              <tr>
+                <th class="text-center" style="min-width: 100px ;">TC. KİMLİK NO</th>
+                <th class="text-center" style="min-width: 100px ;">ADI SOYADI</th>
+                <th class="text-center" style="min-width: 50px ;">SPOR DALI</th>
+                <th class="text-center" style="min-width: 50px ;">AMATÖR PROFESYONEL /(A)/(P)</th>
+                <th class="text-center" style="min-width: 50px ;">GELİR VERGİSİ MATRAHİ</th>
+                <th class="text-center" style="min-width: 200px ;">TEVKİFAT ORANI </th>
+                <th class="text-center" style="min-width: 200px ;">KESİLEN GELİR VERGİSİ</th>
+                <th class="text-center" style="min-width: 50px ;">İADEYE KONU OLAN VERGİ</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><select name="terkinturu" id="argeilkodu">
+                  <option value="Doktoralı Olanlar ile Desteklenecek Program Alanlarından Birinde Yüksek Lisanslı Olanlar (*****)">Doktoralı Olanlar ile Desteklenecek Program Alanlarından Birinde Yüksek Lisanslı Olanlar (*****)</option>
+                  <option value="Yüksek Lisanslı Olanlar ile Desteklenecek Program Alanlarından Birinde Lisanslı Olanlar (******)">Yüksek Lisanslı Olanlar ile Desteklenecek Program Alanlarından Birinde Lisanslı Olanlar (******)</option>
+                  <option value="Diğerleri">Diğerleri</option>
+                </select></td>
+                <td><input type="text" name="terkinadisoyadi"></td>
+                <td><input type="text" name="terkintckimlikno"></td>
+                <td><input type="date" name="terkintarihi"></td>
+                <td><input type="number" value="0" step="0.01" name="terkinburtucrettoplami"></td>
+                <td><input type="number" value="0" step="0.01" name="terkinmatrahtutari"></td>
+                <td><input type="number" value="0" step="0.01" name="terkinvergitutari"></td>
+                <td><input type="number" value="0" step="0.01"  name="terkinorani"></td>
+                <td></td>
                 </tr>
             </tbody>
           </table>
