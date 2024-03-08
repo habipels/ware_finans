@@ -6851,6 +6851,14 @@ def muhsgksayfasi(request,slug):
         terkinorani = request.POST.get("terkinorani")
         #Terkin Edilecek Tutara İlişkin Bilgiler (5746)
         #G.V.K. GEÇİCİ 72. MADDE KAPSAMINDA YAPILAN GELİR VERGİSİ TEVKİFAT TUTARLARINA İLİŞKİN BİLDİRİM
+        gvtckimlikno = request.POST.get("gvtckimlikno")
+        gvadisoyadi = request.POST.get("gvadisoyadi")
+        gvspordali = request.POST.get("gvspordali")
+        gvamatorprofesyonel = request.POST.get("gvamatorprofesyonel")
+        gvmatrahi = request.POST.get("gvmatrahi")
+        gvtevkifatorani = request.POST.get("gvtevkifatorani")
+        gvkesilengelirvergisi = request.POST.get("gvkesilengelirvergisi")
+        gviadeyekonuolanvergisi = request.POST.get("gviadeyekonuolanvergisi")
         #G.V.K. GEÇİCİ 72. MADDE KAPSAMINDA YAPILAN GELİR VERGİSİ TEVKİFAT TUTARLARINA İLİŞKİN BİLDİRİM
     return render(request,"beyannameler/muhsgk.html",content)
 
