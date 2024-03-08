@@ -6696,6 +6696,7 @@ def muhsgksayfasi(request,slug):
     content["kanuni_temsilci"] = beyanname_kanuni_temsilcisi.objects.filter(beyanname_bilgisi__sube_bilgisi = sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)).first()).last()
     content["beyannamegonderen"] = Beyannameyi_gonderen_bilgileri.objects.filter(beyanname_bilgisi__sube_bilgisi = sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)).first()).last()
     content["ymmbilgileri"]  =ymmbilgileri.objects.filter(beyanname_bilgisi__sube_bilgisi = sube.objects.filter(silinme_bilgisi = False,bagli_oldugu_firma = get_object_or_404(firma,silinme_bilgisi = False,firma_muhasabecisi = request.user,firma_ozel_anahtar = slug)).first()).last()
+    content["vergidairesi"] = vergi_dairesi.objects.all()
     tevk_600ler = []
     for i in range(601,628):
         tevk_600ler.append(str(i))
@@ -6817,7 +6818,20 @@ def muhsgksayfasi(request,slug):
         madenisyeriadresi = request.POST.get("madenisyeriadresi")
         #Yeraltı ve Yerüstü Maden İşletmeleri Bildirimi
         #BİLDİRİM KAPSAMINDA BULUNAN İŞYERLERİNE İLİŞKİN BİLDİRİM (4691)
+        maddekapsamindabildirimilsecimi = request.POST.get("maddekapsamindabildirimilsecimi")
+        maddekapsamindavergidairesi = request.POST.get("maddekapsamindavergidairesi")
+        maddekapsamindacalisansayisi = request.POST.get("maddekapsamindacalisansayisi")
+        maddekapsamindaunitekodu = request.POST.get("maddekapsamindaunitekodu")
+        maddekapsamindaeskiunitekodu = request.POST.get("maddekapsamindaeskiunitekodu")
+        maddekapsamindailkodu = request.POST.get("maddekapsamindailkodu")
+        maddekapsamindaisyerisiranosu = request.POST.get("maddekapsamindaisyerisiranosu")
+        maddekapsamindaaltisnumarasi = request.POST.get("maddekapsamindaaltisnumarasi")
+        maddekapsamindaisyerininadresi=request.POST.get("maddekapsamindaisyerininadresi")
+        maddekapsamindaprojekodu = request.POST.get("maddekapsamindaprojekodu")
+        maddekapsamindaisyeribulundugubolge = request.POST.get("maddekapsamindaisyeribulundugubolge")
         #BİLDİRİM KAPSAMINDA BULUNAN İŞYERLERİNE İLİŞKİN BİLDİRİM (4691)
+        #BİLDİRİM KAPSAMINDA BULUNAN İŞYERLERİNİN ÇALIŞANLARINA İLİŞKİN BİLGİLER (4691)
+        #BİLDİRİM KAPSAMINDA BULUNAN İŞYERLERİNİN ÇALIŞANLARINA İLİŞKİN BİLGİLER (4691)
     return render(request,"beyannameler/muhsgk.html",content)
 
 
