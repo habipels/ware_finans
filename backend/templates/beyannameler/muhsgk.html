@@ -42,39 +42,7 @@
       
     </ul>
   </div>
-  <div class="container">
-    <div class="row">
-        <h1 class="text-center" >MUHTASAR VE PRİM HİZMET BEYANNAMESİ  1003</h1>
-        <h3 class="text-center">(GVK'nın 94 üncü ve Geçici 67 nci Maddeleri, KVK'nın 15 inci ve 30 uncu Maddeleri ile Damga Vergisi Kanununun 19 uncu ve 23 üncü Maddelerine Göre Yapılan Tevkifatlar ile 5510 Sayılı Kanunun 4/1-a Maddesi Kapsamındaki Prim ve Hizmet Bildirimi için)</h3>
-        <div class="col-6">KDV AYI : <select name="aysecimi" id="">
-          <option value="OCAK">OCAK</option>
-          <option value="ŞUBAT">ŞUBAT</option>
-          <option value="MART">MART</option>
-          <option value="NİSAN">NİSAN</option>
-          <option value="MAYIS">MAYIS</option>
-          <option value="HAZİRAN">HAZİRAN</option>
-          <option value="TEMMUZ">TEMMUZ</option>
-          <option value="AĞUSTOS">AĞUSTOS</option>
-          <option value="EYLÜL">EYLÜL</option>
-          <option value="EKİM">EKİM</option>
-          <option value="KASIM">KASIM</option>
-          <option value="ARALIK">ARALIK</option>
-        </select></div>
-        <div class="col-6"><label for="firmalar">FİRMALARIM
-          <select  onchange="if (this.value) window.location.href=this.value" style="box-sizing: content-box;" id="firmalar">
-            <option value="/{{firma.firma_ozel_anahtar}}/kdv4beyannamesi/">{{firma.firma_unvani}} {{firma.Firma_unvani2}} ({{firma.tanitici_isim}})</option>
-            {% for i in firmalarim %}
-             {% if firma.id == i.id %}
-             
-             {% else %}
-             <option value="/{{i.firma_ozel_anahtar}}/kdv4beyannamesi/">{{i.firma_unvani}} {{i.Firma_unvani2}} ({{i.tanitici_isim}})</option>
-             {% endif %}
-              
-            {% endfor %}
-          </select> </label></div>
-        <hr style="border: 3px solid black !important;" >
-    </div>
-</div>
+
 <div class="container">
     <div class="row">
         <h3 class="text-center" >Genel Bilgiler</h3>
@@ -678,10 +646,125 @@
         </div>
       </div>
       <hr>
+      <h4 class="text-center" >6550 Madde Kapsamına İlişkin Bildirimi</h4>
+      <div class="container tablo" style="margin-top: 0px !important;">
+        <input class="col-12 text-center" disabled="" value="BİLDİRİM KAPSAMINDA BULUNAN İŞYERLERİNE İLİŞKİN BİLDİRİM (6550)" type="text">
+        <div class="table-responsive " style=" 
+        height: 200px;
+        overflow: auto;">
+          <table class="table table-bordered ">
+            <thead style="position: sticky;top: 0">
+              <tr>
+                <th class="text-center" style="min-width: 100px ;">MERKEZ ADI</th>
+                <th class="text-center" style="min-width: 100px ;">PROJE KODU</th>
+                <th class="text-center" style="min-width: 50px ;">PROJENİN BAŞLANGIÇ TARİHİ</th>
+                <th class="text-center" style="min-width: 50px ;">PROJENİN BİTİŞ TARİHİ</th>
+                <th class="text-center" style="min-width: 50px ;">SGK İŞYERİ NO </th>
+                <th class="text-center" style="min-width: 50px ;">İŞYERİNİN ADRESİ</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><input type="text" name="merkezadi"></td>
+                <td><input type="text" name="projekodu"></td>
+                <td><input type="date" name="projebaslangictarihi"></td>
+                <td><input type="date" name="projebitistarihi"></td>
+                <td><input type="text" name="sgkisyerino"></td>
+                <td><input type="text" name="isyerininadi"></td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="container tablo" style="margin-top: 0px !important;">
+        <input class="col-12 text-center" disabled="" value="BİLDİRİM KAPSAMINDA BULUNAN İŞYERLERİNİN ÇALIŞANLARINA İLİŞKİN BİLGİLER (6550)" type="text">
+        <div class="table-responsive " style=" 
+        height: 200px;
+        overflow: auto;">
+          <table class="table table-bordered ">
+            <thead style="position: sticky;top: 0">
+              <tr>
+                <th class="text-center" style="min-width: 100px ;">PROJE KODU</th>
+                <th class="text-center" style="min-width: 100px ;">PERSONEL T.C. KİMLİK NO </th>
+                <th class="text-center" style="min-width: 50px ;">PROJE KAPSAMINDA ÇALIŞAN PERSONELİN ÇALIŞTIĞI SÜRE</th>
+                <th class="text-center" style="min-width: 50px ;">TOPLAM ÜCRET</th>
+                <th class="text-center" style="min-width: 50px ;">ELDE EDİLEN ÜCRET</th>
+                <th class="text-center" style="min-width: 50px ;">YASA KAPSAMINDA ÜCRETTEN KESİLMEYEN GELİR VERGİSİ</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><input type="text" name="projekodubilgisi"></td>
+                <td><input type="text" name="projekapsamitckimlikno"></td>
+                <td><input type="number" value="0" name="projekapsamicalisanpersonelsuresi"></td>
+                <td><input type="number" step="0.01" value="0" name="toplamucret"></td>
+                <td><input type="number" step="0.01" value="0" name="eldeedilenucret"></td>
+                <td><input type="number" step="0.01" value="0" name="yasakapsamindakesilmeyengelirvergisi"></td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <hr>
       <hr style="border: 2px solid black !important;" >
   </div>
 </div>
-
+<div class="container">
+  <div class="row">
+      <h3 class="text-center" >SGK BİLDİRİMLERİ</h3>
+      <hr>
+      <div class="container tablo" style="margin-top: 0px !important;">
+        <input class="col-12 text-center" disabled="" value="SİGORTALI ÇALIŞAN BİLGİLERİ (KAPSAR NİTELİKLİ)" type="text">
+        <div class="table-responsive " style=" 
+        height: 200px;
+        overflow: auto;">
+          <table class="table table-bordered ">
+            <thead style="position: sticky;top: 0">
+              <tr>
+                <th class="text-center" style="min-width: 100px ;">BELGE TÜRÜ</th>
+                <th class="text-center" style="min-width: 100px ;">KANUN NO</th>
+                <th class="text-center" style="min-width: 100px ;">YENİ ÜNİTE KODU</th>
+                <th class="text-center" style="min-width: 100px ;">ESKİ ÜNİTE KODU</th>
+                <th class="text-center" style="min-width: 100px ;">İŞYERİ SIRA NO </th>
+                <th class="text-center" style="min-width: 100px ;">İL KODU</th>
+                <th class="text-center" style="min-width: 100px ;">ALT İŞVEREN NUMARASI</th>
+                <th class="text-center" style="min-width: 100px ;">S.SİCİL NO</th>
+                <th class="text-center" style="min-width: 100px ;">T.C. KİMLİK NO </th>
+                <th class="text-center" style="min-width: 100px ;">SİGORTALI ADI</th>
+                <th class="text-center" style="min-width: 100px ;">SİGORTALI SOYADI</th>
+                <th class="text-center" style="min-width: 100px ;">PRİM GÜNÜ</th>
+                <th class="text-center" style="min-width: 100px ;">UZAKTAN ÇALIŞMA GÜNÜ</th>
+                <th class="text-center" style="min-width: 100px ;">ÜCRET</th>
+                <th class="text-center" style="min-width: 100px ;">EK ÖDEME</th>
+                <th class="text-center" style="min-width: 100px ;">G.GÜNÜ</th>
+                <th class="text-center" style="min-width: 100px ;">İ. ÇIKIŞ NO</th>
+                <th class="text-center" style="min-width: 100px ;">MESLEK KODU</th>
+                <th class="text-center" style="min-width: 100px ;">E. GÜN SAYISI</th>
+                <th class="text-center" style="min-width: 100px ;">E. GÜN NEDENİ</th>
+                <th class="text-center" style="min-width: 100px ;">RAPORLU OLDUĞU GÜNDE ÇALIŞMADI (E)</th>
+                <th class="text-center" style="min-width: 100px ;">TAHAKUK NEDENİ</th>
+                <th class="text-center" style="min-width: 100px ;">HİZMET DÖNEM AYI</th>
+                <th class="text-center" style="min-width: 100px ;">HİZMET DÖNEM YILI</th>
+                <th class="text-center" style="min-width: 100px ;">GELİR VERGİDEN MUAF MI ?</th>
+                <th class="text-center" style="min-width: 100px ;">GELİR VERGİSİ MATRAHI</th>
+                <th class="text-center" style="min-width: 100px ;">G.V. ENGENLİK OLAYI</th>
+                <th class="text-center" style="min-width: 100px ;">HESAPLANAN GELİR VERGİSİ</th>
+                <th class="text-center" style="min-width: 100px ;">ASGARİ ÜCRET İSTİSNA G.V TUTARI </th>
+                <th class="text-center" style="min-width: 100px ;">G.V KESİNTİSİ</th>
+                <th class="text-center" style="min-width: 100px ;">ASGARİ ÜCRET İSTİSNA D.V TUTARI</th>
+                <th class="text-center" style="min-width: 100px ;">DAMGA VERGİSİ KESİNTİSİ</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <hr style="border: 2px solid black !important;" >
+  </div>
+</div>
 <div class="container">
   <div class="row">
       <h3 class="text-center" >E-Beyanname Düzenlemek İçin Gerekli Bilgiler</h3>

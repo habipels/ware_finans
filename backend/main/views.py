@@ -6860,6 +6860,23 @@ def muhsgksayfasi(request,slug):
         gvkesilengelirvergisi = request.POST.get("gvkesilengelirvergisi")
         gviadeyekonuolanvergisi = request.POST.get("gviadeyekonuolanvergisi")
         #G.V.K. GEÇİCİ 72. MADDE KAPSAMINDA YAPILAN GELİR VERGİSİ TEVKİFAT TUTARLARINA İLİŞKİN BİLDİRİM
+        #BİLDİRİM KAPSAMINDA BULUNAN İŞYERLERİNE İLİŞKİN BİLDİRİM (6550)
+        merkezadi = request.POST.get("merkezadi")
+        projekodu = request.POST.get("projekodu")
+        projebaslangictarihi = request.POST.get("projebaslangictarihi")
+        projebitistarihi = request.POST.get("projebitistarihi")
+        sgkisyerino = request.POST.get("sgkisyerino")
+        isyerininadi = request.POST.get("isyerininadi")
+        #BİLDİRİM KAPSAMINDA BULUNAN İŞYERLERİNE İLİŞKİN BİLDİRİM (6550)
+
+        #BİLDİRİM KAPSAMINDA BULUNAN İŞYERLERİNİN ÇALIŞANLARINA İLİŞKİN BİLGİLER (6550)
+        projekodubilgisi = request.POST.get("projekodubilgisi")
+        projekapsamitckimlikno = request.POST.get("projekapsamitckimlikno")
+        projekapsamicalisanpersonelsuresi = request.POST.get("projekapsamicalisanpersonelsuresi")
+        toplamucret = request.POST.get("toplamucret")
+        eldeedilenucret = request.POST.get("eldeedilenucret")
+        yasakapsamindakesilmeyengelirvergisi = request.POST.get("yasakapsamindakesilmeyengelirvergisi")
+        #BİLDİRİM KAPSAMINDA BULUNAN İŞYERLERİNİN ÇALIŞANLARINA İLİŞKİN BİLGİLER (6550)
     return render(request,"beyannameler/muhsgk.html",content)
 
 
