@@ -1,0 +1,2434 @@
+{% extends "homebase.html" %}
+{% block content %}
+<style>
+  #kur {
+    display: none;
+  }
+  .yeniform {
+    display: none;
+  }
+  .ekleYeniSatirvergiekleme{
+    display: none;
+  }
+  .kurumortaklariekle{
+    display: none;
+  }
+</style>
+  <!--Header-->
+  <div class="icon-bar">
+
+    <a href="/{{firma.firma_ozel_anahtar}}/yenikasakarti/">Kaydet</a>
+    <a style="color: white;" onclick="showConfirmationPopup()"> Sil</a>
+    <a href="/{{firma.firma_ozel_anahtar}}/muavin/" >Muavin</a>
+    <a href="/{{firma.firma_ozel_anahtar}}/mizan/" >Mizan</a>
+    <a href="" style="color:red;">Çıkış Yap (ESC)</a>
+
+  </div>
+  <div class="d-menu">
+    <ul>
+      <li>
+       <a href="" title="">Beyanname Hazırla</a>
+      </li>
+      <li>
+        <a href="" title="">KDV Kontrol</a>
+
+      </li>
+       <li>
+       <a href="" title="">XML Oluştur</a>
+      </li>
+      <li>
+       <a href="" title="">XML Sil</a>
+      </li>
+      <li>
+       <a href="" title="">Son Kontrol</a>
+      </li>
+        <li>
+       <a href="" title="">Yazdır</a>
+      </li>
+      
+    </ul>
+  </div>
+  <div class="container">
+    <div class="row">
+        <h1 class="text-center" >YILLIK GELİR VERGİSİ BEYANNAMESİ 1001A</h1>
+        <h3 class="text-center"></h3>
+        <div class="col-6">KDV AYI : <select name="aysecimi" id="">
+          <option value="OCAK">OCAK</option>
+          <option value="ŞUBAT">ŞUBAT</option>
+          <option value="MART">MART</option>
+          <option value="NİSAN">NİSAN</option>
+          <option value="MAYIS">MAYIS</option>
+          <option value="HAZİRAN">HAZİRAN</option>
+          <option value="TEMMUZ">TEMMUZ</option>
+          <option value="AĞUSTOS">AĞUSTOS</option>
+          <option value="EYLÜL">EYLÜL</option>
+          <option value="EKİM">EKİM</option>
+          <option value="KASIM">KASIM</option>
+          <option value="ARALIK">ARALIK</option>
+        </select></div>
+        <div class="col-6"><label for="firmalar">FİRMALARIM
+          <select  onchange="if (this.value) window.location.href=this.value" style="box-sizing: content-box;" id="firmalar">
+            <option value="/{{firma.firma_ozel_anahtar}}/kdv1beyannamesi/">{{firma.firma_unvani}} {{firma.Firma_unvani2}} ({{firma.tanitici_isim}})</option>
+            {% for i in firmalarim %}
+             {% if firma.id == i.id %}
+             
+             {% else %}
+             <option value="/{{i.firma_ozel_anahtar}}/kdv1beyannamesi/">{{i.firma_unvani}} {{i.Firma_unvani2}} ({{i.tanitici_isim}})</option>
+             {% endif %}
+              
+            {% endfor %}
+          </select> </label></div>
+        <hr style="border: 3px solid black !important;" >
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <h3 class="text-center" >Genel Bilgiler</h3>
+        <hr>
+        <div class="col-6"><p><b>Yılı : <script>document.write(new Date().getFullYear())</script></b></p>
+            <p><b>Vergi Dairesi Kodu : {{subeleri.vergi_dairesi_adi.vergi_dairesi_kodu}}</b></p>
+            <hr>
+            <h3 class="text-center" >Dar Mükellef Temsilcisinin</h3>
+        <p><b>Vergi Kimlik Numarası (T.C Kimlik No) : {% if dar_mukellef.kurumlarvergiveyatckimlikno %}{{dar_mukellef.kurumlarvergiveyatckimlikno}}{% endif %} </b></p>
+        <p><b>Vergi Kimlik Numarası  : {% if dar_mukellef.kurumlarvergikimlikno %}{{dar_mukellef.kurumlarvergikimlikno}}{% endif %} </b></p>
+        <p><b>Soyadi (Unvan)  : {% if dar_mukellef.sube_bilgisi.bagli_oldugu_firma.Firma_unvani2 %}{{dar_mukellef.sube_bilgisi.bagli_oldugu_firma.Firma_unvani2}}{% endif %} </b></p>
+        <p><b>Adı (Unvan Devamı)  : {% if dar_mukellef.sube_bilgisi.bagli_oldugu_firma.firma_unvani %}{{dar_mukellef.sube_bilgisi.bagli_oldugu_firma.firma_unvani}}{% endif %} </b></p>
+        <p><b>Ticaret Sicil No  : {% if faliyet.kurumlarticaretsicilno %}{{faliyet.kurumlarticaretsicilno}}{% endif %} </b></p>
+        <p><b>E-Posta Adresi  : {% if dar_mukellef.Kurumlarepostaadresi %}{{dar_mukellef.Kurumlarepostaadresi}}{% endif %} </b></p>
+        <p><b>İrtibat Telefon No  : {% if dar_mukellef.kurumlarirtibatnumarasi %}{{dar_mukellef.kurumlarirtibatnumarasi}}{% endif %} </b></p>
+          </div>
+        <div class="col-6">
+            <p><b>Vergi Kimlik Numarası (T.C Kimlik No) : {% if subeleri.sahis_ise_tc %}{{subeleri.sahis_ise_tc}}{% endif %} </b></p>
+            <p><b>Vergi Kimlik Numarası  : {% if subeleri.vergi_numarasi %}{{subeleri.vergi_numarasi}}{% endif %} </b></p>
+            <p><b>Soyadi (Unvan)  : {% if subeleri.bagli_oldugu_firma.Firma_unvani2 %}{{subeleri.bagli_oldugu_firma.Firma_unvani2}}{% endif %} </b></p>
+            <p><b>Adı (Unvan Devamı)  : {% if subeleri.bagli_oldugu_firma.firma_unvani %}{{subeleri.bagli_oldugu_firma.firma_unvani}}{% endif %} </b></p>
+            <p><b>Ticaret Sicil No  : {% if faliyet.ticaret_sicil_no %}{{faliyet.ticaret_sicil_no}}{% endif %} </b></p>
+            <p><b>E-Posta Adresi  : {% if subeleri.email_adresi %}{{subeleri.email_adresi}}{% endif %} </b></p>
+            <p><b>İrtibat Telefon No  : {% if subeleri.telefon_numarasi %}{{subeleri.telefon_numarasi}}{% endif %} </b></p>
+        </div>
+        
+        <hr style="border: 2px solid black !important;" >
+    </div>
+</div>
+<div class="container">
+  <div class="row">
+      <h3 class="text-center" >Kuruma Bağlı İşleyiş Ve Geçmiş Yıl Zararları</h3>
+      <hr>
+      <div class="col-6">
+        <div class="row">
+          <div class="col-12"><h4 class="text-center">Kuruma Bağlı İşyerlerinin Türü ve Sayısı</h4></div>
+        <div class="col-8"><b>Türü</b> </div>
+        <div class="col-4"><b>Sayısı</b> </div>
+        <div class="col-8">Şube</div>
+        <div class="col-4"><input type="text" value="{% if dar_mukellef.kurumlarsube %}{{dar_mukellef.kurumlarsube}}{% endif %}" name="sube"></div>
+        <div class="col-8">Çıkış Yeri</div>
+        <div class="col-4"><input type="text" value="{% if dar_mukellef.cikisyeri %}{{dar_mukellef.cikisyeri}}{% endif %}" name="cikisyeri"></div>
+        <div class="col-8">Ajanlık</div>
+        <div class="col-4"><input type="text" value="{% if dar_mukellef.kurumlarajanlik %}{{dar_mukellef.kurumlarajanlik}}{% endif %}" name="ajanlik"></div>
+        <div class="col-8">İmalat Yeri</div>
+        <div class="col-4"><input type="text" value="{% if dar_mukellef.kurmlarimalatyeri %}{{dar_mukellef.kurmlarimalatyeri}}{% endif %}" name="imalatyeri"></div>
+        <div class="col-8">Satış Yeri</div>
+        <div class="col-4"><input type="text" value="{% if dar_mukellef.kurumlarsatisyeri %}{{dar_mukellef.kurumlarsatisyeri}}{% endif %}" name="satisyeri"></div>
+        <div class="col-8">Sair</div>
+        <div class="col-4"><input type="text" value="{% if dar_mukellef.kurumlarsair %}{{dar_mukellef.kurumlarsair}}{% endif %}" name="sair"></div>
+        <div class="col-8">Toplam</div>
+        <div class="col-4"><input type="text" value="" name="toplam"></div>
+        <p style="color: red;" >Not: Beyanname Hazırla ile Geçmiş Yıl Zararlarına otomatik olarak gelen rakamlar, ilgili yılın 591 hesabının açılış ve kapanış fişleri hariç BORÇ tutarındaki toplam rakamdır.</p>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="row">
+          <h3 class="text-center" >Geçmiş Yıl Zararları</h3>
+          <div class="col-4">Yıl</div>
+          <div class="col-4">Tip</div>
+          <div class="col-4">Zarar</div>
+          <div class="col-4">2016</div>
+          <div class="col-4">Istisnadan Kaynaklanan Zararlar</div>
+          <div class="col-4"><input type="number" value="0" name="istisnazarari2016" step="0.01"></div>
+          <hr>
+          <div class="col-4">2016</div>
+          <div class="col-4">Diğer Zararlar</div>
+          <div class="col-4"><input type="number" value="0" name="digerzararlar2016" step="0.01"></div>
+          <hr>
+          <div class="col-4">2017</div>
+          <div class="col-4">Istisnadan Kaynaklanan Zararlar</div>
+          <div class="col-4"><input type="number" value="0" name="istisnazarari2017" step="0.01"></div>
+          <hr>
+          <div class="col-4">2017</div>
+          <div class="col-4">Diğer Zararlar</div>
+          <div class="col-4"><input type="number" value="0" name="digerzararlar2017" step="0.01"></div>
+          <hr>
+          <div class="col-4">2018</div>
+          <div class="col-4">Istisnadan Kaynaklanan Zararlar</div>
+          <div class="col-4"><input type="number" value="0" name="istisnazarari2018" step="0.01"></div>
+          <hr>
+          <div class="col-4">2018</div>
+          <div class="col-4">Diğer Zararlar</div>
+          <div class="col-4"><input type="number" value="0" name="digerzararlar2018" step="0.01"></div>
+          <hr>
+          <div class="col-4">2019</div>
+          <div class="col-4">Istisnadan Kaynaklanan Zararlar</div>
+          <div class="col-4"><input type="number" value="0" name="istisnazarari2019" step="0.01"></div>
+          <hr>
+          <div class="col-4">2019</div>
+          <div class="col-4">Diğer Zararlar</div>
+          <div class="col-4"><input type="number" value="0" name="digerzararlar2019" step="0.01"></div>
+          <hr>
+          <div class="col-4">2020</div>
+          <div class="col-4">Istisnadan Kaynaklanan Zararlar</div>
+          <div class="col-4"><input type="number" value="0" name="istisnazarari2020" step="0.01"></div>
+          <hr>
+          <div class="col-4">2020</div>
+          <div class="col-4">Diğer Zararlar</div>
+          <div class="col-4"><input type="number" value="0" name="digerzararlar2020" step="0.01"></div>
+          <hr>
+          <div class="col-4"></div>
+          <div class="col-4">Toplam</div>
+          <div class="col-4"><input type="number" value="0" name="zararlartoplam" step="0.01"></div>
+        </div>
+      </div>
+      <hr style="border: 2px solid black !important;" >
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+      <h3 class="text-center" >KAZANÇ VE İLAVELER</h3>
+      <hr>
+      <div class="container tablo" style="margin-top: 0px !important;">
+        <input class="col-12" disabled value="" type="text">
+        <div class="table-responsive " style=" 
+        height: 200px;
+        overflow: auto;">
+          <table class="table table-bordered ">
+            <thead style="position: sticky;top: 0">
+              <tr>
+                <th class="text-center" style="min-width: 100px ;"></th>
+                <th class="text-center" style="min-width: 50px ;">Zarar</th>
+                <th class="text-center" style="min-width: 150px ;">Kar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr >
+                <td><p>Ticari Bilanço Kar veya Zarar</p>
+                  <input  type="text" hidden value="Ticari Bilanço Kar veya Zarar" name="ticaribilanco"></td>
+                <td><input  type="number" step="0.01" value="0" name="ticaribilancozarar"></td>
+                <td><input  type="number" step="0.01" value="0" name="ticaribilancokar"></td>
+              </tr>
+              <tr >
+                <td><p>6491 sayli Tork Petrol Kanununun Mad. 12/5 Kapsamında itfa Payı Olarak Addolanan Gelirler</p>
+                  <input  type="text" hidden value="6491 sayli Tork Petrol Kanununun Mad. 12/5 Kapsamında itfa Payı Olarak Addolanan Gelirler" name="addolananagelir"></td>
+                <td></td>
+                <td><input  type="number" step="0.01" value="0" name="addolananagelirkar"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <hr>
+      <div class="container tablo" style="margin-top: 0px !important;">
+        <input class="col-12 text-center" disabled value="İLAVELER" type="text">
+        <div class="table-responsive " style=" 
+        height: 200px;
+        overflow: auto;">
+          <table class="table table-bordered ">
+            <thead style="position: sticky;top: 0">
+              <tr>
+                <th class="text-center" style="min-width: 100px ;">Türü</th>
+                <th class="text-center" style="min-width: 50px ;">Tutarı</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr >
+                <td><p>Kanunen Kabul Edilmeyen Giderier</p>
+                  <input  type="text" hidden value="Kanunen Kabul Edilmeyen Giderier" name="ilaveler1"></td>
+                
+                <td><input  type="number" step="0.01" value="0" name="ilavelertutar1"></td>
+              </tr>
+              <tr >
+                <td><p>Önceki Yıl Ayrıran Finansman Fonu</p>
+                  <input  type="text" hidden value="Önceki Yıl Ayrıran Finansman Fonu" name="ilaveler2"></td>
+                
+                <td><input  type="number" step="0.01" value="0" name="ilavelertutar2"></td>
+              </tr>
+              <tr >
+                <td><p>Toplam</p>
+                  <input  type="text" hidden value="Toplam" name="ilavelertoplambilgisi"></td>
+                
+                <td><span class="ilavelertoplam">0.0</span><input  id="ilavelertoplam" type="number" step="0.01" hidden value="0" name="ilavelertoplam"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="container tablo" style="margin-top: 0px !important;">
+        <input class="col-12 text-center" disabled value="ZARAR OLSA DAHİ İNDİRİLECEK İSTİSNA VE İNDİRİMLER" type="text">
+        <div class="table-responsive " style=" 
+        height: 200px;
+        overflow: auto;">
+          <table class="table table-bordered ">
+            <thead style="position: sticky;top: 0">
+              <tr>
+                <th class="text-center" style="min-width: 100px ;">Türü</th>
+                <th class="text-center" style="min-width: 100px ;">Açıklama</th>
+                <th class="text-center" style="min-width: 50px ;">Tutarı</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for i in bilgi1 %}
+              <tr >
+                <td><p>{{i.icerik}}</p>
+                  <input  type="text" hidden value="{{i.icerik}}" name="istisnaindirim1"></td>
+                <td></td>
+                <td><input  type="number" step="0.01" value="0" name="istisnaindirimtutar1"></td>
+              </tr>
+            <tr>
+              {% endfor %}
+              <td><p>Toplam</p>
+                <input  type="text" hidden value="Toplam" name="istisnaindirimtutartoplambilgisi"></td>
+              <td></td>
+              <td> <span class="istisnaindirimtutartoplam">0.0</span><input  type="number" hidden step="0.01" value="0" id="istisnaindirimtutartoplam" name="istisnaindirimtutartoplam"></td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="container tablo" style="margin-top: 0px !important;">
+        <input class="col-12 text-center" disabled value="ZARAR OLSA DAHİ İNDİRİLECEK İSTİSNA VE İNDİRİMLER" type="text">
+        <div class="table-responsive " style=" 
+        height: 370px;
+        overflow: auto;">
+          <table class="table table-bordered ">
+            <thead style="position: sticky;top: 0">
+              <tr>
+                <th class="text-center" style="min-width: 100px ;"></th>
+                <th class="text-center" style="min-width: 100px ;"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr >
+                <td><p>Kar ve İlaveler Toplamı</p>
+                  <input  type="text" hidden value="Kar ve İlaveler Toplamı" name="karilavetoplami"></td>
+                <td><span class="karilavetoplamitutri" >0.0</span> <input hidden id="karilavetoplamitutri"  type="number" step="0.01" value="0" name="karilavetoplamitutri"></td>
+              </tr>
+              <tr >
+                <td><p>Cari Yıla Ait Zarar, İstisna ve İndirimler Toplamı</p>
+                  <input  type="text" hidden value="Cari Yıla Ait Zarar, İstisna ve İndirimler Toplamı" name="cariyilaiatistisnaindirim"></td>
+                <td><span class="cariyilaiatistisnaindirimtutari" >0.0</span> <input hidden id="cariyilaiatistisnaindirimtutari"  type="number" step="0.01" value="0" name="cariyilaiatistisnaindirimtutari"></td>
+              </tr>
+              <tr >
+                <td><p>ZARAR</p>
+                  <input  type="text" hidden value="ZARAR" name="zararbilgisi"></td>
+                <td><span class="zararbilgisitutari" >0.0</span> <input hidden id="zararbilgisitutari"  type="number" step="0.01" value="0" name="zararbilgisitutari"></td>
+              </tr>
+              <tr >
+                <td><p>KAR</p>
+                  <input  type="text" hidden value="KAR" name="karbilgisi"></td>
+                <td><span class="karbilgisitutari" >0.0</span> <input hidden id="karbilgisitutari"  type="number" step="0.01" value="0" name="karbilgisitutari"></td>
+              </tr>
+              <tr >
+                <td><p>İstisnadan Kaynaklanan Geçmış Yi Zararları</p>
+                  <input  type="text" hidden value="İstisnadan Kaynaklanan Geçmış Yi Zararları" name="istisnadanyilzararlari"></td>
+                <td><span class="istisnadanyilzararlaritutari" >0.0</span> <input hidden id="istisnadanyilzararlaritutari"  type="number" step="0.01" value="0" name="istisnadanyilzararlaritutari"></td>
+              </tr>
+              <tr >
+                <td><p>Mahsup Edilecek Toplam Gecmiş Yıl Zararları</p>
+                  <input  type="text" hidden value="Mahsup Edilecek Toplam Gecmiş Yıl Zararları" name="mahsupedilecekgrcmisyilzararlari"></td>
+                <td><span class="mahsupedilecekgrcmisyilzararlaritutari" >0.0</span> <input hidden id="mahsupedilecekgrcmisyilzararlaritutari"  type="number" step="0.01" value="0" name="mahsupedilecekgrcmisyilzararlaritutari"></td>
+              </tr>
+              <tr >
+                <td><p>İndrime Esas Tutar</p>
+                  <input  type="text" hidden value="İndrime Esas Tutar" name="indirimesas"></td>
+                <td><span class="indirimesastutari" >0.0</span> <input hidden id="indirimesastutari"  type="number" step="0.01" value="0" name="indirimesastutari"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="container tablo" style="margin-top: 0px !important;">
+        <input class="col-12 text-center" disabled value="KAZANCIN BULUNMASI HALİNDE İNDİRİLECEK İSTİSNA VE İNDİRİMLER" type="text">
+        <div class="table-responsive " style=" 
+        height: 200px;
+        overflow: auto;">
+          <table class="table table-bordered ">
+            <thead style="position: sticky;top: 0">
+              <tr>
+                <th class="text-center" style="min-width: 100px ;">Türü</th>
+                <th class="text-center" style="min-width: 100px ;">Açıklama</th>
+                <th class="text-center" style="min-width: 50px ;">Tutarı</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for i in bilgi2 %}
+              <tr >
+                <td><p>{{i.icerik}}</p>
+                  <input  type="text" hidden value="{{i.icerik}}" name="kazancindirimleri"></td>
+                <td></td>
+                <td><input  type="number" step="0.01" value="0" name="kazancindirimleritutar"></td>
+              </tr>
+            <tr>
+              {% endfor %}
+              <td><p>Toplam</p>
+                <input  type="text" hidden value="Toplam" name="kazancindirimleritopam"></td>
+              <td></td>
+              <td> <span class="kazancindirimleritopamtutar">0.0</span><input  type="number" hidden step="0.01" value="0" id="kazancindirimleritopamtutar" name="kazancindirimleritopamtutar"></td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <hr style="border: 2px solid black !important;" >
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+      <h3 class="text-center" >VERGİ BİLDİRİMİ</h3>
+      <hr>
+      <div class="container tablo" style="margin-top: 0px !important;">
+        <input class="col-12" disabled value="" type="text">
+        <div class="table-responsive " style=" 
+        height: 400px;
+        overflow: auto;">
+          <table class="table table-bordered ">
+            <thead style="position: sticky;top: 0">
+              <tr>
+                <th class="text-center" style="min-width: 50px ;"></th>
+                <th class="text-center" style="min-width: 150px ;"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr >
+                <td><p>Dönem Safi Kurum Kazancı</p>
+                  <input  type="text" hidden value="Dönem Safi Kurum Kazancı" name="vergibildiirmibilgi1"></td>
+                <td><input  type="number" step="0.01" value="0" name="vergibildiirmitutar1"></td>
+              </tr>
+              <tr >
+                <td><p>KVK'nın 32/6 Mad. kapsamında en az %20 oranında ve ilk defa halka arz edilen bir şirketmisiniz?</p>
+                  <input  type="text" hidden value="KVK'nın 32/6 Mad. kapsamında en az %20 oranında ve ilk defa halka arz edilen bir şirketmisiniz?" name="vergibildiirmibilgi2"></td>
+                <td><input type="radio" id="html" name="fav_language" value="EVET">
+                <label for="html">EVET</label>
+                <input type="radio" id="css" name="fav_language" value="HAYIR">
+                <label for="css">HAYIR</label></td>
+              </tr>
+              <tr >
+                <td><p>KVK'nın 32/A Mad. Kapsamında İndirimli Kurumlar Vergisine Tabi Matrah</p>
+                  <input  type="text" hidden value="KVK'nın 32/A Mad. Kapsamında İndirimli Kurumlar Vergisine Tabi Matrah" name="vergibildiirmibilgi3"></td>
+                <td><input  type="number" step="0.01" value="0" name="vergibildiirmitutar3"></td>
+              </tr>
+              <tr >
+                <td><p>KVK'nın 32/A Mad. Kapsamında İndirimli Kurumlar Vergisi Oranı</p>
+                  <input  type="text" hidden value="KVK'nın 32/A Mad. Kapsamında İndirimli Kurumlar Vergisi Oranı" name="vergibildiirmibilgi4"></td>
+                <td><input  type="number" step="0.01" value="0" name="vergibildiirmitutar4"></td>
+              </tr>
+              <tr >
+                <td><p>Genel Orana Tabi Matrah</p>
+                  <input  type="text" hidden value="Genel Orana Tabi Matrah" name="vergibildiirmibilgi5"></td>
+                <td><input  type="number" step="0.01" value="0" name="vergibildiirmitutar5"></td>
+              </tr>
+              <tr >
+                <td><p>İşletmeden Çekilen Enflasyon Düzeltmesi Farkları</p>
+                  <input  type="text" hidden value="İşletmeden Çekilen Enflasyon Düzeltmesi Farkları" name="vergibildiirmibilgi6"></td>
+                <td><input  type="number" step="0.01" value="0" name="vergibildiirmitutar6"></td>
+              </tr>
+              <tr >
+                <td><p>Gelecek Yıla Devreden Cari Yıl Zararları</p>
+                  <input  type="text" hidden value="Gelecek Yıla Devreden Cari Yıl Zararları" name="vergibildiirmibilgi7"></td>
+                <td><input  type="number" step="0.01" value="0" name="vergibildiirmitutar7"></td>
+              </tr>
+              <tr >
+                <td><p>Safi Kurum Kazancının Türkiye Dışında Elde Edilen Kısmı</p>
+                  <input  type="text" hidden value="Safi Kurum Kazancının Türkiye Dışında Elde Edilen Kısmı" name="vergibildiirmibilgi8"></td>
+                <td><input  type="number" step="0.01" value="0" name="vergibildiirmitutar8"></td>
+              </tr>
+
+            
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="container tablo" style="margin-top: 0px !important;">
+        <input class="col-12 text-center" disabled value="VERGİ BİLDİRİMİ" type="text">
+        <div class="table-responsive " style=" 
+        height: 200px;
+        overflow: auto;">
+          <table class="table table-bordered ">
+            <thead style="position: sticky;top: 0">
+              <tr>
+                <th class="text-center" style="min-width: 50px ;"></th>
+                <th class="text-center" style="min-width: 150px ;"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr >
+                <td><p>Kurumlar Vergisi Matrahı</p>
+                  <input  type="text" hidden value="Kurumlar Vergisi Matrahı" name="vergibildirimi1"></td>
+                <td><input  type="number" step="0.01" value="0" name="vergibildirimitutar1"></td>
+              </tr>  
+              <tr >
+                <td><p>Hesaplanan Kurumlar Vergisi</p>
+                  <input  type="text" hidden value="Hesaplanan Kurumlar Vergisi" name="vergibildirimi2"></td>
+                <td><input  type="number" step="0.01" value="0" name="vergibildirimitutar2"></td>
+              </tr>          
+              <tr >
+                <td><p>Hesaplanan Vergi İndirimi Tutarı (Hesaplanan Kurumlar Vergisi %5)</p>
+                  <input  type="text" hidden value="Hesaplanan Vergi İndirimi Tutarı (Hesaplanan Kurumlar Vergisi %5)" name="vergibildirimi3"></td>
+                <td><input  type="number" step="0.01" value="0" name="vergibildirimitutar3"></td>
+              </tr>  
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="container tablo" style="margin-top: 0px !important;">
+        <input class="col-12 text-center" disabled value="MAHSUP EDİLECEK VERGİLER" type="text">
+        <div class="table-responsive " style=" 
+        height: 250px;
+        overflow: auto;">
+          <table class="table table-bordered ">
+            <thead style="position: sticky;top: 0">
+              <tr>
+                <th class="text-center" style="min-width: 50px ;"></th>
+                <th class="text-center" style="min-width: 150px ;"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr >
+                <td><p>Yabancı Ülkelerde Ödenen Vergilerden Mahsup Edilecek Kısım</p>
+                  <input  type="text" hidden value="Yabancı Ülkelerde Ödenen Vergilerden Mahsup Edilecek Kısım" name="mahsupedilecekbilgi1"></td>
+                <td><input  type="number" step="0.01" value="0" name="mahsupedilecektutar1"></td>
+              </tr>  
+              <tr >
+                <td><p>Yıl İçinde Kesinti Yoluyla Ödenen Vergler</p>
+                  <input  type="text" hidden value="Yıl İçinde Kesinti Yoluyla Ödenen Vergler" name="mahsupedilecekbilgi2"></td>
+                <td><input  type="number" step="0.01" value="0" name="mahsupedilecektutar2"></td>
+              </tr>  
+              <tr >
+                <td><p>Yabanı Ülkelerde Ödenen Vergiler (Beyanname tarihi itibariyle tevsik ediemeyenler)</p>
+                  <input  type="text" hidden value="Yabanı Ülkelerde Ödenen Vergiler (Beyanname tarihi itibariyle tevsik ediemeyenler)" name="mahsupedilecekbilgi3"></td>
+                <td><input  type="number" step="0.01" value="0" name="mahsupedilecektutar3"></td>
+              </tr>  
+              <tr >
+                <td><p>Geçici Vergi</p>
+                  <input  type="text" hidden value="Geçci Vergi" name="mahsupedilecekbilgi4"></td>
+                <td><input  type="number" step="0.01" value="0" name="mahsupedilecektutar4"></td>
+              </tr>   
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="container tablo" style="margin-top: 0px !important;">
+        <input class="col-12 text-center" disabled value="" type="text">
+        <div class="table-responsive " style=" 
+        height: 560px;
+        overflow: auto;">
+          <table class="table table-bordered ">
+            <thead style="position: sticky;top: 0">
+              <tr>
+                <th class="text-center" style="min-width: 50px ;"></th>
+                <th class="text-center" style="min-width: 150px ;"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr >
+                <td><p>Mahsup Edlecek Vergiler Toplamı</p>
+                  <input  type="text" hidden value="Mahsup Edlecek Vergiler Toplamı" name="mahsupedilecekergitoplamibilgi"></td>
+                <td><input  type="number" step="0.01" value="0" name="mahsupedilecekergitoplamitutar"></td>
+              </tr>  
+              <tr >
+                <td><p>Yabancı Ülkelerde Ödenen Verglerden Cari Yida Mahsup Edlemeyip Gelecek Yila Devreden Kısım</p>
+                  <input  type="text" hidden value="Yabancı Ülkelerde Ödenen Verglerden Cari Yida Mahsup Edlemeyip Gelecek Yila Devreden Kısım" name="mahsupedilmeyecekyabancibilgi"></td>
+                <td><input  type="number" step="0.01" value="0" name="mahsupedilmeyecekyabancitutar"></td>
+              </tr> 
+              <tr >
+                <td><p>Ödenmesi Gereken Kurumlar Vergisi</p>
+                  <input  type="text" hidden value="Ödenmesi Gereken Kurumlar Vergisi" name="odenemesigerekenkurumlarvergisi"></td>
+                <td><input  type="number" step="0.01" value="0" name="odenemesigerekenkurumlarvergisitutar"></td>
+              </tr> 
+              <tr >
+                <td><p>Yabancı Ülkelerde Ödenen Ancak Tevsik Edilememesi Nedeniyle Teci Edilen Kurumlar Vergisi</p>
+                  <input  type="text" hidden value="Yabancı Ülkelerde Ödenen Ancak Tevsik Edilememesi Nedeniyle Teci Edilen Kurumlar Vergisi" name="tesciledilmeyenkurumlarvergisi"></td>
+                <td><input  type="number" step="0.01" value="0" name="tesciledilmeyenkurumlarvergisitutar"></td>
+              </tr> 
+              <tr >
+                <td><p>Vergi İndriminin Mahsubundan Sonra Ödenmesi Gereken Kurumlar Vergisi</p>
+                  <input  type="text" hidden value="Vergi İndriminin Mahsubundan Sonra Ödenmesi Gereken Kurumlar Vergisi" name="islemlerdensonraodemesigerekenvergi"></td>
+                <td><input  type="number" step="0.01" value="0" name="islemlerdensonraodemesigerekenvergitutar"></td>
+              </tr> 
+              <tr >
+                <td><p>İadesi Gereken Kurumlar Vergisi ve/veya Geçici Vergi</p>
+                  <input  type="text" hidden value="İadesi Gereken Kurumlar Vergisi ve/veya Geçici Vergi" name="iadesigerekengecivergi"></td>
+                <td><input  type="number" step="0.01" value="0" name="iadesigerekengecivergitutar"></td>
+              </tr>
+              <tr >
+                <td><p>İadesi Gereken Kurumlar Vergisi</p>
+                  <input  type="text" hidden value="İadesi Gereken Kurumlar Vergisi" name="iadesigerekenkruumlarvergisi"></td>
+                <td><input  type="number" step="0.01" value="0" name="iadesigerekenkruumlarvergisitutar"></td>
+              </tr> 
+              <tr >
+                <td><p>İadesi Gereken Geçici Vergi</p>
+                  <input  type="text" hidden value="İadesi Gereken Geçici Vergi" name="iadesigerekengecicivergi"></td>
+                <td><input  type="number" step="0.01" value="0" name="iadesigerekengecicivergitutat"></td>
+              </tr> 
+              <tr >
+                <td><p>Kalan Vergi İndirimi</p>
+                  <input  type="text" hidden value="Kalan Vergi İndirimi" name="kalanvergiindirimi"></td>
+                <td><input  type="number" step="0.01" value="0" name="kalanvergiindirimitutar"></td>
+              </tr> 
+              <tr >
+                <td><p>Damga Vergisi</p>
+                  <input  type="text" hidden value="Damga Vergisi" name="damgavergisi"></td>
+                <td><input  type="number" step="0.01" value="0" name="damgavergisitutar"></td>
+              </tr> 
+              <tr >
+                <td><p>Kazancın Tespt Yöntemi</p>
+                  <input  type="text" hidden value="Kazancın Tespt Yöntemi" name="kazancintespityontemi"></td>
+                <td><select name="kazancintespityontemisecimi" id="">
+                  <option value="Bilanço">Bilanço</option>
+                  <option value="Dar Mükellef Ulaştırma Kurumu Hasılat Defteri">Dar Mükellef Ulaştırma Kurumu Hasılat Defteri</option>
+                </select></td>
+              </tr> 
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <hr>
+      <hr style="border: 2px solid black !important;" >
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+      <h3 class="text-center" >DÜZENLEME BİLGİLERİ</h3>
+      <hr>
+    
+      <div style="border-right: 1px solid black;" class="col-6">
+        <h4><b>Beyanname Hangi Sıfatla Verildiği</b></h4>
+        {% if mirasci.beyannamehangisifatlaverildi == "mukellef" %}
+        <hr>
+          <div class="row">
+
+            <div class="col-4"><label style="margin-left: 5px;" for="mukellef">Mükellef</label><input type="checkbox" disabled checked name="mukellef" id="mukellef"></div>
+            <div class="col-4"><label style="margin-left: 5px;"  for="mirascı">Mirascı</label><input type="checkbox" disabled name="mirascı" id="mirascı"></div>
+            <div class="col-4"><label style="margin-left: 5px;" for="kanunitemsilci">Kanuni Temsilci</label><input disabled type="checkbox" name="kanunitemsilci" id="kanunitemsilci"></div>
+          </div>
+          <p><b>Vergi Kimlik Numarası (T.C Kimlik No) : {% if subeleri.sahis_ise_tc %}{{subeleri.sahis_ise_tc}}{% endif %} </b></p>
+          <p><b>Vergi Kimlik Numarası  : {% if subeleri.vergi_numarasi %}{{subeleri.vergi_numarasi}}{% endif %} </b></p>
+          <p><b>Soyadi (Unvan)  : {% if subeleri.bagli_oldugu_firma.Firma_unvani2 %}{{subeleri.bagli_oldugu_firma.Firma_unvani2}}{% endif %} </b></p>
+          <p><b>Adı (Unvan Devamı)  : {% if subeleri.bagli_oldugu_firma.firma_unvani %}{{subeleri.bagli_oldugu_firma.firma_unvani}}{% endif %} </b></p>
+          <p><b>Ticaret Sicil No  : {% if faliyet.ticaret_sicil_no %}{{faliyet.ticaret_sicil_no}}{% endif %} </b></p>
+          <p><b>E-Posta Adresi  : {% if subeleri.email_adresi %}{{subeleri.email_adresi}}{% endif %} </b></p>
+          <p><b>İrtibat Telefon No  : {% if subeleri.telefon_numarasi %}{{subeleri.telefon_numarasi}}{% endif %} </b></p>
+        {% elif mirasci.beyannamehangisifatlaverildi == "mirascı" %}
+        <hr>
+          <div class="row">
+
+            <div class="col-4"><label style="margin-left: 5px;" for="mukellef">Mükellef</label><input type="checkbox" disabled  name="mukellef" id="mukellef"></div>
+            <div class="col-4"><label style="margin-left: 5px;"  for="mirascı">Mirascı</label><input type="checkbox" disabled checked name="mirascı" id="mirascı"></div>
+            <div class="col-4"><label style="margin-left: 5px;" for="kanunitemsilci">Kanuni Temsilci</label><input disabled type="checkbox" name="kanunitemsilci" id="kanunitemsilci"></div>
+          </div>
+          <p><b>Vergi Kimlik Numarası (T.C Kimlik No) : {% if mirasci.mirascibilgisitc %}{{mirasci.mirascibilgisitc}}{% endif %} </b></p>
+          <p><b>Vergi Kimlik Numarası  : {% if mirasci.mirascivergino %}{{mirasci.mirascivergino}}{% endif %} </b></p>
+          <p><b>Soyadi (Unvan)  : {% if mirasci.beyannamesoyadiunvan %}{{mirasci.beyannamesoyadiunvan}}{% endif %} </b></p>
+          <p><b>Adı (Unvan Devamı)  : {% if mirasci.beyannameadiunvandevami %}{{mirasci.beyannameadiunvandevami}}{% endif %} </b></p>
+          <p><b>Ticaret Sicil No  : {% if mirasci.beyannameyeaitticaretsicilno %}{{mirasci.beyannameyeaitticaretsicilno}}{% endif %} </b></p>
+          <p><b>E-Posta Adresi  : {% if mirasci.beyannameemailadresi %}{{mirasci.beyannameemailadresi}}{% endif %} </b></p>
+          <p><b>İrtibat Telefon No  : {% if mirasci.beyannametelefonumarasi %}{{mirasci.beyannametelefonumarasi}}{% endif %} </b></p>
+        {% elif mirasci.beyannamehangisifatlaverildi == "kanunitemsilci" %}
+        <hr>
+        <div class="row">
+
+          <div class="col-4"><label style="margin-left: 5px;" for="mukellef">Mükellef</label><input type="checkbox" disabled  name="mukellef" id="mukellef"></div>
+          <div class="col-4"><label style="margin-left: 5px;"  for="mirascı">Mirascı</label><input type="checkbox" disabled  name="mirascı" id="mirascı"></div>
+          <div class="col-4"><label style="margin-left: 5px;" for="kanunitemsilci">Kanuni Temsilci</label><input disabled checked type="checkbox" name="kanunitemsilci" id="kanunitemsilci"></div>
+        </div>
+        <p><b>Vergi Kimlik Numarası (T.C Kimlik No) : {% if kanuni_temsilci.beyannamekanunitemsicitc %}{{kanuni_temsilci.beyannamekanunitemsicitc}}{% endif %} </b></p>
+        <p><b>Vergi Kimlik Numarası  : {% if kanuni_temsilci.beyannamekanunitemsicivergino %}{{kanuni_temsilci.beyannamekanunitemsicivergino}}{% endif %} </b></p>
+        <p><b>Soyadi (Unvan)  : {% if kanuni_temsilci.beyannamekanunitemsicisoyadi %}{{kanuni_temsilci.beyannamekanunitemsicisoyadi}}{% endif %} </b></p>
+        <p><b>Adı (Unvan Devamı)  : {% if kanuni_temsilci.beyannamekanunitemsiciadiunvandevami %}{{kanuni_temsilci.beyannamekanunitemsiciadiunvandevami}}{% endif %} </b></p>
+        <p><b>Ticaret Sicil No  : {% if kanuni_temsilci.beyannamekanunitemsiciticaretsicilno %}{{kanuni_temsilci.beyannamekanunitemsiciticaretsicilno}}{% endif %} </b></p>
+        <p><b>E-Posta Adresi  : {% if kanuni_temsilci.beyannamekanunitemsicieposta %}{{kanuni_temsilci.beyannamekanunitemsicieposta}}{% endif %} </b></p>
+        <p><b>İrtibat Telefon No  : {% if kanuni_temsilci.beyannamekanunitemsicitelefon %}{{kanuni_temsilci.beyannamekanunitemsicitelefon}}{% endif %} </b></p>
+        {% endif %}
+      </div>
+      <div class="col-6">
+        <h4><b>Beyannameyi Düzenleyen</b></h4>
+        <hr>
+          <p><b>Vergi Kimlik Numarası (T.C Kimlik No) : {% if beyannameduzenleyen.beyannameduzenleyeneaittc %}{{beyannameduzenleyen.beyannameduzenleyeneaittc}}{% endif %} </b></p>
+          <p><b>Vergi Kimlik Numarası  : {% if beyannameduzenleyen.beyannameduzenleyeneaitvergino %}{{beyannameduzenleyen.beyannameduzenleyeneaitvergino}}{% endif %} </b></p>
+          <p><b>Soyadi (Unvan)  : {% if beyannameduzenleyen.beyannameduzenleyeneaitsoyadiunvan %}{{beyannameduzenleyen.beyannameduzenleyeneaitsoyadiunvan}}{% endif %} </b></p>
+          <p><b>Adı (Unvan Devamı)  : {% if beyannameduzenleyen.beyannameduzenleyeneaitadiunvandevami %}{{beyannameduzenleyen.beyannameduzenleyeneaitadiunvandevami}}{% endif %} </b></p>
+          <p><b>Ticaret Sicil No  : {% if beyannameduzenleyen.beyannameduzenleyeneaitticaretsicilno %}{{ beyannameduzenleyen.beyannameduzenleyeneaitticaretsicilno}}{% endif %} </b></p>
+          <p><b>E-Posta Adresi  : {% if beyannameduzenleyen.beyannameduzenleyeneaiteposta %}{{beyannameduzenleyen.beyannameduzenleyeneaiteposta}}{% endif %} </b></p>
+          <p><b>İrtibat Telefon No  : {% if beyannameduzenleyen.beyannameduzenleyeneaittelefon %}{{beyannameduzenleyen.beyannameduzenleyeneaittelefon}}{% endif %} </b></p>
+      </div>
+      <hr style="border: 1px solid black; margin-top: 15px;" >
+      <div style="border-right: 1px solid black;"  class="col-6">
+        <h4><b>Beyannameyi Gönderen</b></h4>
+        <hr>
+        <p><b>Vergi Kimlik Numarası (T.C Kimlik No) : {% if beyannamegonderen.beyannamegonderentc %}{{beyannamegonderen.beyannamegonderentc}}{% endif %} </b></p>
+        <p><b>Vergi Kimlik Numarası  : {% if beyannamegonderen.beyannamegonderenvergino %}{{beyannamegonderen.beyannamegonderenvergino}}{% endif %} </b></p>
+        <p><b>Soyadi (Unvan)  : {% if beyannamegonderen.beyannamegonderensoyadiunvan %}{{beyannamegonderen.beyannamegonderensoyadiunvan}}{% endif %} </b></p>
+        <p><b>Adı (Unvan Devamı)  : {% if beyannamegonderen.beyannamegonderenadiunvandevami %}{{beyannamegonderen.beyannamegonderenadiunvandevami}}{% endif %} </b></p>
+        <p><b>Ticaret Sicil No  : {% if beyannamegonderen.beyannamegonderentivaretsicilno %}{{ beyannamegonderen.beyannamegonderentivaretsicilno}}{% endif %} </b></p>
+        <p><b>E-Posta Adresi  : {% if beyannamegonderen.beyannamegondereneposta %}{{beyannamegonderen.beyannamegondereneposta}}{% endif %} </b></p>
+        <p><b>İrtibat Telefon No  : {% if beyannamegonderen.beyannamegonderentelefon %}{{beyannamegonderen.beyannamegonderentelefon}}{% endif %} </b></p>
+      </div>
+      <div class="col-6">
+        <h4><b>YMM Bilgileri</b></h4>
+        <hr>
+        <p><b>Vergi Kimlik Numarası (T.C Kimlik No) : {% if ymmbilgileri.ymmaitbilgilertc %}{{ymmbilgileri.ymmaitbilgilertc}}{% endif %} </b></p>
+        <p><b>Vergi Kimlik Numarası  : {% if ymmbilgileri.ymmaitbilgilervergino %}{{ymmbilgileri.ymmaitbilgilervergino}}{% endif %} </b></p>
+        <p><b>Soyadi (Unvan)  : {% if ymmbilgileri.ymmaitbilgilersoyadiunvan %}{{ymmbilgileri.ymmaitbilgilersoyadiunvan}}{% endif %} </b></p>
+        <p><b>Adı (Unvan Devamı)  : {% if ymmbilgileri.ymmaitbilgileradiunvanbilgisi %}{{ymmbilgileri.ymmaitbilgileradiunvanbilgisi}}{% endif %} </b></p>
+        <p><b>Ticaret Sicil No  : {% if ymmbilgileri.ymmaitbilgileraditicaretsicilno %}{{ ymmbilgileri.ymmaitbilgileraditicaretsicilno}}{% endif %} </b></p>
+        <p><b>E-Posta Adresi  : {% if ymmbilgileri.ymmaitbilgilereposta %}{{ymmbilgileri.ymmaitbilgilereposta}}{% endif %} </b></p>
+        <p><b>İrtibat Telefon No  : {% if ymmbilgileri.ymmaitbilgilertelefonbilgisi %}{{ymmbilgileri.ymmaitbilgilertelefonbilgisi}}{% endif %} </b></p>
+      </div>
+      <hr style="border: 2px solid black !important;" >
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+      <h3 class="text-center" >EKLER</h3>
+      <hr>
+      <div class="container tablo" style="margin-top: 0px !important;">
+        <input class="col-12 text-center" disabled value="Ayrıntılı Bilanço" type="text">
+        <div class="table-responsive " style=" 
+        height: 344px;
+        overflow: auto;">
+          <table class="table table-bordered ">
+            <thead style="position: sticky;top: 0">
+              <tr>
+                <th class="text-center" style="min-width: 150px ;">Açıklama</th>
+                <th class="text-center" style="min-width: 150px ;">Önceki Dönem</th>
+                <th class="text-center" style="min-width: 150px ;">Cari Dönem</th>
+                <th class="text-center" style="min-width: 150px ;">Kod</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="" style="display: none;">
+                <td><input type="text" name="aliciadisoyadiunvantasinmaz"></td>
+                <td><input type="text" name="alicivergikimliknosutasinmaz"></td>
+                
+                <td><select name="alicininuyrugu" id="">
+                  <option value=""></option>
+                  {% for i in ulkeler %}
+                  <option value="{{i.id}}">{{i.ulke_kodu}}-{{i.ulke_adi}}</option>
+                  {% endfor %}
+                </select></td>
+                <td><select name="alicinincalismaveoturmaizni" id="">
+                  <option value=""></option>
+                  {% for i in ulkeler %}
+                  <option value="{{i.id}}">{{i.ulke_kodu}}-{{i.ulke_adi}}</option>
+                  {% endfor %}
+                </select></td>
+               
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="container tablo" style="margin-top: 0px !important;">
+        <input class="col-12 text-center" disabled value="Ayrıntılı Gelir Tablosu" type="text">
+        <div class="table-responsive " style=" 
+        height: 344px;
+        overflow: auto;">
+          <table class="table table-bordered ">
+            <thead style="position: sticky;top: 0">
+              <tr>
+                <th class="text-center" style="min-width: 150px ;">Açıklama</th>
+                <th class="text-center" style="min-width: 150px ;">Önceki Dönem</th>
+                <th class="text-center" style="min-width: 150px ;">Cari Dönem</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="" style="display: none;">
+                <td><input type="text" name="aliciadisoyadiunvantasinmaz"></td>
+                <td><input type="text" name="alicivergikimliknosutasinmaz"></td>
+                
+                <td><select name="alicininuyrugu" id="">
+                  <option value=""></option>
+                  {% for i in ulkeler %}
+                  <option value="{{i.id}}">{{i.ulke_kodu}}-{{i.ulke_adi}}</option>
+                  {% endfor %}
+                </select></td>
+              
+               
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="container tablo" style="margin-top: 0px !important;">
+        <input class="col-12 text-center" disabled value="Kesinti Yoluyla Ödenen Vergilere İlşkin Bildirim" type="text">
+        <div class="table-responsive " style=" 
+        height: 344px;
+        overflow: auto;">
+          <table class="table table-bordered ">
+            <thead style="position: sticky;top: 0">
+              <tr>
+                <th class="text-center" style="min-width: 100px ;">Kesinti Yapanın Adı Soyadı / Unvanı</th>
+                <th class="text-center" style="min-width: 50px ;">T.C. Kimlik No </th>
+                <th class="text-center" style="min-width: 150px ;">Vergi Kimlik No</th>
+                <th class="text-center" style="min-width: 150px ;">Kesilen Vergi Dönemi</th>
+                <th class="text-center" style="min-width: 150px ;">Ödemenin Brüt Tutarı</th>
+                <th class="text-center" style="min-width: 150px ;">Vergi Tutarı</th>
+                <th class="text-center" style="min-width: 150px ;"><a href="javascript:void(0);" onclick="ekleYeniSatirvergiekleme()">SATIR EKLE</a></th>
+                
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="ekleYeniSatirvergiekleme">
+                <td><input type="text" id="kesintiyapanadisoyadibilgdsi" name="kesintiyapanadisoyadibilgdsi"></td>
+                 <td><input type="text" id="kesintiyaapantcvergikimlikno" name="kesintiyaapantcvergikimlikno"></td>
+                 <td><input type="text" id="kesintiyaapantcvergino" name="kesintiyaapantcvergino"></td>
+                 <td><input type="text"  id="kesintiyaapanfonem" name="kesintiyaapanfonem"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" id="kesintiburuttutar" name="kesintiburuttutar"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" id="kesintitutar" name="kesintitutar"></td>
+                <td></td>
+              </tr>
+              <tr class="ekleYeniSatirvergiekleme">
+                <td><input type="text" id="kesintiyapanadisoyadibilgdsi" name="kesintiyapanadisoyadibilgdsi"></td>
+                 <td><input type="text" id="kesintiyaapantcvergikimlikno" name="kesintiyaapantcvergikimlikno"></td>
+                 <td><input type="text" id="kesintiyaapantcvergino" name="kesintiyaapantcvergino"></td>
+                 <td><input type="text"  id="kesintiyaapanfonem" name="kesintiyaapanfonem"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" id="kesintiburuttutar" name="kesintiburuttutar"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" id="kesintitutar" name="kesintitutar"></td>
+                <td></td>
+              </tr>
+              <tr class="ekleYeniSatirvergiekleme">
+                <td><input type="text" id="kesintiyapanadisoyadibilgdsi" name="kesintiyapanadisoyadibilgdsi"></td>
+                 <td><input type="text" id="kesintiyaapantcvergikimlikno" name="kesintiyaapantcvergikimlikno"></td>
+                 <td><input type="text" id="kesintiyaapantcvergino" name="kesintiyaapantcvergino"></td>
+                 <td><input type="text"  id="kesintiyaapanfonem" name="kesintiyaapanfonem"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" id="kesintiburuttutar" name="kesintiburuttutar"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" id="kesintitutar" name="kesintitutar"></td>
+                <td></td>
+              </tr>
+              <tr class="ekleYeniSatirvergiekleme">
+                <td><input type="text" id="kesintiyapanadisoyadibilgdsi" name="kesintiyapanadisoyadibilgdsi"></td>
+                 <td><input type="text" id="kesintiyaapantcvergikimlikno" name="kesintiyaapantcvergikimlikno"></td>
+                 <td><input type="text" id="kesintiyaapantcvergino" name="kesintiyaapantcvergino"></td>
+                 <td><input type="text"  id="kesintiyaapanfonem" name="kesintiyaapanfonem"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" id="kesintiburuttutar" name="kesintiburuttutar"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" id="kesintitutar" name="kesintitutar"></td>
+                <td></td>
+              </tr>
+              <tr class="ekleYeniSatirvergiekleme">
+                <td><input type="text" id="kesintiyapanadisoyadibilgdsi" name="kesintiyapanadisoyadibilgdsi"></td>
+                 <td><input type="text" id="kesintiyaapantcvergikimlikno" name="kesintiyaapantcvergikimlikno"></td>
+                 <td><input type="text" id="kesintiyaapantcvergino" name="kesintiyaapantcvergino"></td>
+                 <td><input type="text"  id="kesintiyaapanfonem" name="kesintiyaapanfonem"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" id="kesintiburuttutar" name="kesintiburuttutar"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" id="kesintitutar" name="kesintitutar"></td>
+                <td></td>
+              </tr>
+              <tr class="ekleYeniSatirvergiekleme">
+                <td><input type="text" id="kesintiyapanadisoyadibilgdsi" name="kesintiyapanadisoyadibilgdsi"></td>
+                 <td><input type="text" id="kesintiyaapantcvergikimlikno" name="kesintiyaapantcvergikimlikno"></td>
+                 <td><input type="text" id="kesintiyaapantcvergino" name="kesintiyaapantcvergino"></td>
+                 <td><input type="text"  id="kesintiyaapanfonem" name="kesintiyaapanfonem"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" id="kesintiburuttutar" name="kesintiburuttutar"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" id="kesintitutar" name="kesintitutar"></td>
+                <td></td>
+              </tr>
+              <tr class="ekleYeniSatirvergiekleme">
+                <td><input type="text" id="kesintiyapanadisoyadibilgdsi" name="kesintiyapanadisoyadibilgdsi"></td>
+                 <td><input type="text" id="kesintiyaapantcvergikimlikno" name="kesintiyaapantcvergikimlikno"></td>
+                 <td><input type="text" id="kesintiyaapantcvergino" name="kesintiyaapantcvergino"></td>
+                 <td><input type="text"  id="kesintiyaapanfonem" name="kesintiyaapanfonem"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" id="kesintiburuttutar" name="kesintiburuttutar"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" id="kesintitutar" name="kesintitutar"></td>
+                <td></td>
+              </tr>
+              <tr class="ekleYeniSatirvergiekleme">
+                <td><input type="text" id="kesintiyapanadisoyadibilgdsi" name="kesintiyapanadisoyadibilgdsi"></td>
+                 <td><input type="text" id="kesintiyaapantcvergikimlikno" name="kesintiyaapantcvergikimlikno"></td>
+                 <td><input type="text" id="kesintiyaapantcvergino" name="kesintiyaapantcvergino"></td>
+                 <td><input type="text"  id="kesintiyaapanfonem" name="kesintiyaapanfonem"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" id="kesintiburuttutar" name="kesintiburuttutar"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" id="kesintitutar" name="kesintitutar"></td>
+                <td></td>
+              </tr>
+              <tr class="ekleYeniSatirvergiekleme">
+                <td><input type="text" id="kesintiyapanadisoyadibilgdsi" name="kesintiyapanadisoyadibilgdsi"></td>
+                 <td><input type="text" id="kesintiyaapantcvergikimlikno" name="kesintiyaapantcvergikimlikno"></td>
+                 <td><input type="text" id="kesintiyaapantcvergino" name="kesintiyaapantcvergino"></td>
+                 <td><input type="text"  id="kesintiyaapanfonem" name="kesintiyaapanfonem"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" id="kesintiburuttutar" name="kesintiburuttutar"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" id="kesintitutar" name="kesintitutar"></td>
+                <td></td>
+              </tr>
+              <tr class="ekleYeniSatirvergiekleme">
+                <td><input type="text" id="kesintiyapanadisoyadibilgdsi" name="kesintiyapanadisoyadibilgdsi"></td>
+                 <td><input type="text" id="kesintiyaapantcvergikimlikno" name="kesintiyaapantcvergikimlikno"></td>
+                 <td><input type="text" id="kesintiyaapantcvergino" name="kesintiyaapantcvergino"></td>
+                 <td><input type="text"  id="kesintiyaapanfonem" name="kesintiyaapanfonem"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" id="kesintiburuttutar" name="kesintiburuttutar"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" id="kesintitutar" name="kesintitutar"></td>
+                <td></td>
+              </tr>
+              <tr class="ekleYeniSatirvergiekleme">
+                <td><input type="text" id="kesintiyapanadisoyadibilgdsi" name="kesintiyapanadisoyadibilgdsi"></td>
+                 <td><input type="text" id="kesintiyaapantcvergikimlikno" name="kesintiyaapantcvergikimlikno"></td>
+                 <td><input type="text" id="kesintiyaapantcvergino" name="kesintiyaapantcvergino"></td>
+                 <td><input type="text"  id="kesintiyaapanfonem" name="kesintiyaapanfonem"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" id="kesintiburuttutar" name="kesintiburuttutar"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" id="kesintitutar" name="kesintitutar"></td>
+                <td></td>
+              </tr>
+              <tr class="ekleYeniSatirvergiekleme">
+                <td><input type="text" id="kesintiyapanadisoyadibilgdsi" name="kesintiyapanadisoyadibilgdsi"></td>
+                 <td><input type="text" id="kesintiyaapantcvergikimlikno" name="kesintiyaapantcvergikimlikno"></td>
+                 <td><input type="text" id="kesintiyaapantcvergino" name="kesintiyaapantcvergino"></td>
+                 <td><input type="text"  id="kesintiyaapanfonem" name="kesintiyaapanfonem"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" id="kesintiburuttutar" name="kesintiburuttutar"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" id="kesintitutar" name="kesintitutar"></td>
+                <td></td>
+              </tr>
+              <tr class="ekleYeniSatirvergiekleme">
+                <td><input type="text" id="kesintiyapanadisoyadibilgdsi" name="kesintiyapanadisoyadibilgdsi"></td>
+                 <td><input type="text" id="kesintiyaapantcvergikimlikno" name="kesintiyaapantcvergikimlikno"></td>
+                 <td><input type="text" id="kesintiyaapantcvergino" name="kesintiyaapantcvergino"></td>
+                 <td><input type="text"  id="kesintiyaapanfonem" name="kesintiyaapanfonem"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" id="kesintiburuttutar" name="kesintiburuttutar"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" id="kesintitutar" name="kesintitutar"></td>
+                <td></td>
+              </tr>
+              <tr class="ekleYeniSatirvergiekleme">
+                <td><input type="text" id="kesintiyapanadisoyadibilgdsi" name="kesintiyapanadisoyadibilgdsi"></td>
+                 <td><input type="text" id="kesintiyaapantcvergikimlikno" name="kesintiyaapantcvergikimlikno"></td>
+                 <td><input type="text" id="kesintiyaapantcvergino" name="kesintiyaapantcvergino"></td>
+                 <td><input type="text"  id="kesintiyaapanfonem" name="kesintiyaapanfonem"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" id="kesintiburuttutar" name="kesintiburuttutar"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" id="kesintitutar" name="kesintitutar"></td>
+                <td></td>
+              </tr>
+              <tr class="ekleYeniSatirvergiekleme">
+                <td><input type="text" id="kesintiyapanadisoyadibilgdsi" name="kesintiyapanadisoyadibilgdsi"></td>
+                 <td><input type="text" id="kesintiyaapantcvergikimlikno" name="kesintiyaapantcvergikimlikno"></td>
+                 <td><input type="text" id="kesintiyaapantcvergino" name="kesintiyaapantcvergino"></td>
+                 <td><input type="text"  id="kesintiyaapanfonem" name="kesintiyaapanfonem"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" id="kesintiburuttutar" name="kesintiburuttutar"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" id="kesintitutar" name="kesintitutar"></td>
+                <td></td>
+              </tr>
+              <tr class="ekleYeniSatirvergiekleme">
+                <td><input type="text" id="kesintiyapanadisoyadibilgdsi" name="kesintiyapanadisoyadibilgdsi"></td>
+                 <td><input type="text" id="kesintiyaapantcvergikimlikno" name="kesintiyaapantcvergikimlikno"></td>
+                 <td><input type="text" id="kesintiyaapantcvergino" name="kesintiyaapantcvergino"></td>
+                 <td><input type="text"  id="kesintiyaapanfonem" name="kesintiyaapanfonem"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" id="kesintiburuttutar" name="kesintiburuttutar"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" id="kesintitutar" name="kesintitutar"></td>
+                <td></td>
+              </tr>
+              <tr class="ekleYeniSatirvergiekleme">
+                <td><input type="text" id="kesintiyapanadisoyadibilgdsi" name="kesintiyapanadisoyadibilgdsi"></td>
+                 <td><input type="text" id="kesintiyaapantcvergikimlikno" name="kesintiyaapantcvergikimlikno"></td>
+                 <td><input type="text" id="kesintiyaapantcvergino" name="kesintiyaapantcvergino"></td>
+                 <td><input type="text"  id="kesintiyaapanfonem" name="kesintiyaapanfonem"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" id="kesintiburuttutar" name="kesintiburuttutar"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" id="kesintitutar" name="kesintitutar"></td>
+                <td></td>
+              </tr>
+              <tr class="ekleYeniSatirvergiekleme">
+                <td><input type="text" id="kesintiyapanadisoyadibilgdsi" name="kesintiyapanadisoyadibilgdsi"></td>
+                 <td><input type="text" id="kesintiyaapantcvergikimlikno" name="kesintiyaapantcvergikimlikno"></td>
+                 <td><input type="text" id="kesintiyaapantcvergino" name="kesintiyaapantcvergino"></td>
+                 <td><input type="text"  id="kesintiyaapanfonem" name="kesintiyaapanfonem"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" id="kesintiburuttutar" name="kesintiburuttutar"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" id="kesintitutar" name="kesintitutar"></td>
+                <td></td>
+              </tr>
+              <tr class="ekleYeniSatirvergiekleme">
+                <td><input type="text" id="kesintiyapanadisoyadibilgdsi" name="kesintiyapanadisoyadibilgdsi"></td>
+                 <td><input type="text" id="kesintiyaapantcvergikimlikno" name="kesintiyaapantcvergikimlikno"></td>
+                 <td><input type="text" id="kesintiyaapantcvergino" name="kesintiyaapantcvergino"></td>
+                 <td><input type="text"  id="kesintiyaapanfonem" name="kesintiyaapanfonem"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" id="kesintiburuttutar" name="kesintiburuttutar"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" id="kesintitutar" name="kesintitutar"></td>
+                <td></td>
+              </tr>
+              <tr class="ekleYeniSatirvergiekleme">
+                <td><input type="text" id="kesintiyapanadisoyadibilgdsi" name="kesintiyapanadisoyadibilgdsi"></td>
+                 <td><input type="text" id="kesintiyaapantcvergikimlikno" name="kesintiyaapantcvergikimlikno"></td>
+                 <td><input type="text" id="kesintiyaapantcvergino" name="kesintiyaapantcvergino"></td>
+                 <td><input type="text"  id="kesintiyaapanfonem" name="kesintiyaapanfonem"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" id="kesintiburuttutar" name="kesintiburuttutar"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" id="kesintitutar" name="kesintitutar"></td>
+                <td></td>
+              </tr>
+              <tr class="ekleYeniSatirvergiekleme">
+                <td><input type="text" id="kesintiyapanadisoyadibilgdsi" name="kesintiyapanadisoyadibilgdsi"></td>
+                 <td><input type="text" id="kesintiyaapantcvergikimlikno" name="kesintiyaapantcvergikimlikno"></td>
+                 <td><input type="text" id="kesintiyaapantcvergino" name="kesintiyaapantcvergino"></td>
+                 <td><input type="text"  id="kesintiyaapanfonem" name="kesintiyaapanfonem"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" id="kesintiburuttutar" name="kesintiburuttutar"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" id="kesintitutar" name="kesintitutar"></td>
+                <td></td>
+              </tr>
+              <tr class="ekleYeniSatirvergiekleme">
+                <td><input type="text" id="kesintiyapanadisoyadibilgdsi" name="kesintiyapanadisoyadibilgdsi"></td>
+                 <td><input type="text" id="kesintiyaapantcvergikimlikno" name="kesintiyaapantcvergikimlikno"></td>
+                 <td><input type="text" id="kesintiyaapantcvergino" name="kesintiyaapantcvergino"></td>
+                 <td><input type="text"  id="kesintiyaapanfonem" name="kesintiyaapanfonem"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" id="kesintiburuttutar" name="kesintiburuttutar"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" id="kesintitutar" name="kesintitutar"></td>
+                <td></td>
+              </tr>
+              <tr class="ekleYeniSatirvergiekleme">
+                <td><input type="text" id="kesintiyapanadisoyadibilgdsi" name="kesintiyapanadisoyadibilgdsi"></td>
+                 <td><input type="text" id="kesintiyaapantcvergikimlikno" name="kesintiyaapantcvergikimlikno"></td>
+                 <td><input type="text" id="kesintiyaapantcvergino" name="kesintiyaapantcvergino"></td>
+                 <td><input type="text"  id="kesintiyaapanfonem" name="kesintiyaapanfonem"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" id="kesintiburuttutar" name="kesintiburuttutar"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" id="kesintitutar" name="kesintitutar"></td>
+                <td></td>
+              </tr>
+              <tr class="ekleYeniSatirvergiekleme">
+                <td><input type="text" id="kesintiyapanadisoyadibilgdsi" name="kesintiyapanadisoyadibilgdsi"></td>
+                 <td><input type="text" id="kesintiyaapantcvergikimlikno" name="kesintiyaapantcvergikimlikno"></td>
+                 <td><input type="text" id="kesintiyaapantcvergino" name="kesintiyaapantcvergino"></td>
+                 <td><input type="text"  id="kesintiyaapanfonem" name="kesintiyaapanfonem"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" id="kesintiburuttutar" name="kesintiburuttutar"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" id="kesintitutar" name="kesintitutar"></td>
+                <td></td>
+              </tr>
+              <tr class="ekleYeniSatirvergiekleme">
+                <td><input type="text" id="kesintiyapanadisoyadibilgdsi" name="kesintiyapanadisoyadibilgdsi"></td>
+                 <td><input type="text" id="kesintiyaapantcvergikimlikno" name="kesintiyaapantcvergikimlikno"></td>
+                 <td><input type="text" id="kesintiyaapantcvergino" name="kesintiyaapantcvergino"></td>
+                 <td><input type="text"  id="kesintiyaapanfonem" name="kesintiyaapanfonem"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" id="kesintiburuttutar" name="kesintiburuttutar"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" id="kesintitutar" name="kesintitutar"></td>
+                <td></td>
+              </tr>
+              <tr class="ekleYeniSatirvergiekleme">
+                <td><input type="text" id="kesintiyapanadisoyadibilgdsi" name="kesintiyapanadisoyadibilgdsi"></td>
+                 <td><input type="text" id="kesintiyaapantcvergikimlikno" name="kesintiyaapantcvergikimlikno"></td>
+                 <td><input type="text" id="kesintiyaapantcvergino" name="kesintiyaapantcvergino"></td>
+                 <td><input type="text"  id="kesintiyaapanfonem" name="kesintiyaapanfonem"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" id="kesintiburuttutar" name="kesintiburuttutar"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" id="kesintitutar" name="kesintitutar"></td>
+                <td></td>
+              </tr>
+              <tr class="ekleYeniSatirvergiekleme">
+                <td><input type="text" id="kesintiyapanadisoyadibilgdsi" name="kesintiyapanadisoyadibilgdsi"></td>
+                 <td><input type="text" id="kesintiyaapantcvergikimlikno" name="kesintiyaapantcvergikimlikno"></td>
+                 <td><input type="text" id="kesintiyaapantcvergino" name="kesintiyaapantcvergino"></td>
+                 <td><input type="text"  id="kesintiyaapanfonem" name="kesintiyaapanfonem"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" id="kesintiburuttutar" name="kesintiburuttutar"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" id="kesintitutar" name="kesintitutar"></td>
+                <td></td>
+              </tr>
+              <tr class="ekleYeniSatirvergiekleme">
+                <td><input type="text" id="kesintiyapanadisoyadibilgdsi" name="kesintiyapanadisoyadibilgdsi"></td>
+                 <td><input type="text" id="kesintiyaapantcvergikimlikno" name="kesintiyaapantcvergikimlikno"></td>
+                 <td><input type="text" id="kesintiyaapantcvergino" name="kesintiyaapantcvergino"></td>
+                 <td><input type="text"  id="kesintiyaapanfonem" name="kesintiyaapanfonem"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" id="kesintiburuttutar" name="kesintiburuttutar"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" id="kesintitutar" name="kesintitutar"></td>
+                <td></td>
+              </tr>
+              <tr class="ekleYeniSatirvergiekleme">
+                <td><input type="text" id="kesintiyapanadisoyadibilgdsi" name="kesintiyapanadisoyadibilgdsi"></td>
+                 <td><input type="text" id="kesintiyaapantcvergikimlikno" name="kesintiyaapantcvergikimlikno"></td>
+                 <td><input type="text" id="kesintiyaapantcvergino" name="kesintiyaapantcvergino"></td>
+                 <td><input type="text"  id="kesintiyaapanfonem" name="kesintiyaapanfonem"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" id="kesintiburuttutar" name="kesintiburuttutar"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" id="kesintitutar" name="kesintitutar"></td>
+                <td></td>
+              </tr>
+              <tr class="ekleYeniSatirvergiekleme">
+                <td><input type="text" id="kesintiyapanadisoyadibilgdsi" name="kesintiyapanadisoyadibilgdsi"></td>
+                 <td><input type="text" id="kesintiyaapantcvergikimlikno" name="kesintiyaapantcvergikimlikno"></td>
+                 <td><input type="text" id="kesintiyaapantcvergino" name="kesintiyaapantcvergino"></td>
+                 <td><input type="text"  id="kesintiyaapanfonem" name="kesintiyaapanfonem"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" id="kesintiburuttutar" name="kesintiburuttutar"></td>
+                <td><input oninput="hesaplaFiyat()" type="number" step="0.01" value="0" id="kesintitutar" name="kesintitutar"></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        </div>
+        <div class="container tablo" style="margin-top: 0px !important;">
+          <input class="col-12 text-center" disabled value="Kar Dağıtım Tablosu" type="text">
+          <div class="table-responsive " style=" 
+          height: 700px;
+          overflow: auto;">
+            <table class="table table-bordered ">
+              <thead style="position: sticky;top: 0">
+                <tr>
+                  <th class="text-center" style="min-width: 150px ;">Açıklama</th>
+                  <th class="text-center" style="min-width: 150px ;">Önceki Dönem</th>
+                  <th class="text-center" style="min-width: 150px ;">Cari Dönem</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>I- DÖNEM KARININ DAĞITIMI
+                    <input type="text" value="I- DÖNEM KARININ DAĞITIMI" hidden name="kardagitimbilgi2">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem2" id="kardagitimoncekidonem2"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari2" id="kardagitimcari2"></td>
+                 
+                </tr>
+                <tr>
+                  <td>1.1-DÖNEM KARI<input type="text" value="1.1-DÖNEM KARI" hidden name="kardagitimbilgi3"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem3" id="kardagitimoncekidonem3"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari3" id="kardagitimcari3"></td>
+                 
+                </tr>
+                <tr>
+                  <td>1.2- ÖDENECEK VERGİ VE YASAL YÜKÜMLÜLÜKLER (-)<input type="text" value="1.2- ÖDENECEK VERGİ VE YASAL YÜKÜMLÜLÜKLER (-)" hidden name="kardagitimbilgi4"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem4" id="kardagitimoncekidonem4"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari4" id="kardagitimcari4"></td>
+                </tr>
+                <tr>
+                  <td>1.2.1-Kurumlar Vergisi (Geir Vergisi)
+                    <input type="text" value="1.2.1-Kurumlar Vergisi (Geir Vergisi)" hidden name="kardagitimbilgi5">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem5" id="kardagitimoncekidonem5"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari5" id="kardagitimcari5"></td>
+                 
+                </tr>
+                <tr>
+                  <td>1.2.2- Geir Vergisi Kesintisi
+                    <input type="text" value="1.2.2- Geir Vergisi Kesintisi" hidden name="kardagitimbilgi6">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem6" id="kardagitimoncekidonem6"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari6" id="kardagitimcari6"></td>
+                 
+                </tr>
+                <tr>
+                  <td>1.2.3- Diğer Vergi ve Yasal Yükümlülükler
+                    <input type="text" value="1.2.3- Diğer Vergi ve Yasal Yükümlülükler" hidden name="kardagitimbilgi7">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem7" id="kardagitimoncekidonem7"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari7" id="kardagitimcari7"></td>
+                 
+                </tr>
+                <tr>
+                  <td>A - NET DÖNEM KARI (1.1-1.2)
+                    <input type="text" value="A - NET DÖNEM KARI (1.1-1.2)" hidden name="kardagitimbilgi8">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem8" id="kardagitimoncekidonem8"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari8" id="kardagitimcari8"></td>
+                 
+                </tr>
+                <tr>
+                  <td>1.3- GEÇMIŞ DÖNEMLER ZARARI (-)
+                    <input type="text" value="1.3- GEÇMIŞ DÖNEMLER ZARARI (-)" hidden name="kardagitimbilgi9">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem9" id="kardagitimoncekidonem9"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari9" id="kardagitimcari9"></td>
+                 
+                </tr>
+                <tr>
+                  <td>1.4- BİRİNCİ TERTIP YASAL YEDEK AKÇE (-)
+                    <input type="text" value="1.4- BİRİNCİ TERTIP YASAL YEDEK AKÇE (-)" hidden name="kardagitimbilgi10">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem10" id="kardagitimoncekidonem10"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari10" id="kardagitimcari10"></td>
+                 
+                </tr>
+                <tr>
+                  <td>1.5- KURULUŞTA BIRAKILMASI VE TASARRUFU ZORUNLU YASAL FONLAR (-)
+                    <input type="text" value="1.5- KURULUŞTA BIRAKILMASI VE TASARRUFU ZORUNLU YASAL FONLAR (-)" hidden name="kardagitimbilgi11">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem11" id="kardagitimoncekidonem11"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari11" id="kardagitimcari11"></td>
+                 
+                </tr>
+                <tr>
+                  <td>B- DAĞITILABİLİR NET DÖNEM KARI [(A-(1.3+1.4+1.5)]
+                    <input type="text" value="B- DAĞITILABİLİR NET DÖNEM KARI [(A-(1.3+1.4+1.5)]" hidden name="kardagitimbilgi12">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem12" id="kardagitimoncekidonem12"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari12" id="kardagitimcari12"></td>
+                 
+                </tr>
+                <tr>
+                  <td>1.6- ORTAKLARA BİRİNCİ TEMETTÜ (-)
+                    <input type="text" value="1.6- ORTAKLARA BİRİNCİ TEMETTÜ (-)" hidden name="kardagitimbilgi13">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem13" id="kardagitimoncekidonem13"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari13" id="kardagitimcari13"></td>
+                 
+                </tr>
+                <tr>
+                  <td>1.6.1- Hisse Senedi Sahiplerine
+                    <input type="text" value="1.6.1- Hisse Senedi Sahiplerine" hidden name="kardagitimbilgi14">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem14" id="kardagitimoncekidonem14"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari14" id="kardagitimcari14"></td>
+                 
+                </tr>
+                <tr>
+                  <td>1.6.2 - Imtiyazı Hisse Senedi Sahiplerine
+                    <input type="text" value="1.6.2 - Imtiyazı Hisse Senedi Sahiplerine" hidden name="kardagitimbilgi15">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem15" id="kardagitimoncekidonem15"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari15" id="kardagitimcari15"></td>
+                 
+                </tr>
+                <tr>
+                  <td>1.6.3 - Katima Intifa Senetlerine
+                    <input type="text" value="1.6.3 - Katima Intifa Senetlerine" hidden name="kardagitimbilgi16">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem16" id="kardagitimoncekidonem16"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari16" id="kardagitimcari16"></td>
+                 
+                </tr>
+                <tr>
+                  <td>1.6.4 - Kara İştiraki Tahvilere
+                    <input type="text" value="1.6.4 - Kara İştiraki Tahvilere" hidden name="kardagitimbilgi17">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem17" id="kardagitimoncekidonem17"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari17" id="kardagitimcari17"></td>
+                 
+                </tr>
+                <tr>
+                  <td>1.6.5  - Kar ve Zarar Ortaklığı Belgesi Sahiplerine
+                    <input type="text" value="1.6.5  - Kar ve Zarar Ortaklığı Belgesi Sahiplerine" hidden name="kardagitimbilgi18">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem18" id="kardagitimoncekidonem18"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari18" id="kardagitimcari18"></td>
+                 
+                </tr>
+                <tr>
+                  <td>1.7- PERSONELE TEMETTÜ (-)
+                    <input type="text" value="1.7- PERSONELE TEMETTÜ (-)" hidden name="kardagitimbilgi19">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem19" id="kardagitimoncekidonem19"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari19" id="kardagitimcari19"></td>
+                 
+                </tr>
+                <tr>
+                  <td>1.8 - YÖNETİM KURULUNA TEMETTU (-)
+                    <input type="text" value="1.8 - YÖNETİM KURULUNA TEMETTU (-)" hidden name="kardagitimbilgi20">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem20" id="kardagitimoncekidonem20"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari20" id="kardagitimcari20"></td>
+                 
+                </tr>
+                <tr>
+                  <td>1.9- ORTAKLARA İKİNCİ TEMETTÜ (-)
+                    <input type="text" value="1.9- ORTAKLARA İKİNCİ TEMETTÜ (-)" hidden name="kardagitimbilgi21">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem21" id="kardagitimoncekidonem21"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari21" id="kardagitimcari21"></td>
+                </tr>
+                <tr>
+                  <td>1.9.1 - Hisse Senedi Sahiplerine
+                    <input type="text" value="1.9.1 - Hisse Senedi Sahiplerine" hidden name="kardagitimbilgi22">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem22" id="kardagitimoncekidonem22"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari22" id="kardagitimcari22"></td>
+                 
+                </tr>
+                <tr>
+                  <td>1.9.2 - İmtiyazlı Hisse Senedi Sahiplenine
+                    <input type="text" value="1.9.2 - İmtiyazlı Hisse Senedi Sahiplenine" hidden name="kardagitimbilgi23">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem23" id="kardagitimoncekidonem23"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari23" id="kardagitimcari23"></td>
+                 
+                </tr>
+                <tr>
+                  <td>1.9.3 - Katima Intifa Senetlenne
+                    <input type="text" value="1.9.3 - Katima Intifa Senetlenne" hidden name="kardagitimbilgi24">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem24" id="kardagitimoncekidonem24"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari24" id="kardagitimcari24"></td>
+                 
+                </tr>
+                <tr>
+                  <td>1.9.4 Kara Iştiraki Tahvillere
+                    <input type="text" value="1.9.4 Kara Iştiraki Tahvillere" hidden name="kardagitimbilgi25">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem25" id="kardagitimoncekidonem25"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari25" id="kardagitimcari25"></td>
+                 
+                </tr>
+                <tr>
+                  <td>1.9.5- Kâr ve Zarar Ortaklığı Belgesi Sahiplerine
+                    <input type="text" value="1.9.5- Kâr ve Zarar Ortaklığı Belgesi Sahiplerine" hidden name="kardagitimbilgi26">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem26" id="kardagitimoncekidonem26"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari26" id="kardagitimcari26"></td>
+                 
+                </tr>
+                <tr>
+                  <td>1.10- İKİNCİ TERTIP YASAL YEDEK AKÇE (-)
+                    <input type="text" value="1.10- İKİNCİ TERTIP YASAL YEDEK AKÇE (-)" hidden name="kardagitimbilgi27">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem27" id="kardagitimoncekidonem27"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari27" id="kardagitimcari27"></td>
+                 
+                </tr>
+                <tr>
+                  <td>1.11-STATÜ YEDEKLERİ (-)
+                    <input type="text" value="1.11-STATÜ YEDEKLERİ (-)" hidden name="kardagitimbilgi28">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem28" id="kardagitimoncekidonem28"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari28" id="kardagitimcari28"></td>
+                 
+                </tr>
+                <tr>
+                  <td>1.12- OLAĞANÜSTÜ YEDEKLER (-)
+                    <input type="text" value="1.12- OLAĞANÜSTÜ YEDEKLER (-)" hidden name="kardagitimbilgi29">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem29" id="kardagitimoncekidonem29"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari29" id="kardagitimcari29"></td>
+                 
+                </tr>
+                <tr>
+                  <td>1.13- DIĞER YEDEKLER
+                    <input type="text" value="1.13- DIĞER YEDEKLER" hidden name="kardagitimbilgi30">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem30" id="kardagitimoncekidonem30"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari30" id="kardagitimcari30"></td>
+                 
+                </tr>
+                <tr>
+                  <td>1.14- ÖZEL FONLAR
+                    <input type="text" value="1.14- ÖZEL FONLAR" hidden name="kardagitimbilgi31">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem31" id="kardagitimoncekidonem31"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari31" id="kardagitimcari31"></td>
+                 
+                </tr>
+                <tr>
+                  <td>II- YEDEKLERDEN DAĞITIM
+                    <input type="text" value="II- YEDEKLERDEN DAĞITIM" hidden name="kardagitimbilgi32">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem32" id="kardagitimoncekidonem32"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari32" id="kardagitimcari32"></td>
+                 
+                </tr>
+                <tr>
+                  <td>2.1- DAĞITILAN YEDEKLER
+                    <input type="text" value="2.1- DAĞITILAN YEDEKLER" hidden name="kardagitimbilgi33">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem33" id="kardagitimoncekidonem33"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari33" id="kardagitimcari33"></td>
+                 
+                </tr>
+                <tr>
+                  <td>2.2 - İKİNCİ TERTIP YASAL YEDEKLER (-)
+                    <input type="text" value="2.2 - İKİNCİ TERTIP YASAL YEDEKLER (-)" hidden name="kardagitimbilgi34">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem34" id="kardagitimoncekidonem34"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari34" id="kardagitimcari34"></td>
+                 
+                </tr>
+                <tr>
+                  <td>2.3- ORTAKLARA PAY (-)
+                    <input type="text" value="2.3- ORTAKLARA PAY (-)" hidden name="kardagitimbilgi35">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem35" id="kardagitimoncekidonem35"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari35" id="kardagitimcari35"></td>
+                 
+                </tr>
+                <tr>
+                  <td>2.3.1- Hisse Senedi Sahiplerine
+                    <input type="text" value="2.3.1- Hisse Senedi Sahiplerine" hidden name="kardagitimbilgi36">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem36" id="kardagitimoncekidonem36"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari36" id="kardagitimcari36"></td>
+                 
+                </tr>
+                <tr>
+                  <td>2.3.2 - Imtiyazlı Hisse Senedi Sahiplerine
+                    <input type="text" value="2.3.2 - Imtiyazlı Hisse Senedi Sahiplerine" hidden name="kardagitimbilgi37">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem37" id="kardagitimoncekidonem37"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari37" id="kardagitimcari37"></td>
+                 
+                </tr>
+                <tr>
+                  <td>2.3.3  - Katiima Intifa Senetlerine
+                    <input type="text" value="2.3.3  - Katiima Intifa Senetlerine" hidden name="kardagitimbilgi38">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem38" id="kardagitimoncekidonem38"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari38" id="kardagitimcari38"></td>
+                 
+                </tr>
+                <tr>
+                  <td>2.3.4- Kara İştiraki Tahvillere
+                    <input type="text" value="2.3.4- Kara İştiraki Tahvillere" hidden name="kardagitimbilgi39">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem39" id="kardagitimoncekidonem39"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari39" id="kardagitimcari39"></td>
+                 
+                </tr>
+                <tr>
+                  <td>2.3.4- Kara İştiraki Tahvillere
+                    <input type="text" value="2.3.4- Kara İştiraki Tahvillere" hidden name="kardagitimbilgi39">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem39" id="kardagitimoncekidonem39"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari39" id="kardagitimcari39"></td>
+                 
+                </tr>
+                <tr>
+                  <td>2.4 PERSONELE PAY (-)
+                    <input type="text" value="2.4 PERSONELE PAY (-)" hidden name="kardagitimbilgi41">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem41" id="kardagitimoncekidonem41"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari41" id="kardagitimcari41"></td>
+                 
+                </tr>
+                <tr>
+                  <td>2.5- YÖNETİM KURULUNA PAY (-)
+                    <input type="text" value="2.5- YÖNETİM KURULUNA PAY (-)" hidden name="kardagitimbilgi42">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem42" id="kardagitimoncekidonem42"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari42" id="kardagitimcari42"></td>
+                 
+                </tr>
+                <tr>
+                  <td>III- HISSE BASINA KAR
+                    <input type="text" value="III- HISSE BASINA KAR" hidden name="kardagitimbilgi43">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem43" id="kardagitimoncekidonem43"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari43" id="kardagitimcari43"></td>
+                 
+                </tr>
+                <tr>
+                  <td>.3.1-HİSSE SENEDİ SAHİPLERİNE
+                    <input type="text" value=".3.1-HİSSE SENEDİ SAHİPLERİNE" hidden name="kardagitimbilgi44">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem44" id="kardagitimoncekidonem44"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari44" id="kardagitimcari44"></td>
+                 
+                </tr>
+                <tr>
+                  <td>.3.2-  HİSSE SENEDİ SAHİPLERİNE (%)
+                    <input type="text" value=".3.2-  HİSSE SENEDİ SAHİPLERİNE (%)" hidden name="kardagitimbilgi45">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem45" id="kardagitimoncekidonem45"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari45" id="kardagitimcari45"></td>
+                 
+                </tr>
+                <tr>
+                  <td>.3.3 - IMTIYAZLI HISSE SENEDI SAHİPLERINE
+                    <input type="text" value=".3.3 - IMTIYAZLI HISSE SENEDI SAHİPLERINE" hidden name="kardagitimbilgi46">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem46" id="kardagitimoncekidonem46"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari46" id="kardagitimcari46"></td>
+                 
+                </tr>
+                <tr>
+                  <td>3.4 İMTİYAZLI HİSSE SENEDİ SAHİPLERİNE (%)
+                    <input type="text" value="3.4 İMTİYAZLI HİSSE SENEDİ SAHİPLERİNE (%)" hidden name="kardagitimbilgi47">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem47" id="kardagitimoncekidonem47"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari47" id="kardagitimcari47"></td>
+                 
+                </tr>
+                <tr>
+                  <td>IV- HISSE BASINA TEMETTÜ
+                    <input type="text" value="IV- HISSE BASINA TEMETTÜ" hidden name="kardagitimbilgi48">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem48" id="kardagitimoncekidonem48"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari48" id="kardagitimcari48"></td>
+                 
+                </tr>
+                <tr>
+                  <td>.4.1- HİSSE SENEDİ SAHİPLERİNE
+                    <input type="text" value=".4.1- HİSSE SENEDİ SAHİPLERİNE" hidden name="kardagitimbilgi49">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem49" id="kardagitimoncekidonem49"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari49" id="kardagitimcari49"></td>
+                 
+                </tr>
+                <tr>
+                  <td>.4.2 - HİSSE SENEDİ SAHİPLERİNE (%)
+                    <input type="text" value=".4.2 - HİSSE SENEDİ SAHİPLERİNE (%)" hidden name="kardagitimbilgi50">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem50" id="kardagitimoncekidonem50"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari50" id="kardagitimcari50"></td>
+                 
+                </tr>
+                <tr>
+                  <td>.4.3- IMTIYAZLI HISSE SENEDI SAHİPLERINE
+                    <input type="text" value=".4.3- IMTIYAZLI HISSE SENEDI SAHİPLERINE" hidden name="kardagitimbilgi51">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem51" id="kardagitimoncekidonem51"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari51" id="kardagitimcari51"></td>
+                 
+                </tr>
+                <tr>
+                  <td>.4.4- İMTİYAZLI HİSSE SENEDI SAHİPLERINE (%)
+                    <input type="text" value=".4.4- İMTİYAZLI HİSSE SENEDI SAHİPLERINE (%)" hidden name="kardagitimbilgi52">
+                  </td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimoncekidonem52" id="kardagitimoncekidonem52"></td>
+                  <td><input type="number" value="0" step="0.01" name="kardagitimcari52" id="kardagitimcari52"></td>
+                 
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="container tablo" style="margin-top: 0px !important;">
+          <input class="col-12 text-center" disabled value="Kurum Ortaklarına Ve Yönetim Kuruluna İlişkin Bildirim" type="text">
+          <div class="table-responsive " style=" 
+          height: 344px;
+          overflow: auto;">
+            <table class="table table-bordered ">
+              <thead style="position: sticky;top: 0">
+                <tr>
+                  <th class="text-center" style="min-width: 100px ;">Genel Md. / Müdür</th>
+                  <th class="text-center" style="min-width: 50px ;">Yönetim Kurulu Üyesi</th>
+                  <th class="text-center" style="min-width: 150px ;">Ortak</th>
+                  <th class="text-center" style="min-width: 150px ;">Kanuni Temsilci</th>
+                  <th class="text-center" style="min-width: 150px ;">Yurt İçi / Yurt Dışı Mukimi</th>
+                  <th class="text-center" style="min-width: 150px ;">Vergi Kimlik No</th>
+                  <th class="text-center" style="min-width: 150px ;">Adı Soyadı Unvanı</th>
+                  <th class="text-center" style="min-width: 150px ;">İkametgah Adresi</th>
+                  <th class="text-center" style="min-width: 150px ;">T.C. Kimlik Numarası</th>
+                  <th class="text-center" style="min-width: 150px ;">İrtibat Telefon Numarası</th>
+                  <th class="text-center" style="min-width: 150px ;">Hisse Oranı</th>
+                  <th class="text-center" style="min-width: 150px ;"><a href="javascript:void(0);" onclick="kurumortaklariekle()">SATIR EKLE</a></th>
+                  
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="kurumortaklariekle">
+                  <td><select name="mudurgenelmudur" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yonetimkuruluuyesi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="ortakbilgisi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="kanunitemsilcimi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yurticiyurtdisi" id="">
+                    <option value="Yurt içi mukimi">Yurt içi mukimi</option>
+                    <option value="Yurt dışı mukimi">Yurt dışı mukimi</option>
+                  </select></td>
+                  <td><input type="text" name="ortakvergikimliknosu"></td>
+                  <td><input type="text" name="ortakadisoyadiunvani"></td>
+                  <td><input type="text" name="ortakikametgahadresi"></td>
+                  <td><input type="text" name="ortaktckimliknosu"></td>
+                  <td><input type="text" name="ortaktelefonnumarasi"></td>
+                  <td><input type="text" name="ortakhisseorani"></td>
+                  <td></td>
+                </tr>
+                <tr class="kurumortaklariekle">
+                  <td><select name="mudurgenelmudur" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yonetimkuruluuyesi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="ortakbilgisi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="kanunitemsilcimi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yurticiyurtdisi" id="">
+                    <option value="Yurt içi mukimi">Yurt içi mukimi</option>
+                    <option value="Yurt dışı mukimi">Yurt dışı mukimi</option>
+                  </select></td>
+                  <td><input type="text" name="ortakvergikimliknosu"></td>
+                  <td><input type="text" name="ortakadisoyadiunvani"></td>
+                  <td><input type="text" name="ortakikametgahadresi"></td>
+                  <td><input type="text" name="ortaktckimliknosu"></td>
+                  <td><input type="text" name="ortaktelefonnumarasi"></td>
+                  <td><input type="text" name="ortakhisseorani"></td>
+                  <td></td>
+                </tr>
+                <tr class="kurumortaklariekle">
+                  <td><select name="mudurgenelmudur" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yonetimkuruluuyesi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="ortakbilgisi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="kanunitemsilcimi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yurticiyurtdisi" id="">
+                    <option value="Yurt içi mukimi">Yurt içi mukimi</option>
+                    <option value="Yurt dışı mukimi">Yurt dışı mukimi</option>
+                  </select></td>
+                  <td><input type="text" name="ortakvergikimliknosu"></td>
+                  <td><input type="text" name="ortakadisoyadiunvani"></td>
+                  <td><input type="text" name="ortakikametgahadresi"></td>
+                  <td><input type="text" name="ortaktckimliknosu"></td>
+                  <td><input type="text" name="ortaktelefonnumarasi"></td>
+                  <td><input type="text" name="ortakhisseorani"></td>
+                  <td></td>
+                </tr>
+                <tr class="kurumortaklariekle">
+                  <td><select name="mudurgenelmudur" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yonetimkuruluuyesi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="ortakbilgisi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="kanunitemsilcimi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yurticiyurtdisi" id="">
+                    <option value="Yurt içi mukimi">Yurt içi mukimi</option>
+                    <option value="Yurt dışı mukimi">Yurt dışı mukimi</option>
+                  </select></td>
+                  <td><input type="text" name="ortakvergikimliknosu"></td>
+                  <td><input type="text" name="ortakadisoyadiunvani"></td>
+                  <td><input type="text" name="ortakikametgahadresi"></td>
+                  <td><input type="text" name="ortaktckimliknosu"></td>
+                  <td><input type="text" name="ortaktelefonnumarasi"></td>
+                  <td><input type="text" name="ortakhisseorani"></td>
+                  <td></td>
+                </tr>
+                <tr class="kurumortaklariekle">
+                  <td><select name="mudurgenelmudur" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yonetimkuruluuyesi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="ortakbilgisi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="kanunitemsilcimi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yurticiyurtdisi" id="">
+                    <option value="Yurt içi mukimi">Yurt içi mukimi</option>
+                    <option value="Yurt dışı mukimi">Yurt dışı mukimi</option>
+                  </select></td>
+                  <td><input type="text" name="ortakvergikimliknosu"></td>
+                  <td><input type="text" name="ortakadisoyadiunvani"></td>
+                  <td><input type="text" name="ortakikametgahadresi"></td>
+                  <td><input type="text" name="ortaktckimliknosu"></td>
+                  <td><input type="text" name="ortaktelefonnumarasi"></td>
+                  <td><input type="text" name="ortakhisseorani"></td>
+                  <td></td>
+                </tr>
+                <tr class="kurumortaklariekle">
+                  <td><select name="mudurgenelmudur" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yonetimkuruluuyesi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="ortakbilgisi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="kanunitemsilcimi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yurticiyurtdisi" id="">
+                    <option value="Yurt içi mukimi">Yurt içi mukimi</option>
+                    <option value="Yurt dışı mukimi">Yurt dışı mukimi</option>
+                  </select></td>
+                  <td><input type="text" name="ortakvergikimliknosu"></td>
+                  <td><input type="text" name="ortakadisoyadiunvani"></td>
+                  <td><input type="text" name="ortakikametgahadresi"></td>
+                  <td><input type="text" name="ortaktckimliknosu"></td>
+                  <td><input type="text" name="ortaktelefonnumarasi"></td>
+                  <td><input type="text" name="ortakhisseorani"></td>
+                  <td></td>
+                </tr>
+                <tr class="kurumortaklariekle">
+                  <td><select name="mudurgenelmudur" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yonetimkuruluuyesi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="ortakbilgisi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="kanunitemsilcimi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yurticiyurtdisi" id="">
+                    <option value="Yurt içi mukimi">Yurt içi mukimi</option>
+                    <option value="Yurt dışı mukimi">Yurt dışı mukimi</option>
+                  </select></td>
+                  <td><input type="text" name="ortakvergikimliknosu"></td>
+                  <td><input type="text" name="ortakadisoyadiunvani"></td>
+                  <td><input type="text" name="ortakikametgahadresi"></td>
+                  <td><input type="text" name="ortaktckimliknosu"></td>
+                  <td><input type="text" name="ortaktelefonnumarasi"></td>
+                  <td><input type="text" name="ortakhisseorani"></td>
+                  <td></td>
+                </tr>
+                <tr class="kurumortaklariekle">
+                  <td><select name="mudurgenelmudur" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yonetimkuruluuyesi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="ortakbilgisi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="kanunitemsilcimi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yurticiyurtdisi" id="">
+                    <option value="Yurt içi mukimi">Yurt içi mukimi</option>
+                    <option value="Yurt dışı mukimi">Yurt dışı mukimi</option>
+                  </select></td>
+                  <td><input type="text" name="ortakvergikimliknosu"></td>
+                  <td><input type="text" name="ortakadisoyadiunvani"></td>
+                  <td><input type="text" name="ortakikametgahadresi"></td>
+                  <td><input type="text" name="ortaktckimliknosu"></td>
+                  <td><input type="text" name="ortaktelefonnumarasi"></td>
+                  <td><input type="text" name="ortakhisseorani"></td>
+                  <td></td>
+                </tr>
+                <tr class="kurumortaklariekle">
+                  <td><select name="mudurgenelmudur" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yonetimkuruluuyesi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="ortakbilgisi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="kanunitemsilcimi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yurticiyurtdisi" id="">
+                    <option value="Yurt içi mukimi">Yurt içi mukimi</option>
+                    <option value="Yurt dışı mukimi">Yurt dışı mukimi</option>
+                  </select></td>
+                  <td><input type="text" name="ortakvergikimliknosu"></td>
+                  <td><input type="text" name="ortakadisoyadiunvani"></td>
+                  <td><input type="text" name="ortakikametgahadresi"></td>
+                  <td><input type="text" name="ortaktckimliknosu"></td>
+                  <td><input type="text" name="ortaktelefonnumarasi"></td>
+                  <td><input type="text" name="ortakhisseorani"></td>
+                  <td></td>
+                </tr>
+                <tr class="kurumortaklariekle">
+                  <td><select name="mudurgenelmudur" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yonetimkuruluuyesi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="ortakbilgisi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="kanunitemsilcimi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yurticiyurtdisi" id="">
+                    <option value="Yurt içi mukimi">Yurt içi mukimi</option>
+                    <option value="Yurt dışı mukimi">Yurt dışı mukimi</option>
+                  </select></td>
+                  <td><input type="text" name="ortakvergikimliknosu"></td>
+                  <td><input type="text" name="ortakadisoyadiunvani"></td>
+                  <td><input type="text" name="ortakikametgahadresi"></td>
+                  <td><input type="text" name="ortaktckimliknosu"></td>
+                  <td><input type="text" name="ortaktelefonnumarasi"></td>
+                  <td><input type="text" name="ortakhisseorani"></td>
+                  <td></td>
+                </tr><tr class="kurumortaklariekle">
+                  <td><select name="mudurgenelmudur" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yonetimkuruluuyesi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="ortakbilgisi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="kanunitemsilcimi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yurticiyurtdisi" id="">
+                    <option value="Yurt içi mukimi">Yurt içi mukimi</option>
+                    <option value="Yurt dışı mukimi">Yurt dışı mukimi</option>
+                  </select></td>
+                  <td><input type="text" name="ortakvergikimliknosu"></td>
+                  <td><input type="text" name="ortakadisoyadiunvani"></td>
+                  <td><input type="text" name="ortakikametgahadresi"></td>
+                  <td><input type="text" name="ortaktckimliknosu"></td>
+                  <td><input type="text" name="ortaktelefonnumarasi"></td>
+                  <td><input type="text" name="ortakhisseorani"></td>
+                  <td></td>
+                </tr>
+
+                <tr class="kurumortaklariekle">
+                  <td><select name="mudurgenelmudur" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yonetimkuruluuyesi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="ortakbilgisi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="kanunitemsilcimi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yurticiyurtdisi" id="">
+                    <option value="Yurt içi mukimi">Yurt içi mukimi</option>
+                    <option value="Yurt dışı mukimi">Yurt dışı mukimi</option>
+                  </select></td>
+                  <td><input type="text" name="ortakvergikimliknosu"></td>
+                  <td><input type="text" name="ortakadisoyadiunvani"></td>
+                  <td><input type="text" name="ortakikametgahadresi"></td>
+                  <td><input type="text" name="ortaktckimliknosu"></td>
+                  <td><input type="text" name="ortaktelefonnumarasi"></td>
+                  <td><input type="text" name="ortakhisseorani"></td>
+                  <td></td>
+                </tr>
+                <tr class="kurumortaklariekle">
+                  <td><select name="mudurgenelmudur" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yonetimkuruluuyesi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="ortakbilgisi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="kanunitemsilcimi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yurticiyurtdisi" id="">
+                    <option value="Yurt içi mukimi">Yurt içi mukimi</option>
+                    <option value="Yurt dışı mukimi">Yurt dışı mukimi</option>
+                  </select></td>
+                  <td><input type="text" name="ortakvergikimliknosu"></td>
+                  <td><input type="text" name="ortakadisoyadiunvani"></td>
+                  <td><input type="text" name="ortakikametgahadresi"></td>
+                  <td><input type="text" name="ortaktckimliknosu"></td>
+                  <td><input type="text" name="ortaktelefonnumarasi"></td>
+                  <td><input type="text" name="ortakhisseorani"></td>
+                  <td></td>
+                </tr>
+                <tr class="kurumortaklariekle">
+                  <td><select name="mudurgenelmudur" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yonetimkuruluuyesi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="ortakbilgisi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="kanunitemsilcimi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yurticiyurtdisi" id="">
+                    <option value="Yurt içi mukimi">Yurt içi mukimi</option>
+                    <option value="Yurt dışı mukimi">Yurt dışı mukimi</option>
+                  </select></td>
+                  <td><input type="text" name="ortakvergikimliknosu"></td>
+                  <td><input type="text" name="ortakadisoyadiunvani"></td>
+                  <td><input type="text" name="ortakikametgahadresi"></td>
+                  <td><input type="text" name="ortaktckimliknosu"></td>
+                  <td><input type="text" name="ortaktelefonnumarasi"></td>
+                  <td><input type="text" name="ortakhisseorani"></td>
+                  <td></td>
+                </tr>
+                <tr class="kurumortaklariekle">
+                  <td><select name="mudurgenelmudur" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yonetimkuruluuyesi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="ortakbilgisi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="kanunitemsilcimi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yurticiyurtdisi" id="">
+                    <option value="Yurt içi mukimi">Yurt içi mukimi</option>
+                    <option value="Yurt dışı mukimi">Yurt dışı mukimi</option>
+                  </select></td>
+                  <td><input type="text" name="ortakvergikimliknosu"></td>
+                  <td><input type="text" name="ortakadisoyadiunvani"></td>
+                  <td><input type="text" name="ortakikametgahadresi"></td>
+                  <td><input type="text" name="ortaktckimliknosu"></td>
+                  <td><input type="text" name="ortaktelefonnumarasi"></td>
+                  <td><input type="text" name="ortakhisseorani"></td>
+                  <td></td>
+                </tr>
+                <tr class="kurumortaklariekle">
+                  <td><select name="mudurgenelmudur" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yonetimkuruluuyesi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="ortakbilgisi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="kanunitemsilcimi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yurticiyurtdisi" id="">
+                    <option value="Yurt içi mukimi">Yurt içi mukimi</option>
+                    <option value="Yurt dışı mukimi">Yurt dışı mukimi</option>
+                  </select></td>
+                  <td><input type="text" name="ortakvergikimliknosu"></td>
+                  <td><input type="text" name="ortakadisoyadiunvani"></td>
+                  <td><input type="text" name="ortakikametgahadresi"></td>
+                  <td><input type="text" name="ortaktckimliknosu"></td>
+                  <td><input type="text" name="ortaktelefonnumarasi"></td>
+                  <td><input type="text" name="ortakhisseorani"></td>
+                  <td></td>
+                </tr>
+                <tr class="kurumortaklariekle">
+                  <td><select name="mudurgenelmudur" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yonetimkuruluuyesi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="ortakbilgisi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="kanunitemsilcimi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yurticiyurtdisi" id="">
+                    <option value="Yurt içi mukimi">Yurt içi mukimi</option>
+                    <option value="Yurt dışı mukimi">Yurt dışı mukimi</option>
+                  </select></td>
+                  <td><input type="text" name="ortakvergikimliknosu"></td>
+                  <td><input type="text" name="ortakadisoyadiunvani"></td>
+                  <td><input type="text" name="ortakikametgahadresi"></td>
+                  <td><input type="text" name="ortaktckimliknosu"></td>
+                  <td><input type="text" name="ortaktelefonnumarasi"></td>
+                  <td><input type="text" name="ortakhisseorani"></td>
+                  <td></td>
+                </tr>
+                <tr class="kurumortaklariekle">
+                  <td><select name="mudurgenelmudur" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yonetimkuruluuyesi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="ortakbilgisi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="kanunitemsilcimi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yurticiyurtdisi" id="">
+                    <option value="Yurt içi mukimi">Yurt içi mukimi</option>
+                    <option value="Yurt dışı mukimi">Yurt dışı mukimi</option>
+                  </select></td>
+                  <td><input type="text" name="ortakvergikimliknosu"></td>
+                  <td><input type="text" name="ortakadisoyadiunvani"></td>
+                  <td><input type="text" name="ortakikametgahadresi"></td>
+                  <td><input type="text" name="ortaktckimliknosu"></td>
+                  <td><input type="text" name="ortaktelefonnumarasi"></td>
+                  <td><input type="text" name="ortakhisseorani"></td>
+                  <td></td>
+                </tr>
+                <tr class="kurumortaklariekle">
+                  <td><select name="mudurgenelmudur" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yonetimkuruluuyesi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="ortakbilgisi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="kanunitemsilcimi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yurticiyurtdisi" id="">
+                    <option value="Yurt içi mukimi">Yurt içi mukimi</option>
+                    <option value="Yurt dışı mukimi">Yurt dışı mukimi</option>
+                  </select></td>
+                  <td><input type="text" name="ortakvergikimliknosu"></td>
+                  <td><input type="text" name="ortakadisoyadiunvani"></td>
+                  <td><input type="text" name="ortakikametgahadresi"></td>
+                  <td><input type="text" name="ortaktckimliknosu"></td>
+                  <td><input type="text" name="ortaktelefonnumarasi"></td>
+                  <td><input type="text" name="ortakhisseorani"></td>
+                  <td></td>
+                </tr>
+                <tr class="kurumortaklariekle">
+                  <td><select name="mudurgenelmudur" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yonetimkuruluuyesi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="ortakbilgisi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="kanunitemsilcimi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yurticiyurtdisi" id="">
+                    <option value="Yurt içi mukimi">Yurt içi mukimi</option>
+                    <option value="Yurt dışı mukimi">Yurt dışı mukimi</option>
+                  </select></td>
+                  <td><input type="text" name="ortakvergikimliknosu"></td>
+                  <td><input type="text" name="ortakadisoyadiunvani"></td>
+                  <td><input type="text" name="ortakikametgahadresi"></td>
+                  <td><input type="text" name="ortaktckimliknosu"></td>
+                  <td><input type="text" name="ortaktelefonnumarasi"></td>
+                  <td><input type="text" name="ortakhisseorani"></td>
+                  <td></td>
+                </tr>
+                <tr class="kurumortaklariekle">
+                  <td><select name="mudurgenelmudur" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yonetimkuruluuyesi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="ortakbilgisi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="kanunitemsilcimi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yurticiyurtdisi" id="">
+                    <option value="Yurt içi mukimi">Yurt içi mukimi</option>
+                    <option value="Yurt dışı mukimi">Yurt dışı mukimi</option>
+                  </select></td>
+                  <td><input type="text" name="ortakvergikimliknosu"></td>
+                  <td><input type="text" name="ortakadisoyadiunvani"></td>
+                  <td><input type="text" name="ortakikametgahadresi"></td>
+                  <td><input type="text" name="ortaktckimliknosu"></td>
+                  <td><input type="text" name="ortaktelefonnumarasi"></td>
+                  <td><input type="text" name="ortakhisseorani"></td>
+                  <td></td>
+                </tr>
+                <tr class="kurumortaklariekle">
+                  <td><select name="mudurgenelmudur" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yonetimkuruluuyesi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="ortakbilgisi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="kanunitemsilcimi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yurticiyurtdisi" id="">
+                    <option value="Yurt içi mukimi">Yurt içi mukimi</option>
+                    <option value="Yurt dışı mukimi">Yurt dışı mukimi</option>
+                  </select></td>
+                  <td><input type="text" name="ortakvergikimliknosu"></td>
+                  <td><input type="text" name="ortakadisoyadiunvani"></td>
+                  <td><input type="text" name="ortakikametgahadresi"></td>
+                  <td><input type="text" name="ortaktckimliknosu"></td>
+                  <td><input type="text" name="ortaktelefonnumarasi"></td>
+                  <td><input type="text" name="ortakhisseorani"></td>
+                  <td></td>
+                </tr>
+                <tr class="kurumortaklariekle">
+                  <td><select name="mudurgenelmudur" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yonetimkuruluuyesi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="ortakbilgisi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="kanunitemsilcimi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yurticiyurtdisi" id="">
+                    <option value="Yurt içi mukimi">Yurt içi mukimi</option>
+                    <option value="Yurt dışı mukimi">Yurt dışı mukimi</option>
+                  </select></td>
+                  <td><input type="text" name="ortakvergikimliknosu"></td>
+                  <td><input type="text" name="ortakadisoyadiunvani"></td>
+                  <td><input type="text" name="ortakikametgahadresi"></td>
+                  <td><input type="text" name="ortaktckimliknosu"></td>
+                  <td><input type="text" name="ortaktelefonnumarasi"></td>
+                  <td><input type="text" name="ortakhisseorani"></td>
+                  <td></td>
+                </tr>
+                <tr class="kurumortaklariekle">
+                  <td><select name="mudurgenelmudur" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yonetimkuruluuyesi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="ortakbilgisi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="kanunitemsilcimi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yurticiyurtdisi" id="">
+                    <option value="Yurt içi mukimi">Yurt içi mukimi</option>
+                    <option value="Yurt dışı mukimi">Yurt dışı mukimi</option>
+                  </select></td>
+                  <td><input type="text" name="ortakvergikimliknosu"></td>
+                  <td><input type="text" name="ortakadisoyadiunvani"></td>
+                  <td><input type="text" name="ortakikametgahadresi"></td>
+                  <td><input type="text" name="ortaktckimliknosu"></td>
+                  <td><input type="text" name="ortaktelefonnumarasi"></td>
+                  <td><input type="text" name="ortakhisseorani"></td>
+                  <td></td>
+                </tr>
+                <tr class="kurumortaklariekle">
+                  <td><select name="mudurgenelmudur" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yonetimkuruluuyesi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="ortakbilgisi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="kanunitemsilcimi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yurticiyurtdisi" id="">
+                    <option value="Yurt içi mukimi">Yurt içi mukimi</option>
+                    <option value="Yurt dışı mukimi">Yurt dışı mukimi</option>
+                  </select></td>
+                  <td><input type="text" name="ortakvergikimliknosu"></td>
+                  <td><input type="text" name="ortakadisoyadiunvani"></td>
+                  <td><input type="text" name="ortakikametgahadresi"></td>
+                  <td><input type="text" name="ortaktckimliknosu"></td>
+                  <td><input type="text" name="ortaktelefonnumarasi"></td>
+                  <td><input type="text" name="ortakhisseorani"></td>
+                  <td></td>
+                </tr>
+                <tr class="kurumortaklariekle">
+                  <td><select name="mudurgenelmudur" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yonetimkuruluuyesi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="ortakbilgisi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="kanunitemsilcimi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yurticiyurtdisi" id="">
+                    <option value="Yurt içi mukimi">Yurt içi mukimi</option>
+                    <option value="Yurt dışı mukimi">Yurt dışı mukimi</option>
+                  </select></td>
+                  <td><input type="text" name="ortakvergikimliknosu"></td>
+                  <td><input type="text" name="ortakadisoyadiunvani"></td>
+                  <td><input type="text" name="ortakikametgahadresi"></td>
+                  <td><input type="text" name="ortaktckimliknosu"></td>
+                  <td><input type="text" name="ortaktelefonnumarasi"></td>
+                  <td><input type="text" name="ortakhisseorani"></td>
+                  <td></td>
+                </tr>
+                <tr class="kurumortaklariekle">
+                  <td><select name="mudurgenelmudur" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yonetimkuruluuyesi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="ortakbilgisi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="kanunitemsilcimi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yurticiyurtdisi" id="">
+                    <option value="Yurt içi mukimi">Yurt içi mukimi</option>
+                    <option value="Yurt dışı mukimi">Yurt dışı mukimi</option>
+                  </select></td>
+                  <td><input type="text" name="ortakvergikimliknosu"></td>
+                  <td><input type="text" name="ortakadisoyadiunvani"></td>
+                  <td><input type="text" name="ortakikametgahadresi"></td>
+                  <td><input type="text" name="ortaktckimliknosu"></td>
+                  <td><input type="text" name="ortaktelefonnumarasi"></td>
+                  <td><input type="text" name="ortakhisseorani"></td>
+                  <td></td>
+                </tr>
+                <tr class="kurumortaklariekle">
+                  <td><select name="mudurgenelmudur" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yonetimkuruluuyesi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="ortakbilgisi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="kanunitemsilcimi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yurticiyurtdisi" id="">
+                    <option value="Yurt içi mukimi">Yurt içi mukimi</option>
+                    <option value="Yurt dışı mukimi">Yurt dışı mukimi</option>
+                  </select></td>
+                  <td><input type="text" name="ortakvergikimliknosu"></td>
+                  <td><input type="text" name="ortakadisoyadiunvani"></td>
+                  <td><input type="text" name="ortakikametgahadresi"></td>
+                  <td><input type="text" name="ortaktckimliknosu"></td>
+                  <td><input type="text" name="ortaktelefonnumarasi"></td>
+                  <td><input type="text" name="ortakhisseorani"></td>
+                  <td></td>
+                </tr>
+                <tr class="kurumortaklariekle">
+                  <td><select name="mudurgenelmudur" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yonetimkuruluuyesi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="ortakbilgisi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="kanunitemsilcimi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yurticiyurtdisi" id="">
+                    <option value="Yurt içi mukimi">Yurt içi mukimi</option>
+                    <option value="Yurt dışı mukimi">Yurt dışı mukimi</option>
+                  </select></td>
+                  <td><input type="text" name="ortakvergikimliknosu"></td>
+                  <td><input type="text" name="ortakadisoyadiunvani"></td>
+                  <td><input type="text" name="ortakikametgahadresi"></td>
+                  <td><input type="text" name="ortaktckimliknosu"></td>
+                  <td><input type="text" name="ortaktelefonnumarasi"></td>
+                  <td><input type="text" name="ortakhisseorani"></td>
+                  <td></td>
+                </tr>
+                <tr class="kurumortaklariekle">
+                  <td><select name="mudurgenelmudur" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yonetimkuruluuyesi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="ortakbilgisi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="kanunitemsilcimi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yurticiyurtdisi" id="">
+                    <option value="Yurt içi mukimi">Yurt içi mukimi</option>
+                    <option value="Yurt dışı mukimi">Yurt dışı mukimi</option>
+                  </select></td>
+                  <td><input type="text" name="ortakvergikimliknosu"></td>
+                  <td><input type="text" name="ortakadisoyadiunvani"></td>
+                  <td><input type="text" name="ortakikametgahadresi"></td>
+                  <td><input type="text" name="ortaktckimliknosu"></td>
+                  <td><input type="text" name="ortaktelefonnumarasi"></td>
+                  <td><input type="text" name="ortakhisseorani"></td>
+                  <td></td>
+                </tr><tr class="kurumortaklariekle">
+                  <td><select name="mudurgenelmudur" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yonetimkuruluuyesi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="ortakbilgisi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="kanunitemsilcimi" id="">
+                    <option value="EVET">EVET</option>
+                    <option value="HAYIR">EVET</option>
+                  </select></td>
+                  <td><select name="yurticiyurtdisi" id="">
+                    <option value="Yurt içi mukimi">Yurt içi mukimi</option>
+                    <option value="Yurt dışı mukimi">Yurt dışı mukimi</option>
+                  </select></td>
+                  <td><input type="text" name="ortakvergikimliknosu"></td>
+                  <td><input type="text" name="ortakadisoyadiunvani"></td>
+                  <td><input type="text" name="ortakikametgahadresi"></td>
+                  <td><input type="text" name="ortaktckimliknosu"></td>
+                  <td><input type="text" name="ortaktelefonnumarasi"></td>
+                  <td><input type="text" name="ortakhisseorani"></td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      <hr style="border: 2px solid black !important;" >
+  </div>
+</div>
+<script>
+      let p = 0;
+  function ekleYeniSatirvergiekleme() {
+    
+    var elements = document.getElementsByClassName('ekleYeniSatirvergiekleme');
+
+    if (elements[p]) {
+        elements[p].classList.remove('ekleYeniSatirvergiekleme');
+    } else {
+        console.error("Ürün Sınırına Ulaştınız");
+    }
+
+   
+  }
+  let k = 0;
+  function kurumortaklariekle() {
+    
+    var elements = document.getElementsByClassName('kurumortaklariekle');
+
+    if (elements[k]) {
+        elements[k].classList.remove('kurumortaklariekle');
+    } else {
+        console.error("Ürün Sınırına Ulaştınız");
+    }
+
+   
+  }
+
+
+</script>
+{% endblock content %}
