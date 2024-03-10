@@ -22,7 +22,9 @@ def login_and_register(request):
     if request.method == "POST":
         if form.is_valid():
             user = form.save()
-            login(request, user)
+            if user is not None:
+                login(request, user)
+                return redirect("/")
             
             return redirect('/')
     else:  
@@ -39,7 +41,7 @@ def custom_login(request):
         if user is not None:
             login(request, user)
             return redirect("/")
-
+        return redirect("/")
     else:
         return redirect("/users/loginandregister/")
 
