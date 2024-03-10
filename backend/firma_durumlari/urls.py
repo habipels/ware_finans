@@ -12,5 +12,6 @@ urlpatterns = [
     path("show/<str:slug>/<int:id>",firma_gosterme_subeli,name="firma_gosterme_subeli"),
     path("delete/<str:slug>/<int:id>",sube_sil,name="sube_sil"),
     path("deletecompany/<str:slug>",firma_sil,name="firma_sil"),
+    path("ortaklar/<str:slug>",firma_ortak_eklme_silme,name="firma_ortak_eklme_silme"),
 ]
 #

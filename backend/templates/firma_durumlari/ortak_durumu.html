@@ -1,0 +1,127 @@
+{% extends "homebase.html" %}
+{% block content %}
+  <!--Header-->
+  <div class="icon-bar">
+
+    <a href="/{{firma.firma_ozel_anahtar}}/yenikasakarti/">Kaydet</a>
+    <a style="color: white;" onclick="showConfirmationPopup()"> Sil</a>
+    <a href="/{{firma.firma_ozel_anahtar}}/muavin/" >Yazdır</a>
+    <a href="/" style="color:red;">Çıkış Yap (ESC)</a>
+
+  </div>
+
+<div class="container">
+  <div class="row">
+    
+      <div class="container tablo" style="margin-top: 0px !important;">
+       
+        <div class="table-responsive " style=" 
+        height: 200px;
+        overflow: auto;">
+          <table class="table table-bordered ">
+            <thead style="position: sticky;top: 0">
+              <tr>
+                <th class="text-center" style="min-width: 100px ;">ADI SOYADI</th>
+                <th class="text-center" style="min-width: 50px ;">UNVANI</th>
+                <th class="text-center" style="min-width: 150px ;">HİSSE ORANI</th>
+                <th class="text-center">HİSSE PAY ORANI</th>
+                <th class="text-center">HİSSE TUTARI</th>
+                <th class="text-center">ORTAKLIĞA GİRİŞ TARİHİ</th>
+                <th class="text-center">OTRAKLIKTAN ÇIKIŞ TARİHİ</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for i in ortaklar %}
+                 <tr>
+                <td>{{i.unvan}}</td>
+                <td>{{i.unvan}}</td>
+                <td>{{i.hisse_orani}}</td>
+                <td>{{i.hisse_orani}}</td>
+                <td>{{i.hisse_tutari}}</td>
+                <td>{{i.ortaklik_giris_tarihi}}</td>
+                <td>{{i.ortakliktan_cikis_tarihi}}</td>
+                
+              </tr>
+                {% endfor %}
+             
+             
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <hr style="border: 2px solid black !important;" >
+  </div>
+</div>
+<div class="container">
+    <div class="row">
+        <h3 class="text-center">Ortak Ekleme Kısmı</h3>
+        <h4 style="color: rgb(61, 61, 247);" class="text-center" >Genel Bilgiler</h4>
+        <div class="col-6" style="border-right: 1px solid black;">
+            <label for="unvan">Unvan: <select name="unvanbilgisi" id="">
+                <option value="İşveren">İşveren</option>
+                <option value="Yönetici">Yönetici</option>
+                <option value="Ortak">Ortak</option>
+                <option value="İşveren Vekili">İşveren Vekili</option>
+            </select></label>
+            <label for="ortakvekil">Ortak / Vekil: <select name="ortakvekil" id="ortakvekil">
+                <option value="Ortak">Ortak</option>
+                <option value="İşveren Vekili">İşveren Vekili</option>
+       
+            </select></label>
+            <br>
+            <label for="adisoyadi">Adı Soyadı : <input type="text" id="adisoyadi" name="adisoyadi"></label>
+            <div class="row">
+                <div class="col-6" style="border-right: 1px solid black;">
+                    <label for="otaklikgiristarihi">Ortaklığa Giriş Tarihi: <input type="date" id="otaklikgiristarihi" name="otaklikgiristarihi"></label>
+                    <label for="otaklikcikistarihi">Ortaklığa Çıkış Tarihi: <input type="date" id="otaklikcikistarihi" name="otaklikcikistarihi"></label>
+                    <label for="gorevbitistarihi">Görev Bitiş Tarihi: <input type="date" id="gorevbitistarihi" name="gorevbitistarihi"></label>
+                    <label for="hisseorani">Hisse Oranı: <input type="number" value="0" step="0.01" id="hisseorani" name="hisseorani"></label>
+                    <label for="hissepayadeti">Hisse Pay Adeti: <input type="number" value="0" step="0.01" id="hissepayadeti" name="hissepayadeti"></label>
+                    <label for="hissetutari">Hisse Tutarı: <input type="number" value="0" step="0.01" id="hissetutari" name="hissetutari"></label>
+                    <label for="ticaretsicilno">Ticaret Sicil No: <input type="text" id="ticaretsicilno" name="ticaretsicilno"></label>
+                    <label for="ticaretsicilgazetetarihi">Ticaret Sicil Gazete Tarihi: <input type="datetime-local" id="ticaretsicilgazetetarihi" name="ticaretsicilgazetetarihi"></label>
+                    <label for="ticaretsicilgazeteno">Ticaret Sicil Gazete No: <input type="text" id="ticaretsicilgazeteno" name="ticaretsicilgazeteno"></label>
+                    <label for="ticaretsicilgazetesayfano">Ticaret Sicil Gazete Sayfa No: <input type="text" id="ticaretsicilgazetesayfano" name="ticaretsicilgazetesayfano"></label>
+                    <label for="vergidairesi">Vergi Dairesi: <input type="text" id="vergidairesi" name="vergidairesi"></label>
+                    <label for="vergino">Vergi No: <input type="text" id="vergino" name="vergino"></label>
+                    <label for="vergidairesikodu">Vergi Dairesi Kodu: <input type="text" id="vergidairesikodu" name="vergidairesikodu"></label>
+                    <label for="vergidairesiili">Vergi Dairesi İli: <input type="text" id="vergidairesiili" name="vergidairesiili"></label>
+                    <label for="vergidairesiilcesi">Vergi Dairesi İlçesi: <input type="text" id="vergidairesiilcesi" name="vergidairesiilcesi"></label>
+                
+                </div>
+                <div class="col-6"><label for="bagkurno">Bağ-Kur No: <input type="text" id="bagkurno" name="bagkurno"></label>
+                    <label for="bagkurno">Bağ-Kur Basamağı: <input type="text" id="bagkurbasamagi" name="bagkurbasamagi"></label>
+                    <label for="sskno">SSK No: <input type="text" id="sskno" name="sskno"></label>
+                    <label for="emeklisandigino">Emekli Sandığı No: <input type="text" id="emeklisandigino" name="emeklisandigino"></label>
+                    <label for="digerisyerisicilno">Diğer İşyeri Sicil No: <input type="text" id="digerisyerisicilno" name="digerisyerisicilno"></label>
+                    <label for="vakifno">Vakıf No: <input type="text" id="vakifno" name="vakifno"></label>
+                    <label for="dernekno">Dernek No: <input type="text" id="dernekno" name="dernekno"></label>
+                    <label for="tututugudefterturu">Tututuğu Defter Türü: <select name="tututugudefterturu" id="tututugudefterturu">
+                        <option value="Bilanço">Bilanço</option>
+                        <option value="Diğer Defterler">Diğer Defterler</option>
+                        <option value="Deftere Tabi Değil">Deftere Tabi Değil</option>
+                    </select></label>
+                    <label for="meslegi">Mesleği: <input type="text" id="meslegi" name="meslegi"></label>
+                    <label for="faliyetkodu">Faliyet Kodu: <input type="text" id="faliyetkodu" name="faliyetkodu"></label>
+                    <label for="faliyetsuresi">Faliyet Süresi: <input type="number" value="0" id="faliyetsuresi" name="faliyetsuresi"></label>
+                    <label for="meslegitesekkuladi">Mesleki Teşekkül Adı: <input type="text" id="meslegitesekkuladi" name="meslegitesekkuladi"></label>
+                    <label for="meslegitesekkulno">Mesleki Teşekkül No: <input type="text" id="meslegitesekkulno" name="meslegitesekkulno"></label>
+                    <label for="aracplakano1">Araç Plaka No1: <input type="text" id="aracplakano1" name="aracplakano1"></label>
+                    <label for="aracplakano2">Araç Plaka No2: <input type="text" id="aracplakano2" name="aracplakano2"></label>
+                    <label for="aracplakano3">Araç Plaka No3: <input type="text" id="aracplakano3" name="aracplakano3"></label>
+
+                </div>
+                    </div>
+            </div>
+        
+        <div class="col-6">
+            <label for="ikamatgahadresi">İkamatgah Adresi: <input type="text" id="ikamatgahadresi" name="ikamatgahadresi"></label>
+            <label for="ikamatgahbulvar">İkamatgah Adresi: <input type="text" id="ikamatgahbulvar" name="ikamatgahbulvar"></label>
+            <label for="ikamatgahcadde">İkamatgah Adresi: <input type="text" id="ikamatgahcadde" name="ikamatgahcadde"></label>
+            <label for="ikamatgahsokak">İkamatgah Adresi: <input type="text" id="ikamatgahsokak" name="ikamatgahsokak"></label>
+            <label for="">İç Kapı No / Dış Kapı No: <input type="text" id="ickapi" name="ickapi"><input type="text" id="diskapi" name="diskapi"></label>
+        </div></div>
+    </div>
+</div>
+
+{% endblock content %}
