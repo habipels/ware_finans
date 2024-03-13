@@ -1,5 +1,6 @@
 import requests
-url = "http://api.defterbeyan.gov.tr/rs/api/mukmukellefkarti/getduzenleyenbilgiler"  
+url = "http://api.defterbeyan.gov.tr/rs/api/sistemvarliklari/getcurrent"
+""  
 response = requests.get(url)
 
 """if response.status_code == 200:
@@ -17,19 +18,9 @@ x = {
   "resultContainer": {
     "id": "string",
     "deleted": False,
-    "vergiNo": "3320873863",
-    "adSoyad": "Habip ELİŞ",
-    "soyadi": "ELİŞ",
-    "adi": "Habip",
-    "kimlikNo": "25055601262",
-    "ticSicilNo": "string",
-    "eposta": "string",
-    "alanKodu": "string",
-    "telNo": "string",
-    "mersisNo": "string",
-    "isyeriAdresi": "string",
-    "sayisalAdresNo": "string",
-    "isyeriTelNo": "string"
+    "baslangicTarihi": "2024-03-13 17:23:07",
+    "bitisTarihi": "2024-03-13 17:23:07",
+    "v": 0
   }
 }
 response = requests.post(url, json=x)  # Veriyi JSON formatında gönderin
