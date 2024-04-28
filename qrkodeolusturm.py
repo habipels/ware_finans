@@ -10,7 +10,7 @@ qr = qrcode.QRCode(
 )
 
 # karekod içinde saklamak istediğiniz verileriniz
-data = "http://cohucoffeehuman.pythonanywhere.com/menu/"
+data = "https://cohucoffeehuman.site/menu/"
 
 # Veriyi ekleme
 qr.add_data(data)
